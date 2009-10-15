@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Function to assign group membership and corresponding colors in the construction of a Spectra object</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for groupNcolor {unknown}"><tr><td>groupNcolor {unknown}</td><td align="right">R Documentation</td></tr></table>
+<h2>Function to assign group membership and corresponding colors in the construction of a Spectra object</h2>
+
+
+<h3>Description</h3>
+
+<p>
+A utility function which looks for gr.crit in the file names of .csv files and assigns group membership.  Also assigns a color to each group.  Not intended for users.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+groupNcolor(spectra, gr.crit = NULL, gr.cols = c("auto"))
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>spectra</code></td>
+<td>
+An object of S3 class <code>"Spectra"</code>.  Until this function acts on <code>"Spectra"</code> it is not quite complete.
+</td></tr>
+<tr valign="top"><td><code>gr.crit</code></td>
+<td>
+As per <code><a href="../../../doc/html/search/SearchObject.html?getManyCsv">getManyCsv</a></code>
+</td></tr>
+<tr valign="top"><td><code>gr.cols</code></td>
+<td>
+As per <code><a href="../../../doc/html/search/SearchObject.html?getManyCsv">getManyCsv</a></code>
+</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+A <EM>complete</EM> object of S3 class <code>"Spectra"</code>.  Until this function has done its job, an object of class <code>"Spectra"</code> will not pass checks (see <code><a href="../../../doc/html/search/SearchObject.html?chkSpectra">chkSpectra</a></code>).)</p>
+
+<h3>Called by</h3>
+
+<p>
+<code><a href="../../../doc/html/search/SearchObject.html?getManyCsv">getManyCsv</a></code>
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>
+Bryan A. Hanson, DePauw University. <a href="mailto:hanson@depauw.edu">hanson@depauw.edu</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>
+<a href="http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html">http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="../../../doc/html/search/SearchObject.html?getManyCsv">getManyCsv</a></code> for details.
+</p>
+
+
+
+<hr><div align="center">[Package <a href="00Index.html">Index</a>]</div>
+
+</body></html>

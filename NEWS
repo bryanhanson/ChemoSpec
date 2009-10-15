@@ -1,0 +1,29 @@
+
+
+NEWS file for package ChemoSpec
+Exploratory Chemometrics for Spectroscopy
+Bryan A. Hanson DePauw University, Greencastle Indiana USA
+URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
+
+##### Version: 1.2
+Date: 2009-10-14
+News:
+Added plotScoresG to create ggobi visualizations of the pca results.
+Made color schemes consistent with ggobi color schemes.
+Clarified and expanded selected documentation files.
+
+##### Version: 1.1
+Date: 2009-09-23
+News:
+Modified colLeaf so that the leaf label size would vary with the number of leaves to be plotted.
+Added ... to plot arguments in HCA so that user can pass additional plotting parameters.
+Added function plotSpectra which was overlooked in the first build!
+Added a description of Spectra objects to the man pages.
+Added function plotScores3D to produce simple 3D plots.
+Added plotScoresG to create ggobi visualizations of the pca results.
+Made color schemes consistent with ggobi color schemes.
+Clarified and expanded selected documentation files.
+
+##### Version: 1.0
+Date: 2009-09-08
+News: First Release

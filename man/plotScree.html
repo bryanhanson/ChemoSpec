@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Function to draw a scree plot using the results of PCA on a Spectra object</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for plotScree {unknown}"><tr><td>plotScree {unknown}</td><td align="right">R Documentation</td></tr></table>
+<h2>Function to draw a scree plot using the results of PCA on a Spectra object</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Function to draw a scree plot illustrating the importance of the components in a PCA analysis of a <code>"Spectra"</code> object.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+plotScree(pca, title = "no title provided", ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>pca</code></td>
+<td>
+An object of class <code><a href="../../../doc/html/search/SearchObject.html?prcomp">prcomp</a></code>, modified to include a list element called <code>$method</code>, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if <code>ChemoSpec</code> functions <code><a href="../../../doc/html/search/SearchObject.html?classPCA">classPCA</a></code> or <code><a href="../../../doc/html/search/SearchObject.html?robPCA">robPCA</a></code> were used to create <code>pca</code>.
+</td></tr>
+<tr valign="top"><td><code>title</code></td>
+<td>
+A character string for the plot title.
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+Additional parameters to be passed to plotting functions.</td></tr>
+</table>
+
+<h3>Details</h3>
+
+<p>
+Technically, if you add <code>$method</code> to the PCA results, this will plot a scree plot for any PCA results, not just those from <code>"Spectra"</code> objects.
+</p>
+
+
+<h3>Value</h3>
+
+<p>
+None.  Side effect is a plot.</p>
+
+<h3>Called by</h3>
+
+<p>
+Top level function, called by user.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>
+Bryan A. Hanson, DePauw University. <a href="mailto:hanson@depauw.edu">hanson@depauw.edu</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>
+<a href="http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html">http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+data(CuticleIR)
+results &lt;- classPCA(CuticleIR, choice = "noscale")
+plotScree(results, title = "Cuticle IR Spectra")
+</pre>
+
+
+
+<hr><div align="center">[Package <a href="00Index.html">Index</a>]</div>
+
+</body></html>

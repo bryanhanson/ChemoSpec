@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: A function to label the extreme values in a data set</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for labelExtremes {unknown}"><tr><td>labelExtremes {unknown}</td><td align="right">R Documentation</td></tr></table>
+<h2>A function to label the extreme values in a data set</h2>
+
+
+<h3>Description</h3>
+
+<p>
+A utility function which plots the sample names next to the sample points.  The number of samples labeled can be determined by the user.  Never called by the user.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+labelExtremes(data, names, tol)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+A matrix containing the x values of the points/samples in the first column, and the y values in the second.
+</td></tr>
+<tr valign="top"><td><code>names</code></td>
+<td>
+A character vector of sample names.  Length must match the number of rows in <code>x</code>.
+</td></tr>
+<tr valign="top"><td><code>tol</code></td>
+<td>
+A number describing the fraction of points to be labeled.  <code>tol = 1.0</code> labels all the points; <code>tol = 0.05</code> labels the most extreme 5 percent.</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+None.  Annotates the plot with labels.</p>
+
+<h3>Called by</h3>
+
+<p>
+<code><a href="../../../doc/html/search/SearchObject.html?plotScoresDecoration">plotScoresDecoration</a></code>
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>
+Bryan A. Hanson, DePauw University. <a href="mailto:hanson@depauw.edu">hanson@depauw.edu</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>
+<a href="http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html">http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html</a>
+</p>
+
+
+
+<hr><div align="center">[Package <a href="00Index.html">Index</a>]</div>
+
+</body></html>

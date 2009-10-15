@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Plot PCA Loadings from a Spectra object Against Each Other</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for plot2Loadings {unknown}"><tr><td>plot2Loadings {unknown}</td><td align="right">R Documentation</td></tr></table>
+<h2>Plot PCA Loadings from a Spectra object Against Each Other</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Plots two PCA loadings specified by the user, and labels selected (extreme) points.  Typically used to determine which variables (frequencies) are co-varying, although in spectroscopy most peaks are represented by several variables and hence there is a lot of co-varying going on.  Also useful to determine which variables are contributing the most to the clustering on a score plot.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+plot2Loadings(spectra, pca, title = "no title provided", loads = c(1, 2), tol = 0.05, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>spectra</code></td>
+<td>
+An object of S3 class <code>"Spectra"</code>.
+</td></tr>
+<tr valign="top"><td><code>pca</code></td>
+<td>
+An object of class <code><a href="../../../doc/html/search/SearchObject.html?prcomp">prcomp</a></code>, modified to include a list element called <code>$method</code>, a character string describing the pre-processing carried out and the type of PCA performed (it appears on plots which you might make).
+</td></tr>
+<tr valign="top"><td><code>title</code></td>
+<td>
+A character string for the plot title.
+</td></tr>
+<tr valign="top"><td><code>loads</code></td>
+<td>
+A vector of two integers specifying which loading vectors to plot.
+</td></tr>
+<tr valign="top"><td><code>tol</code></td>
+<td>
+A number describing the fraction of points to be labeled.  <code>tol = 1.0</code> labels all the points; <code>tol = 0.05</code> labels the most extreme 5 percent.
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+Other parameters to be passed to the plotting routines.
+</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+None.  Side effect is a plot.</p>
+
+<h3>Calls</h3>
+
+<p>
+<code><a href="../../../doc/html/search/SearchObject.html?labelExtremes">labelExtremes</a></code>
+</p>
+
+
+<h3>Called by</h3>
+
+<p>
+Top level function, called by user.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>
+Bryan A. Hanson, DePauw University. <a href="mailto:hanson@depauw.edu">hanson@depauw.edu</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>
+<a href="http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html">http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+See <code><a href="../../../doc/html/search/SearchObject.html?plotLoadings">plotLoadings</a></code> to plot one loading against the original variable (frequency) axis.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+data(CuticleIR)
+results &lt;- classPCA(CuticleIR, choice = "noscale")
+plot2Loadings(CuticleIR, title = "Cuticle IR Spectra", results, loads = c(1,2), tol = 0.05)
+</pre>
+
+
+
+<hr><div align="center">[Package <a href="00Index.html">Index</a>]</div>
+
+</body></html>

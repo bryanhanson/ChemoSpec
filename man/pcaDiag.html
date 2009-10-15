@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Outlier Diagnostic Plots for PCA of a Spectra Object</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for pcaDiag {unknown}"><tr><td>pcaDiag {unknown}</td><td align="right">R Documentation</td></tr></table>
+<h2>Outlier Diagnostic Plots for PCA of a Spectra Object</h2>
+
+
+<h3>Description</h3>
+
+<p>
+A function to carry diagnostics on the PCA results for a <code>"Spectra"</code> object.  Basically a wrapper to Filzmoser's <code><a href="../../../doc/html/search/SearchObject.html?pcaDiagplot">pcaDiagplot</a></code> which colors everything according to the scheme stored in the <code>"Spectra"</code> object.  Works with PCA results of either class <code>"prcomp"</code> or class <code>"princomp"</code>.  Works with either classical or robust PCA results.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+pcaDiag(spectra, pca, a = 3, quantile = 0.975, plot = c("OD", "SD"), ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>spectra</code></td>
+<td>
+An object of S3 class <code>"Spectra"</code>.
+</td></tr>
+<tr valign="top"><td><code>pca</code></td>
+<td>
+An object of class <code><a href="../../../doc/html/search/SearchObject.html?prcomp">prcomp</a></code> or <code><a href="../../../doc/html/search/SearchObject.html?prcomp">prcomp</a></code>, modified to include a character string (<code>$method</code>) describing the pre-processing carried out and the type of PCA performed
+</td></tr>
+<tr valign="top"><td><code>a</code></td>
+<td>
+As per <code><a href="../../../doc/html/search/SearchObject.html?pcaDiagplot">pcaDiagplot</a></code>.  The number of principal components to include.
+</td></tr>
+<tr valign="top"><td><code>quantile</code></td>
+<td>
+As per <code><a href="../../../doc/html/search/SearchObject.html?pcaDiagplot">pcaDiagplot</a></code>.  The significance criteria to use as a cutoff.
+</td></tr>
+<tr valign="top"><td><code>plot</code></td>
+<td>
+A character string, indicating whether to plot the score distances or orthogonal distances, or both.  Options are <code>c("OD", "SD)</code>.
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+Additional parameters to be passed to the plotting functions.
+</td></tr>
+</table>
+
+<h3>Details</h3>
+
+<p>
+If both plots are desired, the output should be directed to a file rather than the screen.  Otherwise, the 2nd plot overwrites the 1st in the active graphics window.  Alternatively, just call the function twice, once specifying <code>OD</code> and once specifying <code>SD</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>
+A list is returned as described in <code><a href="../../../doc/html/search/SearchObject.html?pcaDiagplot">pcaDiagplot</a></code>, so the result must be assigned or it will appear at the console.  Side effect is a plot.</p>
+
+<h3>Calls</h3>
+
+<p>
+<code><a href="../../../doc/html/search/SearchObject.html?q2rPCA">q2rPCA</a></code>, <code><a href="../../../doc/html/search/SearchObject.html?labelExtremes">labelExtremes</a></code>
+</p>
+
+
+<h3>Called by</h3>
+
+<p>
+Top level function, called by user.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>
+Bryan A. Hanson, DePauw University. <a href="mailto:hanson@depauw.edu">hanson@depauw.edu</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>
+<a href="http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html">http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html</a><br>
+K. Varmuza and P. Filzmoser <EM>Introduction to Multivariate Statistical Analysis in Chemometrics</EM>, CRC Press, 2009.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="../../../doc/html/search/SearchObject.html?pcaDiagplot">pcaDiagplot</a></code> in package <code>chemometrics</code> for the underlying function.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+data(CuticleIR)
+results &lt;- classPCA(CuticleIR, choice = "noscale")
+temp &lt;- pcaDiag(CuticleIR, a = 2, plot = "OD")
+</pre>
+
+
+
+<hr><div align="center">[Package <a href="00Index.html">Index</a>]</div>
+
+</body></html>

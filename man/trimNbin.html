@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Utility function to remove selected frequencies from a Spectra object or to bin the frequency values</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../R.css">
+</head><body>
+
+<table width="100%" summary="page for trimNbin {unknown}"><tr><td>trimNbin {unknown}</td><td align="right">R Documentation</td></tr></table>
+<h2>Utility function to remove selected frequencies from a Spectra object or to bin the frequency values</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Function to remove specified frequencies from a <code>"Spectra"</code> object, for instance, noisy or uninformative regions.  The bin function is currently not implemented.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+trimNbin(spectra, rem.freq)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>spectra</code></td>
+<td>
+An object of S3 class <code>"Spectra"</code>
+</td></tr>
+<tr valign="top"><td><code>rem.freq</code></td>
+<td>
+An integer vector of frequencies to be removed. See details.
+</td></tr>
+</table>
+
+<h3>Details</h3>
+
+<p>
+Frequencies should be given as integers.  A certain amount of rounding will occur.  A specification such as <code>rem.freq = c("min", 1500)</code> will remove all values from the minimum up to 1500.  See the examples for further valid specifications.  If <code>"min"</code> or <code>"max"</code> are used, the action is to create a range of frequencies to remove with the adjacent numerical value.
+</p>
+
+
+<h3>Value</h3>
+
+<p>
+A modified object of S3 class <code>"Spectra"</code></p>
+
+<h3>Calls</h3>
+
+<p>
+<code><a href="../../../doc/html/search/SearchObject.html?chkSpectra">chkSpectra</a></code>
+</p>
+
+
+<h3>Called by</h3>
+
+<p>
+top level function, called by user.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>
+Bryan A. Hanson, DePauw University. <a href="mailto:hanson@depauw.edu">hanson@depauw.edu</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>
+<a href="http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html">http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="../../../doc/html/search/SearchObject.html?removeSample">removeSample</a></code> to remove one or more samples from a <code>"Spectra"</code> object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+data(CuticleIR)
+new1 &lt;- trimNbin(CuticleIR, rem.freq = c(500:1000) # removes all frequencies in the range
+new2 &lt;- trimNbin(CuticleIR, rem.freq = c("min", 1000) # removes all frequencies from the minimum through 1000
+new3 &lt;- trimNbin(CuticleIR, rem.freq = c("min", 1000, 3000, "max") # frequencies between 1000 and 3000 remain
+new4 &lt;- trimNbin(CuticleIR, rem.freq = c("min", 1000, 2000:2500, 3000, "max") # frequencies between 1000 and 2000, 2500 and 3000 remain
+## Not run: new5 &lt;- trimNbin(CuticleIR, rem.freq = c("min", 1000 "max") # silliness, removes everything!
+
+</pre>
+
+
+
+<hr><div align="center">[Package <a href="00Index.html">Index</a>]</div>
+
+</body></html>
