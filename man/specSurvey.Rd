@@ -6,7 +6,7 @@
 Plot Std Dev of Frequencies in a Spectra Object
 }
 \description{
-Computes the standard deviation of each frequency value for a \code{"Spectra"} object and plots it against the frequency.  Useful for identifying uninformative spectral regions.
+Computes the standard deviation of each frequency value for all the spectra in a \code{"Spectra"} object and plots it against the frequency.  Useful for identifying uninformative spectral regions.
 }
 \usage{
 specSurvey(spectra, title = "No title provided", ...)
@@ -14,7 +14,7 @@ specSurvey(spectra, title = "No title provided", ...)
 
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}
+An object of S3 class \code{"Spectra"}.
 }
   \item{title}{
 A character string for the plot title.

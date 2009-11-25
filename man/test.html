@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Bin or Bucket Data</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css"href="R.css">
+</head><body>
+
+<table width="100%" summary="page for binData {}"><tr><td>binData {}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Bin or Bucket Data</h2>
+
+
+<h3>Description</h3>
+
+<p>
+This function accepts a vector of x-values and averages them in groups of <code>bin.ratio</code> data points.  It also accepts a vector of y-values and sums them in groups of <code>bin.ratio</code> data points.  Both x and y data can be processed in the same call, or they can be processed separately.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+binData(x = NULL, y = NULL, bin.ratio = 2)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+
+An optional vector of x values to be averaged in groups of <code>bin.data</code> points.
+</td></tr>
+<tr valign="top"><td><code>y</code></td>
+<td>
+
+An optional vector of y values to be summed in groups of <code>bin.data</code> points.
+</td></tr>
+<tr valign="top"><td><code>bin.ratio</code></td>
+<td>
+
+An integer giving the binning ratio, that is, the number of points to be grouped together into one subset of data.</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>
+The x and y values must be contiguous in the sense that there are no gaps in the values (i.e., x[n + 1] - x[n] must be the same for the entire data set; this can be checked with <code>diff</code> and is checked internally.  If length(x or y) is not divisible by bin.ratio to give a whole number, data points are removed from the beginning of x or y until it is, and the number of data points removed is reported at the console.  The algorithm forces the requested bin.ratio to be used.
+</p>
+
+
+<h3>Value</h3>
+
+<p>As appropriate, a data.frame containing the following elements:
+<table summary="R valueblock">
+<tr valign="top"><td><code>mean.x</code></td>
+<td>
+A vector of the averaged x values.  Length will be approximately length(x)/bin.ratio, with length(x) adjusted as described above if this does not give a whole number.</td></tr>
+<tr valign="top"><td><code>sum.y</code></td>
+<td>
+A vector of the summed y values.  Length will be approximately length(y)/bin.ratio, with length(y) adjusted as described above if this does not give a whole number.</td></tr>
+</table>
+</p>
+
+
+<h3>Called by</h3>
+
+<p><code>binBuck</code></p>
+
+
+<h3>Calls</h3>
+
+<p><code>isWholeNo</code></p>
+
+
+<h3>Author(s)</h3>
+
+<p>
+Bryan A. Hanson, DePauw University. <a href="mailto:hanson@depauw.edu">hanson@depauw.edu</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>
+<a href="http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html">http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+x &lt;- rnorm(50); y &lt;- rnorm(50)
+res &lt;- binData(x, y)
+length(res$mean.x) # will be half of the original length
+length(res$sum.y)
+</pre>
+
+<hr><div align="center">[]</div>
+</body></html>

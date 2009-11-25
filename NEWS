@@ -5,6 +5,19 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version: 1.30
+Date: 2009-11-25
+News:
+Fixed certain .Rd files so the reference manual prints correctly.
+Fixed a problem in plotSpectra having to do with the placement of the label if the frequency range was descending.
+Removed default xrange in plotSpectra so that users can specify their own xlim via the ... concept.
+Added function binData and split trimNbin into removeFreq and binBuck;  in turn, this required adding a check4Gaps function.
+Changed sumSpectra to report the number of frequency points, report any gaps in the data, and report the frequency unit/data point correctly.  Also set it up so that users can pass ... arguments.
+Added a function to normalize Spectra objects by the sum of each data row (other normalization schemes can be added later).
+Added a helper function isWholeNo.
+Revised the Spectra object description standard so that unit is only two characters long (NMR = logical was eliminated as it was not used anywhere).
+Added and uppdated Rd files.
+
 ##### Version: 1.2
 Date: 2009-10-14
 News:

@@ -9,12 +9,13 @@ Plot PCA Scores of a Spectra Object
 Plots the requested PCA scores using the color scheme derived from a \code{"Spectra"} object.  Options are provided to add confidence ellipses for each group in the object.  The ellipses may be robust or classical.  Option to label the extreme points provided.
 }
 \usage{
-plotScores(spectra, pca, title = "no title provided", pcs = c(1, 2), ellipse = "none", tol = "none", ...)
+plotScores(spectra, pca, title = "no title provided",
+	pcs = c(1, 2), ellipse = "none", tol = "none", ...)
 }
 
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}
+An object of S3 class \code{"Spectra"}.
 }
   \item{pca}{
 An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{classPCA}} or \code{\link{robPCA}} were used to create \code{pca}.
@@ -39,7 +40,8 @@ Additional parameters to be passed to the plotting functions.
 None.  Side effect is a plot.
 }
 
-\section{Calls}{\code{\link{plotScoresDecoration}}, \code{\link{plotScoresCor}}, \code{\link{chkSpectra}}}
+\section{Calls}{\code{\link{plotScoresDecoration}}, \code{\link{plotScoresCor}}, \code{\link{chkSpectra}}
+}
 \section{Called by}{Top level function, called by user.}
 
 \seealso{
@@ -57,7 +59,8 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 data(CuticleIR)
 results <- classPCA(CuticleIR, choice = "noscale")
-plotScores(CuticleIR, title = "Cuticle IR Spectra", results, pcs = c(1,2), ellipse = "both", tol = 0.05)
+plotScores(CuticleIR, title = "Cuticle IR Spectra", results,
+	pcs = c(1,2), ellipse = "both", tol = 0.05)
 }
 
 \keyword{ multivariate }

@@ -7,7 +7,7 @@ Verify the Integrity of a Spectra Object
 }
 
 \description{
-Utility function to verify that the structure of a \code{"Spectra"} object (an instance of an S3 object) is internally consistent. Rather than directly manipulating a \code{"Spectra"} object, one should manipulate it via \code{\link{trimNbin}} or \code{\link{removeSample}}.  Should not see much direct use by users.
+Utility function to verify that the structure of a \code{"Spectra"} object (an instance of an S3 object) is internally consistent. Rather than directly manipulating a \code{"Spectra"} object, one should manipulate it via \code{\link{removeFreq}} or \code{\link{removeSample}}.  Should not see much direct use by users.
 }
 
 \usage{
@@ -19,7 +19,7 @@ chkSpectra(spectra, confirm = FALSE)
 An object of S3 class \code{"Spectra"} to be checked.
 }
   \item{confirm}{
-Logical indicating whether or not to write the results to screen, as would be desirable for interactive use.
+Logical indicating whether or not to write the results to the console, as would be desirable for interactive use.
 }
 }
 
@@ -30,7 +30,7 @@ This function is similar in spirit to \code{\link{validObject}} in the S4 world.
 \value{None; messages will be printed at the console if there is a problem.
 }
 
-\section{Called by}{A majority of \code{ChemoSpec} functions.}
+\section{Called by}{All \code{ChemoSpec} functions that modify \code{"Spectra"} objects.}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
@@ -43,8 +43,8 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 data(CuticleIR)
 chkSpectra(CuticleIR, confirm = TRUE) # OK
-# What's next works, but is the wrong way to manipulate a \code{"Spectra"} object.
-# Use \code{\link{trimNbin}} or \code{\link{removeSample}} instead.
+# What's next works, but is the wrong way to manipulate a "Spectra" object.
+# Use removeSample instead.
 remove <- c(20:40) 
 CuticleIR$freq <- CuticleIR$freq[-remove]
 \donttest{chkSpectra(CuticleIR, confirm = TRUE) # not OK, you didn't listen to me!}

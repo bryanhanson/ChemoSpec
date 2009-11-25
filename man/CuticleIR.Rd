@@ -4,11 +4,11 @@
 \docType{data}
 
 \title{
-IR Ppectra of Plant Cuticles by Genotype and Treatment
+IR Spectra of Plant Cuticles by Genotype and Treatment
 }
 
 \description{
-IR spectra obtained by ATR sampling on leaves of \emph{Portulaca oleracea} (common purslane).  There are 157 spectra, divided into four groups from a G x E experiment.  Two genotypes were studied, golden (G), and tall green (T).  Two temperature regimes were employed, experimental (E, 35C) and control (C, 22C).  Sample name GC10 means golden phenotype, control treatment, plant no. 11.
+IR spectra obtained by ATR sampling on leaves of \emph{Portulaca oleracea} (common purslane).  There are 157 spectra, divided into four groups from a G x E experiment.  Two genotypes were studied, golden (G), and tall green (T).  Two temperature regimes were employed, experimental (E, 35C) and control (C, 22C).  Sample name GC10 means golden phenotype, control treatment, plant no. 10.
 }
 
 \usage{data(CuticleIR)}
@@ -21,7 +21,7 @@ $ data  : num [1:157, 1:1242] 0.205 0.247 0.219 0.203 0.234 ...\cr
 $ names : chr [1:157] "GC10" "GC11" "GC12" "GC14" ...\cr
 $ groups: Factor w/ 4 levels "GC","GE","TC",..: 1 1 1 1 1 1 1 1 1 1 ...\cr
 $ colors: chr [1:157] "brown2" "brown2" "brown2" "brown2" ...\cr
-$ unit  : chr [1:3] "Wavenumbers" "Absorbance" "TRUE"\cr
+$ unit  : chr [1:2] "Wavenumbers" "Absorbance"\cr
 $ desc  : chr "Kelly's Complete IR Data Set, Summer 2009"\cr
 - attr(*, "class")= chr "Spectra"\cr
 }

@@ -1,6 +1,6 @@
 
 plotSpectra <- function(spectra, title = "no title provided", which = c(1),
-	xrange = range(spectra$freq), yrange = c(0, max(spectra$data)),
+	yrange = c(0, max(spectra$data)),
 	offset = 0.0, amplify = 1.0,
 	lab.pos = mean(spectra$freq), ...) {
 	
@@ -17,11 +17,11 @@ plotSpectra <- function(spectra, title = "no title provided", which = c(1),
 
 	plot(spectra$freq, spectrum, type = "l",
 	main = title, xlab = spectra$unit[1], ylab = spectra$unit[2],
-	xlim = xrange, ylim = yrange, col = spectra$colors[which[1]],
+	ylim = yrange, col = spectra$colors[which[1]],
 	frame.plot = FALSE, yaxt = "n", ...)
 	grid(ny = NA, lty = 1)
 	lab.x <- lab.pos
-	spec.index <- findInterval(lab.x, spectra$freq)
+	spec.index <- findInterval(lab.x, sort(spectra$freq))
 	lab.y <- spectrum[spec.index]
 	text(lab.x, lab.y, labels = spectra$names[which[1]], pos = 3, cex = 0.75)
 	

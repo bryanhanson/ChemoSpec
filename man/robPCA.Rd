@@ -36,14 +36,15 @@ K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate Statistical Analy
 }
 
 \seealso{
-See \code{\link[chemometrics]{PCAgrid}} on which this function is based.  For the classical version, see \code{\link{classPCA}}.\cr
-For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \code{\link{plotLoadings}}, 
+See \code{\link[pcaPP]{PCAgrid}} on which this function is based.  For the classical version, see \code{\link{classPCA}}.\cr
+For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \code{\link{plotLoadings}}, \code{\link{plotScoresG}}, \code{\link{plotScores3D}}
 }
 
 \examples{
 data(CuticleIR)
 results <- robPCA(CuticleIR, choice = "mad")
-plotScores(CuticleIR, title = "Cuticle IR Spectra", results, pcs = c(1,2), ellipse = "rob", tol = 0.05)
+plotScores(CuticleIR, title = "Cuticle IR Spectra",
+	results, pcs = c(1,2), ellipse = "rob", tol = 0.05)
 }
 
 \keyword{ multivariate }

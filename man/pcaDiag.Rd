@@ -11,7 +11,8 @@ A function to carry diagnostics on the PCA results for a \code{"Spectra"} object
 }
 
 \usage{
-pcaDiag(spectra, pca, pcs = 3, quantile = 0.975, plot = c("OD", "SD"), ...)
+pcaDiag(spectra, pca, pcs = 3, quantile = 0.975,
+	plot = c("OD", "SD"), ...)
 }
 
 \arguments{

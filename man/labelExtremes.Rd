@@ -27,7 +27,8 @@ A number describing the fraction of points to be labeled.  \code{tol = 1.0} labe
 None.  Annotates the plot with labels.
 }
 
-\section{Called by}{\code{\link{plotScoresDecoration}}}
+\section{Called by}{\code{\link{plotScoresDecoration}}, \code{\link{pcaDiag}}, \code{\link{plot2Loadings}}
+}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}

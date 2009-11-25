@@ -1,17 +1,17 @@
-\name{plotLoadings}
+\name{hcaScores}
 \Rdversion{1.1}
-\alias{plotLoadings}
+\alias{hcaScores}
 
 \title{
-Plot PCA Loadings for a Spectra Object
+HCA on PCA scores from a Spectra Object
 }
 \description{
-Creates a multi-panel plot of loadings along with a reference spectrum.
+A wrapper which performs HCA on the scores from a PCA of a \code{"Spectra"} object, color-coding the results as specified in the object.
 }
 
 \usage{
-plotLoadings(spectra, pca, title = "no title provided",
-	loads = c(1), ref = 1, ...)
+hcaScores(spectra, pca, title = "no title provided",
+	scores = c(1:5), method = "complete", ...)
 }
 
 \arguments{
@@ -22,22 +22,22 @@ An object of S3 class \code{"Spectra"}.
 An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{classPCA}} or \code{\link{robPCA}} were used to create \code{pca}.
 }
   \item{title}{
-A character string for the plot title.
-}
-  \item{loads}{
-An integer vector giving the loadings to plot.  More than 3 loadings creates a useless plot using the default graphics window.
-}
-  \item{ref}{
-An integer specifying the reference spectrum to plot, which appears at the bottom of the plot.
+A character string for the plot title.}
+  \item{scores}{
+A vector of integers specifying which scores to use for the HCA.}
+  \item{method}{
+A character string acceptable as a method in \code{\link{hclust}}.
 }
   \item{\dots}{
-Additional parameters to be passed to plotting functions.
+Additional parameters to be passed to the plotting functions.
 }
 }
+
 \value{
 None.  Side effect is a plot.
 }
 
+\section{Calls}{\code{\link{colLeaf}}}
 \section{Called by}{Top level function, called by user.}
 
 \references{
@@ -49,14 +49,15 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \seealso{
-See \code{\link{plot2Loadings}} to plot two loadings against each other.
+\code{\link{hclust}} for the underlying function.
+See \code{\link{hcaSpectra}} for HCA of the entire data set stored in the \code{"Spectra"} object.
 }
 \examples{
 data(CuticleIR)
 results <- classPCA(CuticleIR, choice = "noscale")
-plotLoadings(CuticleIR, results, title = "Cuticle IR Spectra",
-	loads = c(1), ref = 1)
+hcaScores(CuticleIR,  results, scores = c(1:5), title = "Cuticle IR Spectra",
+	method = "complete")
 }
 
 \keyword{ multivariate }
-
+\keyword{ cluster }

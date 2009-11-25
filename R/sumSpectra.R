@@ -1,22 +1,28 @@
 sumSpectra <-
-function(spectra){
+function(spectra, ...){
 	
 # Function to summarize objects of S3 class 'Spectra'
 # Part of ChemoSpec package
-# Bryan Hanson, DePauw Univ, Aug 2009
+# Bryan Hanson, DePauw Univ, Nov 2009
 	
 	chkSpectra(spectra) # verify it's legit
+	h <- check4Gaps(spectra$freq, ...)	
 	
-### WARNING: no correction is currently made for non-contiguous freq (e.g. post trimNbin)
-	
-	cat(spectra$desc, "\n")
-	cat("\t", "There are ", length(spectra$names), " spectra in this set.\n", sep = "")
-	cat("\t", "The frequency scale runs from ", spectra$freq[1], " to ", 
+	cat(spectra$desc, "\n\n")
+	cat("\tThere are ", length(spectra$names), " spectra in this set.\n", sep = "")
+	cat("\t", "The y-axis unit is ", spectra$unit[2], ".\n\n", sep = "")
+	cat("\tThe frequency scale runs from ", spectra$freq[1], " to ", 
 		spectra$freq[length(spectra$freq)], " ", spectra$unit[1], "\n", sep = "")
-	res <- (diff(range(spectra$freq)))/length(spectra$freq)
-	cat("\t", "The frequency resolution is ", res, " ", spectra$unit[1], "/point.\n", sep = "")
-	cat("\t", "The y-axis unit is ", spectra$unit[2], ".\n", sep = "")
-	
+	cat("\tThere are ", length(spectra$freq), " frequency (x-axis) data points.\n", 
+		sep = "")
+	res <- abs(spectra$freq[2] - spectra$freq[1])
+	cat("\tThe frequency resolution is ", res, " ", spectra$unit[1], "/point.\n\n", sep = "")
+	if (length(h) > 1) {
+		cat("\tThis data set is not continuous along the frequency axis.\n")
+		cat("\tHere are the data chunks:\n\n")
+		print(h)
+		}
+	cat("\n")
 	# make a little table to summarize the groups
 		
 	col.lvls <- c() # match colors to levels
@@ -35,6 +41,6 @@ function(spectra){
 		" color = ", col.lvls[n], "\n", sep = "")
 		
 
-	cat("*** Note: this data is an S3 object of class 'Spectra'\n")
+	cat("\n*** Note: this data is an S3 object of class 'Spectra'\n")
 	}
 

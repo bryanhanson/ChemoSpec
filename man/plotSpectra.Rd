@@ -8,22 +8,20 @@ Plot Spectra Object
 Plots the spectra stored in a \code{"Spectra"} object.  One may choose which spectra to plot, and the x range to plot.  Spectra may be plotted offset or stacked.  The vertical scale is controlled by a combination of several parameters.
 }
 \usage{
-plotSpectra(spectra, title = "no title provided", which = c(1), xrange = range(spectra$freq),
-yrange = c(0, max(spectra$data)), offset = 0, amplify = 1, lab.pos = mean(spectra$freq), ...)
+plotSpectra(spectra, title = "no title provided",
+	which = c(1), yrange = c(0, max(spectra$data)), offset = 0,
+	amplify = 1, lab.pos = mean(spectra$freq), ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}
+An object of S3 class \code{"Spectra"}.
 }
   \item{title}{
 A character string for the plot title.
 }
   \item{which}{
 An integer vector specifying which spectra to plot, and the order.
-}
-  \item{xrange}{
-A vector giving the limits of the x axis desired, for instance \code{c(200, 1000)}, expressed in the units of the stored spectra.
 }
   \item{yrange}{
 A vector giving the limits of the y axis desired, for instance \code{c(0, 15)}.  This parameter depends upon the range of values in the stored spectra and defaults to the height of the largest peak in the data set.  Interacts with the next two arguments, as well as the number of spectra to be plotted as given in \code{which}.  Trial and error is used to adjust all these arguments to produce the desired plot.
@@ -45,6 +43,7 @@ Additional parameters to be passed to plotting functions.
 None.  Side effect is a plot.
 }
 
+\section{Calls}{\code{\link{chkSpectra}}}
 \section{Called by}{Top level function, called by user.}
 
 \references{
@@ -59,7 +58,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 data(CuticleIR)
 plotSpectra(CuticleIR, "Cuticle IR Spectra",
 	which = c(10:11, 40:41, 100:101, 140:141, 150:151),
-	xrange = c(3600, 500), yrange = c(0,10),
+	yrange = c(0,10),
 	offset = 0.8, amplify = 1.0, lab.pos = 2000) 
 
 }

@@ -29,7 +29,7 @@ None.  Side effect is a plot.
 }
 
 \details{
-Technically, if you add \code{$method} to the PCA results, this will plot a scree plot for any PCA results, not just those from \code{"Spectra"} objects.
+Technically, if you add \code{$method} to the PCA results from other packages, this will plot a scree plot for any PCA results, not just those from \code{"Spectra"} objects.
 }
 
 \section{Called by}{Top level function, called by user.}

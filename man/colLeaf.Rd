@@ -7,7 +7,7 @@ Color Dendrogram of a Spectra Object
 }
 
 \description{
-Utility function called by \code{\link{HCA}} and \code{\link{ScoreHCA}} via \code{dendrapply}. Not intended for end-users.
+Utility function called by \code{\link{hcaSpectra}} and \code{\link{hcaScores}} via \code{dendrapply}. Not intended for end-users.
 }
 \usage{
 colLeaf(n, spectra)
@@ -26,7 +26,7 @@ An object of S3 class \code{"Spectra"}.
 None. The leaf colors of the relevant dendrogram object are modified to correspond to those in \code{spectra}
 }
 
-\section{Called by}{\code{\link{HCA}}, \code{\link{ScoreHCA}}}
+\section{Called by}{\code{\link{hcaSpectra}}, \code{\link{hcaScores}}}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}

@@ -27,14 +27,14 @@ If \code{rem.sam} is a character vector, the sample names are grepped for the co
 }
 
 \value{
-A modified object of S3 class \code{"Spectra"}
+A modified object of S3 class \code{"Spectra"}.
 }
 
 \section{Calls}{\code{\link{chkSpectra}}}
 \section{Called by}{Top level function, called by user.}
 
 \seealso{
-\code{\link{trimNbin}} to remove selected frequencies from a \code{"Spectra"} object.
+\code{\link{removeFreq}} to remove selected frequencies from a \code{"Spectra"} object.
 }
 
 \references{
@@ -47,9 +47,12 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 
 \examples{
 data(CuticleIR)
-new1 <- removeSample(CuticleIR, rem.sam = 20) # removes the 20th spectrum/sample
-new2 <- removeSample(CuticleIR, rem.sam = "GE") # removes all samples whose name contains "GE"
-new3 <- removeSample(CuticleIR, rem.sam = "GE10") # removes one spectrum/sample with this exact name.
+new1 <- removeSample(CuticleIR, rem.sam = 20)
+# removes the 20th spectrum/sample
+new2 <- removeSample(CuticleIR, rem.sam = "GE")
+# removes all samples whose name contains "GE"
+new3 <- removeSample(CuticleIR, rem.sam = "GE10")
+# removes one spectrum/sample with this exact name.
 
 }
 

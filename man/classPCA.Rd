@@ -42,7 +42,8 @@ For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \
 \examples{
 data(CuticleIR)
 results <- classPCA(CuticleIR, choice = "noscale")
-plotScores(CuticleIR, title = "Cuticle IR Spectra", results, pcs = c(1,2), ellipse = "rob", tol = 0.05)
+plotScores(CuticleIR, title = "Cuticle IR Spectra", results, pcs = c(1,2),
+	ellipse = "rob", tol = 0.05)
 }
 
 \keyword{ multivariate }

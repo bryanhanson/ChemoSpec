@@ -10,27 +10,26 @@ Provides a summary of a \code{"Spectra"} object, essentially a more spectroscopi
 }
 
 \usage{
-sumSpectra(spectra)
+sumSpectra(spectra, ...)
 }
 
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}
+An object of S3 class \code{"Spectra"}.
+}
+\item{\dots}{Arguments to be passed downstream.  See details.
 }
 }
 
 \details{
-Prior to summarizing, \code{\link{chkSpectra}} is run with confirm = FALSE.  If there are problems, warnings are issued to the console and the summary is not done.
-}
-
-\section{Warning}{The computation of frequency resolution does not currently take into account any regions removed from the middle of the range and hence will be in error.
+Prior to summarizing, \code{\link{chkSpectra}} is run with confirm = FALSE.  If there are problems, warnings are issued to the console and the summary is not done.  If issued with \code{plot = TRUE}, this is passed via the \dots to \code{\link{check4Gaps}} which then produces a plot showing any gaps in the data.  Cool.
 }
 
 \value{
-None.
+None.  Results printed at console, perhaps a plot as well.
 }
 
-\section{Calls}{\code{\link{chkSpectra}}}
+\section{Calls}{\code{\link{chkSpectra}}, \code{\link{check4Gaps}}}
 \section{Called by}{Top level function, called by user.}
 
 \references{
@@ -44,6 +43,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 data(CuticleIR)
 sumSpectra(CuticleIR)
+
 }
 
 \keyword{ utilities }

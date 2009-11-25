@@ -37,8 +37,6 @@ A list of class \code{"conPCA"}.  Note that the order of the elements will vary 
 \item{scale}{ Unchanged from original.}
 }
 
-\section{Called by}{\code{\link{robPCA}}}
-
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
 }

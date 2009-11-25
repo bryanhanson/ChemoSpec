@@ -1,5 +1,5 @@
 \name{ChemoSpec-package}
-\Rdversion{1.2}
+\Rdversion{1.3}
 \alias{ChemoSpec-package}
 \alias{ChemoSpec}
 \docType{package}
@@ -16,8 +16,8 @@ A collection of functions for plotting spectra (NMR, IR etc) and carrying out va
 \tabular{ll}{
 Package: \tab ChemoSpec\cr
 Type: \tab Package\cr
-Version: \tab 1.1\cr
-Date: \tab 2009-09-23\cr
+Version: \tab 1.3\cr
+Date: \tab 2009-11-02\cr
 License: \tab GPL-3\cr
 LazyLoad: \tab yes\cr
 }

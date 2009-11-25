@@ -1,9 +1,10 @@
 getManyCsv <-
 function(gr.crit = NULL, gr.cols = c("auto"),
 	freq.unit = "no frequency unit provided",
-	NMR = FALSE, format = "original",
+	NMR = FALSE,
 	int.unit = "no intensity unit provided",
 	descrip = "no description provided",
+	format = "original",
 	out.file = "mydata") {
 		
 # Function to Read & Prep Spectroscopic Data

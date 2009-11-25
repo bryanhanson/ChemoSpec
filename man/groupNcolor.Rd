@@ -6,13 +6,13 @@
 Assign Group Membership and Colors for a Spectra Object
 }
 \description{
-A utility function which looks for gr.crit in the file names of .csv files and assigns group membership.  Also assigns a color to each group.  Not intended for users.}
+A utility function which looks for \code{gr.crit} in the file names of .csv files and assigns group membership.  Also assigns a color to each group.  Not intended for users.}
 \usage{
 groupNcolor(spectra, gr.crit = NULL, gr.cols = c("auto"))
 }
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}.  Until this function acts on \code{"Spectra"} it is not quite complete.
+An object of S3 class \code{"Spectra"}.  Until this function acts on \code{spectra} it is not quite complete.
 }
   \item{gr.crit}{
 As per \code{\link{getManyCsv}}
@@ -22,7 +22,7 @@ As per \code{\link{getManyCsv}}
 }
 }
 \value{
-A \emph{complete} object of S3 class \code{"Spectra"}.  Until this function has done its job, an object of class \code{"Spectra"} will not pass checks as the assembl is not complete (see \code{\link{chkSpectra}}).)
+A \emph{complete} object of S3 class \code{"Spectra"}.  Until this function has done its job, an object of class \code{"Spectra"} will not pass checks as the assembly is not complete (see \code{\link{chkSpectra}}).)
 }
 
 \section{Called by}{\code{\link{getManyCsv}}}

@@ -11,7 +11,8 @@ Plots two PCA loadings specified by the user, and labels selected (extreme) poin
 }
 
 \usage{
-plot2Loadings(spectra, pca, title = "no title provided", loads = c(1, 2), tol = 0.05, ...)
+plot2Loadings(spectra, pca, title = "no title provided",
+	loads = c(1, 2), tol = 0.05, ...)
 }
 \arguments{
   \item{spectra}{
@@ -54,7 +55,8 @@ See \code{\link{plotLoadings}} to plot one loading against the original variable
 \examples{
 data(CuticleIR)
 results <- classPCA(CuticleIR, choice = "noscale")
-plot2Loadings(CuticleIR, title = "Cuticle IR Spectra", results, loads = c(1,2), tol = 0.05)
+plot2Loadings(CuticleIR, title = "Cuticle IR Spectra", results,
+	loads = c(1,2), tol = 0.05)
 }
 \keyword{ multivariate }
 
