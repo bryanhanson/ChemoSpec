@@ -9,7 +9,7 @@ This function will read all .csv files in a directory, and use the file names to
 }
 \usage{
 getManyCsv(gr.crit = NULL, gr.cols = c("auto"),
-	freq.unit = "no frequency unit provided", NMR = FALSE,
+	freq.unit = "no frequency unit provided",
 	int.unit = "no intensity unit provided",
 	descrip = "no description provided",
 	format = "original", out.file = "mydata")
@@ -23,9 +23,6 @@ Group Colors.  Either the word "auto", in which case colors will be automaticall
 }
   \item{freq.unit}{
 A character string giving the units of the x-axis (frequency or wavelength).
-}
-  \item{NMR}{
-A logical indicating if the type of spectra is traditionally plotted with higher numbers on the left (e.g. NMR or IR).
 }
   \item{int.unit}{
 A character string giving the units of the y-axis (some sort of intensity).
@@ -44,10 +41,10 @@ A file name acceptable to the \code{save} function.  The completed object of S3 
 The linking of groups with colors is handled by \code{\link{groupNcolor}}.  The user may specify any color name known to R.  However, if you plan to use \code{rggobi} and \code{GGobi} to view the data later, keep in mind that \code{ggobi} only uses certain color schemes (although there are many options).  In the case of \code{ChemoSpec}, two particular options have been hard-coded into the function \code{\link{plotScoresG}} for simplicity.  If you plan to use \code{plotScoresG}, you should use choose from one of the two color schemes now if you want all your graphics to use the same scheme.  Keep in mind that these colors must be used in order (though you can use the order of argument \code{gr.crit} to associate a particular group with a particular color:
 
 primary scheme: \code{c("red3", "dodgerblue4", "forestgreen", "purple4",
-	"orangered", "yellow", "orangered4", "violetred2")}
+"orangered", "yellow", "orangered4", "violetred2")}
 
 pastel scheme: \code{c("seagreen", "brown2", "skyblue2", "hotpink3",
-	"chartreuse3", "darkgoldenrod2", "lightsalmon3", "gray48")}
+"chartreuse3", "darkgoldenrod2", "lightsalmon3", "gray48")}
 
 If you want to see what these colors look like, use \code{display.brewer.pal(8, "Set1)} or \code{display.brewer.pal(8, "Set2)}. Finally, the difficulty to bear in mind here is that R plots are generally on a white background, so pale colors should be avoided, while \code{GGobi} plots on a black background, so dark colors should be avoided!
 }

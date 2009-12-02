@@ -36,7 +36,7 @@ None.  Side effect is a plot.
 \section{Called by}{Top level function, called by user.}
 
 \seealso{
-For a 2D plot of the scores, see \code{\link{plotScores}}.  For more sophisticated 3D plots, use \code{\link{plotScoresG}}.
+For a 2D plot of the scores, see \code{\link{plotScores}}.  For more sophisticated 3D plots, use \code{\link{plotScoresG}}, or \code{\link{plotScoresRGL}} for simple interactive plot.
 }
 
 \references{

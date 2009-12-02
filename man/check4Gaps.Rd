@@ -62,4 +62,4 @@ data(CuticleIR) # has a gap, let's find it and display it
 check4Gaps(CuticleIR$freq, CuticleIR$data[1,], plot = TRUE)
 }
 
-\keyword{ utility }
+\keyword{ utilities }

@@ -5,6 +5,19 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+
+
+##### Version: PLANNED FOR NEXT VERSION
+Date: 2009-
+Added a suggested color scheme to getManyCsv which is suitable for color blind individuals.
+Added the first version of the vignette, which lacks references, but is otherwise in pretty good shape.
+
+##### Version: 1.31
+Date: 2009-11-30
+News:
+Added function plotScoresRGL which does interactive 3D plots of scores using the rgl package.  This is an alternative to plotScoresG which uses ggobi and rggobi.  Necessitates new dependency on rgl.
+Added data set gasNIR.
+
 ##### Version: 1.30
 Date: 2009-11-25
 News:

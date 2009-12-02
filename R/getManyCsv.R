@@ -1,7 +1,6 @@
 getManyCsv <-
 function(gr.crit = NULL, gr.cols = c("auto"),
 	freq.unit = "no frequency unit provided",
-	NMR = FALSE,
 	int.unit = "no intensity unit provided",
 	descrip = "no description provided",
 	format = "original",
@@ -44,7 +43,6 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 	
 	spectra$unit[1] <- freq.unit
 	spectra$unit[2] <- int.unit
-	spectra$unit[3] <- NMR
 	spectra$desc <- descrip
 	
 	datafile <- paste(out.file, ".RData", sep = "")

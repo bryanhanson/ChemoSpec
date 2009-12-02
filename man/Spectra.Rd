@@ -21,7 +21,7 @@ $names \tab chr \tab The sample names for the spectra; length must be no. sample
 $groups \tab Factor \tab The group classification of the samples; length must be no. samples.\cr
 $colors \tab chr \tab The colors for each sample; length must be no. samples. \cr
 \tab \tab Groups and colors correspond.\cr
-$unit \tab chr \tab Two entries, the first giving the x axis unit, the second the y axis unit\cr
+$unit \tab chr \tab Two entries, the first giving the x axis unit, the second the y axis unit.\cr
 $desc \tab chr \tab A character string describing the data set.  This appears on plots and therefore \cr
 \tab \tab should probably be kept to 40 characters or less.\cr
 - attr \tab chr "Spectra" \tab The S3 class designation.\cr
