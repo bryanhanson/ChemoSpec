@@ -1,5 +1,6 @@
 pcaDiag <-
-function (spectra, pca, pcs = 3, quantile = 0.975, plot = c("OD", "SD"), ...) {
+function (spectra, pca, pcs = 3, quantile = 0.975,
+plot = c("OD", "SD"), use.sym = FALSE, ...) {
 
 # Function for PCA Diagnostic Plots (modified from Filzmosers version in {chemometrics})
 # Part of the ChemoSpec package.  Bryan Hanson, DePauw Univ, Sept 2009
@@ -17,9 +18,16 @@ function (spectra, pca, pcs = 3, quantile = 0.975, plot = c("OD", "SD"), ...) {
     
     sub <- paste(pca$method, a, "PCs", sep = " ")
     if ("SD" %in% plot) {
-		plot(SDist, ylim = c(0, max(SDist)), ylab = "score distance", 
+		if (!use.sym) {
+			plot(SDist, ylim = c(0, max(SDist)), ylab = "score distance", 
 			xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers based on Score Distance",
 			col = spectra$colors, pch = 20, ...)
+			}
+		if (use.sym) {
+			plot(SDist, ylim = c(0, max(SDist)), ylab = "score distance", 
+			xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers based on Score Distance",
+			pch = spectra$sym, ...)
+			}
 		abline(h = critSD, lty = 2)
 	
 		y.data <- subset(SDist, SDist > critSD)
@@ -29,9 +37,16 @@ function (spectra, pca, pcs = 3, quantile = 0.975, plot = c("OD", "SD"), ...) {
         }
         
     if ("OD" %in% plot) {
-		plot(ODist, ylim = c(0, max(ODist)), ylab = "orthogonal distance", 
+		if (!use.sym) {
+			plot(ODist, ylim = c(0, max(ODist)), ylab = "orthogonal distance", 
 			xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers based on Orthogonal Distance",
 			col = spectra$colors, pch = 20, ...)
+			}
+		if (use.sym) {
+			plot(ODist, ylim = c(0, max(ODist)), ylab = "orthogonal distance", 
+			xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers based on Orthogonal Distance",
+			pch = spectra$sym, ...)
+				}
 		abline(h = critOD, lty = 2)
 
 		y.data <- subset(ODist, ODist > critOD)

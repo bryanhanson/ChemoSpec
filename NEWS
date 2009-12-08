@@ -6,11 +6,17 @@ Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
 
-
-##### Version: PLANNED FOR NEXT VERSION
-Date: 2009-
-Added a suggested color scheme to getManyCsv which is suitable for color blind individuals.
-Added the first version of the vignette, which lacks references, but is otherwise in pretty good shape.
+##### Version: 1.40
+Date: 2009-12-09
+News:
+¥ Added the first version of the vignette, which lacks detailed references.
+¥ Added man page colorSymbol.Rd to collect all recommendations about color and its use in one place.
+¥ Added a function to convert color schemes of an existing Spectra object into a new color scheme (conColScheme).
+¥ Expanded the creation and use of Spectra objects to include plotting symbols and alternate plotting symbols for each group, randomly assigned.  These are needed for b/w plots and also for viewing by color-blind individuals.
+¥ Fixed an error in how colors and groups were matched up - it was being done differently in different functions.  Function sumGroups now handles this task for consistency.
+¥ Updated the help files.
+¥ The GitHub site now gets a .tar.gz source file for Mac users, and a .zip file for Windows users.
+¥ Also included is a file with installation instructions.
 
 ##### Version: 1.31
 Date: 2009-11-30

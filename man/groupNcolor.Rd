@@ -6,7 +6,7 @@
 Assign Group Membership and Colors for a Spectra Object
 }
 \description{
-A utility function which looks for \code{gr.crit} in the file names of .csv files and assigns group membership.  Also assigns a color to each group.  Not intended for users.}
+A utility function which looks for \code{gr.crit} in the file names of .csv files and assigns group membership.  Also assigns a color, a symbol and an alternate symbol to each group.  Not intended for users.}
 \usage{
 groupNcolor(spectra, gr.crit = NULL, gr.cols = c("auto"))
 }
@@ -36,7 +36,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \seealso{
-\code{\link{getManyCsv}} for details.
+\code{\link{getManyCsv}} for details; \code{\link{sumGroups}} to see the outcome.
 
 }
 \keyword{ utilities }

@@ -12,19 +12,26 @@ function(spectra, rem.sam) {
 	
 	# remove the requested samples by name or number
 	# BE CAREFUL: greping can catch more than you think!
-
+	
+	k <- c()
 	if (is.character(rem.sam)) {
-		for (n in 1:length(rem.sam)) rem.sam[n] <- grep(rem.sam[n], spectra$names)
-		rem.sam <- as.numeric(rem.sam)
+		for (n in 1:length(rem.sam)) {
+			more <- grep(rem.sam[n], spectra$names)
+			k <- c(k, more)
+			}
+		rem.sam <- k
 		}
-	if (max(rem.sam) >= length(spectra$names)) stop("Samples to remove are out of range")
+
+	if (max(rem.sam) > length(spectra$names)) stop("Samples to remove are out of range")
 
 	spectra$data <- spectra$data[-rem.sam,]
 	spectra$names <- spectra$names[-rem.sam]
 	spectra$groups <- spectra$groups[-rem.sam]
 	spectra$colors <- spectra$colors[-rem.sam]
+	spectra$sym <- spectra$sym[-rem.sam]
+	spectra$alt.sym <- spectra$alt.sym[-rem.sam]
 	
-	if (length(spectra$names) == 0) warning("You may have removed all your samples!")
+	if (length(spectra$names) == 0) warning("You have removed all your samples!")
 
 	# other aspects of spectra are untouched
 

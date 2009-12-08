@@ -9,7 +9,7 @@ Creates a basic 3D plot of PCA scores from the analysis of a \code{"Spectra"} ob
 }
 \usage{
 plotScores3D(spectra, pca, pcs = c(1:3), title = "no title provided",
-	view = list(y = 34, x = 10, z = 0))
+	view = list(y = 34, x = 10, z = 0), use.sym = FALSE, ...)
 }
 \arguments{
   \item{spectra}{
@@ -27,6 +27,9 @@ A vector of three integers specifying the PCA scores to plot.
   \item{view}{
 A list of viewing transformations to be applied to the data.  May contain values for x, y and z axes; keep in mind that the order of the transformations is important.  For example, specifying \code{view = list(x = 45, y = 10)} produces a different view than \code{view = list(y = 10, x = 45)}.  The list may be as along as you like - the series of transformations representing an accumulation of tweaks to achieve the desired view.
 }
+  \item{use.sym}{logical; if true, the color scheme is change to black and symbols are used for plotting.}
+  \item{\dots}{Other parameters to be passed downstream.}
+
 }
 \value{
 None.  Side effect is a plot.

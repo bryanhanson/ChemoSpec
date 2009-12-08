@@ -36,6 +36,21 @@ function(spectra, gr.crit = NULL, gr.cols = c("auto")) {
 			spectra$colors[which] <- gr.cols[i]
 			}
 
+	# either way, associate symbols and alt.sym with each gr.crit
+	sym.choice <- c(1, 2, 3, 15, 16, 17, 22, 8) # preferred symbols
+	sym1 <- sym.choice[1:length(gr.crit)]
+	sym2 <- letters[1:length(gr.crit)]
+	if (length(gr.crit) > 8) {
+		sym1 <- c(1:length(gr.crit))
+		warning("Too many groups to use the preferred symbols!")
+		}
+
+	for (i in 1:length(gr.crit)) {
+		which <- grep(gr.crit[i], spectra$groups)
+		spectra$sym[which] <- sym1[i]
+		spectra$alt.sym[which] <- sym2[i]
+		}
+	
 	class(spectra) <- "Spectra"
 	return(spectra) # spectra is now complete!
 	}

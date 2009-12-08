@@ -46,6 +46,6 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 	spectra$desc <- descrip
 	
 	datafile <- paste(out.file, ".RData", sep = "")
-	save(spectra, file = datafile)
+	saveObject(spectra, file = datafile)
 	}
 

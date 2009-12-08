@@ -15,15 +15,17 @@ IR spectra obtained by ATR sampling on leaves of \emph{Portulaca oleracea} (comm
 
 \format{
 
-List of 7\cr
-$ freq  : num [1:1242] 501 503 505 507 509 ...\cr
-$ data  : num [1:157, 1:1242] 0.205 0.247 0.219 0.203 0.234 ...\cr
-$ names : chr [1:157] "GC10" "GC11" "GC12" "GC14" ...\cr
-$ groups: Factor w/ 4 levels "GC","GE","TC",..: 1 1 1 1 1 1 1 1 1 1 ...\cr
-$ colors: chr [1:157] "brown2" "brown2" "brown2" "brown2" ...\cr
-$ unit  : chr [1:2] "Wavenumbers" "Absorbance"\cr
-$ desc  : chr "Kelly's Complete IR Data Set, Summer 2009"\cr
-- attr(*, "class")= chr "Spectra"\cr
+List of 9\cr
+ $ freq   : num [1:1242] 501 503 505 507 509 ...\cr
+ $ data   : num [1:157, 1:1242] 0.205 0.247 0.219 0.203 0.234 ...\cr
+ $ names  : chr [1:157] "GC10" "GC11" "GC12" "GC14" ...\cr
+ $ groups : Factor w/ 4 levels "GC","GE","TC",..: 1 1 1 1 1 1 1 1 1 1 ...\cr
+ $ colors : chr [1:157] "dodgerblue4" "dodgerblue4" "dodgerblue4" "dodgerblue4" ...\cr
+ $ sym    : num [1:157] 2 2 2 2 2 2 2 2 2 2 ...\cr
+ $ alt.sym: chr [1:157] "b" "b" "b" "b" ...\cr
+ $ unit   : chr [1:2] "Wavenumbers" "Absorbance"\cr
+ $ desc   : chr "Kelly's Complete IR Data Set, Summer 2009"\cr
+ - attr(*, "class")= chr "Spectra"\cr
 }
 
 \details{

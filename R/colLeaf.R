@@ -13,7 +13,8 @@ function(n, spectra) { # this is called iteratively by dendrapply
 		a <- attributes(n)
 		i <- match(a$label, spectra$names)
 		
-		attr(n, "nodePar") <- c(a$nodePar, list(lab.col = spectra$colors[i], pch = NA, lab.cex = lab.size))
+		attr(n, "nodePar") <- c(a$nodePar, list(lab.col = spectra$colors[i],
+			pch = NA, lab.cex = lab.size))
 		}
 		n
 	}

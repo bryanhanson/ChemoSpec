@@ -12,7 +12,7 @@ A function to carry diagnostics on the PCA results for a \code{"Spectra"} object
 
 \usage{
 pcaDiag(spectra, pca, pcs = 3, quantile = 0.975,
-	plot = c("OD", "SD"), ...)
+	plot = c("OD", "SD"), use.sym = FALSE, ...)
 }
 
 \arguments{
@@ -31,6 +31,7 @@ As per \code{\link[chemometrics]{pcaDiagplot}}.  The significance criteria to us
   \item{plot}{
 A character string, indicating whether to plot the score distances or orthogonal distances, or both.  Options are \code{c("OD", "SD")}.
 }
+  \item{use.sym}{logical; if true, the color scheme is change to black and symbols are used for plotting.}
   \item{\dots}{
 Additional parameters to be passed to the plotting functions.
 }

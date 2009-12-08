@@ -8,7 +8,8 @@ This function uses the \code{\link{rgl}} package to create an interactive plot o
 }
 \usage{
 plotScoresRGL(spectra, pca, pcs = c(1:3), title = NULL,
-	t.pos = NULL, leg.pos = NULL, lab.opts = FALSE, ...)
+	t.pos = NULL, leg.pos = NULL, lab.opts = FALSE,
+	use.sym = FALSE, ...)
 }
 \arguments{
   \item{spectra}{
@@ -32,6 +33,8 @@ A character selection from \code{LETTERS[1:8]} ( = A through H) indicating the d
   \item{lab.opts}{
 A logical indicating whether or not to display the locations where the title and legend can be placed.  These locations are the corners of a cube surrounding the data.
 }
+  \item{use.sym}{logical; if true, the color scheme is change to black and symbols are used for plotting.}
+
   \item{\dots}{
 Additional parameters to pass downstream, generally to the plotting routines.
 }
@@ -56,7 +59,8 @@ Other functions in \code{ChemoSpec} that plot PCA scores are: \code{\link{plotSc
 \examples{
 data(CuticleIR)
 results <- classPCA(CuticleIR, choice = "autoscale")
-plotScoresRGL(CuticleIR, results, title = "Cuticle IR Spectra", leg.pos = "A", t.pos = "B")
+plotScoresRGL(CuticleIR, results, title = "Cuticle IR Spectra",
+leg.pos = "A", t.pos = "B")
 }
 
 \keyword{ multivariate }

@@ -9,7 +9,8 @@ Plot HCA Results of a Spectra Object
 A wrapper which carries out HCA and plots a dendrogram colored by the information in a \code{"Spectra"} object.  All methods for computing the cluster distances are available.
 }
 \usage{
-hcaSpectra(spectra, title = "no title provided", method = "complete", ...)
+hcaSpectra(spectra, title = "no title provided",
+method = "complete", ...)
 }
 \arguments{
   \item{spectra}{

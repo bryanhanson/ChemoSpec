@@ -26,11 +26,15 @@ function(spectra, confirm = FALSE) {
 	g <- length(spectra$groups)
 	co <- length(spectra$colors)
 	d1 <- dim(spectra$data)[1]
+	sy <- length(spectra$sym)
+	ay <- length(spectra$alt.sym)
 	
 	if (!identical(f, d2)) { warning("The dimensions don't make sense (freq, data)"); w <- TRUE }
 	if (!identical(n, g)) { warning("The dimensions don't make sense (names, group)"); w <- TRUE }
 	if (!identical(g, co)) { warning("The dimensions don't make sense (group, colors)"); w <- TRUE }
 	if (!identical(co, d1)) { warning("The dimensions don't make sense (colors, data)"); w <- TRUE }
+	if (!identical(co, sy)) { warning("The dimensions don't make sense (colors, symbols)"); w <- TRUE }
+	if (!identical(sy, ay)) { warning("The dimensions don't make sense (symbols, alt symbols)"); w <- TRUE }
 	
 	if ((!w) && (confirm)) cat("You must be awesome: These spectra look just dandy!")
 	if (w) {
