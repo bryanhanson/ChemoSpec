@@ -10,7 +10,8 @@ Plots the requested PCA scores using the color scheme derived from a \code{"Spec
 }
 \usage{
 plotScores(spectra, pca, title = "no title provided",
-	pcs = c(1, 2), ellipse = "none", tol = "none", ...)
+	pcs = c(1, 2), ellipse = "none", tol = "none",
+	use.sym = FALSE, ...)
 }
 
 \arguments{
@@ -31,6 +32,9 @@ A character vector specifying the type of ellipses to be plotted.  One of \code{
 }
   \item{tol}{
 A number describing the fraction of points to be labeled.  \code{tol = 1.0} labels all the points; \code{tol = 0.05} labels the most extreme 5 percent.
+}
+  \item{use.sym}{
+A logical; if true, the color scheme is set to black and the points plotted with symbols.
 }
   \item{\dots}{
 Additional parameters to be passed to the plotting functions.
@@ -60,7 +64,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 data(CuticleIR)
 results <- classPCA(CuticleIR, choice = "noscale")
 plotScores(CuticleIR, title = "Cuticle IR Spectra", results,
-	pcs = c(1,2), ellipse = "both", tol = 0.05)
+	pcs = c(1,2), ellipse = "rob", tol = 0.05)
 }
 
 \keyword{ multivariate }

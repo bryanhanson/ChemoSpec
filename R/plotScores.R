@@ -1,6 +1,7 @@
 plotScores <-
 function(spectra, pca, title = "no title provided",
-	pcs = c(1,2), ellipse = "none", tol = "none", ...) {
+	pcs = c(1,2), ellipse = "none", tol = "none",
+	use.sym = FALSE, ...) {
 
 # Function to plot PCA scores
 # Part of the ChemoSpec package
@@ -15,27 +16,19 @@ function(spectra, pca, title = "no title provided",
 	if (!("princomp" %in% class(pca) || "prcomp" %in% class(pca))) stop("Your pca results look corrupt!")
 	chkSpectra(spectra)
 	
-	# Break the data into groups, clean up & give some warnings.
 	# There must be at least 3 data points per level to make a classic ellipse.
 	# More to make a robust ellipse, as at least one point may be dropped.
 
-	lvls = levels(spectra$groups)
-	count = length(lvls)
-	for (n in 1:count) {
-		ndp <- length(which(spectra$groups == lvls[n])) # How many members of each group are there?
-		if (identical(ndp, 1)) warning("Group ", which(spectra$groups == lvls[n]), "has only 1 member.")
-		if (identical(ndp, 2)) warning("Group ", which(spectra$groups == lvls[n]), "has only 2 members.")
-		if (identical(ndp, 3)) warning("Group ", which(spectra$groups == lvls[n]), "has only 3 members.")
+	gr <- sumGroups(spectra)
+	
+	for (n in 1:length(gr$group)) {
+		if (gr$no.[n] == 1) warning("Group ", gr$group[n], "has only 1 member")
+		if (gr$no.[n] == 2) warning("Group ", gr$group[n], "has only 2 members")
+		if (gr$no.[n] == 3) warning("Group ", gr$group[n], "has only 3 members")
 		}
 	
 	df <- data.frame(pca$x[,pcs], group = spectra$groups)
 	groups <- dlply(df, "group", subset, select = c(1,2))
-
-	col.lvls <- c() # set up the color scheme for ellipses, later
-	for (n in 1:count) {
-		chk <- match(lvls[n], spectra$groups) # get 1st instance
-		col.lvls[n] <- spectra$colors[chk]
-		}
 		
 ### First case: plot everything by group (most general, other cases are subsets of this)
 
@@ -63,20 +56,25 @@ function(spectra, pca, title = "no title provided",
 
 	new.title <- paste(title, ": PCA Score Plot", sep = "") # prepare plot title
 
-	plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
+	if (!use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
 	col = spectra$colors, xlim = x.all, ylim = y.all, pch = 20, ...)
+
+	if (use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
+	col = "black", xlim = x.all, ylim = y.all, pch = spectra$sym, ...)
 	
 	# Now plot both classic and robust ellipses, classic first
 
 	cls.coords <- llply(ell, function(x) {x[1:2]})
 	cls.coords <- llply(cls.coords, function(x) {do.call(cbind, x)})
-	m_ply(cbind(x = cls.coords, col = col.lvls, lty = 3), lines, ...)
+	if (!use.sym) m_ply(cbind(x = cls.coords, col = gr$color, lty = 3), lines, ...)
+	if (use.sym) m_ply(cbind(x = cls.coords, col = "black", lty = 3), lines, ...)
 
 	# Now the robust ellipses
 	
 	rob.coords <- llply(ell, function(x) {x[4:5]})
 	rob.coords <- llply(rob.coords, function(x) {do.call(cbind, x)})
-	m_ply(cbind(x = rob.coords, col = col.lvls), lines, ...)
+	if (!use.sym) m_ply(cbind(x = rob.coords, col = gr$color), lines, ...)
+	if (use.sym) m_ply(cbind(x = rob.coords, col = "black"), lines, ...)
 
 	# finish with the usual annotations
 			
@@ -99,8 +97,11 @@ function(spectra, pca, title = "no title provided",
 
 	new.title <- paste(title, ": PCA Score Plot", sep = "") # prepare plot title
 
-	plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
+	if (!use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
 	col = spectra$colors, xlim = x.all, ylim = y.all, pch = 20, ...)
+
+	if (use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
+	col = "black", xlim = x.all, ylim = y.all, pch = spectra$sym, ...)
 	
 	}
 
@@ -122,14 +123,18 @@ function(spectra, pca, title = "no title provided",
 
 	new.title <- paste(title, ": PCA Score Plot", sep = "") # prepare plot title
 
-	plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
+	if (!use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
 	col = spectra$colors, xlim = x.all, ylim = y.all, pch = 20, ...)
+
+	if (use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
+	col = "black", xlim = x.all, ylim = y.all, pch = spectra$sym, ...)
 	
 	# Now plot classic ellipses
 
 	cls.coords <- llply(ell, function(x) {x[1:2]})
 	cls.coords <- llply(cls.coords, function(x) {do.call(cbind, x)})
-	m_ply(cbind(x = cls.coords, col = col.lvls, lty = 3), lines, ...)
+	if (!use.sym) m_ply(cbind(x = cls.coords, col = gr$color, lty = 3), lines, ...)
+	if (use.sym) m_ply(cbind(x = cls.coords, col = "black", lty = 3), lines, ...)
 
 	# finish with the usual annotations
 			
@@ -155,14 +160,18 @@ function(spectra, pca, title = "no title provided",
 
 	new.title <- paste(title, ": PCA Score Plot", sep = "") # prepare plot title
 
-	plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
+	if (!use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
 	col = spectra$colors, xlim = x.all, ylim = y.all, pch = 20, ...)
+
+	if (use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
+	col = "black", xlim = x.all, ylim = y.all, pch = spectra$sym, ...)
 	
 	# Now plot robust ellipses
 	
 	rob.coords <- llply(ell, function(x) {x[4:5]})
 	rob.coords <- llply(rob.coords, function(x) {do.call(cbind, x)})
-	m_ply(cbind(x = rob.coords, col = col.lvls), lines, ...)
+	if (!use.sym) m_ply(cbind(x = rob.coords, col = gr$color), lines, ...)
+	if (use.sym) m_ply(cbind(x = rob.coords, col = "black"), lines, ...)
 
 	legend("top", y = NULL, "robust ellipses by group", lty = 1, bty = "n", col = "black", cex = 0.75)
 
@@ -172,15 +181,12 @@ function(spectra, pca, title = "no title provided",
 	
 	plotScoresDecoration(spectra, pca, pcs, tol)
 	
-	leg.col <- c()
-	for (z in 1:count) {
-		i <- match(lvls[z], spectra$groups)
-		leg.col[z] <- spectra$colors[i]
-		}
-
-	leg.txt <- c("Key", lvls)
-	leg.col <- c("black", leg.col)
-	legend("topright", leg.txt, text.col = leg.col, bty = "o", cex = 0.75)
+	leg.txt <- c("Key", gr$group)
+	leg.col <- c("black", gr$color)
+	if (use.sym) leg.col = "black"
+	leg.pch <- NA
+	if (use.sym) leg.pch <- c(NA, gr$sym)
+	legend("topright", leg.txt, text.col = leg.col, bty = "o", cex = 0.75, pch = leg.pch)
 
 }
 

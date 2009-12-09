@@ -1,32 +1,26 @@
 \name{colLeaf}
-\Rdversion{1.1}
 \alias{colLeaf}
-
 \title{
-Color Dendrogram of a Spectra Object
+Color the Leaves of a Dendrogram
 }
-
 \description{
-Utility function called by \code{\link{hcaSpectra}} and \code{\link{hcaScores}} via \code{dendrapply}. Not intended for end-users.
+This function colors the leaves of a dendrogram object.  The code was taken from the help files.  Not for end-user use.
 }
 \usage{
 colLeaf(n, spectra)
 }
-
 \arguments{
   \item{n}{
-The leaf number (an integer).
+A node in a dendrogram object.
 }
   \item{spectra}{
 An object of S3 class \code{"Spectra"}.
 }
 }
-
 \value{
-None. The leaf colors of the relevant dendrogram object are modified to correspond to those in \code{spectra}
+Returns a node with the label color properties set.
 }
-
-\section{Called by}{\code{\link{hcaSpectra}}, \code{\link{hcaScores}}}
+\section{Called by}{\code{\link{hcaSpectra}}, \code{\link{hcaScores}}.}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
@@ -35,9 +29,4 @@ None. The leaf colors of the relevant dendrogram object are modified to correspo
 \author{
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
-
-\note{
-The basic idea was found in the help archives.  I can't write this kind of stuff!
-}
-
 \keyword{ utilities }

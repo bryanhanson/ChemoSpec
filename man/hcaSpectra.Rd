@@ -10,7 +10,7 @@ A wrapper which carries out HCA and plots a dendrogram colored by the informatio
 }
 \usage{
 hcaSpectra(spectra, title = "no title provided",
-method = "complete", ...)
+method = "complete", use.sym = FALSE, ...)
 }
 \arguments{
   \item{spectra}{
@@ -22,6 +22,9 @@ A character string for the plot title.
   \item{method}{
 A character string acceptable as a method in \code{\link{hclust}}.
 }
+  \item{use.sym}{
+A logical; if true, use no color and use lower-case letters to indicate group membership.
+}
   \item{\dots}{
 Other parameters to be passed to the plotting functions.
 }
@@ -30,7 +33,7 @@ Other parameters to be passed to the plotting functions.
 None.  The side effect is a plot.
 }
 
-\section{Calls}{\code{\link{chkSpectra}}, \code{\link{colLeaf}}}
+\section{Calls}{\code{\link{chkSpectra}}, \code{\link{colLeaf}}, \code{\link{shrinkLeaf}}}
 \section{Called by}{Top level function, called by user.}
 
 \references{
@@ -44,6 +47,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \seealso{
 \code{\link{hclust}} for the underlying function.
 \code{\link{hcaScores}} for similar analysis of PCA scores from a \code{"Spectra"} object.
+\code{\link{plotHCA}} for the function that actually does the plotting.
 }
 \examples{
 data(CuticleIR)

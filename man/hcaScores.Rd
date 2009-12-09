@@ -11,7 +11,7 @@ A wrapper which performs HCA on the scores from a PCA of a \code{"Spectra"} obje
 
 \usage{
 hcaScores(spectra, pca, title = "no title provided",
-	scores = c(1:5), method = "complete", ...)
+	scores = c(1:5), method = "complete", use.sym = FALSE, ...)
 }
 
 \arguments{
@@ -28,6 +28,9 @@ A vector of integers specifying which scores to use for the HCA.}
   \item{method}{
 A character string acceptable as a method in \code{\link{hclust}}.
 }
+  \item{use.sym}{
+A logical; if true, use no color and use lower-case letters to indicate group membership.
+}
   \item{\dots}{
 Additional parameters to be passed to the plotting functions.
 }
@@ -37,7 +40,7 @@ Additional parameters to be passed to the plotting functions.
 None.  Side effect is a plot.
 }
 
-\section{Calls}{\code{\link{colLeaf}}}
+\section{Calls}{\code{\link{colLeaf}}, \code{\link{shrinkLeaf}}}
 \section{Called by}{Top level function, called by user.}
 
 \references{
@@ -51,6 +54,8 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \seealso{
 \code{\link{hclust}} for the underlying function.
 See \code{\link{hcaSpectra}} for HCA of the entire data set stored in the \code{"Spectra"} object.
+\code{\link{plotHCA}} for the function that actually does the plotting.
+
 }
 \examples{
 data(CuticleIR)

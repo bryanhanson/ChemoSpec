@@ -6,13 +6,18 @@ Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
 
+##### Version: 1.41
+Date: 2009-12-09
+News:
+¥ Completed implementation of the use.sym argument to plotting routines which require it.
+
 ##### Version: 1.40
 Date: 2009-12-09
 News:
 ¥ Added the first version of the vignette, which lacks detailed references.
 ¥ Added man page colorSymbol.Rd to collect all recommendations about color and its use in one place.
 ¥ Added a function to convert color schemes of an existing Spectra object into a new color scheme (conColScheme).
-¥ Expanded the creation and use of Spectra objects to include plotting symbols and alternate plotting symbols for each group, randomly assigned.  These are needed for b/w plots and also for viewing by color-blind individuals.
+¥ Expanded the creation and use of Spectra objects to include plotting symbols and alternate plotting symbols for each group, randomly assigned.  These are needed for b/w plots and also for viewing by color-blind individuals.  The relevant functions now have argument use.sym = FALSE which controls this feature.
 ¥ Fixed an error in how colors and groups were matched up - it was being done differently in different functions.  Function sumGroups now handles this task for consistency.
 ¥ Updated the help files.
 ¥ The GitHub site now gets a .tar.gz source file for Mac users, and a .zip file for Windows users.
