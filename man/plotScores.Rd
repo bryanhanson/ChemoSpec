@@ -46,7 +46,6 @@ None.  Side effect is a plot.
 
 \section{Calls}{\code{\link{plotScoresDecoration}}, \code{\link{plotScoresCor}}, \code{\link{chkSpectra}}
 }
-\section{Called by}{Top level function, called by user.}
 
 \seealso{
 For other ways of displaying the results, \code{\link{plotScree}}, \code{\link{plotLoadings}}, \code{\link{plot2Loadings}}. For a 3D plot of the scores, see \code{\link{plotScores3D}}.  
@@ -68,3 +67,5 @@ plotScores(CuticleIR, title = "Cuticle IR Spectra", results,
 }
 
 \keyword{ multivariate }
+\keyword{ robust }
+\keyword{ hplot }

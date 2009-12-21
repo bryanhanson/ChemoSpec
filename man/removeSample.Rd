@@ -23,15 +23,13 @@ Either an integer vector specifying the samples to be removed, or a character ve
 }
 
 \details{
-If \code{rem.sam} is a character vector, the sample names are grepped for the corresponding values.  Remember that the grepping process is greedy, i.e. grepping for "XY" find not only "XY" but also "XYZ".
+If \code{rem.sam} is a character vector, the sample names are grepped for the corresponding values.  Remember that the grepping process is greedy, i.e. grepping for "XY" find not only "XY" but also "XYZ".  Unused levels in \code{$groups} are dropped.
 }
 
 \value{
 A modified object of S3 class \code{"Spectra"}.
 }
 
-\section{Calls}{\code{\link{chkSpectra}}}
-\section{Called by}{Top level function, called by user.}
 
 \seealso{
 \code{\link{removeFreq}} to remove selected frequencies from a \code{"Spectra"} object.
@@ -57,3 +55,4 @@ new3 <- removeSample(CuticleIR, rem.sam = "GE10")
 }
 
 \keyword{ utilities }
+\keyword{ manip }

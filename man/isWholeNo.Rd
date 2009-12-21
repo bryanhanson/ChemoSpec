@@ -19,7 +19,6 @@ isWholeNo(x, tol = .Machine$double.eps^0.5)
 A logical, indicating the outcome of the test.
 }
 
-\section{Called by}{\code{\link{binData}}}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}\cr

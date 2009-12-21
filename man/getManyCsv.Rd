@@ -12,7 +12,7 @@ getManyCsv(gr.crit = NULL, gr.cols = c("auto"),
 freq.unit = "no frequency unit provided",
 int.unit = "no intensity unit provided",
 descrip = "no description provided",
-format = "original", out.file = "mydata")
+format = "csv", out.file = "mydata")
 }
 \arguments{
   \item{gr.crit}{
@@ -31,7 +31,7 @@ A character string giving the units of the y-axis (some sort of intensity).
 A character string describing the data set that will be stored.  This string is used in some plots so it is recommended that it's length be less than about 40 characters.
 }
   \item{format}{
-A character string giving the format of the .csv files to be processed.  Currently set to \code{"original"} but not used; intended for future flexibility.
+A character string giving the format of the .csv files to be processed.  Default is \code{csv} for US-style csv files.  Alternatively, you can specify \code{csv2} for EU-style csv files.
 }
   \item{out.file}{
 A file name acceptable to the \code{save} function.  The completed object of S3 class \code{"Spectra"} will be written to this file.
@@ -43,9 +43,6 @@ The linking of groups with colors is handled by \code{\link{groupNcolor}}.
 \value{
 An \emph{unnamed} object of S3 class \code{\link{Spectra}} will be written to \code{out.file}.  To retrieve it, use \code{new.name <- loadObject(out.file)}.
 }
-
-\section{Calls}{\code{\link{groupNcolor}}}
-\section{Called by}{Top level function, called by user.}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}

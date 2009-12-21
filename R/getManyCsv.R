@@ -3,7 +3,7 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 	freq.unit = "no frequency unit provided",
 	int.unit = "no intensity unit provided",
 	descrip = "no description provided",
-	format = "original",
+	format = "csv",
 	out.file = "mydata") {
 		
 # Function to Read & Prep Spectroscopic Data
@@ -21,7 +21,8 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 		
 	# get the first file, initialize stuff, and pull out the frequency data
 
-	temp <- read.csv(files[1])
+	if (format == "csv") temp <- read.csv(files[1], header = FALSE)
+	if (format == "csv2") temp <- read.csv2(files[1], header = FALSE)
 	spectra <- list() # OK to initialize a list this way
 	spectra$freq <- temp[,1]
 	spectra$data <- matrix(data = 0.0, nrow = length(files), ncol = length(spectra$freq))
@@ -32,7 +33,8 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 	files.noext <- substr(basename(files), 1, nchar(basename(files)) - 4)
 
 	for (i in 1:length(files)) {
-		temp <- read.csv(files[i])
+		if (format == "csv") temp <- read.csv(files[1], header = FALSE)
+		if (format == "csv2") temp <- read.csv2(files[1], header = FALSE)
 		spectra$data[i,] <- temp[,2]
 		spectra$names[i] <- files.noext[i] # need to remove the .csv
 		}

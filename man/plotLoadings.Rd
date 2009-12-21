@@ -38,7 +38,6 @@ Additional parameters to be passed to plotting functions.
 None.  Side effect is a plot.
 }
 
-\section{Called by}{Top level function, called by user.}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
@@ -59,4 +58,4 @@ plotLoadings(CuticleIR, results, title = "Cuticle IR Spectra",
 }
 
 \keyword{ multivariate }
-
+\keyword{ hplot }

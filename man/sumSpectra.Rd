@@ -26,8 +26,6 @@ Prior to summarizing, \code{\link{chkSpectra}} is run with confirm = FALSE.  If 
 None.  Results printed at console, perhaps a plot as well.
 }
 
-\section{Calls}{\code{\link{chkSpectra}}, \code{\link{check4Gaps}}, \code{\link{sumGroups}}}
-\section{Called by}{Top level function, called by user.}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}

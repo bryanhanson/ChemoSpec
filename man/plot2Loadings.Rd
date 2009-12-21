@@ -46,9 +46,6 @@ None.  Side effect is a plot.
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
-\section{Calls}{\code{\link{labelExtremes}}}
-\section{Called by}{Top level function, called by user.}
-
 \seealso{
 See \code{\link{plotLoadings}} to plot one loading against the original variable (frequency) axis.
 }
@@ -59,4 +56,4 @@ plot2Loadings(CuticleIR, title = "Cuticle IR Spectra", results,
 	loads = c(1,2), tol = 0.05)
 }
 \keyword{ multivariate }
-
+\keyword{ hplot }

@@ -45,8 +45,6 @@ If both plots are desired, the output should be directed to a file rather than t
 A list is returned as described in \code{\link[chemometrics]{pcaDiagplot}}, so the result must be assigned or it will appear at the console.  Side effect is a plot.
 }
 
-\section{Calls}{\code{\link{q2rPCA}}, \code{\link{labelExtremes}}}
-\section{Called by}{Top level function, called by user.}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}\cr

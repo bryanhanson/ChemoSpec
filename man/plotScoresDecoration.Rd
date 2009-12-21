@@ -30,8 +30,6 @@ A number describing the fraction of points to be labeled.  \code{tol = 1.0} labe
 None.  The score plot is decorated.
 }
 
-\section{Calls}{\code{\link{labelExtremes}}}
-\section{Called by}{\code{\link{plotScores}}}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}

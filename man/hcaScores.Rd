@@ -40,8 +40,6 @@ Additional parameters to be passed to the plotting functions.
 None.  Side effect is a plot.
 }
 
-\section{Calls}{\code{\link{colLeaf}}, \code{\link{shrinkLeaf}}}
-\section{Called by}{Top level function, called by user.}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}

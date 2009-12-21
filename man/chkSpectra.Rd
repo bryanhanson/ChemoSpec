@@ -30,7 +30,6 @@ This function is similar in spirit to \code{\link{validObject}} in the S4 world.
 \value{None; messages will be printed at the console if there is a problem.
 }
 
-\section{Called by}{All \code{ChemoSpec} functions that modify \code{"Spectra"} objects.}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}

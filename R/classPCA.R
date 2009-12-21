@@ -11,7 +11,7 @@ function(spectra, choice = "noscale") {
 	choices <- c("noscale", "autoscale", "Pareto") # trap for invalid scaling method
 	check <- choice %in% choices
 	if (!check) stop("The choice of scaling parameter was invalid")
-	
+	chkSpectra(spectra)
 	# First, row scale (compensates for different dilutions/handling of samples)
 
 	t.data <- t(spectra$data)

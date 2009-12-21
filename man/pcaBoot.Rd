@@ -45,7 +45,6 @@ Parameters to be passed to the plotting routines.
 A list as described in \code{\link[chemometrics]{pcaCV}}, so the result must be assigned or it will appear at the console.  Side effect is a plot.
 }
 
-\section{Called by}{Top level function, called by user.}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}\cr

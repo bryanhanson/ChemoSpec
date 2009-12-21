@@ -42,10 +42,6 @@ The basic procedure is to compare x[n + 1] - x[n] for successive values of n.  W
 \item{eng.indx }{The index of the last frequency value in the data chunk.}
 }
 
-\section{Called by}{
-\code{\link{sumSpectra}}, \code{\link{binData}}, \code{\link{sumSpectra}}
-}
-
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
 }

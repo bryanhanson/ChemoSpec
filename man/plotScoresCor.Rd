@@ -33,7 +33,6 @@ A list with the following elements (a simpler version of that in the original fu
 \item{r}{The correlation value for the robust ellipse.}
 }
 
-\section{Called by}{\code{\link{plotScores}}}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}

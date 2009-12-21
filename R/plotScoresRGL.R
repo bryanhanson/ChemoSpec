@@ -1,12 +1,12 @@
 
-plotScoresRGL <-
-function(spectra, pca, pcs = c(1:3), title = NULL,
-t.pos = NULL, leg.pos = NULL,
-lab.opts = FALSE, use.sym = FALSE, ...) {
+plotScoresRGL <- function(spectra, pca, pcs = c(1:3), 
+	ellipse = TRUE, rob = FALSE, cl = 0.95, frac.pts.used = 0.8,
+	title = NULL, t.pos = NULL, leg.pos = NULL, lab.opts = FALSE,
+	tol = 0.01, use.sym = FALSE,...) {
 
 # Function to do an interactive 3D plot of PCA scores using rgl
 # Part of the ChemoSpec package
-# Bryan Hanson, DePauw University, Nov 2009
+# Bryan Hanson, DePauw University, Dec 2009
 
 	if (!length(pcs) == 3) stop("Please give exactly 3 PCs to plot")
 	chkSpectra(spectra)
@@ -33,16 +33,38 @@ lab.opts = FALSE, use.sym = FALSE, ...) {
 	z.cor <- c(0, 0, 0, ax.len)
 	i <- c(1, 2, 1, 3, 1, 4)
 		
-	open3d() # taken from the example page for rgl
+	open3d() # draw axes and label them
 	segments3d(x.cor[i], y.cor[i], z.cor[i], lwd = 2.0,
-		line_antialias = TRUE) # draw axes, next label axes
-	text3d(x.cor * 1.1, y.cor * 1.1, z.cor * 1.1, texts = c("", x.lab, y.lab, z.lab), adj = c(0, 1))
-	if (!use.sym) points3d(x, y, z, col = colors, size = 4, point_antialias = TRUE) # draw data
-	if (use.sym) text3d(x, y, z, texts = lets) # draw data
+		line_antialias = TRUE)
+	text3d(x.cor * 1.1, y.cor * 1.1, z.cor * 1.1,
+		texts = c("", x.lab, y.lab, z.lab), adj = c(0, 1))
+	if (!use.sym) points3d(x, y, z, col = colors, size = 4, point_antialias = TRUE)
+	if (use.sym) text3d(x, y, z, texts = lets) # draw data points
 
-	# prep matrix giving the 8 corners of the cube for labeling purposes
-	
-	pos <- matrix(NA, 8, 3)
+	if (tol > 0) {
+		pts <- labelExtremes3d(pca$x[,pcs], names = spectra$names, tol = tol)
+		text3d(pts[,1], pts[,2], pts[,3], texts = pts[,4], cex = 0.75, adj = c(0,0))
+		}
+
+	if (ellipse) { # compute and draw ellipsoids
+		for (n in 1:length(gr$group)) {
+			if (gr$no.[n] > 3) {
+				d <- pca$x[,pcs]
+				w <- grep(gr$group[n], spectra$groups)
+				d <- d[w,]
+				ell <- makeEllipsoid(d, rob = rob, cl = cl, frac.pts.used = frac.pts.used, ...)
+				x <- ell[,1]
+				y <- ell[,2]
+				z <- ell[,3]
+				col <- rep(gr$color[n], 1000)
+				a <- rep(0.1, 1000)
+				if (!use.sym) points3d(x, y, z, col = col, size = 4, alpha = a, point_antialias = TRUE)
+				if (use.sym) points3d(x, y, z, col = "black", size = 4, alpha = a, point_antialias = TRUE)
+					}
+			}
+		}
+
+	pos <- matrix(NA, 8, 3) # matrix of label positions
 	pos[1:4,1] <- ax.len # x values
 	pos[5:8,1] <- -ax.len
 	pos[c(1,2,7,8), 2] <- ax.len # y values
@@ -50,18 +72,18 @@ lab.opts = FALSE, use.sym = FALSE, ...) {
 	pos[seq(1,8,2), 3] <- ax.len # z values
 	pos[seq(2,8,2), 3] <- -ax.len
 
-	if (lab.opts) {
+	if (lab.opts) {  # label the 8 cube corners
 		labs <- LETTERS[1:8]
 		if (!use.sym) text3d(pos, texts = labs, col = "orange")
 		if (use.sym) text3d(pos, texts = labs, col = "black")
 		}
 
-	if ((!is.null(title)) && (!is.null(t.pos))) {
+	if ((!is.null(title)) && (!is.null(t.pos))) { # add title
 		m <- match(t.pos, LETTERS[1:8])
 		text3d(pos[m,], texts = title, adj = c(0.5, 0.5), cex = 1.5)
 		}
 	
-	if (!is.null(leg.pos)) {
+	if (!is.null(leg.pos)) { # add legend
 		m <- match(leg.pos, LETTERS[1:8])
 		h <- length(gr$group)
 		
@@ -81,7 +103,6 @@ lab.opts = FALSE, use.sym = FALSE, ...) {
 		z.off <- z.off[1:h] # truncate so dim's match if h odd
 		z.off <- z.off * amt + pos[m,3] # center around specified point
 		sop[,3] <- z.off
-#		print(sop)
 		if (!use.sym) { text3d(sop, texts = gr$group,
 			adj = c(0.5, 0.5), col = gr$color) }
 			
@@ -93,7 +114,6 @@ lab.opts = FALSE, use.sym = FALSE, ...) {
 				ev <- seq(h+2, h*2, 2) # push loc symbol farther out
 				for (n in ev) ss[n,1] <- ss[n,1]+amt
 				}
-#			print(ss)
 			text3d(ss, texts = c(gr$group, gr$alt.sym),
 				adj = c(0.5, 0.5), col = "black")
 			

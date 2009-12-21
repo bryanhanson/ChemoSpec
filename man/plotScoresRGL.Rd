@@ -4,12 +4,13 @@
 Interactive 3D Score Plot of a Spectra Object
 }
 \description{
-This function uses the \code{\link{rgl}} package to create an interactive plot of PCA scores derived from a \code{"Spectra"} object.  A title and legend can be added if desired.
+This function uses the \code{\link{rgl}} package to create an interactive plot of PCA scores derived from a \code{"Spectra"} object.  A title and legend can be added if desired.  Classical or robust confidence ellipses may be added if desired.
 }
 \usage{
-plotScoresRGL(spectra, pca, pcs = c(1:3), title = NULL,
-	t.pos = NULL, leg.pos = NULL, lab.opts = FALSE,
-	use.sym = FALSE, ...)
+plotScoresRGL(spectra, pca, pcs = c(1:3), ellipse = TRUE,
+	rob = FALSE, cl = 0.95, frac.pts.used = 0.8,
+	title = NULL, t.pos = NULL, leg.pos = NULL, lab.opts = FALSE,
+	tol = 0.01, use.sym = FALSE, ...)
 }
 \arguments{
   \item{spectra}{
@@ -20,6 +21,18 @@ An object of class \code{\link{prcomp}}.
 }
   \item{pcs}{
 A vector of three integers specifying the PCA scores to plot.
+}
+  \item{ellipse}{
+Logical indicating if confidence ellipses should be drawn.
+}
+  \item{rob}{
+Logical; if \code{ellipse = TRUE}, indicates that robust confidence ellipses should be drawn.  If \code{FALSE}, classical confidence ellipses are drawn.
+}
+  \item{cl}{
+A number indicating the confidence interval for the ellipse.
+}
+  \item{frac.pts.used}{
+If \code{ellipse = TRUE} and \code{rob = TRUE}, a number indicating the fraction of the data points to be considered "good" and thus used to compute the robust confidence ellipse.
 }
   \item{title}{
 A character string for the plot title.
@@ -33,7 +46,8 @@ A character selection from \code{LETTERS[1:8]} ( = A through H) indicating the d
   \item{lab.opts}{
 A logical indicating whether or not to display the locations where the title and legend can be placed.  These locations are the corners of a cube surrounding the data.
 }
-  \item{use.sym}{logical; if true, the color scheme is change to black and symbols are used for plotting.}
+  \item{tol}{Quantile to be used to label extreme data points.}
+  \item{use.sym}{logical; if true, the color scheme is changed to black and symbols are used for plotting.}
 
   \item{\dots}{
 Additional parameters to pass downstream, generally to the plotting routines.
@@ -64,3 +78,5 @@ leg.pos = "A", t.pos = "B")
 }
 
 \keyword{ multivariate }
+\keyword{ hplot }
+\keyword{ dynamic }

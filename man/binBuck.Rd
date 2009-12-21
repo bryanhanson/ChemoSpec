@@ -27,8 +27,6 @@ If the frequency range is not divisible by bin.ratio to give a whole number, dat
 An object of S3 class \code{"Spectra"}.
 }
 
-\section{Called by}{Top level function, called by user.}
-\section{Calls}{\code{\link{binData}}, \code{\link{check4Gaps}}, \code{\link{chkSpectra}}}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
@@ -44,3 +42,4 @@ res <- binBuck(CuticleIR, bin.ratio = 4)
 sumSpectra(res)
 }
 \keyword{ utilities }
+\keyword{ manip }

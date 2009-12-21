@@ -12,7 +12,6 @@ plotSpectra(spectra, title = "no title provided",
 	which = c(1), yrange = c(0, max(spectra$data)), offset = 0,
 	amplify = 1, lab.pos = mean(spectra$freq), ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{spectra}{
 An object of S3 class \code{"Spectra"}.
@@ -43,8 +42,6 @@ Additional parameters to be passed to plotting functions.
 None.  Side effect is a plot.
 }
 
-\section{Calls}{\code{\link{chkSpectra}}}
-\section{Called by}{Top level function, called by user.}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}

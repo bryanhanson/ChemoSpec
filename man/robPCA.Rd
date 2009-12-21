@@ -26,8 +26,6 @@ A character vector describing the type of scaling to be carried out.  One of \co
 An object of classes \code{"conPCA"} and \code{"princomp"} (see \code{\link{q2rPCA}}).  It includes a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on plots which you might make).
 }
 
-\section{Calls}{\code{\link{chkSpectra}}, \code{\link{r2qPCA}}}
-\section{Called by}{Top level function, called by user.}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}\cr
@@ -48,3 +46,4 @@ plotScores(CuticleIR, title = "Cuticle IR Spectra",
 }
 
 \keyword{ multivariate }
+\keyword{ robust }

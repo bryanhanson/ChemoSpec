@@ -35,7 +35,6 @@ Additional parameters to be passed to the plotting routines.
 \value{
 None; side effect is a plot.
 }
-\section{Called by}{Never called by user; called by \code{\link{hcaSpectra}} and \code{\link{hcaScores}}.}
 
 
 \references{
@@ -45,3 +44,6 @@ None; side effect is a plot.
 \author{
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
+\keyword{ hplot }
+\keyword{ multivariate }
+\keyword{ cluster }

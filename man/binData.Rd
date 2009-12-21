@@ -28,8 +28,6 @@ The x and y values must be contiguous in the sense that there are no gaps in the
 \item{mean.x}{A vector of the averaged x values.  Length will be approximately length(x)/bin.ratio, with length(x) adjusted as described above if this does not give a whole number.}
 \item{sum.y}{A vector of the summed y values.  Length will be approximately length(y)/bin.ratio, with length(y) adjusted as described above if this does not give a whole number.}
 }
-\section{Called by}{\code{\link{binBuck}}}
-\section{Calls}{\code{\link{isWholeNo}}, \code{\link{check4Gaps}}}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
@@ -45,3 +43,4 @@ length(res$mean.x) # will be half of the original length
 length(res$sum.y)
 }
 \keyword{ utilities }
+\keyword{ manip }

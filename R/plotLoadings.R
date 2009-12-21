@@ -41,7 +41,7 @@ function(spectra, pca, title = "no title provided",
 		layout = c(1, length(loads) + 1),
 		strip.left = TRUE, strip = FALSE, col = "black",
 		scales = list(x = "same", y = "free"),
-		page = function(n) panel.text(lab = pca$method, x = 0.5, y = 0.95),
+		page = function(n) panel.text(lab = pca$method, x = 0.5, y = 0.95, cex = 0.75),
 		panel = function(..., type = "h") {
 			if (panel.number() == 1) {
 				panel.xyplot(..., type = "l")

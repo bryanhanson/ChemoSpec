@@ -27,8 +27,6 @@ The color scheme to use, one of \code{c("primary", "pastel")}.  For details on c
 \value{
 None.  Side effect is a plot in an X11 window created by \code{GGobi}.  The mapping of colors from the \code{Spectra} object to the \code{GGobi} color schemes is printed at the console, since the original color choices may not be acceptable to \code{GGobi}.
 }
-\section{Calls}{\code{\link{chkSpectra}}; Requires that \code{GGobi} be installed and X11 running.}
-\section{Called by}{Top level function, called by user.}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}\cr
@@ -51,3 +49,4 @@ results <- classPCA(CuticleIR, choice = "noscale")
 # GGobi runs interactively using X11
 }
 \keyword{ multivariate }
+\keyword{ hplot }

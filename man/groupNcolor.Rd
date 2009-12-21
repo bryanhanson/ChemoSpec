@@ -25,7 +25,6 @@ As per \code{\link{getManyCsv}}
 A \emph{complete} object of S3 class \code{"Spectra"}.  Until this function has done its job, an object of class \code{"Spectra"} will not pass checks as the assembly is not complete (see \code{\link{chkSpectra}}).)
 }
 
-\section{Called by}{\code{\link{getManyCsv}}}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
@@ -40,3 +39,4 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 
 }
 \keyword{ utilities }
+\keyword{ color }

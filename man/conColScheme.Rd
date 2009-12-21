@@ -48,3 +48,4 @@ newSpec <- conColScheme(CuticleIR,
 sumSpectra(newSpec)
 }
 \keyword{ utilities }
+\keyword{ color }

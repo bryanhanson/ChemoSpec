@@ -29,3 +29,4 @@ Returns a node with the label size properties set.
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \keyword{ utilities }
+\keyword{ cluster }

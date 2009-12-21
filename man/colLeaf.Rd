@@ -20,7 +20,6 @@ An object of S3 class \code{"Spectra"}.
 \value{
 Returns a node with the label color properties set.
 }
-\section{Called by}{\code{\link{hcaSpectra}}, \code{\link{hcaScores}}.}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
@@ -30,3 +29,4 @@ Returns a node with the label color properties set.
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \keyword{ utilities }
+\keyword{ cluster }

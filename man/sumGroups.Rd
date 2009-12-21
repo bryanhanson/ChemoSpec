@@ -23,8 +23,6 @@ A data frame as follows.  Note that if there are groups with no members (due to 
 	\item{alt.symbol}{The alternative symbol, a lower-case letter, assigned to the group.}
 }
 
-\section{Calls}{\code{\link{chkSpectra}}}
-\section{Called by}{May be called by user; also called by \code{\link{sumSpectra}}.}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}

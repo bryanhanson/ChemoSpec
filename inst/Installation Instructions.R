@@ -24,7 +24,7 @@
 # Here are the commands:
 
 install.packages(pkgs = c("chemometrics", "RColorBrewer", "plyr",
-"mvoutlier", "rgl", "R.utils",  "ChemoSpec"))
+"mvoutlier", "rgl", "R.utils", "mclust",  "ChemoSpec"))
 
 # The list above would be longer, but when you install chemometrics, it calls for a number
 # of other packages that ChemoSpec needs.

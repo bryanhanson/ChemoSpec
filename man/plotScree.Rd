@@ -32,7 +32,6 @@ None.  Side effect is a plot.
 Technically, if you add \code{$method} to the PCA results from other packages, this will plot a scree plot for any PCA results, not just those from \code{"Spectra"} objects.
 }
 
-\section{Called by}{Top level function, called by user.}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
@@ -49,3 +48,4 @@ plotScree(results, title = "Cuticle IR Spectra")
 }
 
 \keyword{ multivariate }
+\keyword{ hplot }

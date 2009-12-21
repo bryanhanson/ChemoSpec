@@ -24,8 +24,6 @@ To remove the extreme values, some experimentation with the max/min value in rem
 An object of S3 class \code{"Spectra"}.
 }
 
-\section{Calls}{\code{\link{chkSpectra}}}
-\section{Called by}{Top level function, called by user.}
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
@@ -43,3 +41,4 @@ sumSpectra(res)
 
 }
 \keyword{ utilities }
+\keyword{ manip }

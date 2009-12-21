@@ -26,7 +26,7 @@ function(spectra, rem.sam) {
 
 	spectra$data <- spectra$data[-rem.sam,]
 	spectra$names <- spectra$names[-rem.sam]
-	spectra$groups <- spectra$groups[-rem.sam]
+	spectra$groups <- spectra$groups[-rem.sam, drop = TRUE]
 	spectra$colors <- spectra$colors[-rem.sam]
 	spectra$sym <- spectra$sym[-rem.sam]
 	spectra$alt.sym <- spectra$alt.sym[-rem.sam]
