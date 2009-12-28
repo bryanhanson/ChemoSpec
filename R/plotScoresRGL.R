@@ -20,9 +20,9 @@ plotScoresRGL <- function(spectra, pca, pcs = c(1:3),
 	
 	eigensum <- sum(pca$sdev*pca$sdev) # prepare axis labels
 	variance <- 100*(pca$sdev*pca$sdev/eigensum)
-	x.lab <- paste("PC", 1, " (", format(variance[1], digits=2), "%", ")", sep = "")
-	y.lab <- paste("PC", 2, " (", format(variance[2], digits=2), "%", ")", sep = "")
-	z.lab <- paste("PC", 3, " (", format(variance[3], digits=2), "%", ")", sep = "")
+	x.lab <- paste("PC", pcs[1], " (", format(variance[1], digits=2), "%", ")", sep = "")
+	y.lab <- paste("PC", pcs[2], " (", format(variance[2], digits=2), "%", ")", sep = "")
+	z.lab <- paste("PC", pcs[3], " (", format(variance[3], digits=2), "%", ")", sep = "")
 		
 	a <- range(x, y, z) # scale the axis to the data
 	b <- abs(a[1])

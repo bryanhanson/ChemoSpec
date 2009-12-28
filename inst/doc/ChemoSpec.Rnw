@@ -271,7 +271,7 @@ Finding these regions might be pretty simple, a matter of inspection coupled wit
 \label{surv}
 \begin{center}
 << fig = TRUE >>=
-specSurvey(CuticleIR, title = "Cuticle IR Spectra")
+specSurvey(CuticleIR, method = "iqr", title = "Cuticle IR Spectra")
 @
 \end{center}
 \end{figure}
@@ -563,7 +563,7 @@ You have all the options here that you do with \texttt{plotScoresRGL}, namely, c
 \begin{center}
 << fig = TRUE >>=
 G.only.pca <- classPCA(G.only)
-plotScores(G.only, G.only.pca, title = "Two Genotypes/Control Conditions",
+plotScores(G.only, G.only.pca, title = "Two Genotypes (Controls)",
 ellipse = "rob")
 @
 \end{center}

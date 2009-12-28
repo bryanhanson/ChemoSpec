@@ -33,8 +33,8 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 	files.noext <- substr(basename(files), 1, nchar(basename(files)) - 4)
 
 	for (i in 1:length(files)) {
-		if (format == "csv") temp <- read.csv(files[1], header = FALSE)
-		if (format == "csv2") temp <- read.csv2(files[1], header = FALSE)
+		if (format == "csv") temp <- read.csv(files[i], header = FALSE)
+		if (format == "csv2") temp <- read.csv2(files[i], header = FALSE)
 		spectra$data[i,] <- temp[,2]
 		spectra$names[i] <- files.noext[i] # need to remove the .csv
 		}

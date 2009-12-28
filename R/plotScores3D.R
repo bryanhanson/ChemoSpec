@@ -21,9 +21,9 @@ function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
 
 	eigensum <- sum(pca$sdev*pca$sdev) # prepare axis labels
 	variance <- 100*(pca$sdev*pca$sdev/eigensum)
-	x.lab <- paste("PC", 1, " (", format(variance[1], digits=2), "%", ")", sep = "")
-	y.lab <- paste("PC", 2, " (", format(variance[2], digits=2), "%", ")", sep = "")
-	z.lab <- paste("PC", 3, " (", format(variance[3], digits=2), "%", ")", sep = "")
+	x.lab <- paste("PC", pcs[1], " (", format(variance[1], digits=2), "%", ")", sep = "")
+	y.lab <- paste("PC", pcs[2], " (", format(variance[2], digits=2), "%", ")", sep = "")
+	z.lab <- paste("PC", pcs[3], " (", format(variance[3], digits=2), "%", ")", sep = "")
 	
 	title <- paste(title, ": PCA Score Plot", sep = "")
 

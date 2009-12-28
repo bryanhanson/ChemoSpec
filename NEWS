@@ -6,9 +6,13 @@ Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
 
-##### Coming soon... 
-Plans:
-¥ A revised version of specSurvey is under development which permits one to use not only sd, but also sem, and mad to examine the data sets.  In addition, one can look at each group of spectra as a set, separate from the entire data set.
+##### Version 1.43
+Date:  2009-12-27
+News:
+¥ A revised version of specSurvey was implemented which permits one to use not only sd, but also sem, iqr and mad to examine the data sets.  In addition, one can look at each group of spectra separately, or analyze the entire data set.
+¥ Fixed a axis labeling error in plotScoresRGL & plotScores3D
+¥ Fixed an error in getManyCsv in which the entire data matrix in the final Spectra object originated from the first spectrum.  This had been introduced when format = "csv2" was added in 1.42.
+¥ 40 functions total
 
 ##### Version: 1.42
 Date: 2009-12-21
