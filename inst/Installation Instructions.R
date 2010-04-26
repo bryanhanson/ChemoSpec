@@ -2,6 +2,8 @@
 # Script & instructions to install ChemoSpec
 # Bryan A. Hanson, DePauw University, Dec 2009
 
+# Files are located at github.com/bryanhanson/ChemoSpec
+
 # FOR WINDOWS MACHINES  (tested on Windows XP)
 
 # First, you must get the ChemoSpec_x.xx.zip file from GitHub
@@ -23,7 +25,7 @@
 # 1st you have to install several packages that ChemoSpec requires, then install ChemoSpec.
 # Here are the commands:
 
-install.packages(pkgs = c("chemometrics", "RColorBrewer", "plyr",
+install.packages(pkgs = c("chemometrics", "lattice", "grid", "RColorBrewer", "plyr",
 "mvoutlier", "rgl", "R.utils", "mclust",  "ChemoSpec"))
 
 # The list above would be longer, but when you install chemometrics, it calls for a number
@@ -33,3 +35,10 @@ library(ChemoSpec)
 
 # each time you start R, you will have to issue the library(ChemoSpec)
 # command unless you put it in your .Rprofile
+
+# TO GET STARTED
+# You can print the vignette which explains most of the functions and their use with
+
+print(vignette("ChemoSpec"))
+
+# Getting the vignette ready to view takes a bit of time, 30 seconds perhaps.
