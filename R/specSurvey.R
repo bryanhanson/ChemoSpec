@@ -67,6 +67,15 @@ by.gr = TRUE, title = "no title provided",  ...) {
 
 	if (by.gr) {
 		gr <- sumGroups(spectra)
+			
+		for (n in 1:length(gr$group)) {
+			if (gr$no.[n] <= 3) {
+				warning("\nGroup ", gr$group[n],
+			" has 3 or fewer members\n so your stats are not very useful...\n This group has been dropped for display purposes!")
+				spectra <- removeSample(spectra, rem.sam = gr$group[n])
+				}
+			}
+
 		x <- spectra$freq
 		l.x <- length(x)
 		

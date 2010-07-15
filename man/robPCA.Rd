@@ -6,7 +6,7 @@
 Robust PCA of a Spectra Object
 }
 \description{
-A wrapper which carries out robust PCA analysis on a \code{"Spectra"} object.  The data are row- and column-centered, and the user can select various options for scaling.
+A wrapper which carries out robust PCA analysis on a \code{"Spectra"} object.  The data are row- and column-centered, and the user can select various options for scaling.  
 }
 
 \usage{
@@ -18,7 +18,8 @@ robPCA(spectra, choice = "noscale")
 An object of S3 class \code{"Spectra"}
 }
   \item{choice}{
-A character vector describing the type of scaling to be carried out.  One of \code{c("noscale", "mad")}. 
+A character vector describing the type of scaling to be carried out.  One of \code{c("noscale", "mad")}. NOTE: With recent changes to package \code{pcaPP}, a warning is issued if "mad" is chosen.  This appears to come from within \code{pcaPP} and only concerns performance.
+
 }
 }
 

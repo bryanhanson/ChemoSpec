@@ -6,6 +6,18 @@ Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
 
+##### Version 1.44
+Date:  2010-7-13
+News:
+¥ When using robPCA with choice "mad" a warning is issued which comes from the latest version of package pcaPP.  It only concerns performance (speed) and may be ignored.
+¥ ggobi is on "life support" and hence development of plotScoresG is on hold until ggobi comes back to life or is replaced.  Related to this, some of the color schemes presented in the vignette and discussed in relationship to ggobi appear to have been changed.
+¥ Added warnings to specSurvey if there are 1-3 group members, as this makes interpreation of the descriptive statistics tricky.  If there are 3 or fewer group members, the survey results for this group are dropped from the display and a warning is issued.
+¥ Made significant changes to removeFreq. There was a problem with how NMR data were handled; this led to a significant re-write.  Everything seems to test out now.
+¥ Added two data sets: SrE.IR and SrE.NMR, see the documentation.
+¥ Fixed a problem with the subtitle in plotLoadings.
+¥ Fixed a few typos of course.
+¥ Still 48 functions.
+
 ##### Version 1.43
 Date:  2009-12-27
 News:

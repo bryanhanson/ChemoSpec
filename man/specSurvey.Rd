@@ -6,7 +6,8 @@
 This function computes and plots various measures of central tendency and spread for a \code{"Spectra"} object.  Several different measures/spreads are available.  The computation can be done by group or using the entire data set.
 }
 \usage{
-specSurvey(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"), by.gr = TRUE, title = "no title provided", ...)
+specSurvey(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"),
+by.gr = TRUE, title = "no title provided", ...)
 }
 \arguments{
   \item{spectra}{

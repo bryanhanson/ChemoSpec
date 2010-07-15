@@ -44,7 +44,8 @@
 %%%%%     End of Configuration Stuff, Mostly     %%%%%
 
 \title{ChemoSpec: An R Package for Chemometric\\
-Analysis of Spectroscopic Data}
+Analysis of Spectroscopic Data\\
+Version 1.44}
 \author{Bryan A. Hanson\footnote{The development of ChemoSpec has been generously supported by DePauw University in the form of sabbatical funding and a Fisher Fellowship. Thanks!}\\
 \\
 DePauw University\\
@@ -83,7 +84,7 @@ Chemometrics, as defined by Varmuza and Filzmoser\cite{Filz}, is
 
 This is an appropriately broad definition, considering the wealth of questions and tasks that can be treated by chemometric approaches.  In our case, the focus is on spectral data sets, which typically have many variables (frequencies) and relatively few samples.  Such multivariate, \emph{high p, low n} data sets present some algorithmic challenges, but these have been addressed by knowledgeable folks.  In particular, for both the practical and theoretical background to multivariate chemometric analysis, I strongly recommend the Varmuza/Filzmoser book.  Some of the functions described here are not much more than wrappers for the functions they have made available to the \texttt{R} community in their packages.
 
-\texttt{ChemoSpec} was developed for the chemometric analysis of spectroscopic data, such as UV-Vis, NMR or IR data.  The approach is entirely exploratory and unsupervised, in other words, "top-down"/cite{Prog-Metabolomics}.  I developed it while beginning a new research focus on plant metabolomics, and I needed software to analyze the data I was collecting.  My research involves ecological experiments on plant stress, so \texttt{ChemoSpec} was designed to accommodate samples that have different histories, i.e., they fall into different classes, categories or groups.  Examples would be treatment and control groups, or simply different specimens (red flowers vs. blue flowers).  Since my research is done with undergraduates, who are true novices with \texttt{R}, \texttt{ChemoSpec} is designed to be as user friendly as possible, with plenty of error checking, helpful warnings and a consistent interface.  It also produces graphics that are consistent in style and annotation, and are suitable for use in publications and posters.  Careful attention was given to writing the documentation for the functions, but this vignette serves as the best starting point for learning data analysis with \texttt{ChemoSpec}.
+\texttt{ChemoSpec} was developed for the chemometric analysis of spectroscopic data, such as UV-Vis, NMR or IR data.  The approach is entirely exploratory and unsupervised, in other words, "top-down"\cite{Prog-Metabolomics}.  I developed it while beginning a new research focus on plant metabolomics, and I needed software to analyze the data I was collecting.  My research involves ecological experiments on plant stress, so \texttt{ChemoSpec} was designed to accommodate samples that have different histories, i.e., they fall into different classes, categories or groups.  Examples would be treatment and control groups, or simply different specimens (red flowers vs. blue flowers).  Since my research is done with undergraduates, who are true novices with \texttt{R}, \texttt{ChemoSpec} is designed to be as user friendly as possible, with plenty of error checking, helpful warnings and a consistent interface.  It also produces graphics that are consistent in style and annotation, and are suitable for use in publications and posters.  Careful attention was given to writing the documentation for the functions, but this vignette serves as the best starting point for learning data analysis with \texttt{ChemoSpec}.
 
 The centerpiece of \texttt{ChemoSpec} is the \texttt{Spectra} object.  This is the place where your data is stored and made available to \texttt{R}.  Once your data in stored this way and checked, all analyses are easily carried out.  \texttt{ChemoSpec} currently ships with one main built-in data set called \texttt{CuticleIR}.  You will see in just a moment how to access it and inspect it.
 
@@ -141,7 +142,7 @@ primary scheme: c("red3", "dodgerblue4", "forestgreen", "purple4", "orangered", 
 
 pastel scheme: c("seagreen", "brown2", "skyblue2", "hotpink3", "chartreuse3", "darkgoldenrod2", "lightsalmon3", "gray48")
 
-Example~\ref{colors} shows these colors. Finally, the current color scheme of a \texttt{Spectra} object may be determined using \texttt{sumGroups} or changed using \texttt{conColScheme}. 
+Example~\ref{colors} shows these colors. Finally, the current color scheme of a \texttt{Spectra} object may be determined using \texttt{sumSpectra} or changed using \texttt{conColScheme}.  NOTE: as of \date{\today} \texttt{GGobi} is on "life support" and the communication of color information between \texttt{ChemoSpec} and \texttt{GGobi} is not working perfectly.
 
 \begin{figure}
 \caption{Recommended Color Sets in ChemoSpec}
@@ -276,10 +277,10 @@ specSurvey(CuticleIR, method = "iqr", title = "Cuticle IR Spectra")
 \end{center}
 \end{figure}
 
-Compare this to the figure produced by \texttt{check4Gaps} (Example~\ref{gaps}); you'll see that the gap region is rendered by \texttt{specSurvey} by connecting the endpoints of each data chunk, producing what appears to be a region of little interest.  All other areas have varying standard deviations, with the OH peak dominating, and no regions seem uninteresting, so let's keep them for now.  However, if you wanted to remove certain peaks, the function \texttt{removeFreq} is the tool to use.  In the \texttt{CuticleIR} data set, the water peak (above about 3,100 cm\textsuperscript{-1}) varies quite a bit, and may be just an artifact.  We could remove it by doing the following.  First, we need the upper end of the frequency range, which we can obtain with \texttt{sumSpectra} demonstrated above.  That value is 3,597 cm\textsuperscript{-1} after rounding.  Now, issue the following commands, ending with \texttt{sumSpectra} to verify what you wanted to happen, happened.  Note that there are fewer frequency points now, and they end at approximately the value you specified (due to rounding).
+Compare this to the figure produced by \texttt{check4Gaps} (Example~\ref{gaps}); you'll see that the gap region is rendered by \texttt{specSurvey} by connecting the endpoints of each data chunk, producing what appears to be a region of little interest.  All other areas have varying standard deviations, with the OH peak dominating, and no regions seem uninteresting, so let's keep them for now.  However, if you wanted to remove certain peaks, the function \texttt{removeFreq} is the tool to use.  In the \texttt{CuticleIR} data set, the water peak (above about 3,100 cm\textsuperscript{-1}) varies quite a bit, and may be just an artifact.  We could remove as follows, ending with \texttt{sumSpectra} to verify what you wanted to happen, happened.  Note that there are fewer frequency points now.
 
 <<  >>=
-noOH <- removeFreq(CuticleIR, rem.freq = c(3100:3597))
+noOH <- removeFreq(CuticleIR, rem.freq = CuticleIR$freq > 3100)
 sumSpectra(noOH)
 @
 
@@ -475,7 +476,7 @@ out <- pcaBoot(CuticleIR, pcs = 5, choice = "noscale")
 \end{figure}
 
 
-Now let's turn to viewing scores in 3D.  There are currently 3 options in \texttt{ChemoSpec}: plotting using \texttt{lattice} graphics, which produces a static plot that you have to adjust manually, and two interactive plots, one based on package \texttt{rgl} and one based upon package \texttt{rggobi} which in turn uses the program \texttt{ggobi}.  Probably the best place to start is with \texttt{plotScoresRGL}.  It it well suited to exploring your data, and can be printed out in high quality.  However, the nature of the GL graphics device means that the title and the legend move with the data, so this may not give a hardcopy suitable for publications.  This interactive plot cannot be invoked in this document, but here are the necessary commands:
+Now let's turn to viewing scores in 3D.  There are currently 3 options in \texttt{ChemoSpec}: plotting using \texttt{lattice} graphics, which produces a static plot that you have to adjust manually, and two interactive plots, one based on package \texttt{rgl} and one based upon package \texttt{rggobi} which in turn uses the program \texttt{GGobi}.  Probably the best place to start is with \texttt{plotScoresRGL}.  It it well suited to exploring your data, and can be printed out in high quality.  However, the nature of the GL graphics device means that the title and the legend move with the data, so this may not give a hardcopy suitable for publications.  This interactive plot cannot be invoked in this document, but here are the necessary commands:
 
 \begin{center}
 << echo = T, results = hide, eval = FALSE >>=
@@ -496,7 +497,7 @@ plotScores3D(CuticleIR, class, title = "Cuticle IR Spectra")
 \end{center}
 \end{figure}
 
-Finally, you can install the program \texttt{ggobi} and the package \texttt{rggobi} and use \texttt{plotScoresG} to produce an different interactive plot.  This is actually the most powerful analysis tool, as \texttt{ggobi} is not restricted to 3 dimensions, and can use projection pursuit methods to find interesting views of your data.  With an additional package, \texttt{DescribeDisplay}, you can create very nice plots of your data.  Note that at this writing (\date{\today}), \texttt{rggobi} is apparently waiting for an update, as it has disappeared from the CRAN servers.
+Finally, you can install the program \texttt{GGobi} and the package \texttt{rggobi} and use \texttt{plotScoresG} to produce an different interactive plot.  This is actually the most powerful analysis tool, as \texttt{GGobi} is not restricted to 3 dimensions, and can use projection pursuit methods to find interesting views of your data.  With an additional package, \texttt{DescribeDisplay}, you can create very nice plots of your data.  Note that at this writing (\date{\today}), \texttt{GGobi} has been described as on "life support" and it seems there might be a new program in development to replace it.  However, you can find a working version at \href{http://software.rc.fas.harvard.edu/mirrors/R/}{software.rc.fas.harvard.edu/mirrors/R/} (and related mirrors) thanks to Simon Urbanek.  Note that the communication between \texttt{plotScoresG} and \texttt{GGobi} does not quite work as described earlier under the discussion of the color schemes; this will not be fixed until the future of \texttt{GGobi} is certain.
 
 << echo = T, results = hide, eval = FALSE >>=
 plotScoresG(CuticleIR, class) # not run - it's interactive!

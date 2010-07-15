@@ -34,14 +34,14 @@ function(spectra, pca, title = "no title provided",
 	
 	# Do the plot
 	# Note: no way exists to plot the x axis reversed for multiple panels
-		
+	
+	trellis.par.set(par.sub.text = list(font = 1)) # makes subtitle plain text	
 	p <- xyplot(y ~ x | z, data = df,
 		main = title,
-		xlab = spectra$unit[1], ylab = "",
+		xlab = spectra$unit[1], ylab = "", sub = pca$method,
 		layout = c(1, length(loads) + 1),
 		strip.left = TRUE, strip = FALSE, col = "black",
 		scales = list(x = "same", y = "free"),
-		page = function(n) panel.text(lab = pca$method, x = 0.5, y = 0.95, cex = 0.75),
 		panel = function(..., type = "h") {
 			if (panel.number() == 1) {
 				panel.xyplot(..., type = "l")
