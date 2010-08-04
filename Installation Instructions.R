@@ -1,6 +1,6 @@
 
 # Script & instructions to install ChemoSpec
-# Bryan A. Hanson, DePauw University, Dec 2009
+# Bryan A. Hanson, DePauw University, August 2010
 
 # Files are located at github.com/bryanhanson/ChemoSpec
 

@@ -45,7 +45,8 @@
 
 \title{ChemoSpec: An R Package for Chemometric\\
 Analysis of Spectroscopic Data\\
-Version 1.44}
+(Chromatograms too!)\\
+Version 1.45}
 \author{Bryan A. Hanson\footnote{The development of ChemoSpec has been generously supported by DePauw University in the form of sabbatical funding and a Fisher Fellowship. Thanks!}\\
 \\
 DePauw University\\
@@ -70,7 +71,7 @@ library(mvbutils) # in its own environment
 \maketitle
 
 \begin{abstract}
-\texttt{ChemoSpec}\cite{ChemoSpec-pkg} is a collection of functions for plotting spectra (NMR, IR etc) and carrying out various forms of top-down exploratory data analysis, such as hierarchical cluster analysis (HCA), principal components analysis (PCA) and model-based clustering. Robust methods appropriate for this type of high-dimensional data are employed. \texttt{ChemoSpec} is designed to facilitate comparison of  samples from treatment and control groups in a top-down manner.   It is designed to be user friendly and suitable for people with limited background in \texttt{R}.  This vignette gives some background on \texttt{ChemoSpec} and takes the reader through a typical workflow.
+\texttt{ChemoSpec}\cite{ChemoSpec-pkg} is a collection of functions for plotting spectra (NMR, IR etc, as well as chromatograms) and carrying out various forms of top-down exploratory data analysis, such as hierarchical cluster analysis (HCA), principal components analysis (PCA) and model-based clustering. Robust methods appropriate for this type of high-dimensional data are employed. \texttt{ChemoSpec} is designed to facilitate comparison of  samples from treatment and control groups in a top-down manner.   It is designed to be user friendly and suitable for people with limited background in \texttt{R}.  This vignette gives some background on \texttt{ChemoSpec} and takes the reader through a typical workflow.
 \end{abstract}
 \newpage
 \tableofcontents
@@ -86,7 +87,7 @@ This is an appropriately broad definition, considering the wealth of questions a
 
 \texttt{ChemoSpec} was developed for the chemometric analysis of spectroscopic data, such as UV-Vis, NMR or IR data.  The approach is entirely exploratory and unsupervised, in other words, "top-down"\cite{Prog-Metabolomics}.  I developed it while beginning a new research focus on plant metabolomics, and I needed software to analyze the data I was collecting.  My research involves ecological experiments on plant stress, so \texttt{ChemoSpec} was designed to accommodate samples that have different histories, i.e., they fall into different classes, categories or groups.  Examples would be treatment and control groups, or simply different specimens (red flowers vs. blue flowers).  Since my research is done with undergraduates, who are true novices with \texttt{R}, \texttt{ChemoSpec} is designed to be as user friendly as possible, with plenty of error checking, helpful warnings and a consistent interface.  It also produces graphics that are consistent in style and annotation, and are suitable for use in publications and posters.  Careful attention was given to writing the documentation for the functions, but this vignette serves as the best starting point for learning data analysis with \texttt{ChemoSpec}.
 
-The centerpiece of \texttt{ChemoSpec} is the \texttt{Spectra} object.  This is the place where your data is stored and made available to \texttt{R}.  Once your data in stored this way and checked, all analyses are easily carried out.  \texttt{ChemoSpec} currently ships with one main built-in data set called \texttt{CuticleIR}.  You will see in just a moment how to access it and inspect it.
+The centerpiece of \texttt{ChemoSpec} is the \texttt{Spectra} object.  This is the place where your data is stored and made available to \texttt{R}.  Once your data in stored this way and checked, all analyses are easily carried out.  \texttt{ChemoSpec} currently ships with several built-in data sets; we'll use one called \texttt{CuticleIR} for our demonstrations.  You will see in just a moment how to access it and inspect it.
 
 I assume you have at least a bare-bones knowledge of \texttt{R} as you begin to learn \texttt{ChemoSpec}, and have a good workflow set up.  For detailed help on any function discussed here, type \texttt{?function\_name} at the console.
 
@@ -124,11 +125,17 @@ SubspeciesNMR <- loadObject("subspecies.RData")
 
 Now it is ready to use.
 
+\subsection*{Working with Chromatograms}
+
+While all the language in this vignette and in the package are geared toward analysis of spectra, \texttt{ChemoSpec} can also work with chromatograms as the raw data.  In this case, time replaces frequency of course, but other than that the analysis is virtually the same.  So the only real difference is when you issue the command \texttt{getManyCsv}, you will give the frequency unit along these lines: freq.unit = "time (minutes)".
+
 \subsection*{Built-in Data Sets}
 
-As mentioned above, \texttt{ChemoSpec} comes with one main built-in data set, \texttt{CuticleIR}.  This data set is a series of IR spectra of the cuticle (leaf surface) of the plant \emph{Portulaca oleracea}.  The data were taken by gently pinning the leaf against an ATR sampling device.  The plants were grown at two different temperatures, and two different genotypes (varieties) were used (a classic G x E, genotype by environment, experiment).  In the plots in this vignette you will see the data colored by these categories: GE for example means "golden" genotype and "experimental' conditions (higher temperature, to be precise).  For more details about this data set, type \texttt{> ?CuticleIR} at the console.
+\texttt{ChemoSpec} ships with several built-in data sets. \texttt{CuticleIR} is the set used for this vignette; it is a series of IR spectra of the cuticle (leaf surface) of the plant \emph{Portulaca oleracea}.  The data were taken by gently pinning the leaf against an ATR sampling device.  The plants were grown at two different temperatures, and two different genotypes (varieties) were used (a classic G x E, genotype by environment, experiment).  In the plots in this vignette you will see the data colored by these categories: GE for example means "golden" genotype and "experimental' conditions (higher temperature, to be precise).  For more details about this data set, type \texttt{> ?CuticleIR} at the console.
 
 Also included is a data set \texttt{gasNIR} which is the \texttt{gasoline} data set that is included with \texttt{R}, converted to \texttt{Spectra} format.  During the conversion, the octane values were transformed from numeric values to membership in L, M, or H classes by dividing the octane values into terciles.  The \texttt{gasNIR} data set does not separate well (so far) by any statistical method I have employed, so I use it mainly for testing.  
+
+Finally, there are two data sets from a unpublished study of the medicinal plant Saw Palmetto (\emph{Serenoa repens}).  One is a set of IR spectra, the other a set of NMR spectra on the same samples.  For more detail on these data sets, type\texttt{ > ?SrE.IR} at the console.
 
 \subsection*{Color and Symbol Options}
 
