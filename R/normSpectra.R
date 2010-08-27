@@ -7,7 +7,9 @@ function(spectra) {
 
 	if (missing(spectra)) stop("No spectral data provided")
 	chkSpectra(spectra)
-	
+
+# normalize by a row by the sum of its entries:
+
 	for (n in 1:length(spectra$names)) {
 		S <- sum(spectra$data[n,])
 		spectra$data[n,] <- spectra$data[n,]/S

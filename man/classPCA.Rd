@@ -5,7 +5,7 @@
 Classical PCA of Spectra Objects
 }
 \description{
-A wrapper which carries out classical PCA analysis on a \code{"Spectra"} object.  The data are row- and column-centered, and the user can select various options for scaling.
+A wrapper which carries out classical PCA analysis on a \code{"Spectra"} object.  The data are column-centered, and the user can select various options for scaling.  There is no normalization by rows - do this manually using \code{\link{normSpectra}}.
 }
 \usage{
 classPCA(spectra, choice = "noscale")

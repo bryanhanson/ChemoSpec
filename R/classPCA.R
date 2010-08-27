@@ -12,23 +12,18 @@ function(spectra, choice = "noscale") {
 	check <- choice %in% choices
 	if (!check) stop("The choice of scaling parameter was invalid")
 	chkSpectra(spectra)
-	# First, row scale (compensates for different dilutions/handling of samples)
-
-	t.data <- t(spectra$data)
-	sums <- colSums(t.data)
-	row.scaled <- t(scale(t.data, center = FALSE, scale = sums))
 
 	# Center & scale the data using the desired method.
 
-	if (identical(choice, "noscale")) {centscaled <- scale(row.scaled, center = TRUE, scale = FALSE)}
+	if (identical(choice, "noscale")) {centscaled <- scale(spectra$data, center = TRUE, scale = FALSE)}
 	
 	if (identical(choice, "autoscale")) {
-		col.sd <- sd(row.scaled)
-		centscaled <- scale(row.scaled, center = TRUE, scale = col.sd)}
+		col.sd <- sd(spectra$data)
+		centscaled <- scale(spectra$data, center = TRUE, scale = col.sd)}
 
 	if (identical(choice, "Pareto")) {
-		col.sd <- sd(row.scaled)
-		centscaled <- scale(row.scaled, center = TRUE, scale = col.sd^0.5)}
+		col.sd <- sd(spectra$data)
+		centscaled <- scale(spectra$data, center = TRUE, scale = col.sd^0.5)}
 	
 	# Now the PCA!
 	

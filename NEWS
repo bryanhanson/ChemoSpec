@@ -5,6 +5,16 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 1.46
+Date:  2010-8-27
+News:
+¥ Modified classPCA and robPCA so that they no longer normalized samples by rows.  Now users must normalize manually if desired, using normSpectra.
+¥ Added a function splitSpectra groups which allows one to use the existing spectra$groups entries to create new groups, stored in new elements of the Spectra object.
+¥ Added a function hypTestScores which facilitates carrying out hypothesis tests on PCA results.
+¥ Added function hmapSpectra which creates a seriated heat map of samples and spectral data.
+¥ WARNING: Several of the vignette examples seem to be behaving strangely.  May be a problem with CuticleIR, the code seems OK.
+¥ 51 Functions total.
+
 ##### Version 1.45
 Date:  2010-8-04
 News:

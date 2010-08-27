@@ -28,6 +28,15 @@ install.packages(pkgs = c("chemometrics", "lattice", "RColorBrewer", "plyr",
 # Get the ChemoSpec_x.xx.tar.gz file from GitHub.  Click on the name
 # and then at the bottom of the page click "view raw".  The ChemoSpec
 # archive will be downloaded.
+
+# If you are running OSX 10.4, you will probably need to install X11.
+# You can try the next section if you like first.  If it gives an error when
+# it gets to the point where it is installing package rgl, you need X11
+# before proceeding.  If that is the case, you can get X11 from the
+# from this site:
+# roundhere.net/journal/install-x11-on-mac-os-x-10-4-tiger-without-dvd
+# Follow the instructions there; you need two files from the site.
+
 # In the GUI, go to "Packages & Data..." then "Package Installer"
 # In the pull down, choose "Local Source Package"
 # Select any other options in the dialog box that you usually use.

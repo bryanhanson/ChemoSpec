@@ -46,7 +46,7 @@
 \title{ChemoSpec: An R Package for Chemometric\\
 Analysis of Spectroscopic Data\\
 (Chromatograms too!)\\
-Version 1.45}
+Version 1.46}
 \author{Bryan A. Hanson\footnote{The development of ChemoSpec has been generously supported by DePauw University in the form of sabbatical funding and a Fisher Fellowship. Thanks!}\\
 \\
 DePauw University\\
@@ -100,7 +100,7 @@ This sample exploration is designed to illustrate a typical \texttt{ChemoSpec} w
 source("My First ChemoSpec.R")
 @
 
-Alternatively, look through your computer after installing \texttt{ChemoSpec} for a file called \textcolor{blue}{ChemoSpec.Rnw}.  Point \texttt{R} to the folder containing that  file, then at the console issue \texttt{> Tangle("ChemoSpec.Rnw")}.  \texttt{R} will extract all the code used in this vignette into a file which you can then study and modify.
+Alternatively, look through your computer after installing \texttt{ChemoSpec} for a file called \textcolor{blue}{ChemoSpec.Rnw}.  Point \texttt{R} to the folder containing that  file, then at the console issue \texttt{> Stangle("ChemoSpec.Rnw")}.  \texttt{R} will extract all the code used in this vignette into a file which you can then study and modify.
 
 \subsection{Getting Data into ChemoSpec} %%%%%%%%%%%%%%%
 Currently, there is only one means of moving raw data sets into \texttt{ChemoSpec}, and that is the function \texttt{getManyCsv} (it is relatively easy to write analogous functions for other formats).  This function assumes that your raw data files are formatted as .csv files, and contain only the data itself, in two columns.\footnote{Users in the EU have different standards for a .csv file: they are delimited by semi-colons, and a comma is used where a decimal point is used in the United States.  For these files, use the argument \texttt{format = "csv2"} to read the files properly.}  The first column should be the frequency values, and this column must be the same for all files (as it will be if these are data sets from the same instrument and experimental parameters).  The second column should contain the intensity values.  There should not be a header row.  If your data set contains treatment and control groups, or any analogous class/group information, this information should be encoded in the file names.  \texttt{getManyCsv} argument \texttt{gr.crit} will be the basis for a grep process on the file names, and from there, each file, representing a sample, will be assigned to a group and be assigned a color as well.  If your samples don't fall into groups, that's fine too, but you still have to give \texttt{gr.crit} something to go on---just give it one string that is common to all the file names.  Obviously, this approach encourages one to name the files as they come off the instrument with forethought as to how they will be analyzed, which in turn depends upon your experimental design.  Nothing wrong with having a plan!  Remember that \texttt{getManyCsv} acts on all .csv files it finds in a directory, so don't have any extra .csv files hanging around.  The output of \texttt{getManyCsv} is a \texttt{Spectra} object, which is \texttt{R}-speak for a file, readable by \texttt{R}, that contains not only your data, but other information about the experiment, as provided by you via the arguments to \texttt{getManyCsv}.
@@ -404,6 +404,8 @@ There's quite a bit of choice here; let's work through an example and illustrate
 
 The first step is to carry out the PCA.  You have two main options, either classical methods, or robust methods.  Classical methods use all the data you provide to compute the scores and loadings.  Robust methods focus on the core or heart of the data, which means that some samples may be downweighted.  This difference is important, and the results from the two methods may be quite different, depending upon your the nature of your data.  The differences arise because PCA methods (both classical and robust) attempt to find the components that explain as much of the variance in the data set as possible.  If you have a sample that is genuinely corrupted, for instance due to sample handling, its spectral profile may be very different from all other samples, and it can legitimately be called an outlier.  In classical PCA, this one sample will contribute strongly to the variance of the entire data set, and the PCA scores will reflect that (it is sometimes said that scores and loadings follow the outliers).  With robust PCA, samples with rather different characteristics do not have as great an influence, because robust measures of variance, such as the median absolute deviation, are used.
 
+Note that as of \texttt{ChemoSpec} 1.46, neither \texttt{classPCA} nor \texttt{robPCA} carry out any normalization by samples.  You need to decide if you want to normalize the samples, and if so, use \texttt{normSpectra}.
+
 Besides choosing to use classical or robust methods, you also need to choose a scaling method.  For classical PCA, your choices are no scaling, autoscaling, or Pareto scaling.  In classical analysis, if you don't scale the data, large peaks contribute more strongly to the results.  If you autoscale, then each peak contributes equally to the results (including noise "peaks").  Pareto scaling is a compromise between these two.  For robust PCA, you can choose not to scale, or you can scale according to the median absolute deviation.  Median absolute deviation is a means of downweighting more extreme peaks.  The literature has plenty of recommendations about scaling options appropriate for the type of measurement (instrument) as well as the nature of the biological data set.\cite{Raftery-Signal-Processing, Scale-Norm-Nicholson, NMR-Norm, Cent-Scale-Norm, Filz, Error-Struc-NMR}
 
 There is not enough space here to illustrate all possible combinations of options; Example~\ref{classPCA} and Example~\ref{robPCA} show the use and results of classical and robust PCA without scaling, followed by plotting of the first two PCs (we'll discuss plotting options momentarily).  You can see from these plots that the robust and classical methods have produced rather different results, not only in the overall appearance of the plots, but in the amount of variance explained by each PC.
@@ -612,6 +614,17 @@ title = "Two Genotypes (Controls)", truth = G.only$groups)
 \end{figure}
 
 I hope you have enjoyed this tour of the features of \texttt{ChemoSpec}!
+
+\section{Functions That Are Not Discussed But Probably Should Be!} %%%%%%%%%%%%%%%
+
+The help files of course do apply in the meantime\ldots
+
+\begin{enumerate}
+  \item normSpectra
+  \item splitSpectraGroups
+  \item hypTestScores
+  \item hmapSpectra
+\end{enumerate}
 
 \section{Technical Background} %%%%%%%%%%%%%%%
 
