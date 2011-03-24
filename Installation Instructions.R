@@ -8,7 +8,7 @@
 # 1st you have to install several packages that ChemoSpec requires, then install ChemoSpec. Here is the commands:
 
 install.packages(pkgs = c("chemometrics", "lattice", "RColorBrewer", "plyr",
-"mvoutlier", "rgl", "R.utils", "mclust"))
+"mvoutlier", "rgl", "R.utils", "mclust", "seriation"))
 
 # The list above would be longer, but when you install chemometrics, it calls for a number
 # of other packages that ChemoSpec needs.

@@ -5,72 +5,83 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 1.46-2
+Date:  2011-3-23
+News:
+>> Improved the help file for getManyCsv.
+>> Something is up with the orthogonal distance plot or calculation.  Need to fix.
+
+##### Version 1.46-1
+Date:  2010-12-21
+News:
+>> Fixed a typo which caused an error in an example.
+
 ##### Version 1.46
 Date:  2010-8-27
 News:
-¥ Modified classPCA and robPCA so that they no longer normalized samples by rows.  Now users must normalize manually if desired, using normSpectra.
-¥ Added a function splitSpectra groups which allows one to use the existing spectra$groups entries to create new groups, stored in new elements of the Spectra object.
-¥ Added a function hypTestScores which facilitates carrying out hypothesis tests on PCA results.
-¥ Added function hmapSpectra which creates a seriated heat map of samples and spectral data.
-¥ WARNING: Several of the vignette examples seem to be behaving strangely.  May be a problem with CuticleIR, the code seems OK.
-¥ 51 Functions total.
+>> Modified classPCA and robPCA so that they no longer normalized samples by rows.  Now users must normalize manually if desired, using normSpectra.
+>> Added a function splitSpectra groups which allows one to use the existing spectra$groups entries to create new groups, stored in new elements of the Spectra object.
+>> Added a function hypTestScores which facilitates carrying out hypothesis tests on PCA results.
+>> Added function hmapSpectra which creates a seriated heat map of samples and spectral data.
+>> WARNING: Several of the vignette examples seem to be behaving strangely.  May be a problem with CuticleIR, the code seems OK.
+>> 51 Functions total.
 
 ##### Version 1.45
 Date:  2010-8-04
 News:
-¥ No changes; version 1.44 didn't seem to build correctly.
+>> No changes; version 1.44 didn't seem to build correctly.
 
 ##### Version 1.44
 Date:  2010-7-13
 News:
-¥ When using robPCA with choice "mad" a warning is issued which comes from the latest version of package pcaPP.  It only concerns performance (speed) and may be ignored.
-¥ ggobi is on "life support" and hence development of plotScoresG is on hold until ggobi comes back to life or is replaced.  Related to this, some of the color schemes presented in the vignette and discussed in relationship to ggobi appear to have been changed.
-¥ Added warnings to specSurvey if there are 1-3 group members, as this makes interpreation of the descriptive statistics tricky.  If there are 3 or fewer group members, the survey results for this group are dropped from the display and a warning is issued.
-¥ Made significant changes to removeFreq. There was a problem with how NMR data were handled; this led to a significant re-write.  Everything seems to test out now.
-¥ Added two data sets: SrE.IR and SrE.NMR, see the documentation.
-¥ Fixed a problem with the subtitle in plotLoadings.
-¥ Fixed a few typos of course.
-¥ Still 48 functions.
+>> When using robPCA with choice "mad" a warning is issued which comes from the latest version of package pcaPP.  It only concerns performance (speed) and may be ignored.
+>> ggobi is on "life support" and hence development of plotScoresG is on hold until ggobi comes back to life or is replaced.  Related to this, some of the color schemes presented in the vignette and discussed in relationship to ggobi appear to have been changed.
+>> Added warnings to specSurvey if there are 1-3 group members, as this makes interpreation of the descriptive statistics tricky.  If there are 3 or fewer group members, the survey results for this group are dropped from the display and a warning is issued.
+>> Made significant changes to removeFreq. There was a problem with how NMR data were handled; this led to a significant re-write.  Everything seems to test out now.
+>> Added two data sets: SrE.IR and SrE.NMR, see the documentation.
+>> Fixed a problem with the subtitle in plotLoadings.
+>> Fixed a few typos of course.
+>> Still 48 functions.
 
 ##### Version 1.43
 Date:  2009-12-27
 News:
-¥ A revised version of specSurvey was implemented which permits one to use not only sd, but also sem, iqr and mad to examine the data sets.  In addition, one can look at each group of spectra separately, or analyze the entire data set.
-¥ Fixed a axis labeling error in plotScoresRGL & plotScores3D
-¥ Fixed an error in getManyCsv in which the entire data matrix in the final Spectra object originated from the first spectrum.  This had been introduced when format = "csv2" was added in 1.42.
-¥ 48 functions total
+>> A revised version of specSurvey was implemented which permits one to use not only sd, but also sem, iqr and mad to examine the data sets.  In addition, one can look at each group of spectra separately, or analyze the entire data set.
+>> Fixed a axis labeling error in plotScoresRGL & plotScores3D
+>> Fixed an error in getManyCsv in which the entire data matrix in the final Spectra object originated from the first spectrum.  This had been introduced when format = "csv2" was added in 1.42.
+>> 48 functions total
 
 ##### Version: 1.42
 Date: 2009-12-21
 News:
-¥ Added optional outlier labeling to plotScoresRGL.
-¥ Added robust or classical confidence ellipses as an option to plotScoresRGL and plotScores3D.
-¥ Further development of plotScoresG is on hold until rggobi is rebuilt for R 2.10.  When it returns, will add use.sym and confidence ellipses to it.
-¥ Added mclustSpectra, a wrapper to mclust methods.
-¥ Added mclust3D, a function which permits 3D display of groups identified by mclust.  Either robust or classical confidence ellipses are displayed.  mclust3dSpectra is the front end in the package.
-¥ Several support functions added (labelExtremes3d, normVec, makeEllipsoid).
-¥ Added a format option "csv2" to getManyCsv for folks in the EU.  Thanks to Richard Pena bringing this to my attention.
-¥ Updated all help files.
-¥ Expanded vignette.
-¥ 43 Functions total
+>> Added optional outlier labeling to plotScoresRGL.
+>> Added robust or classical confidence ellipses as an option to plotScoresRGL and plotScores3D.
+>> Further development of plotScoresG is on hold until rggobi is rebuilt for R 2.10.  When it returns, will add use.sym and confidence ellipses to it.
+>> Added mclustSpectra, a wrapper to mclust methods.
+>> Added mclust3D, a function which permits 3D display of groups identified by mclust.  Either robust or classical confidence ellipses are displayed.  mclust3dSpectra is the front end in the package.
+>> Several support functions added (labelExtremes3d, normVec, makeEllipsoid).
+>> Added a format option "csv2" to getManyCsv for folks in the EU.  Thanks to Richard Pena bringing this to my attention.
+>> Updated all help files.
+>> Expanded vignette.
+>> 43 Functions total
 
 ##### Version: 1.41
 Date: 2009-12-09
 News:
-¥ Completed implementation of the use.sym argument to plotting routines which require it.
-¥ 36 Functions total.
+>> Completed implementation of the use.sym argument to plotting routines which require it.
+>> 36 Functions total.
 
 ##### Version: 1.40
 Date: 2009-12-09
 News:
-¥ Added the first version of the vignette, which lacks detailed references.
-¥ Added man page colorSymbol.Rd to collect all recommendations about color and its use in one place.
-¥ Added a function to convert color schemes of an existing Spectra object into a new color scheme (conColScheme).
-¥ Expanded the creation and use of Spectra objects to include plotting symbols and alternate plotting symbols for each group, randomly assigned.  These are needed for b/w plots and also for viewing by color-blind individuals.  The relevant functions now have argument use.sym = FALSE which controls this feature.
-¥ Fixed an error in how colors and groups were matched up - it was being done differently in different functions.  Function sumGroups now handles this task for consistency.
-¥ Updated the help files.
-¥ The GitHub site now gets a .tar.gz source file for Mac users, and a .zip file for Windows users.
-¥ Also included is a file with installation instructions.
+>> Added the first version of the vignette, which lacks detailed references.
+>> Added man page colorSymbol.Rd to collect all recommendations about color and its use in one place.
+>> Added a function to convert color schemes of an existing Spectra object into a new color scheme (conColScheme).
+>> Expanded the creation and use of Spectra objects to include plotting symbols and alternate plotting symbols for each group, randomly assigned.  These are needed for b/w plots and also for viewing by color-blind individuals.  The relevant functions now have argument use.sym = FALSE which controls this feature.
+>> Fixed an error in how colors and groups were matched up - it was being done differently in different functions.  Function sumGroups now handles this task for consistency.
+>> Updated the help files.
+>> The GitHub site now gets a .tar.gz source file for Mac users, and a .zip file for Windows users.
+>> Also included is a file with installation instructions.
 
 ##### Version: 1.31
 Date: 2009-11-30

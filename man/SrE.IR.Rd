@@ -2,13 +2,12 @@
 \alias{SrE.IR}
 \alias{SrE.NMR}
 \docType{data}
-\title{
-IR and NMR Spectra of Serenoa repens (Saw Palmetto) Oil Extracts and Reference Oils
-}
+\title{IR and NMR Spectra of Serenoa repens (Saw Palmetto) Oil Extracts and Reference Oils}
 \description{
 A collection of 14 IR and NMR spectra of essential oil extracted from the palm \emph{Serenoa repens} or Saw Palmetto, which is commonly used to treat BPH in men.  The 14 spectra are of different retail samples, and are divided into two categories based upon the label description: adSrE, adulterated extract, and pSrE, pure extract.  The adulterated samples typically have olive oil added to them, which is inactive towards BPH.  There are two additional spectra included as references/outliers: evening primrose oil, labeled EPO in the data set, and olive oil, labeled OO.  These latter two oils are mixtures of triglycerides for the most part, while the SrE samples are largely fatty acids.  As a result, the spectra of these two groups are subtly different.
 }
-\usage{data(SrE.IR)}
+\usage{data(SrE.IR)
+data(SrE.NMR)}
 \format{
   The format is:
 List of 9\cr

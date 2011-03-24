@@ -43,7 +43,7 @@ For plotting only 3 scores with rudimentary control over the view, see \code{\li
 }
 \examples{
 data(CuticleIR)
-require(ggobi)
+require(rggobi)
 results <- classPCA(CuticleIR, choice = "noscale")
 \dontrun{plotScoresG(CuticleIR, results)}
 # GGobi runs interactively using X11

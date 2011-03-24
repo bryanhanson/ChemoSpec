@@ -38,7 +38,7 @@ A file name acceptable to the \code{save} function.  The completed object of S3 
 }
 }
 \details{
-The linking of groups with colors is handled by \code{\link{groupNcolor}}.
+The linking of groups with colors is handled by \code{\link{groupNcolor}}.  \code{getManyCsv} acts on the files in the current working directory.  These should be .csv files with the first column containing the frequency values and the second column containing the intensity values.  The columns should be unlabeled.  The frequency column is assumed to be the same in all .csv files.  There should be no .csv files in the directory except those containing the data to be processed by \code{getManyCsv}, as all .csv files in the directory will be processed.
 }
 \value{
 An \emph{unnamed} object of S3 class \code{\link{Spectra}} will be written to \code{out.file}.  To retrieve it, use \code{new.name <- loadObject(out.file)}.

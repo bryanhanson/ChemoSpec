@@ -8,7 +8,8 @@ Create a Seriated Heat Map Comparing Samples and Spectral Data for a Spectra Obj
 Creates a heat map with marginal dendrograms using seriation procedures.  Very briefly, the samples that are most like each other occur in one corner, and the frequencies that are most informative with respect to the samples are in that corner as well. This is achieved by using heirchical cluster analysis and then re-ordrering the clusters in a coordinated way across each dimension.  See the reference.
 }
 \usage{
-hmapSpectra(spectra, no.col = 5, title = "no title provided", t.pos = c(0.5, 0.5, 0.5), cexRow = 1, cexCol = 1, ...)
+hmapSpectra(spectra, no.col = 5, title = "no title provided",
+t.pos = c(0.5, 0.5, 0.5), cexRow = 1, cexCol = 1, ...)
 }
 
 \arguments{
@@ -52,11 +53,13 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 data(CuticleIR)
 # trim it down so plot is not so crowded:
-newIR <- removeFreq(CuticleIR, rem.freq = CuticleIR$freq > 1500 | CuticleIR$freq < 500)
+newIR <- removeFreq(CuticleIR, rem.freq =
+CuticleIR$freq > 1500 | CuticleIR$freq < 500)
 # remove some random samples too:
 newIR <- removeSample(newIR, rem.sam = sample(1:157, 107))
 # now make the heat map:
-hmapSpectra(newIR, title = "Cuticle IR", t.pos = c(0.45, 0.25, 1), cexRow = 0.5, cexCol = 0.1, no.col = 9)
+hmapSpectra(newIR, title = "Cuticle IR", t.pos = c(0.45, 0.25, 1),
+cexRow = 0.5, cexCol = 0.1, no.col = 9)
 }
 \keyword{ multivariate }
 
