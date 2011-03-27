@@ -46,7 +46,7 @@
 \title{ChemoSpec: An R Package for Chemometric\\
 Analysis of Spectroscopic Data\\
 (Chromatograms too!)\\
-Version 1.46-2}
+Version 1.46-4}
 \author{Bryan A. Hanson\footnote{The development of ChemoSpec has been generously supported by DePauw University in the form of sabbatical funding and a Fisher Fellowship. Thanks!}\\
 \\
 DePauw University\\
@@ -637,6 +637,7 @@ In understanding the operation of a package, it is useful to know how the functi
 \label{food}
 \begin{center}
 << fig = TRUE >>=
+require(mvbutils)
 foodweb(where = "package:ChemoSpec", charlim = 30, cex = 0.75, lwd = 1)
 @
 \end{center}

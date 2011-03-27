@@ -5,11 +5,22 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 1.46-4
+Date:  2011-3-26
+News:
+>> Fixed a few MORE problems giving CRAN trouble!
+
+##### Version 1.46-3
+Date:  2011-3-24
+News:
+>> Fixed a few little problems giving CRAN trouble
+
 ##### Version 1.46-2
-Date:  2011-3-23
+Date:  2011-3-24
 News:
 >> Improved the help file for getManyCsv.
 >> Something is up with the orthogonal distance plot or calculation.  Need to fix.
+>> Fixed a few little problems giving CRAN trouble
 
 ##### Version 1.46-1
 Date:  2010-12-21

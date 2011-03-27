@@ -1,23 +1,22 @@
 
 # Script & instructions to install ChemoSpec
-# Bryan A. Hanson, DePauw University, August 2010
+# Bryan A. Hanson, DePauw University, March 2011
 
 # Files are located at github.com/bryanhanson/ChemoSpec
 
 # FOR EVERYONE
-# 1st you have to install several packages that ChemoSpec requires, then install ChemoSpec. Here is the commands:
+# 1st you have to install several packages that ChemoSpec requires, then install ChemoSpec. Here are the commands:
 
 install.packages(pkgs = c("chemometrics", "lattice", "RColorBrewer", "plyr",
-"mvoutlier", "rgl", "R.utils", "mclust", "seriation"))
+"mvoutlier", "rgl", "R.utils", "mclust", "seriation", "mvbutils"))
 
 # The list above would be longer, but when you install chemometrics, it calls for a number
 # of other packages that ChemoSpec needs.
 
 # FOR WINDOWS MACHINES  (tested on Windows XP)
 
-# First, you must get the ChemoSpec_x.xx.zip file from GitHub.  Click 
-# on the name and then at the bottom of the page click "view raw".
-#The ChemoSpec archive will be downloaded.
+# First, you must get the ChemoSpec_x.xx.zip file from GitHub.  Look for the
+# button called Downloads and click it. The ChemoSpec archive will be downloaded.
 # Now unzip it: right-click on it,
 # select "expand all..." & do what the Wizard asks.  Then find the
 # "ChemoSpec" folder (not "ChemoSpec_x.xx") and move it into the R
@@ -25,9 +24,8 @@ install.packages(pkgs = c("chemometrics", "lattice", "RColorBrewer", "plyr",
 
 # FOR MACINTOSH USERS
 
-# Get the ChemoSpec_x.xx.tar.gz file from GitHub.  Click on the name
-# and then at the bottom of the page click "view raw".  The ChemoSpec
-# archive will be downloaded.
+# Get the ChemoSpec_x.xx.tar.gz file from GitHub.  Look for the button
+# called Downloads and click it.  The ChemoSpec archive will be downloaded.
 
 # If you are running OSX 10.4, you will probably need to install X11.
 # You can try the next section if you like first.  If it gives an error when

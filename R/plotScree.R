@@ -16,13 +16,9 @@ function(pca, title = "no title provided", ...) {
 
 	title <- paste(title, ": Scree Plot", sep = "")
 
-#	old code to plot every score	
-#	plot(c(1:length(pca$sdev)), variance, type = "l", col = "red", main = title, xlab = "factor", ylab = "percent", ylim = c(0,100))
-#	axis(1, at = c(1:length(pca$sdev)), label = FALSE)
-#	points(c(1:length(pca$sdev)), cumvariance, type="l", col="blue")
 
 	plot(c(1:10), variance[1:10], type = "l", col = "red", main = title, xlab = "factor", ylab = "percent", ylim = c(0,100))
-	axis(1, at = c(1:10), label = TRUE)
+	axis(1, at = c(1:10), labels = TRUE)
 	points(c(1:10), cumvariance[1:10], type="l", col="blue")
 	
 	abline(v = c(1:length(variance)), h = c(0,10,20,30,40,50,60,70,80,90,100), col = "lightgray")
