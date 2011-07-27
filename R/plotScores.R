@@ -78,8 +78,8 @@ function(spectra, pca, title = "no title provided",
 
 	# finish with the usual annotations
 			
-	legend("top", y = NULL, "classic ellipses by group", lty = 3, bty = "n", col = "gray", cex = 0.75)
-	legend("top", y = NULL, "robust ellipses by group", lty = 1, bty = "n", col = "black", inset = c(0.0, 0.03), cex = 0.75)
+	legend("topleft", y = NULL, "classic ellipses by group", lty = 3, bty = "n", col = "gray", cex = 0.75, inset = c(0, 0.03))
+	legend("topleft", y = NULL, "robust ellipses by group", lty = 1, bty = "n", col = "black", inset = c(0.0, 0.06), cex = 0.75)
 
 	}
 
@@ -138,7 +138,7 @@ function(spectra, pca, title = "no title provided",
 
 	# finish with the usual annotations
 			
-	legend("top", y = NULL, "classic ellipses by group", lty = 3, bty = "n", col = "gray", cex = 0.75)
+	legend("topleft", y = NULL, "classic ellipses by group", lty = 3, bty = "n", col = "gray", cex = 0.75, inset = c(0, 0.03))
 
 	}
 
@@ -173,7 +173,7 @@ function(spectra, pca, title = "no title provided",
 	if (!use.sym) m_ply(cbind(x = rob.coords, col = gr$color), lines, ...)
 	if (use.sym) m_ply(cbind(x = rob.coords, col = "black"), lines, ...)
 
-	legend("top", y = NULL, "robust ellipses by group", lty = 1, bty = "n", col = "black", cex = 0.75)
+	legend("topleft", y = NULL, "robust ellipses by group", lty = 1, bty = "n", col = "black", cex = 0.75, inset = c(0, 0.03))
 
 	}
 

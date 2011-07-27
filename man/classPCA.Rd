@@ -5,15 +5,17 @@
 Classical PCA of Spectra Objects
 }
 \description{
-A wrapper which carries out classical PCA analysis on a \code{"Spectra"} object.  The data are column-centered, and the user can select various options for scaling.  There is no normalization by rows - do this manually using \code{\link{normSpectra}}.
+A wrapper which carries out classical PCA analysis on a \code{"Spectra"} object.  The user can select various options for scaling.  There is no normalization by rows - do this manually using \code{\link{normSpectra}}.  There is an option to control centering, but this is mainly for compatibility with the \code{\link{aovPCA}} series of functions.  Centering the data should always be done in PCA and it is the default here.
 }
 \usage{
-classPCA(spectra, choice = "noscale")
+classPCA(spectra, choice = "noscale", cent = TRUE)
 }
 \arguments{
   \item{spectra}{An object of S3 class \code{"Spectra"}}.
 
   \item{choice}{A character string indicating the choice of scaling.  One of \code{c("noscale", "autoscale", "Pareto").}}
+
+  \item{cent}{Logical: whether or not to center the data.  Always center the data unless you know it to be already centered.}
 }
 \details{
 The scale choice \code{autoscale} scales the columns by their standard deviation.  \code{Pareto} scales by the square root of the standard deviation.

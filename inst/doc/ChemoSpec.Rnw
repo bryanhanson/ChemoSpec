@@ -6,9 +6,12 @@
 \documentclass[10pt]{article}
 \pagestyle{headings}
 
+
 \SweaveOpts{echo = T, pdf = T, eps = F, eval = T, keep.source = T, prefix.string = graphics/vig}
 \usepackage{Sweave}
 %\setkeys{Gin}{width = 0.8\textwidth} % part of Sweave I believe; 0.8 is the default
+
+\graphicspath{{./graphics/}}
 
 \usepackage{mathpazo}
 \usepackage{color}
@@ -46,16 +49,18 @@
 \title{ChemoSpec: An R Package for Chemometric\\
 Analysis of Spectroscopic Data\\
 (Chromatograms too!)\\
-Version 1.46-4}
+Version 1.47-0}
 \author{Bryan A. Hanson\footnote{The development of ChemoSpec has been generously supported by DePauw University in the form of sabbatical funding and a Fisher Fellowship. Thanks!}\\
+e-mail: \href{mailto:hanson@depauw.edu}{hanson@depauw.edu}\\
+\\
+with contributions from Matt J. Keinsley\\
 \\
 DePauw University\\
 Department of Chemistry \& Biochemistry\\
 Greencastle Indiana USA\\
 \\
-e-mail: \href{mailto:hanson@depauw.edu}{hanson@depauw.edu}\\
-\href{http://academic.depauw.edu/~hanson/chemospec/ChemoSpec.html}{academic.depauw.edu/~hanson/chemospec/ChemoSpec.html}\\
-\href{http://github.com/bryanhanson/ChemoSpec}{github.com/bryanhanson/ChemoSpec}
+\href{http://github.com/bryanhanson/ChemoSpec}{github.com/bryanhanson/ChemoSpec}\\
+\href{http://mirrors.ibiblio.org/pub/mirrors/CRAN/web/packages/ChemoSpec/index.html}{\ldots CRAN/web/packages/ChemoSpec}\\
 }
 \date{\today}
 
@@ -63,7 +68,7 @@ e-mail: \href{mailto:hanson@depauw.edu}{hanson@depauw.edu}\\
 
 \begin{document}
 
-<< echo = F, results = hide, eval = TRUE>>=
+<< SetUp, echo = F, results = hide, eval = TRUE>>=
 library(ChemoSpec) # these are only needed for the automatic vignette build, which occurs 
 library(mvbutils) # in its own environment
 @
@@ -71,7 +76,7 @@ library(mvbutils) # in its own environment
 \maketitle
 
 \begin{abstract}
-\texttt{ChemoSpec}\cite{ChemoSpec-pkg} is a collection of functions for plotting spectra (NMR, IR etc, as well as chromatograms) and carrying out various forms of top-down exploratory data analysis, such as hierarchical cluster analysis (HCA), principal components analysis (PCA) and model-based clustering. Robust methods appropriate for this type of high-dimensional data are employed. \texttt{ChemoSpec} is designed to facilitate comparison of  samples from treatment and control groups in a top-down manner.   It is designed to be user friendly and suitable for people with limited background in \texttt{R}.  This vignette gives some background on \texttt{ChemoSpec} and takes the reader through a typical workflow.
+\texttt{ChemoSpec}\cite{ChemoSpec-pkg} is a collection of functions for plotting spectra (NMR, IR etc, as well as chromatograms) and carrying out various forms of top-down exploratory data analysis, such as hierarchical cluster analysis (HCA), principal components analysis (PCA) and model-based clustering. Robust methods appropriate for this type of high-dimensional data are employed. \texttt{ChemoSpec} is designed to facilitate comparison of  samples from treatment and control groups.   It is designed to be user friendly and suitable for people with limited background in \texttt{R}.  This vignette gives some background on \texttt{ChemoSpec} and takes the reader through a typical workflow.
 \end{abstract}
 \newpage
 \tableofcontents
@@ -85,7 +90,7 @@ Chemometrics, as defined by Varmuza and Filzmoser\cite{Filz}, is
 
 This is an appropriately broad definition, considering the wealth of questions and tasks that can be treated by chemometric approaches.  In our case, the focus is on spectral data sets, which typically have many variables (frequencies) and relatively few samples.  Such multivariate, \emph{high p, low n} data sets present some algorithmic challenges, but these have been addressed by knowledgeable folks.  In particular, for both the practical and theoretical background to multivariate chemometric analysis, I strongly recommend the Varmuza/Filzmoser book.  Some of the functions described here are not much more than wrappers for the functions they have made available to the \texttt{R} community in their packages.
 
-\texttt{ChemoSpec} was developed for the chemometric analysis of spectroscopic data, such as UV-Vis, NMR or IR data.  The approach is entirely exploratory and unsupervised, in other words, "top-down"\cite{Prog-Metabolomics}.  I developed it while beginning a new research focus on plant metabolomics, and I needed software to analyze the data I was collecting.  My research involves ecological experiments on plant stress, so \texttt{ChemoSpec} was designed to accommodate samples that have different histories, i.e., they fall into different classes, categories or groups.  Examples would be treatment and control groups, or simply different specimens (red flowers vs. blue flowers).  Since my research is done with undergraduates, who are true novices with \texttt{R}, \texttt{ChemoSpec} is designed to be as user friendly as possible, with plenty of error checking, helpful warnings and a consistent interface.  It also produces graphics that are consistent in style and annotation, and are suitable for use in publications and posters.  Careful attention was given to writing the documentation for the functions, but this vignette serves as the best starting point for learning data analysis with \texttt{ChemoSpec}.
+\texttt{ChemoSpec} was developed for the chemometric analysis of spectroscopic data, such as UV-Vis, NMR or IR data (it also works with chromatographic data, see below).  The approach is entirely exploratory and unsupervised, in other words, "top-down"\cite{Prog-Metabolomics}.  I developed it while beginning a new research focus on plant metabolomics, and I needed software to analyze the data I was collecting.  My research involves ecological experiments on plant stress, so \texttt{ChemoSpec} was designed to accommodate samples that have different histories, i.e., they fall into different classes, categories or groups.  Examples would be treatment and control groups, or simply different specimens (red flowers vs. blue flowers).  Since my research is done with undergraduates, who are true novices with \texttt{R}, \texttt{ChemoSpec} is designed to be as user friendly as possible, with plenty of error checking, helpful warnings and a consistent interface.  It also produces graphics that are consistent in style and annotation, and are suitable for use in publications and posters.  Careful attention was given to writing the documentation for the functions, but this vignette serves as the best starting point for learning data analysis with \texttt{ChemoSpec}.
 
 The centerpiece of \texttt{ChemoSpec} is the \texttt{Spectra} object.  This is the place where your data is stored and made available to \texttt{R}.  Once your data in stored this way and checked, all analyses are easily carried out.  \texttt{ChemoSpec} currently ships with several built-in data sets; we'll use one called \texttt{CuticleIR} for our demonstrations.  You will see in just a moment how to access it and inspect it.
 
@@ -93,10 +98,12 @@ I assume you have at least a bare-bones knowledge of \texttt{R} as you begin to 
 
 Finally, some conventions for this document:  names of \texttt{R} "objects" such as packages, functions, function arguments, and data sets are in \texttt{typewriter} font.  The commands you issue at the console and the output are in \texttt{\slshape{slanted typewriter font}}. Names of files stored on a computer are shown in \textcolor{blue}{blue} to distinguish them from \texttt{R} objects which are kept in RAM.
 
+By the way, if you try \texttt{ChemoSpec} and find it useful, have questions, have opinions, or have suggestions, please do let me know.  The current version has already been improved by users.
+
 \section{A Sample Exploration} %%%%%%%%%%%%%%%%
 This sample exploration is designed to illustrate a typical \texttt{ChemoSpec} workflow.  The point is to illustrate how to carry out the commands, what options are available and typically used, and the order in which one might do the analysis.  The \texttt{CuticleIR} data set will be used for illustration only -- we are not trying to analyze it to reach useful conclusions.  You may wish to put your versions of these commands into a script file that you can source as you go along.  This way you can easily make changes, and it will all be reproducible.  To do this, open a blank \texttt{R} document, and type in your commands.  Save it as something like \textcolor{blue}{My First ChemoSpec.R}.  Then you can either cut and paste portions of it to the console for execution, or you can source the entire thing:
 
-<< echo = T, results = hide, eval = FALSE>>=
+<< Chunk1, echo = T, results = hide, eval = FALSE>>=
 source("My First ChemoSpec.R")
 @
 
@@ -111,7 +118,7 @@ Here's a typical example (we have to talk hypothetically because I don't have yo
 
 Then the following command should process the files and create the desired \texttt{Spectra} object:
 
-<< echo = T, results = hide, eval = FALSE>>=
+<< Chunk2, echo = T, results = hide, eval = FALSE>>=
 getManyCsv(gr.crit = c("sspA", "sspB"), gr.cols = c("red3", "dodgerblue4"),
 freq.unit = "ppm", int.unit = "peak intensity", descrip = "Subspecies Study",
 out.file = "subspecies")
@@ -119,7 +126,7 @@ out.file = "subspecies")
 	
 This causes \texttt{getManyCsv} to read the file names for the strings sspA and sspB and use these to assign the samples into groups.  Samples in \textcolor{blue}{sspA*.csv} files will be assigned the color \texttt{red3} and \textcolor{blue}{sspB*.csv} will be assigned \texttt{dodgerblue4} (see the help file for some thinking-ahead about colors; \texttt{?colorSymbol} at the console).   After running this command, a new file called \textcolor{blue}{subspecies.RData} will be in your directory, and you can access the data set and give it whatever name you like as follows:
 
-<< echo = T, results = hide, eval = FALSE>>=
+<< Chunk3, echo = T, results = hide, eval = FALSE>>=
 SubspeciesNMR <- loadObject("subspecies.RData")
 @
 
@@ -133,9 +140,7 @@ While all the language in this vignette and in the package are geared toward ana
 
 \texttt{ChemoSpec} ships with several built-in data sets. \texttt{CuticleIR} is the set used for this vignette; it is a series of IR spectra of the cuticle (leaf surface) of the plant \emph{Portulaca oleracea}.  The data were taken by gently pinning the leaf against an ATR sampling device.  The plants were grown at two different temperatures, and two different genotypes (varieties) were used (a classic G x E, genotype by environment, experiment).  In the plots in this vignette you will see the data colored by these categories: GE for example means "golden" genotype and "experimental' conditions (higher temperature, to be precise).  For more details about this data set, type \texttt{> ?CuticleIR} at the console.
 
-Also included is a data set \texttt{gasNIR} which is the \texttt{gasoline} data set that is included with \texttt{R}, converted to \texttt{Spectra} format.  During the conversion, the octane values were transformed from numeric values to membership in L, M, or H classes by dividing the octane values into terciles.  The \texttt{gasNIR} data set does not separate well (so far) by any statistical method I have employed, so I use it mainly for testing.  
-
-Finally, there are two data sets from a unpublished study of the medicinal plant Saw Palmetto (\emph{Serenoa repens}).  One is a set of IR spectra, the other a set of NMR spectra on the same samples.  For more detail on these data sets, type\texttt{ > ?SrE.IR} at the console.
+There are also two data sets from a unpublished study of the medicinal plant Saw Palmetto (\emph{Serenoa repens}).  One is a set of IR spectra, the other a set of NMR spectra on the same samples.  For more detail on these data sets, type\texttt{ > ?SrE.IR} at the console.
 
 \subsection*{Color and Symbol Options}
 
@@ -143,19 +148,21 @@ In \texttt{ChemoSpec}, the user may use any color name/format known to R.  For e
 
 In addition to colors, \texttt{"Spectra"} objects also contain a list of symbols, and alternative symbols.  These are useful for plotting in black and white, or when color-blind individuals will be viewing the plots.  The alternative symbols are simply lower-case letters, as these are needed for \texttt{plotScoresRGL}, and other \texttt{rgl}-graphics driven functions which cannot plot traditional symbols. 
 
+NOTE affecting the next section: as of \date{\today} \texttt{GGobi} is on "life support" and the communication of color information between \texttt{ChemoSpec} and \texttt{GGobi} is not working perfectly.  You are on your own!
+
 If you plan to use \texttt{rggobi} and \texttt{GGobi} to view the data later, keep in mind that \texttt{GGobi} only uses certain color schemes (although there are many options) and in interactive operation plots on a black background.  In the case of \texttt{ChemoSpec}, two particular options have been hard-coded into the function \texttt{plotScoresG} for simplicity.  If you plan to use \texttt{plotScoresG}, you may wish to choose from one of these two color schemes before you begin if you want all your graphics to use the same scheme.  Keep in mind that these colors must be used in order (though you can use the order of argument \texttt{gr.crit} to associate a particular group with a particular color:
 
 primary scheme: c("red3", "dodgerblue4", "forestgreen", "purple4", "orangered", "yellow", "orangered4", "violetred2")
 
 pastel scheme: c("seagreen", "brown2", "skyblue2", "hotpink3", "chartreuse3", "darkgoldenrod2", "lightsalmon3", "gray48")
 
-Example~\ref{colors} shows these colors. Finally, the current color scheme of a \texttt{Spectra} object may be determined using \texttt{sumSpectra} or changed using \texttt{conColScheme}.  NOTE: as of \date{\today} \texttt{GGobi} is on "life support" and the communication of color information between \texttt{ChemoSpec} and \texttt{GGobi} is not working perfectly.
+Example~\ref{colors} shows these colors. Finally, the current color scheme of a \texttt{Spectra} object may be determined using \texttt{sumSpectra} or changed using \texttt{conColScheme}.
 
 \begin{figure}
 \caption{Recommended Color Sets in ChemoSpec}
 \label{colors}
 \begin{center}
-<< fig = TRUE, echo = FALSE, width = 6, height = 4  >>=
+<<  Chunk4, fig = TRUE, echo = FALSE, width = 6, height = 4  >>=
 par(mfrow = c(2,1), mar = c(3, 1, 2, 1))
 display.brewer.pal(8, "Set1")
 title(main = "ChemoSpec Primary Scheme")
@@ -171,14 +178,14 @@ par(mfrow = c(1,1))
 \label{sec-prelim}
 One of the first things you should do, and this is very important, is to make sure your data is in good shape.  First, you can summarize the data set you created, and verify that the data ranges etc look like you expect them to:
 
-<< echo = T, results = hide, eval = FALSE>>=
+<< Chunk5, echo = T, results = hide, eval = FALSE>>=
 sumSpectra(SubspeciesNMR)
 @
 
 This will display quite a bit of information about your data set.  Here are the commands and the result using the built-in data set \texttt{CuticleIR}:
 
-<<  >>=
-data(CuticleIR)
+<< Chunk6 >>=
+data(CuticleIR) # makes the data available
 sumSpectra(CuticleIR)
 @
 
@@ -188,7 +195,7 @@ Notice that \texttt{sumSpectra} has identified a gap in the data set; this is be
 \caption{Procedure to Find Gaps in a Data Set}
 \label{gaps}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk7, fig = TRUE >>=
 check4Gaps(CuticleIR$freq, CuticleIR$data[1,], plot = TRUE)
 @
 \end{center}
@@ -201,7 +208,7 @@ Assuming that everything looks good so far, it's time to plot the spectra and in
 \caption{Plotting Spectra}
 \label{plot}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk8, fig = TRUE >>=
 plotSpectra(CuticleIR, title = "Cuticle IR Spectra Demo",
 which = c(10, 11, 40, 41, 100, 101, 140, 141, 150, 151),
 yrange = c(0, 10), offset = 0.8, lab.pos = 2000)
@@ -213,7 +220,7 @@ Depending upon the intensity range of your data set, and the number of spectra t
 
 The argument \texttt{which} in \texttt{plotSpectra} takes a numerical list of the spectra you wish to plot--- you can think of this as the row number if you imagine each spectra to be a row in a matrix, with intensities in the columns (with each column corresponding to a particular frequency value).  You may be wondering how to determine which particular sample is in each row.  This is best accomplished with a grep command.  For instance, if you wanted to know what row sample GE7 was in, the following command would locate it for you:
 
-<< >>=
+<< Chunk9 >>=
 grep("GE7", CuticleIR$names)
 @
 
@@ -223,7 +230,7 @@ See the discussion in the next section for more details on using grep effectivel
 \caption{Zooming in on a Spectral Region}
 \label{subplot}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk10, fig = TRUE >>=
 plotSpectra(CuticleIR, title = "Cuticle IR Spectra: Detail of Hydrocarbon Region",
 which = c(10, 40, 100, 151), amplify = 10.0, xlim = c(2750, 3000),
 yrange = c(0, 5), offset = 0.1, lab.pos = 2775)
@@ -237,16 +244,16 @@ These sample plots display the IR spectra in two ways that may be upsetting to s
 
 In the process of plotting and inspecting your spectra, you may find some spectra/samples that have problems.  Perhaps they have instrumental artifacts.  Or maybe you have decided to eliminate one subgroup of samples from your data set to see how the results differ.  To  remove a particular sample, or samples meeting a certain criteria, you use the \texttt{removeSample} function.  This function uses a grepping process based on its \texttt{rem.sam} argument, so you must be careful due to the greediness of grep.  Let's imagine that sample TC138 has artifacts and needs to be removed.  The command would be:
 
-<<  >>=
+<<  Chunk11 >>=
 noTC138 <- removeSample(CuticleIR, rem.sam = c("TC138"))
 sumSpectra(noTC138)
 @
 
-The \texttt{sumSpectra} command is optional, but confirms that there are now one fewer spectra in the set.  You could also re-grep for the sample name to verify it is not found.  If you wanted to remove sample TE2, and you tried to remove it this way, you would end up removing 10 spectra, as the string TE2 occurs in quite a few places.  You can check this in advance with the grep function itself:
+The \texttt{sumSpectra} command is optional, but confirms that there are now one fewer spectra in the set.  You could also re-grep for the sample name to verify that it is not found.  If you wanted to remove sample TE2, and you tried to remove it this way, you would end up removing 10 spectra, as the string "TE2" occurs in quite a few places.  You can check this in advance with the grep function itself:
 
-<< >>=
+<< Chunk12 >>=
 TE2 <- grep("TE2", CuticleIR$names)
-CuticleIR$names[TE2] # gives the name(s) found
+CuticleIR$names[TE2] # gives the name(s) that contain "TE2"
 TE2 # gives the corresponding indicies
 @
 
@@ -259,7 +266,7 @@ This is what is meant by "grep is greedy".  In this situation, you have three ch
 
 \item If you know a bit about grep, you can pass a more sophisticated search pattern to \texttt{rem.sam}.  For instance, in the example above where we wanted to remove TE2, but "caught" some other sample names, you could change the search pattern as follows, which tells grep to find a string that ends in TE2 (so it could still begin with xyzTE2 and be found):
 
-<< >>=
+<< Chunk13 >>=
 newTE2 <- grep("TE2\\>",  CuticleIR$names)
 CuticleIR$names[newTE2] # gives the name(s) found
 newTE2 # gives the corresponding indices
@@ -278,7 +285,7 @@ Finding these regions might be pretty simple, a matter of inspection coupled wit
 \caption{Checking for Regions of No Interest}
 \label{surv}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk14, fig = TRUE >>=
 specSurvey(CuticleIR, method = "iqr", title = "Cuticle IR Spectra")
 @
 \end{center}
@@ -286,7 +293,7 @@ specSurvey(CuticleIR, method = "iqr", title = "Cuticle IR Spectra")
 
 Compare this to the figure produced by \texttt{check4Gaps} (Example~\ref{gaps}); you'll see that the gap region is rendered by \texttt{specSurvey} by connecting the endpoints of each data chunk, producing what appears to be a region of little interest.  All other areas have varying standard deviations, with the OH peak dominating, and no regions seem uninteresting, so let's keep them for now.  However, if you wanted to remove certain peaks, the function \texttt{removeFreq} is the tool to use.  In the \texttt{CuticleIR} data set, the water peak (above about 3,100 cm\textsuperscript{-1}) varies quite a bit, and may be just an artifact.  We could remove as follows, ending with \texttt{sumSpectra} to verify what you wanted to happen, happened.  Note that there are fewer frequency points now.
 
-<<  >>=
+<< Chunk15 >>=
 noOH <- removeFreq(CuticleIR, rem.freq = CuticleIR$freq > 3100)
 sumSpectra(noOH)
 @
@@ -298,7 +305,7 @@ You could also plot the new spectra if desired, to make absolutely certain you r
 \caption{Verifying removeFreq Worked as Desired}
 \label{noOH}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk16, fig = TRUE >>=
 plotSpectra(noOH, title = "Cuticle IR Spectra, No Hydroxyl Peak?",
 which = c(10, 40,  100,  140 , 150),
 yrange = c(0, 5), offset = 0.8, lab.pos = 2000, xlim = c(500, 3600))
@@ -308,9 +315,9 @@ yrange = c(0, 5), offset = 0.8, lab.pos = 2000, xlim = c(500, 3600))
 
 \subsection{Data Pre-Processing Options} %%%%%%%%%%%%%%%
 
-There are a number of data pre-processing options available for your consideration.  The main choices are whether to normalize the data, whether to bin the data, and whether to scale the data.  Data scaling is handled by the PCA routines, see Section~\ref{sec-pca}. Normalization is handled by the \texttt{normSpectra} function.  Usually one normalizes data in which the sample preparation procedure may lead to differences in concentration, such as body fluids that might have been diluted during handling, or that vary due to the physiological state of the organism studied.  The \texttt{CuticleIR} data set is taken using an ATR device in which the leaves are pinned against the IR analyzer, and no dilution is possible, so normalization isn't really appropriate.  Currently, there is only one means of normalizing, and that is to divide each point in a spectrum by the sum of all points in that spectrum.  Other means of normalizing can be readily added if they affect all points in the same way.  Normalization is accomplished by:
+There are a number of data pre-processing options available for your consideration.  The main choices are whether to normalize the data, whether to bin the data, and whether to scale the data.  Data scaling is handled by the PCA routines, see Section~\ref{sec-pca}. Normalization is handled by the \texttt{normSpectra} function.  Usually one normalizes data in which the sample preparation procedure may lead to differences in concentration, such as body fluids that might have been diluted during handling, or that vary due to the physiological state of the organism studied.  The \texttt{CuticleIR} data set is taken using an ATR device in which the leaves are pinned against the IR analyzer, and no dilution is possible, so normalization probably isn't really appropriate.  Currently, there is only one means of normalizing, and that is to divide each point (frequency) in a spectrum by the sum of all points in that spectrum.  Other means of normalizing can be readily added if they affect all points in the same way.  Normalization is accomplished by:
 
-<< >>=
+<< Chunk17 >>=
 normCIR <- normSpectra(CuticleIR)
 @
 
@@ -318,10 +325,10 @@ But remember, this doesn't make sense for this data set.  The literature contain
 
 Another type of pre-processing that you may wish to consider is binning or bucketing, in which groups of frequencies are collapsed into one frequency value, and the corresponding intensities are summed.  There are two reasons for doing this.  One is to compact the data, but the algorithms in \texttt{R} are quite fast, and data sets of the size of \texttt{CuticleIR} don't slow it down much.  The other reason is to compensate for shifts in very narrow peaks from sample to sample.  This is typically done in \textsuperscript{1}H NMR because changes in dilution, ionic strength, or pH can cause slight shifts. Spectra with broad, rolling peaks won't have this problem (UV-Vis for example).  The function \texttt{binBuck} is your friend:
 
-<< >>=
-smallCIR <- binBuck(CuticleIR, bin.ratio = 4)
-sumSpectra(smallCIR)
-@
+%<< Chunk18 >>=
+%smallCIR <- binBuck(CuticleIR, bin.ratio = 4)
+%sumSpectra(smallCIR)
+%@
 
 Compare the results here with the \texttt{sumSpectra} of the full data set (Section~\ref{sec-prelim}. In particular note that the frequency resolution has gone down due to the binning process.  \texttt{ChemoSpec} uses the simplest of binning algorithms: after perhaps dropping a few points (with a warning) to make your data set divisible by the specified \texttt{bin.ratio}, data points are replaced by the average frequency and the sum of the grouped intensities.  Depending upon the fine structure in your data and the \texttt{bin.ratio} this might cause important peaks to be split between different bins.  There are more sophisticated binning algorithms in the literature that try to address this, but none are currently implemented in \texttt{ChemoSpec}.\cite{Gaussian-binning, Adaptive-binning}
 
@@ -333,7 +340,7 @@ Hierarchical cluster analysis (HCA from  now on) is a clustering method (surpris
 \caption{Manual Removal of Samples Followed by HCA}
 \label{hca}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk19, fig = TRUE >>=
 keep <- seq(1, 157, 6) # select every 6th spectrum
 someCIR <- CuticleIR # make a copy of the original data
 someCIR$names <- someCIR$names[keep] # modify each piece manually
@@ -390,10 +397,12 @@ bootstrap analysis (classical PCA only) & & \texttt{pcaBoot} \\
 \hline
 loadings vs frequencies & & \texttt{plotLoadings} \\
 loadings vs other loadings & & \texttt{plot2Loadings} \\
+s-plot (correlation vs covariance) & & \texttt{sPlotSpectra} \\
 &&\\
 \hline
 \textbf{Other} &&\\
 HCA of PCA scores & & \texttt{hcaScores} \\
+ANOVA-PCA & & \texttt{aovPCA} \\
 \hline
 \end{tabular}
 \end{center}
@@ -412,13 +421,13 @@ There is not enough space here to illustrate all possible combinations of option
 
 Since we've plotted the scores to see the results, let's mention a few features of \texttt{plotScores} which produces a 2D plot of the results (we'll deal with 3D options later).  Note that an annotation is provided in the upper left corner of the plot that describes the history of this analysis, so you don't lose track of what you are viewing.  The \texttt{tol} argument controls what fraction of points are labeled with the sample name.  This is a means of identifying potential outliers.  The \texttt{ellipse} argument determines if and how the ellipses are drawn (the 95\% confidence interval is used).
 
-You can choose \texttt{"none"} for no ellipses, \texttt{"cls"} for classically computed confidence ellipses, \texttt{"rob"} for robustly computed ellipses, or \texttt{"both"} if you want to directly compare the two.  Note that the use of classical and robust here has nothing to do with the PCA algorithm --- it's the same idea, but applied to the 2D array of scores.  With the robust ellipses, points outside the ellipses are more likely candidates for outlier status.
+You can choose \texttt{"none"} for no ellipses, \texttt{"cls"} for classically computed confidence ellipses, \texttt{"rob"} for robustly computed ellipses, or \texttt{"both"} if you want to directly compare the two.  Note that the use of classical and robust here has nothing to do with the PCA algorithm --- it's the same idea however, but applied to the 2D array of scores produced by PCA.  Points outside the ellipses are more likely candidates for outlier status.
 
 \begin{figure}
 \caption{How to Carry Out Classical PCA}
 \label{classPCA}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk10, fig = TRUE >>=
 class <- classPCA(CuticleIR, choice = "noscale")
 plotScores(CuticleIR, title = "Cuticle IR Spectra", class,
 pcs = c(1,2), ellipse = "rob", tol = 0.01)
@@ -430,7 +439,7 @@ pcs = c(1,2), ellipse = "rob", tol = 0.01)
 \caption{How to Carry Out Robust PCA}
 \label{robPCA}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk21, fig = TRUE >>=
 robust <- robPCA(CuticleIR, choice = "noscale")
 plotScores(CuticleIR, title = "Cuticle IR Spectra", robust,
 pcs = c(1,2), ellipse = "rob", tol = 0.01)
@@ -438,13 +447,13 @@ pcs = c(1,2), ellipse = "rob", tol = 0.01)
 \end{center}
 \end{figure}
 
-Plots such as shown in Examples~\ref{classPCA} and \ref{robPCA} can give you an idea of potential outliers, but \texttt{ChemoSpec} includes more sophisticated approaches.  The function \texttt{pcaDiag} can produce two types of plots that can be helpful (Examples~\ref{OD} and \ref{SD}).  The meaning and interpretation of these plots is discussed in more detail in Varmuza and Filzmoser, Chapter 3\cite{Filz}.
+Plots such as shown in Examples~\ref{classPCA} and \ref{robPCA} can give you an idea of potential outliers, but \texttt{ChemoSpec} includes more sophisticated approaches.  The function \texttt{pcaDiag} can produce two types of plots that can be helpful (Examples~\ref{OD} and \ref{SD}).  The meaning and interpretation of these plots is discussed in more detail in Varmuza and Filzmoser, Chapter 3.\cite{Filz}  NOTE: There is some sort of problem with the OD plot as you can plainly see.  I'll be working on it!
 
 \begin{figure}
 \caption{Diagnostics: Orthogonal Distances}
 \label{OD}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk22, fig = TRUE >>=
 diagnostics <- pcaDiag(CuticleIR, class, pcs = 2, plot = "OD")
 @
 \end{center}
@@ -454,7 +463,7 @@ diagnostics <- pcaDiag(CuticleIR, class, pcs = 2, plot = "OD")
 \caption{Diagnostics: Score Distances}
 \label{SD}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk23, fig = TRUE >>=
 diagnostics <- pcaDiag(CuticleIR, class, pcs = 2, plot = "SD")
 @
 \end{center}
@@ -468,7 +477,7 @@ If you are using classical PCA, you can also get a sense of the number of PCs ne
 \caption{Creating a Scree Plot}
 \label{scree}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk24, fig = TRUE >>=
 plotScree(class, title = "Cuticle IR Spectra")
 @
 \end{center}
@@ -478,7 +487,7 @@ plotScree(class, title = "Cuticle IR Spectra")
 \caption{Conducting Bootstrap Analysis for No. of PCs}
 \label{boot}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk25, fig = TRUE >>=
 out <- pcaBoot(CuticleIR, pcs = 5, choice = "noscale")
 @
 \end{center}
@@ -488,7 +497,7 @@ out <- pcaBoot(CuticleIR, pcs = 5, choice = "noscale")
 Now let's turn to viewing scores in 3D.  There are currently 3 options in \texttt{ChemoSpec}: plotting using \texttt{lattice} graphics, which produces a static plot that you have to adjust manually, and two interactive plots, one based on package \texttt{rgl} and one based upon package \texttt{rggobi} which in turn uses the program \texttt{GGobi}.  Probably the best place to start is with \texttt{plotScoresRGL}.  It it well suited to exploring your data, and can be printed out in high quality.  However, the nature of the GL graphics device means that the title and the legend move with the data, so this may not give a hardcopy suitable for publications.  This interactive plot cannot be invoked in this document, but here are the necessary commands:
 
 \begin{center}
-<< echo = T, results = hide, eval = FALSE >>=
+<< Chunk26, echo = T, results = hide, eval = FALSE >>=
 plotScoresRGL(CuticleIR, class, title = "Cuticle IR Spectra",
 leg.pos = "A", t.pos = "B") # not run - it's interactive!
 @
@@ -500,7 +509,7 @@ For full details, of course take a look at the manual page, \texttt{?plotScoresR
 \caption{One Way to Plot Scores in 3D}
 \label{s3D}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk27, fig = TRUE >>=
 plotScores3D(CuticleIR, class, title = "Cuticle IR Spectra")
 @
 \end{center}
@@ -508,7 +517,7 @@ plotScores3D(CuticleIR, class, title = "Cuticle IR Spectra")
 
 Finally, you can install the program \texttt{GGobi} and the package \texttt{rggobi} and use \texttt{plotScoresG} to produce an different interactive plot.  This is actually the most powerful analysis tool, as \texttt{GGobi} is not restricted to 3 dimensions, and can use projection pursuit methods to find interesting views of your data.  With an additional package, \texttt{DescribeDisplay}, you can create very nice plots of your data.  Note that at this writing (\date{\today}), \texttt{GGobi} has been described as on "life support" and it seems there might be a new program in development to replace it.  However, you can find a working version at \href{http://software.rc.fas.harvard.edu/mirrors/R/}{software.rc.fas.harvard.edu/mirrors/R/} (and related mirrors) thanks to Simon Urbanek.  Note that the communication between \texttt{plotScoresG} and \texttt{GGobi} does not quite work as described earlier under the discussion of the color schemes; this will not be fixed until the future of \texttt{GGobi} is certain.
 
-<< echo = T, results = hide, eval = FALSE >>=
+<< Chunk28, echo = T, results = hide, eval = FALSE >>=
 plotScoresG(CuticleIR, class) # not run - it's interactive!
 @
 
@@ -518,7 +527,7 @@ In addition to the scores, PCA also produces loadings which tell you how each va
 \caption{Creating a Loading Plot}
 \label{load}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk29, fig = TRUE >>=
 plotLoadings(CuticleIR, class, title = "Cuticle IR Spectra",
 loads = c(1, 2), ref = 1)
 @
@@ -527,30 +536,77 @@ loads = c(1, 2), ref = 1)
 
 You can also plot one loading against another, using function \texttt{plot2Loadings} (Example~\ref{load2}).  This is typically not too useful for spectroscopic data, since many of the variables are correlated (as they are parts of the same peak, hence the serpentine lines in the figure).  The most extreme points on the plot, however, can give you an idea of which peaks (frequencies) serve to differentiate a pair of PCs, and hence, drive your data clustering.
 
+However, a potentially more useful approach is to use an s-plot to determine which variables have the greatest influence.  A standard loadings plot (\texttt{plotLoadings}) shows you which frequency ranges contribute to which principal components, but the plot allows the vertical axis to be free.  Unless you look at the y axis scale, you get the impression that the loadings for principal component 1 etc. all contribute equally.  The function \texttt{sPlotSpectra} plots the correlation of each frequency variable with a particular score against the covariance of that frequency variable with the same score.  The result is an s-shaped plot with the most influential frequency variables in the upper right hand quadrant.  An example is shown in Example~\ref{splot}.  This method was reported in Wiklund \emph{et. al.}\cite{Wiklund2008}
+
+
 \begin{figure}
 \caption{Plotting One Loading vs. Another}
 \label{load2}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk30, fig = TRUE >>=
 plot2Loadings(CuticleIR, class, title = "Cuticle IR Spectra",
 loads = c(1, 2), tol = 0.002)
 @
 \end{center}
 \end{figure}
 
+\begin{figure}
+\caption{s-Plot to Identify Influential Frequencies}
+\label{splot}
+\begin{center}
+<< Chunk30a, fig = TRUE >>=
+spt <- sPlotSpectra(CuticleIR, class, title = "Cuticle IR Spectra", pc = 1)
+@
+\end{center}
+\end{figure}
+
 Finally, you can blend the ideas of PCA and HCA.  Since PCA eliminates the noise in a data set (after you have selected the important PCs), you can carry out HCA on the PCA scores, since the scores represent the cleaned up data.  The result using the \texttt{CuticleIR} data set are not much better than doing HCA on the raw spectra, so we won't illustrate it, but the command would be:
 
-<< echo = T, results = hide, eval = FALSE >>=
+<< Chunk31, echo = T, results = hide, eval = FALSE >>=
 hcaScores(CuticleIR,  class, scores = c(1:5), title = "Cuticle IR Spectra",
 method = "complete")
 @
+
+\subsection{ANOVA-PCA}  %%%%%%%%%%%%%%%
+
+Harrington \emph{et. al.}\cite{Harrington2005} (and a few others\cite{Pinto2008}) have demonstrated a method which combines traditional ANOVA with PCA.  Standard PCA is blind to class membership, though one generally colors the points in a score plot using the known class membership.  ANOVA-PCA uses the class membership to divide the original centered data matrix into submatrices.  Each submatrix corresponds to a particular factor, and the rows of the submatrix have been replaced by the average spectrum of each level of the factor.  The original data set is thought of as a sum of these submatrices plus residual error.  The residual error is added back to each submatrix and then PCA is performed.  This is conceptually illustrated below.
+
+\begin{figure}
+\begin{center}
+\scalebox{0.75}{\includegraphics{aovPCAaddition}}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\scalebox{0.75}{\includegraphics{aovPCAdiagram}}
+\end{center}
+\end{figure}
+
+ANOVA-PCA has been implemented in \texttt{ChemoSpec} via the functions \texttt{aovPCA}, \texttt{aovPCAscores} and \texttt{aovPCAloadings}.  The method is shown in Example~\ref{aovPCA}.  The idea here is that if a factor is significant, there will be separation along PC1 in a plot of PC1 vs PC2.  That's not the case in this example, by the way.
+
+\begin{figure}
+\caption{aovPCA on the CuticleIR Data Set}
+\label{aovPCA}
+\begin{center}
+<< Chunk30b, fig = TRUE >>=
+# Split the existing "groups" element of the Spectra object
+# into two new factors with two levels each
+n.groups <-list(genotype = c("G", "T"), treatment = c("C", "E"))
+NewIR <- splitSpectraGroups(CuticleIR, n.groups)
+# run aovPCA & plot the first score plot
+mats <-aovPCA(NewIR, fac = c("genotype", "treatment"))
+apca1 <- aovPCAscores(NewIR, mats, plot = 1, ellipse = "rob")
+@
+\end{center}
+\end{figure}
 
 \subsection{Model-Based Clustering Using mclust}  %%%%%%%%%%%%%%%
 PCA and HCA are techniques which are unsupervised and have no underlying model.  HCA computes distances between pairs of spectra and agglomeratively groups these in an iterative fashion until the dendrogram is complete.  PCA seeks out components that maximize the variance.  While in PCA one often (and \texttt{ChemoSpec} does) displays the samples coded by their group membership, this information is not actually used in PCA; any apparent correspondence between the sample group classification and the clusters found is accidental in terms of the computation, but of course, this is what one hopes to find!
 
 \texttt{mclust} is a model-based clustering package that takes a different approach.\cite{mclust-pkg, mclust-art}.  \texttt{mclust} assumes that there are groups within your data set, and that those groups are multivariate normally distributed.  Using an iterative approach, \texttt{mclust} samples various possible groupings within your data set, and uses a Bayesian Information Criterion (BIC) to determine which of the various groupings it finds best fits the data distribution. \texttt{mclust} looks for groups that follow certain constraints, for instance, one constraint is that all the groups found must have a spherical distribution of data points, while another allows for ellipsoidal distributions.  See the paper by Fraley and Raftery\cite{mclust-art} for more details.  The basic idea however is that \texttt{mclust} goes looking for groups in your data set, and then you can compare the groupings it finds with the groupings you know to be true.  \texttt{ChemoSpec} contains several functions that interface with and extend \texttt{mclust} functions.  Let's demonstrate using a subset of the \texttt{CuticleIR} data set (we'll  use only the T genotypes to make it easier to see what's going on, and we'll change the color scheme too):
 
-<<  >>=
+<< Chunk32 >>=
 data(CuticleIR)
 G.only <- removeSample(CuticleIR, rem.sam = c("TE", "TC"))
 G.only <- conColScheme(G.only, new = c("red", "blue"))
@@ -561,7 +617,7 @@ Now let's do a PCA and plot the scores using \texttt{plotScores}.  The code and 
 
 You can also do a similar analysis in 3D, using \texttt{mclust3dSpectra}.  This function uses \texttt{mclust} to find the groups, but then uses non-\texttt{mclust} functions to draw confidence ellipses.  This function uses \texttt{rgl} graphics so it cannot demonstrated here, but after doing the PCA as described in the examples, the commands would be:
 
-<< echo = T, results = hide, eval = FALSE >>=
+<< Chunk33, echo = T, results = hide, eval = FALSE >>=
 mclust3dSpectra(G.only, G.only.pca) # not run - it's interactive!
 @
 
@@ -571,7 +627,7 @@ You have all the options here that you do with \texttt{plotScoresRGL}, namely, c
 \caption{PCA on a Subset of CuticleIR}
 \label{G.onlyPCA}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk34, fig = TRUE >>=
 G.only.pca <- classPCA(G.only)
 plotScores(G.only, G.only.pca, title = "Two Genotypes (Controls)",
 ellipse = "rob")
@@ -583,7 +639,7 @@ ellipse = "rob")
 \caption{mclust Chooses an Optimal Model}
 \label{mclust1}
 \begin{center}
-<< fig = TRUE >>=
+<<  Chunk35, fig = TRUE >>=
 model <- mclustSpectra(G.only, G.only.pca, plot = "BIC",
 title = "Two Genotypes (Controls)")
 @
@@ -594,7 +650,7 @@ title = "Two Genotypes (Controls)")
 \caption{mclust's Thoughts on the Matter}
 \label{mclust2}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk36, fig = TRUE >>=
 model <- mclustSpectra(G.only, G.only.pca, plot = "proj",
 title = "Two Genotypes (Controls)")
 @
@@ -606,7 +662,7 @@ title = "Two Genotypes (Controls)")
 \caption{Comparing mclust Results to the TRUTH}
 \label{mclust3}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk37, fig = TRUE >>=
 model <- mclustSpectra(G.only, G.only.pca, plot = "errors",
 title = "Two Genotypes (Controls)", truth = G.only$groups)
 @
@@ -636,7 +692,7 @@ In understanding the operation of a package, it is useful to know how the functi
 \caption{Map of Functions in ChemoSpec}
 \label{food}
 \begin{center}
-<< fig = TRUE >>=
+<< Chunk38, fig = TRUE >>=
 require(mvbutils)
 foodweb(where = "package:ChemoSpec", charlim = 30, cex = 0.75, lwd = 1)
 @

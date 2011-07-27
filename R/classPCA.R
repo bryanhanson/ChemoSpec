@@ -1,5 +1,5 @@
 classPCA <-
-function(spectra, choice = "noscale") {
+function(spectra, choice = "noscale", cent = TRUE) {
 
 # Function to carry out non-robust Principal Components Analysis
 # Part of the ChemoSpec package
@@ -15,15 +15,15 @@ function(spectra, choice = "noscale") {
 
 	# Center & scale the data using the desired method.
 
-	if (identical(choice, "noscale")) {centscaled <- scale(spectra$data, center = TRUE, scale = FALSE)}
+	if (identical(choice, "noscale")) {centscaled <- scale(spectra$data, center = cent, scale = FALSE)}
 	
 	if (identical(choice, "autoscale")) {
 		col.sd <- sd(spectra$data)
-		centscaled <- scale(spectra$data, center = TRUE, scale = col.sd)}
+		centscaled <- scale(spectra$data, center = cent, scale = col.sd)}
 
 	if (identical(choice, "Pareto")) {
 		col.sd <- sd(spectra$data)
-		centscaled <- scale(spectra$data, center = TRUE, scale = col.sd^0.5)}
+		centscaled <- scale(spectra$data, center = cent, scale = col.sd^0.5)}
 	
 	# Now the PCA!
 	

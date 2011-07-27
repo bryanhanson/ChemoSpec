@@ -19,7 +19,7 @@ pastel scheme: \code{c("seagreen", "brown2", "skyblue2", "hotpink3",
 
 If you want to see what these colors look like, use \code{display.brewer.pal(8, "Set1")} or \code{display.brewer.pal(8, "Set2")}.
 
-Finally, the current color scheme of a \code{"Spectra"} object may be determined using \code{\link{sumGroups}} or changed using \code{\link{conColScheme}}. 
+Finally, the current color scheme of a \code{"Spectra"} object may be determined using \code{\link{sumGroups}} or changed using \code{\link{conColScheme}}. Also, \code{\link{splitSpectraGroups}} has another means of changing the color scheme but this is intended for the situations when you are creating new categories for your samples.
 }
 
 \references{

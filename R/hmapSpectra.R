@@ -6,6 +6,8 @@ hmapSpectra <- function(spectra, no.col = 5, title = "no title provided",
 	# Bryan Hanson, DePauw Univ, July 2010
 	# Part of the ChemoSpec package
 
+	chkSpectra(spectra)
+	
 	require(seriation)
 	if (no.col > 9) stop("no.col cannot be more than 9")
 	x.lab <- paste(spectra$unit[1], ", reordered", sep = "")

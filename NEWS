@@ -1,12 +1,22 @@
 
-
 NEWS file for package ChemoSpec
 Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 1.47-0
+Date:  2011-07-26
+News:
+>> Fixed a problem with splitSpectraGroups which caused an error when only one instruction was passed to the function.
+>> Also modified splitSpectraGroups to allow a new set of colors to be assigned based upon the splitting instructions (when only one splitting instruction is given).  This is a different way of changing colors than conColScheme.
+>> Changed plotScores so that the key to the type of ellipses drawn and the description of the type of PCA conducted are both in the upper lefthand corner of the plot.  This avoids having the two pieces of text overlap which occurred when physically small plots were created.
+>> Added a centering argument to classPCA.  This is for compatibility with the aovPCA series of functions which need to carry out PCA but have already centered the data matrix.  The default is still to center so no earlier code should break and users really don't need to do anything different.
+>> Added functions aovPCA, avgFacLvls, aovPCAscores and aovPCAloadings, written by Matt Keinsley.  These functions carry out ANOVA-PCA as described by Harrington.  See the help pages.
+>> Added function sPlotSpectra which implements an s-plot which is a useful adjunct to loadings plots (written by Matt Keinsley).
+>> Data set gasNIR was removed.
+
 ##### Version 1.46-4
-Date:  2011-3-26
+Date:  2011-03-26
 News:
 >> Fixed a few MORE problems giving CRAN trouble!
 

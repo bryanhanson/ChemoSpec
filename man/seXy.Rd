@@ -23,7 +23,7 @@ A vector of numeric values whose measure of central tendency and spread are to b
 }
 }
 \details{
-These functions include \code{na.omit}.
+These functions include \code{na.omit}.  \code{seXy} returns the mean =\- the standard error.  \code{seXy95} returns the mean =\- the 95% confidence interval of the standard error.  \code{seXyMad} returns the median =\- median absolute deviation.  \code{seXyIqr} returns the median plus the first and third quartiles.
 }
 \value{
 For all but \code{seX}, a vector of 3 numeric values, giving the measure of central tendency, that measure + the spread, and that measure - the spread.  So for example, \code{sd} gives the mean +/- the standard deviation.  For \code{seX}, a single value giving the standard error of x.
