@@ -49,7 +49,7 @@
 \title{ChemoSpec: An R Package for Chemometric\\
 Analysis of Spectroscopic Data\\
 (Chromatograms too!)\\
-Version 1.47-0}
+Version 1.47-1}
 \author{Bryan A. Hanson\footnote{The development of ChemoSpec has been generously supported by DePauw University in the form of sabbatical funding and a Fisher Fellowship. Thanks!}\\
 e-mail: \href{mailto:hanson@depauw.edu}{hanson@depauw.edu}\\
 \\
@@ -70,7 +70,8 @@ Greencastle Indiana USA\\
 
 << SetUp, echo = F, results = hide, eval = TRUE>>=
 library(ChemoSpec) # these are only needed for the automatic vignette build, which occurs 
-library(mvbutils) # in its own environment
+library(mvbutils) # in a clean environment
+if (!file.exists("graphics")) dir.create("graphics")
 @
 
 \maketitle
@@ -569,17 +570,21 @@ method = "complete")
 
 \subsection{ANOVA-PCA}  %%%%%%%%%%%%%%%
 
-Harrington \emph{et. al.}\cite{Harrington2005} (and a few others\cite{Pinto2008}) have demonstrated a method which combines traditional ANOVA with PCA.  Standard PCA is blind to class membership, though one generally colors the points in a score plot using the known class membership.  ANOVA-PCA uses the class membership to divide the original centered data matrix into submatrices.  Each submatrix corresponds to a particular factor, and the rows of the submatrix have been replaced by the average spectrum of each level of the factor.  The original data set is thought of as a sum of these submatrices plus residual error.  The residual error is added back to each submatrix and then PCA is performed.  This is conceptually illustrated below.
+Harrington \emph{et. al.}\cite{Harrington2005} (and a few others\cite{Pinto2008}) have demonstrated a method which combines traditional ANOVA with PCA.  Standard PCA is blind to class membership, though one generally colors the points in a score plot using the known class membership.  ANOVA-PCA uses the class membership to divide the original centered data matrix into submatrices.  Each submatrix corresponds to a particular factor, and the rows of the submatrix have been replaced by the average spectrum of each level of the factor.  The original data set is thought of as a sum of these submatrices plus residual error.  The residual error is added back to each submatrix and then PCA is performed.  This is conceptually illustrated in Examples~\ref{aovPCA2} and \ref{aovPCA1}.
 
-\begin{figure}
+\begin{figure}2
+\caption{aovPCA breaks the data into a series of submatrices}
+\label{aovPCA}
 \begin{center}
-\scalebox{0.75}{\includegraphics{aovPCAaddition}}
+\scalebox{0.75}{\includegraphics{aovPCA2}}
 \end{center}
 \end{figure}
 
 \begin{figure}
+\caption{Submatrices are composed of rows which are averages of each factor level}
+\label{aovPCA1}
 \begin{center}
-\scalebox{0.75}{\includegraphics{aovPCAdiagram}}
+\scalebox{0.75}{\includegraphics{aovPCA1}}
 \end{center}
 \end{figure}
 
