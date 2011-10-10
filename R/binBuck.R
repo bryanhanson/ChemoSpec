@@ -63,11 +63,11 @@ function(spectra, bin.ratio) {
 				# note: actual chopping occurred over in binData, called above
 				}
 			
-			cat("A total of", tot, "data points were removed to preserve the requested bin.ratio\n")
 			tmpfreq <- c(tmpfreq, freq)
 			tmpdata <- cbind(tmpdata, data)
-			chk <<- tmpdata
 			}
+			
+		if (length(chk) > 1) cat("A total of", tot, "data points were removed to preserve the requested bin.ratio\n")
 			
 		spectra$freq <- tmpfreq
 		spectra$data <- tmpdata[,-1]

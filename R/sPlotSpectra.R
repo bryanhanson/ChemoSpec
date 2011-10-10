@@ -1,13 +1,17 @@
 
 
-sPlotSpectra <- function(spectra, pca, pc = 1, title = "no title provided", ...) {
+sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05,
+	title = "no title provided", ...) {
 
 ##  Code to produce s-plots from Spectra objects
 ##  as in Wiklund.  Part of ChemoSpec
 ##  Matthew J. Keinsley
 ##  DePauw University, July 2011
 
-	if (missing(spectra)) stop("No spectral data set passed to PCA")
+	if (length(pc) != 1) stop("You must choose exactly 1 pc to plot.")
+	if (missing(spectra)) stop("No spectral data set provided")
+	if (missing(pca)) stop("No PCA results provided")
+	if (!("princomp" %in% class(pca) || "prcomp" %in% class(pca))) stop("Your pca results look corrupt!")
 	chkSpectra(spectra)
 
 	centspec <- scale(spectra$data, scale = FALSE)
@@ -24,18 +28,24 @@ sPlotSpectra <- function(spectra, pca, pc = 1, title = "no title provided", ...)
 	} 
 
 	cv <- cv/(nrow(centspec)-1)
-  
-	crr <- cv/(sdv*pca$sdev[pc])
-
-	title = paste(title, ": ", "s-Plot", sep = "")
-	s <- qplot(x = cv, y = crr, main = title, ylim = c(-1,1), 
-		xlab = "covariance", ylab = "correlation", ...) +
-	geom_vline (xintercept = 0.0, color = "red") + 
-	geom_hline(yintercept = 0.0, color = "red") 
-
-	print(s)
- 
+  	crr <- cv/(sdv*pca$sdev[pc])
 	ans <- data.frame(cov = cv, corr = crr)
+
+	title = paste(title, ": ", "s-Plot", sep = "")		
+	xrange <- range(cv)*c(1.0, 1.05) # makes room for labels
+	yrange <- range(crr)*c(1.0, 1.05)
+
+	plot(cv, crr, main = title, xlab = "covariance", ylab = "correlation",
+		pch = 20, xlim = xrange, ylim = yrange, ...)
+	abline(v = 0.0, col = "red")
+	abline(h = 0.0, col = "red")
+	legend("bottomright", y = NULL, pca$method, bty = "n", cex = 0.75)
+
+	# Next, if requested, we will label the extreme points on both dimensions
+	
+	if (is.numeric(tol)) labelExtremes(ans, spectra$freq, tol)	
+ 
  	ans
 	}
+
 

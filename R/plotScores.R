@@ -17,16 +17,18 @@ function(spectra, pca, title = "no title provided",
 	chkSpectra(spectra)
 	
 	# There must be at least 3 data points per level to make a classic ellipse.
-	# More to make a robust ellipse, as at least one point may be dropped.
+	# Possibly more to make a robust ellipse, as at least one point may be dropped.
 
 	gr <- sumGroups(spectra)
-	
-	for (n in 1:length(gr$group)) {
-		if (gr$no.[n] == 1) warning("Group ", gr$group[n], "has only 1 member")
-		if (gr$no.[n] == 2) warning("Group ", gr$group[n], "has only 2 members")
-		if (gr$no.[n] == 3) warning("Group ", gr$group[n], "has only 3 members")
+	idx <- which(gr$no. > 3) # Index for which groups will get ellipses
+
+	if (!ellipse == "none") {	
+		for (n in 1:length(gr$group)) {
+			if (gr$no.[n] == 1) warning("Group ", gr$group[n], " has only 1 member (no ellipse possible)")
+			if (gr$no.[n] == 2) warning("Group ", gr$group[n], " has only 2 members (no ellipse possible)")
+			if (gr$no.[n] == 3) warning("Group ", gr$group[n], " has only 3 members (ellipse not drawn)")
+			}
 		}
-	
 	df <- data.frame(pca$x[,pcs], group = spectra$groups)
 	groups <- dlply(df, "group", subset, select = c(1,2))
 		
@@ -40,7 +42,7 @@ function(spectra, pca, title = "no title provided",
 	# the scores well outside them, if there is an outlier.
 	# Must check all cases!
 	
-	ell <- llply(groups, plotScoresCor) # these are the ellipses we'll need later
+	ell <- llply(groups[idx], plotScoresCor) # these are the ellipses we'll need later
 
 	x.scores <- range(llply(groups, subset, select = 1))
 	y.scores <- range(llply(groups, subset, select = 2)) 
@@ -66,14 +68,14 @@ function(spectra, pca, title = "no title provided",
 
 	cls.coords <- llply(ell, function(x) {x[1:2]})
 	cls.coords <- llply(cls.coords, function(x) {do.call(cbind, x)})
-	if (!use.sym) m_ply(cbind(x = cls.coords, col = gr$color, lty = 3), lines, ...)
+	if (!use.sym) m_ply(cbind(x = cls.coords, col = gr$color[idx], lty = 3), lines, ...)
 	if (use.sym) m_ply(cbind(x = cls.coords, col = "black", lty = 3), lines, ...)
 
 	# Now the robust ellipses
 	
 	rob.coords <- llply(ell, function(x) {x[4:5]})
 	rob.coords <- llply(rob.coords, function(x) {do.call(cbind, x)})
-	if (!use.sym) m_ply(cbind(x = rob.coords, col = gr$color), lines, ...)
+	if (!use.sym) m_ply(cbind(x = rob.coords, col = gr$color[idx]), lines, ...)
 	if (use.sym) m_ply(cbind(x = rob.coords, col = "black"), lines, ...)
 
 	# finish with the usual annotations
@@ -109,7 +111,7 @@ function(spectra, pca, title = "no title provided",
 
 	if (ellipse == "cls") {
 	
-	ell <- llply(groups, plotScoresCor) # these are the ellipses we'll need later
+	ell <- llply(groups[idx], plotScoresCor) # these are the ellipses we'll need later
 
 	x.scores <- range(llply(groups, subset, select = 1))
 	y.scores <- range(llply(groups, subset, select = 2)) 
@@ -133,7 +135,7 @@ function(spectra, pca, title = "no title provided",
 
 	cls.coords <- llply(ell, function(x) {x[1:2]})
 	cls.coords <- llply(cls.coords, function(x) {do.call(cbind, x)})
-	if (!use.sym) m_ply(cbind(x = cls.coords, col = gr$color, lty = 3), lines, ...)
+	if (!use.sym) m_ply(cbind(x = cls.coords, col = gr$color[idx], lty = 3), lines, ...)
 	if (use.sym) m_ply(cbind(x = cls.coords, col = "black", lty = 3), lines, ...)
 
 	# finish with the usual annotations
@@ -146,7 +148,7 @@ function(spectra, pca, title = "no title provided",
 
 	if (ellipse == "rob") {
 	
-	ell <- llply(groups, plotScoresCor) # these are the ellipses we'll need later
+	ell <- llply(groups[idx], plotScoresCor) # these are the ellipses we'll need later
 
 	x.scores <- range(llply(groups, subset, select = 1))
 	y.scores <- range(llply(groups, subset, select = 2)) 
@@ -170,7 +172,7 @@ function(spectra, pca, title = "no title provided",
 	
 	rob.coords <- llply(ell, function(x) {x[4:5]})
 	rob.coords <- llply(rob.coords, function(x) {do.call(cbind, x)})
-	if (!use.sym) m_ply(cbind(x = rob.coords, col = gr$color), lines, ...)
+	if (!use.sym) m_ply(cbind(x = rob.coords, col = gr$color[idx]), lines, ...)
 	if (use.sym) m_ply(cbind(x = rob.coords, col = "black"), lines, ...)
 
 	legend("topleft", y = NULL, "robust ellipses by group", lty = 1, bty = "n", col = "black", cex = 0.75, inset = c(0, 0.03))

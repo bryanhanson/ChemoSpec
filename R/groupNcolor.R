@@ -10,16 +10,26 @@ function(spectra, gr.crit = NULL, gr.cols = c("auto")) {
 
 	spectra$groups <- rep(NA, length(spectra$names)) # intialize
 	
-	files <- list.files(pattern = "\\.(csv|CSV)")
-	files.noext <- substr(basename(files), 1, nchar(basename(files)) - 4)
+	# Change: rather than re-read the file names, which are already
+	# incorporated into spectra$names, search spectra$names.
+	# This makes it easier to semi-manually construct the full spectra object
 	
+	#files <- list.files(pattern = "\\.(csv|CSV)")
+	#files.noext <- substr(basename(files), 1, nchar(basename(files)) - 4)
+	
+	# for (i in 1:length(gr.crit)) {
+		# which <- grep(gr.crit[i], files.noext)
+		# spectra$groups[which] <- gr.crit[i]
+		# }
+
 	for (i in 1:length(gr.crit)) {
-		which <- grep(gr.crit[i], files.noext)
+		which <- grep(gr.crit[i], spectra$names)
+		if (length(which) == 0) warning("There was no match for gr.crit value ", gr.crit[i], " among the file names")
 		spectra$groups[which] <- gr.crit[i]
 		}
 	
 	spectra$groups <- as.factor(spectra$groups)
-	
+	if (any(is.na(spectra$groups))) warning("At least one file name did not correspond any entry in gr.crit and its group is thus NA")
 	# assign each group a color for plotting later
 
 	spectra$colors <- rep(NA, length(spectra$names)) # initialize
@@ -27,7 +37,7 @@ function(spectra, gr.crit = NULL, gr.cols = c("auto")) {
 	if (identical(gr.cols[1], "auto")) {
 		gr.cols <- brewer.pal(length(gr.crit), "Set1")
 		for (i in 1:length(gr.crit)) {
-			which <- grep(gr.crit[i], files)
+			which <- grep(gr.crit[i], spectra$names)
 			spectra$colors[which] <- gr.cols[i]
 			}
 	} else # match gr.cols with gr.crit & assign spectra$colors	

@@ -16,7 +16,7 @@ format = "csv", out.file = "mydata")
 }
 \arguments{
   \item{gr.crit}{
-Group Criteria.  A vector of character strings which will be searched for among the file names in order to assign an individual spectrum/sample to group membership.
+Group Criteria.  A vector of character strings which will be searched for among the file names in order to assign an individual spectrum/sample to group membership. Warnings are issued if there are file names that don't match entries in \code{gr.crit} or there are entries in \code{gr.crit} that don't match any file names. 
 }
   \item{gr.cols}{
 Group Colors.  Either the word "auto", in which case colors will be automatically assigned, or a vector of acceptable color names with the same length as \code{gr.crit}. In the latter case, colors will be assigned one for one, so the first element of \code{gr.crit} is assigned the first element of \code{gr.col} and so forth.  See details below for some other issues to consider.

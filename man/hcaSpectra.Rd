@@ -10,7 +10,7 @@ A wrapper which carries out HCA and plots a dendrogram colored by the informatio
 }
 \usage{
 hcaSpectra(spectra, title = "no title provided",
-method = "complete", use.sym = FALSE, ...)
+c.method = "complete", d.method = "euclidean", use.sym = FALSE, ...)
 }
 \arguments{
   \item{spectra}{
@@ -19,9 +19,13 @@ An object of S3 class \code{"Spectra"}.
   \item{title}{
 A character string for the plot title.
 }
-  \item{method}{
-A character string acceptable as a method in \code{\link{hclust}}.
+  \item{c.method}{
+A character string describing the clustering method; must be acceptable to \code{\link{hclust}}.
 }
+  \item{d.method}{
+A character string describing the distance calculation method; must be acceptable as a method in \code{\link{rowDist}}.
+}
+
   \item{use.sym}{
 A logical; if true, use no color and use lower-case letters to indicate group membership.
 }
@@ -49,7 +53,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
 data(CuticleIR)
-hcaSpectra(CuticleIR, title = "Cuticle IR Spectra", method = "complete")
+hcaSpectra(CuticleIR, title = "Cuticle IR Spectra")
 }
 \keyword{ multivariate }
 \keyword{ cluster }

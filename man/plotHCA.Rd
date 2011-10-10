@@ -4,7 +4,7 @@
 Plot Dendrogram for Spectra Object
 }
 \description{
-This function plots the results of an HCA analysis of a \code{"Spectra"} object.
+This function plots the results of an HCA analysis of a \code{"Spectra"} object.  This is not called directly by the user -- \code{\link{hcaSpectra}} and \code{\link{hcaScores}} use it (see those pages for examples).
 }
 \usage{
 plotHCA(spectra, distance, title, sub.title, method, use.sym, ...)

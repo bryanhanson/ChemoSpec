@@ -1,7 +1,7 @@
 \name{mclustSpectra}
 \alias{mclustSpectra}
 \title{
-Mclust Analysis of a Spectra Object PCA Results
+mclust Analysis of a Spectra Object PCA Results
 }
 \description{
 This function is a wrapper for the \code{Mclust} function and associated plotting functions.

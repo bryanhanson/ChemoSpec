@@ -57,7 +57,7 @@ Other parameters to be passed downstream.
 \details{
 If you intend to make a hard copy of your plot, use \code{lab.opts = TRUE} until you have found a good view of your data.  Then note corners of the cube where the title won't interfere with viewing the data, and use this for \code{t.pos}, and add \code{title}.  Adjust as necessary, then turn off label display using \code{lab.opts = FALSE}.  Back at the console, use \code{> rgl.snapshot("file_name.png")} to create the hardcopy.
 
-Note that the confidence ellipses computed here are generated independently of the \code{mclust} results - they do not correspond to the ellipses seen in 2D plots from \code{mclust}.
+Note that the confidence ellipses computed here are generated independently of the \code{Mclust} results - they do not correspond to the ellipses seen in 2D plots from \code{Mclust}.
 }
 \value{
 The mclust model is returned invisibly, and a plot is produced.

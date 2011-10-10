@@ -6,7 +6,6 @@ function(spectra, choice = "noscale", cent = TRUE) {
 # Bryan Hanson, DePauw University, Sept 2009
 	
 	if (missing(spectra)) stop("No spectral data set passed to PCA")
-	if (!class(spectra) == "Spectra") stop("Your spectral data set looks corrupt!")
 	
 	choices <- c("noscale", "autoscale", "Pareto") # trap for invalid scaling method
 	check <- choice %in% choices

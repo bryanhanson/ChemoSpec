@@ -27,8 +27,8 @@ function(spectra, pca, title = "no title provided", loads = c(1,2), tol = 0.05, 
 	yrange <- range(loadings2)*c(1.0, 1.05)
 
 	plot(loadings1, loadings2, main = title, xlab = txt1, ylab = txt2, pch = 20, xlim = xrange, ylim = yrange)
-	abline(v = 0.0, col = "lightgray")
-	abline(h = 0.0, col = "lightgray")
+	abline(v = 0.0, col = "red")
+	abline(h = 0.0, col = "red")
 	legend("bottomleft", y = NULL, pca$method, bty = "n", cex = 0.75)
 
 	# Next, if requested, we will label the extreme points on both dimensions

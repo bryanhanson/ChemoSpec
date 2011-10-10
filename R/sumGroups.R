@@ -15,7 +15,7 @@ function(spectra){
 	for (n in 1:count) {
 		gi <- match(gr.l[n], spectra$groups) # find index 1st instance
 		gr <- gr.l[n] # value of group
-		no. <- length(grep(gr, spectra$groups))
+		no. <- length(which(gr == spectra$groups))
 		col <- spectra$colors[gi] # value of color
 		sym <- spectra$sym[gi] # value of symbol
 		asym <- spectra$alt.sym[gi] # value of alt symbol

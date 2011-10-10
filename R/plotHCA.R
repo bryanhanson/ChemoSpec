@@ -5,7 +5,7 @@ function(spectra, distance, title, sub.title, method, use.sym, ...) {
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, Dec 2009
 
-	cluster <- as.dendrogram(hclust(distance), method = method)
+	cluster <- as.dendrogram(hclust(distance, method = method))
 	if (!use.sym) cluster <- dendrapply(cluster, colLeaf, spectra)
 	cluster <- dendrapply(cluster, shrinkLeaf, spectra)
 

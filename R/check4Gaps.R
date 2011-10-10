@@ -58,7 +58,8 @@ check4Gaps <- function(x, y = NULL, tol = 0.01, plot = FALSE, silent = FALSE, ..
 		}
 		
 	
-	if ((chk == 1) && (!silent)) { cat("No gaps were found by check4Gaps\nNo plot will be made\n"); df <- FALSE }
+	if ((chk == 1) && (!silent)) cat("No gaps were found by check4Gaps\nNo plot will be made\n")
+	if (chk == 1)  df <- FALSE
 	
 	if ((chk > 1) && (plot)) {
 		if (missing(y)) stop("No y values provided; cannot plot!")

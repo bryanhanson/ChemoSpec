@@ -1,13 +1,13 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 1.47-1
-Date: 2011-07-28
+Version: 1.48-1
+Date: 2011-10-10
 Author: Bryan A. Hanson DePauw University, Greencastle Indiana USA
 Maintainer: Bryan A. Hanson <hanson@depauw.edu>
 Description: A collection of functions for plotting spectra (NMR, IR etc) and carrying out various forms of top-down exploratory data analysis, such as HCA, PCA and model-based clustering.  The design allows comparison of data from samples which fall into groups such as treatment vs. control.  Robust methods appropriate for this type of high-dimensional data are available.  ChemoSpec is designed to be very user friendly and suitable for people with limited background in R.
 License: GPL-3
 LazyLoad: yes
-Depends: chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, pls, lattice, grid, rgl, R.utils, mclust, seriation, ggplot2
+Depends: chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, pls, lattice, grid, rgl, R.utils, mclust, seriation, ggplot2, amap
 Suggests: rggobi, mvbutils
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html

@@ -8,7 +8,7 @@ binData <- function(x = NULL, y = NULL, bin.ratio = 2) {
 	# bin.ratio may not divide evenly into no. data points
 	# Drop a few data points on one end so that it does
 
-	if (bin.ratio < 1) stop("bin.ratio must > 1")
+	if (bin.ratio <= 1) stop("bin.ratio must > 1")
 	if (!isWholeNo(bin.ratio)) stop("bin.ratio must be an integer > 1")
 	if (!is.null(y) && !is.null(x)) {
 		if (!identical(length(x), length(y))) stop("x and y vectors in binData have different lengths")
@@ -21,12 +21,16 @@ binData <- function(x = NULL, y = NULL, bin.ratio = 2) {
 	if (!is.null(y)) len <- length(y)
 	no.bins <- len/br # initial value; maybe final too
 	if (!isWholeNo(no.bins)) { # trim data just a bit so no.bins is a whole number
-		for (n in 1:50) {
+		chop <- NULL
+		n <- 0
+		while (n < br) {
+			n <- n + 1
 			l <- len - n
 			no.b <- l/br
 			if (isWholeNo(no.b)) { chop <- n; break }
 			}
 		rem <- c(1:chop) # chop off the first few data points
+		# warning(chop, " data points were removed from the start of the data to make it divisible by bin.ratio") # no need to warn here, 
 		if (!is.null(x)) x <- x[-rem]
 		if (!is.null(y)) y <- y[-rem]
 		if (!is.null(x)) len <- length(x)

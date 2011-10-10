@@ -1,5 +1,5 @@
 %\VignetteIndexEntry{An R Package for Chemometric Analysis of Spectra (NMR, IR etc)}
-%\VignetteDepends{chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, pls, lattice, grid, rgl, R.utils, mclust}
+%\VignetteDepends{chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, pls, lattice, grid, rgl, R.utils, mclust, ggplot2}
 %\VignetteKeywords{multivariate}
 %\VignettePackage{ChemoSpec}
 
@@ -49,7 +49,7 @@
 \title{ChemoSpec: An R Package for Chemometric\\
 Analysis of Spectroscopic Data\\
 (Chromatograms too!)\\
-Version 1.47-1}
+Version 1.48-1}
 \author{Bryan A. Hanson\footnote{The development of ChemoSpec has been generously supported by DePauw University in the form of sabbatical funding and a Fisher Fellowship. Thanks!}\\
 e-mail: \href{mailto:hanson@depauw.edu}{hanson@depauw.edu}\\
 \\
@@ -60,7 +60,7 @@ Department of Chemistry \& Biochemistry\\
 Greencastle Indiana USA\\
 \\
 \href{http://github.com/bryanhanson/ChemoSpec}{github.com/bryanhanson/ChemoSpec}\\
-\href{http://mirrors.ibiblio.org/pub/mirrors/CRAN/web/packages/ChemoSpec/index.html}{\ldots CRAN/web/packages/ChemoSpec}\\
+\href{http://CRAN.R-project.org/package=ChemoSpec}{CRAN.R-project.org/package=ChemoSpec}\\
 }
 \date{\today}
 
@@ -706,7 +706,7 @@ foodweb(where = "package:ChemoSpec", charlim = 30, cex = 0.75, lwd = 1)
 
 \section{Acknowledgements} %%%%%%%%%%%%%%%
 
-The development of \texttt{ChemoSpec} began while I was recently on sabbatical, and was aided greatly by an award of a Fisher Fellowship.  These programs are coordinated by the Faculty Development Committee at DePauw, and I am very grateful to them as well as the individuals who originally created these programs.  One of my student researchers, Kelly Summers, took the data included in \texttt{CuticleIR} in the summer of 2009 as part of a preliminary study.  Prof. Dan Raftery at Purdue University provided an NMR data set (not included here) which was very helpful in troubleshooting functions.  I am also grateful to Prof. Peter Filzmoser who answered a number of my questions related to the algorithms in his \texttt{chemometrics} package.
+The development of \texttt{ChemoSpec} began while I was on sabbatical, and was aided greatly by an award of a Fisher Fellowship.  These programs are coordinated by the Faculty Development Committee at DePauw, and I am very grateful to them as well as the individuals who originally created these programs.  One of my student researchers, Kelly Summers, took the data included in \texttt{CuticleIR} in the summer of 2009 as part of a preliminary study.  Prof. Dan Raftery at Purdue University provided an NMR data set (not included here) which was very helpful in troubleshooting functions.  I am also grateful to Prof. Peter Filzmoser who answered a number of my questions related to the algorithms in his \texttt{chemometrics} package.  Finally, Roberto Canteri of the Fundazione Bruno Kessler (Italy) brought some small bugs to my attention, and made some good suggestions for improving the underlying code.  I am grateful to Roberto for assistance!
 
 \section{The Competition} %%%%%%%%%%%%%%%
 Several other packages exist which do some of the same tasks as \texttt{ChemoSpec}, and do other things as well.  \texttt{spectrino} is a GUI interface that runs only under the Windows OS\cite{spectrino-art}.  It runs as a separate program in communication with \texttt{R}.  It is oriented mainly toward processing and organizing spectral data prior to statistical analysis.  \texttt{hyperspec} is a very nice package that appeared while I was developing \texttt{ChemoSpec}, and it does many of the same things as \texttt{ChemoSpec}, and a few more.  It is written using \texttt{S4} classes which suggests that Claudia Beleites is a better computer scientist than me!  \texttt{TIMP} is geared toward more sophisticated modeling of time-dependent spectral data sets.\cite{TIMP-art} Finally, the package \texttt{Metabonomic}\cite{Metabonomic-pkg}  provides a GUI interface to spectral processing such as baseline correction, as well as a range of exploratory and supervised statistical methods.  Note: my comments here are based on the latest versions I have explored; newer versions may have considerably more features.  Check 'em out for yourself!

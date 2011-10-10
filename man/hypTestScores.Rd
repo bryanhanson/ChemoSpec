@@ -47,9 +47,9 @@ data(CuticleIR)
 res <- classPCA(CuticleIR)
 hypTestScores(CuticleIR, res, fac = "groups")
 # from splitSpectraGroups:
-new.groups <- list(env = c("G", "T"), trt = c("C", "E"))
+new.groups <- list(gen = c("G", "T"), trt = c("C", "E"))
 new.CuticleIR <- splitSpectraGroups(CuticleIR, new.groups)
-hypTestScores(new.CuticleIR, res, fac = c("trt", "env"))
+hypTestScores(new.CuticleIR, res, fac = c("trt", "gen"))
 
 }
 \keyword{ multivariate }

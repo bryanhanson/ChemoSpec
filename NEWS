@@ -4,6 +4,25 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 1.48-1
+Date: 10 October 2011
+News:
+
+NOTE: With these changes, some old code may break! Just a littleÉ
+
+>> Thanks to Roberto Canteri (RC) of Fondazione Bruno Kessler for bringing some small bugs to my attention, and making some very useful suggestions.  Details below.
+>> Added a method argument to normSpectra to pave the way for further options.
+>> Converted sPlotSpectra to use base graphics (instead of ggplot2) so that  existing functions could be used to label points extreme points.  Thus an argument "tol" was added. 
+>> Fixed a few help file issues.
+>> Fixed a bug in plotHCA (a mis-placed parenthesis; noted by RC)
+>> Added a function rowDist, written and suggested by RC, to give more options for distance calculations when doing HCA.  Changed functions hcaScores and hcaSpectra to use this new function, which required that the old argument method be renamed c.method and a new argument called d.method be added.  The full range of distance methods and clustering methods can now be employed.
+>> Changed some aspects of plotScores to handle the cases where the number of members of the group was 3 or less differently (suggested by RC).  I don't think there are any changes to what the user sees, except possibly some warnings may have improved.
+>> Changed groupNcolor so that it does not need to re-read the files in the directory to assign the groups.  This may make it easier to semi-manually build a Spectra object.
+>> Changed groupNcolor to issue a warning if no match was found for a gr.crit value among the file names, or vice versa.
+>> Fixed a bug in check4Gaps wherein the FALSE answer, i.e. no gaps, was only set properly if silent = FALSE.  Oddly, this caused the wrong answer in the help file example but had not been detected until now!
+>> Changed the binData code, as suggested by RC, to chop off points differently.  Previously, there had been a limit of removing 50 points.  Now there is no limit, and the number of points removed is reported to the console.  Tested pretty thoroughly.
+>> Made a small change to sumGroups (grep -> which) at the recommendation of RC.
+
 ##### Version 1.47-1
 Date:  2011-07-28
 News:
