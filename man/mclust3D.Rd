@@ -67,8 +67,10 @@ y <- c(rnorm(10, 1, 1), rnorm(10, -4, 0.5))
 z <- c(rnorm(10, -2, 0.5), rnorm(10, 3, 0.5))
 x[15] <- y[15] <- z[15] <- 4 # screw up one point
 my.truth <- c(rep("Z", 10), rep("Q", 10))
-
+\dontrun{
 mclust3D(cbind(x, y, z), title = "mclust3D demo",
-	t.pos = "G", truth = my.truth)}
+	t.pos = "G", truth = my.truth)
+}
+}
 \keyword{ multivariate }
 \keyword{ cluster }

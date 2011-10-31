@@ -23,7 +23,7 @@ sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05,
 	for (i in 1:ncol(centspec)) {
 		tmp <- (pca$x[,pc] %*% centspec[,i])
 		cv <- c(cv, tmp)
-		dv <- sd (centspec[,i])
+		dv <- sd(as.vector(centspec[,i])) # sd(matrix) deprecated for 2.14
 		sdv <- c(sdv, dv)
 	} 
 

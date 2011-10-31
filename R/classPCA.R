@@ -17,11 +17,11 @@ function(spectra, choice = "noscale", cent = TRUE) {
 	if (identical(choice, "noscale")) {centscaled <- scale(spectra$data, center = cent, scale = FALSE)}
 	
 	if (identical(choice, "autoscale")) {
-		col.sd <- sd(spectra$data)
+		col.sd <- apply(spectra$data, 2, sd)
 		centscaled <- scale(spectra$data, center = cent, scale = col.sd)}
 
 	if (identical(choice, "Pareto")) {
-		col.sd <- sd(spectra$data)
+		col.sd <- apply(spectra$data, 2, sd)
 		centscaled <- scale(spectra$data, center = cent, scale = col.sd^0.5)}
 	
 	# Now the PCA!

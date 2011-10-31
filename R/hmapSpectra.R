@@ -8,7 +8,6 @@ hmapSpectra <- function(spectra, no.col = 5, title = "no title provided",
 
 	chkSpectra(spectra)
 	
-	require(seriation)
 	if (no.col > 9) stop("no.col cannot be more than 9")
 	x.lab <- paste(spectra$unit[1], ", reordered", sep = "")
 	hmap(spectra$data, labRow = spectra$names,

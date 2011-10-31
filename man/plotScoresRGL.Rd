@@ -73,8 +73,10 @@ Other functions in \code{ChemoSpec} that plot PCA scores are: \code{\link{plotSc
 \examples{
 data(CuticleIR)
 results <- classPCA(CuticleIR, choice = "autoscale")
+\dontrun{
 plotScoresRGL(CuticleIR, results, title = "Cuticle IR Spectra",
 leg.pos = "A", t.pos = "B")
+}
 }
 
 \keyword{ multivariate }

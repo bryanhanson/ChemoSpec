@@ -7,8 +7,6 @@ function (spectra, pcs, choice = "noscale", repl = 50, segments = 4,
 # Part of the ChemoSpec package.  Bryan Hanson, DePauw Univ, Sept 2009
 # Conducts classical, not robust, PCA
 
-    require(pls)
-	
 	if (missing(spectra)) stop("No spectral data set passed to PCA")
 	if (!class(spectra) == "Spectra") stop("Your spectral data set looks corrupt!")
 	

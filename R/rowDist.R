@@ -8,7 +8,6 @@ rowDist <- function(x, method) {
 		"euclidean", "maximum", "manhattan", "canberra","binary", "minkowski"))
 
 	if ( method %in% c("pearson", "correlation", "spearman", "kendall") ) {
-		require(amap)
 		distance <- Dist(x, method = method)
 		} else {distance <- dist(x, method = method)}
 	return(distance)

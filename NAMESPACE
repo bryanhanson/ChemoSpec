@@ -1,0 +1,4 @@
+exportPattern("^[^.]")
+import(seriation, amap, chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, lattice, grid, rgl, R.utils, mclust, mvbutils, pls)
+importFrom(RColorBrewer, display.brewer.pal)
+importFrom(pls, cvsegments)

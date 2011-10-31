@@ -16,10 +16,9 @@ A collection of functions for plotting spectra (NMR, IR etc) and carrying out va
 \tabular{ll}{
 Package: \tab ChemoSpec\cr
 Type: \tab Package\cr
-Version: \tab 1.48-1\cr
-Date: \tab 2011-10-10\cr
+Version: \tab 1.48-3\cr
+Date: \tab 2011-10-30\cr
 License: \tab GPL-3\cr
-LazyLoad: \tab yes\cr
 }
 }
 

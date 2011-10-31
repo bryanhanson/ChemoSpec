@@ -72,8 +72,10 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 data(CuticleIR)
 class <- classPCA(CuticleIR, choice = "noscale")
+\dontrun{
 mclust3dSpectra(CuticleIR, class, title = "mclust3dSpectra demo",
 	lab.opts = FALSE, t.pos = "A")
+}
 }
 \keyword{ multivariate }
 \keyword{ cluster }

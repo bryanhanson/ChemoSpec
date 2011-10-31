@@ -4,6 +4,19 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 
+Date: 
+News:
+>> Fixed a boo-boo in the vignette which plotted the wrong graph for Example 4.  Why doesn't anyone tell me about these!?
+
+##### Version 1.48-3
+Date: 30 October 2011
+News: A few changes to package structure for compatibility with R 2.14.
+
+##### Version 1.48-2
+Date: 19 October 2011
+News: Some small user-invisible changes to make ChemoSpec compatible with R 2.14.0 due out in a few days.
+
 ##### Version 1.48-1
 Date: 10 October 2011
 News:
