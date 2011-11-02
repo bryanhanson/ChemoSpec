@@ -1,5 +1,5 @@
 %\VignetteIndexEntry{An R Package for Chemometric Analysis of Spectra (NMR, IR etc)}
-%\VignetteDepends{chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, pls, lattice, grid, rgl, R.utils, mclust, ggplot2}
+%\VignetteDepends{chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, pls, lattice, grid, rgl, R.utils, mclust}
 %\VignetteKeywords{multivariate}
 %\VignettePackage{ChemoSpec}
 
@@ -48,7 +48,7 @@
 \title{ChemoSpec: An R Package for Chemometric\\
 Analysis of Spectroscopic Data\\
 (Chromatograms too!)\\
-Version 1.48-3 (compatible with R 2.14.0)}
+Version 1.48-4 (compatible with R 2.14.0)}
 \author{Bryan A. Hanson\footnote{The development of ChemoSpec has been generously supported by DePauw University in the form of sabbatical funding and a Fisher Fellowship. Thanks!}\\
 e-mail: \href{mailto:hanson@depauw.edu}{hanson@depauw.edu}\\
 \\
