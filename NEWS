@@ -4,10 +4,10 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
-##### Version 1.48-3
+##### Version 1.48-4
 Date: 2 November 2011
 News:
->> Removed an outdated dependency on ggplot2.
+>> Removed an outdated dependency on ggplot2 to pass CRAN and a few other tiny fixes.
 >> Fixed a boo-boo in the vignette which plotted the wrong graph for Example 4.  Why doesn't anyone tell me about these!?
 
 ##### Version 1.48-3
