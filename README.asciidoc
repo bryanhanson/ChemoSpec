@@ -1,0 +1,30 @@
+How to install ChemoSpec
+===================
+
+To install from Github using R:
+------------------------------
+install.packages("devtools")
+
+library("devtools")
+
+install_github(repo = "ChemoSpec", username = "bryanhanson", branch = "master")
+
+library("ChemoSpec")
+
+vignette("ChemoSpec") # To see the user guide
+
+If you use branch = "devel" you can get the development branch if it is available.  My habit is to keep these operational but not necessarily complete.  Devel versions would be ahead of what's on CRAN.
+
+From CRAN using R:
+------------------
+
+chooseCRANmirror() # select a CRAN mirror
+
+install.packages("ChemoSpec")
+
+library("ChemoSpec")
+
+vignette("ChemoSpec") # to see the user guide
+
+
+Questions?  hanson@depauw.edu

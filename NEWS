@@ -4,6 +4,19 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 1.49-1
+Date: 16 December 2011
+News:
+>> Currently on Github devel branch only
+>> Added new function LoopThruSpectra
+>> Changed plotSpectra so that the y axis shows and the default ylim allows for values below zero.
+
+##### Version 1.48-5
+Date: 9 November 2011
+News:
+>> Consider this a pre-release version.  Will go to Github, not CRAN
+>> Made some small changes for consistency on package checking.
+
 ##### Version 1.48-4
 Date: 2 November 2011
 News:
