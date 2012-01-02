@@ -1,5 +1,5 @@
 How to install ChemoSpec
-===================
+=======================
 
 To install from Github using R:
 ------------------------------
@@ -24,6 +24,7 @@ library("ChemoSpec")
 
 To get to the Vignette:
 -----------------------
+
 As of v 1.50-1, the vignette is no longer built automatically.  To get to it, you have to first ask for help on the package with > ?ChemoSpec, then follow the 'index' link at the very bottom, then follow the 'browse directory' link at the top of the index page.
 
 Questions?  hanson@depauw.edu
