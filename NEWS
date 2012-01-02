@@ -4,12 +4,19 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
-##### Version 1.49-1
-Date: 16 December 2011
+##### Version 1.50-1
+Date: 2 January 2012
 News:
->> Currently on Github devel branch only
+>> Added full support for baseline correction via baselineSpec, which is a simple wrapper for the very nice baseline package.
+>> Completely updated the vignette; switched the data demo set to SrE.IR.
+
+##### Version 1.49-1
+Date: 23 December 2011
+News:
+>> Currently on Github devel branch only (never pushed to CRAN)
 >> Added new function LoopThruSpectra
 >> Changed plotSpectra so that the y axis shows and the default ylim allows for values below zero.
+>> Made the NAMESPACE exports explicit.
 
 ##### Version 1.48-5
 Date: 9 November 2011

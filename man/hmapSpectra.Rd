@@ -5,7 +5,7 @@
 Create a Seriated Heat Map Comparing Samples and Spectral Data for a Spectra Object
 }
 \description{
-Creates a heat map with marginal dendrograms using seriation procedures.  Very briefly, the samples that are most like each other occur in one corner, and the frequencies that are most informative with respect to the samples are in that corner as well. This is achieved by using heirchical cluster analysis and then re-ordrering the clusters in a coordinated way across each dimension.  See the reference.
+Creates a heat map with marginal dendrograms using seriation procedures.  Very briefly, the samples that are most like each other occur in one corner, and the frequencies that are most informative with respect to the samples are in that corner as well. This is achieved by using hierchical cluster analysis and then re-ordering the clusters in a coordinated way across each dimension.  See the reference.
 }
 \usage{
 hmapSpectra(spectra, no.col = 5, title = "no title provided",

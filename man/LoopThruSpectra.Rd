@@ -9,7 +9,7 @@ Plots each spectrum in a \code{Spectra} object one at a time (waits for a return
 LoopThruSpectra(Spectra, ...)
 }
 \arguments{
-  \item{Spectra}{An object of S3 class \code{"Spectra"}}.
+  \item{Spectra}{An object of S3 class \code{"Spectra"}.
 }
   \item{\dots}{
 Parameters to be passed downstream.

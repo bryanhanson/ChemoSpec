@@ -11,8 +11,6 @@ install_github(repo = "ChemoSpec", username = "bryanhanson", branch = "master")
 
 library("ChemoSpec")
 
-vignette("ChemoSpec") # To see the user guide
-
 If you use branch = "devel" you can get the development branch if it is available.  My habit is to keep these operational but not necessarily complete.  Devel versions would be ahead of what's on CRAN.
 
 From CRAN using R:
@@ -24,7 +22,8 @@ install.packages("ChemoSpec")
 
 library("ChemoSpec")
 
-vignette("ChemoSpec") # to see the user guide
-
+To get to the Vignette:
+-----------------------
+As of v 1.50-1, the vignette is no longer built automatically.  To get to it, you have to first ask for help on the package with > ?ChemoSpec, then follow the 'index' link at the very bottom, then follow the 'browse directory' link at the top of the index page.
 
 Questions?  hanson@depauw.edu

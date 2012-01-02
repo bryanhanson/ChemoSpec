@@ -9,7 +9,7 @@ Plots the spectra stored in a \code{"Spectra"} object.  One may choose which spe
 }
 \usage{
 plotSpectra(spectra, title = "no title provided",
-	which = c(1), yrange = c(0, max(spectra$data)), offset = 0,
+	which = c(1), yrange = range(spectra$data), offset = 0,
 	amplify = 1, lab.pos = mean(spectra$freq), ...)
 }
 \arguments{
