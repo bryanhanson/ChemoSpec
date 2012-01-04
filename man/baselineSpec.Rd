@@ -37,6 +37,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \examples{
+library("IDPmisc")
 data(SrE.IR)
 temp <- baselineSpec(SrE.IR, int = FALSE, method = "rfbaseline")
 \dontrun{
