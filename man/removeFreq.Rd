@@ -45,6 +45,13 @@ newIR <- removeFreq(CuticleIR, rem.freq = CuticleIR$freq > 3500
 newIR <- removeFreq(CuticleIR, rem.freq = CuticleIR$freq > 800
 & CuticleIR$freq < 1000)
 
+# The logic of this last one is as follows.  Any values
+# that are TRUE will be removed.
+values <- 1:7
+values > 2
+values < 6
+values > 2 & values < 6
+
 # after any of these, inspect the results:
 sumSpectra(newIR)
 check4Gaps(newIR$freq, newIR$data[1,], plot = TRUE)

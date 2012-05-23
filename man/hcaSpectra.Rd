@@ -52,8 +52,8 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \code{\link{plotHCA}} for the function that actually does the plotting.
 }
 \examples{
-data(CuticleIR)
-hcaSpectra(CuticleIR, title = "Cuticle IR Spectra")
+data(SrE.IR)
+hcaSpectra(SrE.IR, title = "Serenoa repens IR Spectra")
 }
 \keyword{ multivariate }
 \keyword{ cluster }

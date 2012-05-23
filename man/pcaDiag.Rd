@@ -61,9 +61,9 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \examples{
-data(CuticleIR)
-results <- classPCA(CuticleIR, choice = "noscale")
-temp <- pcaDiag(CuticleIR, results, pcs = 2, plot = "OD")
+data(SrE.IR)
+results <- classPCA(SrE.IR, choice = "noscale")
+temp <- pcaDiag(SrE.IR, results, pcs = 2, plot = "OD")
 }
 
 \keyword{ multivariate }

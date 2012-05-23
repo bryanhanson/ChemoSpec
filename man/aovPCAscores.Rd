@@ -47,5 +47,5 @@ Matthew J. Keinsley and Bryan A. Hanson, DePauw University. \email{hanson@depauw
 The use of this function can be seen in \code{\link{aovPCA}}.  See also \code{\link{plotScores}}.
 }
 
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }
+\keyword{ multivariate }
+\keyword{ htest }

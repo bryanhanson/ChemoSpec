@@ -61,8 +61,8 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \examples{
-data(CuticleIR)
-results <- pcaBoot(CuticleIR, pcs = 5, choice = "noscale")
+data(SrE.IR)
+results <- pcaBoot(SrE.IR, pcs = 5, choice = "noscale")
 }
 
 \keyword{ multivariate }

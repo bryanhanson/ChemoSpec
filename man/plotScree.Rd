@@ -1,17 +1,18 @@
 \name{plotScree}
 \Rdversion{1.1}
 \alias{plotScree}
+\alias{plotScree2}
 
 \title{
-Scree Plot of PCA Results for a Spectra Object
+Scree Plots of PCA Results for a Spectra Object
 }
 
 \description{
-Function to draw a scree plot illustrating the importance of the components in a PCA analysis of a \code{"Spectra"} object.
-}
+Functions to draw a traditional scree plot or an alternative that is perhaps more useful.  These illustrate the importance of the components in a PCA analysis.}
 
 \usage{
 plotScree(pca, title = "no title provided", ...)
+plotScree2(pca, title = "no title provided", ...)
 }
 
 \arguments{
@@ -29,12 +30,13 @@ None.  Side effect is a plot.
 }
 
 \details{
-Technically, if you add \code{$method} to the PCA results from other packages, this will plot a scree plot for any PCA results, not just those from \code{"Spectra"} objects.
+If you add \code{$method} to the PCA results from other packages, this will plot a scree plot for any PCA results, not just those from \code{"Spectra"} objects.
 }
 
 
 \references{
 \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+The idea for the alternative style plot came from the NIR-Quimiometria blog by jrcuesta, at \url{http://http://www.r-bloggers.com/pca-for-nir-spectra_part-004-projections/}
 }
 
 \author{
@@ -42,9 +44,10 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \examples{
-data(CuticleIR)
-results <- classPCA(CuticleIR, choice = "noscale")
-plotScree(results, title = "Cuticle IR Spectra")
+data(SrE.IR)
+results <- classPCA(SrE.IR, choice = "noscale")
+plotScree(results, title = "Serenoa repens IR Spectra")
+plotScree2(results, title = "Serenoa repens IR Spectra")
 }
 
 \keyword{ multivariate }

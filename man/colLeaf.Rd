@@ -30,3 +30,4 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \keyword{ utilities }
 \keyword{ cluster }
+\keyword{ color }

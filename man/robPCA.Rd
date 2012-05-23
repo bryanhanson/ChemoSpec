@@ -40,9 +40,9 @@ For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \
 }
 
 \examples{
-data(CuticleIR)
-results <- robPCA(CuticleIR, choice = "mad")
-plotScores(CuticleIR, title = "Cuticle IR Spectra",
+data(SrE.IR)
+results <- robPCA(SrE.IR, choice = "mad")
+plotScores(SrE.IR, title = "Serenoa repens IR Spectra",
 	results, pcs = c(1,2), ellipse = "rob", tol = 0.05)
 }
 

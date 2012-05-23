@@ -16,11 +16,14 @@ aovPCA(spectra, fac)
 An object of S3 class \code{\link{Spectra}}
 }
   \item{fac}{
-A vector of character strings giving the factors to be used in the analysis.  These should be elements of \code{\link{Spectra}}
+A vector of character strings giving the factors to be used in the analysis.  These should be elements of \code{\link{Spectra}}.  Note that there should be 2 or more factors, because ANOVA-PCA on one factor is the same as standard PCA.  See the example.
 }
 }
 \value{
 A list of matrices for each factor and their interactions, along with the residual error and mean centered data matrix.
+}
+
+\details{ANOVA-PCA with only one factor is the same as standard PCA and gives no additional separation.
 }
 \references{
 Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for Discriminant Analysis: ..." Analytica Chimica Acta 629.1-2 (2008): 47-55.
@@ -38,6 +41,7 @@ This function calls \code{\link{avgFacLvls}}, and the results are used in \code{
 \examples{
 data(CuticleIR)
 # Creat new groups from existing groups
+# These are used as the factors
 n.groups <-list(genotype = c("G", "T"), treatment = c("C", "E"))
 NewIR <- splitSpectraGroups(CuticleIR, n.groups)
 # run aovPCA
@@ -49,5 +53,5 @@ apca5 <- aovPCAloadings(spectra = NewIR, LM = mats, pca = apca1)
 
 
 }
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }
+\keyword{ multivariate }
+\keyword{ htest }

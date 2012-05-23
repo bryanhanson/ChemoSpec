@@ -25,7 +25,8 @@ Matthew J. Keinsley and Bryan A. Hanson, DePauw University. \email{hanson@depauw
 \examples{
 data(CuticleIR)
 IR.pca <- classPCA(CuticleIR)
-splot <- sPlotSpectra(spectra = CuticleIR, pca = IR.pca, pc = 1, tol = 0.0005)
+splot <- sPlotSpectra(spectra = CuticleIR, pca = IR.pca, pc = 1, tol = 0.005,
+title = "Serenoa repens IR")
 }
 
-\keyword{plots}
+\keyword{hplot}

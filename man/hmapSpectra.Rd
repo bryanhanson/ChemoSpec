@@ -51,14 +51,12 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \examples{
-data(CuticleIR)
-# trim it down so plot is not so crowded:
-newIR <- removeFreq(CuticleIR, rem.freq =
-CuticleIR$freq > 1500 | CuticleIR$freq < 500)
-# remove some random samples too:
-newIR <- removeSample(newIR, rem.sam = sample(1:157, 107))
+data(SrE.IR)
+# remove noisy, uninteresting region:
+newIR <- removeFreq(SrE.IR, rem.freq =
+SrE.IR$freq > 1800 & SrE.IR$freq < 2500)
 # now make the heat map:
-hmapSpectra(newIR, title = "Cuticle IR", t.pos = c(0.45, 0.25, 1),
+hmapSpectra(newIR, title = "Serenoa repens IR", t.pos = c(0.55, 0.25, 1),
 cexRow = 0.5, cexCol = 0.1, no.col = 9)
 }
 \keyword{ multivariate }

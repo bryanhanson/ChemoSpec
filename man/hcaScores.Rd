@@ -60,9 +60,9 @@ See \code{\link{hcaSpectra}} for HCA of the entire data set stored in the \code{
 
 }
 \examples{
-data(CuticleIR)
-results <- classPCA(CuticleIR, choice = "noscale")
-hcaScores(CuticleIR,  results, scores = c(1:5), title = "Cuticle IR Spectra")
+data(SrE.IR)
+results <- classPCA(SrE.IR, choice = "noscale")
+hcaScores(SrE.IR,  results, scores = c(1:5), title = "Serenoa repends IR Spectra")
 }
 
 \keyword{ multivariate }

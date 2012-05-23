@@ -60,9 +60,9 @@ For other ways of displaying the results, \code{\link{plotScree}}, \code{\link{p
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
-data(CuticleIR)
-results <- classPCA(CuticleIR, choice = "noscale")
-plotScores(CuticleIR, title = "Cuticle IR Spectra", results,
+data(SrE.IR)
+results <- classPCA(SrE.IR, choice = "noscale")
+plotScores(SrE.IR, title = "Serenoa repens IR Spectra", results,
 	pcs = c(1,2), ellipse = "rob", tol = 0.05)
 }
 

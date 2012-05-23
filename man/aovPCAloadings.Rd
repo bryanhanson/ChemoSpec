@@ -43,5 +43,5 @@ Matthew J. Keinsley and Bryan A. Hanson, DePauw University. \email{hanson@depauw
 An example using this function can be seen in \code{\link{aovPCA}}.  See also \code{\link{plotLoadings}}.
 }
 
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }
+\keyword{ multivariate }
+\keyword{ htest }

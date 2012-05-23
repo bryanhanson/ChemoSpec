@@ -4,6 +4,19 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 1.51-0
+Date: 23 May 2012
+News:
+>> First build under R 2.15.0.
+>> Removed mvbutils as a dependency.  It was only being used in the vignette, which is no longer being built automatically.  So it was not needed, and people were occasionally running into problems due to it.
+>> Added IDPmisc as an import.  This was being requested at various points.  Removed from Suggests.
+>> Added new function removeGroup.  See the help page.
+>> removeSample had chkSpectra added right before returning the new spectra object.
+>> Removed hardwired xlim and ylim from sPlotSpectra.  Some labels may now be cut off with the defaults, but this allows zooming into the interesting parts.
+>> Added function plotScree2.  See the help page.
+>> Many small improvements to the documentation.
+>> Updated the vignette.
+
 ##### Version 1.50-2
 Date: 4 January 2012
 News:

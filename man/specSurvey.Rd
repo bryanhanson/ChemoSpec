@@ -38,6 +38,6 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
 data(CuticleIR)
-specSurvey(CuticleIR, method = "iqr")
+specSurvey(CuticleIR, method = "iqr", title = "Cuticle IR")
 }
 \keyword{ hplot }

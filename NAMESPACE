@@ -57,6 +57,7 @@ export(LoopThruSpectra,
 	plotScoresRGL,
 	isWholeNo,
 	plotScree,
+	plotScree2,
 	baselineSpec)
 
-import(pls, seriation, amap, chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, lattice, grid, rgl, R.utils, mclust, mvbutils, MASS, baseline)
+import(pls, seriation, amap, chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, lattice, grid, rgl, R.utils, mclust, MASS, baseline, IDPmisc)

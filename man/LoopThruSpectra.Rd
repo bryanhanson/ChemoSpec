@@ -32,4 +32,4 @@ data(CuticleIR)
 LoopThruSpectra(CuticleIR)
 }
 }
-\keyword{ plot }
+\keyword{ hplot }

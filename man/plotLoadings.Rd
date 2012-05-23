@@ -51,10 +51,10 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 See \code{\link{plot2Loadings}} to plot two loadings against each other.
 }
 \examples{
-data(CuticleIR)
-results <- classPCA(CuticleIR, choice = "noscale")
-plotLoadings(CuticleIR, results, title = "Cuticle IR Spectra",
-	loads = c(1), ref = 1)
+data(SrE.IR)
+results <- classPCA(SrE.IR, choice = "noscale")
+plotLoadings(SrE.IR, results, title = "Serenoa repens IR Spectra",
+	loads = 1:2, ref = 1)
 }
 
 \keyword{ multivariate }

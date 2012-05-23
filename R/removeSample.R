@@ -34,7 +34,8 @@ function(spectra, rem.sam) {
 	if (length(spectra$names) == 0) warning("You have removed all your samples!")
 
 	# other aspects of spectra are untouched
-
+	
+	chkSpectra(spectra)
 	spectra
 
 	}

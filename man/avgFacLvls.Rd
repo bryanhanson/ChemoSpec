@@ -35,5 +35,5 @@ facs <- factor(c(rep("A",5), rep("B",5), rep("C", 5), rep("D", 5)))
 M2 <- avgFacLvls(M1, fac = facs)
 }
 
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }
+\keyword{ multivariate }
+\keyword{ htest }
