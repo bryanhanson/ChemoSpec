@@ -4,6 +4,18 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 1.51-2
+Date:
+>> Added ... to sumSpectra so one can pass argument tol through to check4Gaps.  Otherwise, for some data sets a gap is detected between each data point, which is annoying at best.
+>> Made modifications so that ChemoSpec works with mclust 4.0.  These were begun in 1.51-1 but not completed until this version.
+
+##### Version 1.51-1
+Date: 11 July 2012
+News:
+>> Added ByteCompile: TRUE to description
+>> Added code to getManyCsv to detect frequency values that are integer.  Such cases are converted to numeric with a notice.
+>> Modifed coordProjCS to conform to the update mclust package (v 4.?).  Thanks to Luca Scrucca for the heads up.
+
 ##### Version 1.51-0
 Date: 23 May 2012
 News:

@@ -74,8 +74,8 @@ function (data, dimens = c(1, 2), parameters = NULL, z = NULL,
         L <- length(U)
         noise <- classification[1] == "0"
         if (is.null(symbols)) {
-            if (L <= length(.Mclust$classPlotSymbols)) {
-                symbols <- .Mclust$classPlotSymbols
+            if (L <= length(mclust.options("classPlotSymbols"))) {
+                symbols <- mclust.options("classPlotSymbols")
                 if (noise) {
                   first <- symbols[1]
                   symbols[symbols == 16] <- first
@@ -92,8 +92,8 @@ function (data, dimens = c(1, 2), parameters = NULL, z = NULL,
         else if (length(symbols) == 1) 
             symbols <- rep(symbols, L)
         if (is.null(colors)) {
-            if (L <= length(.Mclust$classPlotColors)) {
-                colors <- .Mclust$classPlotColors[1:L]
+            if (L <= length(mclust.options("classPlotColors"))) {
+                colors <- mclust.options("classPlotColors")[1:L]
                 if (noise) {
                   first <- colors[1]
                   colors[colors == "black"] <- first

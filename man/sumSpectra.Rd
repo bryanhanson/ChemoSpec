@@ -10,16 +10,20 @@ Provides a summary of a \code{"Spectra"} object, essentially a more spectroscopi
 }
 
 \usage{
-sumSpectra(spectra)
+sumSpectra(spectra, ...)
 }
 
 \arguments{
   \item{spectra}{
 An object of S3 class \code{"Spectra"}.
 }
+  \item{...}{
+Arguments to be passed downstream.
+}
+
 }
 \details{
-Prior to summarizing, \code{\link{chkSpectra}} is run with confirm = FALSE.  If there are problems, warnings are issued to the console and the summary is not done.
+Prior to summarizing, \code{\link{chkSpectra}} is run with confirm = FALSE.  If there are problems, warnings are issued to the console and the summary is not done.  If \code{sumSpectra} thinks there is a gap between every data point, add the argument \code{tol = xx} which will pass through to \code{\link{check4Gaps}} and alleviate this problem (which has to do with rounding when subtracting two adjacent frequency values).
 }
 
 \value{

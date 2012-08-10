@@ -1,12 +1,12 @@
 sumSpectra <-
-function(spectra){
+function(spectra, ...){
 	
 # Function to summarize objects of S3 class 'Spectra'
 # Part of ChemoSpec package
 # Bryan Hanson, DePauw Univ, Nov 2009
 	
 	chkSpectra(spectra) # verify it's legit
-	h <- check4Gaps(spectra$freq)	
+	h <- check4Gaps(spectra$freq, ...)	
 	g <- sumGroups(spectra)
 	res <- abs(spectra$freq[2] - spectra$freq[1])
 	

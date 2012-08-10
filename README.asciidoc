@@ -1,3 +1,5 @@
+NOTE:  ChemoSpec requires mclust 4.0 as of version 1.51-2.
+
 How to install ChemoSpec
 =======================
 

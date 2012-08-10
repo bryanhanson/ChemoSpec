@@ -25,6 +25,10 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 	if (format == "csv2") temp <- read.csv2(files[1], header = FALSE)
 	spectra <- list() # OK to initialize a list this way
 	spectra$freq <- temp[,1]
+	if (class(spectra$freq) == "integer") {
+		cat("Converting integer frequency values to numeric\n")
+		spectra$freq <- as.integer(spectra$freq)
+		}
 	spectra$data <- matrix(data = 0.0, nrow = length(files), ncol = length(spectra$freq))
 	
 	# loop over all files (you have to read the whole file then grab
