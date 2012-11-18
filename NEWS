@@ -4,6 +4,12 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 1.52-1
+Date:
+>> Added function readJDX which can read the IR implementation of the JCAMP-DX standard.
+>> Copied getManyCsv to files2SpectraObject and added the option of format = "dx" to work with readJDX.
+>> Modified getManyCsv so that is warns about deprecation when run.
+
 ##### Version 1.51-2
 Date:
 >> Added ... to sumSpectra so one can pass argument tol through to check4Gaps.  Otherwise, for some data sets a gap is detected between each data point, which is annoying at best.

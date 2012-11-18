@@ -15,6 +15,10 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 # There should be no column labels.
 # Groups & colors assigned using file names by a separate function.
 
+### As of Nov 2012 this is deprecated in favor of files2SpectraObject
+
+	cat("getManyCsv will be deprecated soon.  Please switch to files2SpectraObject")
+	
 	if (is.null(gr.crit)) stop("No group criteria provided to encode data")
 
 	files <- list.files(pattern = "\\.(csv|CSV)$")
