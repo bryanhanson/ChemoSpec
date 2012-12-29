@@ -4,7 +4,7 @@
 Calculate the signal-to-noise ratio of a peak in a spectrum.
 }
 \description{
-This is very simple function to calculate the signal-to-noise ratio of a peak in a spectrum.  It is intended for processing NMR spectra in conjunction with \link{\code{alignTMS}}.  It is not extensively tested.  The SN value returned is just one (simple) way of computing SN.  You probably shouldn't trust it.
+This is very simple function to calculate the signal-to-noise ratio of a peak in a spectrum.  It is intended for processing NMR spectra in conjunction with \code{\link{findTMS}}.  It is not extensively tested.  The SN value returned is just one (simple) way of computing SN.  You probably shouldn't trust it.
 }
 \usage{
 calcSN(x, span, idx)
@@ -58,4 +58,4 @@ plot(vec, type = "l")
 abline(v = ppVec, col = "red") # Shows peaks identified
 # Try repeating with span = 10
 }
-\keyword{ utility }
+\keyword{ utilities }

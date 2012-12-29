@@ -4,7 +4,7 @@
 Read and process a Bruker NMR spectrum (.txt) as written by their software.
 }
 \description{
-This function reads files written by the Bruker software (with extension ".txt").  This function is not extensively tested.  Not normally called by the user; used by\link{\code{files2SpectraObject}}.
+This function reads files written by the Bruker software (with extension ".txt").  This function is not extensively tested.  Not normally called by the user; used by\code{\link{files2SpectraObject}}.
 }
 \usage{
 readBrukerTxt(file = "", debug = FALSE)
@@ -30,4 +30,4 @@ A data frame with the following elements:
 \author{
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
-\keyword{ utility }
+\keyword{ utilities }

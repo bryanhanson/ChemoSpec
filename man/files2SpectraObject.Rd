@@ -45,7 +45,7 @@ A file name acceptable to the \code{save} function.  The completed object of S3 
 Logical; set to \code{TRUE} for troubleshooting when using \code{format = "Btxt" or "dx"}.
 }
   \item{...}{
-Other arguments to be passed downstream (At times you might want to pass alternate values of \code{span}, \code{sn}, and \code{thres} to \link{\code{findTMS}} and related functions).
+Other arguments to be passed downstream (At times you might want to pass alternate values of \code{span}, \code{sn}, and \code{thres} to \code{\link{findTMS}} and related functions).
 }
 
 }

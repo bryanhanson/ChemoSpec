@@ -1,5 +1,3 @@
-
-
 calcSN <- function (x, span, idx) {
 	
 	# Part of ChemoSpec, December 2012, Bryan A. Hanson

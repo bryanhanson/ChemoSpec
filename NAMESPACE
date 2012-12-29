@@ -58,6 +58,11 @@ export(LoopThruSpectra,
 	isWholeNo,
 	plotScree,
 	plotScree2,
-	baselineSpec)
+	baselineSpec,
+       calcSN,
+       findTMS,
+       files2SpectraObject,
+       readBrukerTxt,
+       readJDX)
 
-import(pls, seriation, amap, chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, lattice, grid, rgl, R.utils, mclust, MASS, baseline, IDPmisc)
+import(pls, seriation, amap, chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, lattice, grid, rgl, R.utils, mclust, MASS, baseline, IDPmisc, gsubfn)

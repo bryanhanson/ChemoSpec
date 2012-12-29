@@ -24,7 +24,7 @@ Numeric; a value in 0...1 which gives the quantile of peaks in the entire spectr
 }
 }
 \details{
-The rightmost peak is sought, so the spectrum must be presented in the usual high ppm --> low ppm format.  Calls \link{\code{calcSN}} which will issue warnings when peaks are near the edges of the spectrum.
+The rightmost peak is sought, so the spectrum must be presented in the usual high ppm --> low ppm format.  Calls \code{\link{calcSN}} which will issue warnings when peaks are near the edges of the spectrum.
 }
 \value{
 The index of the peak believed to be the TMS peak.
@@ -49,4 +49,4 @@ plot(vec, type = "l")
 abline(v = ans, col = "red")
 
 }
-\keyword{ utility }
+\keyword{ utilities }

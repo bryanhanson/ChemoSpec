@@ -4,11 +4,12 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
-##### Version 1.6-1
-Date:
+##### Version 1.60-1
+Date: 28 Dec 2012 (Devel version on Github)
 >> Added function readJDX which can read the IR implementation of the JCAMP-DX standard.
 >> Added function readBrukerTxt which can read NMR txt files from Bruker instruments.
 >> Added function files2SpectraObject which is a greatly enhanced means of importing more spectral formats.
+>> Added functions calcSN and findTMS which work with the above functions.
 >> Modified getManyCsv so that it warns about deprecation when run.
 
 ##### Version 1.51-2

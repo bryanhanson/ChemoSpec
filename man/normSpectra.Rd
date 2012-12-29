@@ -7,12 +7,13 @@ This function currently has one option for normalization, and that is \code{ti} 
 }
 
 \usage{
-normSpectra(spectra, method = "ti")
+normSpectra(spectra, method = "TotInt", Range)
 }
 
 \arguments{
   \item{spectra}{ An object of S3 class \code{"Spectra"} to be normalized.}
   \item{method}{ One of \code{c("ti")} giving the method for normalization.}
+  \item{Range}{ A logical expression giving the frequency range over which to sum intensities, before dividing the entire spectrum by the summed values.  For examples of constructing these expressions, see the examples in \code{\link{removeFreq}}.}
 }
 
 \value{

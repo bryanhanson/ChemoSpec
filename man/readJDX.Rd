@@ -5,7 +5,7 @@
 Read and process a JCAMP-DX file.
 }
 \description{
-This function reads files with the JCAMP-DX format (and extension ".dx").  This function is not extensively tested.  It does not work with NMR data.  Not normally called by the user; used by\link{\code{files2SpectraObject}}.
+This function reads files with the JCAMP-DX format (and extension ".dx").  This function is not extensively tested.  It does not work with NMR data.  Not normally called by the user; used by \code{\link{files2SpectraObject}}.
 }
 \usage{
 readJDX(file = "", debug = FALSE)
@@ -35,4 +35,4 @@ The details of the JCAMP-DX formats can be found at at \url{http://www.jcamp-dx.
 \author{
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
-\keyword{ utility }
+\keyword{ utilities }
