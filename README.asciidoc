@@ -13,7 +13,7 @@ install_github(repo = "ChemoSpec", username = "bryanhanson", branch = "master")
 
 library("ChemoSpec")
 
-If you use branch = "devel" you can get the development branch if it is available.  My habit is to keep these operational but not necessarily complete.  Devel versions would be ahead of what's on CRAN.
+If you use branch = "devel" you can get the development branch if it is available.  Devel versions would be ahead of what's on CRAN.
 
 From CRAN using R:
 ------------------

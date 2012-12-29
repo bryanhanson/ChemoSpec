@@ -1,5 +1,5 @@
 normSpectra <-
-function(spectra, method = "ti") {
+function(spectra, method = "TotInt", Range = NULL) {
 	
 # Function to Normalize the data in a Spectra object
 # Part of the ChemoSpec package
@@ -10,9 +10,20 @@ function(spectra, method = "ti") {
 
 # normalize by a row by the sum of its entries:
 
-	if (method == "ti") {
+	if (method == "TotInt") {
 		for (n in 1:length(spectra$names)) {
 			S <- sum(spectra$data[n,])
+			spectra$data[n,] <- spectra$data[n,]/S
+			}
+		}
+
+# normalize by a range of specified values:
+
+	if (method == "Range") {
+		if (is.null(Range)) stop("No range given")
+		rfi <- which(Range)
+		for (n in 1:length(spectra$names)) {
+			S <- sum(spectra$data[n,rfi])
 			spectra$data[n,] <- spectra$data[n,]/S
 			}
 		}

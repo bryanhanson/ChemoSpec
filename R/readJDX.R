@@ -1,11 +1,11 @@
-readJDX <- function (file = ""){
+readJDX <- function (file = "", debug = FALSE){
 
 # ChemoSpec, Bryan Hanson, November 2012
 
-# This function works for the JCAMP-DX format for IR Spectra
-# Untested with other formats or options
-# Handles AFFN format for the data block and only with '+', '-' or ' ' as the separator
+# This function works with the JCAMP-DX format
 # The data block must be of the type XYDATA=(X++(Y..Y))
+# Handles AFFN format for the data block and only with '+', '-' or ' ' as the separator
+# Not extensively tested
 
 # We need several things out of the JCAMP-DX file format:
 # FIRSTX, LASTX, NPOINTS, XYDATA
@@ -16,18 +16,23 @@ readJDX <- function (file = ""){
 	# Check for compound JCAMP files, these will have more than one title
 	# The standard requires that title be in the first line; this is a check for parsing non-dx files
 	
-	cmpd <- grep ("^##TITLE=.*$", jdx)
+	cmpd <- grep("^##TITLE=.*$", jdx)
 	if (cmpd > 1) stop("Compound data sets not supported")
 	if (!cmpd == 1) warning("This may not be a JCAMP-DX file")
 	
-#	cat("\nFile = ", file, "\n")
+	# Check for NMR data which is not supported
 	
-	# This next grep finds this string: ##XYDATA=(X++(Y..Y)) which is the start of the y data
-	spcstart <-  grep ("^##XYDATA=\\(X\\+\\+\\(Y\\.\\.Y\\)\\)$", jdx) + 1
+	ntup <- grepl("^##NTUPLES", jdx)
+	if (any(ntup)) stop("This looks like NMR data with real & imaginary parts, which is not supported")
+	
+	if (debug) cat("\nFile = ", file, "\n")
+	
+	# This next grep finds this string: ##XYDATA= (X++(Y..Y)) which is the start of the y data
+	spcstart <-  grep("^##XYDATA=\\s*\\(X\\+\\+\\(Y\\.\\.Y\\)\\)$", jdx) + 1
 	if (spcstart == 1) stop("Couldn't find the data block start (see ?readJDX for supported formats)")
 	
 	# And then the end of the y values
-	spcend <- grep ("^##END=[[:blank:]]*$", jdx) - 1
+	spcend <- grep("^##END=[[:blank:]]*$", jdx) - 1
 	if (spcend == 0) stop("Couldn't find the data block end")
 	
 	# Some checks
@@ -39,46 +44,58 @@ readJDX <- function (file = ""){
 	# Need to drop everything up to the first separator
 	
 	yValues <- jdx[spcstart:spcend] # a series of broken strings
+	# The first value is a frequency marker, need to remove it
+	# It may have a decimal or not, it may have a + or - or
+	# spaces or none of the above ahead of it
+	# Using sub gets only the first instance (compared to gsub)
 	for (n in 1:length(yValues)) {
-		yValues[n] <- sub("[[:digit:]]+(\\+|-|\\s)", "", yValues[n])
+		yValues[n] <- sub("\\s*(\\+|-)*[[:digit:]]+\\.*[[:digit:]]*(\\+|-|\\s)", "", yValues[n])
 	}
 	
 	yValues <- paste(yValues, collapse = " ") # concantenated into one long string
-	yValues <- gsub("\\+", " ", yValues) # replace '+' separators with space
-	yValues <- gsub("-", " -", yValues) # replace '-' separators with ' -' -- needed to preserve neg values	
-	yValues <- strsplit(yValues, split = "\\s") # broken into a vector at each ' '
+	yValues <- gsub("\\+", " ", yValues)
+	# replace '+' separators with space (you can have + with no space around it)
+	yValues <- gsub("-", " -", yValues) # replace '-' separators with ' -' -- needed to preserve neg values
+	yValues <- sub("\\s*", "", yValues) # remove any leading spaces
+	yValues <- strsplit(yValues, split = "\\s+") # broken into a vector at each ' '
 	yValues <- as.numeric(unlist(yValues))
 
 	# Now get other the values & check a few things, fix up some values too
 	
-	firstX <- grep("^##FIRSTX=[[:digit:]]+$", jdx)
+	firstX <- grep("^##FIRSTX=", jdx)
 	if (firstX == 0) stop("Couldn't find FIRSTX")
 	firstX <- jdx[firstX]
 	firstX <- gsubfn("##FIRSTX=", replacement = "", firstX)
 	firstX <- as.numeric(firstX)
 
-	lastX <- grep("^##LASTX=[[:digit:]]+$", jdx)
+	lastX <- grep("^##LASTX=", jdx)
 	if (lastX == 0) stop("Couldn't find LASTX")
 	lastX <- jdx[lastX]
 	lastX <- gsubfn("##LASTX=", replacement = "", lastX)
 	lastX <- as.numeric(lastX)
 
-	npoints <- grep("^##NPOINTS=[[:digit:]]+$", jdx)
+	npoints <- grep("^##NPOINTS=", jdx)
 	if (npoints == 0) stop("Couldn't find NPOINTS")
 	npoints <- jdx[npoints]
 	npoints <- gsubfn("##NPOINTS=", replacement = "", npoints)
 	npoints <- as.integer(npoints)
 
-#	cat("NPOINTS = ", npoints, "\n")
-#	cat("length(yValues) = ", length(yValues), "\n")
+	if (debug) cat("\tNPOINTS = ", npoints, "\n")
+	if (debug) cat("\tActual no. data points found  = ", length(yValues), "\n")
 
 	if (!npoints == length(yValues)) stop("NPOINTS and length of data block don't match")
 
-#	cat("firstX = ", firstX, "\n")
-#	cat("lastX = ", lastX, "\n")
+	if (debug) cat("\tfirstX = ", firstX, "\n")
+	if (debug) cat("\tlastX = ", lastX, "\n")
 	
+	yFac <- grep("^##YFACTOR=", jdx)
+	if (yFac == 0) stop("Couldn't find YFACTOR")
+	yFac <- gsubfn("##YFACTOR=", replacement = "", jdx[yFac])
+	yFac <- as.numeric(yFac)
+	yValues <- yValues*yFac
+
 	actDX <- (lastX-firstX)/(npoints - 1)
 	xValues <- seq(firstX, lastX, by = actDX)
 
-	res <- data.frame(xValues = xValues, yValues = yValues)
+	res <- data.frame(x = xValues, y = yValues)
 }

@@ -5,7 +5,7 @@
 Merge CSV Files in a Directory into a Spectra Object
 }
 \description{
-This function will read all .csv files in a directory, and use the file names to construct group membership and assign colors and symbols.  All the data is placed into an object of S3 class \code{"Spectra"}.
+This function will read all .csv files in a directory, and use the file names to construct group membership and assign colors and symbols.  All the data is placed into an object of S3 class \code{"Spectra"}.  This function is DEPRECATED and will go away eventually.  Please use \code{\link{files2SpectraObject}} instead.
 }
 \usage{
 getManyCsv(gr.crit = NULL, gr.cols = c("auto"),
