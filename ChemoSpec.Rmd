@@ -1,5 +1,0 @@
-# ChemoSpec
-
-```{r,echo=FALSE,message=FALSE}
-library("ChemoSpec")
-```
