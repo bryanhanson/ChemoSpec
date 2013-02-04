@@ -103,8 +103,8 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 			spectra$freq <- as.integer(spectra$freq)
 			}
 		
-		if (missing(span)) span <- 120
-		if (missing(sn)) sn <- 1000
+		if (!exists("span")) span <- 120
+		if (!exists("sn")) sn <- 1000
 		TMS <- findTMS(spectra$data[best,], span, sn)
 #		cat("Best TMS =", TMS, "\n\n")
 

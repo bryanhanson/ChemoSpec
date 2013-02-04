@@ -35,7 +35,7 @@ A character string describing the data set that will be stored.  This string is 
 A character string giving the format of the files to be processed.  Default is \code{csv} for US-style csv files.  Alternatively, you can specify \code{csv2} for EU-style csv files, \code{dx} for JCAMP-DX files, or \code{Btxt} for Bruker NMR text files.
 }
   \item{alignTMS}{
-Logical indicating if we should try to align the TMS (or TSP) peak in proton NMR spectra (applies to \code{format = "Btxt"} only).
+Logical indicating if we should try to align the TMS (or TSP) peak in proton NMR spectra (applies to \code{format = "Btxt"} only).  See Details.
 }
 
   \item{out.file}{
@@ -57,6 +57,10 @@ The matching of \code{gr.crit} against the sample file names is done one at a ti
 
 
 \code{files2SpectraObject} acts on the files in the current working directory.  If \code{format = "csv"} these should be .csv files with the first column containing the frequency values and the second column containing the intensity values.  The columns should be unlabeled.  The frequency column is assumed to be the same in all .csv files.  If \code{format = "dx"} or \code{format = "Btxt"}, then the corresponding file type will be processed (consider setting \code{debug = TRUE} for these formats).  See \code{\link{readJDX}} and \code{\link{readBrukerTxt}} for limitations (there are many options with these formats, especially JCAMP, and most are untested).
+
+
+If \code{format = "Btxt"} and \code{alignTMS = TRUE}, the function will try to find the TMS peak and align the spectra on it.  Also, spectra of different chemical shift ranges are allowed for this format.  In this case, the spectra will first be aligned on TMS and then the set of spectra will be trimmed so that there are no NA's in \code{Spectra$data}.  Warnings are given as this is done.  This is experimental so please check your results carefully!  Please feel free to submit data sets that give trouble and I can see if I can improve the processing.
+
 
 There should be no other files of the given format (extension) in the directory except those containing the data to be processed by \code{files2SpectraObject}, as all files with that format in the directory will be processed.
 }

@@ -46,7 +46,7 @@ chkSpectra(CuticleIR, confirm = TRUE) # OK
 # Use removeSample instead.
 remove <- c(20:40) 
 CuticleIR$freq <- CuticleIR$freq[-remove]
-\donttest{chkSpectra(CuticleIR, confirm = TRUE) # not OK, you didn't listen to me!}
+\dontrun{chkSpectra(CuticleIR, confirm = TRUE) # not OK, you didn't listen to me!}
 }
 
 \keyword{ classes }

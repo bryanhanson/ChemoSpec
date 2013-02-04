@@ -1,6 +1,6 @@
 \name{sPlotSpectra}
 \alias{sPlotSpectra}
-\title{s-Plot of Spectra Data}
+\title{s-Plot of Spectra Data Post PCA}
 
 \description{\code{\link{sPlotSpectra}} produces a scatter plot of the correlation of the variables against their covariance for a chosen principal component.  It allows visual identification of variables driving the separation and thus is a useful adjunct to traditional loading plots.}
 

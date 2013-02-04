@@ -39,7 +39,6 @@ function(spectra, confirm = FALSE) {
 	if ((!w) && (confirm)) cat("You must be awesome: These spectra look just dandy!")
 	if (w) {
 		cat("*** There seem to be one or more problems with these spectra!\n")
-		cat("*** Is the spectral data set loaded different from the one you tried to plot?\n")
 		stop("Sorry, we can't continue this way: It's not me, it's you!")
 		}
 	

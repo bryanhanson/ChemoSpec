@@ -1,0 +1,29 @@
+NOTE:  ChemoSpec requires mclust 4.0 as of version 1.51-2.
+
+# How to install ChemoSpec
+
+## To install from Github using R:
+
+install.packages("devtools")
+
+library("devtools")
+
+install_github(repo = "ChemoSpec", username = "bryanhanson", branch = "master")
+
+library("ChemoSpec")
+
+If you use branch = "devel" you can get the development branch if it is available.  Devel versions would be ahead of what's on CRAN.
+
+## From CRAN using R:
+
+chooseCRANmirror() # select a CRAN mirror
+
+install.packages("ChemoSpec")
+
+library("ChemoSpec")
+
+## To get to the Vignette:
+
+vignette("ChemoSpec")
+
+Questions?  hanson@depauw.edu
