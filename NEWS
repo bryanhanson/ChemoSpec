@@ -7,6 +7,8 @@ URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 ##### Version 1.60-2
 Date: 4 Feb 2013 (Devel version on Github)
 >> Various documentation tweaks and improvement to github site.
+>> Removed plotScoresG due to continuing lack of universal ggobi availability.
+>> Built using R 3.0 RC
 
 ##### Version 1.60-1
 Date: 28 Dec 2012 (Devel version on Github)

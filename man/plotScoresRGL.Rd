@@ -68,7 +68,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \seealso{
-Other functions in \code{ChemoSpec} that plot PCA scores are: \code{\link{plotScores}} (2D version), \code{\link{plotScores3D}} (uses \code{lattice} graphics) and \code{\link{plotScoresG}} which uses \code{ggobi} and \code{rggobi}.
+Other functions in \code{ChemoSpec} that plot PCA scores are: \code{\link{plotScores}} (2D version), and \code{\link{plotScores3D}} (uses \code{lattice} graphics).
 }
 \examples{
 data(CuticleIR)

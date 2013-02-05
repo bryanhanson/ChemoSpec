@@ -36,7 +36,7 @@ K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate Statistical Analy
 
 \seealso{
 See \code{\link[pcaPP]{PCAgrid}} on which this function is based.  For the classical version, see \code{\link{classPCA}}.\cr
-For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \code{\link{plotLoadings}}, \code{\link{plotScoresG}}, \code{\link{plotScores3D}}
+For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \code{\link{plotLoadings}}, \code{\link{plotScores3D}}
 }
 
 \examples{
