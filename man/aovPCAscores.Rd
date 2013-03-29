@@ -36,7 +36,9 @@ Argument \code{plot} is used to select a matrix from those in \code{LM}.  The re
 Returns the PCA results, and creates the requested plot.
 }
 \references{
-Harrington, et. al 2005, Pinto, et. al 2008.
+Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for Discriminant Analysis: ..." Analytica Chimica Acta 629.1-2 (2008): 47-55.
+
+Harrington, Vieira, Espinoza, Nien, Romero, and Yergey. "Analysis of Variance--Principal Component Analysis: ..." Analytica Chimica Acta 544.1-2 (2005): 118-27.
 }
 \author{
 Matthew J. Keinsley and Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
