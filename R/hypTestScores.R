@@ -20,17 +20,15 @@ hypTestScores <-
 	
 	# create formula
 	
-	form <- as.formula(paste("scores", "~", paste(fac, collapse = "*")))
+	form <- with(spectra, as.formula(paste("scores", "~", paste(fac, collapse = "*"))))
 
 	
 	# Do the hyp test; R knows if scores is multivariate or not,
 	# but the summary format differs between aov and manova
 	# 
 
-	attach(spectra) # so the fac variables are visible
 	if (length(pcs) > 1) out <- manova(formula = form, ...)
 	if (length(pcs) == 1) out <- aov(formula = form, ...)
-	detach(spectra)
 	print(form)
 	print(summary(out))
 	
