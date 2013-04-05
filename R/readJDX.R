@@ -32,7 +32,8 @@ readJDX <- function (file = "", debug = FALSE){
 	if (spcstart == 1) stop("Couldn't find the data block start (see ?readJDX for supported formats)")
 	
 	# And then the end of the y values
-	spcend <- grep("^##END=[[:blank:]]*$", jdx) - 1
+#	spcend <- grep("^##END=[[:blank:]]*$", jdx) - 1
+	spcend <- grep("^##END=", jdx) - 1 # some files don't end as above
 	if (spcend == 0) stop("Couldn't find the data block end")
 	
 	# Some checks
