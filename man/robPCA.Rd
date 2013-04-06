@@ -18,8 +18,7 @@ robPCA(spectra, choice = "noscale")
 An object of S3 class \code{"Spectra"}
 }
   \item{choice}{
-A character vector describing the type of scaling to be carried out.  One of \code{c("noscale", "mad")}. NOTE: With recent changes to package \code{pcaPP}, a warning is issued if "mad" is chosen.  This appears to come from within \code{pcaPP} and only concerns performance.
-
+A character vector describing the type of scaling to be carried out.  One of \code{c("noscale", "mad")}.
 }
 }
 
