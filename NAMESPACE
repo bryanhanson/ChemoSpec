@@ -64,4 +64,6 @@ export(LoopThruSpectra,
        readBrukerTxt,
        readJDX)
 
-import(pls, seriation, amap, chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, lattice, grid, rgl, R.utils, mclust, MASS, baseline, IDPmisc, gsubfn)
+import(pls, amap, chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, grid, rgl, R.utils, mclust, MASS, baseline, IDPmisc, gsubfn, lattice)
+
+importFrom(seriation, hmap)
