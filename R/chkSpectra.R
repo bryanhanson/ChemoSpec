@@ -36,9 +36,19 @@ function(spectra, confirm = FALSE) {
 	if (!identical(co, sy)) { warning("The dimensions don't make sense (colors, symbols)"); w <- TRUE }
 	if (!identical(sy, ay)) { warning("The dimensions don't make sense (symbols, alt symbols)"); w <- TRUE }
 	
-	if ((!w) && (confirm)) cat("You must be awesome: These spectra look just dandy!")
+	# Add a check for extra list elements (useful with HyperChemoBridge conversions)
+
+	if ((length(spectra) > 9 ) && (confirm)) {
+		reqd <- c("freq", "data", "names", "groups", "colors",
+			"sym", "alt.sym", "unit", "desc")
+		spc <- spectra[!names(spectra) %in% reqd]
+		message(">>> Extra data was found in the spectra object:")
+		str(spc)
+		}
+	
+	if ((!w) && (confirm)) message(">>> You must be awesome: These spectra look just dandy!")
 	if (w) {
-		cat("*** There seem to be one or more problems with these spectra!\n")
+		message("*** There seem to be one or more problems with these spectra!")
 		stop("Sorry, we can't continue this way: It's not me, it's you!")
 		}
 	

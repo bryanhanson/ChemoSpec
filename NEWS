@@ -4,6 +4,12 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 1.60-5
+Date: 2013-08-13
+>> Modified chkSpectra so that it reports on any extra data in the Spectra object.  This will be useful with HyperChemBridge.
+>> Added bug reports to DESCRIPTION
+>> Fixed some import issues for CRAN
+
 ##### Version 1.60-4
 Date: 2 April 2013
 >> Fix hypTestScores for CRAN; remove attach/detach.
