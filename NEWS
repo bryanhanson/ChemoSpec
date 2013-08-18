@@ -4,9 +4,22 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 1.60-9
+Date: 2013-08-16
+>> Added dependency on R >= 3.0 to pass all CRAN checks.
+
+##### Version 1.60-8
+Date: 2013-08-14
+>> Finally the vignette suitable for CRAN!
+
+##### Version 1.60-7
+Date: 2013-08-14
+>> Removed BuildVignettes from DESCRIPTION per CRAN.
+
 ##### Version 1.60-6
 Date: 2013-08-13
->> Moved vignettes for CRAN.
+>> Moved vignette to vignettes directory for CRAN.
+>> Set BuildVignettes: FALSE in DESCRIPTION.
 
 ##### Version 1.60-5
 Date: 2013-08-13
