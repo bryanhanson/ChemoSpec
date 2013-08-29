@@ -4,6 +4,11 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 1.61-0
+Date: 2013-08-28
+>> Added ability to use expressions in plot titles.
+>> Modified readJDX to accept EU and Latin American style dx files which have ',' instead of '.' as the decimal point.
+
 ##### Version 1.60-9
 Date: 2013-08-16
 >> Added dependency on R >= 3.0 to pass all CRAN checks.

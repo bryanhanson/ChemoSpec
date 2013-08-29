@@ -53,7 +53,8 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
 data(SrE.IR)
-hcaSpectra(SrE.IR, title = "Serenoa repens IR Spectra")
+myt <- expression(italic(S.)~italic(repens)~IR~Spectra)
+hcaSpectra(SrE.IR, title = myt)
 }
 \keyword{ multivariate }
 \keyword{ cluster }

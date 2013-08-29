@@ -12,7 +12,8 @@ function(spectra, pca, title = "no title provided",
 	if (!class(spectra) == "Spectra") stop("Your spectral data set looks corrupt!")
 	if (!("princomp" %in% class(pca) || "prcomp" %in% class(pca))) stop("Your pca results look corrupt!")
 	
-	title <- paste(title, ": Loadings Plot", sep = "")
+#	title <- paste(title, ": Loadings Plot", sep = "")
+	title <- bquote(.(eval(title)) ~':'~Loadings~Plot)
 
 	# Stack the requested data into a data frame for plotting
 	

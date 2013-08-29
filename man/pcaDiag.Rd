@@ -64,6 +64,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 data(SrE.IR)
 results <- classPCA(SrE.IR, choice = "noscale")
 temp <- pcaDiag(SrE.IR, results, pcs = 2, plot = "OD")
+temp <- pcaDiag(SrE.IR, results, pcs = 2, plot = "SD")
 }
 
 \keyword{ multivariate }

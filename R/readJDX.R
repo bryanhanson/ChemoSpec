@@ -49,8 +49,10 @@ readJDX <- function (file = "", debug = FALSE){
 	# It may have a decimal or not, it may have a + or - or
 	# spaces or none of the above ahead of it
 	# Using sub gets only the first instance (compared to gsub)
+	# Aug 2013: added processing of ',' as well as '.' as the decimal point
 	for (n in 1:length(yValues)) {
-		yValues[n] <- sub("\\s*(\\+|-)*[[:digit:]]+\\.*[[:digit:]]*(\\+|-|\\s)", "", yValues[n])
+#		yValues[n] <- sub("\\s*(\\+|-)*[[:digit:]]+\\.*[[:digit:]]*(\\+|-|\\s)", "", yValues[n])
+		yValues[n] <- sub("\\s*(\\+|-)*[[:digit:]]+(\\.|,)?[[:digit:]]*\\s*", "", yValues[n])
 	}
 	
 	yValues <- paste(yValues, collapse = " ") # concantenated into one long string
@@ -58,6 +60,7 @@ readJDX <- function (file = "", debug = FALSE){
 	# replace '+' separators with space (you can have + with no space around it)
 	yValues <- gsub("-", " -", yValues) # replace '-' separators with ' -' -- needed to preserve neg values
 	yValues <- sub("\\s*", "", yValues) # remove any leading spaces
+	yValues <- gsub(",", ".", yValues) # replace ',' with '.' -- needed for EU style files
 	yValues <- strsplit(yValues, split = "\\s+") # broken into a vector at each ' '
 	yValues <- as.numeric(unlist(yValues))
 
@@ -67,12 +70,14 @@ readJDX <- function (file = "", debug = FALSE){
 	if (firstX == 0) stop("Couldn't find FIRSTX")
 	firstX <- jdx[firstX]
 	firstX <- gsubfn("##FIRSTX=", replacement = "", firstX)
+	firstX <- sub(",", ".", firstX) # for EU style files
 	firstX <- as.numeric(firstX)
 
 	lastX <- grep("^##LASTX=", jdx)
 	if (lastX == 0) stop("Couldn't find LASTX")
 	lastX <- jdx[lastX]
 	lastX <- gsubfn("##LASTX=", replacement = "", lastX)
+	lastX <- sub(",", ".", lastX) # for EU style files
 	lastX <- as.numeric(lastX)
 
 	npoints <- grep("^##NPOINTS=", jdx)
@@ -92,7 +97,9 @@ readJDX <- function (file = "", debug = FALSE){
 	yFac <- grep("^##YFACTOR=", jdx)
 	if (yFac == 0) stop("Couldn't find YFACTOR")
 	yFac <- gsubfn("##YFACTOR=", replacement = "", jdx[yFac])
+	yFac <- sub(",", ".", yFac) # for EU style files
 	yFac <- as.numeric(yFac)
+	if (debug) cat("\tyFac = ", yFac, "\n")
 	yValues <- yValues*yFac
 
 	actDX <- (lastX-firstX)/(npoints - 1)
