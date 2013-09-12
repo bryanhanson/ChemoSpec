@@ -2,13 +2,12 @@
 %\VignetteDepends{chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, pls, lattice, grid, rgl, R.utils, mclust, mvbutils, sna, knitr}
 %\VignetteKeywords{multivariate}
 %\VignettePackage{ChemoSpec}
+%\VignetteEngine{knitr:knitr}
 
 %%%% This is a knitr not sweave document.
 
 \documentclass[10pt]{article}
 \pagestyle{headings}
-
-%\graphicspath{{./graphics/}} % knitr uses it's own hook, see later
 
 \usepackage{mathpazo}
 \usepackage{color}
@@ -24,7 +23,6 @@
 \usepackage{ccaption} % Stuff to change the format of a figure caption
 \captionnamefont{\bfseries\large}
 \captiontitlefont{\bfseries\large}
-%\renewcommand{\figurename}{Example}
 
 \setlength{\belowcaptionskip}{10pt} % not part of ccaption
 
@@ -43,7 +41,6 @@
 
 rm(list = ls())
 options(width =  50, show.signif.stars = FALSE)
-#if (!file.exists("graphics")) dir.create("graphics")
 
 suppressMessages(library("knitr"))
 suppressMessages(library("ChemoSpec"))
@@ -56,9 +53,6 @@ vers <- paste("(Package Version ", desc$Version, ")", sep = "")
 
 # Stuff specifically for knitr:
 
-#Sys.setenv(PATH = paste('/usr/texbin', Sys.getenv('PATH'), sep = ':'))
-
-#bd <- paste(getwd(), "graphics", sep = "/")
 opts_chunk$set(out.width = "0.8\\textwidth", fig.align = "center", fig.width = 7, fig.height = 7, cache = FALSE)
 
 # Note: defaults are eval = TRUE, echo = TRUE

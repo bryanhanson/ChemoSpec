@@ -13,7 +13,7 @@ c.method = "complete", d.method = "euclidean", use.sym = FALSE, ...) {
 	distance <- rowDist(as.data.frame(spectra$data, row.names = spectra$names), method = d.method)
 
 #	title <- paste(title, ": HCA Analysis", sep = "")
-	title <- bquote(.(eval(title)) ~':'~HCA~Analysis)
+	title <- bquote(bold(.(eval(title)):~HCA~Analysis))
 	sub.title <- paste("clustering method: ", c.method, "      distance method: ", d.method, sep = "")
 
 	plotHCA(spectra = spectra, distance = distance, title = title, sub.title = sub.title,

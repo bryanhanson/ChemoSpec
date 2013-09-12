@@ -17,7 +17,7 @@ function(pca, title = "no title provided", ...) {
 	for (n in c(1:length(variance))) {cumvariance[n] <- sum(variance[1:n])}
 
 #	title <- paste(title, ": Scores by PC", sep = "")
-	title <- bquote(.(eval(title)) ~':'~Scores~by~PC)
+	title <- bquote(bold(.(eval(title)) ~':'~Scores~by~PC))
 
 	plot(rep(1:10, each = nrow(pca$x)), as.vector(pca$x[,1:10]), type = "p",
 		col = "red", main = title, xlab = "component", ylab = "scores",
