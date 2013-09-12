@@ -31,7 +31,8 @@ sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05,
   	crr <- cv/(sdv*pca$sdev[pc])
 	ans <- data.frame(cov = cv, corr = crr)
 
-	title = paste(title, ": ", "s-Plot", sep = "")		
+#	title = paste(title, ": ", "s-Plot", sep = "")		
+	title <- bquote(bold(.(eval(title)) ~':'~S-Plot))
 
 	plot(cv, crr, main = title, xlab = "covariance", ylab = "correlation",
 		pch = 20, ...)

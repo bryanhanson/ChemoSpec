@@ -31,6 +31,9 @@ function(spectra, pca, title = "no title provided",
 		}
 	df <- data.frame(pca$x[,pcs], group = spectra$groups)
 	groups <- dlply(df, "group", subset, select = c(1,2))
+
+#	new.title <- paste(title, ": PCA Score Plot", sep = "") # prepare plot title
+	new.title <- bquote(bold(.(eval(title))~':'~PCA~Score~Plot))
 		
 ### First case: plot everything by group (most general, other cases are subsets of this)
 
@@ -55,8 +58,6 @@ function(spectra, pca, title = "no title provided",
 	y.all[2] <- y.all[2]*1.15 # leave room for annotations at top of plot
 
 	# Plot the data points
-
-	new.title <- paste(title, ": PCA Score Plot", sep = "") # prepare plot title
 
 	if (!use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
 	col = spectra$colors, xlim = x.all, ylim = y.all, pch = 20, ...)
@@ -97,8 +98,6 @@ function(spectra, pca, title = "no title provided",
 
 	# Plot the data points
 
-	new.title <- paste(title, ": PCA Score Plot", sep = "") # prepare plot title
-
 	if (!use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
 	col = spectra$colors, xlim = x.all, ylim = y.all, pch = 20, ...)
 
@@ -122,8 +121,6 @@ function(spectra, pca, title = "no title provided",
 	y.all[2] <- y.all[2]*1.15 # leave room for annotations at top of plot
 
 	# Plot the data points
-
-	new.title <- paste(title, ": PCA Score Plot", sep = "") # prepare plot title
 
 	if (!use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
 	col = spectra$colors, xlim = x.all, ylim = y.all, pch = 20, ...)
@@ -159,8 +156,6 @@ function(spectra, pca, title = "no title provided",
 	y.all[2] <- y.all[2]*1.15 # leave room for annotations at top of plot
 
 	# Plot the data points
-
-	new.title <- paste(title, ": PCA Score Plot", sep = "") # prepare plot title
 
 	if (!use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
 	col = spectra$colors, xlim = x.all, ylim = y.all, pch = 20, ...)

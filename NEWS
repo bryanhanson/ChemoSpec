@@ -4,6 +4,21 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 1.61-2
+Date: 2013-09-11
+>> Added knitr as vignette engine at CRAN request.
+>> Added .Rbuildignore at CRAN request (visible version is R.buildignore).
+>> Removed leftover vignette in inst/doc.
+
+##### Version 1.61-1
+Date: 2013-09-02
+>> Made sure plot labels were bold if an expression was passed to it.
+
+##### Version 1.61-0
+Date: 2013-08-28
+>> Added ability to use expressions in plot titles.
+>> Modified readJDX to accept EU and Latin American style dx files which have ',' instead of '.' as the decimal point.
+
 ##### Version 1.60-9
 Date: 2013-08-16
 >> Added dependency on R >= 3.0 to pass all CRAN checks.

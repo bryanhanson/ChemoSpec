@@ -5,8 +5,7 @@ function(spectra, pca, title = "no title provided",
 # Function to plot loadings vs. frequencies
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, June 2008
-# This is the lattice version
-
+	
 	if (missing(spectra)) stop("No spectral data set provided")
 	if (missing(pca)) stop("No PCA results provided")
 	if (!class(spectra) == "Spectra") stop("Your spectral data set looks corrupt!")
@@ -34,11 +33,13 @@ function(spectra, pca, title = "no title provided",
 	
 	# Do the plot
 	# Note: no way exists to plot the x axis reversed for multiple panels
-	
-	trellis.par.set(par.sub.text = list(font = 1)) # makes subtitle plain text	
+
 	p <- xyplot(y ~ x | z, data = df,
-		main = title,
-		xlab = spectra$unit[1], ylab = "", sub = pca$method,
+		xlab = spectra$unit[1], ylab = "",
+		sub = list(label = pca$method,
+			fontface = "plain"),
+		main = list(label = title,
+			fontface = "bold", cex = 1.5),
 		layout = c(1, length(loads) + 1),
 		strip.left = TRUE, strip = FALSE, col = "black",
 		scales = list(x = "same", y = "free"),
@@ -49,7 +50,7 @@ function(spectra, pca, title = "no title provided",
 					panel.xyplot(..., type = type)
 					}
 			}, ...)
-		
+	
 	plot(p)
 	}
 

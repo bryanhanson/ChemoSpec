@@ -50,8 +50,6 @@ apca1 <- aovPCAscores(NewIR, mats, plot = 1)
 apca2 <- aovPCAscores(NewIR, mats, plot = 2)
 apca3 <- aovPCAscores(NewIR, mats, plot = 3)
 apca5 <- aovPCAloadings(spectra = NewIR, LM = mats, pca = apca1)
-
-
 }
 \keyword{ multivariate }
 \keyword{ htest }
