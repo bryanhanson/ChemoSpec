@@ -4,6 +4,10 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 1.61-3
+Date: 2013-09-20
+>> Corrected vignette engine typo.
+
 ##### Version 1.61-2
 Date: 2013-09-11
 >> Added knitr as vignette engine at CRAN request.

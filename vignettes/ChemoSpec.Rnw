@@ -2,7 +2,7 @@
 %\VignetteDepends{chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, pls, lattice, grid, rgl, R.utils, mclust, mvbutils, sna, knitr}
 %\VignetteKeywords{multivariate}
 %\VignettePackage{ChemoSpec}
-%\VignetteEngine{knitr:knitr}
+%\VignetteEngine{knitr::knitr}
 
 %%%% This is a knitr not sweave document.
 
