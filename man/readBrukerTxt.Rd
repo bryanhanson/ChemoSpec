@@ -1,13 +1,15 @@
 \name{readBrukerTxt}
 \alias{readBrukerTxt}
+\alias{readBrukerAscii}
 \title{
-Read and process a Bruker NMR spectrum (.txt) as written by their software.
+Read and process a Bruker NMR spectrum saved using Topspin
 }
 \description{
-This function reads files written by the Bruker software (with extension ".txt").  This function is not extensively tested.  Not normally called by the user; used by\code{\link{files2SpectraObject}}.
+These functions read files written by the Bruker Topspin software.  This function is not extensively tested.  Not normally called by the user; used by\code{\link{files2SpectraObject}}.
 }
 \usage{
 readBrukerTxt(file = "", debug = FALSE)
+readBrukerAscii(file = "", debug = FALSE)
 }
 
 \arguments{

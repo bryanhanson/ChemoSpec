@@ -21,5 +21,6 @@ function(spectra, distance, title, sub.title, method, use.sym, ...) {
 	leg.sym <- c("", leg.sym)
 	if (!use.sym) legend("topright", leg.txt, text.col = leg.col, bty = "n")
 	if (use.sym) legend("topright", leg.txt, text.col = "black", pch = leg.sym, bty = "n")
+	return(cluster)
 	}
 

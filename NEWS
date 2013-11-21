@@ -4,6 +4,12 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 1.61-4
+Date: 2013-11-20
+>> files2SpectraObject now returns the Spectra object so it is no longer necessary to read the object back into the workspace.
+>> Added a new processing option to files2SpectraObject. Files written with Bruker Topspin command convbin2asc can now be read into a Spectra object.  The format is 'Bascii'.  When debug = TRUE the messages are clean and consistent; messages from other formats need to be  cleaned up.  alignTMS does not yet work!!!! <-- NOTE
+>> findTMS and calcSN gained a debug argument.
+
 ##### Version 1.61-3
 Date: 2013-09-20
 >> Corrected vignette engine typo.

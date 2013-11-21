@@ -1,4 +1,4 @@
-calcSN <- function (x, span, idx) {
+calcSN <- function (x, span, idx, debug = FALSE) {
 	
 	# Part of ChemoSpec, December 2012, Bryan A. Hanson
 
