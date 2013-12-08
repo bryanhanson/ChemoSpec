@@ -49,7 +49,7 @@ See \code{\link{plot2Loadings}} to plot two loadings against each other.
 \examples{
 data(SrE.IR)
 results <- classPCA(SrE.IR, choice = "noscale")
-myt <- expression(bolditalic(S.)~bolditalic(repens)~IR~Spectra)
+myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 plotLoadings(SrE.IR, results, main = myt,
 	loads = 1:2, ref = 1)
 }

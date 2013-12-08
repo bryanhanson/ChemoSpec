@@ -48,8 +48,8 @@ See \code{\link{plotLoadings}} to plot one loading against the original variable
 \examples{
 data(SrE.IR)
 results <- classPCA(SrE.IR, choice = "noscale")
-myt <- expression(bolditalic(S.)~bolditalic(repens)~IR~Spectra)
-plot2Loadings(SrE.IR, title = myt, results,
+myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
+plot2Loadings(SrE.IR, main = myt, results,
 	loads = c(1,2), tol = 0.05)
 }
 \keyword{ multivariate }

@@ -49,8 +49,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 
 \examples{
 data(CuticleIR)
-myt <- expression(bold(paste(bolditalic(P.), phantom(0), bolditalic(oleracea), " IR Spectra")))
-
+myt <- expression(bolditalic(Portulaca)~bolditalic(oleracea)~bold(Cuticle~IR~Spectra))
 plotSpectra(CuticleIR, main = myt,
 	which = c(10:11, 40:41, 100:101, 140:141, 150:151),
 	yrange = c(0,10),

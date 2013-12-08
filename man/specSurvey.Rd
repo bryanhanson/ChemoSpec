@@ -35,7 +35,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
 data(CuticleIR)
-myt <- expression(bold(paste(bolditalic(P.), phantom(0), bolditalic(oleracea), " IR Spectra")))
+myt <- expression(bolditalic(Portulaca)~bolditalic(oleracea)~bold(Cuticle~IR~Spectra))
 specSurvey(CuticleIR, method = "iqr", main = myt)
 }
 \keyword{ hplot }

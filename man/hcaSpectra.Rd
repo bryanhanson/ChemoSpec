@@ -49,7 +49,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
 data(SrE.IR)
-myt <- expression(bolditalic(S.)~bolditalic(repens)~IR~Spectra)
+myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 hcaSpectra(SrE.IR, main = myt)
 }
 \keyword{ multivariate }

@@ -15,10 +15,10 @@ groupNcolor(spectra, gr.crit = NULL, gr.cols = c("auto"))
 An object of S3 class \code{"Spectra"}.  Until this function acts on \code{spectra} it is not quite complete.
 }
   \item{gr.crit}{
-As per \code{\link{getManyCsv}}
+As per \code{\link{files2SpectraObject}}
 }
   \item{gr.cols}{
-As per \code{\link{getManyCsv}}
+As per \code{\link{files2SpectraObject}}
 }
 }
 \value{
@@ -35,7 +35,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \seealso{
-\code{\link{getManyCsv}} for details; \code{\link{sumGroups}} to see the outcome.
+\code{\link{files2SpectraObject}} for details; \code{\link{sumGroups}} to see the outcome.
 
 }
 \keyword{ utilities }

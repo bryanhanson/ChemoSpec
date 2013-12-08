@@ -1,5 +1,5 @@
 plotScree <-
-function(pca, title = "no title provided", ...) {
+function(pca,  ...) {
 
 # Function to do the scree plot
 # Part of the ChemoSpec package
@@ -14,13 +14,10 @@ function(pca, title = "no title provided", ...) {
 	cumvariance <- variance  # temporary definition as a vector of proper length
 	for (n in c(1:length(variance))) {cumvariance[n] <- sum(variance[1:n])}
 
-#	title <- paste(title, ": Scree Plot", sep = "")
-	title <- bquote(bold(.(eval(title)):~Scree~Plot))
-
 	ncp <- length(variance)
 	if (ncp > 10) ncp <- 10
 	
-	plot(c(1:ncp), variance[1:ncp], type = "l", col = "red", main = title, xlab = "factor", ylab = "percent", ylim = c(0,100))
+	plot(c(1:ncp), variance[1:ncp], type = "l", col = "red", xlab = "factor", ylab = "percent", ylim = c(0,100), ...)
 	axis(1, at = c(1:ncp), labels = TRUE)
 	points(c(1:ncp), cumvariance[1:ncp], type="l", col="blue")
 	

@@ -1,5 +1,5 @@
 
-plotSpectra <- function(spectra, title = "no title provided", which = c(1),
+plotSpectra <- function(spectra, which = c(1),
 	yrange = range(spectra$data),
 	offset = 0.0, amplify = 1.0,
 	lab.pos = mean(spectra$freq), ...) {
@@ -16,7 +16,7 @@ plotSpectra <- function(spectra, title = "no title provided", which = c(1),
 	spectrum <- spectra$data[which[1],]*amplify
 
 	plot(spectra$freq, spectrum, type = "l",
-	main = title, xlab = spectra$unit[1], ylab = spectra$unit[2],
+	xlab = spectra$unit[1], ylab = spectra$unit[2],
 	ylim = yrange, col = spectra$colors[which[1]],
 	frame.plot = FALSE, ...)
 	grid(ny = NA, lty = 1)

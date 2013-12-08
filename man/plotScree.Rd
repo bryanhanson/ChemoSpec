@@ -43,7 +43,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 data(SrE.IR)
 results <- classPCA(SrE.IR, choice = "noscale")
-myt <- expression(bolditalic(S.)~bolditalic(repens)~IR~Spectra)
+myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 plotScree(results, main = myt)
 plotScree2(results, main = myt)
 }

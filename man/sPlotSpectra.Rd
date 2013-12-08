@@ -23,7 +23,7 @@ Matthew J. Keinsley and Bryan A. Hanson, DePauw University. \email{hanson@depauw
 \examples{
 data(SrE.IR)
 IR.pca <- classPCA(SrE.IR)
-myt <- expression(bolditalic(S.)~bolditalic(repens)~IR~Spectra)
+myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 splot <- sPlotSpectra(spectra = SrE.IR, pca = IR.pca, pc = 1, tol = 0.005,
 main = myt)
 }

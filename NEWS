@@ -5,12 +5,13 @@ Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
 ##### Version 2.0.0
-Date: 2013-12-06
+Date: 2013-12-07
 >> normSpectra modified to avoid integer overflow.
 >> Modified plotScree & plotScree2 so that data sets with less than 10 components plot.
 >> Freshened up the README.md file.
 >> To facilitate using expressions in plot titles, argument 'title' has been removed from all functions that use base or lattice graphics and now one should use 'main'. The 'title' argument remains for the rgl graphics functions.  THIS WILL BREAK EARLIER CODE, hence the move to a new major version.
 >> Semantic versioning is now in effect.  See semver.org for details.
+>> getManyCsv has been removed (deprecated for one year now).  Use files2SpectraObject instead.
 
 ##### Version 1.61-4
 Date: 2013-11-20

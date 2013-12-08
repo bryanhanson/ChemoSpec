@@ -59,7 +59,7 @@ See \code{\link{hcaSpectra}} for HCA of the entire data set stored in the \code{
 \examples{
 data(SrE.IR)
 results <- classPCA(SrE.IR, choice = "noscale")
-myt <- expression(bolditalic(S.)~bolditalic(repens)~IR~Spectra)
+myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 hcaScores(SrE.IR,  results, scores = c(1:5), main = myt)
 }
 
