@@ -40,7 +40,7 @@ This function calls \code{\link{avgFacLvls}}, and the results are used in \code{
 
 \examples{
 data(CuticleIR)
-# Creat new groups from existing groups
+# Create new groups from existing groups
 # These are used as the factors
 n.groups <-list(genotype = c("G", "T"), treatment = c("C", "E"))
 NewIR <- splitSpectraGroups(CuticleIR, n.groups)

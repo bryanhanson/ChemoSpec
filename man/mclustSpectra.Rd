@@ -8,8 +8,7 @@ This function is a wrapper for the \code{Mclust} function and associated plottin
 }
 \usage{
 mclustSpectra(spectra, pca, pcs = c(1:3), dims = c(1, 2),
-	title = "no title provided", plot = c("BIC", "proj", "error"),
-	use.sym = FALSE, ...)
+	plot = c("BIC", "proj", "error"), use.sym = FALSE, ...)
 }
 \arguments{
   \item{spectra}{
@@ -23,9 +22,6 @@ An integer vector describing which PCs to use.
 }
   \item{dims}{
 A integer vector giving the PCA dimensions to use.
-}
-  \item{title}{
-A character string for the plot title.
 }
   \item{plot}{
 A character string indicating what plot to make.  Options are \code{c("BIC", "proj", "error")}; see \code{\link{Mclust}} for details.
@@ -53,9 +49,9 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 data(CuticleIR)
 class <- classPCA(CuticleIR)
-mclustSpectra(CuticleIR, class, title = "Cuticle IR", plot = "BIC")
-mclustSpectra(CuticleIR, class, title = "Cuticle IR", plot = "proj")
-mclustSpectra(CuticleIR, class, title = "Cuticle IR", plot = "error",
+mclustSpectra(CuticleIR, class, main = "Cuticle IR", plot = "BIC")
+mclustSpectra(CuticleIR, class, main = "Cuticle IR", plot = "proj")
+mclustSpectra(CuticleIR, class, main = "Cuticle IR", plot = "error",
 	truth = CuticleIR$groups)
 }
 \keyword{ multivariate }

@@ -21,7 +21,8 @@ function(spectra, pca, title = "no title provided", loads = c(1,2), tol = 0.05, 
 	txt1 <- paste("PC", loads[1], " (", format(variance[loads[1]], digits=2), "%", ") loadings", sep = "")
 	txt2 <- paste("PC", loads[2], " (", format(variance[loads[2]], digits=2), "%", ") loadings", sep = "")
 
-	title <- paste(title, ": Covariance of Loadings", sep = "")
+#	title <- paste(title, ": Covariance of Loadings", sep = "")
+	title <- bquote(bold(.(eval(title)):~Covariance~of~Loadings))
 	
 	xrange <- range(loadings1)*c(1.0, 1.05) # makes room for labels
 	yrange <- range(loadings2)*c(1.0, 1.05)

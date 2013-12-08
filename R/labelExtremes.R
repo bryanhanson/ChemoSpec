@@ -10,12 +10,13 @@ function(data, names, tol) {
 	pl <- names
 	if (is.numeric(pl)) pl <- format(pl, digits = 4)
 		
-	q.x <- quantile(px, probs = c(1.0-tol, tol))
+#	q.x <- quantile(px, probs = c(1.0-tol, tol)) # also below
+	q.x <- quantile(px, probs = c(1.0-tol, tol), na.rm = TRUE)
 	sel.x <- (px <= q.x[2]) | (px >= q.x[1])
 	keep.x <- subset(px, sel.x)
 	keep.x <- match(keep.x, px) # need to keep this & corresponding y
 		
-	q.y <- quantile(py, probs = c(1.0-tol, tol))
+	q.y <- quantile(py, probs = c(1.0-tol, tol), na.rm = TRUE)
 	sel.y <- (py <= q.y[2]) | (py >= q.y[1])
 	keep.y <- subset(py, sel.y)
 	keep.y <- match(keep.y, py) # need to keep this & corresponding x

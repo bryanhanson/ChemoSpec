@@ -9,8 +9,9 @@ Creates a basic 3D plot of PCA scores from the analysis of a \code{"Spectra"} ob
 }
 \usage{
 plotScores3D(spectra, pca, pcs = c(1:3),
-	ellipse = TRUE, rob = FALSE, cl = 0.95, frac.pts.used = 0.80,
-	title = "no title provided", view = list(y = 34, x = 10, z = 0),
+	ellipse = TRUE, rob = FALSE,
+	cl = 0.95, frac.pts.used = 0.80,
+	view = list(y = 34, x = 10, z = 0),
 	tol = 0.01, use.sym = FALSE, ...)
 }
 \arguments{
@@ -34,9 +35,6 @@ A number indicating the confidence interval for the ellipse.
 }
   \item{frac.pts.used}{
 If \code{ellipse = TRUE} and \code{rob = TRUE}, a number indicating the fraction of the data points to be considered "good" and thus used to compute the robust confidence ellipse.
-}
-  \item{title}{
-A character string for the plot title.
 }
   \item{view}{
 A list of viewing transformations to be applied to the data.  May contain values for x, y and z axes; keep in mind that the order of the transformations is important.  For example, specifying \code{view = list(x = 45, y = 10)} produces a different view than \code{view = list(y = 10, x = 45)}.  The list may be as along as you like - the series of transformations representing an accumulation of tweaks to achieve the desired view.
@@ -65,7 +63,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 data(CuticleIR)
 results <- classPCA(CuticleIR, choice = "noscale")
-plotScores3D(CuticleIR, results, title = "Cuticle IR Spectra")
+plotScores3D(CuticleIR, results, main = "Cuticle IR Spectra")
 }
 \keyword{ multivariate }
 \keyword{ hplot }

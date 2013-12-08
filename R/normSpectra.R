@@ -12,7 +12,7 @@ function(spectra, method = "TotInt", RangeExpress = NULL) {
 
 	if (method == "TotInt") {
 		for (n in 1:length(spectra$names)) {
-			S <- sum(spectra$data[n,])
+			S <- sum(as.numeric(spectra$data[n,]))
 			spectra$data[n,] <- spectra$data[n,]/S
 			}
 		}
@@ -23,7 +23,7 @@ function(spectra, method = "TotInt", RangeExpress = NULL) {
 		if (is.null(RangeExpress)) stop("No range expression given")
 		rfi <- which(RangeExpress)
 		for (n in 1:length(spectra$names)) {
-			S <- sum(spectra$data[n,rfi])
+			S <- sum(as.numeric(spectra$data[n,rfi]))
 			spectra$data[n,] <- spectra$data[n,]/S
 			}
 		}

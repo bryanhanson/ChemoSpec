@@ -33,7 +33,7 @@ function(spectra, pca, title = "no title provided",
 	groups <- dlply(df, "group", subset, select = c(1,2))
 
 #	new.title <- paste(title, ": PCA Score Plot", sep = "") # prepare plot title
-	new.title <- bquote(bold(.(eval(title))~':'~PCA~Score~Plot))
+	new.title <- bquote(bold(.(eval(title)):~PCA~Score~Plot))
 		
 ### First case: plot everything by group (most general, other cases are subsets of this)
 
