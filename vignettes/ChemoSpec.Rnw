@@ -597,7 +597,7 @@ In understanding the operation of a package, it is useful to know how the functi
 
 
 << Chunk38,  echo = FALSE, fig.cap = "\\label{food}Map of Functions in ChemoSpec", fig.width = 10, fig.height = 10  >>=
-CS <- foodweb(where = "package:ChemoSpec", plotting = FALSE)
+CS <- tst(where = "package:ChemoSpec", plotting = FALSE)
 CS$funmat <- CS$funmat[-9, -9] # removes chkSpectra
 set.seed(7) # 7, 9, 19 decent
 tst <- gplot(CS$funmat, displaylabels = TRUE, label.cex = 0.6,

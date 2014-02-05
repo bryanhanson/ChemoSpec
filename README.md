@@ -26,6 +26,6 @@ vignette("ChemoSpec")
 ````
 ### License Information
 
-See the DESCRIPTION file.
+ChemoSpec is distributed under the GPL-3 license, as stated in the DESCRIPTION file.  For more info, see the [GPL site.](https://gnu.org/licenses/gpl.html)
 
 Questions?  hanson@depauw.edu

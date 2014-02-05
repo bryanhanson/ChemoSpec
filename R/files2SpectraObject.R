@@ -52,13 +52,13 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 		if (format == "csv") temp <- read.csv(files[1], header = FALSE)
 		if (format == "csv2") temp <- read.csv2(files[1], header = FALSE)
 		if (format == "dx") {
-			temp <- readJDX(files[1], debug = debug)
+			temp <- readJDX(file = files[1], debug = debug)
 			}
 		if (format == "Btxt") {
-			temp <- readBrukerTxt(files[1], debug = debug)
+			temp <- readBrukerTxt(file = files[1], debug = debug)
 			}
 		if (format == "Bascii") {
-			temp <- readBrukerAscii(files[1], debug = debug)
+			temp <- readBrukerAscii(file = files[1], debug = debug)
 			}
 	
 		spectra$freq <- temp[,1]
