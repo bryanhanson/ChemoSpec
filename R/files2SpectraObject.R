@@ -31,7 +31,7 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 	# First set up some common stuff
 	
 	if ((format == "csv") | (format == "csv2")) pat = "\\.(csv|CSV)$"
-	if (format == "dx") pat = "\\.(dx|DX)$"
+	if (format == "dx") pat = "\\.(dx|DX|jdx|JDX)$"
 	if (format == "Btxt") pat = "\\.(txt|TXT)$"
 	if (format == "Bascii") pat = "\\.(txt|TXT)$"
 	files <- list.files(pattern = pat)

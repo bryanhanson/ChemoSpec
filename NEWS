@@ -4,6 +4,10 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 2.0-1
+Date: 2014-02-04
+>> With format = "dx" in files2SpectraObject, now allow any of the following extensions: dx, DX, jdx, JDX.
+
 ##### Version 2.0.0
 Date: 2013-12-07
 >> normSpectra modified to avoid integer overflow.
