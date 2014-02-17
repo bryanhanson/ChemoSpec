@@ -2,7 +2,7 @@ plotScoresDecoration <-
 function(spectra, pca, pcs = c(1,2), tol = "none") {
 	
 # Function to do some plot annotations on the PCA score plot
-# These tasks are done in all 4 cases in plot.scores, so keeping it here makes
+# These tasks are done in all 4 cases in plotScores, so keeping it here makes
 # maintaining & changing code easier.
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, Aug 2009
