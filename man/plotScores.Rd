@@ -9,8 +9,8 @@ Plot PCA Scores of a Spectra Object
 Plots the requested PCA scores using the color scheme derived from a \code{"Spectra"} object.  Options are provided to add confidence ellipses for each group in the object.  The ellipses may be robust or classical.  Option to label the extreme points provided.
 }
 \usage{
-plotScores(spectra, pca, title = "no title provided",
-	pcs = c(1, 2), ellipse = "none", tol = "none",
+plotScores(spectra, pca, pcs = c(1, 2),
+	ellipse = "none", tol = "none",
 	use.sym = FALSE, ...)
 }
 
@@ -20,9 +20,6 @@ An object of S3 class \code{"Spectra"}.
 }
   \item{pca}{
 An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{classPCA}} or \code{\link{robPCA}} were used to create \code{pca}.
-}
-  \item{title}{
-A character string for the plot title.
 }
   \item{pcs}{
 A vector of two integers specifying the PCA scores to plot.
@@ -62,7 +59,8 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 data(SrE.IR)
 results <- classPCA(SrE.IR, choice = "noscale")
-plotScores(SrE.IR, title = "Serenoa repens IR Spectra", results,
+myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
+plotScores(SrE.IR, main = myt, results,
 	pcs = c(1,2), ellipse = "rob", tol = 0.05)
 }
 

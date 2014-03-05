@@ -1,5 +1,5 @@
 hcaScores <-
-function(spectra, pca, title = "no title provided", scores = c(1:5),
+function(spectra, pca, scores = c(1:5),
 c.method = "complete", d.method = "euclidean", use.sym = FALSE, ...) {
 
 # Function to carry out HCA on PCA scores
@@ -15,10 +15,10 @@ c.method = "complete", d.method = "euclidean", use.sym = FALSE, ...) {
 	if (use.sym) spectra$names <- paste(spectra$alt.sym, spectra$names, sep = " ")
 	distance <- rowDist(as.data.frame(pca$x[,scores], row.names = spectra$names), method = d.method)
 
-	title <- paste(title, ": HCA Analysis of PC Scores", sep = "")
 	sub.title <- paste("clustering method: ", c.method, "      distance method: ", d.method, sep = "")
 
-	plotHCA(spectra = spectra, distance = distance, title = title, sub.title = sub.title,
-		method = c.method, use.sym = use.sym)
+	res <- plotHCA(spectra = spectra, distance = distance, sub.title = sub.title,
+		method = c.method, use.sym = use.sym, ...)
+	return(res)
 	}
 

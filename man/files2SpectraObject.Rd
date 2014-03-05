@@ -65,7 +65,7 @@ If \code{format = "Btxt"} and \code{alignTMS = TRUE}, the function will try to f
 There should be no other files of the given format (extension) in the directory except those containing the data to be processed by \code{files2SpectraObject}, as all files with that format in the directory will be processed.
 }
 \value{
-An \emph{unnamed} object of S3 class \code{\link{Spectra}} will be written to \code{out.file}.  To retrieve it, use \code{new.name <- loadObject(out.file)}, found in package \code{R.utils}.
+A object of class \code{Spectra}.  An \emph{unnamed} object of S3 class \code{\link{Spectra}} is also written to \code{out.file}.  To read it back into the workspace, use \code{new.name <- loadObject(out.file)}, found in package \code{R.utils}.
 }
 
 \references{

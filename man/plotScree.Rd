@@ -11,16 +11,13 @@ Scree Plots of PCA Results for a Spectra Object
 Functions to draw a traditional scree plot or an alternative that is perhaps more useful.  These illustrate the importance of the components in a PCA analysis.}
 
 \usage{
-plotScree(pca, title = "no title provided", ...)
-plotScree2(pca, title = "no title provided", ...)
+plotScree(pca, ...)
+plotScree2(pca, ...)
 }
 
 \arguments{
   \item{pca}{
 An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{classPCA}} or \code{\link{robPCA}} were used to create \code{pca}.
-}
-  \item{title}{
-A character string for the plot title.
 }
   \item{\dots}{
 Additional parameters to be passed to plotting functions.}
@@ -46,8 +43,9 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 data(SrE.IR)
 results <- classPCA(SrE.IR, choice = "noscale")
-plotScree(results, title = "Serenoa repens IR Spectra")
-plotScree2(results, title = "Serenoa repens IR Spectra")
+myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
+plotScree(results, main = myt)
+plotScree2(results, main = myt)
 }
 
 \keyword{ multivariate }

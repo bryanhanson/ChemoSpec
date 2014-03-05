@@ -41,7 +41,8 @@ For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \
 \examples{
 data(SrE.IR)
 results <- robPCA(SrE.IR, choice = "mad")
-plotScores(SrE.IR, title = "Serenoa repens IR Spectra",
+myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
+plotScores(SrE.IR, main = myt,
 	results, pcs = c(1,2), ellipse = "rob", tol = 0.05)
 }
 

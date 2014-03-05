@@ -216,8 +216,8 @@ Assuming that everything looks good so far, it's time to plot the spectra and in
 
 << Chunk8, fig.cap = "\\label{plot}Plotting Spectra" >>=
 # We'll make a fancy proper title just this once!
-myt <- expression(paste(italic(S.), phantom(0), italic(repens), " Extract IR Spectra"))
-plotSpectra(SrE.IR, title = myt,
+myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(Extract~IR~Spectra))
+plotSpectra(SrE.IR, main = myt,
 which = c(1, 2, 14, 16),
 yrange = c(0, 1.6), offset = 0.4, lab.pos = 2200)
 @
@@ -227,7 +227,7 @@ Depending upon the intensity range of your data set, and the number of spectra t
 
 
 << Chunk10, fig.cap = "\\label{subplot}Zooming in on a Spectral Region" >>=
-plotSpectra(SrE.IR, title = "S. repens IR Spectra: Detail of Carbonyl Region",
+plotSpectra(SrE.IR, main = "S. repens IR Spectra: Detail of Carbonyl Region",
 which = c(1, 2, 14, 16), xlim = c(1650, 1800),
 yrange = c(0, 0.6), offset = 0.1, lab.pos = 1775)
 @
@@ -294,14 +294,14 @@ Finding these regions might be pretty simple, a matter of inspection coupled wit
 
 
 << Chunk14,  fig.width = 8, fig.height = 5, fig.cap = "\\label{surv}Checking for Regions of No Interest" >>=
-specSurvey(SrE2.IR, method = "iqr", title = "S. repens Extract IR Spectra", by.gr = FALSE)
+specSurvey(SrE2.IR, method = "iqr", main = "S. repens Extract IR Spectra", by.gr = FALSE)
 @
 
 In Figure~\ref{surv} we kept all the groups together by using argument \texttt{by.gr = FALSE}.  We also looked at the entire spectral range.  In Figure~\ref{survA} we can look just at the carbonyl region.  The black line is the median value of intensity across the entire set of spectra.  The red lines are the upper and lower interquartile ranges which makes it pretty clear that the carbonyl region of this data set varies a lot.
 
 
 << Chunk14a, fig.cap = "\\label{survA}Detail of Carbonyl Region"  >>=
-specSurvey(SrE2.IR, method = "iqr", title = "S. repens Detail of Carbonyl Region", by.gr = FALSE, xlim = c(1650, 1800))
+specSurvey(SrE2.IR, method = "iqr", main = "S. repens Detail of Carbonyl Region", by.gr = FALSE, xlim = c(1650, 1800))
 @
 
 
@@ -309,13 +309,13 @@ Finally, \texttt{specSurvey} allows us to view the data set by group, which is r
 
 
 << Chunk14b, fig.cap = "\\label{survB}Detail of Carbonyl Region by Group"  >>=
-specSurvey(SrE2.IR, method = "iqr", title = "S. repens Detail of Carbonyl Region", by.gr = TRUE, xlim = c(1650, 1800))
+specSurvey(SrE2.IR, method = "iqr", main = "S. repens Detail of Carbonyl Region", by.gr = TRUE, xlim = c(1650, 1800))
 @
 
 For reasons that will become evident in a moment, let's look at the region between 1800 and 2500 \ce{cm^{-1}} (Figure~\ref{survC}).
 
 << Chunk14c, fig.cap = "\\label{survC}Inspection of an Uninteresting Spectral Region"  >>=
-specSurvey(SrE2.IR, method = "iqr", title = "S. repens Detail of Empty Region", by.gr = FALSE, xlim = c(1800, 2500))
+specSurvey(SrE2.IR, method = "iqr", main = "S. repens Detail of Empty Region", by.gr = FALSE, xlim = c(1800, 2500))
 @
 
 From a theoretical perspective, we expect this region to be devoid of interesting peaks.  In fact, even when pooling the groups the signal in this region is very weak, and the only peak present is due to \ce{CO2}.  We can remove this region, since it is primarily noise and artifact, with the function \texttt{removeFreq} as follows. Note that there are fewer frequency points now.
@@ -358,7 +358,7 @@ Hierarchical cluster analysis (HCA from  now on) is a clustering method (no surp
 
 
 << Chunk19, fig.cap = "\\label{hca}Hierarchical Cluster Analysis" >>=
-hcaSpectra(SrE3.IR, title = "S. repens IR Spectra")
+hcaSpectra(SrE3.IR, main = "S. repens IR Spectra")
 @
 
 The result is a dendrogram.  The vertical scale represents the numerical distance between samples.  Not unexpectedly, the two reference samples which are known to be chemically different cluster together separately from all other samples.  Perhaps surprisingly, the various pure and adulterated oil extracts do not group together precisely.  The function \texttt{hcaScores} does the same kind of analysis using the results of PCA, rather than the raw spectra.  It is discussed in the next section.
@@ -434,13 +434,13 @@ You can choose \texttt{"none"} for no ellipses, \texttt{"cls"} for classically c
 
 << Chunk10a, fig.cap = "\\label{classPCA}Classical PCA" >>=
 class <- classPCA(SrE3.IR, choice = "noscale")
-plotScores(SrE3.IR, title = "S. repens IR Spectra", class,
+plotScores(SrE3.IR, main = "S. repens IR Spectra", class,
 pcs = c(1,2), ellipse = "rob", tol = 0.01)
 @
 
 << Chunk21, fig.cap = "\\label{robPCA}Robust PCA" >>=
 robust <- robPCA(SrE3.IR, choice = "noscale")
-plotScores(SrE3.IR, title = "S. repens IR Spectra", robust,
+plotScores(SrE3.IR, main = "S. repens IR Spectra", robust,
 pcs = c(1,2), ellipse = "rob", tol = 0.01)
 @
 
@@ -461,11 +461,11 @@ If you are using classical PCA, you can also get a sense of the number of PCs ne
 
 
 << Chunk24, fig.cap = "\\label{scree}Scree Plot" >>=
-plotScree(class, title = "S. repens IR Spectra")
+plotScree(class, main = "S. repens IR Spectra")
 @
 
 << Chunk24a, fig.cap = "\\label{scree2}Alternate Style Scree Plot"  >>=
-plotScree2(class, title = "S. repens IR Spectra")
+plotScree2(class, main = "S. repens IR Spectra")
 @
 
 << Chunk25, fig.cap = "\\label{boot}Bootstrap Analysis for No. of PCs"  >>=
@@ -475,7 +475,7 @@ out <- pcaBoot(SrE3.IR, pcs = 5, choice = "noscale")
 Now let's turn to viewing scores in 3D.  There are currently 3 options in \texttt{ChemoSpec}: plotting using \texttt{lattice} graphics, which produces a static plot that you have to adjust manually, and two interactive plots, one based on package \texttt{rgl} and one based upon package \texttt{rggobi} which in turn uses the program \texttt{GGobi}.  Probably the best place to start is with \texttt{plotScoresRGL}.  It it well suited to exploring data, and can be printed out in high quality.  However, the nature of the open GL graphics device means that the title and the legend move with the data, so this may not give a hardcopy suitable for publications.  This interactive plot cannot be invoked in this document, but here are the necessary commands:
 
 << Chunk26,  results = "hide", eval = FALSE >>=
-plotScoresRGL(SrE3.IR, class, title = "S. repens IR Spectra",
+plotScoresRGL(SrE3.IR, class, main = "S. repens IR Spectra",
 leg.pos = "A", t.pos = "B") # not run - it's interactive!
 @
 
@@ -483,7 +483,7 @@ For full details, of course take a look at the manual page, \texttt{?plotScoresR
 
 
 << Chunk27, fig.cap = "\\label{s3D}Plotting Scores in 3D using plotScores3D"   >>=
-plotScores3D(SrE3.IR, class, title = "S. repens IR Spectra", ellipse = FALSE)
+plotScores3D(SrE3.IR, class, main = "S. repens IR Spectra", ellipse = FALSE)
 @
 
 Finally, you can install the program \texttt{GGobi} and the package \texttt{rggobi} and use \texttt{plotScoresG} to produce an different interactive plot.  This is actually the most powerful analysis tool, as \texttt{GGobi} is not restricted to 3 dimensions, and can use projection pursuit methods to find interesting views of your data.  With an additional package, \texttt{DescribeDisplay}, you can create very nice plots of your data.  Note that as of December 2010, \texttt{GGobi} has been described as on "life support" and it seems there might be a new program in development to replace it.  However, you can find a working version at \href{http://software.rc.fas.harvard.edu/mirrors/R/}{software.rc.fas.harvard.edu/mirrors/R/} (and related mirrors) thanks to Simon Urbanek.  Note that the communication between \texttt{plotScoresG} and \texttt{GGobi} does not quite work as described earlier under the discussion of the color schemes; this will not be fixed until the future of \texttt{GGobi} is certain.
@@ -496,7 +496,7 @@ In addition to the scores, PCA also produces loadings which tell you how each va
 
 
 << Chunk29, fig.cap = "\\label{load}Loading Plot"  >>=
-plotLoadings(SrE3.IR, class, title = "S. repens IR Spectra",
+plotLoadings(SrE3.IR, class, main = "S. repens IR Spectra",
 loads = c(1, 2), ref = 1)
 @
 
@@ -504,7 +504,7 @@ You can also plot one loading against another, using function \texttt{plot2Loadi
 
 
 << Chunk30, fig.cap = "\\label{load2}Plotting One Loading vs. Another"   >>=
-plot2Loadings(SrE3.IR, class, title = "S. repens IR Spectra",
+plot2Loadings(SrE3.IR, class, main = "S. repens IR Spectra",
 loads = c(1, 2), tol = 0.002)
 @
 
@@ -512,17 +512,17 @@ However, a potentially more useful approach is to use an s-plot to determine whi
 
 
 << Chunk30a,  fig.cap = "\\label{splot}s-Plot to Identify Influential Frequencies"  >>=
-spt <- sPlotSpectra(SrE3.IR, class, title = "S. repens IR Spectra", pc = 1, tol = 0.001)
+spt <- sPlotSpectra(SrE3.IR, class, main = "S. repens IR Spectra", pc = 1, tol = 0.001)
 @
 
 << Chunk30b,  fig.cap = "\\label{splot2}s-Plot Detail"  >>=
-spt <- sPlotSpectra(SrE3.IR, class, title = "Detail of S. repens IR Spectra", pc = 1, tol = 0.05, xlim = c(-0.04, -0.01), ylim = c(-1.05, -0.9))
+spt <- sPlotSpectra(SrE3.IR, class, main = "Detail of S. repens IR Spectra", pc = 1, tol = 0.05, xlim = c(-0.04, -0.01), ylim = c(-1.05, -0.9))
 @
 
 Finally, you can blend the ideas of PCA and HCA.  Since PCA eliminates the noise in a data set (after you have selected the important PCs), you can carry out HCA on the PCA scores, since the scores represent the cleaned up data.  The result using the \texttt{SrE.IR} data set are not different than doing HCA on the raw spectra, so we won't illustrate it, but the command would be:
 
 << Chunk31,  results = "hide", eval = FALSE >>=
-hcaScores(SrE3.IR,  class, scores = c(1:5), title = "S. repens IR Spectra")
+hcaScores(SrE3.IR,  class, scores = c(1:5), main = "S. repens IR Spectra")
 @
 
 \subsection{ANOVA-PCA}  %%%%%%%%%%%%%%%
@@ -556,17 +556,17 @@ PCA and HCA are techniques which are unsupervised and assume no underlying model
 
 <<  Chunk35, fig.cap = "\\label{mclust1}mclust Chooses an Optimal Model" >>=
 model <- mclustSpectra(SrE3.IR, class, plot = "BIC",
-title = "S. repens IR Spectra")
+main = "S. repens IR Spectra")
 @
 
 << Chunk36, fig.cap = "\\label{mclust2}mclust's Thoughts on the Matter"  >>=
 model <- mclustSpectra(SrE3.IR, class, plot = "proj",
-title = "S. repens IR Spectra")
+main = "S. repens IR Spectra")
 @
 
 << Chunk37, fig.cap = "\\label{mclust3}Comparing mclust Results to the TRUTH"  >>=
 model <- mclustSpectra(SrE3.IR, class, plot = "errors",
-title = "S. repens IR Spectra", truth = SrE3.IR$groups)
+main = "S. repens IR Spectra", truth = SrE3.IR$groups)
 @
 
 You can also do a similar analysis in 3D, using \texttt{mclust3dSpectra}.  This function uses \texttt{mclust} to find the groups, but then uses non-\texttt{mclust} functions to draw confidence ellipses.  This function uses \texttt{rgl} graphics so it cannot demonstrated here, but the commands would be:

@@ -1,5 +1,5 @@
 plotHCA <-
-function(spectra, distance, title, sub.title, method, use.sym, ...) {
+function(spectra, distance, sub.title, method, use.sym, ...) {
 
 # Function to plot HCA results, basically a wrapper to existing methods
 # Part of the ChemoSpec package
@@ -9,7 +9,7 @@ function(spectra, distance, title, sub.title, method, use.sym, ...) {
 	if (!use.sym) cluster <- dendrapply(cluster, colLeaf, spectra)
 	cluster <- dendrapply(cluster, shrinkLeaf, spectra)
 
-	plot(cluster, main = title, sub = sub.title, horiz = FALSE, ...)
+	plot(cluster, sub = sub.title, horiz = FALSE, ...)
 	
 	gr <- sumGroups(spectra)
 	leg.txt <- gr$group
@@ -21,5 +21,6 @@ function(spectra, distance, title, sub.title, method, use.sym, ...) {
 	leg.sym <- c("", leg.sym)
 	if (!use.sym) legend("topright", leg.txt, text.col = leg.col, bty = "n")
 	if (use.sym) legend("topright", leg.txt, text.col = "black", pch = leg.sym, bty = "n")
+	return(cluster)
 	}
 

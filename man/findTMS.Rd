@@ -7,7 +7,7 @@ Find the TMS/TSP Peak in an NMR Spectrum.
 This is a simple function to find the TMS or TSP peak in proton NMR spectrum.  It simply finds the rightmost large peak in the spectrum.
 }
 \usage{
-findTMS(x, span, sn, thresh = 0.2)
+findTMS(x, span, sn, thresh = 0.2, debug = FALSE)
 }
 \arguments{
   \item{x}{
@@ -22,6 +22,10 @@ Numeric; the minimum value of the signal-to-noise ratio for detecting a peak.
   \item{thresh}{
 Numeric; a value in 0...1 which gives the quantile of peaks in the entire spectrum which should be kept on the short list for finding the TMS peak.
 }
+  \item{debug}{
+Logical; if \code{TRUE} write progress and findings to screen.
+}
+
 }
 \details{
 The rightmost peak is sought, so the spectrum must be presented in the usual high ppm --> low ppm format.  Calls \code{\link{calcSN}} which will issue warnings when peaks are near the edges of the spectrum.

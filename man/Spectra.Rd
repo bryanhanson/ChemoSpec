@@ -6,7 +6,7 @@ Spectra Objects
 \alias{Spectra}
 
 \description{
-In \code{ChemoSpec}, spectral data sets are stored in an S3 class called \code{Spectra}, which contains a variety of information in addition to the spectra themselves.  \code{Spectra} objects are created by \code{\link{getManyCsv}} or similar functions (no others currently exist).
+In \code{ChemoSpec}, spectral data sets are stored in an S3 class called \code{Spectra}, which contains a variety of information in addition to the spectra themselves.  \code{Spectra} objects are created by \code{\link{files2SpectraObject}} or similar functions (no others currently exist).
 }
 
 \section{Structure}{

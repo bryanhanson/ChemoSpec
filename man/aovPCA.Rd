@@ -40,16 +40,16 @@ This function calls \code{\link{avgFacLvls}}, and the results are used in \code{
 
 \examples{
 data(CuticleIR)
-# Creat new groups from existing groups
+# Create new groups from existing groups
 # These are used as the factors
 n.groups <-list(genotype = c("G", "T"), treatment = c("C", "E"))
 NewIR <- splitSpectraGroups(CuticleIR, n.groups)
 # run aovPCA
 mats <-aovPCA(NewIR, fac = c("genotype", "treatment"))
-apca1 <- aovPCAscores(NewIR, mats, plot = 1)
-apca2 <- aovPCAscores(NewIR, mats, plot = 2)
-apca3 <- aovPCAscores(NewIR, mats, plot = 3)
-apca5 <- aovPCAloadings(spectra = NewIR, LM = mats, pca = apca1)
+apca1 <- aovPCAscores(NewIR, mats, plot = 1, main = "aovPCA: Genotype")
+apca2 <- aovPCAscores(NewIR, mats, plot = 2, main = "aovPCA: Treatment")
+apca3 <- aovPCAscores(NewIR, mats, plot = 3, main = "aovPCA: Genotype x Treatment")
+apca5 <- aovPCAloadings(spectra = NewIR, LM = mats, pca = apca1, main = "aovPCA: Genotype Loadings")
 }
 \keyword{ multivariate }
 \keyword{ htest }

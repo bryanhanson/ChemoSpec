@@ -8,16 +8,12 @@ Plot Spectra Object
 Plots the spectra stored in a \code{"Spectra"} object.  One may choose which spectra to plot, and the x range to plot.  Spectra may be plotted offset or stacked.  The vertical scale is controlled by a combination of several parameters.
 }
 \usage{
-plotSpectra(spectra, title = "no title provided",
-	which = c(1), yrange = range(spectra$data), offset = 0,
-	amplify = 1, lab.pos = mean(spectra$freq), ...)
+plotSpectra(spectra, which = c(1), yrange = range(spectra$data),
+	offset = 0, amplify = 1, lab.pos = mean(spectra$freq), ...)
 }
 \arguments{
   \item{spectra}{
 An object of S3 class \code{"Spectra"}.
-}
-  \item{title}{
-A character string for the plot title.
 }
   \item{which}{
 An integer vector specifying which spectra to plot, and the order.
@@ -53,7 +49,8 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 
 \examples{
 data(CuticleIR)
-plotSpectra(CuticleIR, "Cuticle IR Spectra",
+myt <- expression(bolditalic(Portulaca)~bolditalic(oleracea)~bold(Cuticle~IR~Spectra))
+plotSpectra(CuticleIR, main = myt,
 	which = c(10:11, 40:41, 100:101, 140:141, 150:151),
 	yrange = c(0,10),
 	offset = 0.8, amplify = 1.0, lab.pos = 2000) 

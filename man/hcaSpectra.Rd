@@ -9,15 +9,11 @@ Plot HCA Results of a Spectra Object
 A wrapper which carries out HCA and plots a dendrogram colored by the information in a \code{"Spectra"} object.  All methods for computing the cluster distances are available.
 }
 \usage{
-hcaSpectra(spectra, title = "no title provided",
-c.method = "complete", d.method = "euclidean", use.sym = FALSE, ...)
+hcaSpectra(spectra, c.method = "complete", d.method = "euclidean", use.sym = FALSE, ...)
 }
 \arguments{
   \item{spectra}{
 An object of S3 class \code{"Spectra"}.
-}
-  \item{title}{
-A character string for the plot title.
 }
   \item{c.method}{
 A character string describing the clustering method; must be acceptable to \code{\link{hclust}}.
@@ -34,7 +30,7 @@ Other parameters to be passed to the plotting functions.
 }
 }
 \value{
-None.  The side effect is a plot.
+An object of class \code{\link{dendrogram}}.  The side effect is a plot.
 }
 
 
@@ -53,8 +49,8 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
 data(SrE.IR)
-myt <- expression(italic(S.)~italic(repens)~IR~Spectra)
-hcaSpectra(SrE.IR, title = myt)
+myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
+hcaSpectra(SrE.IR, main = myt)
 }
 \keyword{ multivariate }
 \keyword{ cluster }

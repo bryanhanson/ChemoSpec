@@ -1,5 +1,5 @@
 plotScores <-
-function(spectra, pca, title = "no title provided",
+function(spectra, pca,
 	pcs = c(1,2), ellipse = "none", tol = "none",
 	use.sym = FALSE, ...) {
 
@@ -31,9 +31,6 @@ function(spectra, pca, title = "no title provided",
 		}
 	df <- data.frame(pca$x[,pcs], group = spectra$groups)
 	groups <- dlply(df, "group", subset, select = c(1,2))
-
-#	new.title <- paste(title, ": PCA Score Plot", sep = "") # prepare plot title
-	new.title <- bquote(bold(.(eval(title))~':'~PCA~Score~Plot))
 		
 ### First case: plot everything by group (most general, other cases are subsets of this)
 
@@ -59,10 +56,10 @@ function(spectra, pca, title = "no title provided",
 
 	# Plot the data points
 
-	if (!use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
+	if (!use.sym) plot(pca$x[,pcs], xlab = "", ylab = "",
 	col = spectra$colors, xlim = x.all, ylim = y.all, pch = 20, ...)
 
-	if (use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
+	if (use.sym) plot(pca$x[,pcs], xlab = "", ylab = "",
 	col = "black", xlim = x.all, ylim = y.all, pch = spectra$sym, ...)
 	
 	# Now plot both classic and robust ellipses, classic first
@@ -98,10 +95,10 @@ function(spectra, pca, title = "no title provided",
 
 	# Plot the data points
 
-	if (!use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
+	if (!use.sym) plot(pca$x[,pcs], xlab = "", ylab = "",
 	col = spectra$colors, xlim = x.all, ylim = y.all, pch = 20, ...)
 
-	if (use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
+	if (use.sym) plot(pca$x[,pcs], xlab = "", ylab = "",
 	col = "black", xlim = x.all, ylim = y.all, pch = spectra$sym, ...)
 	
 	}
@@ -122,10 +119,10 @@ function(spectra, pca, title = "no title provided",
 
 	# Plot the data points
 
-	if (!use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
+	if (!use.sym) plot(pca$x[,pcs], xlab = "", ylab = "",
 	col = spectra$colors, xlim = x.all, ylim = y.all, pch = 20, ...)
 
-	if (use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
+	if (use.sym) plot(pca$x[,pcs], xlab = "", ylab = "",
 	col = "black", xlim = x.all, ylim = y.all, pch = spectra$sym, ...)
 	
 	# Now plot classic ellipses
@@ -157,10 +154,10 @@ function(spectra, pca, title = "no title provided",
 
 	# Plot the data points
 
-	if (!use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
+	if (!use.sym) plot(pca$x[,pcs], xlab = "", ylab = "",
 	col = spectra$colors, xlim = x.all, ylim = y.all, pch = 20, ...)
 
-	if (use.sym) plot(pca$x[,pcs], main = new.title, xlab = "", ylab = "",
+	if (use.sym) plot(pca$x[,pcs], xlab = "", ylab = "",
 	col = "black", xlim = x.all, ylim = y.all, pch = spectra$sym, ...)
 	
 	# Now plot robust ellipses

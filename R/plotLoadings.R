@@ -1,6 +1,5 @@
 plotLoadings <-
-function(spectra, pca, title = "no title provided",
-	loads = c(1), ref = 1, ...) {
+function(spectra, pca, loads = c(1), ref = 1, ...) {
 	
 # Function to plot loadings vs. frequencies
 # Part of the ChemoSpec package
@@ -11,8 +10,6 @@ function(spectra, pca, title = "no title provided",
 	if (!class(spectra) == "Spectra") stop("Your spectral data set looks corrupt!")
 	if (!("princomp" %in% class(pca) || "prcomp" %in% class(pca))) stop("Your pca results look corrupt!")
 	
-	title <- paste(title, ": Loadings Plot", sep = "")
-
 	# Stack the requested data into a data frame for plotting
 	
 	names <- paste("PC", loads, "Loadings", sep = " ")
@@ -38,8 +35,8 @@ function(spectra, pca, title = "no title provided",
 		xlab = spectra$unit[1], ylab = "",
 		sub = list(label = pca$method,
 			fontface = "plain"),
-		main = list(label = title,
-			fontface = "bold", cex = 1.5),
+		# main = list(label = title,
+			# fontface = "bold", cex = 1.5),
 		layout = c(1, length(loads) + 1),
 		strip.left = TRUE, strip = FALSE, col = "black",
 		scales = list(x = "same", y = "free"),

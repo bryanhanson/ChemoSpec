@@ -7,7 +7,7 @@ Calculate the signal-to-noise ratio of a peak in a spectrum.
 This is very simple function to calculate the signal-to-noise ratio of a peak in a spectrum.  It is intended for processing NMR spectra in conjunction with \code{\link{findTMS}}.  It is not extensively tested.  The SN value returned is just one (simple) way of computing SN.  You probably shouldn't trust it.
 }
 \usage{
-calcSN(x, span, idx)
+calcSN(x, span, idx, debug = FALSE)
 }
 \arguments{
   \item{x}{
@@ -18,6 +18,9 @@ Integer; the number of data points to use as a window on either side of a peak w
 }
   \item{idx}{
 Integer; the index giving the location of the peak to have its SN computed.
+}
+  \item{debug}{
+Logical; Spew forth information, more than you want.
 }
 }
 \details{

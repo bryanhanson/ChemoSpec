@@ -4,14 +4,12 @@
 
 \description{\code{\link{sPlotSpectra}} produces a scatter plot of the correlation of the variables against their covariance for a chosen principal component.  It allows visual identification of variables driving the separation and thus is a useful adjunct to traditional loading plots.}
 
-\usage{sPlotSpectra(spectra, pca, pc = 1, tol = 0.05,
-	title = "no title provided", ...)}
+\usage{sPlotSpectra(spectra, pca, pc = 1, tol = 0.05, ...)}
 \arguments{
   \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
   \item{pca}{The result of a pca calculation on \code{\link{Spectra}} (i.e. the output from \code{\link{classPCA}} or \code{\link{robPCA}}).}
   \item{pc}{An integer specifying the desired pc plot.}
   \item{tol}{A number describing the fraction of points to be labeled.  \code{tol = 1.0} labels all the points; \code{tol = 0.05} labels the most extreme 5 percent.}
-  \item{title}{A character string for the title.}
   \item{\dots}{Additional parameters to be passed to plotting functions.}
 }
 
@@ -23,10 +21,11 @@ Matthew J. Keinsley and Bryan A. Hanson, DePauw University. \email{hanson@depauw
 }
 
 \examples{
-data(CuticleIR)
-IR.pca <- classPCA(CuticleIR)
-splot <- sPlotSpectra(spectra = CuticleIR, pca = IR.pca, pc = 1, tol = 0.005,
-title = "Serenoa repens IR")
+data(SrE.IR)
+IR.pca <- classPCA(SrE.IR)
+myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
+splot <- sPlotSpectra(spectra = SrE.IR, pca = IR.pca, pc = 1, tol = 0.005,
+main = myt)
 }
 
 \keyword{hplot}

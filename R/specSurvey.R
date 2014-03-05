@@ -1,6 +1,6 @@
 specSurvey <-
 function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"),
-by.gr = TRUE, title = "no title provided",  ...) {
+by.gr = TRUE,  ...) {
 
 # Function to show means and spread of Spectra objects by group
 # Part of the ChemoSpec package
@@ -17,8 +17,7 @@ by.gr = TRUE, title = "no title provided",  ...) {
 			df <- data.frame(x, y1 = y[,1], y2 = y[,2], y3 = y[,3])
 			p <- xyplot(y1 + y2 + y3 ~ x, data = df,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
-				ylab = "Full Data Set, median +/- iqr", type = "l",
-				main = title, ...)
+				ylab = "Full Data Set, median +/- iqr", type = "l", ...)
 			plot(p)
 			}
 		if (method == "sd") {
@@ -29,8 +28,7 @@ by.gr = TRUE, title = "no title provided",  ...) {
 			df <- data.frame(x, y1, y2, y3)
 			p <- xyplot(y1 + y2 + y3 ~ x, data = df,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
-				ylab = "Full Data Set, mean +/- sd", type = "l",
-				main = title, ...)
+				ylab = "Full Data Set, mean +/- sd", type = "l", ...)
 			plot(p)
 			}
 
@@ -39,8 +37,7 @@ by.gr = TRUE, title = "no title provided",  ...) {
 			df <- data.frame(x, y1 = y[,1], y2 = y[,2], y3 = y[,3])
 			p <- xyplot(y1 + y2 + y3 ~ x, data = df,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
-				ylab = "Full Data Set, mean +/- sem", type = "l",
-				main = title, ...)
+				ylab = "Full Data Set, mean +/- sem", type = "l", ...)
 			plot(p)
 			}
 
@@ -49,8 +46,7 @@ by.gr = TRUE, title = "no title provided",  ...) {
 			df <- data.frame(x, y1 = y[,1], y2 = y[,2], y3 = y[,3])
 			p <- xyplot(y1 + y2 + y3 ~ x, data = df,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
-				ylab = "Full Data Set, median +/- mad", type = "l",
-				main = title, ...)
+				ylab = "Full Data Set, median +/- mad", type = "l", ...)
 			plot(p)
 			}
 
@@ -59,8 +55,7 @@ by.gr = TRUE, title = "no title provided",  ...) {
 			df <- data.frame(x, y1 = y[,1], y2 = y[,2], y3 = y[,3])
 			p <- xyplot(y1 + y2 + y3 ~ x, data = df,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
-				ylab = "Full Data Set, mean +/- 95% ci sem", type = "l",
-				main = title, ...)
+				ylab = "Full Data Set, mean +/- 95% ci sem", type = "l", ...)
 			plot(p)
 			}
 		}
@@ -93,7 +88,6 @@ by.gr = TRUE, title = "no title provided",  ...) {
 			p <- xyplot(y1 + y2 + y3 ~ x | z, data = df1,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "median +/- iqr", type = "l",
-				main = title,
 				strip.left = TRUE, strip = FALSE,
 				scales = list(x = "same", y = list("same", at = NULL)),
 				layout = c(1, length(gr$group)), ...)
@@ -117,7 +111,6 @@ by.gr = TRUE, title = "no title provided",  ...) {
 			p <- xyplot(y1 + y2 + y3 ~ x | z, data = df1,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "mean +/- sd", type = "l",
-				main = title,
 				strip.left = TRUE, strip = FALSE,
 				scales = list(x = "same", y = list("same", at = NULL)),
 				layout = c(1, length(gr$group)), ...)
@@ -138,7 +131,6 @@ by.gr = TRUE, title = "no title provided",  ...) {
 			p <- xyplot(y1 + y2 + y3 ~ x | z, data = df1,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "mean +/- sem", type = "l",
-				main = title,
 				strip.left = TRUE, strip = FALSE,
 				scales = list(x = "same", y = list("same", at = NULL)),
 				layout = c(1, length(gr$group)), ...)
@@ -159,7 +151,6 @@ by.gr = TRUE, title = "no title provided",  ...) {
 			p <- xyplot(y1 + y2 + y3 ~ x | z, data = df1,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "median +/- mad", type = "l",
-				main = title,
 				strip.left = TRUE, strip = FALSE,
 				scales = list(x = "same", y = list("same", at = NULL)),
 				layout = c(1, length(gr$group)), ...)
@@ -180,7 +171,6 @@ by.gr = TRUE, title = "no title provided",  ...) {
 			p <- xyplot(y1 + y2 + y3 ~ x | z, data = df1,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "mean +/- 95 % ci sem", type = "l",
-				main = title,
 				strip.left = TRUE, strip = FALSE,
 				scales = list(x = "same", y = list("same", at = NULL)),
 				layout = c(1, length(gr$group)), ...)

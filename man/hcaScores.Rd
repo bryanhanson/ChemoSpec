@@ -10,8 +10,7 @@ A wrapper which performs HCA on the scores from a PCA of a \code{"Spectra"} obje
 }
 
 \usage{
-hcaScores(spectra, pca, title = "no title provided",
-	scores = c(1:5), c.method = "complete",
+hcaScores(spectra, pca, scores = c(1:5), c.method = "complete",
 	d.method = "euclidean", use.sym = FALSE, ...)
 }
 
@@ -22,8 +21,6 @@ An object of S3 class \code{"Spectra"}.
   \item{pca}{
 An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{classPCA}} or \code{\link{robPCA}} were used to create \code{pca}.
 }
-  \item{title}{
-A character string for the plot title.}
   \item{scores}{
 A vector of integers specifying which scores to use for the HCA.}
   \item{c.method}{
@@ -41,7 +38,7 @@ Additional parameters to be passed to the plotting functions.
 }
 
 \value{
-None.  Side effect is a plot.
+An object of class \code{\link{dendrogram}}.  Side effect is a plot.
 }
 
 
@@ -62,7 +59,8 @@ See \code{\link{hcaSpectra}} for HCA of the entire data set stored in the \code{
 \examples{
 data(SrE.IR)
 results <- classPCA(SrE.IR, choice = "noscale")
-hcaScores(SrE.IR,  results, scores = c(1:5), title = "Serenoa repends IR Spectra")
+myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
+hcaScores(SrE.IR,  results, scores = c(1:5), main = myt)
 }
 
 \keyword{ multivariate }

@@ -7,7 +7,7 @@ Plot Dendrogram for Spectra Object
 This function plots the results of an HCA analysis of a \code{"Spectra"} object.  This is not called directly by the user -- \code{\link{hcaSpectra}} and \code{\link{hcaScores}} use it (see those pages for examples).
 }
 \usage{
-plotHCA(spectra, distance, title, sub.title, method, use.sym, ...)
+plotHCA(spectra, distance, sub.title, method, use.sym, ...)
 }
 \arguments{
   \item{spectra}{
@@ -18,9 +18,6 @@ A character string for the subtitle.
 }
   \item{distance}{
 A distance matrix.
-}
-  \item{title}{
-A character string for the title.
 }
   \item{method}{
 A method acceptable to the \code{\link{hclust}} function.

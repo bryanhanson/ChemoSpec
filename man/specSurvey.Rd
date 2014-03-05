@@ -7,7 +7,7 @@ This function computes and plots various measures of central tendency and spread
 }
 \usage{
 specSurvey(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"),
-by.gr = TRUE, title = "no title provided", ...)
+by.gr = TRUE, ...)
 }
 \arguments{
   \item{spectra}{
@@ -18,9 +18,6 @@ One of \code{c("sd", "sem", "sem95", "mad", "iqr")}.  \code{sd} plots the mean +
 }
   \item{by.gr}{
 Logical, indicating if the analysis is to be done by group or not.
-}
-  \item{title}{
-A character string for the plot title.
 }
   \item{\dots}{
 Additional parameters to be passed to the plotting routines.
@@ -38,6 +35,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
 data(CuticleIR)
-specSurvey(CuticleIR, method = "iqr", title = "Cuticle IR")
+myt <- expression(bolditalic(Portulaca)~bolditalic(oleracea)~bold(Cuticle~IR~Spectra))
+specSurvey(CuticleIR, method = "iqr", main = myt)
 }
 \keyword{ hplot }

@@ -1,7 +1,7 @@
 
 plotScores3D <-
 function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
-	cl = 0.95, frac.pts.used = 0.8, title = "no title provided",
+	cl = 0.95, frac.pts.used = 0.8,
 	view = list(y = 34, x = 10, z = 0), tol = 0.01, use.sym = FALSE, ...) {
 
 # Function to do a 3D plot of PCA scores
@@ -25,8 +25,6 @@ function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
 	y.lab <- paste("PC", pcs[2], " (", format(variance[2], digits=2), "%", ")", sep = "")
 	z.lab <- paste("PC", pcs[3], " (", format(variance[3], digits=2), "%", ")", sep = "")
 	
-	title <- paste(title, ": PCA Score Plot", sep = "")
-
 	for (n in 1:length(gr$group)) { # work through the groups, add ellipses if n > 3
 		# note that makeEllipsoid has further checks for the number of data points
 
@@ -57,8 +55,7 @@ function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
 
 
 	p <- cloud(z ~ x * y, data = df, col = as.character(df$col), cex = df$size, pch = pch,
-		xlab = x.lab, ylab = y.lab, zlab = z.lab,
-		main = title,
+		xlab = x.lab, ylab = y.lab, zlab = z.lab, ...,
 		par.settings = list(axis.line = list(col = "transparent"),
 			par.xlab.text = list(cex = 0.75),
 			par.ylab.text = list(cex = 0.75),

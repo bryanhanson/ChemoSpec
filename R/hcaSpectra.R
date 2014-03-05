@@ -1,5 +1,5 @@
 hcaSpectra <-
-function(spectra, title = "no title provided",
+function(spectra,
 c.method = "complete", d.method = "euclidean", use.sym = FALSE, ...) {
 
 # Function to carry out HCA, basically a wrapper to existing methods
@@ -12,11 +12,10 @@ c.method = "complete", d.method = "euclidean", use.sym = FALSE, ...) {
 	if (use.sym) spectra$names <- paste(spectra$alt.sym, spectra$names, sep = " ")
 	distance <- rowDist(as.data.frame(spectra$data, row.names = spectra$names), method = d.method)
 
-#	title <- paste(title, ": HCA Analysis", sep = "")
-	title <- bquote(bold(.(eval(title)):~HCA~Analysis))
 	sub.title <- paste("clustering method: ", c.method, "      distance method: ", d.method, sep = "")
 
-	plotHCA(spectra = spectra, distance = distance, title = title, sub.title = sub.title,
-		method = c.method, use.sym = use.sym)
+	d <- plotHCA(spectra = spectra, distance = distance, sub.title = sub.title,
+		method = c.method, use.sym = use.sym, ...)
+	return(d)
 	}
 

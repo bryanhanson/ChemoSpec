@@ -11,8 +11,7 @@ Plots two PCA loadings specified by the user, and labels selected (extreme) poin
 }
 
 \usage{
-plot2Loadings(spectra, pca, title = "no title provided",
-	loads = c(1, 2), tol = 0.05, ...)
+plot2Loadings(spectra, pca, loads = c(1, 2), tol = 0.05, ...)
 }
 \arguments{
   \item{spectra}{
@@ -20,9 +19,6 @@ An object of S3 class \code{"Spectra"}.
 }
   \item{pca}{
 An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{classPCA}} or \code{\link{robPCA}} were used to create \code{pca}.
-}
-  \item{title}{
-A character string for the plot title.
 }
   \item{loads}{
 A vector of two integers specifying which loading vectors to plot.
@@ -52,7 +48,8 @@ See \code{\link{plotLoadings}} to plot one loading against the original variable
 \examples{
 data(SrE.IR)
 results <- classPCA(SrE.IR, choice = "noscale")
-plot2Loadings(SrE.IR, title = "Serenoa repens IR Spectra", results,
+myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
+plot2Loadings(SrE.IR, main = myt, results,
 	loads = c(1,2), tol = 0.05)
 }
 \keyword{ multivariate }

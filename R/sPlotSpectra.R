@@ -1,7 +1,6 @@
 
 
-sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05,
-	title = "no title provided", ...) {
+sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05, ...) {
 
 ##  Code to produce s-plots from Spectra objects
 ##  as in Wiklund.  Part of ChemoSpec
@@ -31,10 +30,7 @@ sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05,
   	crr <- cv/(sdv*pca$sdev[pc])
 	ans <- data.frame(cov = cv, corr = crr)
 
-#	title = paste(title, ": ", "s-Plot", sep = "")		
-	title <- bquote(bold(.(eval(title)) ~':'~S-Plot))
-
-	plot(cv, crr, main = title, xlab = "covariance", ylab = "correlation",
+	plot(cv, crr, xlab = "covariance", ylab = "correlation",
 		pch = 20, ...)
 	abline(v = 0.0, col = "red")
 	abline(h = 0.0, col = "red")
