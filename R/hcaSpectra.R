@@ -14,7 +14,8 @@ c.method = "complete", d.method = "euclidean", use.sym = FALSE, ...) {
 
 	sub.title <- paste("clustering method: ", c.method, "      distance method: ", d.method, sep = "")
 
-	plotHCA(spectra = spectra, distance = distance, sub.title = sub.title,
+	d <- plotHCA(spectra = spectra, distance = distance, sub.title = sub.title,
 		method = c.method, use.sym = use.sym, ...)
+	return(d)
 	}
 

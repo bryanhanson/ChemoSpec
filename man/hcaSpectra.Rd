@@ -30,7 +30,7 @@ Other parameters to be passed to the plotting functions.
 }
 }
 \value{
-None.  The side effect is a plot.
+An object of class \code{\link{dendrogram}}.  The side effect is a plot.
 }
 
 
