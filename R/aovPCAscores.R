@@ -9,7 +9,7 @@ aovPCAscores <- function(spectra, LM, plot = 1, type = "class", choice = NULL, .
 # LM is the list of matrices from aovPCA
 
 	if (plot > length(LM)){
-		stop("Error, plot does not exist. Please choose a different plot!")}
+		stop("Error, plot/matrix does not exist. Please choose a different plot!")}
 	
 	chkSpectra(spectra)
 	
@@ -50,6 +50,7 @@ aovPCAscores <- function(spectra, LM, plot = 1, type = "class", choice = NULL, .
 		if (plot == 8) title = names(LM)[8]
 		}
 	
-	plotScores(spectra = spectra, pca, title = title, ...)	
+	# As of v 2.0, title is no longer used, users can create one manually
+	plotScores(spectra = spectra, pca, ...)	
 	return(pca)
 	}
