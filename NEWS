@@ -4,6 +4,11 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 2.0-3 
+Date: 2014-07-25
+>> removeGroup was not exported, now it is!
+>> plotScores was given a new argument, leg.loc, to allow flexibility in placement of the legend.
+
 ##### Version 2.0-2 
 Date: 2014-05-31
 >> This version is on CRAN.

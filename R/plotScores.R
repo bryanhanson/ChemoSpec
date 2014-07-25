@@ -1,7 +1,7 @@
 plotScores <-
 function(spectra, pca,
 	pcs = c(1,2), ellipse = "none", tol = "none",
-	use.sym = FALSE, ...) {
+	use.sym = FALSE, leg.loc = "topright", ...) {
 
 # Function to plot PCA scores
 # Part of the ChemoSpec package
@@ -175,12 +175,13 @@ function(spectra, pca,
 	
 	plotScoresDecoration(spectra, pca, pcs, tol)
 	
+	if (leg.loc == "none") return()
 	leg.txt <- c("Key", gr$group)
 	leg.col <- c("black", gr$color)
 	if (use.sym) leg.col = "black"
 	leg.pch <- NA
 	if (use.sym) leg.pch <- c(NA, gr$sym)
-	legend("topright", leg.txt, text.col = leg.col, bty = "o", cex = 0.75, pch = leg.pch)
+	legend(leg.loc, leg.txt, text.col = leg.col, bty = "o", cex = 0.75, pch = leg.pch)
 
 }
 
