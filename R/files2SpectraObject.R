@@ -64,7 +64,7 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 		spectra$freq <- temp[,1]
 		if (class(spectra$freq) == "integer") {
 			message("\nConverting integer frequency values to numeric")
-			spectra$freq <- as.integer(spectra$freq)
+			spectra$freq <- as.numeric(spectra$freq)
 			}
 		
 		spectra$data <- matrix(data = NA, nrow = length(files), ncol = length(spectra$freq))
@@ -121,7 +121,7 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 		spectra$freq <- temp[,1]
 		if (class(spectra$freq) == "integer") {
 			message("Converting integer frequency values to numeric")
-			spectra$freq <- as.integer(spectra$freq)
+			spectra$freq <- as.numeric(spectra$freq)
 			}
 		
 		if (!exists("span")) span <- 120
@@ -206,7 +206,6 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 	# Go get group assignments & colors, to complete assembly of spectra
 
 	spectra <- groupNcolor(spectra, gr.crit, gr.cols)
-	
 	spectra$unit[1] <- freq.unit
 	spectra$unit[2] <- int.unit
 	spectra$desc <- descrip

@@ -4,6 +4,10 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
 
+##### Version 2.0-4 
+Date: 2014-09-29
+>> Fixed importing of csv files with integer frequency values in files2SpectraObject (thought this was fixed before).
+
 ##### Version 2.0-3 
 Date: 2014-07-25
 >> removeGroup was not exported, now it is!
