@@ -14,7 +14,6 @@
 \usepackage{hyperref, url}
 \usepackage{graphicx}
 \usepackage[margin=2.0cm]{geometry}
-\usepackage[version = 3]{mhchem}
 \usepackage[parfill]{parskip}
 \geometry{letterpaper}
 
@@ -61,7 +60,6 @@ opts_chunk$set(out.width = "0.8\\textwidth", fig.align = "center", fig.width = 7
 
 \title{ChemoSpec: An R Package for Chemometric\\
 Analysis of Spectroscopic Data\\
-and Chromatograms\\
 \Sexpr{vers}}
 \author{Bryan A. Hanson\footnote{The development of ChemoSpec has been generously supported by DePauw University in the form of sabbatical funding and a Fisher Fellowship. Thanks!}\\
 e-mail: \href{mailto:hanson@depauw.edu}{hanson@depauw.edu}\\
@@ -96,7 +94,7 @@ Chemometrics, as defined by Varmuza and Filzmoser\cite{Filz}, is
 "\ldots the extraction of relevant information from chemical data by mathematical and statistical tools."
 \end{quote}
 
-This is an appropriately broad definition, considering the wealth of questions and tasks that can be treated by chemometric approaches.  In our case, the focus is on spectral data sets, which typically have many variables (frequencies) and relatively few samples.  Such multivariate, \emph{high p, low n} data sets present some algorithmic challenges, but these have been addressed by knowledgeable folks.  In particular, for both the practical and theoretical background to multivariate chemometric analysis, I strongly recommend the Varmuza/Filzmoser book.  Some of the functions described here are not much more than wrappers for the functions they and others have made available to the \texttt{R} community in their packages.
+This is an appropriately broad definition, considering the wealth of questions and tasks that can be treated by chemometric approaches.  In our case, the focus is on spectral data sets, which typically have many variables (frequencies) and relatively few samples.  Such multivariate, \emph{high p, low n} data sets present some algorithmic challenges, but these have been addressed by knowledgeable folks.  In particular, for both the practical and theoretical background to multivariate chemometric analysis, I strongly recommend the Varmuza/Filzmoser book.\cite{Filz}  Some of the functions described here are not much more than wrappers for the functions they and others have made available to the \texttt{R} community in their packages.
 
 \texttt{ChemoSpec} was developed for the chemometric analysis of spectroscopic data, such as UV-Vis, NMR or IR data (it also works with chromatographic data, see below).  The approach is entirely exploratory and unsupervised, in other words, "top-down"\cite{Prog-Metabolomics}.  I developed it while beginning a new research focus on plant metabolomics, and I needed software to analyze the data I was collecting.  My research involves ecological experiments on plant stress, so \texttt{ChemoSpec} was designed to accommodate samples that have different histories, i.e., they fall into different classes, categories or groups.  Examples would be treatment and control groups, or simply different specimens (red flowers vs. blue flowers).  Since my research is done with undergraduates, who are true novices with \texttt{R}, \texttt{ChemoSpec} is designed to be as user friendly as possible, with plenty of error checking, helpful warnings and a consistent interface.  It also produces graphics that are consistent in style and annotation, and are suitable for use in publications and posters.  Careful attention was given to writing the documentation for the functions, but this vignette serves as the best starting point for learning data analysis with \texttt{ChemoSpec}.
 
@@ -106,17 +104,17 @@ I assume you have at least a bare-bones knowledge of \texttt{R} as you begin to 
 
 Finally, some conventions for this document:  names of \texttt{R} "objects" such as packages, functions, function arguments, and data sets are in \texttt{typewriter} font.  The commands you issue at the console and the output are shown with a light grey background, and are colored according to use and purpose, courtesy of the excellent \texttt{knitr} package.\cite{Xie2011}
 
-By the way, if you try \texttt{ChemoSpec} and find it useful, have questions, have opinions, or have suggestions, please do let me know.  The current version has already been improved by users.
+By the way, if you try \texttt{ChemoSpec} and find it useful, have questions, have opinions, or have suggestions, please do let me know.  The version you are using already incorporates a great deal of user input, why not add yours?  Possible bugs and feature requests should be documented using the Github issues system at \href{http://github.com/bryanhanson/ChemoSpec/issues}{github.com/bryanhanson/ChemoSpec/issues}
 
-\section{A Sample Exploration} %%%%%%%%%%%%%%%%
-This sample exploration is designed to illustrate a typical \texttt{ChemoSpec} workflow.  The point is to illustrate how to carry out the commands, what options are available and typically used, and the order in which one might do the analysis.  The \texttt{SrE.IR} data set will be used for illustration only -- we are not trying to analyze it to reach useful conclusions.  You may wish to put your versions of these commands into a script file that you can source as you go along.  This way you can easily make changes, and it will all be reproducible.  To do this, open a blank \texttt{R} document, and type in your commands.  Save it as something like \textcolor{blue}{My\_First\_ChemoSpec.R}.  Then you can either cut and paste portions of it to the console for execution, or you can source the entire thing:
+\section{A Sample Workflow} %%%%%%%%%%%%%%%%
+This sample exploration is designed to illustrate a typical \texttt{ChemoSpec} workflow.  The point is to illustrate how to carry out the commands, what options are available and typically used, and the order in which one might do the analysis.  The \texttt{SrE.IR} data set will be used for illustration only -- we are not trying to reach useful conclusions.  You may wish to put your versions of these commands into a script file that you can source as you go along.  This way you can easily make changes, and it will all be reproducible.  To do this, open a blank \texttt{R} document, and type in your commands.  Save it as something like \textcolor{blue}{My\_First\_ChemoSpec.R}.  Then you can either cut and paste portions of it to the console for execution, or you can source the entire thing:
 
 << Chunk1,  results = "hide", eval = FALSE>>=
 source("My_First_ChemoSpec.R")
 @
 
 \subsection{Getting Data into ChemoSpec} %%%%%%%%%%%%%%%
-Currently, there is only one means of moving raw data sets into \texttt{ChemoSpec}, and that is the function \texttt{getManyCsv} (it is relatively easy to write analogous functions for other formats).  This function assumes that your raw data files are formatted as .csv files, and contain only the data itself, in two columns.\footnote{Users in the EU have different standards for a .csv file: they are delimited by semi-colons, and a comma is used where a decimal point is used in the United States.  For these files, use the argument \texttt{format = "csv2"} to read the files properly.}  The first column should be the frequency values, and this column must be the same for all files (as it will be if these are data sets from the same instrument and experimental parameters).  The second column should contain the intensity values.  There should not be a header row.  If your data set contains treatment and control groups, or any analogous class/group information, this information should be encoded in the file names.  \texttt{getManyCsv} argument \texttt{gr.crit} will be the basis for a grep process on the file names, and from there, each file, representing a sample, will be assigned to a group and be assigned a color as well.  If your samples don't fall into groups, that's fine too, but you still have to give \texttt{gr.crit} something to go on---just give it one string that is common to all the file names.  Obviously, this approach encourages one to name the files as they come off the instrument with forethought as to how they will be analyzed, which in turn depends upon your experimental design.  Nothing wrong with having a plan!  Remember that \texttt{getManyCsv} acts on all .csv files it finds in a directory, so don't have any extra .csv files hanging around.  The output of \texttt{getManyCsv} is a \texttt{Spectra} object, which is \texttt{R}-speak for a file, readable by \texttt{R}, that contains not only your data, but other information about the experiment, as provided by you via the arguments to \texttt{getManyCsv}.
+Currently, there is only one means of moving raw data sets into \texttt{ChemoSpec}, and that is the function \texttt{files2SpectraObject} (it is relatively easy to write analogous functions for other formats).  This function assumes that your raw data files are formatted as .csv files, and contain only the data itself, in two columns.\footnote{Users in the EU have different standards for a .csv file: they are delimited by semi-colons, and a comma is used where a decimal point is used in the United States.  For these files, use the argument \texttt{format = "csv2"} to read the files properly.}  The first column should be the frequency values, and this column must be the same for all files (as it will be if these are data sets from the same instrument and experimental parameters).  The second column should contain the intensity values.  There should not be a header row.  If your data set contains treatment and control groups, or any analogous class/group information, this information should be encoded in the file names.  \texttt{files2SpectraObject} argument \texttt{gr.crit} will be the basis for a grep process on the file names, and from there, each file, representing a sample, will be assigned to a group and be assigned a color as well.  If your samples don't fall into groups, that's fine too, but you still have to give \texttt{gr.crit} something to go on---just give it one string that is common to all the file names.  Obviously, this approach encourages one to name the files as they come off the instrument with forethought as to how they will be analyzed, which in turn depends upon your experimental design.  Nothing wrong with having a plan!  Remember that \texttt{files2SpectraObject} acts on all .csv files it finds in a directory, so don't have any extra .csv files hanging around.  The output of \texttt{files2SpectraObject} is a \texttt{Spectra} object, which is \texttt{R}-speak for an object that contains not only your data, but other information about the experiment, as provided by you via the arguments to \texttt{files2SpectraObject}.
 
 Here's a typical example (we have to talk hypothetically because I don't have your data).  Let's say you had a folder containing 30 NMR files of flower essential oils.  Imagine that 18 of these were from one hypothetical subspecies, and 12 from another.  Further, let's pretend that the question under investigation has something to do with the taxonomy of these two supposed subspecies, in other words, an investigation into whether or not they should be considered subspecies at all.  If the files were named like this:
 
@@ -125,12 +123,12 @@ Here's a typical example (we have to talk hypothetically because I don't have yo
 Then the following command should process the files and create the desired \texttt{Spectra} object:
 
 << Chunk2,  results = "hide", eval = FALSE>>=
-getManyCsv(gr.crit = c("sspA", "sspB"), gr.cols = c("red3", "dodgerblue4"),
+files2SpectraObject(gr.crit = c("sspA", "sspB"), gr.cols = c("red3", "dodgerblue4"),
 freq.unit = "ppm", int.unit = "peak intensity", descrip = "Subspecies Study",
 out.file = "subspecies")
 @
 	
-This causes \texttt{getManyCsv} to read the file names for the strings sspA and sspB and use these to assign the samples into groups.  Samples in \textcolor{blue}{sspA*.csv} files will be assigned the color \texttt{red3} and \textcolor{blue}{sspB*.csv} will be assigned \texttt{dodgerblue4} (see the help file for some thinking-ahead about colors; \texttt{?colorSymbol} at the console).   After running this command, a new file called \textcolor{blue}{subspecies.RData} will be in your directory, and you can access the data set and give it whatever name you like as follows:
+This causes \texttt{files2SpectraObject} to inspect the file names for the strings \texttt{sspA} and \texttt{sspB} and use these to assign the samples into groups.  Samples in \textcolor{blue}{sspA*.csv} files will be assigned the color \texttt{red3} and \textcolor{blue}{sspB*.csv} will be assigned \texttt{dodgerblue4} (see Section~\ref{ColSym} for some suggestions about planning ahead on color choices, as well as \texttt{?colorSymbol}).   After running this command, a new file called \textcolor{blue}{subspecies.RData} will be in your directory, and you can access the data set and give it whatever name you like as follows (function \texttt{loadObject} is from package \texttt{R.utils}):
 
 << Chunk3,  results = "hide", eval = FALSE>>=
 SubspeciesNMR <- loadObject("subspecies.RData")
@@ -140,67 +138,21 @@ Now it is ready to use.
 
 \subsection*{Working with Chromatograms}
 
-While all the language in this vignette and in the package are geared toward analysis of spectra, \texttt{ChemoSpec} can also work with chromatograms as the raw data.  In this case, time replaces frequency of course, but other than that the analysis is virtually the same.  So the only real difference is when you issue the command \texttt{getManyCsv}, you will give the frequency unit along these lines: \texttt{freq.unit = "time (minutes)"}.
+While all the language in this vignette and in the package are geared toward analysis of spectra, \texttt{ChemoSpec} can also work with chromatograms as the raw data.  In this case, time replaces frequency of course, but other than that the analysis is virtually the same.  So the only real difference is when you issue the command \texttt{files2SpectraObject}, you will give the frequency unit along these lines: \texttt{freq.unit = "time (minutes)"}.
 
 \subsection*{Built-in Data Sets}
 
-\texttt{ChemoSpec} ships with several built-in data sets. \texttt{SrE.IR} is the set used for this vignette.  It is composed of a collection of 14 IR spectra of essential oil extracted from the palm \emph{Serenoa repens} or Saw Palmetto, which is commonly used to treat BPH in men.  The 14 spectra are of different retail samples, and are divided into two categories based upon the label description: adSrE, adulterated extract, and pSrE, pure extract.  The adulterated samples typically have olive oil added to them, which is inactive towards BPH.  There are two additional spectra included as references/outliers: evening primrose oil, labeled EPO in the data set, and olive oil, labeled OO.  These latter two oils are mixtures of triglycerides for the most part, while the SrE samples are largely fatty acids.  As a result, the spectra of these two groups differ: the glycerides have ester carbonyl stretches and no O--H stretch, while the fatty acids have acid carbonyl stretches and an O--H stretch consistent with a carboxylic acid OH.
+\texttt{ChemoSpec} ships with several built-in data sets. \texttt{SrE.IR} is the set used for this vignette.  It is composed of a collection of 14 IR spectra of essential oil extracted from the palm \emph{Serenoa repens} or Saw Palmetto, which is commonly used to treat BPH in men.  The 14 spectra are of different retail samples, and are divided into two categories based upon the label description: adSrE, adulterated extract, and pSrE, pure extract.  The adulterated samples typically have olive oil added to them, which has no effect on BPH.  There are two additional spectra included as references/outliers: evening primrose oil, labeled EPO in the data set, and olive oil, labeled OO.  These latter two oils are mixtures of triglycerides for the most part, while the SrE samples are largely fatty acids.  As a result, the spectra of these two groups differ: the glycerides have ester carbonyl stretches and no O--H stretch, while the fatty acids have acid carbonyl stretches and an O--H stretch consistent with a carboxylic acid OH.
 
-Also included is \texttt{SrE.NMR} which is a corresponding set of NMR spectra, and \texttt{CuticleIR}.  The latter is a series of IR spectra of the cuticle (leaf surface) of the plant \emph{Portulaca oleracea}.  The data were taken by gently pinning the leaf against an ATR sampling device.  The plants were grown at two different temperatures, and two different genotypes (varieties) were used (a classic G x E, genotype by environment, experiment).
+Also included is \texttt{SrE.NMR} which is the corresponding set of NMR spectra, and \texttt{CuticleIR}.  The latter is a series of IR spectra of the cuticle (leaf surface) of the plant \emph{Portulaca oleracea}.  The data were taken by gently pinning the leaf against an ATR sampling device.  The plants were grown at two different temperatures, and two different genotypes (varieties) were used (a classic G x E, genotype by environment, experiment). 
 
-The \texttt{SrE.IR} data set is used as the example in this vignette as the sample spectra are fairly different and give good separation by most chemometric methods.  The \texttt{CuticleIR} spectra differ in much more subtle ways and as as result are more of a challenge to analyze.  For more details about these data sets, type \texttt{> ?data\_set\_name} at the console.
+The \texttt{SrE.IR} data set is used as the example in this vignette as the sample spectra are fairly different and give good separation by most chemometric methods.  The \texttt{CuticleIR} spectra differ in much more subtle ways and as as result are more of a challenge to analyze.  For more details about these data sets, type \texttt{?data\_set\_name} at the console.
 
-\subsection*{Color and Symbol Options}
-
-Skip this material if this is your first time looking through \texttt{ChemoSpec}.
-
-In \texttt{ChemoSpec}, the user may use any color name/format known to R.  For ease of comparison, it would be nice to plan ahead and use the same color scheme for all your plots.  However, if you are just doing preliminary work, \texttt{ChemoSpec} will choose colors for you automatically.
-
-In addition to colors, \texttt{"Spectra"} objects also contain a list of symbols, and alternative symbols.  These are useful for plotting in black and white, or when color-blind individuals will be viewing the plots.  The alternative symbols are simply lower-case letters, as these are needed for \texttt{plotScoresRGL}, and other \texttt{rgl}-graphics driven functions which cannot plot traditional symbols. 
-
-An issue to keep in mind is that \texttt{R} plots are generally on a white background, so pale colors should be avoided, while \texttt{GGobi}, which is used by function \texttt{plotScoresG}, plots on a black background (interactively), so dark colors should be avoided.  Hence some compromise is necessary.
-
-Two recommended color schemes are shown in Figure~\ref{colors}.  By name, these are:
-
-\begin{quote}
-primary scheme: c("red3", "dodgerblue4", "forestgreen", "purple4", "orangered", "yellow", "orangered4", "violetred2")
-
-pastel scheme: c("seagreen", "brown2", "skyblue2", "hotpink3", "chartreuse3", "darkgoldenrod2", "lightsalmon3", "gray48")
-\end{quote}
-
-Finally, the current color scheme of a \texttt{Spectra} object may be determined using \texttt{sumSpectra} or changed using \texttt{conColScheme}.
-
-\vspace{0.5 cm}
-\hrule
-\vspace{0.5 cm}
-
-NOTE about the next section: as of December 2010 \texttt{GGobi} is on "life support" and the communication of color information between \texttt{ChemoSpec} and \texttt{GGobi} is not working perfectly.  You are on your own!
-
-If you plan to use \texttt{rggobi} and \texttt{GGobi} to view the data later, keep in mind that \texttt{GGobi} only uses certain color schemes (although there are many options), and in interactive operation plots on a black background.  In the case of \texttt{ChemoSpec}, two particular options have been hard-coded into the function \texttt{plotScoresG} for simplicity.  If you plan to use \texttt{plotScoresG}, you may wish to choose from one of these two color schemes before you begin if you want all your graphics to use the same scheme.  Keep in mind that these colors must be used in order (though you can use the order of argument \texttt{gr.crit} to associate a particular group with a particular color:
-
-\begin{quote}
-primary scheme: c("red3", "dodgerblue4", "forestgreen", "purple4", "orangered", "yellow", "orangered4", "violetred2")
-
-pastel scheme: c("seagreen", "brown2", "skyblue2", "hotpink3", "chartreuse3", "darkgoldenrod2", "lightsalmon3", "gray48")
-\end{quote}
-
-\vspace{0.5 cm}
-\hrule
-\vspace{0.5 cm}
-
-<<  Chunk4,  echo = FALSE, fig.width = 6, fig.height = 4, fig.cap = "\\label{colors}Recommended Color Sets in ChemoSpec" >>=
-par(mfrow = c(2,1), mar = c(3, 1, 2, 1))
-display.brewer.pal(8, "Set1")
-title(main = "ChemoSpec Primary Scheme")
-display.brewer.pal(8, "Set2")
-title(main = "ChemoSpec Pastel Scheme")
-par(mfrow = c(1,1))
-@
 
 \subsection{Preliminary Inspection of Data} %%%%%%%%%%%%%%%
 \label{sec-prelim}
 
-One of the first things you should do, and this is very important, is to make sure your data are in good shape.  First, you can summarize the data set you created, and verify that the data ranges etc look like you expect them to:
+\emph{The} first thing you should do, and this is very important, is to make sure your data are in good shape.  First, you can summarize the data set you created, and verify that the data ranges and other details look like you expect them to:
 
 << Chunk5, echo = TRUE >>=
 data(SrE.IR) # makes the data available
@@ -211,23 +163,21 @@ sumSpectra(SrE.IR)
 
 \subsubsection{Plotting the Spectra} %%%%%%%%%%%%%%%
 
-Assuming that everything looks good so far, it's time to plot the spectra and inspect them.  A good practice would be to check every spectrum for artifacts and other potential problems.  As of v.~1.50, there is a function \texttt{LoopThruSpectra} which will take the pain out of inspecting quite a few spectra.  See the help page for details.  However, for plotting just a few spectra, you should use \texttt{plotSpectra}.   A basic plot is shown in Figure~\ref{plot}.  In this case we have chosen to plot one spectrum from each category.  Note that the carbonyl and \ce{C_{sp2}-H} regions are clearly different in these samples.
-
+Assuming that everything looks good so far, it's time to plot the spectra and inspect them.  A good practice would be to check every spectrum for artifacts and other potential problems.  The function \texttt{LoopThruSpectra} takes the pain out of inspecting quite a few spectra.  See the help page for details.  However, for plotting just a few spectra, you should use \texttt{plotSpectra}.   A basic plot is shown in Figure~\ref{plot}.  In this case we have chosen to plot one spectrum from each category.  Note that the carbonyl and $\rm C_{sp2}-H$ regions are clearly different in these samples.
 
 << Chunk8, fig.cap = "\\label{plot}Plotting Spectra" >>=
-# We'll make a fancy proper title just this once!
+# We'll make a fancy title here and re-use in other plots
 myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(Extract~IR~Spectra))
 plotSpectra(SrE.IR, main = myt,
 which = c(1, 2, 14, 16),
 yrange = c(0, 1.6), offset = 0.4, lab.pos = 2200)
 @
 
-
-Depending upon the intensity range of your data set, and the number of spectra to be plotted, you have to manually adjust the arguments \texttt{yrange}, \texttt{offset} and \texttt{amplify}, but this usually only takes a few iterations.  Keep in mind that  \texttt{offset}, and \texttt{amplify} are multiplied in the function, so if you increase one, you may need to decrease the other.  Suppose that you wanted to focus just on the carbonyl region of these spectra; you can add an argument called \texttt{xlim}.  To demonstrate, let's look at fewer spectra, and at higher amplitude, so we can see details, as shown in Figure~\ref{subplot}.
+Depending upon the intensity range of your data set, and the number of spectra to be plotted, you have to manually adjust the arguments \texttt{yrange}, \texttt{offset} and \texttt{amplify}, but this usually only takes a few iterations.  Keep in mind that  \texttt{offset}, and \texttt{amplify} are multiplied in the function, so if you increase one, you may need to decrease the other.  Suppose that you wanted to focus just on the carbonyl region of these spectra; you can add the argument  \texttt{xlim}.  To demonstrate, let's look at fewer spectra, and at higher amplitude, so we can see details, as shown in Figure~\ref{subplot}.
 
 
 << Chunk10, fig.cap = "\\label{subplot}Zooming in on a Spectral Region" >>=
-plotSpectra(SrE.IR, main = "S. repens IR Spectra: Detail of Carbonyl Region",
+plotSpectra(SrE.IR, main = myt,
 which = c(1, 2, 14, 16), xlim = c(1650, 1800),
 yrange = c(0, 0.6), offset = 0.1, lab.pos = 1775)
 @
@@ -241,15 +191,46 @@ SrE.IR$names # suitable if there are not many spectra
 grep("OO", SrE.IR$names) # use if there are more spectra
 @
 
-See the discussion in the next section for more details on using grep effectively.
+\subsection{Data Pre-Processing Options} %%%%%%%%%%%%%%%
+
+There are a number of data pre-processing options available for your consideration.  The main choices are whether to normalize the data, whether to bin the data, and whether to scale the data.  Data scaling is handled by the PCA routines, see Section~\ref{sec-pca}.
+
+\subsubsection{Normalization} %%%%%%%%%%%%%%%
+
+Normalization is handled by the \texttt{normSpectra} function.  Usually one normalizes data in which the sample preparation procedure may lead to differences in concentration, such as body fluids that might have been diluted during handling, or that vary due to the physiological state of the organism studied.  The \texttt{SrE.IR} data set is taken by placing the oil extract directly on an ATR device and no dilution is possible, so normalization probably isn't really appropriate.  Currently, there are two normalization options.  The default option is probabalistic quotient normalization (need ref).  The alternative is to divide each point (frequency) in a spectrum by the sum of all points in that spectrum, which is known as normalizing to total intensity.  Normalization is accomplished by the following code (which we won't actually run):
+
+<< Chunk17, eval = FALSE, echo = TRUE >>=
+not_wanted <- normSpectra(SrE.IR)
+@
+
+But remember, this doesn't make sense for this data set.  The literature contains a number of useful discussions about normalization issues.\cite{Scale-Norm-Nicholson, NMR-Norm, Cent-Scale-Norm, Filz, Raftery-Signal-Processing}
+
+\subsubsection{Bucketing or Binning} %%%%%%%%%%%%%%%
+
+Another type of pre-processing that you may wish to consider is binning or bucketing, in which groups of frequencies are collapsed into one frequency value, and the corresponding intensities are summed.  There are two reasons for doing this.  One is to compact the data, but the algorithms in \texttt{R} are quite fast, and data sets of the size of \texttt{SrE.IR} or even the much larger \texttt{SrE.NMR} don't slow it down much.  The other reason is to compensate for shifts in very narrow peaks from sample to sample.  This is typically done with aqueous $\rm ^{1}H $ NMR samples because changes in dilution, ionic strength, or pH can cause signficant shifts for some types of protons. Spectra with broad, rolling peaks won't have this problem (UV-Vis for example).  The function \texttt{binBuck} is your friend.  This example illustrates the process but is not really necessary with IR data:
+
+<< Chunk18 >>=
+tmp <- binBuck(SrE.IR, bin.ratio = 4)
+sumSpectra(tmp)
+@
+
+Compare the results here with the \texttt{sumSpectra} of the full data set (Section~\ref{sec-prelim}). In particular note that the frequency resolution has gone down due to the binning process.  \texttt{ChemoSpec} uses the simplest of binning algorithms: after perhaps dropping a few points (with a warning) to make your data set divisible by the specified \texttt{bin.ratio}, data points are replaced by the average frequency and the sum of the grouped intensities.  Depending upon the fine structure in your data and the \texttt{bin.ratio} this might cause important peaks to be split between different bins.  There are more sophisticated binning algorithms in the literature that try to address this, but none are currently implemented in \texttt{ChemoSpec}.\cite{Gaussian-binning, Adaptive-binning}
+
+\subsubsection{Correcting Baseline Drift} %%%%%%%%%%%%%%%
+
+\texttt{ChemoSpec} uses the functions in the package \texttt{baseline} to correct wandering baselines.  The function, \texttt{baselineSpec}, can operate interactively or not.  Figure~\ref{baseline} shows a typical usage.  Method \texttt{rfbaseline} works well for IR spectra; \texttt{retC = TRUE} puts the corrected spectra into the new \texttt{Spectra} object so we can use it going forward (and we will).
 
 
-\subsubsection{Identifying \& Removing Problematic Samples} %%%%%%%%%%%%%%%
+<< Chunk10b, fig.cap = "\\label{baseline}Correcting baseline drift"  >>=
+SrE2.IR <- baselineSpec(SrE.IR, int = FALSE, method = "rfbaseline", retC = TRUE)
+@
+
+\subsection{Identifying \& Removing Problematic Samples} %%%%%%%%%%%%%%%
 
 In the process of plotting and inspecting your spectra, you may find some spectra/samples that have problems.  Perhaps they have instrumental artifacts.  Or maybe you have decided to eliminate one subgroup of samples from your data set to see how the results differ.  To  remove a particular sample, or samples meeting a certain criteria, you use the \texttt{removeSample} function.  This function uses a grepping process based on its \texttt{rem.sam} argument, so you must be careful due to the greediness of grep.  Let's imagine that sample TD\_adSrE has artifacts and needs to be removed.  The command would be:
 
 <<  Chunk11 >>=
-noTD <- removeSample(SrE.IR, rem.sam = c("TD_adSrE"))
+noTD <- removeSample(SrE2.IR, rem.sam = c("TD_adSrE"))
 sumSpectra(noTD)
 grep("TD_adSrE", noTD$names)
 @
@@ -257,40 +238,31 @@ grep("TD_adSrE", noTD$names)
 The \texttt{sumSpectra} command confirms that there are now one fewer spectra in the set.  As shown, you could also re-grep for the sample name to verify that it is not found.  The first argument in \texttt{grep} is the pattern you are searching for; if that pattern matches more than one name they will all be "caught."  For example if you used "SrE" as your pattern you would remove all the samples except the two reference samples, since "SrE" occurs in "adSrE" and "pSrE".  You can check this in advance with the grep function itself:
 
 << Chunk12 >>=
-SrE <- grep("SrE", SrE.IR$names)
-SrE.IR$names[SrE] # gives the name(s) that contain "SrE"
+SrE <- grep("SrE", SrE2.IR$names)
+SrE2.IR$names[SrE] # gives the name(s) that contain "SrE"
 SrE # gives the corresponding indicies
 @
 
 This is what is meant by "grep is greedy".  In this situation, you have three choices:
 \begin{enumerate}
 
-\item You could manually remove the problem samples (\texttt{\textsl{> str(SrE.IR)}} would give you an idea of how to do that; see also below under Hierarchical Cluster Analysis).
+\item You could manually remove the problem samples (\texttt{str(SrE2.IR)}) would give you an idea of how to do that; see also below under Hierarchical Cluster Analysis).
 
 \item \texttt{removeSample} also accepts indices of samples, so you could grep as above, note the index of the sample you actually want to remove, and use that in \texttt{rem.sam}.
 
-\item If you know a bit about grep, you can pass a more sophisticated search pattern to \texttt{rem.sam}. 
+\item If you know a bit about grep and regex, you can pass a more sophisticated search pattern to \texttt{rem.sam}. 
 
 \end{enumerate}
 
 \subsubsection{Removing Groups} %%%%%%%%%%%%%%%
 
-\texttt{removeSample} uses the names of the samples (in \texttt{Spectra\$names}) to identify and remove individual samples from the \texttt{Spectra} object.  As of v.~1.51 there is a function \texttt{removeGroup} which will remove samples belonging to a particular group in \texttt{Spectra\$groups}.
-
-\subsubsection{Correcting Baseline Drift} %%%%%%%%%%%%%%%
-
-As of v.~ 1.50, \texttt{ChemoSpec} contains a function to correct wandering baselines.  The function, \texttt{baselineSpec}, can operate interactively or not.  Figure~\ref{baseline} shows a typical usage.  Method \texttt{rfbaseline} works well for IR spectra; \texttt{retC = TRUE} puts the corrected spectra into the new \texttt{Spectra} object so we can use it going forward (and we will).
-
-
-<< Chunk10b, fig.cap = "\\label{baseline}Correcting baseline drift"  >>=
-SrE2.IR <- baselineSpec(SrE.IR, int = FALSE, method = "rfbaseline", retC = TRUE)
-@
+\texttt{removeSample} uses the names of the samples (in \texttt{Spectra\$names}) to identify and remove individual samples from the \texttt{Spectra} object.  There is also a function \texttt{removeGroup} which will remove samples belonging to a particular group in \texttt{Spectra\$groups}.
 
 \subsubsection{Identifying \& Removing Regions of No Interest} %%%%%%%%%%%%%%%
 
-Many spectra will have regions that should be removed.  It may be an uninformative, interfering peak like the water peak in \ce{^{1}H NMR}, or the \ce{CO2} peak in IR.  Or, there may be regions of the spectra that simply don't have much information -- they contribute a noisy baseline and not much else.  An example would be the region from about 1,800 or 1,900 \ce{cm^{-1}} to about 2,500 \ce{cm^{-1}} in IR, a region where there are typically no peaks except for the \ce{CO2} stretch, and rarely (be careful!) alkyne stretches.
+Many spectra will have regions that should be removed before analysis.  It may be an uninformative, interfering peak like the water peak in $\rm ^{1}H$ NMR, or the $\rm CO_2$ peak in IR.  Or, there may be regions of the spectra that simply don't have much information -- they contribute a noisy baseline and not much else.  An example would be the region from about 1,800 or 1,900 $\rm cm^{-1} $ to about 2,500 $\rm cm^{-1} $ in IR, a region where there are typically no peaks except for the atomospheric $\rm CO_2$ stretch, and rarely (be careful!) alkyne stretches.
 
-Finding these regions might be pretty simple, a matter of inspection coupled with your knowledge of spectroscopy.  Another approach is to use the function \texttt{specSurvey} to examine the entire set of spectra.  This function computes a summary statistic (your choice) of the intensities at a particular frequency across the data set, and plots this against frequency.  Regions where there is not much variation in the intensity will show up as unvarying baseline, and these regions are candidates for removal.  Figure~\ref{surv} demonstrates the process.
+Finding these regions might be pretty simple, a matter of inspection coupled with your knowledge of spectroscopy.  Another approach is to use the function \texttt{specSurvey} to examine the entire set of spectra.  This function computes a summary statistic (your choice) of the intensities at a particular frequency across the data set, as well as the mean or median.  In regions with little variation, the mean/median and upper/lower summary lines will be close together.  Figure~\ref{surv} demonstrates the process.
 
 
 << Chunk14,  fig.width = 8, fig.height = 5, fig.cap = "\\label{surv}Checking for Regions of No Interest" >>=
@@ -312,13 +284,13 @@ Finally, \texttt{specSurvey} allows us to view the data set by group, which is r
 specSurvey(SrE2.IR, method = "iqr", main = "S. repens Detail of Carbonyl Region", by.gr = TRUE, xlim = c(1650, 1800))
 @
 
-For reasons that will become evident in a moment, let's look at the region between 1800 and 2500 \ce{cm^{-1}} (Figure~\ref{survC}).
+For reasons that will become evident in a moment, let's look at the region between 1800 and 2500 $\rm cm^{-1} $ (Figure~\ref{survC}).
 
 << Chunk14c, fig.cap = "\\label{survC}Inspection of an Uninteresting Spectral Region"  >>=
-specSurvey(SrE2.IR, method = "iqr", main = "S. repens Detail of Empty Region", by.gr = FALSE, xlim = c(1800, 2500))
+specSurvey(SrE2.IR, method = "iqr", main = "S. repens Detail of Empty Region", by.gr = FALSE, xlim = c(1800, 2500), ylim = c(0.0, 0.05))
 @
 
-From a theoretical perspective, we expect this region to be devoid of interesting peaks.  In fact, even when pooling the groups the signal in this region is very weak, and the only peak present is due to \ce{CO2}.  We can remove this region, since it is primarily noise and artifact, with the function \texttt{removeFreq} as follows. Note that there are fewer frequency points now.
+From a theoretical perspective, we expect this region to be devoid of interesting peaks.  In fact, even when pooling the groups the signal in this region is very weak, and the only peak present is due to atomospheric $\rm CO_2 $.  We can remove this region, since it is primarily noise and artifact, with the function \texttt{removeFreq} as follows. Note that there are fewer frequency points now.
 
 << Chunk15 >>=
 SrE3.IR <- removeFreq(SrE2.IR, rem.freq = SrE2.IR$freq > 1800 & SrE2.IR$freq < 2500)
@@ -332,24 +304,6 @@ Notice that \texttt{sumSpectra} has identified a gap in the data set.  You can s
 check4Gaps(SrE3.IR$freq, SrE3.IR$data[1,], plot = TRUE)
 @
 
-\subsection{Data Pre-Processing Options} %%%%%%%%%%%%%%%
-
-There are a number of data pre-processing options available for your consideration.  The main choices are whether to normalize the data, whether to bin the data, and whether to scale the data.  Data scaling is handled by the PCA routines, see Section~\ref{sec-pca}. Normalization is handled by the \texttt{normSpectra} function.  Usually one normalizes data in which the sample preparation procedure may lead to differences in concentration, such as body fluids that might have been diluted during handling, or that vary due to the physiological state of the organism studied.  The \texttt{SrE.IR} data set is taken by placing the oil extract directly on an ATR device and no dilution is possible, so normalization probably isn't really appropriate.  Currently, there is only one means of normalizing, and that is to divide each point (frequency) in a spectrum by the sum of all points in that spectrum.  Other means of normalizing can be readily added if they affect all points in the same way.  Normalization is accomplished by the following code (which is not run):
-
-<< Chunk17, eval = FALSE, echo = TRUE >>=
-SrE3.IR <- normSpectra(SrE3.IR)
-@
-
-But remember, this doesn't make sense for this data set.  The literature contains a number of useful discussions about normalization issues.\cite{Scale-Norm-Nicholson, NMR-Norm, Cent-Scale-Norm, Filz, Raftery-Signal-Processing}
-
-Another type of pre-processing that you may wish to consider is binning or bucketing, in which groups of frequencies are collapsed into one frequency value, and the corresponding intensities are summed.  There are two reasons for doing this.  One is to compact the data, but the algorithms in \texttt{R} are quite fast, and data sets of the size of \texttt{SrE.IR} don't slow it down much.  The other reason is to compensate for shifts in very narrow peaks from sample to sample.  This is typically done in \ce{^{1}H} NMR because changes in dilution, ionic strength, or pH can cause slight shifts. Spectra with broad, rolling peaks won't have this problem (UV-Vis for example).  The function \texttt{binBuck} is your friend:
-
-<< Chunk18 >>=
-tmp <- binBuck(SrE3.IR, bin.ratio = 4)
-sumSpectra(tmp)
-@
-
-Compare the results here with the \texttt{sumSpectra} of the full data set (Section~\ref{sec-prelim}). In particular note that the frequency resolution has gone down due to the binning process.  \texttt{ChemoSpec} uses the simplest of binning algorithms: after perhaps dropping a few points (with a warning) to make your data set divisible by the specified \texttt{bin.ratio}, data points are replaced by the average frequency and the sum of the grouped intensities.  Depending upon the fine structure in your data and the \texttt{bin.ratio} this might cause important peaks to be split between different bins.  There are more sophisticated binning algorithms in the literature that try to address this, but none are currently implemented in \texttt{ChemoSpec}.\cite{Gaussian-binning, Adaptive-binning}
 
 \subsection{Hierarchical Cluster Analysis} %%%%%%%%%%%%%%%
 \label{sec-hca}
@@ -399,7 +353,6 @@ bootstrap analysis (classical PCA only) & & \texttt{pcaBoot} \\
 3D plots && \\
 ---static 3D plots & & \texttt{plotScores3D}\\
 ---interactive 3D plots & & \texttt{plotScoresRGL}\\
----interactive multivariate plots & & \texttt{plotScoresG} \\
 &&\\
 \textbf{Loading plots} & & \\
 \hline
@@ -421,7 +374,7 @@ There's quite a bit of choice here; let's work through an example and illustrate
 
 The first step is to carry out the PCA.  You have two main options, either classical methods, or robust methods.  Classical methods use all the data you provide to compute the scores and loadings.  Robust methods focus on the core or heart of the data, which means that some samples may be downweighted.  This difference is important, and the results from the two methods may be quite different, depending upon your the nature of your data.  The differences arise because PCA methods (both classical and robust) attempt to find the components that explain as much of the variance in the data set as possible.  If you have a sample that is genuinely corrupted, for instance due to sample handling, its spectral profile may be very different from all other samples, and it can legitimately be called an outlier.  In classical PCA, this one sample will contribute strongly to the variance of the entire data set, and the PCA scores will reflect that (it is sometimes said that scores and loadings follow the outliers).  With robust PCA, samples with rather different characteristics do not have as great an influence, because robust measures of variance, such as the median absolute deviation, are used.
 
-Note that as of \texttt{ChemoSpec} 1.46, neither \texttt{classPCA} nor \texttt{robPCA} carry out any normalization by samples.  You need to decide if you want to normalize the samples, and if so, use \texttt{normSpectra}.
+Note that neither \texttt{classPCA} nor \texttt{robPCA} carry out any normalization by samples.  You need to decide if you want to normalize the samples, and if so, use \texttt{normSpectra}.
 
 Besides choosing to use classical or robust methods, you also need to choose a scaling method.  For classical PCA, your choices are no scaling, autoscaling, or Pareto scaling.  In classical analysis, if you don't scale the data, large peaks contribute more strongly to the results.  If you autoscale, then each peak contributes equally to the results (including noise "peaks").  Pareto scaling is a compromise between these two.  For robust PCA, you can choose not to scale, or you can scale according to the median absolute deviation.  Median absolute deviation is a means of downweighting more extreme peaks.  The literature has plenty of recommendations about scaling options appropriate for the type of measurement (instrument) as well as the nature of the biological data set.\cite{Raftery-Signal-Processing, Scale-Norm-Nicholson, NMR-Norm, Cent-Scale-Norm, Filz, Error-Struc-NMR}
 
@@ -444,7 +397,7 @@ plotScores(SrE3.IR, main = "S. repens IR Spectra", robust,
 pcs = c(1,2), ellipse = "rob", tol = 0.01)
 @
 
-Plots such as shown in Figures~\ref{classPCA} and \ref{robPCA} can give you an idea of potential outliers, but \texttt{ChemoSpec} includes more sophisticated approaches.  The function \texttt{pcaDiag} can produce two types of plots that can be helpful (Figures~\ref{OD} and \ref{SD}).  The meaning and interpretation of these plots is discussed in more detail in Varmuza and Filzmoser, Chapter 3.\cite{Filz}  NOTE: There is some sort of problem with the OD plot as you can plainly see.  I'll be working on it!
+Plots such as shown in Figures~\ref{classPCA} and \ref{robPCA} can give you an idea of potential outliers, but \texttt{ChemoSpec} includes more sophisticated approaches.  The function \texttt{pcaDiag} can produce two types of plots that can be helpful (Figures~\ref{OD} and \ref{SD}).  The meaning and interpretation of these plots is discussed in more detail in Varmuza and Filzmoser, Chapter 3.\cite{Filz}
 
 
 << Chunk22, fig.cap = "\\label{OD}Diagnostics: Orthogonal Distances"  >>=
@@ -455,7 +408,7 @@ diagnostics <- pcaDiag(SrE3.IR, class, pcs = 2, plot = "OD")
 diagnostics <- pcaDiag(SrE3.IR, class, pcs = 2, plot = "SD")
 @
 
-Depending upon your data, and your interpretation of the results, you may decide that some samples should be discarded, in which case you can use \texttt{removeSample} as previously described, then repeat the PCA analysis.  The next step for most people is to determine the number of PCs needed to describe the data.  This is usually done with a scree plot as shown in Figure~\ref{scree}.  As of v.~1.51, there is an alternate style scree plot which I actually think is much more informative (Figure~\ref{scree2}).
+Depending upon your data, and your interpretation of the results, you may decide that some samples should be discarded, in which case you can use \texttt{removeSample} as previously described, then repeat the PCA analysis.  The next step for most people is to determine the number of PCs needed to describe the data.  This is usually done with a scree plot as shown in Figure~\ref{scree}.  \texttt{ChemoSpec} has an alternate style scree plot which I actually think is much more informative (Figure~\ref{scree2}).
 
 If you are using classical PCA, you can also get a sense of the number of PCs needed via a bootstrap method, as shown in Figure~\ref{boot}. Note that this method is iterative and takes a bit of time.  Comparing these results to the scree plots, you'll see that the bootstrap method suggests that 4 or 5 PCs would not always be enough to reach the 95\% level, while the scree plots suggest that 2 PC are sufficient.
 
@@ -472,27 +425,21 @@ plotScree2(class, main = "S. repens IR Spectra")
 out <- pcaBoot(SrE3.IR, pcs = 5, choice = "noscale")
 @
 
-Now let's turn to viewing scores in 3D.  There are currently 3 options in \texttt{ChemoSpec}: plotting using \texttt{lattice} graphics, which produces a static plot that you have to adjust manually, and two interactive plots, one based on package \texttt{rgl} and one based upon package \texttt{rggobi} which in turn uses the program \texttt{GGobi}.  Probably the best place to start is with \texttt{plotScoresRGL}.  It it well suited to exploring data, and can be printed out in high quality.  However, the nature of the open GL graphics device means that the title and the legend move with the data, so this may not give a hardcopy suitable for publications.  This interactive plot cannot be invoked in this document, but here are the necessary commands:
+Now let's turn to viewing scores in 3D.  There are currently two options in \texttt{ChemoSpec}: plotting using \texttt{lattice} graphics, which produces a static plot that you have to adjust manually, and an interactive plot based on package \texttt{rgl}.  Probably the best place to start is with \texttt{plotScoresRGL}.  It it well suited to exploring data, and can be printed out in high quality.  However, the nature of the open GL graphics device means that the title and the legend move with the data, so this may not give a hardcopy suitable for publications.  This interactive plot cannot be invoked in this document, but here are the necessary commands:
 
 << Chunk26,  results = "hide", eval = FALSE >>=
 plotScoresRGL(SrE3.IR, class, main = "S. repens IR Spectra",
 leg.pos = "A", t.pos = "B") # not run - it's interactive!
 @
 
-For full details, of course take a look at the manual page, \texttt{?plotScoresRGL}.  If you want a similar and probably more publication-worthy plot, you can use \texttt{plotScores3D} as shown in Figure~\ref{s3D}.  In this example we've set \texttt{ellipse = FALSE} because the "adSrE" data points form a very elongated ellipse which sets the plotting limits in such a way that other points become very hard to see.
+For full details, of course take a look at the manual page, \texttt{?plotScoresRGL}.  If you want a similar and probably more publication-worthy plot, you can use \texttt{plotScores3D} as shown in Figure~\ref{s3D}.  In this example we've set \texttt{ellipse = FALSE} because the "adSrE" data points form a very elongated ellipse which forces the plotting limits in such a way that other points become very hard to see.
 
 
 << Chunk27, fig.cap = "\\label{s3D}Plotting Scores in 3D using plotScores3D"   >>=
 plotScores3D(SrE3.IR, class, main = "S. repens IR Spectra", ellipse = FALSE)
 @
 
-Finally, you can install the program \texttt{GGobi} and the package \texttt{rggobi} and use \texttt{plotScoresG} to produce an different interactive plot.  This is actually the most powerful analysis tool, as \texttt{GGobi} is not restricted to 3 dimensions, and can use projection pursuit methods to find interesting views of your data.  With an additional package, \texttt{DescribeDisplay}, you can create very nice plots of your data.  Note that as of December 2010, \texttt{GGobi} has been described as on "life support" and it seems there might be a new program in development to replace it.  However, you can find a working version at \href{http://software.rc.fas.harvard.edu/mirrors/R/}{software.rc.fas.harvard.edu/mirrors/R/} (and related mirrors) thanks to Simon Urbanek.  Note that the communication between \texttt{plotScoresG} and \texttt{GGobi} does not quite work as described earlier under the discussion of the color schemes; this will not be fixed until the future of \texttt{GGobi} is certain.
-
-<< Chunk28,  results = "hide", eval = FALSE >>=
-plotScoresG(SrE3.IR, class) # not run - it's interactive!
-@
-
-In addition to the scores, PCA also produces loadings which tell you how each variable (frequencies in spectral applications) affect the scores.  Examining these loadings can be critical to interpreting your results.  Figure~\ref{load} gives an example.  You can see that the different carbonyl peaks have a large and opposing effect on PC 1.  PC 2 on the other hand is driven by a number of peaks, with some interesting opposing peaks in the hydrocarbon region.  While the actual analysis of the data is not our goal here, it would appear that PC 1 is sensitive to the ester vs. acid carbonyl group, and PC 2 is detecting the saturated vs. unsaturated fatty acid chains (the latter having \ce{C_{sp2}-H} peaks).
+In addition to the scores, PCA also produces loadings which tell you how each variable (frequencies in spectral applications) affect the scores.  Examining these loadings can be critical to interpreting your results.  Figure~\ref{load} gives an example.  You can see that the different carbonyl peaks have a large and opposing effect on PC 1.  PC 2 on the other hand is driven by a number of peaks, with some interesting opposing peaks in the hydrocarbon region.  While the actual analysis of the data is not our goal here, it would appear that PC 1 is sensitive to the ester vs. acid carbonyl group, and PC 2 is detecting the saturated vs. unsaturated fatty acid chains (the latter having $\rm C_{sp2}-H $ peaks).
 
 
 << Chunk29, fig.cap = "\\label{load}Loading Plot"  >>=
@@ -543,7 +490,7 @@ Harrington \emph{et. al.}\cite{Harrington2005} (and a few others\cite{Pinto2008}
 \end{center}
 \end{figure}
 
-ANOVA-PCA has been implemented in \texttt{ChemoSpec} via the functions \texttt{aovPCA}, \texttt{aovPCAscores} and \texttt{aovPCAloadings}.   The idea here is that if a factor is significant, there will be separation along PC1 in a plot of PC1 vs PC2.  Unfortunately, there are not enough groups and levels within the \texttt{SrE.IR} data set to carry out ANOVA-PCA.  However, the help page for \texttt{aovPCA} contains an example using the \texttt{CuticleIR} data set which illustrates how to carry out the analysis.  It also demonstrates another useful function, \texttt{splitSpectraGroups} which allows you to take an existing group designation and split into new designations.  See \texttt{\textsl{> ?aovPCA}}.
+ANOVA-PCA has been implemented in \texttt{ChemoSpec} via the functions \texttt{aovPCA}, \texttt{aovPCAscores} and \texttt{aovPCAloadings}.   The idea here is that if a factor is significant, there will be separation along PC1 in a plot of PC1 vs PC2.  Unfortunately, there are not enough groups and levels within the \texttt{SrE.IR} data set to carry out ANOVA-PCA.  However, the help page for \texttt{aovPCA} contains an example using the \texttt{CuticleIR} data set which illustrates how to carry out the analysis.  It also demonstrates another useful function, \texttt{splitSpectraGroups} which allows you to take an existing group designation and split into new designations.  See \texttt{\textsl{?aovPCA}}.
 
 \subsection{Model-Based Clustering Using mclust}  %%%%%%%%%%%%%%%
 
@@ -581,13 +528,40 @@ I hope you have enjoyed this tour of the features of \texttt{ChemoSpec}!
 
 \section{Functions That Are Not Discussed Here} %%%%%%%%%%%%%%%
 
-The help files of course do apply \ldots
+Seethe help files of course  \ldots
 
 \begin{enumerate}
-  \item \texttt{splitSpectraGroups}  A good example of its use can be found in \texttt{\textsl{> ?aovPCA}}.
+  \item \texttt{splitSpectraGroups}  A good example of its use can be found in \texttt{\textsl{?aovPCA}}.
   \item \texttt{hypTestScores}
   \item \texttt{hmapSpectra}
 \end{enumerate}
+
+\section{Colors and Symbol Options}  %%%%%%%%%%%%%%%
+\label{ColSym}
+
+In \texttt{ChemoSpec}, the user may use any color name/format known to R.  For ease of comparison, it would be nice to plan ahead and use the same color scheme for all your plots.  However, if you are just doing preliminary work, \texttt{ChemoSpec} will choose colors for you automatically.
+
+In addition to colors, \texttt{"Spectra"} objects also contain a list of symbols, and alternative symbols.  These are useful for plotting in black and white, or when color-blind individuals will be viewing the plots.  The alternative symbols are simply lower-case letters, as these are needed for \texttt{plotScoresRGL}, and other \texttt{rgl}-graphics driven functions which cannot plot traditional symbols. 
+
+Two recommended color schemes are shown in Figure~\ref{colors}.  By name, these are:
+
+\begin{quote}
+primary scheme: c("red3", "dodgerblue4", "forestgreen", "purple4", "orangered", "yellow", "orangered4", "violetred2")
+
+pastel scheme: c("seagreen", "brown2", "skyblue2", "hotpink3", "chartreuse3", "darkgoldenrod2", "lightsalmon3", "gray48")
+\end{quote}
+
+Finally, the current color scheme of a \texttt{Spectra} object may be determined using \texttt{sumSpectra} or changed using \texttt{conColScheme}.
+
+
+<<  Chunk4,  echo = FALSE, fig.width = 6, fig.height = 4, fig.cap = "\\label{colors}Recommended Color Sets in ChemoSpec" >>=
+par(mfrow = c(2,1), mar = c(3, 1, 2, 1))
+display.brewer.pal(8, "Set1")
+title(main = "ChemoSpec Primary Scheme")
+display.brewer.pal(8, "Set2")
+title(main = "ChemoSpec Pastel Scheme")
+par(mfrow = c(1,1))
+@
 
 \section{Technical Background} %%%%%%%%%%%%%%%
 
@@ -608,9 +582,12 @@ tst <- gplot(CS$funmat, displaylabels = TRUE, label.cex = 0.6,
 
 The development of \texttt{ChemoSpec} began while I was on sabbatical, and was aided greatly by an award of a Fisher Fellowship.  These programs are coordinated by the Faculty Development Committee at DePauw, and I am very grateful to them as well as the individuals who originally created these programs.  One of my student researchers, Kelly Summers, took the data included in \texttt{CuticleIR} in the summer of 2009 as part of a preliminary study.  Prof. Dan Raftery at Purdue University provided an NMR data set (not included here) which was very helpful in troubleshooting functions.  I am also grateful to Prof. Peter Filzmoser who answered a number of my questions related to the algorithms in his \texttt{chemometrics} package.  Finally, Roberto Canteri of the Fundazione Bruno Kessler (Italy) brought some small bugs to my attention, and made some good suggestions for improving the underlying code.  I am grateful to Roberto for assistance!
 
-\section{The Competition} %%%%%%%%%%%%%%%
+\section{Related Packages} %%%%%%%%%%%%%%%
 
 Several other packages exist which do some of the same tasks as \texttt{ChemoSpec}, and do other things as well.  \texttt{spectrino} is a GUI interface that runs only under the Windows OS\cite{spectrino-art}.  It runs as a separate program in communication with \texttt{R}.  It is oriented mainly toward processing and organizing spectral data prior to statistical analysis.  \texttt{hyperspec} is a very nice package that appeared while I was developing \texttt{ChemoSpec}, and it does many of the same things as \texttt{ChemoSpec}, and a few more.  It is written using \texttt{S4} classes which proves that Claudia Beleites is a better programmer than me!  \texttt{TIMP} is geared toward more sophisticated modeling of time-dependent spectral data sets.\cite{TIMP-art} Finally, the package \texttt{Metabonomic}\cite{Metabonomic-pkg}  provides a GUI interface to spectral processing such as baseline correction, as well as a range of exploratory and supervised statistical methods.  Note: my comments here are based on the latest versions I have explored; newer versions may have considerably more features.  Check 'em out for yourself!
+
+
+
 
 \begin{flushleft}
 \bibliographystyle{ieeetr} % Cause refs to be numbered and collected in order used

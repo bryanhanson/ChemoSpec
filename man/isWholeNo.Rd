@@ -21,7 +21,7 @@ A logical, indicating the outcome of the test.
 
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}\cr
+\url{https://github.com/bryanhanson/ChemoSpec}\cr
 }
 
 \author{

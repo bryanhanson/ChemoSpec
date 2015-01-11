@@ -43,7 +43,7 @@ The basic procedure is to compare x[n + 1] - x[n] for successive values of n.  W
 }
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

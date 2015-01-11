@@ -38,7 +38,7 @@ A list of class \code{"conPCA"}.  Note that the order of the elements will vary 
 }
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

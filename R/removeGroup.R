@@ -29,10 +29,21 @@ function(spectra, rem.group) {
 	spectra$colors <- spectra$colors[-rem.group]
 	spectra$sym <- spectra$sym[-rem.group]
 	spectra$alt.sym <- spectra$alt.sym[-rem.group]
+
+	sn <- names(spectra)
+	tn <- c("freq", "data", "names", "groups", "colors", "sym", "alt.sym", "unit", "desc")
+	extra <- setdiff(sn, tn)
+	if (length(extra) > 0) {
+		msg <- paste("Additional data was found:", extra, "and not modified\n", sep = " ")
+		message(msg)
+		message("If these are per sample data, you may have to manually edit them")
+		msg <- paste("The removal indices are:", rem.group, sep = " ")
+		message(msg)
+		
+		}
 	
 	if (length(spectra$groups) == 0) warning("You have removed all your samples!")
 
-	# other aspects of spectra are untouched
 
 	chkSpectra(spectra)
 	spectra

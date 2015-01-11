@@ -6,7 +6,7 @@
 Plot HCA Results of a Spectra Object
 }
 \description{
-A wrapper which carries out HCA and plots a dendrogram colored by the information in a \code{"Spectra"} object.  All methods for computing the cluster distances are available.
+A wrapper which carries out HCA and plots a dendrogram colored by the information in a \code{"Spectra"} object.  Many methods for computing the clusters and distances are available.
 }
 \usage{
 hcaSpectra(spectra, c.method = "complete", d.method = "euclidean", use.sym = FALSE, ...)
@@ -30,12 +30,12 @@ Other parameters to be passed to the plotting functions.
 }
 }
 \value{
-An object of class \code{\link{dendrogram}}.  The side effect is a plot.
+A list, containing an object of class \code{\link{hclust}} and an object of class \code{\link{dendrogram}}.  The side effect is a plot.
 }
 
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{
@@ -50,7 +50,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 data(SrE.IR)
 myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
-hcaSpectra(SrE.IR, main = myt)
+res <- hcaSpectra(SrE.IR, main = myt)
 }
 \keyword{ multivariate }
 \keyword{ cluster }

@@ -25,6 +25,11 @@ List of 9\cr
 \source{
 IR data collected in the author's laboratory.  NMR data collected at Purdue University with the generosity and assistance of Prof. Dan Raftery and Mr. Tao Ye.
 }
+
+\references{
+\url{https://github.com/bryanhanson/ChemoSpec}
+}
+
 \examples{
 data(SrE.IR)
 sumSpectra(SrE.IR)

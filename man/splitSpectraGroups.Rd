@@ -29,7 +29,7 @@ The items in the character vector are grepped among the existing \code{spectra$g
 If \code{rep.cols} is provided, these colors are mapped one for one onto the levels of the the first element of \code{inst}.  See the example for usage.  This provides a different means of changing the sample color encoding than \code{\link{conColScheme}}.
 }
 
-\references{\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}}
+\references{\url{https://github.com/bryanhanson/ChemoSpec}}
 
 \author{
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}

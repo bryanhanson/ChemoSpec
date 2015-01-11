@@ -33,7 +33,7 @@ This function is an extraordinarily thin wrapper which helps the user to avoid w
 \value{
 The results of the analysis print to the console unless assigned.  If assigned, the object class is one of several described in \code{\link{aov}} depending upon the data passed to it.
 }
-\references{ \url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html} }
+\references{ \url{https://github.com/bryanhanson/ChemoSpec} }
 
 \author{
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}

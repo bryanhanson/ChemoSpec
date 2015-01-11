@@ -27,7 +27,7 @@ A character vector giving the groups to be removed.
 }
 
 \details{
-If \code{rem.sam} or \code{rem.group} is a character vector, the sample or group names are grepped for the corresponding values.  Remember that the grepping process is greedy, i.e. grepping for "XY" find not only "XY" but also "XYZ".  Unused levels in \code{$groups} are dropped.  \code{removeSample} removes samples (objects) based upon the sample names.  \code{removeGroup} removes entire groups based upon the group name.
+If \code{rem.sam} or \code{rem.group} is a character vector, the sample or group names are grepped for the corresponding values.  Remember that the grepping process is greedy, i.e. grepping for "XY" find not only "XY" but also "XYZ".  Unused levels in \code{$groups} are dropped.  \code{removeSample} removes samples (objects) based upon the sample names.  \code{removeGroup} removes entire groups based upon the group name. \code{removeGroup} will report if it finds extra data elements.  These may be per sample data.  If so, the user will need to manually edit them using the indices reported to the console.
 }
 
 \value{
@@ -39,7 +39,7 @@ A modified object of S3 class \code{"Spectra"}.
 }
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

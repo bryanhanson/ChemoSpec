@@ -2,7 +2,19 @@
 NEWS file for package ChemoSpec
 Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
-URL: http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html
+URL: github.com/bryanhanson/ChemoSpec
+
+##### Version 3.0-0 
+Date: 2014-12-18
+>> sumSpectra now checks for additional data and reports if it finds them.
+>> removeGroup now checks for additional data and reports the indices to be removed in case the user wants to manually complete the editing.
+>> Added probabalistic quotient normalization (PQN) to normSpectra, and made it the default.
+>> Updated URLs in Rd files.
+>> Functions hcaSpectra, hcaScores, and plotHCA have been reorganized internally as far as which function does what.  The return values are now different!  Your code may break!
+>> Preliminary version of evalClusters added.
+>> Updated CITATION file for CRAN changes.
+>> Vignette reorganized and updated.
+>> Removed the last frequency in SrE.IR as the intensity values were all zero.
 
 ##### Version 2.0-4 
 Date: 2014-09-29

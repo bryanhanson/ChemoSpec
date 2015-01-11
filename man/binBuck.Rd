@@ -30,7 +30,7 @@ An object of S3 class \code{"Spectra"}.
 
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

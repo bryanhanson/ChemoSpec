@@ -53,7 +53,7 @@ For a 2D plot of the scores, see \code{\link{plotScores}}.  For more sophisticat
 }
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

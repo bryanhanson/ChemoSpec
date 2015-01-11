@@ -27,7 +27,7 @@ Logical; Spew forth information, more than you want.
 Warnings are issued when peaks are near the edges of the spectrum.  The algorithm computes the SN for these peaks differently, and possibly inaccurately.  You are more likely to get the warning with higher values of \code{span}.  See the example.
 }
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

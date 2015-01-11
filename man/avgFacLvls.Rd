@@ -22,6 +22,10 @@ A vector of character strings with length = nrow(matrix)}
 A matrix whose rows are composed of the column means for each level of the factor. 
 }
 
+\references{
+\url{https://github.com/bryanhanson/ChemoSpec}
+}
+
 \author{
 Matthew J. Keinsley and Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }

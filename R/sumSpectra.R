@@ -27,6 +27,15 @@ function(spectra, ...){
 	cat("\tThe spectra are divided into", length(levels(spectra$groups)), "groups:", "\n\n")
 	print(g)	
 
+	# Check for extra data and report if found
+	sn <- names(spectra)
+	tn <- c("freq", "data", "names", "groups", "colors", "sym", "alt.sym", "unit", "desc")
+	extra <- setdiff(sn, tn)
+	if (length(extra) > 0) {
+		msg <- paste("\n\tAdditional data was found:", extra, "\n", sep = " ")
+		cat(msg)
+		}
+	
 	cat("\n*** Note: this data is an S3 object of class 'Spectra'\n")
 	}
 

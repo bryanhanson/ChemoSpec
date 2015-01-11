@@ -60,7 +60,7 @@ If you intend to make a hard copy of your plot, use \code{lab.opts = TRUE} until
 None.  Side effect is a plot
 }
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

@@ -1,11 +1,11 @@
 plotHCA <-
-function(spectra, distance, sub.title, method, use.sym, ...) {
+function(spectra, hclst, sub.title, use.sym, ...) {
 
 # Function to plot HCA results, basically a wrapper to existing methods
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, Dec 2009
 
-	cluster <- as.dendrogram(hclust(distance, method = method))
+	cluster <- as.dendrogram(hclst)
 	if (!use.sym) cluster <- dendrapply(cluster, colLeaf, spectra)
 	cluster <- dendrapply(cluster, shrinkLeaf, spectra)
 

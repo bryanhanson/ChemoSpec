@@ -32,7 +32,7 @@ This function is similar in spirit to \code{\link{validObject}} in the S4 world.
 
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

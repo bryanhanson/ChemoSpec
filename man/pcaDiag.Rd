@@ -47,7 +47,7 @@ A list is returned as described in \code{\link[chemometrics]{pcaDiagplot}}, so t
 
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}\cr
+\url{https://github.com/bryanhanson/ChemoSpec}\cr
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate Statistical Analysis in Chemometrics}, CRC Press, 2009.
 
 }

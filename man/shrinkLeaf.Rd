@@ -22,7 +22,7 @@ Returns a node with the label size properties set.
 \section{Called by}{\code{\link{hcaSpectra}}, \code{\link{hcaScores}}.}
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

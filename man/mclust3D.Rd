@@ -54,7 +54,7 @@ If you intend to make a hard copy of your plot, use \code{lab.opts = TRUE} until
 The mclust model is returned invisibly, and a plot is produced.
 }
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

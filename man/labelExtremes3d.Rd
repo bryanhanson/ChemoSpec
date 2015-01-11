@@ -27,7 +27,7 @@ A data frame containing the x, y and z coordinates, along with the corresponding
 
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

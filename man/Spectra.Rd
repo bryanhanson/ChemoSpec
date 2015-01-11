@@ -37,7 +37,7 @@ $desc \tab chr \tab A character string describing the data set.  This appears on
 
 }
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

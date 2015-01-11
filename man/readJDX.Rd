@@ -28,7 +28,7 @@ A data frame with the following elements:
 \item{y}{Extracted intensities}
 }
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 The details of the JCAMP-DX formats can be found at at \url{http://www.jcamp-dx.org/}
 }
 

@@ -17,7 +17,7 @@ An object of S3 class \code{"Spectra"} from which to remove selected frequencies
 }
 }
 \details{
-rem.freq can be any valid \code{R} statement that leads to a vector of logicals.  In the examples below, the | and \& operators seem backward in some sense, but R evaluates them one at a time and combines the result to give the required output.
+rem.freq can be any valid \code{R} statement that leads to a vector of logicals.  In the examples below, the | and & operators seem backward in some sense, but R evaluates them one at a time and combines the result to give the required output.
 }
 
 \value{
@@ -26,7 +26,7 @@ An object of S3 class \code{"Spectra"}.
 
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

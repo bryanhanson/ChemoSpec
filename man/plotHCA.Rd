@@ -7,20 +7,18 @@ Plot Dendrogram for Spectra Object
 This function plots the results of an HCA analysis of a \code{"Spectra"} object.  This is not called directly by the user -- \code{\link{hcaSpectra}} and \code{\link{hcaScores}} use it (see those pages for examples).
 }
 \usage{
-plotHCA(spectra, distance, sub.title, method, use.sym, ...)
+plotHCA(spectra, hclst, sub.title, use.sym, ...)
 }
 \arguments{
   \item{spectra}{
 An object of S3 class \code{"Spectra"}.
 }
+  \item{hclst}{
+A \code{\link{hclust}} object.
+}
+
   \item{sub.title}{
 A character string for the subtitle.
-}
-  \item{distance}{
-A distance matrix.
-}
-  \item{method}{
-A method acceptable to the \code{\link{hclust}} function.
 }
   \item{use.sym}{
 Logical; if true, the color scheme will be black and lower-case letters will be used to indicate group membership.
@@ -30,12 +28,12 @@ Additional parameters to be passed to the plotting routines.
 }
 }
 \value{
-None; side effect is a plot.
+An object of class \code{\link{dendrogram}}. Side effect is a plot.
 }
 
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

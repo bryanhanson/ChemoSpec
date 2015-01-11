@@ -54,7 +54,7 @@ For other ways of displaying the results, \code{\link{plotScree}}, \code{\link{p
 }
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

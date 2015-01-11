@@ -37,7 +37,7 @@ Other parameters to be passed downstream.
 The \code{Mclust} model is returned invisibly, and a plot is made.
 }
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

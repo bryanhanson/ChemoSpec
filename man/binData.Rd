@@ -30,7 +30,7 @@ The x and y values must be contiguous in the sense that there are no gaps in the
 }
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

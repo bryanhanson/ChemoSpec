@@ -6,7 +6,7 @@
 HCA on PCA scores from a Spectra Object
 }
 \description{
-A wrapper which performs HCA on the scores from a PCA of a \code{"Spectra"} object, color-coding the results as specified in the object.
+A wrapper which performs HCA on the scores from a PCA of a \code{"Spectra"} object, color-coding the results as specified in the object.  Many methods for computing the clusters and distances are available.
 }
 
 \usage{
@@ -38,12 +38,12 @@ Additional parameters to be passed to the plotting functions.
 }
 
 \value{
-An object of class \code{\link{dendrogram}}.  Side effect is a plot.
+A list, containing an object of class \code{\link{hclust}} and an object of class \code{\link{dendrogram}}.  The side effect is a plot.
 }
 
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{
@@ -60,7 +60,7 @@ See \code{\link{hcaSpectra}} for HCA of the entire data set stored in the \code{
 data(SrE.IR)
 results <- classPCA(SrE.IR, choice = "noscale")
 myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
-hcaScores(SrE.IR,  results, scores = c(1:5), main = myt)
+res <- hcaScores(SrE.IR,  results, scores = c(1:5), main = myt)
 }
 
 \keyword{ multivariate }

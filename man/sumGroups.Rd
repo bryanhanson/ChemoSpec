@@ -25,7 +25,7 @@ A data frame as follows.  Note that if there are groups with no members (due to 
 
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

@@ -32,7 +32,7 @@ List of 9\cr
 Noisy regions at the extremes of the frequency range have been removed.  The region from 1800 - 2500 wavenumbers was also removed as it is uninformative.}
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \source{

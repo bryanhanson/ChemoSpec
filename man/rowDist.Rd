@@ -22,6 +22,6 @@ Methods \code{c("euclidean", "maximum", "manhattan", "canberra","binary", "minko
 An object of class \code{dist}.
 }
 \author{
-Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}  Suggested and original written by Roberto Canteri.
+Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}  Suggested by and original code written by Roberto Canteri.
 }
 \keyword{ utilities }

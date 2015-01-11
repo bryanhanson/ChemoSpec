@@ -3,10 +3,9 @@
 
 citHeader("To cite package 'ChemoSpec' in publications use:")
 
-desc <- packageDescription("ChemoSpec")
-year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", desc$Date)
-vers <- paste("R package version", desc$Version)
-web <- "academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html"
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date)
+vers <- paste("R package version", meta$Version)
+web <- "github.com/bryanhanson/ChemoSpec"
 
 citEntry(entry = "Manual",
 	title = "ChemoSpec: Exploratory Chemometrics for Spectroscopy",

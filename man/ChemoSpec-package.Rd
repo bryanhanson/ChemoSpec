@@ -16,8 +16,8 @@ A collection of functions for plotting spectra (NMR, IR etc) and carrying out va
 \tabular{ll}{
 Package: \tab ChemoSpec\cr
 Type: \tab Package\cr
-Version: \tab 2.0-4\cr
-Date: \tab 2014-09-29\cr
+Version: \tab 3.0-0\cr
+Date: \tab 2014-12-18\cr
 License: \tab GPL-3\cr
 }
 }
@@ -28,7 +28,7 @@ Bryan A. Hanson, DePauw University, Greencastle Indiana USA
 Maintainer: Bryan A. Hanson \email{hanson@depauw.edu}
 }
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 \keyword{ package }
 \keyword{ multivariate }

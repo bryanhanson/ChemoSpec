@@ -27,7 +27,7 @@ Additional parameters to be passed to the plotting routines.
 None; side effect is a plot
 }
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

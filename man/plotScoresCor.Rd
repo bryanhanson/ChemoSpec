@@ -35,7 +35,7 @@ A list with the following elements (a simpler version of that in the original fu
 
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

@@ -30,7 +30,7 @@ For all but \code{seX}, a vector of 3 numeric values, giving the measure of cent
 }
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

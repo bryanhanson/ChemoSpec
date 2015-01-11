@@ -47,7 +47,7 @@ A list as described in \code{\link[chemometrics]{pcaCV}}, so the result must be 
 
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}\cr
+\url{https://github.com/bryanhanson/ChemoSpec}\cr
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate Statistical Analysis in Chemometrics}, CRC Press, 2009.
 
 }

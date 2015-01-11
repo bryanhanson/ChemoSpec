@@ -30,7 +30,7 @@ A grepping process is used.  Depending upon the nature of the old color names to
 An object of S3 class \code{"Spectra"} whose color scheme has been changed.
 }
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

@@ -63,7 +63,7 @@ Note that the confidence ellipses computed here are generated independently of t
 The mclust model is returned invisibly, and a plot is produced.
 }
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

@@ -34,7 +34,7 @@ The rightmost peak is sought, so the spectrum must be presented in the usual hig
 The index of the peak believed to be the TMS peak.
 }
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

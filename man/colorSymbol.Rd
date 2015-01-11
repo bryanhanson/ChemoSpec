@@ -9,7 +9,7 @@ In \code{ChemoSpec}, the user may use any color name/format known to R.  For eas
 }
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

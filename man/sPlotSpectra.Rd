@@ -15,7 +15,13 @@
 
 \value{A data frame containing the covariance and correlation of the selected pc for the \code{\link{Spectra}} object.  A plot of the correlation vs. covariance is created.}
 
-\references{Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor, Gottfries, Moritz, and Trygg. "Visualization of GC/TOF-MS-Based Metablolomics Data for Identification of Biochemically Interesting Compounds Usings OPLS Class Models" Analytical Chemistry Vol.80 no.1 (2008): 115-122.}
+\references{
+Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor, Gottfries, Moritz, and Trygg. "Visualization of GC/TOF-MS-Based Metablolomics Data for Identification of Biochemically Interesting Compounds Usings OPLS Class Models" Analytical Chemistry Vol.80 no.1 (2008): 115-122.\cr
+\url{https://github.com/bryanhanson/ChemoSpec}
+}
+
+
+
 \author{
 Matthew J. Keinsley and Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu} 
 }

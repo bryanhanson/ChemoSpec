@@ -31,7 +31,7 @@ A matrix of 2 or 3 columns, representing x, y and optionally z.  These are the c
 }
 
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{

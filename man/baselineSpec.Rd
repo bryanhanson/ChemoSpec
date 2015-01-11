@@ -29,7 +29,7 @@ If \code{int = TRUE}, an interactive plot is created.  If \code{int = FALSE} and
 \details{In the plots, the x axis ticks give the data point index, not the original values from your data. Note that you cannot zoom the non-interactive display of corrected spectra because the underlying function hardwires the display.  Try the interactive version instead (\code{int = TRUE}).
 }
 \references{
-\url{http://academic.depauw.edu/~hanson/ChemoSpec/ChemoSpec.html}
+\url{https://github.com/bryanhanson/ChemoSpec}
 }
 
 \author{
