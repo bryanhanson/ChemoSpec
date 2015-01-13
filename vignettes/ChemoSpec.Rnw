@@ -49,6 +49,7 @@ suppressMessages(library("sna"))
 
 desc <- packageDescription("ChemoSpec")
 vers <- paste("(Package Version ", desc$Version, ")", sep = "")
+#vers <- paste("R package version", meta$Version)
 
 # Stuff specifically for knitr:
 
@@ -94,15 +95,15 @@ Chemometrics, as defined by Varmuza and Filzmoser\cite{Filz}, is
 "\ldots the extraction of relevant information from chemical data by mathematical and statistical tools."
 \end{quote}
 
-This is an appropriately broad definition, considering the wealth of questions and tasks that can be treated by chemometric approaches.  In our case, the focus is on spectral data sets, which typically have many variables (frequencies) and relatively few samples.  Such multivariate, \emph{high p, low n} data sets present some algorithmic challenges, but these have been addressed by knowledgeable folks.  In particular, for both the practical and theoretical background to multivariate chemometric analysis, I strongly recommend the Varmuza/Filzmoser book.\cite{Filz}  Some of the functions described here are not much more than wrappers for the functions they and others have made available to the \texttt{R} community in their packages.
+This is an appropriately broad definition, considering the wealth of questions and tasks that can be treated by chemometric approaches.  In our case, the focus is on spectral data sets, which typically have many variables (frequencies) and relatively few samples.  Such multivariate, \emph{high p, low n} data sets present some algorithmic challenges, but these have been addressed by knowledgeable folks.  In particular, for both the practical and theoretical background to multivariate chemometric analysis, I strongly recommend the Varmuza/Filzmoser book.\cite{Filz}  Some of the functions described here are not much more than wrappers for the functions they and others have made available to the \texttt{R} community in their packages.  Another excellent text is the one by Ron Wehrens.\cite{Wehrens}
 
-\texttt{ChemoSpec} was developed for the chemometric analysis of spectroscopic data, such as UV-Vis, NMR or IR data (it also works with chromatographic data, see below).  The approach is entirely exploratory and unsupervised, in other words, "top-down"\cite{Prog-Metabolomics}.  I developed it while beginning a new research focus on plant metabolomics, and I needed software to analyze the data I was collecting.  My research involves ecological experiments on plant stress, so \texttt{ChemoSpec} was designed to accommodate samples that have different histories, i.e., they fall into different classes, categories or groups.  Examples would be treatment and control groups, or simply different specimens (red flowers vs. blue flowers).  Since my research is done with undergraduates, who are true novices with \texttt{R}, \texttt{ChemoSpec} is designed to be as user friendly as possible, with plenty of error checking, helpful warnings and a consistent interface.  It also produces graphics that are consistent in style and annotation, and are suitable for use in publications and posters.  Careful attention was given to writing the documentation for the functions, but this vignette serves as the best starting point for learning data analysis with \texttt{ChemoSpec}.
+\texttt{ChemoSpec} was developed for the chemometric analysis of spectroscopic data, such as UV-Vis, NMR or IR data (it also works with chromatographic data, see below).\footnote{\texttt{ChemoSpec} was not developed for and has not been tested with mass spectral data sets (MS), as there are other dedicated packages for this purpose.  See the \href{http://cran.at.r-project.org/web/views/ChemPhys.html}{Chemometrics and Computational Physics Task View} for an overview.}  The approach is entirely exploratory and unsupervised, in other words, "top-down"\cite{Prog-Metabolomics}.  I developed it while beginning a new research focus on plant metabolomics, and I needed software to analyze the data I was collecting.  My research involves ecological experiments on plant stress, so \texttt{ChemoSpec} was designed to accommodate samples that have different histories, i.e., they fall into different classes, categories or groups.  Examples would be treatment and control groups, or simply different specimens (red flowers vs. blue flowers).  Since my research is done with undergraduates, who are true novices with \texttt{R}, \texttt{ChemoSpec} is designed to be as user friendly as possible, with plenty of error checking, helpful warnings and a consistent interface.  It also produces graphics that are consistent in style and annotation, and are suitable for use in publications and posters.  Careful attention was given to writing the documentation for the functions, but this vignette serves as the best starting point for learning data analysis with \texttt{ChemoSpec}.
 
 The centerpiece of \texttt{ChemoSpec} is the \texttt{Spectra} object.  This is the place where your data is stored and made available to \texttt{R}.  Once your data in stored this way and checked, all analyses are easily carried out.  \texttt{ChemoSpec} currently ships with several built-in data sets; we'll use one called \texttt{SrE.IR} for our demonstrations.  You will see in just a moment how to access it and inspect it.
 
 I assume you have at least a bare-bones knowledge of \texttt{R} as you begin to learn \texttt{ChemoSpec}, and have a good workflow set up.  For detailed help on any function discussed here, type \texttt{?function\_name} at the console.
 
-Finally, some conventions for this document:  names of \texttt{R} "objects" such as packages, functions, function arguments, and data sets are in \texttt{typewriter} font.  The commands you issue at the console and the output are shown with a light grey background, and are colored according to use and purpose, courtesy of the excellent \texttt{knitr} package.\cite{Xie2011}
+Finally, some conventions for this document:  names of \texttt{R} "objects" such as packages, functions, function arguments, and data sets are in \texttt{typewriter} font.  The commands you issue at the console and the output are shown with a light grey background, and are colored according to use and purpose, courtesy of the excellent \texttt{knitr} package.\cite{knitr-pkg}
 
 By the way, if you try \texttt{ChemoSpec} and find it useful, have questions, have opinions, or have suggestions, please do let me know.  The version you are using already incorporates a great deal of user input, why not add yours?  Possible bugs and feature requests should be documented using the Github issues system at \href{http://github.com/bryanhanson/ChemoSpec/issues}{github.com/bryanhanson/ChemoSpec/issues}
 
@@ -273,7 +274,8 @@ In Figure~\ref{surv} we kept all the groups together by using argument \texttt{b
 
 
 << Chunk14a, fig.cap = "\\label{survA}Detail of Carbonyl Region"  >>=
-specSurvey(SrE2.IR, method = "iqr", main = "S. repens Detail of Carbonyl Region", by.gr = FALSE, xlim = c(1650, 1800))
+specSurvey(SrE2.IR, method = "iqr", main = "S. repens Detail of Carbonyl Region",
+by.gr = FALSE, xlim = c(1650, 1800))
 @
 
 
@@ -281,13 +283,15 @@ Finally, \texttt{specSurvey} allows us to view the data set by group, which is r
 
 
 << Chunk14b, fig.cap = "\\label{survB}Detail of Carbonyl Region by Group"  >>=
-specSurvey(SrE2.IR, method = "iqr", main = "S. repens Detail of Carbonyl Region", by.gr = TRUE, xlim = c(1650, 1800))
+specSurvey(SrE2.IR, method = "iqr", main = "S. repens Detail of Carbonyl Region",
+by.gr = TRUE, xlim = c(1650, 1800))
 @
 
 For reasons that will become evident in a moment, let's look at the region between 1800 and 2500 $\rm cm^{-1} $ (Figure~\ref{survC}).
 
 << Chunk14c, fig.cap = "\\label{survC}Inspection of an Uninteresting Spectral Region"  >>=
-specSurvey(SrE2.IR, method = "iqr", main = "S. repens Detail of Empty Region", by.gr = FALSE, xlim = c(1800, 2500), ylim = c(0.0, 0.05))
+specSurvey(SrE2.IR, method = "iqr", main = "S. repens Detail of Empty Region",
+by.gr = FALSE, xlim = c(1800, 2500), ylim = c(0.0, 0.05))
 @
 
 From a theoretical perspective, we expect this region to be devoid of interesting peaks.  In fact, even when pooling the groups the signal in this region is very weak, and the only peak present is due to atomospheric $\rm CO_2 $.  We can remove this region, since it is primarily noise and artifact, with the function \texttt{removeFreq} as follows. Note that there are fewer frequency points now.
@@ -312,7 +316,7 @@ Hierarchical cluster analysis (HCA from  now on) is a clustering method (no surp
 
 
 << Chunk19, fig.cap = "\\label{hca}Hierarchical Cluster Analysis" >>=
-hcaSpectra(SrE3.IR, main = "S. repens IR Spectra")
+HCA <- hcaSpectra(SrE3.IR, main = "S. repens IR Spectra")
 @
 
 The result is a dendrogram.  The vertical scale represents the numerical distance between samples.  Not unexpectedly, the two reference samples which are known to be chemically different cluster together separately from all other samples.  Perhaps surprisingly, the various pure and adulterated oil extracts do not group together precisely.  The function \texttt{hcaScores} does the same kind of analysis using the results of PCA, rather than the raw spectra.  It is discussed in the next section.
@@ -528,12 +532,13 @@ I hope you have enjoyed this tour of the features of \texttt{ChemoSpec}!
 
 \section{Functions That Are Not Discussed Here} %%%%%%%%%%%%%%%
 
-Seethe help files of course  \ldots
+See the help files of course  \ldots
 
 \begin{enumerate}
   \item \texttt{splitSpectraGroups}  A good example of its use can be found in \texttt{\textsl{?aovPCA}}.
   \item \texttt{hypTestScores}
   \item \texttt{hmapSpectra}
+  \item \texttt{evalClusters}
 \end{enumerate}
 
 \section{Colors and Symbol Options}  %%%%%%%%%%%%%%%
@@ -580,12 +585,11 @@ tst <- gplot(CS$funmat, displaylabels = TRUE, label.cex = 0.6,
 
 \section{Acknowledgements} %%%%%%%%%%%%%%%
 
-The development of \texttt{ChemoSpec} began while I was on sabbatical, and was aided greatly by an award of a Fisher Fellowship.  These programs are coordinated by the Faculty Development Committee at DePauw, and I am very grateful to them as well as the individuals who originally created these programs.  One of my student researchers, Kelly Summers, took the data included in \texttt{CuticleIR} in the summer of 2009 as part of a preliminary study.  Prof. Dan Raftery at Purdue University provided an NMR data set (not included here) which was very helpful in troubleshooting functions.  I am also grateful to Prof. Peter Filzmoser who answered a number of my questions related to the algorithms in his \texttt{chemometrics} package.  Finally, Roberto Canteri of the Fundazione Bruno Kessler (Italy) brought some small bugs to my attention, and made some good suggestions for improving the underlying code.  I am grateful to Roberto for assistance!
+The development of \texttt{ChemoSpec} began while I was on sabbatical in 2007-2008, and was aided greatly by an award of a Fisher Fellowship.  These programs are coordinated by the Faculty Development Committee at DePauw, and I am very grateful to them as well as the individuals who originally created these programs.  One of my student researchers, Kelly Summers, took the data included in \texttt{CuticleIR} in the summer of 2009 as part of a preliminary study.  I am also grateful to Prof. Peter Filzmoser who answered a number of my questions related to the algorithms in his \texttt{chemometrics} package.  Finally, Roberto Canteri of the Fundazione Bruno Kessler (Italy) brought some small bugs to my attention, and made some good suggestions for improving the underlying code.  I am grateful to Roberto for assistance!  For additional contributors, please see the NEWS file and the Github issues tracker.
 
 \section{Related Packages} %%%%%%%%%%%%%%%
 
-Several other packages exist which do some of the same tasks as \texttt{ChemoSpec}, and do other things as well.  \texttt{spectrino} is a GUI interface that runs only under the Windows OS\cite{spectrino-art}.  It runs as a separate program in communication with \texttt{R}.  It is oriented mainly toward processing and organizing spectral data prior to statistical analysis.  \texttt{hyperspec} is a very nice package that appeared while I was developing \texttt{ChemoSpec}, and it does many of the same things as \texttt{ChemoSpec}, and a few more.  It is written using \texttt{S4} classes which proves that Claudia Beleites is a better programmer than me!  \texttt{TIMP} is geared toward more sophisticated modeling of time-dependent spectral data sets.\cite{TIMP-art} Finally, the package \texttt{Metabonomic}\cite{Metabonomic-pkg}  provides a GUI interface to spectral processing such as baseline correction, as well as a range of exploratory and supervised statistical methods.  Note: my comments here are based on the latest versions I have explored; newer versions may have considerably more features.  Check 'em out for yourself!
-
+Several other packages exist which do some of the same tasks as \texttt{ChemoSpec}, and do other things as well.  The package closest in functionality to \texttt{ChemoSpec} is  \texttt{hyperSpec} written by my friend and collaborator Claudia Belietes (these packages were developed independently around the same time).\cite{hyperSpec-pkg}  There is also a package designed to interconvert \texttt{Spectra} objects and \texttt{hyperSpec} objects, which allows one to  move data between the packages more easily.\cite{hCB-pkg}  Package \texttt{TIMP} is geared toward sophisticated modeling of time-dependent spectral data sets.\cite{TIMP-art}   New packages may appear at any time. A good place to check these things out is the \href{http://cran.at.r-project.org/web/views/ChemPhys.html}{Chemometrics and Computational Physics Task View}.
 
 
 
