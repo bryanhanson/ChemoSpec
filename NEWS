@@ -4,6 +4,10 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+##### Version 3.0-1
+Date: 2015-01-21
+>> Fixed a namespace conflict from baseline.
+
 ##### Version 3.0-0 
 Date: 2015-01-20
 >> sumSpectra now checks for additional data and reports if it finds them.
