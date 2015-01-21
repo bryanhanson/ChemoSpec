@@ -539,6 +539,7 @@ See the help files of course  \ldots
   \item \texttt{hypTestScores}
   \item \texttt{hmapSpectra}
   \item \texttt{evalClusters}
+  \item \texttt{clupaSpectra}
 \end{enumerate}
 
 \section{Colors and Symbol Options}  %%%%%%%%%%%%%%%

@@ -14,20 +14,22 @@ function(spectra, method = "PQN", RangeExpress = NULL) {
 		
 		# Do a standard TotInt normalization
 		S <- normSpectra(spectra, method = "TotInt")$data
+		if (any(S < 0)) S <- S - min(S)
 		
 		# Compute the median spectrum for reference
 		M <- apply(S, 2, median)
 
-		# Divide each normed spectra by the column medians
-		for (i in 1:nrow(S)) S[i,] <- S[i,]/M
+		# Divide each normed spectrum by the reference column medians (the ref spectrum)
+		F <- S
+		for (i in 1:nrow(F)) F[i,] <- F[i,]/M
 		
-		# Get the row medians (per spectrum median)
+		# Get the row medians (per spectrum median) of the ratioed spectra
 		# These are the apparent 'fold' dilution factors
-		# for each spectrum
-		M2 <- apply(S, 1, median)
+		# for each spectrum/sample
+		F <- apply(F, 1, median)
 		
-		# Divide each row by it's median
-		for (i in 1:nrow(S)) S[i,] <- S[i,]/M2[i]
+		# Divide each row of the original data by it's median
+		for (i in 1:nrow(S)) S[i,] <- S[i,]/F[i]
 		
 		spectra$data <- S
 		}

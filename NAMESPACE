@@ -63,8 +63,9 @@ export(LoopThruSpectra,
        files2SpectraObject,
        readBrukerTxt,
        readJDX,
-       evalClusters)
+       evalClusters,
+       clupaSpectra)
 
-import(pls, amap, chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, grid, rgl, R.utils, mclust, MASS, baseline, IDPmisc, gsubfn, lattice, clusterCrit)
+import(pls, amap, chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, grid, rgl, R.utils, mclust, MASS, baseline, IDPmisc, gsubfn, lattice, clusterCrit, speaq)
 
 importFrom(seriation, hmap)

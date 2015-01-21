@@ -5,13 +5,14 @@ Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
 ##### Version 3.0-0 
-Date: 2015-01-12
+Date: 2015-01-20
 >> sumSpectra now checks for additional data and reports if it finds them.
 >> removeGroup now checks for additional data and reports the indices to be removed in case the user wants to manually complete the editing.
 >> Added probabalistic quotient normalization (PQN) to normSpectra, and made it the default.
->> Updated URLs in Rd files.
 >> Functions hcaSpectra, hcaScores, and plotHCA have been reorganized internally as far as which function does what.  The return values are now different!  Your code may break!
 >> Preliminary version of evalClusters added.
+>> At Last: NMR peak alignment is now available in function clupaSpectra, made possible by the availability of the package speaq. speaq must be installed from Bioconductor.
+>> Updated URLs in Rd files.
 >> Updated CITATION file for CRAN changes.
 >> Vignette reorganized and updated.
 >> Removed the last frequency in SrE.IR as the intensity values were all zero.
