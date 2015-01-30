@@ -1,5 +1,5 @@
-\name{baselineSpec}
-\alias{baselineSpec}
+\name{baselineSpectra}
+\alias{baselineSpectra}
 \title{
 Carry out baseline correction on a Spectra object
 }
@@ -7,7 +7,7 @@ Carry out baseline correction on a Spectra object
 This function is a simple wrapper to functions in package \code{baseline} which carries out a variety of baseline correction routines.
 }
 \usage{
-baselineSpec(Spectra, int = TRUE, retC = FALSE, ...)
+baselineSpectra(Spectra, int = TRUE, retC = FALSE, ...)
 }
 \arguments{
   \item{Spectra}{
@@ -38,10 +38,10 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 
 \examples{
 data(SrE.IR)
-temp <- baselineSpec(SrE.IR, int = FALSE, method = "rfbaseline")
+temp <- baselineSpectra(SrE.IR, int = FALSE, method = "rfbaseline")
 par(mfrow = c(1,1)) # needed to cancel 2 panel plot
 \dontrun{
-baselineSpec(SrE.IR)
+baselineSpectra(SrE.IR)
 par(mfrow = c(1,1)) # needed to cancel 2 panel plot
 }
 }

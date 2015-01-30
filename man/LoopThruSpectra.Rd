@@ -1,12 +1,12 @@
-\name{LoopThruSpectra}
-\alias{LoopThruSpectra}
+\name{loopThruSpectra}
+\alias{loopThruSpectra}
 \title{
 Display the spectra in a Spectra object one at a time}
 \description{
 Plots each spectrum in a \code{Spectra} object one at a time (waits for a return in the console before plotting the next spectrum).  Use \code{ESC} to get out of the loop.
 }
 \usage{
-LoopThruSpectra(Spectra, ...)
+loopThruSpectra(Spectra, ...)
 }
 \arguments{
   \item{Spectra}{An object of S3 class \code{"Spectra"}.
@@ -29,7 +29,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 \dontrun{
 data(CuticleIR)
-LoopThruSpectra(CuticleIR)
+loopThruSpectra(CuticleIR)
 }
 }
 \keyword{ hplot }

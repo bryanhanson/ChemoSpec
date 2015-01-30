@@ -1,12 +1,12 @@
-\name{specSurvey}
-\alias{specSurvey}
+\name{surveySpectra}
+\alias{surveySpectra}
 \title{Plot Measures of Central Tendency and Spread for a Spectra Object
 }
 \description{
 This function computes and plots various measures of central tendency and spread for a \code{"Spectra"} object.  Several different measures/spreads are available.  The computation can be done by group or using the entire data set.
 }
 \usage{
-specSurvey(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"),
+surveySpectra(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"),
 by.gr = TRUE, ...)
 }
 \arguments{
@@ -36,6 +36,6 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 data(CuticleIR)
 myt <- expression(bolditalic(Portulaca)~bolditalic(oleracea)~bold(Cuticle~IR~Spectra))
-specSurvey(CuticleIR, method = "iqr", main = myt)
+surveySpectra(CuticleIR, method = "iqr", main = myt)
 }
 \keyword{ hplot }

@@ -1,4 +1,4 @@
-specSurvey <-
+surveySpectra <-
 function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"),
 by.gr = TRUE,  ...) {
 

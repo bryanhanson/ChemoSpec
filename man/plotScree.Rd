@@ -33,7 +33,8 @@ If you add \code{$method} to the PCA results from other packages, this will plot
 
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
-The idea for the alternative style plot came from the NIR-Quimiometria blog by jrcuesta, at \url{http://http://www.r-bloggers.com/pca-for-nir-spectra_part-004-projections/}
+
+The idea for the alternative style plot came from the NIR-Quimiometria blog by jrcuesta, at \url{http://nir-quimiometria.blogspot.com/2012/02/pca-for-nir-spectrapart-004-projections.html}
 }
 
 \author{

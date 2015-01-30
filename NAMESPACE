@@ -1,73 +1,97 @@
 #
 #
-export(LoopThruSpectra,
-	labelExtremes,
+export(
+	loopThruSpectra, # Things you can do with Spectra objects
 	plotSpectra,
-	aovPCA,
-	labelExtremes3d,
-	q2rPCA,
-	aovPCAloadings,
-	makeEllipsoid,
-	r2qPCA,
-	aovPCAscores,
-	mclust3D,
-	removeFreq,
-	avgFacLvls,
+	chkSpectra,
+	sumSpectra,
+	surveySpectra,
+	normSpectra,
+	baselineSpectra,
+	sPlotSpectra,
+	hmapSpectra,
+	hcaSpectra,
+	clupaSpectra,
 	mclust3dSpectra,
+	mclustSpectra,
+
+	files2SpectraObject, # Importing data
+	groupNcolor,
+	readBrukerTxt,
+	readJDX,
+	calcSN,
+	findTMS,
+
+	removeFreq, # Manipulating/Inspecting Spectra Objects
 	removeSample,
 	removeGroup,
-	binBuck,
-	mclustSpectra,
-	robPCA,
-	binData,
-	normSpectra,
-	rowDist,
-	check4Gaps,
-	normVec,
-	sPlotSpectra,
-	chkSpectra,
-	pcaBoot,
-	seX,
-	classPCA,
-	pcaDiag,
-	seXy,
-	colLeaf,
-	plot2Loadings,
-	seXy95,
-	conColScheme,
-	plotHCA,
-	seXyIqr,
-	coordProjCS,
-	plotLoadings,
-	seXyMad,
-	plotScores,
-	shrinkLeaf,
-	groupNcolor,
-	plotScores3D,
-	specSurvey,
-	hcaScores,
-	plotScoresCor,
-	splitSpectraGroups,
-	hcaSpectra,
-	plotScoresDecoration,
 	sumGroups,
-	hmapSpectra,
-	sumSpectra,
-	hypTestScores,
-	plotScoresRGL,
-	isWholeNo,
+	binBuck,
+	binData,
+	check4Gaps,
+	conColScheme,
+	splitSpectraGroups,
+
+	aovPCA, # aovPCA related
+	aovPCAloadings,
+	aovPCAscores,
+	avgFacLvls,
+
+	labelExtremes, # Plotting support
+	labelExtremes3d,
+	makeEllipsoid,
+	normVec,
+
+	classPCA, # PCA related
+	robPCA,
+	q2rPCA,
+	r2qPCA,
+	pcaDiag,
+	plotLoadings,
+	plot2Loadings,
+	plotScores,
+	plotScores3D,
 	plotScree,
 	plotScree2,
-	baselineSpec,
-       calcSN,
-       findTMS,
-       files2SpectraObject,
-       readBrukerTxt,
-       readJDX,
-       evalClusters,
-       clupaSpectra)
+	hypTestScores,
+	plotScoresCor,
+	plotScoresDecoration,
+	plotScoresRGL,
+	pcaBoot,
 
-import(pls, amap, chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, grid, rgl, R.utils, mclust, MASS, IDPmisc, gsubfn, lattice, clusterCrit, speaq)
+
+	mclust3D, # mclust related
+	coordProjCS,
+
+	plotHCA, # HCA support
+	rowDist,
+	colLeaf,
+	shrinkLeaf,
+	hcaScores,
+	evalClusters,
+
+	seX, # Utility functions
+	seXy,
+	seXy95,
+	seXyIqr,
+	seXyMad,
+	isWholeNo
+	)
+
+import(chemometrics, rgl, mclust, lattice)
 
 importFrom(seriation, hmap)
 importFrom(baseline, baseline, baselineGUI, getCorrected)
+importFrom(amap, Dist)
+importFrom(RColorBrewer, brewer.pal)
+importFrom(R.utils, saveObject)
+importFrom(gsubfn, gsubfn)
+importFrom(speaq, detectSpecPeaks, findRef, dohCluster)
+importFrom(clusterCrit, intCriteria)
+importFrom(pls, cvsegments)
+importFrom(robustbase, covMcd)
+importFrom(grid, grid.text, gpar)
+importFrom(MASS, cov.rob)
+importFrom(pcaPP, PCAgrid)
+importFrom(plyr, dlply, llply, m_ply, aaply)
+

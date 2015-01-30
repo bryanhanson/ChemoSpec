@@ -4,179 +4,187 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+##### Version 3.1-0
+Date: 2015-
++ Several functions were renamed for consistency.  Your code may break! LoopThruSpectra -> loopThruSpectra, specSurvey -> surveySpectra, baselineSpec -> baselineSpectra.
++ Moved many full imports to importFrom to narrow namespace.
++ IDPmisc is no longer imported at all.
++ Fixed a bad URL in plotScree.Rd.
++ Changed formatting of NEWS file so that the built-in reader parses it better.
+
 ##### Version 3.0-1
 Date: 2015-01-21
->> Fixed a namespace conflict from baseline.
++ Fixed a namespace conflict from baseline.
 
 ##### Version 3.0-0 
 Date: 2015-01-20
->> sumSpectra now checks for additional data and reports if it finds them.
->> removeGroup now checks for additional data and reports the indices to be removed in case the user wants to manually complete the editing.
->> Added probabalistic quotient normalization (PQN) to normSpectra, and made it the default.
->> Functions hcaSpectra, hcaScores, and plotHCA have been reorganized internally as far as which function does what.  The return values are now different!  Your code may break!
->> Preliminary version of evalClusters added.
->> At Last: NMR peak alignment is now available in function clupaSpectra, made possible by the availability of the package speaq. speaq must be installed from Bioconductor.
->> Updated URLs in Rd files.
->> Updated CITATION file for CRAN changes.
->> Vignette reorganized and updated.
->> Removed the last frequency in SrE.IR as the intensity values were all zero.
++ sumSpectra now checks for additional data and reports if it finds them.
++ removeGroup now checks for additional data and reports the indices to be removed in case the user wants to manually complete the editing.
++ Added probabalistic quotient normalization (PQN) to normSpectra, and made it the default.
++ Functions hcaSpectra, hcaScores, and plotHCA have been reorganized internally as far as which function does what.  The return values are now different!  Your code may break!
++ Preliminary version of evalClusters added.
++ At Last: NMR peak alignment is now available in function clupaSpectra, made possible by the availability of the package speaq. speaq must be installed from Bioconductor.
++ Updated URLs in Rd files.
++ Updated CITATION file for CRAN changes.
++ Vignette reorganized and updated.
++ Removed the last frequency in SrE.IR as the intensity values were all zero.
 
 ##### Version 2.0-4 
 Date: 2014-09-29
->> Fixed importing of csv files with integer frequency values in files2SpectraObject (thought this was fixed before).
++ Fixed importing of csv files with integer frequency values in files2SpectraObject (thought this was fixed before).
 
 ##### Version 2.0-3 
 Date: 2014-07-25
->> removeGroup was not exported, now it is!
->> plotScores was given a new argument, leg.loc, to allow flexibility in placement of the legend.
++ removeGroup was not exported, now it is!
++ plotScores was given a new argument, leg.loc, to allow flexibility in placement of the legend.
 
 ##### Version 2.0-2 
 Date: 2014-05-31
->> This version is on CRAN.
->> hcaSpectra now returns the dendrogram object.
->> Fixed a stray graphic parameter in aovPCAscores.
->> Improved some documentation.
++ This version is on CRAN.
++ hcaSpectra now returns the dendrogram object.
++ Fixed a stray graphic parameter in aovPCAscores.
++ Improved some documentation.
 
 ##### Version 2.0-1
 Date: 2014-02-04
->> With format = "dx" in files2SpectraObject, now allow any of the following extensions: dx, DX, jdx, JDX.
++ With format = "dx" in files2SpectraObject, now allow any of the following extensions: dx, DX, jdx, JDX.
 
 ##### Version 2.0.0
 Date: 2013-12-07
->> normSpectra modified to avoid integer overflow.
->> Modified plotScree & plotScree2 so that data sets with less than 10 components plot.
->> Freshened up the README.md file.
->> To facilitate using expressions in plot titles, argument 'title' has been removed from all functions that use base or lattice graphics and now one should use 'main'. The 'title' argument remains for the rgl graphics functions.  THIS WILL BREAK EARLIER CODE, hence the move to a new major version.
->> Semantic versioning is now in effect.  See semver.org for details.
->> getManyCsv has been removed (deprecated for one year now).  Use files2SpectraObject instead.
++ normSpectra modified to avoid integer overflow.
++ Modified plotScree & plotScree2 so that data sets with less than 10 components plot.
++ Freshened up the README.md file.
++ To facilitate using expressions in plot titles, argument 'title' has been removed from all functions that use base or lattice graphics and now one should use 'main'. The 'title' argument remains for the rgl graphics functions.  THIS WILL BREAK EARLIER CODE, hence the move to a new major version.
++ Semantic versioning is now in effect.  See semver.org for details.
++ getManyCsv has been removed (deprecated for one year now).  Use files2SpectraObject instead.
 
 ##### Version 1.61-4
 Date: 2013-11-20
->> files2SpectraObject now returns the Spectra object so it is no longer necessary to read the object back into the workspace.
->> Added a new processing option to files2SpectraObject. Files written with Bruker Topspin command convbin2asc can now be read into a Spectra object.  The format is 'Bascii'.  When debug = TRUE the messages are clean and consistent; messages from other formats need to be  cleaned up.  alignTMS does not yet work!!!! <-- NOTE
->> findTMS and calcSN gained a debug argument.
++ files2SpectraObject now returns the Spectra object so it is no longer necessary to read the object back into the workspace.
++ Added a new processing option to files2SpectraObject. Files written with Bruker Topspin command convbin2asc can now be read into a Spectra object.  The format is 'Bascii'.  When debug = TRUE the messages are clean and consistent; messages from other formats need to be  cleaned up.  alignTMS does not yet work!!!! <-- NOTE
++ findTMS and calcSN gained a debug argument.
 
 ##### Version 1.61-3
 Date: 2013-09-20
->> Corrected vignette engine typo.
++ Corrected vignette engine typo.
 
 ##### Version 1.61-2
 Date: 2013-09-11
->> Added knitr as vignette engine at CRAN request.
->> Added .Rbuildignore at CRAN request (visible version is R.buildignore).
->> Removed leftover vignette in inst/doc.
++ Added knitr as vignette engine at CRAN request.
++ Added .Rbuildignore at CRAN request (visible version is R.buildignore).
++ Removed leftover vignette in inst/doc.
 
 ##### Version 1.61-1
 Date: 2013-09-02
->> Made sure plot labels were bold if an expression was passed to it.
++ Made sure plot labels were bold if an expression was passed to it.
 
 ##### Version 1.61-0
 Date: 2013-08-28
->> Added ability to use expressions in plot titles.
->> Modified readJDX to accept EU and Latin American style dx files which have ',' instead of '.' as the decimal point.
++ Added ability to use expressions in plot titles.
++ Modified readJDX to accept EU and Latin American style dx files which have ',' instead of '.' as the decimal point.
 
 ##### Version 1.60-9
 Date: 2013-08-16
->> Added dependency on R >= 3.0 to pass all CRAN checks.
++ Added dependency on R >= 3.0 to pass all CRAN checks.
 
 ##### Version 1.60-8
 Date: 2013-08-14
->> Finally the vignette suitable for CRAN!
++ Finally the vignette suitable for CRAN!
 
 ##### Version 1.60-7
 Date: 2013-08-14
->> Removed BuildVignettes from DESCRIPTION per CRAN.
++ Removed BuildVignettes from DESCRIPTION per CRAN.
 
 ##### Version 1.60-6
 Date: 2013-08-13
->> Moved vignette to vignettes directory for CRAN.
->> Set BuildVignettes: FALSE in DESCRIPTION.
++ Moved vignette to vignettes directory for CRAN.
++ Set BuildVignettes: FALSE in DESCRIPTION.
 
 ##### Version 1.60-5
 Date: 2013-08-13
->> Modified chkSpectra so that it reports on any extra data in the Spectra object.  This will be useful with HyperChemBridge.
->> Added bug reports to DESCRIPTION
->> Fixed some import issues for CRAN
++ Modified chkSpectra so that it reports on any extra data in the Spectra object.  This will be useful with HyperChemBridge.
++ Added bug reports to DESCRIPTION
++ Fixed some import issues for CRAN
 
 ##### Version 1.60-4
 Date: 2 April 2013
->> Fix hypTestScores for CRAN; remove attach/detach.
++ Fix hypTestScores for CRAN; remove attach/detach.
 
 ##### Version 1.60-3
 Date: 29 March 2013
->> Ready for R 3.0.0
->> Devel version merged in
->> Removed Suggests: rggobi
++ Ready for R 3.0.0
++ Devel version merged in
++ Removed Suggests: rggobi
 
 ##### Version 1.60-2
 Date: 4 Feb 2013 (Devel version on Github)
->> Various documentation tweaks and improvement to github site.
->> Removed plotScoresG due to continuing lack of universal ggobi availability.
->> Built using R 3.0 RC
++ Various documentation tweaks and improvement to github site.
++ Removed plotScoresG due to continuing lack of universal ggobi availability.
++ Built using R 3.0 RC
 
 ##### Version 1.60-1
 Date: 28 Dec 2012 (Devel version on Github)
->> Added function readJDX which can read the IR implementation of the JCAMP-DX standard.
->> Added function readBrukerTxt which can read NMR txt files from Bruker instruments.
->> Added function files2SpectraObject which is a greatly enhanced means of importing more spectral formats.
->> Added functions calcSN and findTMS which work with the above functions.
->> Modified getManyCsv so that it warns about deprecation when run.
++ Added function readJDX which can read the IR implementation of the JCAMP-DX standard.
++ Added function readBrukerTxt which can read NMR txt files from Bruker instruments.
++ Added function files2SpectraObject which is a greatly enhanced means of importing more spectral formats.
++ Added functions calcSN and findTMS which work with the above functions.
++ Modified getManyCsv so that it warns about deprecation when run.
 
 ##### Version 1.51-2
 Date:
->> Added ... to sumSpectra so one can pass argument tol through to check4Gaps.  Otherwise, for some data sets a gap is detected between each data point, which is annoying at best.
->> Made modifications so that ChemoSpec works with mclust 4.0.  These were begun in 1.51-1 but not completed until this version.
++ Added ... to sumSpectra so one can pass argument tol through to check4Gaps.  Otherwise, for some data sets a gap is detected between each data point, which is annoying at best.
++ Made modifications so that ChemoSpec works with mclust 4.0.  These were begun in 1.51-1 but not completed until this version.
 
 ##### Version 1.51-1
 Date: 11 July 2012
 News:
->> Added ByteCompile: TRUE to description
->> Added code to getManyCsv to detect frequency values that are integer.  Such cases are converted to numeric with a notice.
->> Modifed coordProjCS to conform to the update mclust package (v 4.?).  Thanks to Luca Scrucca for the heads up.
++ Added ByteCompile: TRUE to description
++ Added code to getManyCsv to detect frequency values that are integer.  Such cases are converted to numeric with a notice.
++ Modifed coordProjCS to conform to the update mclust package (v 4.?).  Thanks to Luca Scrucca for the heads up.
 
 ##### Version 1.51-0
 Date: 23 May 2012
 News:
->> First build under R 2.15.0.
->> Removed mvbutils as a dependency.  It was only being used in the vignette, which is no longer being built automatically.  So it was not needed, and people were occasionally running into problems due to it.
->> Added IDPmisc as an import.  This was being requested at various points.  Removed from Suggests.
->> Added new function removeGroup.  See the help page.
->> removeSample had chkSpectra added right before returning the new spectra object.
->> Removed hardwired xlim and ylim from sPlotSpectra.  Some labels may now be cut off with the defaults, but this allows zooming into the interesting parts.
->> Added function plotScree2.  See the help page.
->> Many small improvements to the documentation.
->> Updated the vignette.
++ First build under R 2.15.0.
++ Removed mvbutils as a dependency.  It was only being used in the vignette, which is no longer being built automatically.  So it was not needed, and people were occasionally running into problems due to it.
++ Added IDPmisc as an import.  This was being requested at various points.  Removed from Suggests.
++ Added new function removeGroup.  See the help page.
++ removeSample had chkSpectra added right before returning the new spectra object.
++ Removed hardwired xlim and ylim from sPlotSpectra.  Some labels may now be cut off with the defaults, but this allows zooming into the interesting parts.
++ Added function plotScree2.  See the help page.
++ Many small improvements to the documentation.
++ Updated the vignette.
 
 ##### Version 1.50-2
 Date: 4 January 2012
 News:
->> Added IDPmisc to Suggests: in DESCRIPTION (needed to pass CRAN checks)
++ Added IDPmisc to Suggests: in DESCRIPTION (needed to pass CRAN checks)
 
 ##### Version 1.50-1
 Date: 2 January 2012
 News:
->> Added full support for baseline correction via baselineSpec, which is a simple wrapper for the very nice baseline package.
->> Completely updated the vignette; switched the data demo set to SrE.IR.
++ Added full support for baseline correction via baselineSpec, which is a simple wrapper for the very nice baseline package.
++ Completely updated the vignette; switched the data demo set to SrE.IR.
 
 ##### Version 1.49-1
 Date: 23 December 2011
 News:
->> Currently on Github devel branch only (never pushed to CRAN)
->> Added new function LoopThruSpectra
->> Changed plotSpectra so that the y axis shows and the default ylim allows for values below zero.
->> Made the NAMESPACE exports explicit.
++ Currently on Github devel branch only (never pushed to CRAN)
++ Added new function LoopThruSpectra
++ Changed plotSpectra so that the y axis shows and the default ylim allows for values below zero.
++ Made the NAMESPACE exports explicit.
 
 ##### Version 1.48-5
 Date: 9 November 2011
 News:
->> Consider this a pre-release version.  Will go to Github, not CRAN
->> Made some small changes for consistency on package checking.
++ Consider this a pre-release version.  Will go to Github, not CRAN
++ Made some small changes for consistency on package checking.
 
 ##### Version 1.48-4
 Date: 2 November 2011
 News:
->> Removed an outdated dependency on ggplot2 to pass CRAN and a few other tiny fixes.
->> Fixed a boo-boo in the vignette which plotted the wrong graph for Example 4.  Why doesn't anyone tell me about these!?
++ Removed an outdated dependency on ggplot2 to pass CRAN and a few other tiny fixes.
++ Fixed a boo-boo in the vignette which plotted the wrong graph for Example 4.  Why doesn't anyone tell me about these!?
 
 ##### Version 1.48-3
 Date: 30 October 2011
@@ -192,123 +200,123 @@ News:
 
 NOTE: With these changes, some old code may break! Just a littleÉ
 
->> Thanks to Roberto Canteri (RC) of Fondazione Bruno Kessler for bringing some small bugs to my attention, and making some very useful suggestions.  Details below.
->> Added a method argument to normSpectra to pave the way for further options.
->> Converted sPlotSpectra to use base graphics (instead of ggplot2) so that  existing functions could be used to label points extreme points.  Thus an argument "tol" was added. 
->> Fixed a few help file issues.
->> Fixed a bug in plotHCA (a mis-placed parenthesis; noted by RC)
->> Added a function rowDist, written and suggested by RC, to give more options for distance calculations when doing HCA.  Changed functions hcaScores and hcaSpectra to use this new function, which required that the old argument method be renamed c.method and a new argument called d.method be added.  The full range of distance methods and clustering methods can now be employed.
->> Changed some aspects of plotScores to handle the cases where the number of members of the group was 3 or less differently (suggested by RC).  I don't think there are any changes to what the user sees, except possibly some warnings may have improved.
->> Changed groupNcolor so that it does not need to re-read the files in the directory to assign the groups.  This may make it easier to semi-manually build a Spectra object.
->> Changed groupNcolor to issue a warning if no match was found for a gr.crit value among the file names, or vice versa.
->> Fixed a bug in check4Gaps wherein the FALSE answer, i.e. no gaps, was only set properly if silent = FALSE.  Oddly, this caused the wrong answer in the help file example but had not been detected until now!
->> Changed the binData code, as suggested by RC, to chop off points differently.  Previously, there had been a limit of removing 50 points.  Now there is no limit, and the number of points removed is reported to the console.  Tested pretty thoroughly.
->> Made a small change to sumGroups (grep -> which) at the recommendation of RC.
++ Thanks to Roberto Canteri (RC) of Fondazione Bruno Kessler for bringing some small bugs to my attention, and making some very useful suggestions.  Details below.
++ Added a method argument to normSpectra to pave the way for further options.
++ Converted sPlotSpectra to use base graphics (instead of ggplot2) so that  existing functions could be used to label points extreme points.  Thus an argument "tol" was added. 
++ Fixed a few help file issues.
++ Fixed a bug in plotHCA (a mis-placed parenthesis; noted by RC)
++ Added a function rowDist, written and suggested by RC, to give more options for distance calculations when doing HCA.  Changed functions hcaScores and hcaSpectra to use this new function, which required that the old argument method be renamed c.method and a new argument called d.method be added.  The full range of distance methods and clustering methods can now be employed.
++ Changed some aspects of plotScores to handle the cases where the number of members of the group was 3 or less differently (suggested by RC).  I don't think there are any changes to what the user sees, except possibly some warnings may have improved.
++ Changed groupNcolor so that it does not need to re-read the files in the directory to assign the groups.  This may make it easier to semi-manually build a Spectra object.
++ Changed groupNcolor to issue a warning if no match was found for a gr.crit value among the file names, or vice versa.
++ Fixed a bug in check4Gaps wherein the FALSE answer, i.e. no gaps, was only set properly if silent = FALSE.  Oddly, this caused the wrong answer in the help file example but had not been detected until now!
++ Changed the binData code, as suggested by RC, to chop off points differently.  Previously, there had been a limit of removing 50 points.  Now there is no limit, and the number of points removed is reported to the console.  Tested pretty thoroughly.
++ Made a small change to sumGroups (grep -> which) at the recommendation of RC.
 
 ##### Version 1.47-1
 Date:  2011-07-28
 News:
->> Fixed a few things needed to pass CRAN checks.
++ Fixed a few things needed to pass CRAN checks.
 
 ##### Version 1.47-0
 Date:  2011-07-26
 News:
->> Fixed a problem with splitSpectraGroups which caused an error when only one instruction was passed to the function.
->> Also modified splitSpectraGroups to allow a new set of colors to be assigned based upon the splitting instructions (when only one splitting instruction is given).  This is a different way of changing colors than conColScheme.
->> Changed plotScores so that the key to the type of ellipses drawn and the description of the type of PCA conducted are both in the upper lefthand corner of the plot.  This avoids having the two pieces of text overlap which occurred when physically small plots were created.
->> Added a centering argument to classPCA.  This is for compatibility with the aovPCA series of functions which need to carry out PCA but have already centered the data matrix.  The default is still to center so no earlier code should break and users really don't need to do anything different.
->> Added functions aovPCA, avgFacLvls, aovPCAscores and aovPCAloadings, written by Matt Keinsley.  These functions carry out ANOVA-PCA as described by Harrington.  See the help pages.
->> Added function sPlotSpectra which implements an s-plot which is a useful adjunct to loadings plots (written by Matt Keinsley).
->> Data set gasNIR was removed.
++ Fixed a problem with splitSpectraGroups which caused an error when only one instruction was passed to the function.
++ Also modified splitSpectraGroups to allow a new set of colors to be assigned based upon the splitting instructions (when only one splitting instruction is given).  This is a different way of changing colors than conColScheme.
++ Changed plotScores so that the key to the type of ellipses drawn and the description of the type of PCA conducted are both in the upper lefthand corner of the plot.  This avoids having the two pieces of text overlap which occurred when physically small plots were created.
++ Added a centering argument to classPCA.  This is for compatibility with the aovPCA series of functions which need to carry out PCA but have already centered the data matrix.  The default is still to center so no earlier code should break and users really don't need to do anything different.
++ Added functions aovPCA, avgFacLvls, aovPCAscores and aovPCAloadings, written by Matt Keinsley.  These functions carry out ANOVA-PCA as described by Harrington.  See the help pages.
++ Added function sPlotSpectra which implements an s-plot which is a useful adjunct to loadings plots (written by Matt Keinsley).
++ Data set gasNIR was removed.
 
 ##### Version 1.46-4
 Date:  2011-03-26
 News:
->> Fixed a few MORE problems giving CRAN trouble!
++ Fixed a few MORE problems giving CRAN trouble!
 
 ##### Version 1.46-3
 Date:  2011-3-24
 News:
->> Fixed a few little problems giving CRAN trouble
++ Fixed a few little problems giving CRAN trouble
 
 ##### Version 1.46-2
 Date:  2011-3-24
 News:
->> Improved the help file for getManyCsv.
->> Something is up with the orthogonal distance plot or calculation.  Need to fix.
->> Fixed a few little problems giving CRAN trouble
++ Improved the help file for getManyCsv.
++ Something is up with the orthogonal distance plot or calculation.  Need to fix.
++ Fixed a few little problems giving CRAN trouble
 
 ##### Version 1.46-1
 Date:  2010-12-21
 News:
->> Fixed a typo which caused an error in an example.
++ Fixed a typo which caused an error in an example.
 
 ##### Version 1.46
 Date:  2010-8-27
 News:
->> Modified classPCA and robPCA so that they no longer normalized samples by rows.  Now users must normalize manually if desired, using normSpectra.
->> Added a function splitSpectra groups which allows one to use the existing spectra$groups entries to create new groups, stored in new elements of the Spectra object.
->> Added a function hypTestScores which facilitates carrying out hypothesis tests on PCA results.
->> Added function hmapSpectra which creates a seriated heat map of samples and spectral data.
->> WARNING: Several of the vignette examples seem to be behaving strangely.  May be a problem with CuticleIR, the code seems OK.
->> 51 Functions total.
++ Modified classPCA and robPCA so that they no longer normalized samples by rows.  Now users must normalize manually if desired, using normSpectra.
++ Added a function splitSpectra groups which allows one to use the existing spectra$groups entries to create new groups, stored in new elements of the Spectra object.
++ Added a function hypTestScores which facilitates carrying out hypothesis tests on PCA results.
++ Added function hmapSpectra which creates a seriated heat map of samples and spectral data.
++ WARNING: Several of the vignette examples seem to be behaving strangely.  May be a problem with CuticleIR, the code seems OK.
++ 51 Functions total.
 
 ##### Version 1.45
 Date:  2010-8-04
 News:
->> No changes; version 1.44 didn't seem to build correctly.
++ No changes; version 1.44 didn't seem to build correctly.
 
 ##### Version 1.44
 Date:  2010-7-13
 News:
->> When using robPCA with choice "mad" a warning is issued which comes from the latest version of package pcaPP.  It only concerns performance (speed) and may be ignored.
->> ggobi is on "life support" and hence development of plotScoresG is on hold until ggobi comes back to life or is replaced.  Related to this, some of the color schemes presented in the vignette and discussed in relationship to ggobi appear to have been changed.
->> Added warnings to specSurvey if there are 1-3 group members, as this makes interpreation of the descriptive statistics tricky.  If there are 3 or fewer group members, the survey results for this group are dropped from the display and a warning is issued.
->> Made significant changes to removeFreq. There was a problem with how NMR data were handled; this led to a significant re-write.  Everything seems to test out now.
->> Added two data sets: SrE.IR and SrE.NMR, see the documentation.
->> Fixed a problem with the subtitle in plotLoadings.
->> Fixed a few typos of course.
->> Still 48 functions.
++ When using robPCA with choice "mad" a warning is issued which comes from the latest version of package pcaPP.  It only concerns performance (speed) and may be ignored.
++ ggobi is on "life support" and hence development of plotScoresG is on hold until ggobi comes back to life or is replaced.  Related to this, some of the color schemes presented in the vignette and discussed in relationship to ggobi appear to have been changed.
++ Added warnings to specSurvey if there are 1-3 group members, as this makes interpreation of the descriptive statistics tricky.  If there are 3 or fewer group members, the survey results for this group are dropped from the display and a warning is issued.
++ Made significant changes to removeFreq. There was a problem with how NMR data were handled; this led to a significant re-write.  Everything seems to test out now.
++ Added two data sets: SrE.IR and SrE.NMR, see the documentation.
++ Fixed a problem with the subtitle in plotLoadings.
++ Fixed a few typos of course.
++ Still 48 functions.
 
 ##### Version 1.43
 Date:  2009-12-27
 News:
->> A revised version of specSurvey was implemented which permits one to use not only sd, but also sem, iqr and mad to examine the data sets.  In addition, one can look at each group of spectra separately, or analyze the entire data set.
->> Fixed a axis labeling error in plotScoresRGL & plotScores3D
->> Fixed an error in getManyCsv in which the entire data matrix in the final Spectra object originated from the first spectrum.  This had been introduced when format = "csv2" was added in 1.42.
->> 48 functions total
++ A revised version of specSurvey was implemented which permits one to use not only sd, but also sem, iqr and mad to examine the data sets.  In addition, one can look at each group of spectra separately, or analyze the entire data set.
++ Fixed a axis labeling error in plotScoresRGL & plotScores3D
++ Fixed an error in getManyCsv in which the entire data matrix in the final Spectra object originated from the first spectrum.  This had been introduced when format = "csv2" was added in 1.42.
++ 48 functions total
 
 ##### Version: 1.42
 Date: 2009-12-21
 News:
->> Added optional outlier labeling to plotScoresRGL.
->> Added robust or classical confidence ellipses as an option to plotScoresRGL and plotScores3D.
->> Further development of plotScoresG is on hold until rggobi is rebuilt for R 2.10.  When it returns, will add use.sym and confidence ellipses to it.
->> Added mclustSpectra, a wrapper to mclust methods.
->> Added mclust3D, a function which permits 3D display of groups identified by mclust.  Either robust or classical confidence ellipses are displayed.  mclust3dSpectra is the front end in the package.
->> Several support functions added (labelExtremes3d, normVec, makeEllipsoid).
->> Added a format option "csv2" to getManyCsv for folks in the EU.  Thanks to Richard Pena bringing this to my attention.
->> Updated all help files.
->> Expanded vignette.
->> 43 Functions total
++ Added optional outlier labeling to plotScoresRGL.
++ Added robust or classical confidence ellipses as an option to plotScoresRGL and plotScores3D.
++ Further development of plotScoresG is on hold until rggobi is rebuilt for R 2.10.  When it returns, will add use.sym and confidence ellipses to it.
++ Added mclustSpectra, a wrapper to mclust methods.
++ Added mclust3D, a function which permits 3D display of groups identified by mclust.  Either robust or classical confidence ellipses are displayed.  mclust3dSpectra is the front end in the package.
++ Several support functions added (labelExtremes3d, normVec, makeEllipsoid).
++ Added a format option "csv2" to getManyCsv for folks in the EU.  Thanks to Richard Pena bringing this to my attention.
++ Updated all help files.
++ Expanded vignette.
++ 43 Functions total
 
 ##### Version: 1.41
 Date: 2009-12-09
 News:
->> Completed implementation of the use.sym argument to plotting routines which require it.
->> 36 Functions total.
++ Completed implementation of the use.sym argument to plotting routines which require it.
++ 36 Functions total.
 
 ##### Version: 1.40
 Date: 2009-12-09
 News:
->> Added the first version of the vignette, which lacks detailed references.
->> Added man page colorSymbol.Rd to collect all recommendations about color and its use in one place.
->> Added a function to convert color schemes of an existing Spectra object into a new color scheme (conColScheme).
->> Expanded the creation and use of Spectra objects to include plotting symbols and alternate plotting symbols for each group, randomly assigned.  These are needed for b/w plots and also for viewing by color-blind individuals.  The relevant functions now have argument use.sym = FALSE which controls this feature.
->> Fixed an error in how colors and groups were matched up - it was being done differently in different functions.  Function sumGroups now handles this task for consistency.
->> Updated the help files.
->> The GitHub site now gets a .tar.gz source file for Mac users, and a .zip file for Windows users.
->> Also included is a file with installation instructions.
++ Added the first version of the vignette, which lacks detailed references.
++ Added man page colorSymbol.Rd to collect all recommendations about color and its use in one place.
++ Added a function to convert color schemes of an existing Spectra object into a new color scheme (conColScheme).
++ Expanded the creation and use of Spectra objects to include plotting symbols and alternate plotting symbols for each group, randomly assigned.  These are needed for b/w plots and also for viewing by color-blind individuals.  The relevant functions now have argument use.sym = FALSE which controls this feature.
++ Fixed an error in how colors and groups were matched up - it was being done differently in different functions.  Function sumGroups now handles this task for consistency.
++ Updated the help files.
++ The GitHub site now gets a .tar.gz source file for Mac users, and a .zip file for Windows users.
++ Also included is a file with installation instructions.
 
 ##### Version: 1.31
 Date: 2009-11-30

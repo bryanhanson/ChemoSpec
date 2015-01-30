@@ -1,7 +1,7 @@
 
 
 
-LoopThruSpectra <- function(Spectra, ...) {
+loopThruSpectra <- function(Spectra, ...) {
 
 # Function to loop through a series of spectra
 # in a Spectra object for one at a time inspection

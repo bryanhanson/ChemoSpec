@@ -1,6 +1,6 @@
 
 
-baselineSpec <- function(Spectra, int = TRUE, retC = FALSE, ...) {
+baselineSpectra <- function(Spectra, int = TRUE, retC = FALSE, ...) {
 	
 	# A simple wrapper to the excellent baseline package
 	# Part of ChemoSpec.  Bryan Hanson December 2011

@@ -1,7 +1,5 @@
 %\VignetteIndexEntry{An R Package for Chemometric Analysis of Spectra (NMR, IR etc)}
-%\VignetteDepends{chemometrics, robustbase, RColorBrewer, plyr, pcaPP, mvtnorm, mvoutlier, pls, lattice, grid, rgl, R.utils, mclust, mvbutils, sna, knitr}
-%\VignetteKeywords{multivariate}
-%\VignettePackage{ChemoSpec}
+%\VignetteKeywords{chemometrics, spectroscopy, nmr, ir, raman}
 %\VignetteEngine{knitr::knitr}
 
 %%%% This is a knitr not sweave document.
@@ -219,11 +217,11 @@ Compare the results here with the \texttt{sumSpectra} of the full data set (Sect
 
 \subsubsection{Correcting Baseline Drift} %%%%%%%%%%%%%%%
 
-\texttt{ChemoSpec} uses the functions in the package \texttt{baseline} to correct wandering baselines.  The function, \texttt{baselineSpec}, can operate interactively or not.  Figure~\ref{baseline} shows a typical usage.  Method \texttt{rfbaseline} works well for IR spectra; \texttt{retC = TRUE} puts the corrected spectra into the new \texttt{Spectra} object so we can use it going forward (and we will).
+\texttt{ChemoSpec} uses the functions in the package \texttt{baseline} to correct wandering baselines.  The function, \texttt{baselineSpectra}, can operate interactively or not.  Figure~\ref{baseline} shows a typical usage.  Method \texttt{rfbaseline} works well for IR spectra; \texttt{retC = TRUE} puts the corrected spectra into the new \texttt{Spectra} object so we can use it going forward (and we will).
 
 
 << Chunk10b, fig.cap = "\\label{baseline}Correcting baseline drift"  >>=
-SrE2.IR <- baselineSpec(SrE.IR, int = FALSE, method = "rfbaseline", retC = TRUE)
+SrE2.IR <- baselineSpectra(SrE.IR, int = FALSE, method = "rfbaseline", retC = TRUE)
 @
 
 \subsection{Identifying \& Removing Problematic Samples} %%%%%%%%%%%%%%%
@@ -263,34 +261,34 @@ This is what is meant by "grep is greedy".  In this situation, you have three ch
 
 Many spectra will have regions that should be removed before analysis.  It may be an uninformative, interfering peak like the water peak in $\rm ^{1}H$ NMR, or the $\rm CO_2$ peak in IR.  Or, there may be regions of the spectra that simply don't have much information -- they contribute a noisy baseline and not much else.  An example would be the region from about 1,800 or 1,900 $\rm cm^{-1} $ to about 2,500 $\rm cm^{-1} $ in IR, a region where there are typically no peaks except for the atomospheric $\rm CO_2$ stretch, and rarely (be careful!) alkyne stretches.
 
-Finding these regions might be pretty simple, a matter of inspection coupled with your knowledge of spectroscopy.  Another approach is to use the function \texttt{specSurvey} to examine the entire set of spectra.  This function computes a summary statistic (your choice) of the intensities at a particular frequency across the data set, as well as the mean or median.  In regions with little variation, the mean/median and upper/lower summary lines will be close together.  Figure~\ref{surv} demonstrates the process.
+Finding these regions might be pretty simple, a matter of inspection coupled with your knowledge of spectroscopy.  Another approach is to use the function \texttt{surveySpectra} to examine the entire set of spectra.  This function computes a summary statistic (your choice) of the intensities at a particular frequency across the data set, as well as the mean or median.  In regions with little variation, the mean/median and upper/lower summary lines will be close together.  Figure~\ref{surv} demonstrates the process.
 
 
 << Chunk14,  fig.width = 8, fig.height = 5, fig.cap = "\\label{surv}Checking for Regions of No Interest" >>=
-specSurvey(SrE2.IR, method = "iqr", main = "S. repens Extract IR Spectra", by.gr = FALSE)
+surveySpectra(SrE2.IR, method = "iqr", main = "S. repens Extract IR Spectra", by.gr = FALSE)
 @
 
 In Figure~\ref{surv} we kept all the groups together by using argument \texttt{by.gr = FALSE}.  We also looked at the entire spectral range.  In Figure~\ref{survA} we can look just at the carbonyl region.  The black line is the median value of intensity across the entire set of spectra.  The red lines are the upper and lower interquartile ranges which makes it pretty clear that the carbonyl region of this data set varies a lot.
 
 
 << Chunk14a, fig.cap = "\\label{survA}Detail of Carbonyl Region"  >>=
-specSurvey(SrE2.IR, method = "iqr", main = "S. repens Detail of Carbonyl Region",
+surveySpectra(SrE2.IR, method = "iqr", main = "S. repens Detail of Carbonyl Region",
 by.gr = FALSE, xlim = c(1650, 1800))
 @
 
 
-Finally, \texttt{specSurvey} allows us to view the data set by group, which is really more useful.  Let's look at the carbonyl region by group (Figure~\ref{survB}). Note that we get warnings because two of the groups have too few members to compute the interquartile range, and these are not shown.  As a result, some panels are empty.
+Finally, \texttt{surveySpectra} allows us to view the data set by group, which is really more useful.  Let's look at the carbonyl region by group (Figure~\ref{survB}). Note that we get warnings because two of the groups have too few members to compute the interquartile range, and these are not shown.  As a result, some panels are empty.
 
 
 << Chunk14b, fig.cap = "\\label{survB}Detail of Carbonyl Region by Group"  >>=
-specSurvey(SrE2.IR, method = "iqr", main = "S. repens Detail of Carbonyl Region",
+surveySpectra(SrE2.IR, method = "iqr", main = "S. repens Detail of Carbonyl Region",
 by.gr = TRUE, xlim = c(1650, 1800))
 @
 
 For reasons that will become evident in a moment, let's look at the region between 1800 and 2500 $\rm cm^{-1} $ (Figure~\ref{survC}).
 
 << Chunk14c, fig.cap = "\\label{survC}Inspection of an Uninteresting Spectral Region"  >>=
-specSurvey(SrE2.IR, method = "iqr", main = "S. repens Detail of Empty Region",
+surveySpectra(SrE2.IR, method = "iqr", main = "S. repens Detail of Empty Region",
 by.gr = FALSE, xlim = c(1800, 2500), ylim = c(0.0, 0.05))
 @
 
