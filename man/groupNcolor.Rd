@@ -12,7 +12,7 @@ groupNcolor(spectra, gr.crit = NULL, gr.cols = c("auto"))
 }
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}.  Until this function acts on \code{spectra} it is not quite complete.
+An object of S3 class \code{\link{Spectra}}.  Until this function acts on \code{spectra} it is not quite complete.
 }
   \item{gr.crit}{
 As per \code{\link{files2SpectraObject}}
@@ -22,7 +22,7 @@ As per \code{\link{files2SpectraObject}}
 }
 }
 \value{
-A \emph{complete} object of S3 class \code{"Spectra"}.  Until this function has done its job, an object of class \code{"Spectra"} will not pass checks as the assembly is not complete (see \code{\link{chkSpectra}}).)
+A \emph{complete} object of S3 class \code{\link{Spectra}}.  Until this function has done its job, an object of class \code{\link{Spectra}} will not pass checks as the assembly is not complete (see \code{\link{chkSpectra}}).)
 }
 
 

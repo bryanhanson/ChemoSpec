@@ -16,7 +16,7 @@ clupaSpectra(spectra, bT = NULL, ...)
 
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}
+An object of S3 class \code{\link{Spectra}}.
 }
 
   \item{bT}{
@@ -29,7 +29,7 @@ Other arguments to be passed to the underlying functions.
 }
 
 \value{
-A modifed \code{"Spectra"} object.
+A modifed \code{\link{Spectra}} object.
 }
 
 \references{

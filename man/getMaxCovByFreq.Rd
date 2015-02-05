@@ -14,7 +14,7 @@ getMaxCovByFreq(spectra, V = NULL, Quan = NULL)
 
 \arguments{
   \item{spectra}{
-An object of S3 class \code{\link{Spectra}}
+An object of S3 class \code{\link{Spectra}}.
 }
   \item{V}{
 A numeric covariance matrix.
@@ -25,7 +25,7 @@ Numeric.  A value in the interval (0...1) giving the quantile to be selected.  F
 }
 
 \value{
-A data frame containing the frequencies from the \code{Spectra} object, the absolute value of the covariance at that frequency, and the relative covariance.  Sorted by absolute covariance in descending order.
+A data frame containing the frequencies from the \code{\link{Spectra}} object, the absolute value of the covariance at that frequency, and the relative covariance.  Sorted by absolute covariance in descending order.
 }
 
 \references{

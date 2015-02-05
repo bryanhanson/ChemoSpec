@@ -2,7 +2,7 @@
 \alias{rowDist}
 \title{ Compute Distance Between Rows of a Matrix }
 \description{
-This function is a wrapper to compute the distance between rows of a matrix using a number of methods.  Some of these are available in package \code{\link{stats}} and some in \code{amap}.  All this function does is determine which method is requested and then the distance calculation is done by the appropriate method.
+This function is a wrapper to compute the distance between rows of a matrix using a number of methods.  Some of these are available in package \code{\link{stats}} and some in \code{\link{amap}}.  All this function does is determine which method is requested and then the distance calculation is done by the appropriate method.
 }
 \usage{
 rowDist(x, method)

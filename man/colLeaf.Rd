@@ -14,7 +14,7 @@ colLeaf(n, spectra)
 A node in a dendrogram object.
 }
   \item{spectra}{
-An object of S3 class \code{"Spectra"}.
+An object of S3 class \code{\link{Spectra}}.
 }
 }
 \value{

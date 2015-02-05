@@ -5,7 +5,7 @@
 Check for Missing Values (Gaps)
 }
 \description{
-This function may be used with a \code{Spectra} object to see if there are any gaps or discontinuities in the frequency axis.  Gaps may arise when unwanted frequencies are removed (e.g, water peaks in 1H NMR, or uninteresting regions in any kind of spectroscopy).  As written, it can be used to check for gaps in any appropriate numeric vector.  Not normally called directly by the user, but may be (see examples).  A plot of the gaps is optional.
+This function may be used with a \code{\link{Spectra}} object to see if there are any gaps or discontinuities in the frequency axis.  Gaps may arise when unwanted frequencies are removed (e.g, water peaks in 1H NMR, or uninteresting regions in any kind of spectroscopy).  As written, it can be used to check for gaps in any appropriate numeric vector.  Not normally called directly by the user, but may be (see examples).  A plot of the gaps is optional.
 }
 \usage{
 check4Gaps(x, y = NULL, tol = 0.01, plot = FALSE,

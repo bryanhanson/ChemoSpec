@@ -1,21 +1,21 @@
-\name{robPCA}
+\name{rpcaSpectra}
 \Rdversion{1.1}
-\alias{robPCA}
+\alias{rpcaSpectra}
 
 \title{
 Robust PCA of a Spectra Object
 }
 \description{
-A wrapper which carries out robust PCA analysis on a \code{"Spectra"} object.  The data are row- and column-centered, and the user can select various options for scaling.  
+A wrapper which carries out robust PCA analysis on a \code{\link{Spectra}} object.  The data are row- and column-centered, and the user can select various options for scaling.  
 }
 
 \usage{
-robPCA(spectra, choice = "noscale")
+rpcaSpectra(spectra, choice = "noscale")
 }
 
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}
+An object of S3 class \code{\link{Spectra}}.
 }
   \item{choice}{
 A character vector describing the type of scaling to be carried out.  One of \code{c("noscale", "mad")}.
@@ -40,7 +40,7 @@ For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \
 
 \examples{
 data(SrE.IR)
-results <- robPCA(SrE.IR, choice = "mad")
+results <- rpcaSpectra(SrE.IR, choice = "mad")
 myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 plotScores(SrE.IR, main = myt,
 	results, pcs = c(1,2), ellipse = "rob", tol = 0.05)

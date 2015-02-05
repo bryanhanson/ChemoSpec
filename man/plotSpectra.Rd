@@ -5,7 +5,7 @@
 Plot Spectra Object
 }
 \description{
-Plots the spectra stored in a \code{"Spectra"} object.  One may choose which spectra to plot, and the x range to plot.  Spectra may be plotted offset or stacked.  The vertical scale is controlled by a combination of several parameters.
+Plots the spectra stored in a \code{\link{Spectra}} object.  One may choose which spectra to plot, and the x range to plot.  Spectra may be plotted offset or stacked.  The vertical scale is controlled by a combination of several parameters.
 }
 \usage{
 plotSpectra(spectra, which = c(1), yrange = range(spectra$data),
@@ -13,7 +13,7 @@ plotSpectra(spectra, which = c(1), yrange = range(spectra$data),
 }
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}.
+An object of S3 class \code{\link{Spectra}}.
 }
   \item{which}{
 An integer vector specifying which spectra to plot, and the order.

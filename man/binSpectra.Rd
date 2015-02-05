@@ -1,18 +1,18 @@
-\name{binBuck}
-\alias{binBuck}
+\name{binSpectra}
+\alias{binSpectra}
 \title{
 Bin or Bucket a Spectra Object
 }
 \description{
-This function will bin a \code{"Spectra"} object by averaging every \code{bin.ratio} frequency values, and summing the corresponding intensity values.  The net effect is a smoothed and smaller data set.  If there are gaps in the frequency axis, each data chunk is processed separately.  Note: some folks refer to binning as bucketing.
+This function will bin a \code{\link{Spectra}} object by averaging every \code{bin.ratio} frequency values, and summing the corresponding intensity values.  The net effect is a smoothed and smaller data set.  If there are gaps in the frequency axis, each data chunk is processed separately.  Note: some folks refer to binning as bucketing.
 }
 
 \usage{
-binBuck(spectra, bin.ratio)
+binSpectra(spectra, bin.ratio)
 }
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"} to be binned.
+An object of S3 class \code{\link{Spectra}} to be binned.
 }
   \item{bin.ratio}{
 An integer giving the binning ratio, that is, the number of points to be grouped together into one subset of data.
@@ -25,7 +25,7 @@ If the frequency range is not divisible by bin.ratio to give a whole number, dat
 }
 
 \value{
-An object of S3 class \code{"Spectra"}.
+An object of S3 class \code{\link{Spectra}}.
 }
 
 
@@ -39,7 +39,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 data(metMUD1)
 sumSpectra(metMUD1)
-res <- binBuck(metMUD1, bin.ratio = 4)
+res <- binSpectra(metMUD1, bin.ratio = 4)
 sumSpectra(res)
 }
 \keyword{ utilities }

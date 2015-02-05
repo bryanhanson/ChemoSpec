@@ -17,7 +17,7 @@ A matrix of 3 columns containing x, y and z values for the labels, with rows cor
 A character vector of sample names; must have length equal to \code{nrow(data)}.
 }
   \item{tol}{
-A number describing the fraction of points to be labeled.  \code{tol = 1.0} labels all the points; \code{tol = 0.05} labels \emph{approximately} the most extreme 5 percent.  Note that this is simply based upon quantiles, assumes that x, y and z are each normally distributed, and treats x, y and y separately.  Thus, this is not a formal treatment of outliers, just a means of labeling points.  Note too that while this function could deal with groups separately, the way it is called by \code{\link{plotScoresRGL}} lumps all groups together.
+A number describing the fraction of points to be labeled.  \code{tol = 1.0} labels all the points; \code{tol = 0.05} labels \emph{approximately} the most extreme 5 percent.  Note that this is simply based upon quantiles, assumes that x, y and z are each normally distributed, and treats x, y and yz separately.  Thus, this is not a formal treatment of outliers, just a means of labeling points.  Note too that while this function could deal with groups separately, the way it is called by \code{\link{plotScoresRGL}} lumps all groups together.
 }  
 }
 

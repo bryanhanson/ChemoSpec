@@ -6,7 +6,7 @@
 Summarize a Spectra Object
 }
 \description{
-Provides a summary of a \code{"Spectra"} object, essentially a more spectroscopist-friendly version of \code{str()}.
+Provides a summary of a \code{\link{Spectra}} object, essentially a more spectroscopist-friendly version of \code{str()}.
 }
 
 \usage{
@@ -15,7 +15,7 @@ sumSpectra(spectra, ...)
 
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}.
+An object of S3 class \code{\link{Spectra}}.
 }
   \item{...}{
 Arguments to be passed downstream.
@@ -23,7 +23,7 @@ Arguments to be passed downstream.
 
 }
 \details{
-Prior to summarizing, \code{\link{chkSpectra}} is run with confirm = FALSE.  If there are problems, warnings are issued to the console and the summary is not done.  If \code{sumSpectra} thinks there is a gap between every data point, add the argument \code{tol = xx} which will pass through to \code{\link{check4Gaps}} and alleviate this problem (which has to do with rounding when subtracting two adjacent frequency values).  The \code{"Spectra"} object is checked to see if it contains data elements beyond what is required.  If so, these extra elements are reported to the console.
+Prior to summarizing, \code{\link{chkSpectra}} is run with confirm = FALSE.  If there are problems, warnings are issued to the console and the summary is not done.  If \code{sumSpectra} thinks there is a gap between every data point, add the argument \code{tol = xx} which will pass through to \code{\link{check4Gaps}} and alleviate this problem (which has to do with rounding when subtracting two adjacent frequency values).  The \code{\link{Spectra}} object is checked to see if it contains data elements beyond what is required.  If so, these extra elements are reported to the console.
 }
 
 \value{

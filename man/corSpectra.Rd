@@ -6,7 +6,7 @@ STOCSY analysis of a Spectra object
 }
 
 \description{
-Carries out a STOSCY analysis of a \code{Spectra} object, using the method of Nicholson.
+Carries out a STOSCY analysis of a \code{\link{Spectra}} object, using the method of Nicholson.
 }
 
 \usage{
@@ -16,7 +16,7 @@ levels = NULL, pmode = "contour", C = NULL, V = NULL, ...)
 
 \arguments{
   \item{spectra}{
-An object of S3 class \code{\link{Spectra}}
+An object of S3 class \code{\link{Spectra}}.
 }
   \item{plot}{
 Logical.  Should a plot be made?

@@ -4,7 +4,7 @@
 Create Ellipsoid
 }
 \description{
-Given at least 3 data points, this function creates either classical or robust ellipsoids at a given confidence limit, in either 2D or 3D.  The ellipsoids consist of randomly generate points, which if plotted as tiny points, create a sort of transparent surface.
+Given at least 3 data points, this function creates either classical or robust ellipsoids at a given confidence limit, in either 2D or 3D.  The ellipsoids consist of randomly generated points, which if plotted as tiny points, create a sort of transparent surface.
 }
 \usage{
 makeEllipsoid(data, cl = 0.95, rob = FALSE, frac.pts.used = 0.8)
@@ -25,9 +25,6 @@ If \code{rob = TRUE}, this is the fraction of points to be considered the "good"
 }
 \value{
 A matrix of 2 or 3 columns, representing x, y and optionally z.  These are the coordinates of points specifying an ellipse which has a likelihood of containing the true mean at the given confidence limit.
-}
-\section{Called by}{
-\code{\link{plotScoresRGL}}, \code{\link{mclust3dSpectra}}, \code{\link{mclust3D}}.
 }
 
 \references{

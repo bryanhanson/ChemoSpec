@@ -4,14 +4,14 @@
 Plot Dendrogram for Spectra Object
 }
 \description{
-This function plots the results of an HCA analysis of a \code{"Spectra"} object.  This is not called directly by the user -- \code{\link{hcaSpectra}} and \code{\link{hcaScores}} use it (see those pages for examples).
+This function plots the results of an HCA analysis of a \code{\link{Spectra}} object.  This is not called directly by the user -- \code{\link{hcaSpectra}} and \code{\link{hcaScores}} use it (see those pages for examples).
 }
 \usage{
 plotHCA(spectra, hclst, sub.title, use.sym, ...)
 }
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}.
+An object of S3 class \code{\link{Spectra}}.
 }
   \item{hclst}{
 A \code{\link{hclust}} object.

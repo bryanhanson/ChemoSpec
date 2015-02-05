@@ -1,7 +1,7 @@
-classPCA <-
+cpcaSpectra <-
 function(spectra, choice = "noscale", cent = TRUE) {
 
-# Function to carry out non-robust Principal Components Analysis
+# Function to carry out classical Principal Components Analysis
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, Sept 2009
 	

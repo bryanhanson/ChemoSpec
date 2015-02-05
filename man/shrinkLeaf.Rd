@@ -19,7 +19,6 @@ An object of S3 class \code{"Spectra"}.
 \value{
 Returns a node with the label size properties set.
 }
-\section{Called by}{\code{\link{hcaSpectra}}, \code{\link{hcaScores}}.}
 
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}

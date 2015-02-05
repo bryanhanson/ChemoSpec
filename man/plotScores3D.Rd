@@ -5,7 +5,7 @@
 3D PCA Score Plot for a Spectra Object
 }
 \description{
-Creates a basic 3D plot of PCA scores from the analysis of a \code{"Spectra"} object, color coded according the to scheme stored in the object.
+Creates a basic 3D plot of PCA scores from the analysis of a \code{\link{Spectra}} object, color coded according the to scheme stored in the object.
 }
 \usage{
 plotScores3D(spectra, pca, pcs = c(1:3),
@@ -16,7 +16,7 @@ plotScores3D(spectra, pca, pcs = c(1:3),
 }
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}.
+An object of S3 class \code{\link{Spectra}}.
 }
   \item{pca}{
 An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{classPCA}} or \code{\link{robPCA}} were used to create \code{pca}.

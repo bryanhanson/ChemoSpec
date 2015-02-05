@@ -5,7 +5,7 @@
 Merge Files in a Directory into a Spectra Object
 }
 \description{
-This function will read all files of a given type in a directory, and use the file names to construct group membership and assign colors and symbols.  All the data is placed into an object of S3 class \code{"Spectra"}.  This is the only way to create a \code{"Spectra"} object automatically.
+This function will read all files of a given type in a directory, and use the file names to construct group membership and assign colors and symbols.  All the data is placed into an object of S3 class \code{\link{Spectra}}.  This is the only way to create a \code{\link{Spectra}} object automatically.
 }
 \usage{
 files2SpectraObject(gr.crit = NULL, gr.cols = c("auto"),
@@ -39,7 +39,7 @@ Logical indicating if we should try to align the TMS (or TSP) peak in proton NMR
 }
 
   \item{out.file}{
-A file name acceptable to the \code{save} function.  The completed object of S3 class \code{"Spectra"} will be written to this file.
+A file name acceptable to the \code{save} function.  The completed object of S3 class \code{\link{Spectra}} will be written to this file.
 }
   \item{debug}{
 Logical; set to \code{TRUE} for troubleshooting when using \code{format = "Btxt" or "dx"}.
@@ -65,7 +65,7 @@ If \code{format = "Btxt"} and \code{alignTMS = TRUE}, the function will try to f
 There should be no other files of the given format (extension) in the directory except those containing the data to be processed by \code{files2SpectraObject}, as all files with that format in the directory will be processed.
 }
 \value{
-A object of class \code{Spectra}.  An \emph{unnamed} object of S3 class \code{\link{Spectra}} is also written to \code{out.file}.  To read it back into the workspace, use \code{new.name <- loadObject(out.file)}, found in package \code{R.utils}.
+A object of class \code{\link{Spectra}}.  An \emph{unnamed} object of S3 class \code{\link{Spectra}} is also written to \code{out.file}.  To read it back into the workspace, use \code{new.name <- loadObject(out.file)}, found in package \code{R.utils}.
 }
 
 \references{
@@ -77,7 +77,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \section{Warning }{
-Files whose names are not matched using gr.crit are still incorporated into the \code{"Spectra"} object, but they are not assigned a group or color and therefore don't plot, though they do take up space in a plot!
+Files whose names are not matched using gr.crit are still incorporated into the \code{\link{Spectra}} object, but they are not assigned a group or color and therefore don't plot, though they do take up space in a plot!
 }
 
 \keyword{ file }

@@ -1,4 +1,4 @@
-robPCA <-
+rpcaSpectra <-
 function(spectra, choice = "noscale") {
 	
 	if (missing(spectra)) stop("No spectral data set provided")

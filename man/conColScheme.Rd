@@ -6,7 +6,7 @@ Change the Color Scheme of a Spectra Object
 }
 
 \description{
-This function permits you to change the color scheme of an existing \code{"Spectra"} object.
+This function permits you to change the color scheme of an existing \code{\link{Spectra}} object.
 }
 \usage{
 conColScheme(spectra, old = levels(as.factor(spectra$colors)),
@@ -14,7 +14,7 @@ conColScheme(spectra, old = levels(as.factor(spectra$colors)),
 }
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"} whose color scheme is to be changed.
+An object of S3 class \code{\link{Spectra}} whose color scheme is to be changed.
 }
   \item{old}{
 A character vector of the old color names; will be searched for and replaced one-for-one by the character vector in \code{new}.
@@ -27,7 +27,7 @@ A character vector of the new (replacement) color schemes.
 A grepping process is used.  Depending upon the nature of the old color names to be searched for, you might need to add some grep pattern matching strings to the color name.
 }
 \value{
-An object of S3 class \code{"Spectra"} whose color scheme has been changed.
+An object of S3 class \code{\link{Spectra}} whose color scheme has been changed.
 }
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}

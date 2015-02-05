@@ -4,7 +4,7 @@
 mclust Analysis of a Spectra Object in 3D
 }
 \description{
-This function conducts an mclust analysis of the PCA results of a \code{"Spectra"} object and displays the results in 3D.  Classical or robust confidence ellipses can be added if desired. Improperly classified data points can be marked.  rgl graphics are employed.
+This function conducts an mclust analysis of the PCA results of a \code{\link{Spectra}} object and displays the results in 3D.  Classical or robust confidence ellipses can be added if desired. Improperly classified data points can be marked.  rgl graphics are employed.
 }
 \usage{
 mclust3dSpectra(spectra, pca, pcs = c(1:3),
@@ -14,7 +14,7 @@ mclust3dSpectra(spectra, pca, pcs = c(1:3),
 }
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}.
+An object of S3 class \code{\link{Spectra}}.
 }
   \item{pca}{
 An object of class \code{\link{prcomp}}.

@@ -8,7 +8,7 @@ Remove Samples or Groups from a Spectra Object
 }
 
 \description{
-Removes specified samples from a \code{"Spectra"} object.
+Removes specified samples from a \code{\link{Spectra}} object.
 }
 \usage{
 removeSample(spectra, rem.sam)
@@ -16,7 +16,7 @@ removeGroup(spectra, rem.group)
 }
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}
+An object of S3 class \code{\link{Spectra}}.
 }
   \item{rem.sam}{
 Either an integer vector specifying the samples to be removed, or a character vector giving the sample names to be removed.
@@ -31,11 +31,11 @@ If \code{rem.sam} or \code{rem.group} is a character vector, the sample or group
 }
 
 \value{
-A modified object of S3 class \code{"Spectra"}.
+A modified object of S3 class \code{\link{Spectra}}.
 }
 
 \seealso{
-\code{\link{removeFreq}} to remove selected frequencies from a \code{"Spectra"} object.
+\code{\link{removeFreq}} to remove selected frequencies from a \code{\link{Spectra}} object.
 }
 
 \references{

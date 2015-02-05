@@ -11,7 +11,7 @@ by.gr = TRUE, ...)
 }
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"} to be analyzed.
+An object of S3 class \code{\link{Spectra}} to be analyzed.
 }
   \item{method}{
 One of \code{c("sd", "sem", "sem95", "mad", "iqr")}.  \code{sd} plots the mean +/- the standard deviation, \code{sem} computes the mean +/- the standard error of the mean, \code{sem95} computes the mean +/- the standard error at the 95 percent confidence interval, \code{mad} computes the median +/- the median absolute deviation, and finally, \code{iqr} plots the median + the upper hinge and - the lower hinge.

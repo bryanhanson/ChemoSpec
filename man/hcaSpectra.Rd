@@ -13,7 +13,7 @@ hcaSpectra(spectra, c.method = "complete", d.method = "euclidean", use.sym = FAL
 }
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}.
+An object of S3 class \code{\link{Spectra}}.
 }
   \item{c.method}{
 A character string describing the clustering method; must be acceptable to \code{\link{hclust}}.
@@ -44,7 +44,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 
 \seealso{
 \code{\link{hclust}} for the underlying function.
-\code{\link{hcaScores}} for similar analysis of PCA scores from a \code{"Spectra"} object.
+\code{\link{hcaScores}} for similar analysis of PCA scores from a \code{\link{Spectra}} object.
 \code{\link{plotHCA}} for the function that actually does the plotting.
 }
 \examples{

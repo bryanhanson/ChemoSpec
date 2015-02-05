@@ -7,11 +7,11 @@ Carry out baseline correction on a Spectra object
 This function is a simple wrapper to functions in package \code{baseline} which carries out a variety of baseline correction routines.
 }
 \usage{
-baselineSpectra(Spectra, int = TRUE, retC = FALSE, ...)
+baselineSpectra(spectra, int = TRUE, retC = FALSE, ...)
 }
 \arguments{
-  \item{Spectra}{
-An object of S3 class \code{"Spectra"} to be checked.
+  \item{spectra}{
+An object of S3 class \code{\link{Spectra}} to be checked.
 }
   \item{int}{
 Logical; if \code{TRUE}, do the correction interactively using widgets.  No results are saved.  Use this for inspection and exploration only.

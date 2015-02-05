@@ -15,7 +15,7 @@ covSpectra(spectra, freq = spectra$freq[1], C = NULL, V = NULL, ...)
 
 \arguments{
   \item{spectra}{
-An object of S3 class \code{\link{Spectra}}
+An object of S3 class \code{\link{Spectra}}.
 }
   \item{freq}{
 Numeric.  The desired frequency to be plotted.

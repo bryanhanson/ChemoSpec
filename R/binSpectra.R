@@ -1,4 +1,4 @@
-binBuck <-
+binSpectra <-
 function(spectra, bin.ratio) {
 
 # Function to bin or bucket a Spectra object

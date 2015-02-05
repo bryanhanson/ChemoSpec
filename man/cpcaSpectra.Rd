@@ -1,17 +1,18 @@
-\name{classPCA}
+\name{cpcaSpectra}
 \Rdversion{1.1}
-\alias{classPCA}
+\alias{cpcaSpectra}
 \title{
 Classical PCA of Spectra Objects
 }
 \description{
-A wrapper which carries out classical PCA analysis on a \code{"Spectra"} object.  The user can select various options for scaling.  There is no normalization by rows - do this manually using \code{\link{normSpectra}}.  There is an option to control centering, but this is mainly for compatibility with the \code{\link{aovPCA}} series of functions.  Centering the data should always be done in PCA and it is the default here.
+A wrapper which carries out classical PCA analysis on a \code{\link{Spectra}} object.  The user can select various options for scaling.  There is no normalization by rows - do this manually using \code{\link{normSpectra}}.  There is an option to control centering, but this is mainly for compatibility with the \code{\link{aovPCA}} series of functions.  Centering the data should always be done in PCA and it is the default here.
 }
 \usage{
-classPCA(spectra, choice = "noscale", cent = TRUE)
+cpcaSpectra(spectra, choice = "noscale", cent = TRUE)
 }
 \arguments{
-  \item{spectra}{An object of S3 class \code{"Spectra"}}.
+  \item{spectra}{An object of S3 class \code{\link{Spectra}}.
+}.
 
   \item{choice}{A character string indicating the choice of scaling.  One of \code{c("noscale", "autoscale", "Pareto").}}
 
@@ -42,7 +43,7 @@ For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \
 }
 \examples{
 data(SrE.IR)
-results <- classPCA(SrE.IR, choice = "noscale")
+results <- cpcaSpectra(SrE.IR, choice = "noscale")
 myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 plotScores(SrE.IR, main = myt, results, pcs = c(1,2),
 	ellipse = "rob", tol = 0.05)

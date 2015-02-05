@@ -11,7 +11,7 @@ aovPCAscores(spectra, LM, plot = 1, type = "class", choice = NULL, ...)
 }
 \arguments{
   \item{spectra}{
-An object of S3 class "Spectra".
+An object of S3 class \code{\link{Spectra}}.
 }
   \item{LM}{
 List of matrices created by \code{\link{aovPCA}}.

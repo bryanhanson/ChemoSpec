@@ -28,7 +28,7 @@ export(
 	removeSample,
 	removeGroup,
 	sumGroups,
-	binBuck,
+	binSpectra,
 	binData,
 	check4Gaps,
 	conColScheme,
@@ -45,8 +45,9 @@ export(
 	normVec,
 	chooseLvls,
 
-	classPCA, # PCA related
-	robPCA,
+	cpcaSpectra, # PCA related
+	rpcaSpectra,
+	bpcaSpectra,
 	q2rPCA,
 	r2qPCA,
 	pcaDiag,
@@ -60,7 +61,6 @@ export(
 	plotScoresCor,
 	plotScoresDecoration,
 	plotScoresRGL,
-	pcaBoot,
 
 
 	mclust3D, # mclust related

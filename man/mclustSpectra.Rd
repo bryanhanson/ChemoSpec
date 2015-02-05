@@ -12,7 +12,7 @@ mclustSpectra(spectra, pca, pcs = c(1:3), dims = c(1, 2),
 }
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}.
+An object of S3 class \code{\link{Spectra}}.
 }
   \item{pca}{
 An object of class \code{\link{prcomp}}.

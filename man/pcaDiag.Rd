@@ -7,7 +7,7 @@ Outlier Diagnostic Plots for PCA of a Spectra Object
 }
 
 \description{
-A function to carry diagnostics on the PCA results for a \code{"Spectra"} object.  Basically a wrapper to Filzmoser's \code{\link[chemometrics]{pcaDiagplot}} which colors everything according to the scheme stored in the \code{"Spectra"} object.  Works with PCA results of either class \code{"prcomp"} or class \code{"princomp"}.  Works with either classical or robust PCA results.
+A function to carry diagnostics on the PCA results for a \code{\link{Spectra}} object.  Basically a wrapper to Filzmoser's \code{\link[chemometrics]{pcaDiagplot}} which colors everything according to the scheme stored in the \code{\link{Spectra}} object.  Works with PCA results of either class \code{"prcomp"} or class \code{"princomp"}.  Works with either classical or robust PCA results.
 }
 
 \usage{
@@ -17,7 +17,7 @@ pcaDiag(spectra, pca, pcs = 3, quantile = 0.975,
 
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}.
+An object of S3 class \code{\link{Spectra}}.
 }
   \item{pca}{
 An object of class \code{\link{prcomp}} or \code{\link{prcomp}}, modified to include a character string (\code{$method}) describing the pre-processing carried out and the type of PCA performed.

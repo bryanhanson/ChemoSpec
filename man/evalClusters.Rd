@@ -11,7 +11,7 @@ evalClusters(spectra, hclst, k = NULL, h = NULL, crit = "Dunn")
 }
 \arguments{
   \item{spectra}{
-An object of S3 class \code{"Spectra"}.
+An object of S3 class \code{\link{Spectra}}.
 }
   \item{hclst}{
 An object of S3 class \code{"hclust"}.
@@ -41,8 +41,8 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 
 \seealso{
 \code{\link{hclust}}
-\code{\link{hcaSpectra}} for HCA analysis of a \code{"Spectra"} object.
-\code{\link{hcaScores}} for HCA analysis of PCA scores from a \code{"Spectra"} object.
+\code{\link{hcaSpectra}} for HCA analysis of a \code{\link{Spectra}} object.
+\code{\link{hcaScores}} for HCA analysis of PCA scores from a \code{\link{Spectra}} object.
 \code{\link{plotHCA}}
 }
 

@@ -4,12 +4,15 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
-Changes in version 3.1-0 2015-xx-xx
-     + Several functions were renamed for consistency.  YOUR CODE MAY BREAK. LoopThruSpectra -> loopThruSpectra, specSurvey -> surveySpectra, baselineSpec -> baselineSpectra.
+Changes in version 4.0-0 2015-xx-xx
+     + Several functions were renamed for consistency.  YOUR CODE MAY BREAK. LoopThruSpectra -> loopThruSpectra, specSurvey -> surveySpectra, baselineSpec -> baselineSpectra, binBuck -> binSpectra, classPCA -> cpcaSpectra,  robPCA -> rpcaSpectra, bootPCA -> bpcaSpectra
      + Data set CuticleIR was removed.
+     + Data sets metMUD1, metMUD2 added.
+     + Many updates to the documentation.
      + Moved many full imports to importFrom to narrow namespace.
      + IDPmisc is no longer imported at all.
      + Fixed a bad URL in plotScree.Rd.
+     + First argument in baselineSpectra was Spectra, changed to spectra for consistency.
      + Changed formatting of NEWS file so that the built-in reader parses it better.
 
 Changes in version 3.0-1 2015-01-21
