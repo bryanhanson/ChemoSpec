@@ -47,13 +47,13 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \examples{
-data(CuticleIR)
-new1 <- removeSample(CuticleIR, rem.sam = 20)
+data(metMUD1)
+new1 <- removeSample(metMUD1, rem.sam = 20)
 # removes the 20th spectrum/sample
-new2 <- removeSample(CuticleIR, rem.sam = "GE")
-# removes all samples whose name contains "GE"
-new3 <- removeSample(CuticleIR, rem.sam = "GE10")
+new2 <- removeSample(metMUD1, rem.sam = "Sample_20")
 # removes one spectrum/sample with this exact name.
+new3 <- removeSample(metMUD1, rem.sam = "Sample")
+# removes all samples!
 
 }
 

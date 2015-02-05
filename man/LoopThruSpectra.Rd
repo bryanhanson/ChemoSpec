@@ -28,8 +28,8 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 
 \examples{
 \dontrun{
-data(CuticleIR)
-loopThruSpectra(CuticleIR)
+data(metMUD1)
+loopThruSpectra(metMUD1)
 }
 }
 \keyword{ hplot }

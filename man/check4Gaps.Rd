@@ -55,8 +55,9 @@ x <- seq(from = 5, to = 12, by = 0.1)
 remove <- 40:45; x <- x[-remove]
 check4Gaps(x) # really simple
 gaps <- check4Gaps(x) # save the result for later use
-data(CuticleIR) # has a gap, let's find it and display it
-check4Gaps(CuticleIR$freq, CuticleIR$data[1,], plot = TRUE)
+data(SrE.IR)
+newIR <- removeFreq(SrE.IR, rem.freq = SrE.IR$freq > 1800 & SrE.IR$freq < 2500)
+check4Gaps(newIR$freq, newIR$data[1,], plot = TRUE)
 }
 
 \keyword{ utilities }

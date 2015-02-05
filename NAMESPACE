@@ -14,6 +14,8 @@ export(
 	clupaSpectra,
 	mclust3dSpectra,
 	mclustSpectra,
+	corSpectra,
+	covSpectra,
 
 	files2SpectraObject, # Importing data
 	groupNcolor,
@@ -41,6 +43,7 @@ export(
 	labelExtremes3d,
 	makeEllipsoid,
 	normVec,
+	chooseLvls,
 
 	classPCA, # PCA related
 	robPCA,
@@ -75,10 +78,11 @@ export(
 	seXy95,
 	seXyIqr,
 	seXyMad,
-	isWholeNo
+	isWholeNo,
+	getMaxCovByFreq
 	)
 
-import(chemometrics, rgl, mclust, lattice)
+import(chemometrics, rgl, mclust, lattice, exCon)
 
 importFrom(seriation, hmap)
 importFrom(baseline, baseline, baselineGUI, getCorrected)
@@ -93,5 +97,5 @@ importFrom(robustbase, covMcd)
 importFrom(grid, grid.text, gpar)
 importFrom(MASS, cov.rob)
 importFrom(pcaPP, PCAgrid)
-importFrom(plyr, dlply, llply, m_ply, aaply)
+importFrom(plyr, dlply, llply, m_ply, aaply, arrange, desc)
 

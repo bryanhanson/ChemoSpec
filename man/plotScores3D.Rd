@@ -61,9 +61,9 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \examples{
-data(CuticleIR)
-results <- classPCA(CuticleIR, choice = "noscale")
-plotScores3D(CuticleIR, results, main = "Cuticle IR Spectra")
+data(metMUD1)
+results <- classPCA(metMUD1, choice = "noscale")
+plotScores3D(metMUD1, results, main = "metMUD1 NMR Spectra")
 }
 \keyword{ multivariate }
 \keyword{ hplot }

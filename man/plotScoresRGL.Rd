@@ -71,10 +71,10 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 Other functions in \code{ChemoSpec} that plot PCA scores are: \code{\link{plotScores}} (2D version), and \code{\link{plotScores3D}} (uses \code{lattice} graphics).
 }
 \examples{
-data(CuticleIR)
-results <- classPCA(CuticleIR, choice = "autoscale")
+data(metMUD1)
+results <- classPCA(metMUD1, choice = "autoscale")
 \dontrun{
-plotScoresRGL(CuticleIR, results, title = "Cuticle IR Spectra",
+plotScoresRGL(metMUD1, results, title = "metMUD1 NMR Spectra",
 leg.pos = "A", t.pos = "B")
 }
 }

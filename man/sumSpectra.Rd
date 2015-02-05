@@ -40,8 +40,8 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \examples{
-data(CuticleIR)
-sumSpectra(CuticleIR)
+data(metMUD1)
+sumSpectra(metMUD1)
 
 }
 

@@ -43,13 +43,13 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \code{\link{splitSpectraGroups}} which can be used to create additional factor elements in the \code{"Spectra"} object, which can then be used with this function.
 }
 \examples{
-data(CuticleIR)
-res <- classPCA(CuticleIR)
-hypTestScores(CuticleIR, res, fac = "groups")
+data(SrE.IR)
+res <- classPCA(SrE.IR)
+hypTestScores(SrE.IR, res, fac = "groups")
 # from splitSpectraGroups:
-new.groups <- list(gen = c("G", "T"), trt = c("C", "E"))
-new.CuticleIR <- splitSpectraGroups(CuticleIR, new.groups)
-hypTestScores(new.CuticleIR, res, fac = c("trt", "gen"))
+#new.groups <- list(gen = c("G", "T"), trt = c("C", "E"))
+#new.CuticleIR <- splitSpectraGroups(CuticleIR, new.groups)
+#hypTestScores(new.CuticleIR, res, fac = c("trt", "gen"))
 
 }
 \keyword{ multivariate }

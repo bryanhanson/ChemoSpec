@@ -34,8 +34,8 @@ None; side effect is a plot
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
-data(CuticleIR)
-myt <- expression(bolditalic(Portulaca)~bolditalic(oleracea)~bold(Cuticle~IR~Spectra))
-surveySpectra(CuticleIR, method = "iqr", main = myt)
+data(SrE.IR)
+myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(Extract~IR~Spectra))
+surveySpectra(SrE.IR, method = "iqr", main = myt)
 }
 \keyword{ hplot }

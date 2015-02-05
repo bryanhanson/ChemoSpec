@@ -70,10 +70,10 @@ The mclust model is returned invisibly, and a plot is produced.
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
-data(CuticleIR)
-class <- classPCA(CuticleIR, choice = "noscale")
+data(metMUD1)
+class <- classPCA(metMUD1, choice = "noscale")
 \dontrun{
-mclust3dSpectra(CuticleIR, class, title = "mclust3dSpectra demo",
+mclust3dSpectra(metMUD1, class, title = "mclust3dSpectra demo",
 	lab.opts = FALSE, t.pos = "A")
 }
 }

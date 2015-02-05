@@ -40,22 +40,22 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \examples{
-data(CuticleIR)
+#data(CuticleIR)
 # original factor encoding from when CuticleIR was created:
-levels(CuticleIR$groups)
+#levels(CuticleIR$groups)
 # split those original levels into 2 new ones (re-code them):
-new.groups <- list(gen = c("G", "T"), trt = c("C", "E"))
-new.CuticleIR <- splitSpectraGroups(CuticleIR, new.groups)
-str(new.CuticleIR) # note two new elements, "gen" and "trt"
+#new.groups <- list(gen = c("G", "T"), trt = c("C", "E"))
+#new.CuticleIR <- splitSpectraGroups(CuticleIR, new.groups)
+#str(new.CuticleIR) # note two new elements, "gen" and "trt"
 # split into one new factor and re-color:
-new.groups <- list(gen = c("G", "T")) # only one element
-new.CuticleIR <- splitSpectraGroups(CuticleIR, new.groups, rep.cols = c("pink", "orange"))
-str(new.CuticleIR) # note one new element, "gen" and the colors have changed.
+#new.groups <- list(gen = c("G", "T")) # only one element
+#new.CuticleIR <- splitSpectraGroups(CuticleIR, new.groups, rep.cols = c("pink", "orange"))
+#str(new.CuticleIR) # note one new element, "gen" and the colors have changed.
 
 # note that if you want to use a newly created group in
 # plotScores and other functions to drive the color scheme, you'll
 # have to copy a new group to the groups element:
-new.CuticleIR$groups <- new.CuticleIR$gen 
+#new.CuticleIR$groups <- new.CuticleIR$gen 
 }
 
 \keyword{ utilities }

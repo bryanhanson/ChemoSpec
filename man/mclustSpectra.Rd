@@ -47,12 +47,12 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \code{\link{Mclust}} for the underlying function.
 }
 \examples{
-data(CuticleIR)
-class <- classPCA(CuticleIR)
-mclustSpectra(CuticleIR, class, main = "Cuticle IR", plot = "BIC")
-mclustSpectra(CuticleIR, class, main = "Cuticle IR", plot = "proj")
-mclustSpectra(CuticleIR, class, main = "Cuticle IR", plot = "error",
-	truth = CuticleIR$groups)
+data(metMUD1)
+class <- classPCA(metMUD1)
+mclustSpectra(metMUD1, class, main = "Cuticle IR", plot = "BIC")
+mclustSpectra(metMUD1, class, main = "Cuticle IR", plot = "proj")
+mclustSpectra(metMUD1, class, main = "Cuticle IR", plot = "error",
+	truth = metMUD1$groups)
 }
 \keyword{ multivariate }
 \keyword{ cluster }

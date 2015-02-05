@@ -34,16 +34,16 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \examples{
-data(CuticleIR)
-sumSpectra(CuticleIR) # note the frequency range & existing gap
+data(SrE.IR)
+sumSpectra(SrE.IR)
 # remove frequencies from one end:
-newIR <- removeFreq(CuticleIR, rem.freq = CuticleIR$freq > 3500)
+newIR <- removeFreq(SrE.IR, rem.freq = SrE.IR$freq > 3500)
 # remove frequencies from both ends at once:
-newIR <- removeFreq(CuticleIR, rem.freq = CuticleIR$freq > 3500
-| CuticleIR$freq < 800)
+newIR <- removeFreq(SrE.IR, rem.freq = SrE.IR$freq > 3500
+| SrE.IR$freq < 800)
 # remove frequencies from the middle:
-newIR <- removeFreq(CuticleIR, rem.freq = CuticleIR$freq > 800
-& CuticleIR$freq < 1000)
+newIR <- removeFreq(SrE.IR, rem.freq = SrE.IR$freq > 800
+& SrE.IR$freq < 1000)
 
 # The logic of this last one is as follows.  Any values
 # that are TRUE will be removed.

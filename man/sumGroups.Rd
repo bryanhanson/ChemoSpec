@@ -35,7 +35,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 For a discussion of general issues of color, see \code{\link{colorSymbol}}.
 }
 \examples{
-data(CuticleIR)
-sumGroups(CuticleIR)
+data(metMUD1)
+sumGroups(metMUD1)
 }
 \keyword{ utilities }

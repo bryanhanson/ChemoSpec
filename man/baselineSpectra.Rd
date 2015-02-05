@@ -37,13 +37,9 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \examples{
-data(SrE.IR)
-temp <- baselineSpectra(SrE.IR, int = FALSE, method = "rfbaseline")
-par(mfrow = c(1,1)) # needed to cancel 2 panel plot
-\dontrun{
-baselineSpectra(SrE.IR)
-par(mfrow = c(1,1)) # needed to cancel 2 panel plot
-}
+#data(SrE.IR)
+#temp <- baselineSpectra(SrE.IR, int = FALSE, method = "rfbaseline")
+#par(mfrow = c(1,1)) # needed to cancel 2 panel plot
 }
 
 \keyword{ hplot }

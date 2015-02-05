@@ -40,13 +40,13 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \examples{
-data(CuticleIR)
-chkSpectra(CuticleIR, confirm = TRUE) # OK
+data(metMUD1)
+chkSpectra(metMUD1, confirm = TRUE) # OK
 # What's next works, but is the wrong way to manipulate a "Spectra" object.
 # Use removeSample instead.
 remove <- c(20:40) 
-CuticleIR$freq <- CuticleIR$freq[-remove]
-\dontrun{chkSpectra(CuticleIR, confirm = TRUE) # not OK, you didn't listen to me!}
+metMUD1$freq <- metMUD1$freq[-remove]
+\dontrun{chkSpectra(metMUD1, confirm = TRUE) # not OK, you didn't listen to me!}
 }
 
 \keyword{ classes }

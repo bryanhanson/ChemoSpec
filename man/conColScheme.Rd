@@ -41,10 +41,10 @@ For a discussion of general issues of color, see \code{\link{colorSymbol}}.
 }
 
 \examples{
-data(CuticleIR)
-sumSpectra(CuticleIR)
-newSpec <- conColScheme(CuticleIR,
-	new = c("pink", "violet", "green", "sienna"))
+data(metMUD1)
+sumSpectra(metMUD1)
+newSpec <- conColScheme(metMUD1,
+	new = c("pink", "violet"))
 sumSpectra(newSpec)
 }
 \keyword{ utilities }

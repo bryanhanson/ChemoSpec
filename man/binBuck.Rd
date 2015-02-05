@@ -37,9 +37,9 @@ An object of S3 class \code{"Spectra"}.
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
-data(CuticleIR)
-sumSpectra(CuticleIR)
-res <- binBuck(CuticleIR, bin.ratio = 4)
+data(metMUD1)
+sumSpectra(metMUD1)
+res <- binBuck(metMUD1, bin.ratio = 4)
 sumSpectra(res)
 }
 \keyword{ utilities }
