@@ -1,7 +1,8 @@
 \name{shrinkLeaf}
 \alias{shrinkLeaf}
 \title{
-Shrink the Leaves of a Dendrogram}
+Shrink the Leaves of a Dendrogram Based on a Spectra Object
+}
 \description{
 This function shrinks the size of leaves of a dendrogram object.  The code was taken from the help files.  Not for end-user use.
 }

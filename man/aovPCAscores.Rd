@@ -20,10 +20,10 @@ List of matrices created by \code{\link{aovPCA}}.
 An integer specifying which scores to plot.
 }
   \item{type}{
-Either classical ("cls") or robust ("rob"); Results in either \code{\link{classPCA}} or \code{\link{robPCA}} being called on the \code{\link{Spectra}} object.
+Either classical ("cls") or robust ("rob"); Results in either \code{\link{cpcaSpectra}} or \code{\link{rpcaSpectra}} being called on the \code{\link{Spectra}} object.
 }
   \item{choice}{
-The type of scaling to be performed.  See \code{\link{classPCA}} and \code{\link{robPCA}} for details.
+The type of scaling to be performed.  See \code{\link{cpcaSpectra}} and \code{\link{rpcaSpectra}} for details.
 }
   \item{\dots}{
 Additional parameters to be passed to \code{\link{plotScores}}.

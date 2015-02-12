@@ -1,9 +1,9 @@
 \name{loopThruSpectra}
 \alias{loopThruSpectra}
 \title{
-Display the spectra in a Spectra object one at a time}
+Display the Spectra in a Spectra Object One at a Time}
 \description{
-Plots each spectrum in a \code{\link{Spectra}} object one at a time (waits for a return in the console before plotting the next spectrum).  Use \code{ESC} to get out of the loop.
+Plots each spectrum in a \code{\link{Spectra}} object one at a time, and waits for a return in the console before plotting the next spectrum.  Use \code{ESC} to get out of the loop.
 }
 \usage{
 loopThruSpectra(Spectra, ...)

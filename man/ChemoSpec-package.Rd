@@ -9,7 +9,7 @@ Exploratory Chemometrics for Spectroscopy
 }
 
 \description{
-A collection of functions for plotting spectra (NMR, IR etc) and carrying out various forms of top-down exploratory data analysis, such as HCA, PCA and model-based clustering.  The design permits comparison of data from samples which fall into groups such as treatment vs. control.  Robust methods appropriate for this type of high-dimensional data are available.  ChemoSpec is designed to be very user friendly and suitable for people with limited background in R.  A vignette illustrating typical operations is available.
+A collection of functions for plotting spectra (NMR, IR, Raman) and carrying out various forms of top-down exploratory data analysis, such as HCA, PCA, model-based clustering and STOCSY analysis.  Robust methods appropriate for this type of high-dimensional data are available.  Designed for data sets where the samples fall into groups such as treatment and control.  Graphical output is formatted consistently for publication quality plots.  ChemoSpec is intended to be very user friendly and help you get usable results quickly.  A vignette illustrating typical operations is available.
 }
 
 \details{
@@ -17,7 +17,7 @@ A collection of functions for plotting spectra (NMR, IR etc) and carrying out va
 Package: \tab ChemoSpec\cr
 Type: \tab Package\cr
 Version: \tab 4.0-0\cr
-Date: \tab 2015-01-21\cr
+Date: \tab 2015-xx-xx\cr
 License: \tab GPL-3\cr
 }
 }

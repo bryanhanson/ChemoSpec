@@ -21,7 +21,7 @@ An integer giving the binning ratio, that is, the number of points to be grouped
 }
 
 \details{
-If the frequency range is not divisible by bin.ratio to give a whole number, data points are removed from the beginning of the frequency data until it is, and the number of data points removed is reported at the console.  If there are gaps in the data where frequencies have been removed, each continuous piece is sent out and binned separately (by \code{\link{binBuck}}).
+If the frequency range is not divisible by bin.ratio to give a whole number, data points are removed from the beginning of the frequency data until it is, and the number of data points removed is reported at the console.  If there are gaps in the data where frequencies have been removed, each continuous piece is sent out and binned separately (by \code{\link{binSpectra}}).
 }
 
 \value{

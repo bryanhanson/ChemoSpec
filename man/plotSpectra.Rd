@@ -50,8 +50,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 data(metMUD1)
 plotSpectra(metMUD1, main = "metMUD1 NMR Data",
-	which = c(10, 11),
-	yrange = c(0,10),
+	which = c(10, 11), yrange = c(0,10),
 	offset = 0.8, amplify = 1.0, lab.pos = 2.5) 
 
 }

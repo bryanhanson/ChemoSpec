@@ -1,14 +1,14 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 3.1-0
-Date: 2015-01-21
+Version: 4.0-0
+Date: 2015-xx-xx
 Author: Bryan A. Hanson DePauw University, Greencastle Indiana USA
 Maintainer: Bryan A. Hanson <hanson@depauw.edu>
-Description: A collection of functions for plotting spectra (NMR, IR etc) and carrying out various forms of top-down exploratory data analysis, such as HCA, PCA and model-based clustering.  The design allows comparison of data from samples which fall into groups such as treatment vs. control.  Robust methods appropriate for this type of high-dimensional data are available.  ChemoSpec is designed to be very user friendly and suitable for people with limited background in R.
+Description: A collection of functions for plotting spectra (NMR, IR, Raman) and carrying out various forms of top-down exploratory data analysis, such as HCA, PCA, model-based clustering and STOCSY analysis.  Robust methods appropriate for this type of high-dimensional data are available.  Designed for data sets where the samples fall into groups such as treatment and control.  Graphical output is formatted consistently for publication quality plots.  ChemoSpec is intended to be very user friendly and help you get usable results quickly.  A vignette illustrating typical operations is available.
 License: GPL-3
 Depends: R (>= 3.0)
-Imports: pls, amap, chemometrics, robustbase, RColorBrewer, plyr, grid, rgl, R.utils, mclust, baseline, gsubfn, lattice, seriation, clusterCrit, speaq, MASS, pcaPP, exCon
+Imports: pls, amap, chemometrics, robustbase, RColorBrewer, plyr, grid, rgl, R.utils, mclust, baseline, gsubfn, lattice, seriation, clusterCrit, speaq, MASS, pcaPP, exCon, NbClust
 URL: https://github.com/bryanhanson/ChemoSpec
 ByteCompile: TRUE
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues

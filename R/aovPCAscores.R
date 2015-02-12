@@ -20,8 +20,8 @@ aovPCAscores <- function(spectra, LM, plot = 1, type = "class", choice = NULL, .
 	spectra$data <- LM[[plot]] + LM$Res.Error
 
 	if (is.null(choice)) choice = "noscale"
-	if (type == "class") pca <- classPCA(spectra, choice = choice, cent = FALSE)
-	if (type == "rob") pca <- robPCA(spectra, choice = choice)
+	if (type == "class") pca <- cpcaSpectra(spectra, choice = choice, cent = FALSE)
+	if (type == "rob") pca <- rpcaSpectra(spectra, choice = choice)
 
 #  Create titles for each graph depending on number of factors and which graph was specified. 
 

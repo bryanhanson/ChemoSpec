@@ -48,7 +48,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
 data(metMUD1)
-class <- classPCA(metMUD1)
+class <- cpcaSpectra(metMUD1)
 mclustSpectra(metMUD1, class, main = "Cuticle IR", plot = "BIC")
 mclustSpectra(metMUD1, class, main = "Cuticle IR", plot = "proj")
 mclustSpectra(metMUD1, class, main = "Cuticle IR", plot = "error",

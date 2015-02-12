@@ -40,7 +40,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \seealso{
-\code{\link[seriation]{hmap}} which will get you to the package (there is no package index page); the vignette is a good place to begin (> vignette("seriation")).
+\code{\link[seriation]{hmap}} which will get you to the package (there is no package index page); the vignette is a good place to begin (\code{vignette("seriation")}).
 }
 
 \examples{

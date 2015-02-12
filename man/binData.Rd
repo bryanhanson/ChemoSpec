@@ -22,7 +22,7 @@ An integer giving the binning ratio, that is, the number of points to be grouped
 
 }
 \details{
-The x and y values must be contiguous in the sense that there are no gaps in the values (i.e., x[n + 1] - x[n] must be the same for the entire data set; this can be checked with \code{\link{diff}} and is checked internally.  Note that this function is normally called by \code{\link{binBuck}} and that function can handle gaps, sending each continuous piece of data here to be binned.  If length(x or y) is not divisible by bin.ratio to give a whole number, data points are removed from the beginning of x or y until it is, and the number of data points removed is reported at the console.  The algorithm forces the requested bin.ratio to be used.
+The x and y values must be contiguous in the sense that there are no gaps in the values (i.e., x[n + 1] - x[n] must be the same for the entire data set; this can be checked with \code{\link{diff}} and is checked internally.  Note that this function is normally called by \code{\link{binSpectra}} and that function can handle gaps, sending each continuous piece of data here to be binned.  If length(x or y) is not divisible by bin.ratio to give a whole number, data points are removed from the beginning of x or y until it is, and the number of data points removed is reported at the console.  The algorithm forces the requested bin.ratio to be used.
 }
 \value{As appropriate, a data.frame containing the following elements:
 \item{mean.x}{A vector of the averaged x values.  Length will be approximately length(x)/bin.ratio, with length(x) adjusted as described above if this does not give a whole number.}

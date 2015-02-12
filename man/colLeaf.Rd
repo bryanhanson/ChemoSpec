@@ -1,7 +1,7 @@
 \name{colLeaf}
 \alias{colLeaf}
 \title{
-Color the Leaves of a Dendrogram
+Color the Leaves of a Dendrogram Based on a Spectra Object
 }
 \description{
 This function colors the leaves of a dendrogram object.  The code was taken from the help files.  Not for end-user use.

@@ -2,7 +2,7 @@
 \alias{getMaxCovByFreq}
 
 \title{
-Order rows of covariance matrix by absolute value 
+Order Rows of a Covariance Matrix by Absolute Value 
 }
 
 \description{

@@ -5,7 +5,7 @@
 Check for Missing Values (Gaps)
 }
 \description{
-This function may be used with a \code{\link{Spectra}} object to see if there are any gaps or discontinuities in the frequency axis.  Gaps may arise when unwanted frequencies are removed (e.g, water peaks in 1H NMR, or uninteresting regions in any kind of spectroscopy).  As written, it can be used to check for gaps in any appropriate numeric vector.  Not normally called directly by the user, but may be (see examples).  A plot of the gaps is optional.
+This function may be used with a \code{\link{Spectra}} object to see if there are any gaps or discontinuities in the frequency axis.  Gaps may arise when unwanted frequencies are removed (e.g, water peaks in 1H NMR, or uninteresting regions in any kind of spectroscopy).  As written, it can be used to check for gaps in any appropriate numeric vector.  A plot of the gaps is optional.
 }
 \usage{
 check4Gaps(x, y = NULL, tol = 0.01, plot = FALSE,
@@ -22,7 +22,7 @@ An optional vector of y-values which correspond to the \code{x} values.  Only ne
 A number indicating the tolerance for checking if the step between successive \code{x} values are the same.  Depending upon how the \code{x} values are stored and rounded, you may need to change the value of \code{tol} to avoid flagging trivial "gaps".
 }
   \item{plot}{
-Logical indicating if a plot of the gaps should be made.  If \code{TRUE}, \code{y} must be provided.
+Logical indicating if a plot of the gaps should be made.  If \code{TRUE}, \code{y} must be provided.  The plot is labeled consistent with calling this function on a \code{\link{Spectra}} object.
 }
   \item{silent}{
 Logical indicating a "no gap" condition (return value is \code{FALSE}) should not be reported to the console.  Important because \code{check4Gaps} is called iteratively by other functions.

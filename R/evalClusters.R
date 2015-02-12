@@ -1,13 +1,20 @@
 evalClusters <-
-function(spectra, hclst,  k = NULL, h = NULL, crit = "Dunn") {
+function(spectra, pkg = "NbClust", hclst,  k = NULL, h = NULL, crit = "Dunn", ...) {
 
 # Function to evaluate the quality of clusters found by hcaScores or hcaSpectra
-# Basically a wrapper into XXXX
+# Basically a wrapper for NbClust and clusterCrit
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, Dec 2014
 
-	ct <- cutree(hclst, k = k, h = h)
-	res <- intCriteria(spectra$data, ct, crit)
-	return(res)
-	}
+	if (pkg == "NbClust") {
+		res <- NbClust(spectra$data, ...)
+		return(res)
+		}
 
+	if (pkg == "clusterCrit") {
+	 	ct <- cutree(hclst, k = k, h = h)
+		res <- intCriteria(spectra$data, ct, crit, ...)
+		return(res)
+		}
+
+	}

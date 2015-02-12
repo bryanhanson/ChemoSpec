@@ -6,7 +6,7 @@
 Plot HCA Results of a Spectra Object
 }
 \description{
-A wrapper which carries out HCA and plots a dendrogram colored by the information in a \code{"Spectra"} object.  Many methods for computing the clusters and distances are available.
+A wrapper which carries out HCA and plots a dendrogram colored by the information in a \code{\link{Spectra}} object.  Many methods for computing the clusters and distances are available.
 }
 \usage{
 hcaSpectra(spectra, c.method = "complete", d.method = "euclidean", use.sym = FALSE, ...)

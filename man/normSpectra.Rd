@@ -3,7 +3,7 @@
 \title{Normalize a Spectra Object}
 
 \description{
-This function carries out normalization of the spectra in a \code{\link{Spectra}} object.  There are currently three options, though others are readily added.   \code{"PQN"} carries out "Probabalistic Quotient Normalization".  \code{"TotInt"} normalizes by total intensity.  In this case, the y-data of a \code{\link{Spectra}} object is normalized by dividing each y-value by the sum of the y-values in a given spectrum.  Thus each spectrum sums to 1.  This method assumes that the total concentration of substances giving peaks does not vary across samples which may not be true. \code{"Range"} allows one to do something similar but rather than using the sum of the entire spectrum as the denominator, only the sum of the given range is used.  This would be appropriate if there was an internal standard in the spectrum which was free of interferance.
+This function carries out normalization of the spectra in a \code{\link{Spectra}} object.  There are currently three options, though others are readily added.   \code{"PQN"} carries out "Probabalistic Quotient Normalization" as described in the reference.  \code{"TotInt"} normalizes by total intensity.  In this case, the y-data of a \code{\link{Spectra}} object is normalized by dividing each y-value by the sum of the y-values in a given spectrum.  Thus each spectrum sums to 1.  This method assumes that the total concentration of substances giving peaks does not vary across samples which may not be true. \code{"Range"} allows one to do something similar but rather than using the sum of the entire spectrum as the denominator, only the sum of the given range is used.  This would be appropriate if there was an internal standard in the spectrum which was free of interferance.
 }
 
 \usage{
@@ -22,9 +22,10 @@ An object of S3 class \code{\link{Spectra}}.
 
 
 \references{
+Probabalistic Quotient Normalization is reported in F. Dieterle et. al. Analytical Chemistry vol. 78 pages 4281-4290 (2006).  The exact same mathematics are called "median fold change normalization" by Nicholson's group, reported in K. A. Veselkov et. al. Analytical Chemistry vol. 83 pages 5864-5872 (2011).
+
 \url{https://github.com/bryanhanson/ChemoSpec}
 
-Probabalistic Quotient Normalization is reported in F. Dieterle Analytical Chemistry vol. 78 pages 4281-4290 (2006).  The exact same mathematics are called "median fold change normalization" by Nicholson's group, reported in K. A. Veselkov et. al. Analytical Chemistry vol. 83 pages 5864-5872 (2011).
 }
 
 \author{

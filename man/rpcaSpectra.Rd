@@ -28,14 +28,15 @@ An object of classes \code{"conPCA"} and \code{"princomp"} (see \code{\link{q2rP
 
 
 \references{
-\url{https://github.com/bryanhanson/ChemoSpec}\cr
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate Statistical Analysis in Chemometrics}, CRC Press, 2009.
+
+\url{https://github.com/bryanhanson/ChemoSpec}\cr
 
 }
 
 \seealso{
-See \code{\link[pcaPP]{PCAgrid}} on which this function is based.  For the classical version, see \code{\link{classPCA}}.\cr
-For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \code{\link{plotLoadings}}, \code{\link{plotScores3D}}
+See \code{\link[pcaPP]{PCAgrid}} on which this function is based.  For the classical version, see \code{\link{cpcaSpectra}}.\cr
+For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \code{\link{plotLoadings}}, \code{\link{plotScores3D}}, \code{\link{plotScoresRGL}}.
 }
 
 \examples{

@@ -2,7 +2,7 @@
 \alias{chooseLvls}
 
 \title{
-Select levels for contour and image type plots
+Select Levels for Contour and Image Type Plots
 }
 
 \description{
@@ -18,10 +18,10 @@ chooseLvls(M, n = 10, mode = "even", lambda = 1, base = 2, showHist = FALSE, ...
 A numeric matrix.
 }
   \item{n}{
-For all methods except \code{ecdf}, an integer giving the number of levels desired.  For \code{ecdf}, \code{n} should be one or more values in the interval (0...1).  For instance, a value of 0.6 will create a single level in which 60 percent of the matrix values are below, and 40 percent above.
+For all methods except \code{ecdf}, an integer giving the number of levels desired.  For \code{ecdf}, \code{n} should be one or more values in the interval (0...1).  For instance, a value of 0.6 corresponds to a single level in which 60 percent of the matrix values are below, and 40 percent above.
 }
   \item{mode}{
-Character.  One of \code{c("even", "log", "exp", "ecdf", "posexp", "negexp", "poslog", "neglog")}. \code{"even"} will create evenly spaced levels.  \code{"log"} will create exponentially spaced levels which are more closely spaced at the extremes, while \code{"exp"} does the opposite.  The pos- or neg- versions select just the positive or negative values.  \code{"ecdf"} computes levels at the requested quantiles of the matrix.
+Character.  One of \code{c("even", "log", "exp", "ecdf", "posexp", "negexp", "poslog", "neglog")}. \code{"even"} will create evenly spaced levels.  \code{"log"} will create levels which are more closely spaced at the extremes, while \code{"exp"} does the opposite.  The pos- or neg- versions select just the positive or negative values.  \code{"ecdf"} computes levels at the requested quantiles of the matrix.
 }
   \item{lambda}{
 Numeric.  A non-zero exponent used with \code{method = "exp"} and relatives.
@@ -42,7 +42,7 @@ A numeric vector giving the levels.
 }
 
 \note{
-This function is called by \code{\link{corSpectra}} and \code{link{covSpectra}} if levels are not provided to those functions.
+This function is called by \code{\link{corSpectra}} and \code{\link{covSpectra}} if levels are not provided to those functions.
 }
 
 \references{

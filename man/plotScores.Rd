@@ -19,7 +19,7 @@ plotScores(spectra, pca, pcs = c(1, 2),
 An object of S3 class \code{\link{Spectra}}.
 }
   \item{pca}{
-An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{classPCA}} or \code{\link{robPCA}} were used to create \code{pca}.
+An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{cpcaSpectra}} or \code{\link{rpcaSpectra}} were used to create \code{pca}.
 }
   \item{pcs}{
 A vector of two integers specifying the PCA scores to plot.
@@ -47,7 +47,7 @@ None.  Side effect is a plot.
 
 
 \seealso{
-For other ways of displaying the results, \code{\link{plotScree}}, \code{\link{plotLoadings}}, \code{\link{plot2Loadings}}. For a 3D plot of the scores, see \code{\link{plotScores3D}}.  
+For other ways of displaying the results, \code{\link{plotScree}}, \code{\link{plotLoadings}}, \code{\link{plot2Loadings}}. For a 3D plot of the scores, see \code{\link{plotScores3D}}, or \code{\link{plotScoresRGL}} for an interactive version.  
 
 }
 
@@ -60,7 +60,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
 data(SrE.IR)
-results <- classPCA(SrE.IR, choice = "noscale")
+results <- cpcaSpectra(SrE.IR, choice = "noscale")
 myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 plotScores(SrE.IR, main = myt, results,
 	pcs = c(1,2), ellipse = "rob", tol = 0.05)

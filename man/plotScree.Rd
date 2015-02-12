@@ -17,7 +17,7 @@ plotScree2(pca, ...)
 
 \arguments{
   \item{pca}{
-An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{classPCA}} or \code{\link{robPCA}} were used to create \code{pca}.
+An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{cpcaSpectra}} or \code{\link{rpcaSpectra}} were used to create \code{pca}.
 }
   \item{\dots}{
 Additional parameters to be passed to plotting functions.}
@@ -32,9 +32,10 @@ If you add \code{$method} to the PCA results from other packages, this will plot
 
 
 \references{
+The idea for the alternative style plot came from the NIR-Quimiometria blog by jrcuesta, at \url{http://nir-quimiometria.blogspot.com/2012/02/pca-for-nir-spectrapart-004-projections.html}
+
 \url{https://github.com/bryanhanson/ChemoSpec}
 
-The idea for the alternative style plot came from the NIR-Quimiometria blog by jrcuesta, at \url{http://nir-quimiometria.blogspot.com/2012/02/pca-for-nir-spectrapart-004-projections.html}
 }
 
 \author{
@@ -43,7 +44,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 
 \examples{
 data(SrE.IR)
-results <- classPCA(SrE.IR, choice = "noscale")
+results <- cpcaSpectra(SrE.IR)
 myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 plotScree(results, main = myt)
 plotScree2(results, main = myt)

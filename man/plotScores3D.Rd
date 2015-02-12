@@ -19,7 +19,7 @@ plotScores3D(spectra, pca, pcs = c(1:3),
 An object of S3 class \code{\link{Spectra}}.
 }
   \item{pca}{
-An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{classPCA}} or \code{\link{robPCA}} were used to create \code{pca}.
+An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{cpcaSpectra}} or \code{\link{rpcaSpectra}} were used to create \code{pca}.
 }
   \item{pcs}{
 A vector of three integers specifying the PCA scores to plot.
@@ -62,7 +62,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 
 \examples{
 data(metMUD1)
-results <- classPCA(metMUD1, choice = "noscale")
+results <- cpcaSpectra(metMUD1, choice = "noscale")
 plotScores3D(metMUD1, results, main = "metMUD1 NMR Spectra")
 }
 \keyword{ multivariate }

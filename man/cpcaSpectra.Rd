@@ -12,7 +12,7 @@ cpcaSpectra(spectra, choice = "noscale", cent = TRUE)
 }
 \arguments{
   \item{spectra}{An object of S3 class \code{\link{Spectra}}.
-}.
+}
 
   \item{choice}{A character string indicating the choice of scaling.  One of \code{c("noscale", "autoscale", "Pareto").}}
 
@@ -28,8 +28,9 @@ An object of class \code{\link{prcomp}}, modified to include a list element call
 
 
 \references{
-\url{https://github.com/bryanhanson/ChemoSpec}\cr
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate Statistical Analysis in Chemometrics}, CRC Press, 2009.
+
+\url{https://github.com/bryanhanson/ChemoSpec}\cr
 
 }
 
@@ -38,12 +39,12 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \seealso{
-\code{\link{prcomp}} for the underlying function, \code{\link{robPCA}} for analogous robust PCA calculations.\cr
+\code{\link{prcomp}} for the underlying function, \code{\link{rpcaSpectra}} for analogous robust PCA calculations.\cr
 For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \code{\link{plotLoadings}}, \code{\link{plot2Loadings}}.
 }
 \examples{
 data(SrE.IR)
-results <- cpcaSpectra(SrE.IR, choice = "noscale")
+results <- cpcaSpectra(SrE.IR)
 myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 plotScores(SrE.IR, main = myt, results, pcs = c(1,2),
 	ellipse = "rob", tol = 0.05)

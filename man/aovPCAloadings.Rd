@@ -13,7 +13,7 @@ aovPCAloadings(spectra, LM, pca, plot = 1, loads = 1, ref = 1, ...)
 An object of S3 class \code{\link{Spectra}}.
 }
   \item{LM}{
-List of matrices created by \code{\link{aovPCA}}
+List of matrices created by \code{\link{aovPCA}}.
 }
   \item{pca}{
 PCA output from \code{\link{aovPCAscores}}. 

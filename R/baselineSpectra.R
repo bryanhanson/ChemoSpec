@@ -1,6 +1,6 @@
 
 
-baselinespectra <- function(spectra, int = TRUE, retC = FALSE, ...) {
+baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, ...) {
 	
 	# A simple wrapper to the excellent baseline package
 	# Part of ChemoSpec.  Bryan Hanson December 2011
@@ -13,7 +13,7 @@ baselinespectra <- function(spectra, int = TRUE, retC = FALSE, ...) {
 		if (retC) {
 			bc <- getCorrected(b)
 			spectra$data <- bc
-			chkspectra(spectra)
+			chkSpectra(spectra)
 			return(spectra)
 			}
 			

@@ -7,7 +7,7 @@ Conduct Hierarchical Cluster-Based Peak Alignment on a Spectra Object
 }
 
 \description{
-This function is a wrapper to several functions in the \code{speaq} package.  It implements the "CluPA" algorithm described in the reference.
+This function is a wrapper to several functions in the \code{speaq} package.  It implements the CluPA algorithm described in the reference.
 }
 
 \usage{
@@ -20,7 +20,7 @@ An object of S3 class \code{\link{Spectra}}.
 }
 
   \item{bT}{
-Numeric.  The baseline threshold. Defaults to five percent of the range of the data, in \code{spectra$data}.  Passed to \code{detectSpecPeaks}.
+Numeric.  The baseline threshold. Defaults to five percent of the range of the data, in \code{spectra$data}.  Passed to \code{\link{detectSpecPeaks}}.
 }
 
   \item{\dots}{
@@ -33,9 +33,11 @@ A modifed \code{\link{Spectra}} object.
 }
 
 \references{
+
+Vu TN, Valkenborg D, Smets K, Verwaest KA, Dommisse R, Lemiere F, Verschoren A, Goethals B, Laukens K. "An integrated workflow for robust alignment and simplified quantitative analysis of NMR spectrometry data" BMC Bioinformatics vol. 12 pg. 405 (2011).
+
 \url{https://github.com/bryanhanson/ChemoSpec}
 
-Vu TN, Valkenborg D, Smets K, Verwaest KA, Dommisse R, Lemiere F, Verschoren A, Goethals B, Laukens K. (2011) An integrated workflow for robust alignment and simplified quantitative analysis of NMR spectrometry data. BMC Bioinformatics. 2011 Oct 20;12:405.
 }
 
 \author{

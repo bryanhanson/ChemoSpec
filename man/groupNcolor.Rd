@@ -22,7 +22,7 @@ As per \code{\link{files2SpectraObject}}
 }
 }
 \value{
-A \emph{complete} object of S3 class \code{\link{Spectra}}.  Until this function has done its job, an object of class \code{\link{Spectra}} will not pass checks as the assembly is not complete (see \code{\link{chkSpectra}}).)
+A \emph{complete} object of S3 class \code{\link{Spectra}}.  This function is the last internal step in creating a \code{Spectra} object.  Until this function has done its job, an object of class \code{\link{Spectra}} will not pass checks as the assembly is not complete (see \code{\link{chkSpectra}}).
 }
 
 

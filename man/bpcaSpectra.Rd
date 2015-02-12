@@ -47,8 +47,9 @@ A list as described in \code{\link[chemometrics]{pcaCV}}, so the result must be 
 
 
 \references{
-\url{https://github.com/bryanhanson/ChemoSpec}\cr
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate Statistical Analysis in Chemometrics}, CRC Press, 2009.
+
+\url{https://github.com/bryanhanson/ChemoSpec}\cr
 
 }
 
@@ -62,7 +63,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 
 \examples{
 data(SrE.IR)
-results <- bpcaSpectra(SrE.IR, pcs = 5, choice = "noscale")
+results <- bpcaSpectra(SrE.IR, pcs = 5)
 }
 
 \keyword{ multivariate }

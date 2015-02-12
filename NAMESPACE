@@ -16,13 +16,11 @@ export(
 	mclustSpectra,
 	corSpectra,
 	covSpectra,
+	sampleCorSpectra,
 
 	files2SpectraObject, # Importing data
 	groupNcolor,
-	readBrukerTxt,
 	readJDX,
-	calcSN,
-	findTMS,
 
 	removeFreq, # Manipulating/Inspecting Spectra Objects
 	removeSample,
@@ -98,4 +96,5 @@ importFrom(grid, grid.text, gpar)
 importFrom(MASS, cov.rob)
 importFrom(pcaPP, PCAgrid)
 importFrom(plyr, dlply, llply, m_ply, aaply, arrange, desc)
+importFrom(NbClust, NbClust)
 

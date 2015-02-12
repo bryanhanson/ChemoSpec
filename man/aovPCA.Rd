@@ -5,7 +5,7 @@
 ANOVA-PCA Analysis of Spectra Data
 }
 \description{
-ANOVA-PCA is a combination of both methods developed by Harrington.  The data is partitioned into submatrices corresponding to each experimental factor, which are then subjected to PCA separately after adding the residual error back.  If the effect of a factor is large compared to the residual error, separation along the 1st PC in the score plot should be evident.  With this method, the significance of a factor can be visually determined. (ANOVA-PCA is not blind to group membership.)
+ANOVA-PCA is a combination of both methods developed by Harrington.  The data is partitioned into submatrices corresponding to each experimental factor, which are then subjected to PCA separately after adding the residual error back.  If the effect of a factor is large compared to the residual error, separation along the 1st PC in the score plot should be evident.  With this method, the significance of a factor can be visually determined (ANOVA-PCA is not blind to group membership).
 }
 \usage{
 aovPCA(spectra, fac)
@@ -13,7 +13,7 @@ aovPCA(spectra, fac)
 
 \arguments{
   \item{spectra}{
-An object of S3 class \code{\link{Spectra}}
+An object of S3 class \code{\link{Spectra}}.
 }
   \item{fac}{
 A vector of character strings giving the factors to be used in the analysis.  These should be elements of \code{\link{Spectra}}.  Note that there should be 2 or more factors, because ANOVA-PCA on one factor is the same as standard PCA.  See the example.
