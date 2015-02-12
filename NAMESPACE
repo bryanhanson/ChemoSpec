@@ -32,7 +32,7 @@ export(
 	conColScheme,
 	splitSpectraGroups,
 
-	aovPCA, # aovPCA related
+	aov_pcaSpectra, # aovPCA related
 	aovPCAloadings,
 	aovPCAscores,
 	avgFacLvls,
@@ -43,9 +43,9 @@ export(
 	normVec,
 	chooseLvls,
 
-	cpcaSpectra, # PCA related
-	rpcaSpectra,
-	bpcaSpectra,
+	c_pcaSpectra, # PCA related
+	r_pcaSpectra,
+	cv_pcaSpectra,
 	q2rPCA,
 	r2qPCA,
 	pcaDiag,

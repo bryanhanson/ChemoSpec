@@ -63,7 +63,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 
 \examples{
 data(SrE.IR)
-results <- cpcaSpectra(SrE.IR, choice = "noscale")
+results <- c_pcaSpectra(SrE.IR, choice = "noscale")
 temp <- pcaDiag(SrE.IR, results, pcs = 2, plot = "OD")
 temp <- pcaDiag(SrE.IR, results, pcs = 2, plot = "SD")
 }

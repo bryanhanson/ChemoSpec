@@ -1,6 +1,6 @@
-\name{rpcaSpectra}
+\name{r_pcaSpectra}
 \Rdversion{1.1}
-\alias{rpcaSpectra}
+\alias{r_pcaSpectra}
 
 \title{
 Robust PCA of a Spectra Object
@@ -10,7 +10,7 @@ A wrapper which carries out robust PCA analysis on a \code{\link{Spectra}} objec
 }
 
 \usage{
-rpcaSpectra(spectra, choice = "noscale")
+r_pcaSpectra(spectra, choice = "noscale")
 }
 
 \arguments{
@@ -35,13 +35,13 @@ K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate Statistical Analy
 }
 
 \seealso{
-See \code{\link[pcaPP]{PCAgrid}} on which this function is based.  For the classical version, see \code{\link{cpcaSpectra}}.\cr
+See \code{\link[pcaPP]{PCAgrid}} on which this function is based.  For the classical version, see \code{\link{c_pcaSpectra}}.\cr
 For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \code{\link{plotLoadings}}, \code{\link{plotScores3D}}, \code{\link{plotScoresRGL}}.
 }
 
 \examples{
 data(SrE.IR)
-results <- rpcaSpectra(SrE.IR, choice = "mad")
+results <- r_pcaSpectra(SrE.IR, choice = "mad")
 myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 plotScores(SrE.IR, main = myt,
 	results, pcs = c(1,2), ellipse = "rob", tol = 0.05)

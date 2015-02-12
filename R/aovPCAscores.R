@@ -6,7 +6,7 @@ aovPCAscores <- function(spectra, LM, plot = 1, type = "class", choice = NULL, .
 # Bryan Hanson and Matt Keinsley
 # DePauw University, June 2011
 
-# LM is the list of matrices from aovPCA
+# LM is the list of matrices from aov_pcaSpectra
 
 	if (plot > length(LM)){
 		stop("Error, plot/matrix does not exist. Please choose a different plot!")}
@@ -20,8 +20,8 @@ aovPCAscores <- function(spectra, LM, plot = 1, type = "class", choice = NULL, .
 	spectra$data <- LM[[plot]] + LM$Res.Error
 
 	if (is.null(choice)) choice = "noscale"
-	if (type == "class") pca <- cpcaSpectra(spectra, choice = choice, cent = FALSE)
-	if (type == "rob") pca <- rpcaSpectra(spectra, choice = choice)
+	if (type == "class") pca <- c_pcaSpectra(spectra, choice = choice, cent = FALSE)
+	if (type == "rob") pca <- r_pcaSpectra(spectra, choice = choice)
 
 #  Create titles for each graph depending on number of factors and which graph was specified. 
 

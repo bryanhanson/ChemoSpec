@@ -19,7 +19,7 @@ plotScores(spectra, pca, pcs = c(1, 2),
 An object of S3 class \code{\link{Spectra}}.
 }
   \item{pca}{
-An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{cpcaSpectra}} or \code{\link{rpcaSpectra}} were used to create \code{pca}.
+An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}} were used to create \code{pca}.
 }
   \item{pcs}{
 A vector of two integers specifying the PCA scores to plot.
@@ -60,7 +60,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
 data(SrE.IR)
-results <- cpcaSpectra(SrE.IR, choice = "noscale")
+results <- c_pcaSpectra(SrE.IR, choice = "noscale")
 myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 plotScores(SrE.IR, main = myt, results,
 	pcs = c(1,2), ellipse = "rob", tol = 0.05)

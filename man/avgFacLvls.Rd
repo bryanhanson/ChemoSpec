@@ -31,7 +31,7 @@ Matthew J. Keinsley and Bryan A. Hanson, DePauw University. \email{hanson@depauw
 }
 
 \seealso{
-\code{\link{aovPCA}} for full details.
+\code{\link{aov_pcaSpectra}} for full details.
 }
 \examples{
 M1 <- matrix(rnorm(100), nrow = 20, byrow = TRUE)

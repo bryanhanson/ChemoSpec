@@ -7,7 +7,7 @@
 \usage{sPlotSpectra(spectra, pca, pc = 1, tol = 0.05, ...)}
 \arguments{
   \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
-  \item{pca}{The result of a pca calculation on \code{\link{Spectra}} (i.e. the output from \code{\link{cpcaSpectra}} or \code{\link{rpcaSpectra}}).}
+  \item{pca}{The result of a pca calculation on \code{\link{Spectra}} (i.e. the output from \code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}}).}
   \item{pc}{An integer specifying the desired pc plot.}
   \item{tol}{A number describing the fraction of points to be labeled.  \code{tol = 1.0} labels all the points; \code{tol = 0.05} labels the most extreme 5 percent.}
   \item{\dots}{Additional parameters to be passed to plotting functions.}
@@ -29,7 +29,7 @@ Matthew J. Keinsley and Bryan A. Hanson, DePauw University. \email{hanson@depauw
 
 \examples{
 data(SrE.IR)
-IR.pca <- cpcaSpectra(SrE.IR)
+IR.pca <- c_pcaSpectra(SrE.IR)
 myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 splot <- sPlotSpectra(spectra = SrE.IR, pca = IR.pca, pc = 1, tol = 0.005,
 main = myt)

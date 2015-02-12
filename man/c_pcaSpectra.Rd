@@ -1,14 +1,14 @@
-\name{cpcaSpectra}
+\name{c_pcaSpectra}
 \Rdversion{1.1}
-\alias{cpcaSpectra}
+\alias{c_pcaSpectra}
 \title{
 Classical PCA of Spectra Objects
 }
 \description{
-A wrapper which carries out classical PCA analysis on a \code{\link{Spectra}} object.  The user can select various options for scaling.  There is no normalization by rows - do this manually using \code{\link{normSpectra}}.  There is an option to control centering, but this is mainly for compatibility with the \code{\link{aovPCA}} series of functions.  Centering the data should always be done in PCA and it is the default here.
+A wrapper which carries out classical PCA analysis on a \code{\link{Spectra}} object.  The user can select various options for scaling.  There is no normalization by rows - do this manually using \code{\link{normSpectra}}.  There is an option to control centering, but this is mainly for compatibility with the \code{\link{aov_pcaSpectra}} series of functions.  Centering the data should always be done in PCA and it is the default here.
 }
 \usage{
-cpcaSpectra(spectra, choice = "noscale", cent = TRUE)
+c_pcaSpectra(spectra, choice = "noscale", cent = TRUE)
 }
 \arguments{
   \item{spectra}{An object of S3 class \code{\link{Spectra}}.
@@ -39,12 +39,12 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \seealso{
-\code{\link{prcomp}} for the underlying function, \code{\link{rpcaSpectra}} for analogous robust PCA calculations.\cr
+\code{\link{prcomp}} for the underlying function, \code{\link{r_pcaSpectra}} for analogous robust PCA calculations.\cr
 For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \code{\link{plotLoadings}}, \code{\link{plot2Loadings}}.
 }
 \examples{
 data(SrE.IR)
-results <- cpcaSpectra(SrE.IR)
+results <- c_pcaSpectra(SrE.IR)
 myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 plotScores(SrE.IR, main = myt, results, pcs = c(1,2),
 	ellipse = "rob", tol = 0.05)

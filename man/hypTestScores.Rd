@@ -44,7 +44,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
 data(SrE.IR)
-res <- cpcaSpectra(SrE.IR)
+res <- c_pcaSpectra(SrE.IR)
 hypTestScores(SrE.IR, res, fac = "groups")
 # from splitSpectraGroups:
 #new.groups <- list(gen = c("G", "T"), trt = c("C", "E"))

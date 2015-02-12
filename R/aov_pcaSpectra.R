@@ -1,6 +1,6 @@
 
 	
-aovPCA <-function(spectra, fac) {
+aov_pcaSpectra <-function(spectra, fac) {
 
 #  Function to conduct ANOVA-PCA per Harrington
 #  as explained by Pinto
@@ -51,8 +51,8 @@ aovPCA <-function(spectra, fac) {
 
 	GMR <- MC - GM # grand mean residuals
 
-	# 1 factor aovPCA is the same as running regular PCA so issue a warning
-	if (nf == 1) { warning("aovPCA is the same as regular PCA for 1 factor")}
+	# 1 factor aov_pcaSpectra is the same as running regular PCA so issue a warning
+	if (nf == 1) { warning("aov_pcaSpectra is the same as regular PCA for 1 factor")}
 
 	if (nf == 1) { 
 		big[[1]] <- avgFacLvls(matrix = GMR, flist[[1]])

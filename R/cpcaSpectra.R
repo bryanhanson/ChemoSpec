@@ -1,4 +1,4 @@
-cpcaSpectra <-
+c_pcaSpectra <-
 function(spectra, choice = "noscale", cent = TRUE) {
 
 # Function to carry out classical Principal Components Analysis

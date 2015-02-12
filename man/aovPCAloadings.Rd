@@ -1,7 +1,7 @@
 \name{aovPCAloadings}
 \alias{aovPCAloadings}
 \title{
-Plot aovPCA Loadings of a Spectra Object
+Plot aovPCAscores Loadings of a Spectra Object
 }
 \description{
 Uses the results from \code{\link{aovPCAscores}} to plot the corresponding loadings.}
@@ -13,7 +13,7 @@ aovPCAloadings(spectra, LM, pca, plot = 1, loads = 1, ref = 1, ...)
 An object of S3 class \code{\link{Spectra}}.
 }
   \item{LM}{
-List of matrices created by \code{\link{aovPCA}}.
+List of matrices created by \code{\link{aovPCAscores}}.
 }
   \item{pca}{
 PCA output from \code{\link{aovPCAscores}}. 
@@ -49,7 +49,7 @@ Matthew J. Keinsley and Bryan A. Hanson, DePauw University. \email{hanson@depauw
 }
 
 \seealso{
-An example using this function can be seen in \code{\link{aovPCA}}.  See also \code{\link{plotLoadings}}.
+An example using this function can be seen in \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotLoadings}}.
 }
 
 \keyword{ multivariate }

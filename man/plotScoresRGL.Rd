@@ -72,7 +72,7 @@ Other functions in \code{ChemoSpec} that plot PCA scores are: \code{\link{plotSc
 }
 \examples{
 data(metMUD1)
-results <- cpcaSpectra(metMUD1, choice = "autoscale")
+results <- c_pcaSpectra(metMUD1, choice = "autoscale")
 \dontrun{
 plotScoresRGL(metMUD1, results, title = "metMUD1 NMR Spectra",
 leg.pos = "A", t.pos = "B")

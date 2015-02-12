@@ -6,7 +6,7 @@ aovPCAloadings <-function(spectra, LM, pca, plot = 1, loads = 1, ref = 1, ...) {
 #  Bryan Hanson and Matt Keinsley
 #  DePauw University, June 2011
 
-#  LM is the output from aovPCA (a list of matrices)
+#  LM is the output from aov_pcaSpectra (a list of matrices)
 
 	chkSpectra(spectra)
 	if (plot > length(LM)){

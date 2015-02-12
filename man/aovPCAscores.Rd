@@ -1,10 +1,10 @@
 \name{aovPCAscores}
 \alias{aovPCAscores}
 \title{
-Conduct PCA and plot aovPCA Scores of a Spectra Object
+Plot ANOVA-PCA Scores from a Spectra Object
 }
 \description{
-Uses the results from \code{\link{aovPCA}} to conduct PCA and plot the scores.
+Uses the results from \code{\link{aov_pcaSpectra}} to conduct PCA and plot the scores.
 }
 \usage{
 aovPCAscores(spectra, LM, plot = 1, type = "class", choice = NULL, ...)
@@ -14,16 +14,16 @@ aovPCAscores(spectra, LM, plot = 1, type = "class", choice = NULL, ...)
 An object of S3 class \code{\link{Spectra}}.
 }
   \item{LM}{
-List of matrices created by \code{\link{aovPCA}}.
+List of matrices created by \code{\link{aov_pcaSpectra}}.
 }
   \item{plot}{
 An integer specifying which scores to plot.
 }
   \item{type}{
-Either classical ("cls") or robust ("rob"); Results in either \code{\link{cpcaSpectra}} or \code{\link{rpcaSpectra}} being called on the \code{\link{Spectra}} object.
+Either classical ("cls") or robust ("rob"); Results in either \code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}} being called on the \code{\link{Spectra}} object.
 }
   \item{choice}{
-The type of scaling to be performed.  See \code{\link{cpcaSpectra}} and \code{\link{rpcaSpectra}} for details.
+The type of scaling to be performed.  See \code{\link{c_pcaSpectra}} and \code{\link{r_pcaSpectra}} for details.
 }
   \item{\dots}{
 Additional parameters to be passed to \code{\link{plotScores}}.
@@ -48,7 +48,7 @@ Matthew J. Keinsley and Bryan A. Hanson, DePauw University. \email{hanson@depauw
 
 
 \seealso{
-The use of this function can be seen in \code{\link{aovPCA}}.  See also \code{\link{plotScores}}.
+The use of this function can be seen in \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotScores}}.
 }
 
 \keyword{ multivariate }

@@ -17,7 +17,7 @@ plotScree2(pca, ...)
 
 \arguments{
   \item{pca}{
-An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{cpcaSpectra}} or \code{\link{rpcaSpectra}} were used to create \code{pca}.
+An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}} were used to create \code{pca}.
 }
   \item{\dots}{
 Additional parameters to be passed to plotting functions.}
@@ -44,7 +44,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 
 \examples{
 data(SrE.IR)
-results <- cpcaSpectra(SrE.IR)
+results <- c_pcaSpectra(SrE.IR)
 myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 plotScree(results, main = myt)
 plotScree2(results, main = myt)

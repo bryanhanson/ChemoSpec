@@ -1,5 +1,5 @@
-\name{aovPCA}
-\alias{aovPCA}
+\name{aov_pcaSpectra}
+\alias{aov_pcaSpectra}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 ANOVA-PCA Analysis of Spectra Data
@@ -8,7 +8,7 @@ ANOVA-PCA Analysis of Spectra Data
 ANOVA-PCA is a combination of both methods developed by Harrington.  The data is partitioned into submatrices corresponding to each experimental factor, which are then subjected to PCA separately after adding the residual error back.  If the effect of a factor is large compared to the residual error, separation along the 1st PC in the score plot should be evident.  With this method, the significance of a factor can be visually determined (ANOVA-PCA is not blind to group membership).
 }
 \usage{
-aovPCA(spectra, fac)
+aov_pcaSpectra(spectra, fac)
 }
 
 \arguments{
@@ -37,7 +37,7 @@ Harrington, Vieira, Espinoza, Nien, Romero, and Yergey. "Analysis of Variance--P
 Matthew J. Keinsley and Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \seealso{
-This function calls \code{\link{avgFacLvls}}, and the results are used in \code{\link{aovPCAscores}} and \code{\link{aovPCAloadings}}.
+This function calls \code{\link{avgFacLvls}}, and the results are used in \code{\link{aovPCAcores}} and \code{\link{aovPCAloadings}}.
 }
 
 
@@ -47,13 +47,13 @@ This function calls \code{\link{avgFacLvls}}, and the results are used in \code{
 # These are used as the factors
 #n.groups <-list(genotype = c("G", "T"), treatment = c("C", "E"))
 #NewIR <- splitSpectraGroups(CuticleIR, n.groups)
-# run aovPCA
-#mats <-aovPCA(NewIR, fac = c("genotype", "treatment"))
-#apca1 <- aovPCAscores(NewIR, mats, plot = 1, main = "aovPCA: Genotype")
-#apca2 <- aovPCAscores(NewIR, mats, plot = 2, main = "aovPCA: Treatment")
-#apca3 <- aovPCAscores(NewIR, mats, plot = 3, main = "aovPCA: Genotype x Treatment")
-#apca5 <- aovPCAloadings(spectra = NewIR, LM = mats, pca = apca1,
-# main = "aovPCA: Genotype Loadings")
+# run aov_pcaSpectra
+#mats <-aov_pcaSpectra(NewIR, fac = c("genotype", "treatment"))
+#apca1 <- aov_pcaSpectrascores(NewIR, mats, plot = 1, main = "aovPCA: Genotype")
+#apca2 <- aov_pcaSpectrascores(NewIR, mats, plot = 2, main = "aovPCA: Treatment")
+#apca3 <- aov_pcaSpectrascores(NewIR, mats, plot = 3, main = "aovPCA: Genotype x Treatment")
+#apca5 <- aov_pcaSpectraloadings(spectra = NewIR, LM = mats, pca = apca1,
+# main = "aov_pcaSpectra: Genotype Loadings")
 }
 \keyword{ multivariate }
 \keyword{ htest }

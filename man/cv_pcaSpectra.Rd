@@ -1,6 +1,6 @@
-\name{bpcaSpectra}
+\name{cv_pcaSpectra}
 \Rdversion{1.1}
-\alias{bpcaSpectra}
+\alias{cv_pcaSpectra}
 
 \title{
 Cross-Validation of Classical PCA Results for a Spectra Object
@@ -9,7 +9,7 @@ Cross-Validation of Classical PCA Results for a Spectra Object
 This function carries out classical PCA on the data in a \code{\link{Spectra}} object using a cross-validation method.  Nothing more than a wrapper to Peter Filzmoser's \code{\link[chemometrics]{pcaCV}} method with some small plotting changes.
 }
 \usage{
-bpcaSpectra(spectra, pcs, choice = "noscale", repl = 50,
+cv_pcaSpectra(spectra, pcs, choice = "noscale", repl = 50,
 	segments = 4, segment.type = c("random", "consecutive", "interleaved"),
 	length.seg, trace = FALSE, ...)
 }
@@ -63,7 +63,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 
 \examples{
 data(SrE.IR)
-results <- bpcaSpectra(SrE.IR, pcs = 5)
+results <- cv_pcaSpectra(SrE.IR, pcs = 5)
 }
 
 \keyword{ multivariate }

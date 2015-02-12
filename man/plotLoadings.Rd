@@ -18,7 +18,7 @@ plotLoadings(spectra, pca, loads = c(1), ref = 1, ...)
 An object of S3 class \code{\link{Spectra}}.
 }
   \item{pca}{
-An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{cpcaSpectra}} or \code{\link{rpcaSpectra}} were used to create \code{pca}.
+An object of class \code{\link{prcomp}}, modified to include a list element called \code{$method}, a character string describing the pre-processing carried out and the type of PCA performed (it appears on the plot).  This is automatically provided if \code{ChemoSpec} functions \code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}} were used to create \code{pca}.
 }
   \item{loads}{
 An integer vector giving the loadings to plot.  More than 3 loadings creates a useless plot using the default graphics window.
@@ -48,7 +48,7 @@ See \code{\link{plot2Loadings}} to plot two loadings against each other.
 }
 \examples{
 data(SrE.IR)
-results <- cpcaSpectra(SrE.IR, choice = "noscale")
+results <- c_pcaSpectra(SrE.IR, choice = "noscale")
 myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 plotLoadings(SrE.IR, results, main = myt,
 	loads = 1:2, ref = 1)
