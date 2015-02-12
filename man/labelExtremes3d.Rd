@@ -4,7 +4,7 @@
 Identify Extreme Values in 3D
 }
 \description{
-A utility function to identify the extreme values in a 3D plot data set, presumably so that they can be labeled.  Algorithm is similar to \code{\link{labelExtremes}}, except that \code{labelExtremes3d} does not do the plotting (because the results are used by functions that use different plotting paradigms).
+A utility function to identify the extreme values in a 3D plot data set, presumably so that they can be labeled.  Algorithm is similar to \code{\link{labelExtremes}}, except that \code{labelExtremes3d} does not do the plotting (because the results are used by functions that use different plotting paradigms).  An internal function, not generally called by the user.
 }
 \usage{
 labelExtremes3d(data, names, tol)

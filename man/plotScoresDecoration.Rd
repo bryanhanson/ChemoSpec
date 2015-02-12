@@ -6,7 +6,7 @@
 Decorate PCA Score Plot of a Spectra Object
 }
 \description{
-Utility function to carry out misc. labeling functions on the PCA score plot of a \code{\link{Spectra}} object.  Never called by the user.
+Utility function to carry out misc. labeling functions on the PCA score plot of a \code{\link{Spectra}} object.  An internal function, not generally called by the user.
 }
 \usage{
 plotScoresDecoration(spectra, pca, pcs = c(1, 2), tol = "none")

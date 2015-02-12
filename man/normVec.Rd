@@ -4,7 +4,7 @@
 Normalize a Vector to range -1 to +1
 }
 \description{
-Each value of the vector passed to the function is divided by the square root of the sum of every value squared, producing a new vector whose range is restricted to, at most, -1 to +1.  Note that this assumes that the mean of the original vector is zero.
+Each value of the vector passed to the function is divided by the square root of the sum of every value squared, producing a new vector whose range is restricted to, at most, -1 to +1.  Note that this assumes that the mean of the original vector is zero. An internal function, not generally called by the user.
 }
 \usage{
 normVec(x)

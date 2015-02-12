@@ -8,8 +8,7 @@ Conversion Between PCA Classes
 }
 
 \description{
-Utility to convert objects of S3 class \code{"prcomp"} (Q-mode PCA) to objects of S3 class \code{"princomp"} (R-mode PCA) or \emph{vice-versa}.  Not likely to be called by most users.
-}
+Utility to convert objects of S3 class \code{"prcomp"} (Q-mode PCA) to objects of S3 class \code{"princomp"} (R-mode PCA) or \emph{vice-versa}.  An internal function, not generally called by the user.}
 
 \usage{
 q2rPCA(x)

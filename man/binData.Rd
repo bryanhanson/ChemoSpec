@@ -4,7 +4,7 @@
 \title{Bin or Bucket Data}
 
 \description{
-This function accepts a vector of x-values and averages them in groups of \code{bin.ratio} data points.  It also accepts a vector of y-values and sums them in groups of \code{bin.ratio} data points.  Both x and y data can be processed in the same call, or they can be processed separately.
+This function accepts a vector of x-values and averages them in groups of \code{bin.ratio} data points.  It also accepts a vector of y-values and sums them in groups of \code{bin.ratio} data points.  Both x and y data can be processed in the same call, or they can be processed separately.  An internal function, not generally called by the user.
 }
 \usage{
 binData(x = NULL, y = NULL, bin.ratio = 2)

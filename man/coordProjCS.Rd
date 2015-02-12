@@ -4,7 +4,7 @@
 Modified Version of coordProj from mclust
 }
 \description{
-This is a modified version of the function \code{\link{coordProj}} from \code{mclust}. In this version, the original symbol scheme for the error plot is changed to simply plot an X over the letters identifying the groups.
+This is a modified version of the function \code{\link{coordProj}} from \code{mclust}. In this version, the original symbol scheme for the error plot is changed to simply plot an X over the letters identifying the groups.  An internal function, not generally called by the user.
 }
 \usage{
 coordProjCS(data, dimens = c(1, 2), parameters = NULL,

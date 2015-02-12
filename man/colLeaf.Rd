@@ -4,7 +4,7 @@
 Color the Leaves of a Dendrogram Based on a Spectra Object
 }
 \description{
-This function colors the leaves of a dendrogram object.  The code was taken from the help files.  Not for end-user use.
+This function colors the leaves of a dendrogram object.  The code was taken from the help files.  An internal function, not generally called by the user.
 }
 \usage{
 colLeaf(n, spectra)

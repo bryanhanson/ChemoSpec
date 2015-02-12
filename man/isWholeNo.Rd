@@ -3,7 +3,7 @@
 \title{Determine if a Number is a Whole Number}
 
 \description{
-This function determines if a given number is a whole number within a given tolerance.  Taken from the help page of \code{\link{is.integer}}.
+This function determines if a given number is a whole number within a given tolerance.  Taken from the help page of \code{\link{is.integer}}.  An internal function, not generally called by the user.
 }
 
 \usage{

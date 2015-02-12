@@ -4,7 +4,7 @@
 Create Ellipsoid
 }
 \description{
-Given at least 3 data points, this function creates either classical or robust ellipsoids at a given confidence limit, in either 2D or 3D.  The ellipsoids consist of randomly generated points, which if plotted as tiny points, create a sort of transparent surface.
+Given at least 3 data points, this function creates either classical or robust ellipsoids at a given confidence limit, in either 2D or 3D.  The ellipsoids consist of randomly generated points, which if plotted as tiny points, create a sort of transparent surface. An internal function, not generally called by the user.
 }
 \usage{
 makeEllipsoid(data, cl = 0.95, rob = FALSE, frac.pts.used = 0.8)
