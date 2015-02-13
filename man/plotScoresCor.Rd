@@ -6,7 +6,7 @@ Compute Confidence Ellipses
 }
 
 \description{
-A utility function which when given a x,y data set computes both classical and robust confidence ellipses.  Never called by the user.
+A utility function which when given a x,y data set computes both classical and robust confidence ellipses. An internal function, not generally called by the user.
 }
 
 \usage{

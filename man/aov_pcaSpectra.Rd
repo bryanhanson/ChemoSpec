@@ -37,7 +37,7 @@ Harrington, Vieira, Espinoza, Nien, Romero, and Yergey. "Analysis of Variance--P
 Matthew J. Keinsley and Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \seealso{
-This function calls \code{\link{avgFacLvls}}, and the results are used in \code{\link{aovPCAScores}} and \code{\link{aovPCAloadings}}.
+This function calls \code{\link{avgFacLvls}}, and the results are used in \code{\link{aovPCAscores}} and \code{\link{aovPCAloadings}}.
 }
 
 

@@ -16,7 +16,7 @@ export(
 	mclustSpectra,
 	corSpectra,
 	covSpectra,
-	sampleCorSpectra,
+	sampleDistSpectra,
 
 	files2SpectraObject, # Importing data
 	groupNcolor,
@@ -83,7 +83,7 @@ export(
 import(chemometrics, rgl, mclust, lattice, exCon)
 
 importFrom(seriation, hmap)
-importFrom(baseline, baseline, baselineGUI, getCorrected)
+importFrom(baseline, baseline, baselineGUI, getCorrected, plot)
 importFrom(amap, Dist)
 importFrom(RColorBrewer, brewer.pal)
 importFrom(R.utils, saveObject)
