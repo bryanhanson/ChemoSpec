@@ -1,4 +1,5 @@
 \name{metMUD1}
+\alias{alignMUD}
 \alias{metMUD1}
 \alias{metMUD2}
 \docType{data}
@@ -6,6 +7,9 @@
 
 \description{
 These data sets are simulated 300 MHz NMR spectra.  They are designed mainly to illustrate certain chemometric methods and are small enough that they process quickly.
+
+\code{alignMUD} is a series of mis-aligned spectra of a single small organic molecule.
+
 
 \code{metMUD1} is composed of 20 samples, each a mixture of four typical small organic compounds (we'll leave it to the reader as an exercise to deduce the spin systems!).  These compounds are present in varying random amounts.  Ten of the samples are control samples, and some are treatment samples.  Thus you can run PCA and other methods on this data set, and expect to see a separation.  \code{\link{corSpectra}} analysis of this data set is interpreted as a 2D TOCSY NMR is: any resonances on a particular horizontal or vertical line (frequency) is part of a single spin system.  Another way to think about this is that all the peaks for a single compound are positively correlated with each other but not with any other compound.  It's useful to keep in mind that the resonances of the four compounds overlap considerably in some cases.
 
