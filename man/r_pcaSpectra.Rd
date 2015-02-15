@@ -40,11 +40,10 @@ For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \
 }
 
 \examples{
-data(SrE.IR)
-results <- r_pcaSpectra(SrE.IR, choice = "mad")
-myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
-plotScores(SrE.IR, main = myt,
-	results, pcs = c(1,2), ellipse = "rob", tol = 0.05)
+data(metMUD1)
+results <- r_pcaSpectra(metMUD1)
+plotScores(metMUD1, results, main = "metMUD1 NMR Data",
+	pcs = c(1,2), ellipse = "cls", tol = 0.05)
 }
 
 \keyword{ multivariate }

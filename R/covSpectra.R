@@ -53,7 +53,7 @@ covSpectra <- function(spectra, freq = spectra$freq[1],
 	
 	plot(spectra$freq, V[row,], type = "n",
 		xlab = spectra$unit[1], ylab = "covariance",
-		main = spectra$freq[row],
+		main = sprintf("%5.5f", spectra$freq[row]),
 		...)
 	segments(spectra$freq[ind1], V[row, ind1], spectra$freq[ind2], V[row, ind2],  col = myc, ...)
 

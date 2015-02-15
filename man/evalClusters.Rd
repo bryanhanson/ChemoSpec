@@ -60,8 +60,9 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 data(SrE.IR)
 # Using clusterCrit
+myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 res1 <- hcaSpectra(SrE.IR, main = myt) # default clustering and distance methods
-res2 <- hcaSpectra(SrE.IR, main = myt, c.method = "median", d.method = "manhattan")
+res2 <- hcaSpectra(SrE.IR, main = myt, d.method = "cosine")
 # The return value from hcaSpectra is a list with hclust as the first element.
 crit1 <- evalClusters(SrE.IR, pkg = "clusterCrit", hclst = res1[[1]], k = 4)
 crit2 <- evalClusters(SrE.IR, pkg = "clusterCrit", hclst = res2[[1]], k = 4)

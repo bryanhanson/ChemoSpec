@@ -94,8 +94,7 @@ function (spectra, pcs, choice = "noscale", repl = 50, segments = 4,
     # The plotting details have been modified quite a bit
     
     boxplot(as.data.frame(Fit), ylab = "Explained variance", 
-            xlab = "Number of components",
-            main = "Bootstrap Analysis of Number of PCs", ...)
+            xlab = "Number of components", ...)
     # construct a legend based upon values of center & scale
 	note <- paste("centered/", choice, "/", "classical", sep = "")
     leg.txt <- paste(spectra$desc, note, sep = " ")

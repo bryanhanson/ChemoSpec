@@ -43,11 +43,10 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \code{\link{plotLoadings}}, \code{\link{plot2Loadings}}.
 }
 \examples{
-data(SrE.IR)
-results <- c_pcaSpectra(SrE.IR)
-myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
-plotScores(SrE.IR, main = myt, results, pcs = c(1,2),
-	ellipse = "rob", tol = 0.05)
+data(metMUD1)
+results <- c_pcaSpectra(metMUD1)
+plotScores(metMUD1, results, main = "metMUD1 NMR Data",
+	pcs = c(1,2), ellipse = "cls", tol = 0.05)
 }
 
 \keyword{ multivariate }

@@ -46,6 +46,6 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \examples{
 require("lattice")
 data(metMUD2)
-sampleDistSpectra(metMUD2)
+sampleDistSpectra(metMUD2, main = "Sample Correlations for metMUD2")
 }
 \keyword{ hplot }

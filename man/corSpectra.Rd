@@ -106,7 +106,7 @@ For \code{covSpectra}, the x and y limits can be set simply by passing \code{xli
 data(metMUD2)
 lvs <- c(-0.99, -0.95, -0.9, 0.9, 0.95, 0.99)
 lim <- c(0.6, 4.3)
-res <- corSpectra(metMUD2, levels = lvs, limX = lim, limY = lim)
+res <- corSpectra(metMUD2, levels = lvs, limX = lim, limY = lim, main = "metMUD2 NMR Data")
 jnk <- covSpectra(metMUD2, freq = 1.0, C = res[[2]], V = res[[1]])
 }
 

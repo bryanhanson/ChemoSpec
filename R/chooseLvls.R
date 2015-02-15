@@ -10,10 +10,12 @@ chooseLvls <- function(M, n = 10, mode = "even",
 	# Helper function for showHist = TRUE
 	
 	sH <- function(M, lvs, ...) {
+		
 		# Check which arm is larger and use that for xlim
 		ref <- findExtreme(M)
 		lim.x <- c(-ref, ref)
 
+		def.par <- par(no.readonly = TRUE)
 		nf <- layout(mat = matrix(c(1, 2), 2, 1, byrow = TRUE), heights = c(6 , 1))
 		par(mar = c(3.1, 3.1, 1.1, 2.1))
 
@@ -31,6 +33,8 @@ chooseLvls <- function(M, n = 10, mode = "even",
 		for (i in 1:nc) {
 			rect(i-0.5, 0.5, i+0.5, 1.5, border = NA, col = cscale[i])
 			}
+			
+		par(def.par)
 		} # end of sH
 
 	# More helper functions

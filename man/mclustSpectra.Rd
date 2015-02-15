@@ -47,11 +47,11 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \code{\link{Mclust}} for the underlying function.
 }
 \examples{
-data(metMUD1)
-class <- c_pcaSpectra(metMUD1)
-mclustSpectra(metMUD1, class, main = "Cuticle IR", plot = "BIC")
-mclustSpectra(metMUD1, class, main = "Cuticle IR", plot = "proj")
-mclustSpectra(metMUD1, class, main = "Cuticle IR", plot = "error",
+data(SrE.IR)
+class <- c_pcaSpectra(SrE.IR, choice = "autoscale")
+mclustSpectra(SrE.IR, class, main = "Cuticle IR", plot = "BIC")
+mclustSpectra(SrE.IR, class, main = "Cuticle IR", plot = "proj")
+mclustSpectra(SrE.IR, class, main = "Cuticle IR", plot = "error",
 	truth = metMUD1$groups)
 }
 \keyword{ multivariate }

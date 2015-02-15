@@ -43,11 +43,10 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \examples{
-data(SrE.IR)
-results <- c_pcaSpectra(SrE.IR)
-myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
-plotScree(results, main = myt)
-plotScree2(results, main = myt)
+data(metMUD1)
+results <- c_pcaSpectra(metMUD1)
+plotScree(results, main = "metMUD1 NMR Data")
+plotScree2(results, main = "metMUD1 NMR Data")
 }
 
 \keyword{ multivariate }

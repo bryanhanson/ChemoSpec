@@ -18,7 +18,6 @@ sampleDistSpectra <- function(spectra, method = "pearson", plot = TRUE, ...) {
 		p <- levelplot(as.matrix(M), xlab = "sample", ylab = "sample",
 			col.regions = myc,
 			at = seq(-1.0, 1.0, by = 0.1))
-		print(p)
 		}
 		
 	return(M)
