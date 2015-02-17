@@ -35,8 +35,10 @@ K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate Statistical Analy
 }
 
 \seealso{
-See \code{\link[pcaPP]{PCAgrid}} on which this function is based.  For the classical version, see \code{\link{c_pcaSpectra}}.\cr
-For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \code{\link{plotLoadings}}, \code{\link{plotScores3D}}, \code{\link{plotScoresRGL}}.
+See \code{\link[pcaPP]{PCAgrid}} on which this function is based.  For the classical version, see \code{\link{c_pcaSpectra}}.
+
+
+For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \code{\link{plotLoadings}}, \code{\link{plot2Loadings}}, \code{\link{sPlotSpectra}}, \code{\link{plotScores3D}}, \code{\link{plotScoresRGL}}.
 }
 
 \examples{

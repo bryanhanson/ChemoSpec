@@ -43,13 +43,15 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \code{\link{splitSpectraGroups}} which can be used to create additional factor elements in the \code{"Spectra"} object, which can then be used with this function.
 }
 \examples{
-data(SrE.IR)
-res <- c_pcaSpectra(SrE.IR)
-hypTestScores(SrE.IR, res, fac = "groups")
-# from splitSpectraGroups:
-#new.groups <- list(gen = c("G", "T"), trt = c("C", "E"))
-#new.CuticleIR <- splitSpectraGroups(CuticleIR, new.groups)
-#hypTestScores(new.CuticleIR, res, fac = c("trt", "gen"))
+data(metMUD2)
+# Original factor encoding:
+levels(metMUD2$groups)
+# Split those original levels into 2 new ones (re-code them)
+new.grps <- list(geneBb = c("B", "b"), geneCc = c("C", "c"))
+mM3 <- splitSpectraGroups(metMUD2, new.grps)
+# Now do the PCA and anova
+pca <- c_pcaSpectra(mM3)
+hypTestScores(mM3, pca, fac = c("geneBb", "geneCc"))
 
 }
 \keyword{ multivariate }

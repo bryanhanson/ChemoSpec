@@ -42,18 +42,19 @@ This function calls \code{\link{avgFacLvls}}, and the results are used in \code{
 
 
 \examples{
-#data(CuticleIR)
-# Create new groups from existing groups
-# These are used as the factors
-#n.groups <-list(genotype = c("G", "T"), treatment = c("C", "E"))
-#NewIR <- splitSpectraGroups(CuticleIR, n.groups)
+data(metMUD2)
+# Original factor encoding:
+levels(metMUD2$groups)
+# Split those original levels into 2 new ones (re-code them)
+new.grps <- list(geneBb = c("B", "b"), geneCc = c("C", "c"))
+mM3 <- splitSpectraGroups(metMUD2, new.grps)
 # run aov_pcaSpectra
-#mats <-aov_pcaSpectra(NewIR, fac = c("genotype", "treatment"))
-#apca1 <- aov_pcaSpectrascores(NewIR, mats, plot = 1, main = "aovPCA: Genotype")
-#apca2 <- aov_pcaSpectrascores(NewIR, mats, plot = 2, main = "aovPCA: Treatment")
-#apca3 <- aov_pcaSpectrascores(NewIR, mats, plot = 3, main = "aovPCA: Genotype x Treatment")
-#apca5 <- aov_pcaSpectraloadings(spectra = NewIR, LM = mats, pca = apca1,
-# main = "aov_pcaSpectra: Genotype Loadings")
+mats <-aov_pcaSpectra(mM3, fac = c("geneBb", "geneCc"))
+apca1 <- aovPCAscores(mM3, mats, plot = 1, main = "aovPCA: B vs b")
+apca2 <- aovPCAscores(mM3, mats, plot = 2, main = "aovPCA: C vs c")
+apca3 <- aovPCAscores(mM3, mats, plot = 3, main = "aovPCA: Interaction Term")
+apca4 <- aovPCAloadings(spectra = mM3, LM = mats, pca = apca1,
+	main = "aov_pcaSpectra: Bb Loadings")
 }
 \keyword{ multivariate }
 \keyword{ htest }

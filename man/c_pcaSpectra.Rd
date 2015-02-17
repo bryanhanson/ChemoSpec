@@ -39,8 +39,10 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \seealso{
-\code{\link{prcomp}} for the underlying function, \code{\link{r_pcaSpectra}} for analogous robust PCA calculations.\cr
-For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \code{\link{plotLoadings}}, \code{\link{plot2Loadings}}.
+\code{\link{prcomp}} for the underlying function, \code{\link{r_pcaSpectra}} for analogous robust PCA calculations.
+
+
+For displaying the results, \code{\link{plotScree}}, \code{\link{plotScores}}, \code{\link{plotLoadings}}, \code{\link{plot2Loadings}}, \code{\link{sPlotSpectra}}, \code{\link{plotScores3D}}, \code{\link{plotScoresRGL}}.
 }
 \examples{
 data(metMUD1)

@@ -11,7 +11,7 @@ loopThruSpectra <- function(Spectra, ...) {
 	nr <- nrow(Spectra$data)
 	for (n in 1:nr) {
 		tt <- paste("Spectrum #", n, " of ", nr, sep = "")
-		plotSpectra(Spectra, which = n, title = tt, ...)
+		plotSpectra(Spectra, which = n, main = tt, ...)
 		devAskNewPage(ask = TRUE)
 		}
 	devAskNewPage(ask = FALSE)

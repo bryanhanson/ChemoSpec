@@ -7,7 +7,7 @@ URL: github.com/bryanhanson/ChemoSpec
 Changes in version 4.0-0 2015-xx-xx
      + Several functions were renamed for consistency.  YOUR CODE MAY BREAK. LoopThruSpectra -> loopThruSpectra, specSurvey -> surveySpectra, baselineSpec -> baselineSpectra, binBuck -> binSpectra, classPCA -> c_pcaSpectra,  robPCA -> r_pcaSpectra, bootPCA -> cv_pcaSpectra, aovPCA -> aov_pcaSpectra.
      + Data set CuticleIR was removed.
-     + Data sets metMUD1, metMUD2 added.
+     + Data sets alignMUD, metMUD1, metMUD2 added.
      + Added function corSpectra.
      + Added function covrSpectra.
      + Added function sampleDistSpectra.
@@ -16,12 +16,13 @@ Changes in version 4.0-0 2015-xx-xx
      + Revised evalClusters to use either NbClust or clusterCrit packages.
      + Removed alignTMS, calcSN, and modified files2SpectraObject.  Spectra can now be aligned using clupaSpectra.
      + Removed functions that import Bruker files as they have not had enough testing.
+     + First argument in baselineSpectra was Spectra, changed to spectra for consistency.
+     + Fixed a bug in the title of loopThruSpectra.
      + Many updates to the documentation.
      + Revised package description.
      + Moved many full imports to importFrom to narrow namespace.
      + IDPmisc is no longer imported at all.
      + Fixed a bad URL in plotScree.Rd.
-     + First argument in baselineSpectra was Spectra, changed to spectra for consistency.
      + Changed formatting of NEWS file so that the built-in reader parses it better.
 
 Changes in version 3.0-1 2015-01-21

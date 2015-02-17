@@ -26,7 +26,7 @@ splitSpectraGroups(spectra, inst = NULL, rep.cols = NULL, ...)
 \details{
 The items in the character vector are grepped among the existing \code{spectra$groups} entries; when found, they are placed in a new element of \code{\link{Spectra}}.  In the example, all \code{spectra$groups} entries containing "G" are coded as "G" in a new element called \code{spectra$env}, and any entries containing "T" are handled likewise.  This amounts to a sort of recoding of factors (the example demonstrates this).  Every entry in \code{spectra$groups} should be matched by one of the entries in the character vector.  If not, you will get <NA> entries.  Also, if the targets in the character vector are not unique, your results will reflect the order of the levels.  Since this is a grep process, you can pass any valid grep string as the target.
 
-If \code{rep.cols} is provided, these colors are mapped one for one onto the levels of the the first element of \code{inst}.  See the example for usage.  This provides a different means of changing the sample color encoding than \code{\link{conColScheme}}.
+If \code{rep.cols} is provided, these colors are mapped one for one onto the levels of the the first element of \code{inst}.  This provides a different means of changing the sample color encoding than \code{\link{conColScheme}}.
 }
 
 \references{\url{https://github.com/bryanhanson/ChemoSpec}}
@@ -40,22 +40,18 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \examples{
-#data(CuticleIR)
-# original factor encoding from when CuticleIR was created:
-#levels(CuticleIR$groups)
-# split those original levels into 2 new ones (re-code them):
-#new.groups <- list(gen = c("G", "T"), trt = c("C", "E"))
-#new.CuticleIR <- splitSpectraGroups(CuticleIR, new.groups)
-#str(new.CuticleIR) # note two new elements, "gen" and "trt"
-# split into one new factor and re-color:
-#new.groups <- list(gen = c("G", "T")) # only one element
-#new.CuticleIR <- splitSpectraGroups(CuticleIR, new.groups, rep.cols = c("pink", "orange"))
-#str(new.CuticleIR) # note one new element, "gen" and the colors have changed.
-
-# note that if you want to use a newly created group in
-# plotScores and other functions to drive the color scheme, you'll
-# have to copy a new group to the groups element:
-#new.CuticleIR$groups <- new.CuticleIR$gen 
+data(metMUD2)
+# Original factor encoding:
+levels(metMUD2$groups)
+# Split those original levels into 2 new ones (re-code them)
+new.grps <- list(geneBb = c("B", "b"), geneCc = c("C", "c"))
+res <- splitSpectraGroups(metMUD2, new.grps)
+str(res) # note two new elements, "geneBb" and "geneCc"
+#
+# Note that if you want to use a newly created group in
+# plotScores and other functions to drive the color scheme
+# and labeling, you'll have to update the groups element:
+res$groups <- as.factor(paste(res$geneBb, res$geneCc, sep = ""))
 }
 
 \keyword{ utilities }
