@@ -1,0 +1,98 @@
+
+/* plotSpectraJS Bryan Hanson, DePauw University, February 2015 */
+
+/* styles for plotSpectraJS */
+/* items that begin with # are IDs */
+/* items that being with . are classes */
+/* items that don't begin with a special character are html reserved names */
+
+<style>
+
+/* IDs */
+
+.blank {
+/* Needed as the first style seems to be ignored */
+}
+
+/* Controls the check box labels */
+#sample_names {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+#title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Controls the font & size of the labels of the slider and cursor text box */
+#controls {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+/* Controls size & font of input box*/
+#CURSOR_TB {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+
+/* Classes */
+
+.refSpectrum {
+    fill: none;
+    stroke: black;
+    stroke-width: 1.0;
+}
+
+.spectrum {
+    fill: none;
+    stroke-width: 1.0;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 8 px;
+}
+
+.brush .extent {
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+.cursorGuide {
+    fill: none;
+    stroke: gray;
+    stroke-width: 0.5;
+}
+
+/* styles for html reserved items */
+
+form {
+  display: inline-block;
+  }
+
+body {
+    background-color: #FFFFF0;
+}
+
+input[type = "range"] {
+    width: 400px;
+    display: inline;
+}
+
+input[type = "checkbox"] {
+    width: 15px;
+    height: 15px;
+}
+
+</style>
