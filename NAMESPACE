@@ -3,6 +3,7 @@
 export(
 	loopThruSpectra, # Things you can do with Spectra objects
 	plotSpectra,
+	plotSpectraJS,
 	chkSpectra,
 	sumSpectra,
 	surveySpectra,
@@ -97,4 +98,6 @@ importFrom(MASS, cov.rob)
 importFrom(pcaPP, PCAgrid)
 importFrom(plyr, dlply, llply, m_ply, aaply, arrange, desc)
 importFrom(NbClust, NbClust)
+importFrom(jsonlite, toJSON)
+importFrom(js, uglify_optimize)
 

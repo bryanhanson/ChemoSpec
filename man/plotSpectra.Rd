@@ -38,6 +38,10 @@ Additional parameters to be passed to plotting functions.
 None.  Side effect is a plot.
 }
 
+\seealso{
+\code{\link{plotSpectraJS}} for the interactive version.
+}
+
 
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}

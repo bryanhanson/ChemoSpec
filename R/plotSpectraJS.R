@@ -55,9 +55,9 @@ plotSpectraJS <- function(spectra, browser = NULL, minify = TRUE) {
 
 	td <- tempdir()
 	fd <- system.file("extdata", package = "ChemoSpec")
-	eCfiles <- c("pS.css", "pS_globals.js", "pS_controls.js",
-	"pS_brushNguides.js", "pS_main.js", "plotSpectraJS.html")
-	chk2 <- file.copy(from=file.path(fd, eCfiles), to=file.path(td, eCfiles),
+	pSfiles <- c("pS.css", "pS_globals.js", "pS_controls.js",
+	"pS_brushNguides.js", "pS_main.js", "plotSpectraJS.html", "pS_spectra.js")
+	chk2 <- file.copy(from=file.path(fd, pSfiles), to=file.path(td, pSfiles),
 		overwrite = TRUE)
 	if (!all(chk2)) stop("Copying to temporary directory failed")
 

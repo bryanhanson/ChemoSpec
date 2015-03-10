@@ -5,15 +5,16 @@ Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
 Changes in version 4.0-0 2015-xx-xx
-     + Several functions were renamed for consistency.  YOUR CODE MAY BREAK. LoopThruSpectra -> loopThruSpectra, specSurvey -> surveySpectra, baselineSpec -> baselineSpectra, binBuck -> binSpectra, classPCA -> c_pcaSpectra,  robPCA -> r_pcaSpectra, bootPCA -> cv_pcaSpectra, aovPCA -> aov_pcaSpectra.
-     + Data set CuticleIR was removed.
-     + Data sets alignMUD, metMUD1, metMUD2 added.
+     + Added function plotSpectraJS for interactive plotting of spectra.
      + Added function corSpectra.
-     + Added function covrSpectra.
+     + Added function covSpectra.
      + Added function sampleDistSpectra.
      + Added function getMaxCovByFreq.
      + Added cosine distance as an option to rowDist.
      + Revised evalClusters to use either NbClust or clusterCrit packages.
+     + Several functions were renamed for consistency.  YOUR CODE MAY BREAK. LoopThruSpectra -> loopThruSpectra, specSurvey -> surveySpectra, baselineSpec -> baselineSpectra, binBuck -> binSpectra, classPCA -> c_pcaSpectra,  robPCA -> r_pcaSpectra, bootPCA -> cv_pcaSpectra, aovPCA -> aov_pcaSpectra.
+     + Data set CuticleIR was removed.
+     + Data sets alignMUD, metMUD1, metMUD2 added.
      + Removed alignTMS, calcSN, and modified files2SpectraObject.  Spectra can now be aligned using clupaSpectra.
      + Removed functions that import Bruker files as they have not had enough testing.
      + First argument in baselineSpectra was Spectra, changed to spectra for consistency.

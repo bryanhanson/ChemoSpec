@@ -151,7 +151,7 @@ var updateOffset = function(value) {
   dmin = arrayMinMax(D0)[0]
   dmax = arrayMinMax(D0)[1]
   drange = dmax - dmin
-  val = value*drange/100
+  val = value*1.2*drange/100
 
   // Iterate over the elements of D0, adding the value*i to each element,
   // store the result in global D1, which is the data actually plotted.
