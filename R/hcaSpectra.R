@@ -17,7 +17,7 @@ c.method = "complete", d.method = "euclidean", use.sym = FALSE, ...) {
 	hclst <- hclust(distance, method = c.method)
 
 	d <- plotHCA(spectra = spectra, hclst = hclst, sub.title = sub.title,
-		use.sym = use.sym)
+		use.sym = use.sym, ...)
 	L = list(hclst = hclst, dend = d)
 	return(L)
 	}
