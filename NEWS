@@ -4,7 +4,7 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
-Changes in version 4.0-0 2015-xx-xx
+Changes in version 4.0-0 2015-03-10
      + Added function plotSpectraJS for interactive plotting of spectra.
      + Added function corSpectra.
      + Added function covSpectra.
@@ -22,7 +22,7 @@ Changes in version 4.0-0 2015-xx-xx
      + Many updates to the documentation.
      + Revised package description.
      + Moved many full imports to importFrom to narrow namespace.
-     + IDPmisc is no longer imported at all.
+     + IDPmisc moved to imports; needed only for rfbaseline
      + Fixed a bad URL in plotScree.Rd.
      + Changed formatting of NEWS file so that the built-in reader parses it better.
 
