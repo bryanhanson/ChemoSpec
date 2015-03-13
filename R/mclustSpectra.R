@@ -6,9 +6,13 @@ function(spectra, pca, pcs = c(1:3), dims = c(1,2),
 # Wrapper to mclust functions
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, Dec 2009
+
+	if (!requireNamespace("mclust", quietly = TRUE)) {
+		stop("You need to install package mclust to use this function")
+	}
 	
 	d <- pca$x[,pcs]
-	mod <- Mclust(d, ...)
+	mod <- mclust::Mclust(d, ...)
 	note <- paste("Mclust optimal model: ", mod$modelName, "\n", sep = "")
 	my.sym <- letters[1:length(unique(mod$classification))]
 

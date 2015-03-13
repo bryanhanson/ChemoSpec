@@ -81,23 +81,7 @@ export(
 	getMaxCovByFreq
 	)
 
-import(chemometrics, rgl, mclust, lattice, exCon)
+importFrom(rgl, text3d, points3d, open3d, segments3d, surface3d)
 
-importFrom(seriation, hmap)
-importFrom(baseline, baseline, baselineGUI, getCorrected, plot)
-importFrom(amap, Dist)
-importFrom(RColorBrewer, brewer.pal)
-importFrom(R.utils, saveObject)
-importFrom(gsubfn, gsubfn)
-importFrom(speaq, detectSpecPeaks, findRef, dohCluster)
-importFrom(clusterCrit, intCriteria)
-importFrom(pls, cvsegments)
-importFrom(robustbase, covMcd)
-importFrom(grid, grid.text, gpar)
-importFrom(MASS, cov.rob)
-importFrom(pcaPP, PCAgrid)
 importFrom(plyr, dlply, llply, m_ply, aaply, arrange, desc)
-importFrom(NbClust, NbClust)
-importFrom(jsonlite, toJSON)
-importFrom(js, uglify_optimize)
 

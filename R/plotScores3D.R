@@ -8,6 +8,14 @@ function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, Sept 2009
 
+	if (!requireNamespace("lattice", quietly = TRUE)) {
+		stop("You need to install package lattice to use this function")
+	}
+
+	if (!requireNamespace("grid", quietly = TRUE)) {
+		stop("You need to install package grid to use this function")
+	}
+
 	if (!length(pcs) == 3) stop("Please give exactly 3 PCs to plot")
 	chkSpectra(spectra)
 
@@ -54,7 +62,7 @@ function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
 		}
 
 
-	p <- cloud(z ~ x * y, data = df, col = as.character(df$col), cex = df$size, pch = pch,
+	p <- lattice::cloud(z ~ x * y, data = df, col = as.character(df$col), cex = df$size, pch = pch,
 		xlab = x.lab, ylab = y.lab, zlab = z.lab, ...,
 		par.settings = list(axis.line = list(col = "transparent"),
 			par.xlab.text = list(cex = 0.75),
@@ -63,7 +71,7 @@ function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
 		screen = view, zoom = 0.75,
 		key = cube.key,
 		panel = function(...) {
-			panel.cloud(...)
+			lattice::panel.cloud(...)
 #			if (tol > 0) {
 #				pts <- labelExtremes3d(pca$x[,pcs], names = spectra$names, tol = tol)
 #				labs <- as.character(pts[,4])
@@ -77,6 +85,6 @@ function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
 		)
 
 	plot(p)
-	grid.text(spectra$desc, 0.5, 0.1, gp = gpar(fontsize = 10))
+	grid::grid.text(spectra$desc, 0.5, 0.1, gp = grid::gpar(fontsize = 10))
 
 	}

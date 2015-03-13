@@ -4,15 +4,29 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, ...) {
 	
 	# A simple wrapper to the excellent baseline package
 	# Part of ChemoSpec.  Bryan Hanson December 2011
+
+	if (!requireNamespace("baseline", quietly = TRUE)) {
+		stop("You need to install package baseline to use this function")
+		}
+
+	dots <- list(...)
+	if (any(names(dots) == "method")) {
+	    method <- dots$method
+		if (method == "rfbaseline") {
+			if (!requireNamespace("IDPmisc", quietly = TRUE)) {
+				stop("You need to install package IDPmisc to use method rfbaseline")
+				}
+			}
+	    }
 		
 	dat <- spectra$data # possible conflict with baseline's use of spectra
-	if (int) baselineGUI(dat, ...) # no return value
+	if (int) baseline::baselineGUI(dat, ...) # no return value
 	if (!int) {
-		b <- baseline(dat, ...)
+		b <- baseline::baseline(dat, ...)
 		plot(b)
 		
 		if (retC) {
-			bc <- getCorrected(b)
+			bc <- baseline::getCorrected(b)
 			spectra$data <- bc
 			chkSpectra(spectra)
 			return(spectra)

@@ -7,13 +7,21 @@ mclust3D <- function(data, ellipse = TRUE, rob = FALSE,
 # Function to plot mclust results in 3D with confidence ellipses
 # Bryan Hanson, DePauw University, Dec 2009
 # This is the "plain" version that works w/o ChemoSpec package
-	
+
+	if (!requireNamespace("mclust", quietly = TRUE)) {
+		stop("You need to install package mclust to use this function")
+	}
+
+	if (!requireNamespace("RColorBrewer", quietly = TRUE)) {
+		stop("You need to install package RColorBrewer or supply the colors yourself")
+		}
+
 	if (!dim(data)[2] == 3) stop("Data must contain 3 columns (x, y, z)")
 
-	mod <- Mclust(data, ...)
+	mod <- mclust::Mclust(data, ...)
 	gr <- unique(mod$classification)
 	my.col <- c("red", "blue")
-	if (length(gr) > 2) my.col <- brewer.pal(length(gr), "Set1")
+	if (length(gr) > 2) my.col <- RColorBrewer::brewer.pal(length(gr), "Set1")
 	my.sym <- letters[1:length(gr)]
 	df1 <- df2 <- data.frame(x = NA, y = NA, z = NA, sym = NA, col = NA, a = NA)
 
@@ -84,7 +92,7 @@ mclust3D <- function(data, ellipse = TRUE, rob = FALSE,
 	text3d(df1$x, df1$y, df1$z, texts = df1$sym, color = df1$col) # draw original points
 
 	if (!is.null(truth)) { # X out errors in classification
-		ans <- classError(mod$classification, truth)
+		ans <- mclust::classError(mod$classification, truth)
 		wh <- data[ans$misclassified,]
 		if (length(wh) == 0) warning("No points were misclassified, damn you're good!")
 		if (length(wh) > 0) text3d(wh, texts = "X", color = "black", cex = 1.5)

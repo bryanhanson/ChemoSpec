@@ -4,6 +4,10 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.0.1 2015-03-13
+     + Changes to imports and namespace to reduce overhead.
+     + Fixed example in hmapSpectra.Rd.
+
 Changes in version 4.0-0 2015-03-10
      + Added function plotSpectraJS for interactive plotting of spectra.
      + Added function corSpectra.

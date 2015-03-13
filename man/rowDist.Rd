@@ -2,7 +2,7 @@
 \alias{rowDist}
 \title{ Compute Distance Between Rows of a Matrix }
 \description{
-This function is a wrapper to compute the distance between rows of a matrix using a number of methods.  Some of these are available in package \code{\link{stats}} and some in \code{\link{Dist}} in package \code{amap}.  All this function does is determine which method is requested and then the distance calculation is done by the appropriate method. The exception is the cosine distance which is calculated locally.
+This function is a wrapper to compute the distance between rows of a matrix using a number of methods.  Some of these are available in package \code{\link{stats}} and some in \code{Dist} in package \code{amap}.  All this function does is determine which method is requested and then the distance calculation is done by the appropriate method. The exception is the cosine distance which is calculated locally.
 }
 \usage{
 rowDist(x, method)
@@ -16,7 +16,7 @@ A character; one of \code{c("pearson", "correlation", "spearman", "kendall", "eu
 }
 }
 \details{
-Methods \code{c("euclidean", "maximum", "manhattan", "canberra","binary", "minkowski")} are sent to function \code{\link{dist}} in package \code{\link{stats}} while methods \code{c("pearson", "correlation", "spearman", "kendall")} are handled by \code{\link{Dist}} in package \code{amap}.  See the respective help pages for details. \code{"cosine"} is handled locally.
+Methods \code{c("euclidean", "maximum", "manhattan", "canberra","binary", "minkowski")} are sent to function \code{\link{dist}} in package \code{\link{stats}} while methods \code{c("pearson", "correlation", "spearman", "kendall")} are handled by \code{Dist} in package \code{amap}.  See the respective help pages for details. \code{"cosine"} is handled locally.
 }
 \value{
 An object of class \code{dist}.

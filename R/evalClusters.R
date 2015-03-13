@@ -7,15 +7,19 @@ function(spectra, pkg = "NbClust", hclst = NULL,  k = NULL, h = NULL, crit = "Du
 # Bryan Hanson, DePauw University, Dec 2014
 
 	if (pkg == "NbClust") {
-		res <- NbClust(spectra$data, ...)
-		return(res)
+		if (!requireNamespace("NbClust", quietly = TRUE)) {
+			stop("You need install package NbClust to use this function/option")
+			}
+		res <- NbClust::NbClust(spectra$data, ...)
 		}
 
 	if (pkg == "clusterCrit") {
+		if (!requireNamespace("clusterCrit", quietly = TRUE)) {
+			stop("You need install package clusterCrit to use this function/option")
+			}
 		if (is.null(hclust)) stop("You must provide an hclust object")
 	 	ct <- cutree(hclst, k = k, h = h)
-		res <- intCriteria(spectra$data, ct, crit, ...)
+		res <- clusterCrit::intCriteria(spectra$data, ct, crit, ...)
 		return(res)
 		}
-
 	}

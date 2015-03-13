@@ -4,6 +4,10 @@ function(spectra, pca, loads = c(1), ref = 1, ...) {
 # Function to plot loadings vs. frequencies
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, June 2008
+
+	if (!requireNamespace("lattice", quietly = TRUE)) {
+		stop("You need to install package lattice to use this function")
+	}
 	
 	if (missing(spectra)) stop("No spectral data set provided")
 	if (missing(pca)) stop("No PCA results provided")
@@ -31,7 +35,7 @@ function(spectra, pca, loads = c(1), ref = 1, ...) {
 	# Do the plot
 	# Note: no way exists to plot the x axis reversed for multiple panels
 
-	p <- xyplot(y ~ x | z, data = df,
+	p <- lattice::xyplot(y ~ x | z, data = df,
 		xlab = spectra$unit[1], ylab = "",
 		sub = list(label = pca$method,
 			fontface = "plain"),
@@ -41,10 +45,10 @@ function(spectra, pca, loads = c(1), ref = 1, ...) {
 		strip.left = TRUE, strip = FALSE, col = "black",
 		scales = list(x = "same", y = "free"),
 		panel = function(..., type = "h") {
-			if (panel.number() == 1) {
-				panel.xyplot(..., type = "l")
+			if (lattice::panel.number() == 1) {
+				lattice::panel.xyplot(..., type = "l")
 				} else {
-					panel.xyplot(..., type = type)
+					lattice::panel.xyplot(..., type = type)
 					}
 			}, ...)
 	

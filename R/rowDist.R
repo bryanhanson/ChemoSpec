@@ -10,14 +10,17 @@ rowDist <- function(x, method) {
 		"cosine"))
 
 	if (method %in% c("pearson", "correlation", "spearman", "kendall")) {
-		distance <- Dist(x, method = method)
+		if (!requireNamespace("amap", quietly = TRUE)) {
+			stop("You need to install package amap to use this function/option")
+			}
+		distance <- amap::Dist(x, method = method)
 		}
 		
 	if (method %in% c("euclidean", "maximum", "manhattan", "canberra","binary", "minkowski")) {
 		distance <- dist(x, method = method)
 		}
 		
-	if ( method == "cosine") { # code by Claudia Beleites w/small modifications
+	if ( method == "cosine") { # code by Claudia Beleites/unmixR w/small modifications
 		x <- as.matrix(x)
 		x <- tcrossprod(x)
 		l <- rowSums(x^2)

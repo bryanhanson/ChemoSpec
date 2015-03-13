@@ -49,9 +49,7 @@ data(SrE.IR)
 newIR <- removeFreq(SrE.IR, rem.freq =
 SrE.IR$freq > 1800 & SrE.IR$freq < 2500)
 # now make the heat map:
-myt <- expression(italic(S.)~italic(repens)~IR~Spectra)
-hmapSpectra(newIR, title = myt, t.pos = c(0.5, 0.5, 0.5),
-cexRow = 0.5, cexCol = 0.1, no.col = 9)
+hmapSpectra(newIR, cexRow = 0.5, cexCol = 0.1, no.col = 9)
 }
 \keyword{ multivariate }
 

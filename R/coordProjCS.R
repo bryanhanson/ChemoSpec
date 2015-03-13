@@ -6,6 +6,10 @@ function (data, dimens = c(1, 2), parameters = NULL, z = NULL,
     xlim = NULL, ylim = NULL, CEX = 1, PCH = ".", identify = FALSE, 
     ...) 
 {
+
+	if (!requireNamespace("mclust", quietly = TRUE)) {
+		stop("You need to install package mclust to use this function")
+	}
 	
 	# This is a modified version of coordProj{mclust} for use in ChemoSpec
 	# Part of the ChemoSpec package
@@ -14,7 +18,7 @@ function (data, dimens = c(1, 2), parameters = NULL, z = NULL,
     if (is.null(dimens)) 
         dimens <- c(1, 2)
     if (is.null(classification) && !is.null(z)) 
-        classification <- map(z)
+        classification <- mclust::map(z)
     if (is.null(uncertainty) && !is.null(z)) 
         uncertainty <- 1 - apply(z, 1, max)
     if (!is.null(parameters)) {
@@ -74,8 +78,8 @@ function (data, dimens = c(1, 2), parameters = NULL, z = NULL,
         L <- length(U)
         noise <- classification[1] == "0"
         if (is.null(symbols)) {
-            if (L <= length(mclust.options("classPlotSymbols"))) {
-                symbols <- mclust.options("classPlotSymbols")
+            if (L <= length(mclust::mclust.options("classPlotSymbols"))) {
+                symbols <- mclust::mclust.options("classPlotSymbols")
                 if (noise) {
                   first <- symbols[1]
                   symbols[symbols == 16] <- first
@@ -92,8 +96,8 @@ function (data, dimens = c(1, 2), parameters = NULL, z = NULL,
         else if (length(symbols) == 1) 
             symbols <- rep(symbols, L)
         if (is.null(colors)) {
-            if (L <= length(mclust.options("classPlotColors"))) {
-                colors <- mclust.options("classPlotColors")[1:L]
+            if (L <= length(mclust::mclust.options("classPlotColors"))) {
+                colors <- mclust::mclust.options("classPlotColors")[1:L]
                 if (noise) {
                   first <- colors[1]
                   colors[colors == "black"] <- first
@@ -151,7 +155,7 @@ function (data, dimens = c(1, 2), parameters = NULL, z = NULL,
                 else CEX)
         }
     }, errors = {
-        ERRORS <- classError(classification, truth)$misclassified
+        ERRORS <- mclust::classError(classification, truth)$misclassified
         plot(data[, 1], data[, 2], type = "n", xlab = xlab, ylab = ylab, 
             xlim = xlim, ylim = ylim, main = "", ...)
         if (identify) {
@@ -230,7 +234,7 @@ function (data, dimens = c(1, 2), parameters = NULL, z = NULL,
         points(data[, 1], data[, 2], pch = PCH, cex = CEX)
     })
     if (haveParams) {
-        for (k in 1:G) mvn2plot(mu = mu[, k], sigma = sigma[, 
+        for (k in 1:G) mclust::mvn2plot(mu = mu[, k], sigma = sigma[, 
             , k], k = 15)
     }
     invisible()

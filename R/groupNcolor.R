@@ -30,23 +30,30 @@ function(spectra, gr.crit = NULL, gr.cols = c("auto")) {
 	
 	spectra$groups <- as.factor(spectra$groups)
 	if (any(is.na(spectra$groups))) warning("At least one file name did not correspond any entry in gr.crit and its group is thus NA")
-	# assign each group a color for plotting later
+	
+	# Assign each group a color for plotting later
 
 	spectra$colors <- rep(NA, length(spectra$names)) # initialize
 	
 	if (identical(gr.cols[1], "auto")) {
-		gr.cols <- brewer.pal(length(gr.crit), "Set1")
+		if (!requireNamespace("RColorBrewer", quietly = TRUE)) {
+			stop("You need to install package RColorBrewer or supply the colors yourself")
+			}
+		gr.cols <- RColorBrewer::brewer.pal(length(gr.crit), "Set1")
 		for (i in 1:length(gr.crit)) {
 			which <- grep(gr.crit[i], spectra$names)
 			spectra$colors[which] <- gr.cols[i]
 			}
-	} else # match gr.cols with gr.crit & assign spectra$colors	
+		}
+		
+	if (!identical(gr.cols[1], "auto")) {
 		for (i in 1:length(gr.crit)) {
 			which <- grep(gr.crit[i], spectra$groups)
 			spectra$colors[which] <- gr.cols[i]
 			}
+		}
 
-	# either way, associate symbols and alt.sym with each gr.crit
+	# Either way, associate symbols and alt.sym with each gr.crit
 	sym.choice <- c(1, 2, 3, 15, 16, 17, 22, 8) # preferred symbols
 	sym1 <- sym.choice[1:length(gr.crit)]
 	sym2 <- letters[1:length(gr.crit)]

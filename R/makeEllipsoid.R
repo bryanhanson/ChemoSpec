@@ -15,6 +15,9 @@ function(data, cl = 0.95, rob = FALSE, frac.pts.used = 0.80) {
 # For 3D data, there must be at least 5 data points for rob = TRUE, generally,
 # but, we will throw an error if there are fewer than 8 points for a robust calculation
 
+	if (!requireNamespace("MASS", quietly = TRUE)) {
+		stop("You need to install package MASS to use this function")
+	}
 	npoints <- 1000 # number of points in the ellipse
 	mean <- colMeans(data)
 	p <- length(mean)
@@ -42,7 +45,7 @@ function(data, cl = 0.95, rob = FALSE, frac.pts.used = 0.80) {
 	
 	if (rob) {
 		qt <- floor(n * frac.pts.used)
-		robust <- cov.rob(data, method = "mcd", nsamp = "sample", quantile.used = qt)
+		robust <- MASS::cov.rob(data, method = "mcd", nsamp = "sample", quantile.used = qt)
 		j <- length(robust$best)
 		q <- robust$n.obs
 

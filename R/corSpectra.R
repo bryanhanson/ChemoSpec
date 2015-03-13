@@ -15,6 +15,12 @@ corSpectra <- function(spectra, plot = TRUE,
 
 # NOTE: Cannot subset before computing cor() as this gives the wrong numerical answer
 
+	if ((pmode == "contourplot") | (pmode == "levelplot")) {
+		if (!requireNamespace("lattice", quietly = TRUE)) {
+			stop("You need to install package lattice to use this option")
+			}
+		}
+	
 	if (missing(spectra)) stop("No spectral data provided")
 	chkSpectra(spectra)
 
@@ -116,6 +122,9 @@ corSpectra <- function(spectra, plot = TRUE,
 			}
 
 		if (pmode == "exCon") {
+			if (!requireNamespace("exCon", quietly = TRUE)) {
+				stop("You need to install package exCon to use this plotting option")
+				}
 			LX <- range(spectra$freq)
 			LY <- LX
 			ticklabX <- NA
@@ -147,6 +156,9 @@ corSpectra <- function(spectra, plot = TRUE,
 		refscale <- seq(-1, 1, length.out = 9)
 				
 		if ((pmode == "contour") | (pmode == "contourplot") | (pmode == "exCon")) {
+			if (!requireNamespace("exCon", quietly = TRUE)) {
+				stop("You need to install package exCon to use this plotting option")
+				}
 			if (is.null(levels)) {
 				levels <- chooseLvls(M = C, n = 5L, mode = "even")
 				msg <- paste("The levels chosen are:\n", paste(round(levels, 5), collapse = " "), sep = " ")
@@ -219,7 +231,7 @@ corSpectra <- function(spectra, plot = TRUE,
 		# First two are lattice functions
 		
 		if (pmode == "levelplot") {
-			p <- levelplot(C, xlab = d[[2]], ylab = d[[2]],
+			p <- lattice::levelplot(C, xlab = d[[2]], ylab = d[[2]],
 				col.regions = d[[1]],
 				scales = list(
 					x = list(at = d[[5]], labels = d[[7]]),
@@ -237,7 +249,7 @@ corSpectra <- function(spectra, plot = TRUE,
 			}
 		
 		if (pmode == "contourplot") {
-			p <- contourplot(C, xlab = d[[2]], ylab = d[[2]],
+			p <- lattice::contourplot(C, xlab = d[[2]], ylab = d[[2]],
 				col.regions = d[[1]],
 				region = TRUE,
 				scales = list(
@@ -290,7 +302,7 @@ corSpectra <- function(spectra, plot = TRUE,
 			y2 <- findInterval(d[[4]][2], spectra$freq)
 			Z <- C[x1:x2, y1:y2]
 					
-			exCon(M = Z, levels = d[[9]],
+			exCon::exCon(M = Z, levels = d[[9]],
 				x = seq(d[[3]][1], d[[3]][2], length.out = ncol(Z)),
 				y = seq(d[[4]][1], d[[4]][2], length.out = nrow(Z)),
 				, ...)		

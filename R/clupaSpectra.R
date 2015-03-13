@@ -4,10 +4,14 @@ clupaSpectra <- function(spectra, bT = NULL, ...) {
 	# for NMR spectra (after Vu, Laukens, Valkenborg)
 	# Part of the ChemoSpec package
 	# Bryan Hanson, DePauw University, January 2015
-	
+
+	if (!requireNamespace("speaq", quietly = TRUE)) {
+		stop("You need to install package speaq to use this function")
+		}
+		
 	if (is.null(bT)) bT <- 0.05*diff(range(spectra$data)) + abs(min(spectra$data))
-	pL <- detectSpecPeaks(spectra$data, baselineThresh = bT, ...)
-	ref <- findRef(pL)[[1]]
-	spectra$data <- dohCluster(spectra$data, pL, ref, ...)
-	return(spectra)
+		pL <- speaq::detectSpecPeaks(spectra$data, baselineThresh = bT, ...)
+		ref <- speaq::findRef(pL)[[1]]
+		spectra$data <- speaq::dohCluster(spectra$data, pL, ref, ...)
+		return(spectra)
 	}

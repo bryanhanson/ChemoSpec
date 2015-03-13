@@ -10,6 +10,10 @@ readJDX <- function (file = "", debug = FALSE){
 # We need several things out of the JCAMP-DX file format:
 # FIRSTX, LASTX, NPOINTS, XYDATA
 
+	if (!requireNamespace("gsubfn", quietly = TRUE)) {
+		stop("You need to install package gsubfn to use this option")
+	}
+
 	if (file == "") stop("No file specified")
 	jdx <- readLines(file)
 
@@ -69,21 +73,21 @@ readJDX <- function (file = "", debug = FALSE){
 	firstX <- grep("^##FIRSTX=", jdx)
 	if (firstX == 0) stop("Couldn't find FIRSTX")
 	firstX <- jdx[firstX]
-	firstX <- gsubfn("##FIRSTX=", replacement = "", firstX)
+	firstX <- gsubfn::gsubfn("##FIRSTX=", replacement = "", firstX)
 	firstX <- sub(",", ".", firstX) # for EU style files
 	firstX <- as.numeric(firstX)
 
 	lastX <- grep("^##LASTX=", jdx)
 	if (lastX == 0) stop("Couldn't find LASTX")
 	lastX <- jdx[lastX]
-	lastX <- gsubfn("##LASTX=", replacement = "", lastX)
+	lastX <- gsubfn::gsubfn("##LASTX=", replacement = "", lastX)
 	lastX <- sub(",", ".", lastX) # for EU style files
 	lastX <- as.numeric(lastX)
 
 	npoints <- grep("^##NPOINTS=", jdx)
 	if (npoints == 0) stop("Couldn't find NPOINTS")
 	npoints <- jdx[npoints]
-	npoints <- gsubfn("##NPOINTS=", replacement = "", npoints)
+	npoints <- gsubfn::gsubfn("##NPOINTS=", replacement = "", npoints)
 	npoints <- as.integer(npoints)
 
 	if (debug) cat("\tNPOINTS = ", npoints, "\n")
@@ -96,7 +100,7 @@ readJDX <- function (file = "", debug = FALSE){
 	
 	yFac <- grep("^##YFACTOR=", jdx)
 	if (yFac == 0) stop("Couldn't find YFACTOR")
-	yFac <- gsubfn("##YFACTOR=", replacement = "", jdx[yFac])
+	yFac <- gsubfn::gsubfn("##YFACTOR=", replacement = "", jdx[yFac])
 	yFac <- sub(",", ".", yFac) # for EU style files
 	yFac <- as.numeric(yFac)
 	if (debug) cat("\tyFac = ", yFac, "\n")

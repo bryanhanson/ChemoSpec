@@ -26,6 +26,10 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 # txt files written by Bruker are parsed by readBrukerTxt
 # Files written by Bruker Topspin command convbin2asc can are parsed with readBrukerAscii.
 
+	if (!requireNamespace("R.utils", quietly = TRUE)) {
+		stop("You need to install package R.utils to use this function")
+		}
+
 	if (is.null(gr.crit)) stop("No group criteria provided to encode data")
 
 	# First set up some common stuff
@@ -212,7 +216,9 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 	chkSpectra(spectra)
 	
 	datafile <- paste(out.file, ".RData", sep = "")
-	saveObject(spectra, file = datafile)
-	spectra
+
+	R.utils::saveObject(spectra, file = datafile)
+	
+	return(spectra)
 	}
 

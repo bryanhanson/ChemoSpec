@@ -4,7 +4,7 @@
 Modified Version of coordProj from mclust
 }
 \description{
-This is a modified version of the function \code{\link{coordProj}} from \code{mclust}. In this version, the original symbol scheme for the error plot is changed to simply plot an X over the letters identifying the groups.  An internal function, not generally called by the user.
+This is a modified version of the function \code{coordProj} from \code{mclust}. In this version, the original symbol scheme for the error plot is changed to simply plot an X over the letters identifying the groups.  An internal function, not generally called by the user.
 }
 \usage{
 coordProjCS(data, dimens = c(1, 2), parameters = NULL,
@@ -15,62 +15,62 @@ coordProjCS(data, dimens = c(1, 2), parameters = NULL,
 }
 \arguments{
   \item{data}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{dimens}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{parameters}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{z}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{classification}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{truth}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{uncertainty}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{what}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{quantiles}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{symbols}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{colors}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{scale}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{xlim}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{ylim}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{CEX}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{PCH}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{identify}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
   \item{\dots}{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
 }
 \value{
-See \code{\link{coordProj}}.
+See \code{coordProj}.
 }
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}

@@ -59,6 +59,7 @@ The mclust model is returned invisibly, and a plot is produced.
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
+require("mclust")
 set.seed(666)
 x <- c(rnorm(10, 3, 0.5), rnorm(10, -1, 0.5))
 y <- c(rnorm(10, 1, 1), rnorm(10, -4, 0.5))

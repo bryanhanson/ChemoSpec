@@ -4,7 +4,7 @@
 Evaluate or Compare the Quality of Clusters Quantitatively
 }
 \description{
-This function is a wrapper to two functions: \code{\link{intCriteria}} function in package \code{clusterCrit}, and \code{\link{NbClust}} in package \code{NbClust}. It can be used to quantitatively compare different clustering options.
+This function is a wrapper to two functions: \code{intCriteria} function in package \code{clusterCrit}, and \code{NbClust} in package \code{NbClust}. It can be used to quantitatively compare different clustering options.
 }
 \usage{
 evalClusters(spectra, pkg = "NbClust",
@@ -28,7 +28,7 @@ Integer.  The number of groups in which to cut the tree (\code{hclust}).  Only a
 Numeric.  The height at which to cut the tree.  Either \code{k} or \code{h} must be given, with \code{k} taking precedence.  See \code{\link{cutree}}.  Only applies to \code{pkg = "clusterCrit"}.
 }
   \item{crit}{
-String.  A string giving the criteria to be used in evaluating the quality of the cluster.  See \code{\link{intCriteria}}.  Only applies to \code{pkg = "clusterCrit"}.
+String.  A string giving the criteria to be used in evaluating the quality of the cluster.  See \code{liintCriteria}.  Only applies to \code{pkg = "clusterCrit"}.
 }
   \item{\dots}{
 Other parameters to be passed to the functions. In particular, the default \code{NbClust} package will need some parameters.  See the example.
@@ -37,7 +37,7 @@ Other parameters to be passed to the functions. In particular, the default \code
 }
 
 \value{
-A list giving the results, as described in \code{\link{intCriteria}} or \code{\link{NbClust}}.
+A list giving the results, as described in \code{intCriteria} or \code{NbClust}.
 }
 
 \details{

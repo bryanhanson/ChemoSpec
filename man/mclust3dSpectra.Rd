@@ -70,9 +70,9 @@ The mclust model is returned invisibly, and a plot is produced.
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \examples{
+\dontrun{
 data(metMUD1)
 class <- c_pcaSpectra(metMUD1)
-\dontrun{
 mclust3dSpectra(metMUD1, class, title = "mclust3dSpectra demo",
 	lab.opts = FALSE, t.pos = "A")
 }

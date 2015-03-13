@@ -7,6 +7,10 @@ function (spectra, pcs, choice = "noscale", repl = 50, segments = 4,
 # Part of the ChemoSpec package.  Bryan Hanson, DePauw Univ, Sept 2009
 # Conducts classical, not robust, PCA
 
+	if (!requireNamespace("pls", quietly = TRUE)) {
+		stop("You need to install package pls to use this function")
+	}
+
 	if (missing(spectra)) stop("No spectral data set passed to PCA")
 	if (!class(spectra) == "Spectra") stop("Your spectral data set looks corrupt!")
 	
@@ -53,10 +57,10 @@ function (spectra, pcs, choice = "noscale", repl = 50, segments = 4,
     dimnames(Fit) <- list(paste("rep", 1:repl), 1:amax)
     for (i in 1:repl) {
         if (missing(length.seg)) {
-            segment <- cvsegments(nrow(X), k = segments, type = segment.type)
+            segment <- pls::cvsegments(nrow(X), k = segments, type = segment.type)
         }
         else {
-            segment <- cvsegments(nrow(X), length.seg = length.seg, 
+            segment <- pls::cvsegments(nrow(X), length.seg = length.seg, 
                 type = segment.type)
         }
         if (trace) 

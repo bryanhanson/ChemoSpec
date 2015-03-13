@@ -20,7 +20,7 @@ An object of S3 class \code{\link{Spectra}}.
 }
 
   \item{bT}{
-Numeric.  The baseline threshold. Defaults to five percent of the range of the data, in \code{spectra$data}.  Passed to \code{\link{detectSpecPeaks}}.
+Numeric.  The baseline threshold. Defaults to five percent of the range of the data, in \code{spectra$data}.  Passed to \code{detectSpecPeaks}.
 }
 
   \item{\dots}{

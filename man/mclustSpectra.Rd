@@ -24,7 +24,7 @@ An integer vector describing which PCs to use.
 A integer vector giving the PCA dimensions to use.
 }
   \item{plot}{
-A character string indicating what plot to make.  Options are \code{c("BIC", "proj", "error")}; see \code{\link{Mclust}} for details.
+A character string indicating what plot to make.  Options are \code{c("BIC", "proj", "error")}; see \code{Mclust} for details.
 }
   \item{use.sym}{
 Logical; if true, the color scheme is changed to black and symbols are used for plotting.
@@ -44,9 +44,10 @@ The \code{Mclust} model is returned invisibly, and a plot is made.
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 \seealso{
-\code{\link{Mclust}} for the underlying function.
+\code{Mclust} for the underlying function.
 }
 \examples{
+require("mclust")
 data(SrE.IR)
 class <- c_pcaSpectra(SrE.IR, choice = "autoscale")
 mclustSpectra(SrE.IR, class, main = "Cuticle IR", plot = "BIC")
