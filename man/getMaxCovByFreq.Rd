@@ -25,7 +25,7 @@ Numeric.  A value in the interval (0...1) giving the quantile to be selected.  F
 }
 
 \value{
-A data frame containing the frequencies from the \code{\link{Spectra}} object, the absolute value of the covariance at that frequency, and the relative covariance.  Sorted by absolute covariance in descending order.
+A data frame containing the frequencies from the \code{\link{Spectra}} object, the covariance at that frequency, the absolute value of the covariance, and the relative covariance.  Sorted by absolute covariance in descending order.
 }
 
 \references{

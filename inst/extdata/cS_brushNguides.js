@@ -26,8 +26,7 @@ var activateBrush = function() {
     // update global xD
     xD = [((spanX*xL) + Dx[0]), ((spanX*xU) + Dx[0])]
     brushExtent = [xL, xU]
-    clearSpectra();
-    updateOffset()
+    clearSpectrum();
     }   // end of brushed
 
   // IMPORTANT: xD is a global variable
@@ -70,7 +69,7 @@ var activateGuides = function() {
   	if (mX < 0) {mX = 0}; // truncate low
   	if (mX > specWidth) {mX = specWidth}; // truncate high
   	mX = mX/specWidth // as fraction
-  	followMouse();
+  	followMouse(mX);
   } // end of getMouseX
 
   followMouse = function() { // This draws the guides
@@ -111,15 +110,16 @@ var activateGuides = function() {
 // to a form/text box
 
 var setupCursorReporting = function() {
-  var xNat
-  xNat = xD[0] + ((mX) * (xD[1] - xD[0]))
+  var xNat;
 
-  if ((xUnir = "wavenumber") || (xUnit = "Wavenumber")) {
-    document.getElementById("CURSOR_TB").value = xNat.toFixed(1)
+  xNat = xD[0] + ((mX) * (xD[1] - xD[0]));
+
+  if ((xUnit = "wavenumber") || (xUnit = "Wavenumber")) {
+    document.getElementById("CURSOR_TB").value = xNat.toFixed(1);
   }
 
   if (xUnit = "ppm") {
-    document.getElementById("CURSOR_TB").value = xNat.toFixed(3)
+    document.getElementById("CURSOR_TB").value = xNat.toFixed(3);
   }
 
 } // End of setupCursorReporting

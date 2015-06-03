@@ -35,15 +35,22 @@ covSpectra <- function(spectra, freq = spectra$freq[1],
 		V <- cov(X) # same as (t(X) %*% X)/(nrow(spectra$data) - 1)
 		}
 
-		# Color scale for each level
-		# blue/low -> red/high, anchored at zero (index 5, a shade of green)
-		# max and min will come from the data (i.e., red will be at max of V)
-		cscale <- c(rev(rainbow(4, start = 0.45, end = 0.66)), rev(rainbow(5, start = 0.0, end = 0.25)))
-		# view with:
-		# pie(rep(1, 9), col = cscale)
+	# Color scale for each level
+	# blue/low -> red/high, anchored at zero (index 5, a shade of green)
+	# max and min will come from the data (i.e., red will be at max of V)
+	cscale <- c(rev(rainbow(4, start = 0.45, end = 0.66)), rev(rainbow(5, start = 0.0, end = 0.25)))
+	# view with:
+	# pie(rep(1, 9), col = cscale)
 
-		refscale <- seq(-1, 1, length.out = 9)	
-		myc <- cscale[findInterval(C[row,], refscale)] # color based upon cor, not cov
+	refscale <- seq(-1, 1, length.out = 9)
+	
+	# Now average every contiguous pair of values in C[row,] so that there is one
+	# less value, and use the mean value of the pair to assign colors
+	# e.g. the mean of points n & n+1 determines the color used to plot that segment
+
+	cd <- diff(C[row,])
+	cr <- 0.5 * cd + C[row,][-length(C[row,])] # this will have one value less than the data
+	myc <- cscale[findInterval(cr, refscale)] # color based upon cor, not cov
 
 	# Ready to plot
 	
@@ -56,6 +63,7 @@ covSpectra <- function(spectra, freq = spectra$freq[1],
 		main = paste("Frequency = ", sprintf("%5.5f", spectra$freq[row]), sep = ""),
 		...)
 	segments(spectra$freq[ind1], V[row, ind1], spectra$freq[ind2], V[row, ind2],  col = myc, ...)
+	abline(v = freq[row], lty = 2, col = "gray")
 
 	L <- list(cov = V, cor = C)
 	invisible(L)

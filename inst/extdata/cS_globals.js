@@ -1,5 +1,5 @@
 
-// plotSpectraJS Bryan Hanson, DePauw University, February 2015
+// covSpectraJS Bryan Hanson, DePauw University, May 2015
 
 // Global variables collected here, with NO exceptions
 // These are in addition to the global variables passed from R
@@ -13,7 +13,7 @@
 // The entire area containing all of the above is the window,
 // use win (the div is 'main')
 
-var winWidth = 0.9*screen.width, // define sizes of windows
+var winWidth = 0.85*screen.width, // define sizes of windows
     winHeight = 0.7*screen.height, // these values determine the aspect ratio of the layout
     specWidth = 0.77*winWidth, // < 90% to allow for padding and gaps
     specHeight = 0.95*winHeight,
@@ -39,27 +39,18 @@ var svg = d3.select('#main')
     .attr("height", window.innerHeight)
 
 // Initialize xD & yD
-// Dx & Dy are the data domains passed in by the R function
+// Dx & Dy are the data ranges passed in by the R function
 // Domains are in native units, as supplied by the user
 
-// xD & yD are the brushing coordinates always on [0,1] ????
+// xD & yD are the current data ranges (zoomed by brushing)
 
 var xD = Dx,
     yD = Dy;
-
-// Define refRow, the reference spectrum to be drawn in the map area
-
-var refRow = 1;
 
 // Initialize an array with 2 elements which will hold the
 // brush extent in fractional units
 
 var brushExtent = [0, 1]
-
-// Initialize the value of offset.  This is needed globally so that
-// if updateOffset was not called via the slider, a value is available.
-
-var offset = 0.0
 
 // Initialize the mouse X position, mX
 

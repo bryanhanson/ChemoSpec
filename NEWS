@@ -4,6 +4,15 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.0.2 2015-05-27
+     + Small tweaks to layout of plotSpectraJS
+     + Added function covSpectraJS.
+     + Added function surveySpectra2.
+     + The method of computing colors in covSpectra and covSpectraJS is now based upon the average correlation value between two contiguous points.  Previously it had been based on point n and not n & n + 1.
+     + The output of getMaxCovByFreq now includes the signed covariance values.
+     + Fixed some small internal issues in plotSpectraJS that were not noticeable to the end user.
+     + Fixed the mouse / cursor tracking in plotSpectraJS.
+
 Changes in version 4.0.1 2015-03-16
      + Changes to imports and namespace to reduce overhead.
      + Fixed example in hmapSpectra.Rd.
