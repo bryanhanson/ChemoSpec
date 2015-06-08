@@ -14,7 +14,7 @@ getMaxCovByFreq <- function(spectra, V = NULL, Quan = NULL) {
 	for (i in 1:nrow(V)) {
 		cvmin <- min(V[i,])  # min with sign
 		cvmax <- max(V[i,])  # max with sign
-		if (abs(cvmax) >= abs(cvmin)) cv[i] <- cvmax
+		if (abs(cvmax) >= abs(cvmin)) cv[i] <- cvmax # save the most extreme value
 		if (abs(cvmin) > abs(cvmax)) cv[i] <- cvmin
 		}
 	cva <- abs(cv)	
@@ -26,8 +26,8 @@ getMaxCovByFreq <- function(spectra, V = NULL, Quan = NULL) {
 	if (!is.null(Quan)) {
 		if (!length(Quan) == 1) stop("Quan should be a single number")
 		Quan <- 1 - Quan
-		Q <- quantile(cv, Quan)
-		df <- subset(df, abs_cov >= Q)
+		Q <- quantile(abs_cov, Quan)
+		df <- df[, abs_cov >= Q]
 		}
 	
 	return(df)

@@ -1,7 +1,7 @@
 
 
 covSpectra <- function(spectra, freq = spectra$freq[1],
-	C = NULL, V = NULL, ...) {
+	C = NULL, V = NULL, yFree = TRUE, ...) {
 	
 # Function to carry out Nicholson's STOCSY analysis
 # Part of the ChemoSpec package
@@ -58,13 +58,24 @@ covSpectra <- function(spectra, freq = spectra$freq[1],
 	ind1 <- 1:(np-1)
 	ind2 <- 2:np
 	
-	plot(spectra$freq, V[row,], type = "n",
-		xlab = spectra$unit[1], ylab = "covariance",
-		main = paste("Frequency = ", sprintf("%5.5f", spectra$freq[row]), sep = ""),
-		...)
-	segments(spectra$freq[ind1], V[row, ind1], spectra$freq[ind2], V[row, ind2],  col = myc, ...)
-	abline(v = freq[row], lty = 2, col = "gray")
-
+	if (yFree) {
+		plot(spectra$freq, V[row,], type = "n",
+			xlab = spectra$unit[1], ylab = "covariance",
+			main = paste("Frequency = ", sprintf("%5.5f", spectra$freq[row]), sep = ""),
+			...)
+		segments(spectra$freq[ind1], V[row, ind1], spectra$freq[ind2], V[row, ind2],  col = myc, ...)
+		abline(v = spectra$freq[row], lty = 2, col = "gray")
+		}
+		
+	if (!yFree) {
+		plot(spectra$freq, V[row,], type = "n", ylim = range(V),
+			xlab = spectra$unit[1], ylab = "covariance",
+			main = paste("Frequency = ", sprintf("%5.5f", spectra$freq[row]), sep = ""),
+			...)
+		segments(spectra$freq[ind1], V[row, ind1], spectra$freq[ind2], V[row, ind2],  col = myc, ...)
+		abline(v = spectra$freq[row], lty = 2, col = "gray")
+		}
+		
 	L <- list(cov = V, cor = C)
 	invisible(L)
 	

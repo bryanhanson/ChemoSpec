@@ -13,9 +13,9 @@ These functions provide tools for STOSCY analysis of a \code{\link{Spectra}} obj
 
 \usage{
 corSpectra(spectra, plot = TRUE, limX = NULL, limY = NULL, nticks = 10,
-levels = NULL, pmode = "contour", C = NULL, V = NULL, ...)
+levels = NULL, pmode = "contour", drawGrid = TRUE, C = NULL, V = NULL, ...)
 
-covSpectra(spectra, freq = spectra$freq[1], C = NULL, V = NULL, ...)
+covSpectra(spectra, freq = spectra$freq[1], C = NULL, V = NULL, yFree = TRUE, ...)
 
 covSpectraJS(spectra, freq = spectra$freq[1],
 	C = NULL, V = NULL, browser = NULL, minify = TRUE, ...)
@@ -43,6 +43,9 @@ Numeric.  A vector of values at which to draw the contours or levels.  Applies t
   \item{pmode}{
 Character.  The plot mode.   Applies to \code{corSpectra} only. One of \code{c("contour", "image", "contourplot", "levelplot", "rgl", "exCon")}.  The last two are interactive.  See Details.
 }
+  \item{drawGrid}{
+Logical.  Shall a faint gray grid be added to the plot?  Applies to \code{corSpectra} only.
+}
   \item{C}{
 Matrix.  Optional. A precomputed correlation matrix.
 }
@@ -51,6 +54,10 @@ Matrix.  Optional. A precomputed covariance matrix.
 }
   \item{freq}{
 Numeric.  The desired frequency to be plotted.   Applies to \code{covSpectra} only.  In STOCSY terminology, this is the driver peak and it will be marked by a gray dotted line.
+}
+
+  \item{yFree}{
+Logical. Applies to \code{covSpectra} only.  If \code{FALSE}, the y axis is scaled to the range of the covariance matrix, so that the particular data row can be appreciated in terms of the overall data set.  If \code{TRUE}, the y axis is scaled to the data row specified by \code{freq}, so it fills the vertical dimension.
 }
 
 \item{browser}{
@@ -118,7 +125,7 @@ For \code{covSpectra}, the x and y limits can be set simply by passing \code{xli
 data(metMUD2)
 lvs <- c(-0.99, -0.95, -0.9, 0.9, 0.95, 0.99)
 lim <- c(0.6, 4.3)
-res <- corSpectra(metMUD2, levels = lvs, limX = lim, limY = lim, main = "metMUD2 NMR Data")
+res <- corSpectra(metMUD2, levels = lvs, limX = lim, limY = lim, main = "metMUD2 STOCSY Analysis")
 jnk <- covSpectra(metMUD2, freq = 1.030, C = res[[2]], V = res[[1]])
 \dontrun{
 require("jsonlite")

@@ -4,6 +4,12 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.0.3 2015-06-07
+     + Fixed error in getMaxCovByFreq - the value of Quan was not being applied to the correct column.
+     + covSpectra gains an argument yFree, which defaults to FALSE.  In this case, the y axis is scaled to the range of the entire covariance matrix.  If FALSE, the y axis is scaled to the data specified by argument freq.
+     + For corSpectra, with pmode = "contour" and "image" only, the calculation of tick marks was improved.
+     + corSpectra gains a drawGrid argument, which draws a faint gray grid on the plot to help with identifying shifts.
+
 Changes in version 4.0.2 2015-05-27
      + Small tweaks to layout of plotSpectraJS
      + Added function covSpectraJS.

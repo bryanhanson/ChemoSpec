@@ -20,7 +20,7 @@ An object of S3 class \code{\link{Spectra}}.
 A numeric covariance matrix.
 }
   \item{Quan}{
-Numeric.  A value in the interval (0...1) giving the quantile to be selected.  For instance, \code{Quan = 0.1} selects the top 10 percent of values.
+Numeric.  A value in the interval (0...1) giving the quantile to be selected.  For instance, \code{Quan = 0.1} selects the top 10 percent of the absolute covariance values.
 }
 }
 

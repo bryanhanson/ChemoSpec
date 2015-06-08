@@ -3,7 +3,7 @@
 corSpectra <- function(spectra, plot = TRUE,
 	limX = NULL, limY = NULL,
 	nticks = 10, levels = NULL,
-	pmode = "contour",
+	pmode = "contour", drawGrid = TRUE,
 	C = NULL, V = NULL, ...) {
 	
 # Function to carry out Nicholson's STOCSY analysis
@@ -33,13 +33,13 @@ corSpectra <- function(spectra, plot = TRUE,
 	
 	if (is.null(C)) { # user did not provide pre-computed correlation matrix
 		X <- spectra$data
-		if (ncol(X) > 10000) message("Calculating cor() may take a few minutes")
+		if (ncol(X) > 10000) message("Calculating cor() may take a moment or longer")
 		C <- cor(X) # same as (t(X) %*% X)/(nrow(spectra$data) - 1)
 		}
 	
 	if (is.null(V)) { # user did not provide pre-computed covariance matrix
 		X <- spectra$data
-		if (ncol(X) > 10000) message("Calculating cov() may take a few minutes")
+		if (ncol(X) > 10000) message("Calculating cov() may take a moment or longer")
 		V <- cov(X) # same as (t(X) %*% X)/(nrow(spectra$data) - 1)
 		}
 
@@ -63,9 +63,9 @@ corSpectra <- function(spectra, plot = TRUE,
 		if ((pmode == "contour") | (pmode == "image")) { # base functions
 			LX <- c(0, 1) # default values
 			LY <- c(0, 1)
-			tickposX <- seq(LX[1], LX[2], length.out = nticks)
+			tickposX <- pretty(LX, n = nticks)
 			ticklabX <- (diff(range(spectra$freq)) * tickposX) + min(spectra$freq)
-			tickposY <- seq(LY[1], LY[2], length.out = nticks) 
+			tickposY <- pretty(LY, n = nticks) 
 			ticklabY <- (diff(range(spectra$freq)) * tickposY) + min(spectra$freq)
 
 			if (!is.null(limX)) { # override when limX is given
@@ -73,7 +73,7 @@ corSpectra <- function(spectra, plot = TRUE,
 				r <- findInterval(limX[2], spectra$freq)
 				limX<- c(l, r)
 				limX <- limX/ncol(C)
-				tickposX <- seq(limX[1], limX[2], length.out = nticks)
+				tickposX <- pretty(limX, n = nticks)
 				ticklabX <- (diff(range(spectra$freq)) * tickposX) + min(spectra$freq)
 				LX <- limX
 				}
@@ -83,7 +83,7 @@ corSpectra <- function(spectra, plot = TRUE,
 				r <- findInterval(limY[2], spectra$freq)
 				limY<- c(l, r)
 				limY <- limY/ncol(C)
-				tickposY <- seq(limY[1], limY[2], length.out = nticks)
+				tickposY <- pretty(limY, n = nticks)
 				ticklabY <- (diff(range(spectra$freq)) * tickposY) + min(spectra$freq)
 				LY <- limY
 				}
@@ -289,7 +289,8 @@ corSpectra <- function(spectra, plot = TRUE,
 				axes = FALSE, frame.plot = TRUE,
 				xaxs = "i", yaxs = "i", ...)
 			axis(1, at = d[[5]], labels = d[[7]])			
-			axis(2, at = d[[6]], labels = d[[8]])			
+			axis(2, at = d[[6]], labels = d[[8]])
+			if (drawGrid) abline(v = d[[6]], h = d[[5]], col = "gray95")		
 			}
 		
 		# Interactive versions
