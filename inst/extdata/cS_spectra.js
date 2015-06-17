@@ -255,6 +255,7 @@ var drawSpecYaxis = function(yScale) {
 
   yAxis = d3.svg.axis()
   	.scale(yScale)
+		.tickFormat(d3.format("s"))
   	.orient("left");
 
 	svg.append("g")

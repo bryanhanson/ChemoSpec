@@ -280,17 +280,19 @@ corSpectra <- function(spectra, plot = TRUE,
 			}
 
 		if (pmode == "contour") {
-			#par(bg = "black")
+			# Next 2 lines needed to get grid under contours
+			plot(x = 0, y = 0, xlim = d[[3]], ylim = d[[4]], type = "n",
+				xlab = "", ylab = "", xaxt = "n", yaxt = "n")
+			if (drawGrid) abline(v = d[[6]], h = d[[5]], col = "gray95")		
 			contour(C, xlab = d[[2]], ylab = d[[2]],
 				xlim = d[[3]], ylim = d[[4]],
 				col = d[[1]],
 				levels = d[[9]],				
 				drawlabels = FALSE,
 				axes = FALSE, frame.plot = TRUE,
-				xaxs = "i", yaxs = "i", ...)
+				xaxs = "i", yaxs = "i", add = TRUE, ...)
 			axis(1, at = d[[5]], labels = d[[7]])			
 			axis(2, at = d[[6]], labels = d[[8]])
-			if (drawGrid) abline(v = d[[6]], h = d[[5]], col = "gray95")		
 			}
 		
 		# Interactive versions

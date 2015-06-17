@@ -16,8 +16,8 @@ Exploratory Chemometrics for Spectroscopy
 \tabular{ll}{
 Package: \tab ChemoSpec\cr
 Type: \tab Package\cr
-Version: \tab 4.0.1\cr
-Date: \tab 2015-03-16\cr
+Version: \tab 4.0.5\cr
+Date: \tab 2015-06-16\cr
 License: \tab GPL-3\cr
 }
 }
