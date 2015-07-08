@@ -28,7 +28,7 @@ sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05, ...) {
 
 	cv <- cv/(nrow(centspec)-1)
   	crr <- cv/(sdv*pca$sdev[pc])
-	ans <- data.frame(cov = cv, corr = crr)
+	ans <- data.frame(freq = spectra$freq, cov = cv, corr = crr)
 
 	plot(cv, crr, xlab = "covariance", ylab = "correlation",
 		pch = 20, ...)
@@ -38,7 +38,7 @@ sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05, ...) {
 
 	# Next, if requested, we will label the extreme points on both dimensions
 	
-	if (is.numeric(tol)) labelExtremes(ans, spectra$freq, tol)	
+	if (is.numeric(tol)) labelExtremes(ans[,2:3], spectra$freq, tol)	
  
  	ans
 	}

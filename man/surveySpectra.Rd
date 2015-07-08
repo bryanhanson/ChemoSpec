@@ -36,7 +36,7 @@ None; side effect is a plot
 \details{
 For \code{surveySpectra} the method choice works as follows:  \code{sd} plots the mean spectrum +/- the standard deviation, \code{sem} plots the mean spectrum +/- the standard error of the mean, \code{sem95} plots the mean spectrum +/- the standard error at the 95 percent confidence interval, \code{mad} plots the median spectrum +/- the median absolute deviation, and finally, \code{iqr} plots the median spectrum + the upper hinge and - the lower hinge.
 
-For \code{surveySpectra2}, the spectra are mean centered and plotted.  Below that, the relative summary statistic is plotted.
+For \code{surveySpectra2}, the spectra are mean centered and plotted.  Below that, the relative summary statistic is plotted, offset, but on the same scale.
 }
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}

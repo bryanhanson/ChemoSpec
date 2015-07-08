@@ -1,7 +1,7 @@
 
 
 covSpectraJS <- function(spectra, freq = spectra$freq[1],
-	C = NULL, V = NULL, browser = NULL, minify = TRUE, ...) {
+	R = NULL, V = NULL, browser = NULL, minify = TRUE, ...) {
 
 # Function to carry out Nicholson's STOCSY analysis
 # Part of the ChemoSpec package
@@ -21,10 +21,10 @@ covSpectraJS <- function(spectra, freq = spectra$freq[1],
 
 	row <- findInterval(freq, spectra$freq)
 
-	if (is.null(C)) { # user did not provide pre-computed correlation matrix
+	if (is.null(R)) { # user did not provide pre-computed correlation matrix
 		X <- spectra$data
 		if (ncol(X) > 10000) message("Calculating cor() may take a few minutes")
-		C <- cor(X)
+		R <- cor(X)
 		}
 
 	if (is.null(V)) { # user did not provide pre-computed covariance matrix
@@ -43,12 +43,12 @@ covSpectraJS <- function(spectra, freq = spectra$freq[1],
 
 	refscale <- seq(-1, 1, length.out = 9)
 
-	# Now average every contiguous pair of values in C[row,] so that there is one
+	# Now average every contiguous pair of values in R[row,] so that there is one
 	# less value, and use the mean value of the pair to assign colors
 	# e.g. the mean of points n & n+1 determines the color used to plot that segment
 
-	cd <- diff(C[row,])
-	cr <- 0.5 * cd + C[row,][-length(C[row,])] # this will have one value less than the data
+	cd <- diff(R[row,])
+	cr <- 0.5 * cd + R[row,][-length(R[row,])] # this will have one value less than the data
 	myc <- cscale[findInterval(cr, refscale)] # color based upon cor, not cov
 
 	myc <- substr(myc, 1, 7) # needed as JS doesn't accept alpha channel
@@ -158,7 +158,7 @@ covSpectraJS <- function(spectra, freq = spectra$freq[1],
 		stop("You need install package jsonlite to use this function")
 		}
 
-	L <- list(cov = V, cor = C)
+	L <- list(cov = V, cor = R)
 	invisible(L)
 
 	}

@@ -11,7 +11,8 @@ A wrapper which performs HCA on the scores from a PCA of a \code{\link{Spectra}}
 
 \usage{
 hcaScores(spectra, pca, scores = c(1:5), c.method = "complete",
-	d.method = "euclidean", use.sym = FALSE, ...)
+	d.method = "euclidean", use.sym = FALSE,
+        leg.loc = "topright", ...)
 }
 
 \arguments{
@@ -31,6 +32,9 @@ A character string describing the distance calculation method; must be acceptabl
 }
   \item{use.sym}{
 A logical; if true, use no color and use lower-case letters to indicate group membership.
+}
+  \item{leg.loc}{
+Character; if \code{"none"} no legend will be drawn.  Otherwise, any string acceptable to \code{\link{legend}}.
 }
   \item{\dots}{
 Additional parameters to be passed to the plotting functions.

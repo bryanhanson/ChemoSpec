@@ -49,8 +49,8 @@ See \code{\link{plotLoadings}} to plot one loading against the original variable
 data(SrE.IR)
 results <- c_pcaSpectra(SrE.IR)
 myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
-plot2Loadings(SrE.IR, main = myt, results,
-	loads = c(1,2), tol = 0.05)
+res <- plot2Loadings(SrE.IR, main = myt, results,
+	loads = c(1,2), tol = 0.001)
 }
 \keyword{ multivariate }
 \keyword{ hplot }

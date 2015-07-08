@@ -13,7 +13,7 @@
   \item{\dots}{Additional parameters to be passed to plotting functions.}
 }
 
-\value{A data frame containing the covariance and correlation of the selected pc for the \code{\link{Spectra}} object.  A plot of the correlation vs. covariance is created.}
+\value{A data frame containing the frequency, covariance and correlation of the selected pc for the \code{\link{Spectra}} object.  A plot of the correlation vs. covariance is created.}
 
 \references{
 Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor, Gottfries, Moritz, and Trygg. "Visualization of GC/TOF-MS-Based Metabololomics Data for Identification of Biochemically Interesting Compounds Usings OPLS Class Models" Analytical Chemistry Vol.80 no.1 pgs. 115-122 (2008).
@@ -31,7 +31,7 @@ Matthew J. Keinsley and Bryan A. Hanson, DePauw University. \email{hanson@depauw
 data(SrE.IR)
 IR.pca <- c_pcaSpectra(SrE.IR)
 myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
-splot <- sPlotSpectra(spectra = SrE.IR, pca = IR.pca, pc = 1, tol = 0.005,
+splot <- sPlotSpectra(spectra = SrE.IR, pca = IR.pca, pc = 1, tol = 0.001,
 main = myt)
 }
 

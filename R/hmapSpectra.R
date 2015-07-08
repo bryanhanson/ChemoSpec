@@ -14,8 +14,11 @@ hmapSpectra <- function(spectra, ...) {
 	x.lab <- paste(spectra$unit[1], ", reordered", sep = "")
 	
 	res <- seriation::hmap(spectra$data, labRow = spectra$names,
-		xlab = x.lab, ylab = "", margins = c(6, 6),
+		xlab = x.lab, ylab = "", margins = c(2, 6),
 		key.title = "", ...)
-	return(res)
+		
+	DF1 <- data.frame(freq = spectra$freq, rank = res$colInd)
+	DF2 <- data.frame(sample = spectra$names, rank = res$rowInd)
+	return(list(Freq = DF1, Sample = DF2))
 	}
 	

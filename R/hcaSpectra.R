@@ -1,6 +1,7 @@
 hcaSpectra <-
 function(spectra,
-c.method = "complete", d.method = "euclidean", use.sym = FALSE, ...) {
+c.method = "complete", d.method = "euclidean",
+use.sym = FALSE, leg.loc = "topright", ...) {
 
 # Function to carry out HCA, basically a wrapper to existing methods
 # Part of the ChemoSpec package
@@ -17,7 +18,7 @@ c.method = "complete", d.method = "euclidean", use.sym = FALSE, ...) {
 	hclst <- hclust(distance, method = c.method)
 
 	d <- plotHCA(spectra = spectra, hclst = hclst, sub.title = sub.title,
-		use.sym = use.sym, ...)
+		use.sym = use.sym, leg.loc = leg.loc, ...)
 	L = list(hclst = hclst, dend = d)
 	return(L)
 	}

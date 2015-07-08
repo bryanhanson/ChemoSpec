@@ -19,7 +19,7 @@ necessary if you want to override your system specified browser as understood by
 \code{R}.  See below for further details.
 }
   \item{minify}{
-Logical.  Should the JavaScript be minified (compressed) using package \code{js}?  This gives code that executes faster, but is pretty-much impossible to read.
+Logical.  Shall the JavaScript be minified?  This improves performance.  However, it requires package \code{js} which in turn requires package \code{V8}.  The latter is not available on all platforms.  Details may be available at \url{https://github.com/jeroenooms/v8}
 }
 }
 

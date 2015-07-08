@@ -4,9 +4,27 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
-Changes in version 4.0.5 2015-06-16
+Changes in version 4.1.0 2015-07-08
+     + Labeling in surveySpectra2 changed (removed "relative").
+     + getMaxCovByFreq renamed to sortCrossPeaks.  The function now ignores (flexibly) peaks near the diagonal, where the covariance is actually the variance of the peak.  The column names of the return value were made clearer.  Rd file adjusted accordingly.
+     + collapseRowsOrCols is a helper function which is currently not exported or documented.
+     + Function cleanSTOCSYpeaks added.
+     + corSpectraJS now uses exCon2 rather than exCon.
+     + Examples using corSpectraJS modified to not require js and V8.
+     + Documentation of plotSpectraJS, covSpectraJS argument minify expanded to clarify the dependence on js and V8.
+    + In functions corSpectra, covSpectra and covSpectraJS argument C was renamed to R.
+    + hcaSpectra, hcaScores and plotHCA gain a leg.loc argument similar to plotScores.
+    + plot2Loadings now returns a data frame containing the loadings.
+    + sPlotSpectra now returns the frequency along with cov and cor.
+    + labelExtremes, which serves several higher level functions, now formats frequencies to 2 decimal places.  Previous method was giving too many digits.
+
+Changes in version 4.0.6 2015-06-19
+     + Package description re-written at CRAN's request to explain acronyms.
+
+Changes in version 4.0.5 2015-06-18
      + Internal workings of hmapSpectra changed due to changes in the underlying function in package seriation.
      + The reference grid draw by corSpectra if pmode = "contour" and drawGrid = TRUE is now draw behind the contours, not on top.
+     + If using getMaxCovByFreq please see under Details in the help page.
 
 Changes in version 4.0.4 2015-06-08
      + Improved y-axis tick label formatting in corSpectra.

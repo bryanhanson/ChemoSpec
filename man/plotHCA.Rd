@@ -7,7 +7,7 @@ Plot Dendrogram for Spectra Object
 This function plots the results of an HCA analysis of a \code{\link{Spectra}} object.  This is not called directly by the user -- \code{\link{hcaSpectra}} and \code{\link{hcaScores}} use it (see those pages for examples).
 }
 \usage{
-plotHCA(spectra, hclst, sub.title, use.sym, ...)
+plotHCA(spectra, hclst, sub.title, use.sym, leg.loc, ...)
 }
 \arguments{
   \item{spectra}{
@@ -22,6 +22,9 @@ A character string for the subtitle.
 }
   \item{use.sym}{
 Logical; if true, the color scheme will be black and lower-case letters will be used to indicate group membership.
+}
+  \item{leg.loc}{
+Character; if \code{"none"} no legend will be drawn.  Otherwise, any string acceptable to \code{\link{legend}}.
 }
   \item{\dots}{
 Additional parameters to be passed to the plotting routines.

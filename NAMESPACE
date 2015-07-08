@@ -16,9 +16,6 @@ export(
 	clupaSpectra,
 	mclust3dSpectra,
 	mclustSpectra,
-	corSpectra,
-	covSpectra,
-	covSpectraJS,
 	sampleDistSpectra,
 
 	files2SpectraObject, # Importing data
@@ -74,13 +71,19 @@ export(
 	hcaScores,
 	evalClusters,
 
+	corSpectra, # STOCSY-related functions
+	covSpectra,
+	covSpectraJS,
+	sortCrossPeaks,
+	cleanSTOCSYpeaks,
+
 	seX, # Utility functions
 	seXy,
 	seXy95,
 	seXyIqr,
 	seXyMad,
 	isWholeNo,
-	getMaxCovByFreq
+	sortCrossPeaks
 	)
 
 importFrom(rgl, text3d, points3d, open3d, segments3d, surface3d)

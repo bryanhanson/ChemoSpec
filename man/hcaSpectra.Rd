@@ -9,7 +9,8 @@ Plot HCA Results of a Spectra Object
 A wrapper which carries out HCA and plots a dendrogram colored by the information in a \code{\link{Spectra}} object.  Many methods for computing the clusters and distances are available.
 }
 \usage{
-hcaSpectra(spectra, c.method = "complete", d.method = "euclidean", use.sym = FALSE, ...)
+hcaSpectra(spectra, c.method = "complete", d.method = "euclidean",
+use.sym = FALSE, leg.loc = "topright", ...)
 }
 \arguments{
   \item{spectra}{
@@ -24,6 +25,9 @@ A character string describing the distance calculation method; must be acceptabl
 
   \item{use.sym}{
 A logical; if true, use no color and use lower-case letters to indicate group membership.
+}
+  \item{leg.loc}{
+Character; if \code{"none"} no legend will be drawn.  Otherwise, any string acceptable to \code{\link{legend}}.
 }
   \item{\dots}{
 Other parameters to be passed to the plotting functions.

@@ -8,7 +8,7 @@ function(data, names, tol) {
 	px <- data[,1]
 	py <- data[,2]
 	pl <- names
-	if (is.numeric(pl)) pl <- format(pl, digits = 4)
+	if (is.numeric(pl)) pl <- sprintf("%.2f", pl)
 		
 #	q.x <- quantile(px, probs = c(1.0-tol, tol)) # also below
 	q.x <- quantile(px, probs = c(1.0-tol, tol), na.rm = TRUE)

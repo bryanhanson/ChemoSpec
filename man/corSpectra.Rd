@@ -13,12 +13,12 @@ These functions provide tools for STOSCY analysis of a \code{\link{Spectra}} obj
 
 \usage{
 corSpectra(spectra, plot = TRUE, limX = NULL, limY = NULL, nticks = 10,
-levels = NULL, pmode = "contour", drawGrid = TRUE, C = NULL, V = NULL, ...)
+levels = NULL, pmode = "contour", drawGrid = TRUE, R = NULL, V = NULL, ...)
 
-covSpectra(spectra, freq = spectra$freq[1], C = NULL, V = NULL, yFree = TRUE, ...)
+covSpectra(spectra, freq = spectra$freq[1], R = NULL, V = NULL, yFree = TRUE, ...)
 
 covSpectraJS(spectra, freq = spectra$freq[1],
-	C = NULL, V = NULL, browser = NULL, minify = TRUE, ...)
+	R = NULL, V = NULL, browser = NULL, minify = TRUE, ...)
 }
 
 \arguments{
@@ -46,7 +46,7 @@ Character.  The plot mode.   Applies to \code{corSpectra} only. One of \code{c("
   \item{drawGrid}{
 Logical.  Shall a faint gray grid be added to the plot?  Applies to \code{corSpectra} only.
 }
-  \item{C}{
+  \item{R}{
 Matrix.  Optional. A precomputed correlation matrix.
 }
   \item{V}{
@@ -65,7 +65,7 @@ Character.  Applies to \code{covSpectra} only. See \code{\link{plotSpectraJS}} f
 }
 
   \item{minify}{
-Logical.  Applies to \code{covSpectra} only.  See \code{\link{plotSpectraJS}} for details.
+Logical.  Applies to \code{covSpectraJS} only.  Shall the JavaScript be minified?  This improves performance.  However, it requires package \code{js} which in turn requires package \code{V8}.  The latter is not available on all platforms.  Details may be available at \url{https://github.com/jeroenooms/v8}
 }
 
   \item{\dots}{
@@ -92,7 +92,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \seealso{
 \code{\link{chooseLvls}} to select levels automatically.
 
-\code{\link{getMaxCovByFreq}} is a utility to sort the covariance matrix by the maximum covariance at a given frequency.  This can be used to identify the strongest interactions.
+\code{\link{sortCrossPeaks}} is a utility to sort the covariance matrix by the maximum covariance at a given frequency.  This can be used to identify the strongest interactions.
 }
 
 \section{Warning}{
@@ -130,8 +130,7 @@ res <- corSpectra(metMUD2, levels = lvs, limX = lim, limY = lim, main = "metMUD2
 jnk <- covSpectra(metMUD2, freq = 1.030, C = res[[2]], V = res[[1]])
 \dontrun{
 require("jsonlite")
-require("js")
-jnk <- covSpectraJS(metMUD2, freq = 1.030, C = res[[2]], V = res[[1]])
+jnk <- covSpectraJS(metMUD2, freq = 1.030, C = res[[2]], V = res[[1]], minify = TRUE)
 }
 # Code to sort the frequency axis
 # Run prior to pre-computing the cor/cov matrices

@@ -4,7 +4,7 @@ corSpectra <- function(spectra, plot = TRUE,
 	limX = NULL, limY = NULL,
 	nticks = 10, levels = NULL,
 	pmode = "contour", drawGrid = TRUE,
-	C = NULL, V = NULL, ...) {
+	R = NULL, V = NULL, ...) {
 	
 # Function to carry out Nicholson's STOCSY analysis
 # Part of the ChemoSpec package
@@ -31,10 +31,10 @@ corSpectra <- function(spectra, plot = TRUE,
 		spectra$data <- spectra$data[,ncol(spectra$data):1]
 		}
 	
-	if (is.null(C)) { # user did not provide pre-computed correlation matrix
+	if (is.null(R)) { # user did not provide pre-computed correlation matrix
 		X <- spectra$data
 		if (ncol(X) > 10000) message("Calculating cor() may take a moment or longer")
-		C <- cor(X) # same as (t(X) %*% X)/(nrow(spectra$data) - 1)
+		R <- cor(X) # same as (t(X) %*% X)/(nrow(spectra$data) - 1)
 		}
 	
 	if (is.null(V)) { # user did not provide pre-computed covariance matrix
@@ -43,11 +43,11 @@ corSpectra <- function(spectra, plot = TRUE,
 		V <- cov(X) # same as (t(X) %*% X)/(nrow(spectra$data) - 1)
 		}
 
-	if (ncol(C) > 8000) message("Graphical output will take some time with this many data points")
+	if (ncol(R) > 8000) message("Graphical output will take some time with this many data points")
 	
 	# Helper function to compute ticks, labels & colors
 	
-	decor <- function(spectra, V, C, limX, limY, levels, pmode) {
+	decor <- function(spectra, V, R, limX, limY, levels, pmode) {
 				
 		# For base functions, the default levels are different than for lattice
 		# For base plots, the axes range from [0...1] (rgl too, at least for surface3d)
@@ -72,7 +72,7 @@ corSpectra <- function(spectra, plot = TRUE,
 				l <- findInterval(limX[1], spectra$freq)
 				r <- findInterval(limX[2], spectra$freq)
 				limX<- c(l, r)
-				limX <- limX/ncol(C)
+				limX <- limX/ncol(R)
 				tickposX <- pretty(limX, n = nticks)
 				ticklabX <- (diff(range(spectra$freq)) * tickposX) + min(spectra$freq)
 				LX <- limX
@@ -82,7 +82,7 @@ corSpectra <- function(spectra, plot = TRUE,
 				l <- findInterval(limY[1], spectra$freq)
 				r <- findInterval(limY[2], spectra$freq)
 				limY<- c(l, r)
-				limY <- limY/ncol(C)
+				limY <- limY/ncol(R)
 				tickposY <- pretty(limY, n = nticks)
 				ticklabY <- (diff(range(spectra$freq)) * tickposY) + min(spectra$freq)
 				LY <- limY
@@ -91,8 +91,8 @@ corSpectra <- function(spectra, plot = TRUE,
 
 
 		if ((pmode == "contourplot") | (pmode == "levelplot") | (pmode == "rgl")) { # lattice functions + rgl
-			LX <- c(1, ncol(C)) # See notes above
-			LY <- c(1, ncol(C))
+			LX <- c(1, ncol(R)) # See notes above
+			LY <- c(1, ncol(R))
 			tickposX <- seq(LX[1], LX[2], length.out = nticks) 
 			tickposX <- round(tickposX)
 			ticklabX <- spectra$freq[tickposX]		
@@ -160,7 +160,7 @@ corSpectra <- function(spectra, plot = TRUE,
 				stop("You need to install package exCon to use this plotting option")
 				}
 			if (is.null(levels)) {
-				levels <- chooseLvls(M = C, n = 5L, mode = "even")
+				levels <- chooseLvls(M = R, n = 5L, mode = "even")
 				msg <- paste("The levels chosen are:\n", paste(round(levels, 5), collapse = " "), sep = " ")
 				message(msg)
 				}	
@@ -178,7 +178,7 @@ corSpectra <- function(spectra, plot = TRUE,
 				}
 
 			if (is.null(levels)) { # must have one less color than breaks
-				levels <- chooseLvls(M = C, n = 5L, mode = "even") # Gives 5 levels
+				levels <- chooseLvls(M = R, n = 5L, mode = "even") # Gives 5 levels
 				msg <- paste("The levels chosen are:\n", paste(round(levels, 5), collapse = " "), sep = " ")
 				message(msg)
 				myc <- cscale[c(1, 3, 7, 9)] # remove colors near zero
@@ -187,7 +187,7 @@ corSpectra <- function(spectra, plot = TRUE,
 				
 		if (pmode == "rgl") {
 			# Levels don't apply here, simply assign color based upon value
-			myc <- cscale[findInterval(C, refscale)] # the colors to be used/color selection			
+			myc <- cscale[findInterval(R, refscale)] # the colors to be used/color selection			
 			}
 		
 		# 3.  Labeling
@@ -214,7 +214,7 @@ corSpectra <- function(spectra, plot = TRUE,
 	# Ready to plot
 	
 	if (plot) {
-		d <- decor(spectra, V, C, limX, limY, levels, pmode)
+		d <- decor(spectra, V, R, limX, limY, levels, pmode)
 		# Elements returned by decor:
 		# 1. myc
 		# 2. lab
@@ -231,7 +231,7 @@ corSpectra <- function(spectra, plot = TRUE,
 		# First two are lattice functions
 		
 		if (pmode == "levelplot") {
-			p <- lattice::levelplot(C, xlab = d[[2]], ylab = d[[2]],
+			p <- lattice::levelplot(R, xlab = d[[2]], ylab = d[[2]],
 				col.regions = d[[1]],
 				scales = list(
 					x = list(at = d[[5]], labels = d[[7]]),
@@ -249,7 +249,7 @@ corSpectra <- function(spectra, plot = TRUE,
 			}
 		
 		if (pmode == "contourplot") {
-			p <- lattice::contourplot(C, xlab = d[[2]], ylab = d[[2]],
+			p <- lattice::contourplot(R, xlab = d[[2]], ylab = d[[2]],
 				col.regions = d[[1]],
 				region = TRUE,
 				scales = list(
@@ -271,7 +271,7 @@ corSpectra <- function(spectra, plot = TRUE,
 		# Next two are base functions (these are much faster)
 		
 		if (pmode == "image") {
-			image(C, xlab = d[[2]], ylab = d[[2]],
+			image(R, xlab = d[[2]], ylab = d[[2]],
 				col = d[[1]], xlim = d[[3]], ylim = d[[4]],
 				breaks = d[[9]],
 				xaxt = "n", yaxt = "n", useRaster = TRUE, ...)			
@@ -284,7 +284,7 @@ corSpectra <- function(spectra, plot = TRUE,
 			plot(x = 0, y = 0, xlim = d[[3]], ylim = d[[4]], type = "n",
 				xlab = "", ylab = "", xaxt = "n", yaxt = "n")
 			if (drawGrid) abline(v = d[[6]], h = d[[5]], col = "gray95")		
-			contour(C, xlab = d[[2]], ylab = d[[2]],
+			contour(R, xlab = d[[2]], ylab = d[[2]],
 				xlim = d[[3]], ylim = d[[4]],
 				col = d[[1]],
 				levels = d[[9]],				
@@ -303,9 +303,9 @@ corSpectra <- function(spectra, plot = TRUE,
 			x2 <- findInterval(d[[3]][2], spectra$freq)
 			y1 <- findInterval(d[[4]][1], spectra$freq)
 			y2 <- findInterval(d[[4]][2], spectra$freq)
-			Z <- C[x1:x2, y1:y2]
+			Z <- R[x1:x2, y1:y2]
 					
-			exCon::exCon(M = Z, levels = d[[9]],
+			exCon::exCon2(M = Z, levels = d[[9]],
 				x = seq(d[[3]][1], d[[3]][2], length.out = ncol(Z)),
 				y = seq(d[[4]][1], d[[4]][2], length.out = nrow(Z)),
 				, ...)		
@@ -316,7 +316,7 @@ corSpectra <- function(spectra, plot = TRUE,
 			x2 <- d[[3]][2]
 			y1 <- d[[4]][1]
 			y2 <- d[[4]][2]
-			Z <- C[x1:x2, y1:y2]
+			Z <- R[x1:x2, y1:y2]
 
 			# Crude attempt to adjust aspect ratio (max(Z) always 1 or -1)
 			np <- nrow(Z)
@@ -330,7 +330,7 @@ corSpectra <- function(spectra, plot = TRUE,
 
 		}
 		
-	L <- list(cov = V, cor = C)
+	L <- list(cov = V, cor = R)
 	invisible(L)
 	
 	}
