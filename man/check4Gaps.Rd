@@ -19,8 +19,7 @@ A numeric vector to be checked for gaps.
 An optional vector of y-values which correspond to the \code{x} values.  Only needed if \code{plot = TRUE}.
 }
   \item{tol}{
-A number indicating the tolerance for checking if the step between successive \code{x} values are the same.  Depending upon how the \code{x} values are stored and rounded, you may need to change the value of \code{tol} to avoid flagging trivial "gaps".
-}
+A number indicating the tolerance for checking to see if the step between successive \code{x} values are the same.  Depending upon how the \code{x} values are stored and rounded, you may need to change the value of \code{tol} to avoid flagging trivial "gaps".}
   \item{plot}{
 Logical indicating if a plot of the gaps should be made.  If \code{TRUE}, \code{y} must be provided.  The plot is labeled consistent with calling this function on a \code{\link{Spectra}} object.
 }

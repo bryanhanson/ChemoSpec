@@ -41,11 +41,21 @@ options(width =  50, show.signif.stars = FALSE)
 
 suppressMessages(library("knitr"))
 suppressMessages(library("ChemoSpec"))
+
 suppressMessages(library("RColorBrewer"))
 suppressMessages(library("mvbutils"))
 suppressMessages(library("sna"))
-suppressMessages(library("IDPmisc"))
 suppressMessages(library("mclust"))
+
+
+#suppressMessages(library("IDPmisc"))
+#suppressMessages(library("stats"))
+#suppressMessages(library("utils"))
+#suppressMessages(library("grDevices"))
+
+# Other packages in Suggests but apparently not needed:
+# DPmisc, amap, seriation, speaq, clusterCrit, NbClust, R.utils, baseline,  gsubfn, lattice, pcaPP, pls, grid, robustbase, MASS
+
 
 desc <- packageDescription("ChemoSpec")
 vers <- paste("(Package Version ", desc$Version, ")", sep = "")

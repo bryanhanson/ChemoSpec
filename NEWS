@@ -4,7 +4,7 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
-Changes in version 4.1.0 2015-07-08
+Changes in version 4.1.15 2015-07-23
      + Labeling in surveySpectra2 changed (removed "relative").
      + getMaxCovByFreq renamed to sortCrossPeaks.  The function now ignores (flexibly) peaks near the diagonal, where the covariance is actually the variance of the peak.  The column names of the return value were made clearer.  Rd file adjusted accordingly.
      + collapseRowsOrCols is a helper function which is currently not exported or documented.
@@ -17,6 +17,8 @@ Changes in version 4.1.0 2015-07-08
     + plot2Loadings now returns a data frame containing the loadings.
     + sPlotSpectra now returns the frequency along with cov and cor.
     + labelExtremes, which serves several higher level functions, now formats frequencies to 2 decimal places.  Previous method was giving too many digits.
+    + sumSpectra now tries to guess a reasonable value for tol which is passes to check4Gaps, if none is provided.
+    + NAMESPACE adjusted to conform to R 3.3 devel, coming to a mirror near you.
 
 Changes in version 4.0.6 2015-06-19
      + Package description re-written at CRAN's request to explain acronyms.

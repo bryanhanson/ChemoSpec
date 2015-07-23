@@ -6,6 +6,20 @@ function(spectra, ...){
 # Bryan Hanson, DePauw Univ, Nov 2009
 	
 	chkSpectra(spectra) # verify it's legit
+	
+	# Try to guess a sensible value for tol if none provided via the ...
+	# This will be passed to check4Gaps
+	
+	args <- names(as.list(match.call()[-1]))
+
+	tolSet <- FALSE
+	if (!("tol" %in% args)) {
+		if ((spectra$unit[1] == "ppm") | ((spectra$unit[1] == "chemical shift"))) tol <- 0.01; tolSet <- TRUE
+		if (spectra$unit[1] == "wavenumber") tol <- 0.5; tolSet <- TRUE
+		if ((spectra$unit[1] == "nm") | ((spectra$unit[1] == "nanometer"))) tol <- 1.05; tolSet <- TRUE
+		if (!tolSet) tol <- 0.01
+		}
+
 	h <- check4Gaps(spectra$freq, ...)	
 	g <- sumGroups(spectra)
 	res <- abs(spectra$freq[2] - spectra$freq[1])

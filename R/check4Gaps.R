@@ -5,6 +5,8 @@ check4Gaps <- function(x, y = NULL, tol = 0.01, plot = FALSE, silent = FALSE, ..
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, November 2009
 
+	print(tol)
+	
 	len.x <- length(x)
 	p <- x[2] - x[1] # nominal freq/pt
 	d1 <- c() # beg of data chunk by value
@@ -13,7 +15,7 @@ check4Gaps <- function(x, y = NULL, tol = 0.01, plot = FALSE, silent = FALSE, ..
 	d2i <- c() # end of data chunk by index
 	dend <- data.frame(d2 = NA, d2i = NA) # end of data chunks
 	dbeg <- data.frame(d1 = NA, d1i = NA) # beginning of data chunks
-	
+		
 	for (n in 1:(len.x - 1)) { # locate ends of data chunks
 		t <- x[n + 1] - x[n]
 		if (!isTRUE(all.equal(t, p, tolerance = tol))) { # detects discontinuity
