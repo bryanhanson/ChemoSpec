@@ -29,8 +29,6 @@ hypTestScores <-
 
 	if (length(pcs) > 1) out <- manova(formula = form, ...)
 	if (length(pcs) == 1) out <- aov(formula = form, ...)
-	print(form)
-	print(summary(out))
 	
 	invisible(out)
 	
