@@ -4,6 +4,16 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.2.8 2016-01-26
+     + Removed a stray print statement in hypTestScores.
+     + Removed a stray print statement in sumSpectra.
+     + Removed a stray print statement in chk4Gaps.
+     + Documentation examples using JavaScript to create web pages were changed from \dont run to if (interactive()).
+     + Cleaned up code in files2SpectraObject and corresponding documentation.  Some code had not been removed since the Bruker option was removed a while back.
+     + Minor updates to vignette.
+     + surveySpectra2 example added to vignette.
+     + Removed the following functions, which will re-appear in a new package, ChemoSpecMarkeR: chooseLvls, cleanSTOCSYpeaks, collapseRowsOrCols, corSpectra, covSpectra, covSpectraJS, sortCrossPeaks.
+ 
 Changes in version 4.1.15 2015-07-23
      + Labeling in surveySpectra2 changed (removed "relative").
      + getMaxCovByFreq renamed to sortCrossPeaks.  The function now ignores (flexibly) peaks near the diagonal, where the covariance is actually the variance of the peak.  The column names of the return value were made clearer.  Rd file adjusted accordingly.
@@ -12,13 +22,13 @@ Changes in version 4.1.15 2015-07-23
      + corSpectraJS now uses exCon2 rather than exCon.
      + Examples using corSpectraJS modified to not require js and V8.
      + Documentation of plotSpectraJS, covSpectraJS argument minify expanded to clarify the dependence on js and V8.
-    + In functions corSpectra, covSpectra and covSpectraJS argument C was renamed to R.
-    + hcaSpectra, hcaScores and plotHCA gain a leg.loc argument similar to plotScores.
-    + plot2Loadings now returns a data frame containing the loadings.
-    + sPlotSpectra now returns the frequency along with cov and cor.
-    + labelExtremes, which serves several higher level functions, now formats frequencies to 2 decimal places.  Previous method was giving too many digits.
-    + sumSpectra now tries to guess a reasonable value for tol which is passes to check4Gaps, if none is provided.
-    + NAMESPACE adjusted to conform to R 3.3 devel, coming to a mirror near you.
+     + In functions corSpectra, covSpectra and covSpectraJS argument C was renamed to R.
+     + hcaSpectra, hcaScores and plotHCA gain a leg.loc argument similar to plotScores.
+     + plot2Loadings now returns a data frame containing the loadings.
+     + sPlotSpectra now returns the frequency along with cov and cor.
+     + labelExtremes, which serves several higher level functions, now formats frequencies to 2 decimal places.  Previous method was giving too many digits.
+     + sumSpectra now tries to guess a reasonable value for tol which it passes to check4Gaps, if none is provided.
+     + NAMESPACE adjusted to conform to R 3.3 devel, coming to a mirror near you.
 
 Changes in version 4.0.6 2015-06-19
      + Package description re-written at CRAN's request to explain acronyms.

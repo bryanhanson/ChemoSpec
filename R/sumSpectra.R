@@ -39,7 +39,6 @@ function(spectra, ...){
 		}
 	cat("\n")
 	cat("\tThe spectra are divided into", length(levels(spectra$groups)), "groups:", "\n\n")
-	print(g)	
 
 	# Check for extra data and report if found
 	sn <- names(spectra)

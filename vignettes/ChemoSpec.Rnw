@@ -93,7 +93,7 @@ Greencastle Indiana USA\\
 \maketitle
 
 \begin{abstract}
-\texttt{ChemoSpec}\cite{ChemoSpec-pkg} is a collection of functions for top-down exploratory data analysis of spectral data obtained via nuclear magnetic resonance (NMR), infrared (IR) or Raman spectroscopy.  Includes functions for plotting and inspecting spectra, peak alignment, hierarchical cluster analysis (HCA), principal components analysis (PCA), model-based clustering and statistical total correlation spectroscopy (STOCSY) analysis.  Robust methods appropriate for this type of high-dimensional data are available.  ChemoSpec is designed with metabolomics data sets in mind, where the samples fall into groups such as treatment and control.  Graphical output is formatted consistently for publication quality plots.  ChemoSpec is intended to be very user friendly and help you get usable results quickly.
+\texttt{ChemoSpec}\cite{ChemoSpec-pkg} is a collection of functions for top-down exploratory data analysis of spectral data obtained via nuclear magnetic resonance (NMR), infrared (IR) or Raman spectroscopy.  Includes functions for plotting and inspecting spectra, peak alignment, hierarchical cluster analysis (HCA), principal components analysis (PCA) and model-based clustering. Robust methods appropriate for this type of high-dimensional data are available.  ChemoSpec is designed with metabolomics data sets in mind, where the samples fall into groups such as treatment and control.  Graphical output is formatted consistently for publication quality plots.  ChemoSpec is intended to be very user friendly and help you get usable results quickly.  A vignette covering typical operations is available.
 \end{abstract}
 
 \newpage
@@ -283,11 +283,15 @@ This is what is meant by "grep is greedy".  In this situation, you have three ch
 
 Many spectra will have regions that should be removed before analysis.  It may be an uninformative, interfering peak like the water peak in $\rm ^{1}H$ NMR, or the $\rm CO_2$ peak in IR.  Or, there may be regions of the spectra that simply don't have much information -- they contribute a noisy baseline and not much else.  An example would be the region from about 1,800 or 1,900 $\rm cm^{-1} $ to about 2,500 $\rm cm^{-1} $ in IR, a region where there are typically no peaks except for the atomospheric $\rm CO_2$ stretch, and rarely (be careful!) alkyne stretches.
 
-Finding these regions might be pretty simple, a matter of inspection coupled with your knowledge of spectroscopy.  Another approach is to use the function \texttt{surveySpectra} to examine the entire set of spectra.  This function computes a summary statistic (your choice) of the intensities at a particular frequency across the data set, as well as the mean or median.  In regions with little variation, the mean/median and upper/lower summary lines will be close together.  Figure~\ref{surv} demonstrates the process.
+Finding these regions might be pretty simple, a matter of inspection coupled with your knowledge of spectroscopy.  Another approach is to use the function \texttt{surveySpectra} to examine the entire set of spectra.  This function computes a summary statistic (your choice) of the intensities at a particular frequency across the data set, as well as the mean or median.  In regions with little variation, the mean/median and upper/lower summary lines will be close together.  Figure~\ref{surv} demonstrates the process.  There is also an alternative, \texttt{surveySpectra2} which presents the data in a slightly different format: Figure~\ref{surv2}.
 
 
 << Chunk14,  fig.width = 8, fig.height = 5, fig.cap = "\\label{surv}Checking for Regions of No Interest" >>=
-surveySpectra(SrE2.IR, method = "iqr", main = "S. repens Extract IR Spectra", by.gr = FALSE)
+surveySpectra(SrE2.IR, method = "iqr", main = myt, by.gr = FALSE)
+@
+
+<< Chunk14d,  fig.width = 8, fig.height = 5, fig.cap = "\\label{surv2}Checking for Regions of No Interest" >>=
+surveySpectra2(SrE2.IR, method = "iqr", main = myt)
 @
 
 In Figure~\ref{surv} we kept all the groups together by using argument \texttt{by.gr = FALSE}.  We also looked at the entire spectral range.  In Figure~\ref{survA} we can look just at the carbonyl region.  The black line is the median value of intensity across the entire set of spectra.  The red lines are the upper and lower interquartile ranges which makes it pretty clear that the carbonyl region of this data set varies a lot.
@@ -336,7 +340,7 @@ Hierarchical cluster analysis (HCA from  now on) is a clustering method (no surp
 
 
 << Chunk19, fig.cap = "\\label{hca}Hierarchical Cluster Analysis" >>=
-HCA <- hcaSpectra(SrE3.IR, main = "S. repens IR Spectra")
+HCA <- hcaSpectra(SrE3.IR, main = myt)
 @
 
 The result is a dendrogram.  The vertical scale represents the numerical distance between samples.  Not unexpectedly, the two reference samples which are known to be chemically different cluster together separately from all other samples.  Perhaps surprisingly, the various pure and adulterated oil extracts do not group together precisely.  The function \texttt{hcaScores} does the same kind of analysis using the results of PCA, rather than the raw spectra.  It is discussed in the next section.
@@ -411,13 +415,13 @@ You can choose \texttt{"none"} for no ellipses, \texttt{"cls"} for classically c
 
 << Chunk10a, fig.cap = "\\label{classPCA}Classical PCA" >>=
 class <- c_pcaSpectra(SrE3.IR, choice = "noscale")
-plotScores(SrE3.IR, main = "S. repens IR Spectra", class,
+plotScores(SrE3.IR, main = myt, class,
 pcs = c(1,2), ellipse = "rob", tol = 0.01)
 @
 
 << Chunk21, fig.cap = "\\label{robPCA}Robust PCA" >>=
 robust <- r_pcaSpectra(SrE3.IR, choice = "noscale")
-plotScores(SrE3.IR, main = "S. repens IR Spectra", robust,
+plotScores(SrE3.IR, main = myt, robust,
 pcs = c(1,2), ellipse = "rob", tol = 0.01)
 @
 
@@ -437,12 +441,12 @@ Depending upon your data, and your interpretation of the results, you may decide
 If you are using classical PCA, you can also get a sense of the number of PCs needed via a bootstrap method, as shown in Figure~\ref{boot}. Note that this method is iterative and takes a bit of time.  Comparing these results to the scree plots, you'll see that the bootstrap method suggests that 4 or 5 PCs would not always be enough to reach the 95\% level, while the scree plots suggest that 2 PC are sufficient.
 
 
-<< Chunk24, fig.cap = "\\label{scree}Scree Plot" >>=
-plotScree(class, main = "S. repens IR Spectra")
+<< Chunk24, fig.cap = "\\label{scree}Scree Plot", fig.width = 8, fig.height = 5 >>=
+plotScree(class, main = myt)
 @
 
-<< Chunk24a, fig.cap = "\\label{scree2}Alternate Style Scree Plot"  >>=
-plotScree2(class, main = "S. repens IR Spectra")
+<< Chunk24a, fig.cap = "\\label{scree2}Alternate Style Scree Plot", fig.width = 8, fig.height = 5  >>=
+plotScree2(class, main = myt)
 @
 
 << Chunk25, fig.cap = "\\label{boot}Bootstrap Analysis for No. of PCs"  >>=
@@ -460,14 +464,14 @@ For full details, of course take a look at the manual page, \texttt{?plotScoresR
 
 
 << Chunk27, fig.cap = "\\label{s3D}Plotting Scores in 3D using plotScores3D"   >>=
-plotScores3D(SrE3.IR, class, main = "S. repens IR Spectra", ellipse = FALSE)
+plotScores3D(SrE3.IR, class, main = myt, ellipse = FALSE)
 @
 
 In addition to the scores, PCA also produces loadings which tell you how each variable (frequencies in spectral applications) affect the scores.  Examining these loadings can be critical to interpreting your results.  Figure~\ref{load} gives an example.  You can see that the different carbonyl peaks have a large and opposing effect on PC 1.  PC 2 on the other hand is driven by a number of peaks, with some interesting opposing peaks in the hydrocarbon region.  While the actual analysis of the data is not our goal here, it would appear that PC 1 is sensitive to the ester vs. acid carbonyl group, and PC 2 is detecting the saturated vs. unsaturated fatty acid chains (the latter having $\rm C_{sp2}-H $ peaks).
 
 
 << Chunk29, fig.cap = "\\label{load}Loading Plot"  >>=
-plotLoadings(SrE3.IR, class, main = "S. repens IR Spectra",
+plotLoadings(SrE3.IR, class, main = myt,
 loads = c(1, 2), ref = 1)
 @
 
@@ -475,7 +479,7 @@ You can also plot one loading against another, using function \texttt{plot2Loadi
 
 
 << Chunk30, fig.cap = "\\label{load2}Plotting One Loading vs. Another"   >>=
-res <- plot2Loadings(SrE3.IR, class, main = "S. repens IR Spectra",
+res <- plot2Loadings(SrE3.IR, class, main = myt,
 loads = c(1, 2), tol = 0.002)
 @
 
@@ -483,7 +487,7 @@ However, a potentially more useful approach is to use an s-plot to determine whi
 
 
 << Chunk30a,  fig.cap = "\\label{splot}s-Plot to Identify Influential Frequencies"  >>=
-spt <- sPlotSpectra(SrE3.IR, class, main = "S. repens IR Spectra", pc = 1, tol = 0.001)
+spt <- sPlotSpectra(SrE3.IR, class, main = myt, pc = 1, tol = 0.001)
 @
 
 << Chunk30b,  fig.cap = "\\label{splot2}s-Plot Detail"  >>=
@@ -493,7 +497,7 @@ spt <- sPlotSpectra(SrE3.IR, class, main = "Detail of S. repens IR Spectra", pc 
 Finally, you can blend the ideas of PCA and HCA.  Since PCA eliminates the noise in a data set (after you have selected the important PCs), you can carry out HCA on the PCA scores, since the scores represent the cleaned up data.  The result using the \texttt{SrE.IR} data set are not different than doing HCA on the raw spectra, so we won't illustrate it, but the command would be:
 
 << Chunk31,  results = "hide", eval = FALSE >>=
-hcaScores(SrE3.IR,  class, scores = c(1:5), main = "S. repens IR Spectra")
+hcaScores(SrE3.IR,  class, scores = c(1:5), main = myt)
 @
 
 \subsection{ANOVA-PCA}  %%%%%%%%%%%%%%%
@@ -527,17 +531,17 @@ PCA and HCA are techniques which are unsupervised and assume no underlying model
 
 <<  Chunk35, fig.cap = "\\label{mclust1}mclust Chooses an Optimal Model" >>=
 model <- mclustSpectra(SrE3.IR, class, plot = "BIC",
-main = "S. repens IR Spectra")
+main = myt)
 @
 
 << Chunk36, fig.cap = "\\label{mclust2}mclust's Thoughts on the Matter"  >>=
 model <- mclustSpectra(SrE3.IR, class, plot = "proj",
-main = "S. repens IR Spectra")
+main = myt)
 @
 
 << Chunk37, fig.cap = "\\label{mclust3}Comparing mclust Results to the TRUTH"  >>=
 model <- mclustSpectra(SrE3.IR, class, plot = "errors",
-main = "S. repens IR Spectra", truth = SrE3.IR$groups)
+main = myt, truth = SrE3.IR$groups)
 @
 
 You can also do a similar analysis in 3D, using \texttt{mclust3dSpectra}.  This function uses \texttt{mclust} to find the groups, but then uses non-\texttt{mclust} functions to draw confidence ellipses.  This function uses \texttt{rgl} graphics so it cannot demonstrated here, but the commands would be:
@@ -612,7 +616,7 @@ The development of \texttt{ChemoSpec} began while I was on sabbatical in 2007-20
 
 \section{Related Packages} %%%%%%%%%%%%%%%
 
-Several other packages exist which do some of the same tasks as \texttt{ChemoSpec}, and do other things as well.  The package closest in functionality to \texttt{ChemoSpec} is  \texttt{hyperSpec} written by my friend and collaborator Claudia Belietes (these packages were developed independently around the same time).\cite{hyperSpec-pkg}  There is also a package designed to interconvert \texttt{Spectra} objects and \texttt{hyperSpec} objects, which allows one to  move data between the packages more easily.\cite{hCB-pkg}  Package \texttt{TIMP} is geared toward sophisticated modeling of time-dependent spectral data sets.\cite{TIMP-art}   New packages may appear at any time. A good place to check these things out is the \href{http://cran.at.r-project.org/web/views/ChemPhys.html}{Chemometrics and Computational Physics Task View}.
+Several other packages exist which do some of the same tasks as \texttt{ChemoSpec}, and do other things as well.  The package closest in functionality to \texttt{ChemoSpec} is  \texttt{hyperSpec} written by my friend and collaborator Claudia Belietes (these packages were developed independently around the same time).\cite{hyperSpec-pkg}  There is also a package designed to interconvert \texttt{Spectra} objects and \texttt{hyperSpec} objects, which allows one to move data between the packages more easily.\cite{hCB-pkg}  Package \texttt{TIMP} is geared toward sophisticated modeling of time-dependent spectral data sets.\cite{TIMP-art}   New packages may appear at any time. A good place to check these things out is the \href{http://cran.at.r-project.org/web/views/ChemPhys.html}{Chemometrics and Computational Physics Task View}.
 
 
 

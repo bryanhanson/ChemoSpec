@@ -4,8 +4,6 @@ check4Gaps <- function(x, y = NULL, tol = 0.01, plot = FALSE, silent = FALSE, ..
 # Function to inspect spectral data for gaps & record them
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, November 2009
-
-	print(tol)
 	
 	len.x <- length(x)
 	p <- x[2] - x[1] # nominal freq/pt

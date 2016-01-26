@@ -59,7 +59,7 @@ The matching of \code{gr.crit} against the sample file names is done one at a ti
 There should be no other files of the given format (extension) in the directory except those containing the data to be processed by \code{files2SpectraObject}, as all files with that format in the directory will be processed.
 }
 \value{
-A object of class \code{\link{Spectra}}.  An \emph{unnamed} object of S3 class \code{\link{Spectra}} is also written to \code{out.file}.  To read it back into the workspace, use \code{new.name <- loadObject(out.file)}, found in package \code{R.utils}.
+A object of class \code{\link{Spectra}}.  An \emph{unnamed} object of S3 class \code{\link{Spectra}} is also written to \code{out.file}.  To read it back into the workspace, use \code{new.name <- loadObject(out.file)} (\code{loadObject} is package \code{R.utils}).
 }
 
 \references{
@@ -71,7 +71,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \section{Warning }{
-Files whose names are not matched using gr.crit are still incorporated into the \code{\link{Spectra}} object, but they are not assigned a group or color and therefore don't plot, though they do take up space in a plot!
+Files whose names are not matched using gr.crit are still incorporated into the \code{\link{Spectra}} object, but they are not assigned a group or color and therefore don't plot, but they do take up space in a plot!
 }
 
 \keyword{ file }

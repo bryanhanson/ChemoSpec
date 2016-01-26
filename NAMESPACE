@@ -41,7 +41,6 @@ export(
 	labelExtremes3d,
 	makeEllipsoid,
 	normVec,
-	chooseLvls,
 
 	c_pcaSpectra, # PCA related
 	r_pcaSpectra,
@@ -60,7 +59,6 @@ export(
 	plotScoresDecoration,
 	plotScoresRGL,
 
-
 	mclust3D, # mclust related
 	coordProjCS,
 
@@ -71,19 +69,12 @@ export(
 	hcaScores,
 	evalClusters,
 
-	corSpectra, # STOCSY-related functions
-	covSpectra,
-	covSpectraJS,
-	sortCrossPeaks,
-	cleanSTOCSYpeaks,
-
 	seX, # Utility functions
 	seXy,
 	seXy95,
 	seXyIqr,
 	seXyMad,
-	isWholeNo,
-	sortCrossPeaks
+	isWholeNo
 	)
 
 importFrom(rgl, text3d, points3d, open3d, segments3d, surface3d)

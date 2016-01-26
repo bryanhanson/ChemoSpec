@@ -71,7 +71,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 \code{\link{plotSpectra}} for non-interactive plotting.
 }
 \examples{
-\dontrun{
+if (interactive()) {
 require("jsonlite")
 require("js")
 data(metMUD2)
