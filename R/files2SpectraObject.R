@@ -38,8 +38,8 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 			
 	
 	if (debug) message("\nfiles2SpectraObject is checking the first file")
-	if (format == "csv") temp <- read.csv(files[1], header = FALSE)
-	if (format == "csv2") temp <- read.csv2(files[1], header = FALSE)
+	if (format == "csv") temp <- read.csv(files[1], header = FALSE, ...)
+	if (format == "csv2") temp <- read.csv2(files[1], header = FALSE, ...)
 	if (format == "dx") {
 		temp <- readJDX(file = files[1], debug = debug)
 		}
@@ -58,9 +58,9 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 	if (debug) message("\nfiles2SpectraObject will now import your files")
 	for (i in 1:length(files)) {
 		if (debug) cat("Importing file: ", files[i], "\n")
-		if (format == "csv") temp <- read.csv(files[i], header = FALSE)
-		if (format == "csv2") temp <- read.csv2(files[i], header = FALSE)
-		if (format == "dx") temp <- readJDX(files[i], debug = debug)
+		if (format == "csv") temp <- read.csv(files[i], header = FALSE, ...)
+		if (format == "csv2") temp <- read.csv2(files[i], header = FALSE, ...)
+		if (format == "dx") temp <- readJDX(files[i], debug = debug, ...)
 		spectra$data[i,] <- temp[,2]
 		}
 

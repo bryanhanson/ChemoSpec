@@ -13,7 +13,7 @@ function(spectra, pca,
 	if (length(pcs) != 2) stop("You must choose exactly two PC's to plot")
 	if (missing(spectra)) stop("No spectral data set provided")
 	if (missing(pca)) stop("No pca results provided")
-	if (!("princomp" %in% class(pca) || "prcomp" %in% class(pca))) stop("Your pca results look corrupt!")
+	if (!("princomp" %in% class(pca) || "prcomp" %in% class(pca))) stop("Your pca results object has the wrong class! Double check that the Spectra object is the 1st argument and the prcomp object is the 2nd argument.")
 	chkSpectra(spectra)
 	
 	# There must be at least 3 data points per level to make a classic ellipse.

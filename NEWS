@@ -4,6 +4,19 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.3.17 2016-03-24
+     + Improved error message from plotScores.
+     + sumSpectra was not printing the group summary.  Fixed.
+     + The method of setting the optional tol argument in sumSpectra was improved.  In truth, it looks like the old method was not passed to check4Gaps. Logic fixed.
+     + New normalization option added to normSpectra: zero2one norms each spectrum separately to a [0...1] scale.  Suggested by Nacho Pachon Jimenez.
+     + Added function sgfSpectra to provide a convenient way to apply Savitzky-Golay filters to a Spectra object.
+     + files2SpectraObject can now pass arguments properly through the ... mechanism.
+     + Added another method for baseline correction to baselineSpectra ("linear").
+     + Fixed some logic in surveySpectra which led to warnings from lattice if by.gr = TRUE (long standing problem which was due to how groups with fewer than 3 members were handled).  Plots no longer have empty panels for levels with insufficient data.  As is often the case, there was more than one problem under the hood: groups were not being removed correctly and scales were specified incorrectly.
+     + Added function plotSpectraDist which plots the distance between a reference spectrum and all the other spectra.  Suggested by Juan Carlos Torres.
+     + Minor updates to vignette.
+     + Built and checked against R 3.4 r70368.
+
 Changes in version 4.2.8 2016-01-26
      + Removed a stray print statement in hypTestScores.
      + Removed a stray print statement in sumSpectra.

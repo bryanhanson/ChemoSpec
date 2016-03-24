@@ -54,6 +54,17 @@ function(spectra, method = "PQN", RangeExpress = NULL) {
 			}
 		}
 
+# normalize each spectrum to a [0...1] range:
+
+	if (method == "zero2one") {
+		for (i in 1:length(spectra$names)) {
+			rMin <- min(spectra$data[i,])
+			spectra$data[i,] <- spectra$data[i,] - rMin
+			rMax <- max(spectra$data[i,])
+			spectra$data[i,] <- spectra$data[i,]/rMax
+			}
+		}
+
 	chkSpectra(spectra)
 	spectra
 	}

@@ -15,7 +15,7 @@ check4Gaps <- function(x, y = NULL, tol = 0.01, plot = FALSE, silent = FALSE, ..
 	dbeg <- data.frame(d1 = NA, d1i = NA) # beginning of data chunks
 		
 	for (n in 1:(len.x - 1)) { # locate ends of data chunks
-		t <- x[n + 1] - x[n]
+		t <- x[n + 1] - x[n] # WOULDN'T THIS BE BETTER WITH diff?
 		if (!isTRUE(all.equal(t, p, tolerance = tol))) { # detects discontinuity
 			dend <- rbind(dend, data.frame(d2 = x[n], d2i = n))
 			dbeg <- rbind(dbeg, data.frame(d1 = x[n + 1], d1i = n + 1))

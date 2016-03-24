@@ -66,15 +66,25 @@ by.gr = TRUE,  ...) {
 
 	if (by.gr) {
 		gr <- sumGroups(spectra)
-			
+		
+		# See if any groups should be dropped due to too few members
+		rem <- c()
+		dropGroups <- FALSE
 		for (n in 1:length(gr$group)) {
 			if (gr$no.[n] <= 3) {
 				warning("\nGroup ", gr$group[n],
 			" has 3 or fewer members\n so your stats are not very useful...\n This group has been dropped for display purposes!")
-				spectra <- removeSample(spectra, rem.sam = gr$group[n])
+				rem <- c(rem, gr$group[n])
+				dropGroups <- TRUE
 				}
 			}
-
+			
+		if (dropGroups) {
+			spectra <- removeGroup(spectra, rem.group = rem)
+			gr <- sumGroups(spectra) # update now that groups have been removed
+			}
+		
+		# Now set up and plot
 		x <- spectra$freq
 		l.x <- length(x)
 		
@@ -93,7 +103,7 @@ by.gr = TRUE,  ...) {
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "median +/- iqr", type = "l",
 				strip.left = TRUE, strip = FALSE,
-				scales = list(x = "same", y = list("same", at = NULL)),
+				scales = list(x = "same", y1 = "same", y2 = "same", y3 = "same"),
 				layout = c(1, length(gr$group)), ...)
 			plot(p)
 			}
@@ -116,7 +126,7 @@ by.gr = TRUE,  ...) {
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "mean +/- sd", type = "l",
 				strip.left = TRUE, strip = FALSE,
-				scales = list(x = "same", y = list("same", at = NULL)),
+				scales = list(x = "same", y1 = "same", y2 = "same", y3 = "same"),
 				layout = c(1, length(gr$group)), ...)
 			plot(p)
 			}
@@ -136,7 +146,7 @@ by.gr = TRUE,  ...) {
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "mean +/- sem", type = "l",
 				strip.left = TRUE, strip = FALSE,
-				scales = list(x = "same", y = list("same", at = NULL)),
+				scales = list(x = "same", y1 = "same", y2 = "same", y3 = "same"),
 				layout = c(1, length(gr$group)), ...)
 			plot(p)
 			}
@@ -156,7 +166,7 @@ by.gr = TRUE,  ...) {
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "median +/- mad", type = "l",
 				strip.left = TRUE, strip = FALSE,
-				scales = list(x = "same", y = list("same", at = NULL)),
+				scales = list(x = "same", y1 = "same", y2 = "same", y3 = "same"),
 				layout = c(1, length(gr$group)), ...)
 			plot(p)
 			}
@@ -176,7 +186,7 @@ by.gr = TRUE,  ...) {
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "mean +/- 95 % ci sem", type = "l",
 				strip.left = TRUE, strip = FALSE,
-				scales = list(x = "same", y = list("same", at = NULL)),
+				scales = list(x = "same", y1 = "same", y2 = "same", y3 = "same"),
 				layout = c(1, length(gr$group)), ...)
 			plot(p)
 			}

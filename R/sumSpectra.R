@@ -7,22 +7,25 @@ function(spectra, ...){
 	
 	chkSpectra(spectra) # verify it's legit
 	
-	# Try to guess a sensible value for tol if none provided via the ...
-	# This will be passed to check4Gaps
+	# Try to determine a sensible value for tol if none provided via the ...
 	
 	args <- names(as.list(match.call()[-1]))
 
-	tolSet <- FALSE
 	if (!("tol" %in% args)) {
-		if ((spectra$unit[1] == "ppm") | ((spectra$unit[1] == "chemical shift"))) tol <- 0.01; tolSet <- TRUE
-		if (spectra$unit[1] == "wavenumber") tol <- 0.5; tolSet <- TRUE
-		if ((spectra$unit[1] == "nm") | ((spectra$unit[1] == "nanometer"))) tol <- 1.05; tolSet <- TRUE
-		if (!tolSet) tol <- 0.01
+		fdiff <- diff(spectra$freq)
+		if (length(unique(fdiff)) == 1) tol <- abs(fdiff[1]) + abs(0.01*fdiff[1])
+		if (!length(unique(fdiff)) == 1) tol <- abs(min(fdiff)) + 0.01*abs(min(fdiff))
+		h <- check4Gaps(spectra$freq, tol = tol)	
 		}
 
-	h <- check4Gaps(spectra$freq, ...)	
+	if ("tol" %in% args) h <- check4Gaps(spectra$freq, ...)	
+
+	# Other summaries
+	
 	g <- sumGroups(spectra)
 	res <- abs(spectra$freq[2] - spectra$freq[1])
+	
+	# Now print main summary to console
 	
 	cat("\n", spectra$desc, "\n\n")
 	cat("\tThere are ", length(spectra$names), " spectra in this set.\n", sep = "")
@@ -39,8 +42,10 @@ function(spectra, ...){
 		}
 	cat("\n")
 	cat("\tThe spectra are divided into", length(levels(spectra$groups)), "groups:", "\n\n")
-
+	print(g)
+	
 	# Check for extra data and report if found
+	
 	sn <- names(spectra)
 	tn <- c("freq", "data", "names", "groups", "colors", "sym", "alt.sym", "unit", "desc")
 	extra <- setdiff(sn, tn)

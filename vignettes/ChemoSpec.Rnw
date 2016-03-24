@@ -72,7 +72,7 @@ opts_chunk$set(out.width = "0.8\\textwidth", fig.align = "center", fig.width = 7
 \title{ChemoSpec: An R Package for Chemometric\\
 Analysis of Spectroscopic Data\\
 \Sexpr{vers}}
-\author{Bryan A. Hanson\footnote{The development of ChemoSpec has been generously supported by DePauw University in the form of sabbatical funding and a Fisher Fellowship. Thanks!}\\
+\author{Bryan A. Hanson\footnote{The initial development of ChemoSpec was generously supported by DePauw University in the form of sabbatical funding and a Fisher Fellowship. Thanks!}\\
 e-mail: \href{mailto:hanson@depauw.edu}{hanson@depauw.edu}\\
 \\
 with contributions from Matt J. Keinsley\\
@@ -560,11 +560,12 @@ See the help files of course  \ldots
 
 \begin{enumerate}
   \item \texttt{splitSpectraGroups}  A good example of its use can be found in \texttt{\textsl{?aov\_pcaSpectra}}.
-  \item \texttt{hypTestScores}
-  \item \texttt{hmapSpectra}
-  \item \texttt{evalClusters}
-  \item \texttt{clupaSpectra}
-  \item \texttt{covSpectra} \& related functions.
+  \item \texttt{hypTestScores}: Run anova on PCA scores.
+  \item \texttt{hmapSpectra}: Plot a seriated heat map.
+  \item \texttt{evalClusters}: Compare various clustering options.
+  \item \texttt{clupaSpectra}: Align NMR spectra.
+  \item \texttt{sgfSpectra} Apply Savitzky-Golay filters.
+  \item \texttt{plotSpectraDist} Plot the distance between each spectrum and a reference spectrum.
 
 \end{enumerate}
 

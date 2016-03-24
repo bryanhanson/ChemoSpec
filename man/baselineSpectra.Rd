@@ -4,7 +4,7 @@
 Baseline Correction of a Spectra Object
 }
 \description{
-This function is a simple wrapper to functions in package \code{baseline} which carries out a variety of baseline correction routines.
+This function mostly wraps functions in package \code{baseline} which carries out a variety of baseline correction routines.  A simple linear correction method is also available.
 }
 \usage{
 baselineSpectra(spectra, int = TRUE, retC = FALSE, ...)
@@ -20,13 +20,16 @@ Logical; if \code{TRUE}, do the correction interactively using widgets.  No resu
 Logical: shall the baseline-corrected spectra be returned in the \code{Spectra} object?
 }
   \item{\dots}{
-Other arguments passed downstream.  The relevant ones can be found in \code{\link[baseline]{baseline}}.  Be sure to pay attention to argument \code{method} as you will probably want to use it.
+Other arguments passed downstream.  The relevant ones can be found in \code{\link[baseline]{baseline}}.  Be sure to pay attention to argument \code{method} as you will probably want to use it.  You can also use \code{method = "linear"} for a simple linear fit, see Details.
 }
 }
 \value{
 If \code{int = TRUE}, an interactive plot is created.  If \code{int = FALSE} and \code{retC = FALSE}, an object of class \code{baseline} is returned (see \code{\link[baseline]{baseline-class}}).  If \code{int =  FALSE} and \code{retC = TRUE}, a \code{Spectra} object containing the corrected spectra is returned.  In these latter two cases plots are also drawn.
 }
-\details{In the plots, the x axis ticks give the data point index, not the original values from your data. Note that you cannot zoom the non-interactive display of corrected spectra because the underlying function hardwires the display.  Try the interactive version instead (\code{int = TRUE}), or use \code{\link{plotSpectra}} on the corrected data.
+\details{
+In plots using methods from the baseline package, the x axis ticks give the data point index, not the original values from your data. Note that you cannot zoom the non-interactive display of corrected spectra because the underlying function hardwires the display.  Try the interactive version instead (\code{int = TRUE}), or use \code{\link{plotSpectra}} on the corrected data.
+
+In addition to the methods provided by \code{baseline}, you can also use \code{method = "linear"}.  This correction is handled locally, and is very simple: a line is drawn from the first data point to the last, and this becomes the new baseline.  This is most suitable for cases in which the baseline rises or falls steadily.  This is often seen in chromatograms.
 }
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}

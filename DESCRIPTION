@@ -1,8 +1,8 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 4.2.8
-Date: 2016-01-26
+Version: 4.3.17
+Date: 2016-03-24
 Author: Bryan A. Hanson DePauw University, Greencastle Indiana USA
 Maintainer: Bryan A. Hanson <hanson@depauw.edu>
 Description: A collection of functions for top-down exploratory data analysis of spectral data obtained via nuclear magnetic resonance (NMR), infrared (IR) or Raman spectroscopy.  Includes functions for plotting and inspecting spectra, peak alignment, hierarchical cluster analysis (HCA), principal components analysis (PCA) and model-based clustering. Robust methods appropriate for this type of high-dimensional data are available.  ChemoSpec is designed with metabolomics data sets in mind, where the samples fall into groups such as treatment and control.  Graphical output is formatted consistently for publication quality plots.  ChemoSpec is intended to be very user friendly and help you get usable results quickly.  A vignette covering typical operations is available.
@@ -13,4 +13,4 @@ URL: https://github.com/bryanhanson/ChemoSpec
 ByteCompile: TRUE
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 VignetteBuilder: knitr
-Suggests: mvbutils, sna, knitr, IDPmisc, amap, seriation, speaq, clusterCrit, NbClust, R.utils, RColorBrewer, baseline, js, jsonlite, exCon, mclust, gsubfn, lattice, pcaPP, pls, grid, robustbase, MASS
+Suggests: mvbutils, sna, knitr, IDPmisc, amap, seriation, speaq, clusterCrit, NbClust, R.utils, RColorBrewer, baseline, js, jsonlite, exCon, mclust, gsubfn, lattice, pcaPP, pls, grid, robustbase, MASS, signal

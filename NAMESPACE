@@ -4,6 +4,7 @@ export(
 	loopThruSpectra, # Things you can do with Spectra objects
 	plotSpectra,
 	plotSpectraJS,
+	plotSpectraDist,
 	chkSpectra,
 	sumSpectra,
 	surveySpectra,
@@ -17,6 +18,7 @@ export(
 	mclust3dSpectra,
 	mclustSpectra,
 	sampleDistSpectra,
+	sgfSpectra,
 
 	files2SpectraObject, # Importing data
 	groupNcolor,
@@ -83,10 +85,8 @@ importFrom(plyr, dlply, llply, m_ply, aaply, arrange, desc)
 
 importFrom("graphics", "abline", "axis", "boxplot", "contour", "grid", "hist", "image", "layout", "legend", "lines", "mtext", "par", "plot", "points", "rect", "segments", "text", "title")
 
-# The following were added for R 3.3 devel July 2015
-
 importFrom("grDevices", "devAskNewPage", "rainbow")
 
-importFrom("stats", "aov", "as.dendrogram", "as.dist", "cor", "cov", "cutree", "dendrapply", "dist", "ecdf", "fivenum", "hclust", "is.leaf", "mad", "manova", "median", "na.omit", "prcomp", "qchisq", "qf", "qnorm", "quantile", "relevel", "rnorm", "sd", "var") 
+importFrom("stats", "aov", "as.dendrogram", "as.dist", "cor", "cov", "cutree", "dendrapply", "dist", "ecdf", "fivenum", "hclust", "is.leaf", "mad", "manova", "median", "na.omit", "prcomp", "qchisq", "qf", "qnorm", "quantile", "relevel", "rnorm", "sd", "var", "lm", "predict") 
 
 importFrom("utils", "browseURL", "read.csv", "read.csv2", "str")
