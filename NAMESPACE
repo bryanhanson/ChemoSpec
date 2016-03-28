@@ -21,6 +21,7 @@ export(
 	sgfSpectra,
 
 	files2SpectraObject, # Importing data
+	matrix2SpectraObject,
 	groupNcolor,
 	readJDX,
 
@@ -89,4 +90,4 @@ importFrom("grDevices", "devAskNewPage", "rainbow")
 
 importFrom("stats", "aov", "as.dendrogram", "as.dist", "cor", "cov", "cutree", "dendrapply", "dist", "ecdf", "fivenum", "hclust", "is.leaf", "mad", "manova", "median", "na.omit", "prcomp", "qchisq", "qf", "qnorm", "quantile", "relevel", "rnorm", "sd", "var", "lm", "predict") 
 
-importFrom("utils", "browseURL", "read.csv", "read.csv2", "str")
+importFrom("utils", "browseURL", "read.csv", "read.csv2", "str", "read.table")

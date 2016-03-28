@@ -4,6 +4,9 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.3.22 2016-03-27
+     + Removed the help file about building a Spectra object by hand, and added a new function matrix2SpectraObject.
+
 Changes in version 4.3.19 2016-03-26
      + Added help file explaining how to build a Spectra object from a data matrix.
 
