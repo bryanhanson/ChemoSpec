@@ -1,20 +1,18 @@
-\name{files2SpectraObject}
+\name{files2SpectraObject2}
 \Rdversion{1.1}
-\alias{files2SpectraObject}
+\alias{files2SpectraObject2}
 \title{
 Merge Files in a Directory into a Spectra Object
 }
 \description{
-THE BEHAVIOR OF THIS FUNCTION IS CHANGING IN SUMMER 2016.  THE NEW BEHAVIOR WILL BE THAT OF \code{\link{files2SpectraObject2}} which will become the official version later in the summer.
-
-This function will read all files of a given type in a directory, and use the file names to construct group membership and assign colors and symbols.  All the data is placed into an object of S3 class \code{\link{Spectra}}.
+This function will read all files of a given type in a directory, and use the file names to construct group membership and assign colors and symbols.  All the data is placed into an object of S3 class \code{\link{Spectra}}.  This function uses all the power of \code{\link[utils]{read.table}} to read files so it is very flexible.
 }
 \usage{
-files2SpectraObject(gr.crit = NULL, gr.cols = c("auto"),
+files2SpectraObject2(gr.crit = NULL, gr.cols = c("auto"),
 freq.unit = "no frequency unit provided",
 int.unit = "no intensity unit provided",
 descrip = "no description provided",
-format = "csv",
+fileExt = "\\\\.(csv|CSV)$",
 out.file = "mydata", debug = FALSE, ...)
 }
 \arguments{
@@ -33,18 +31,17 @@ A character string giving the units of the y-axis (some sort of intensity).
   \item{descrip}{
 A character string describing the data set that will be stored.  This string is used in some plots so it is recommended that its length be less than about 40 characters.
 }
-  \item{format}{
-A character string giving the format of the files to be processed.  Default is \code{csv} for US-style csv files.  Alternatively, you can specify \code{csv2} for EU-style csv files, or \code{dx} for JCAMP-DX files.
+  \item{fileExt}{
+A character string giving the extension of the files to be processed. \code{regex} strings can be used.  For instance, the default finds files with either \code{".csv"} or \code{".CSV"} as the extension.  Matching is done via a grep process, which is greedy.
 }
-
-  \item{out.file}{
+\item{out.file}{
 A file name acceptable to the \code{save} function.  The completed object of S3 class \code{\link{Spectra}} will be written to this file.
 }
   \item{debug}{
-Logical; set to \code{TRUE} for troubleshooting when using \code{format = "dx"}.
+Logical; set to \code{TRUE} for troubleshooting when an error is thrown during import.
 }
   \item{...}{
-Other arguments to be passed downstream.
+Arguments to be passed to \code{\link[utils]{read.table}}.  You MUST supply values for \code{sep}, \code{dec} and \code{header} consistent with your file structure, unless they are the same as the defaults for \code{\link[utils]{read.table}}.
 }
 
 }
@@ -55,10 +52,13 @@ The linking of groups with colors is handled by \code{\link{groupNcolor}}.
 The matching of \code{gr.crit} against the sample file names is done one at a time, in order.  This means that the entries in  \code{gr.crit} must be mutually exclusive.  For example, if you have files with names like "Control_1" and "Sample_1" and use \code{gr.crit = c("Control", "Sample")} groups will be assigned as you would expect.  But, if you have file names like "Control_1_Shade" and "Sample_1_Sun" you can't use \code{gr.crit = c("Control", "Sample", "Sun", "Shade")} because each criteria is grepped in order, and the "Sun/Shade" phrases, being last, will form the basis for your groups.  Because this is a grep process, you can get around this by using regular expressions in your \code{gr.crit} argument to specify the desired groups in a mutually exclusive manner.  In this second example, you could use \code{gr.crit = c("Control(.*)Sun", "Control(.*)Shade", "Sample(.*)Sun", "Sample(.*)Shade")} to have your groups assigned based upon both phrases in the file names.
 
 
-\code{files2SpectraObject} acts on the files in the current working directory.  If \code{format = "csv"} these should be .csv files with the first column containing the frequency values and the second column containing the intensity values.  The columns should be unlabeled (i.e. no header row).  The frequency column is assumed to be the same in all .csv files.  If \code{format = "dx"}, then the corresponding file type will be processed (consider setting \code{debug = TRUE} for this format).  See \code{\link{readJDX}} for limitations (there are many options for JCAMP, and most are untested).
+\code{files2SpectraObject2} acts on all files in the current working directory with the specified \code{fileExt}.  The first column should contain the frequency values and the second column the intensity values. The files may have a header or not (supply \code{header = TRUE/FALSE} as necessary).  The frequency column is assumed to be the same in all files.
 
 
-There should be no other files of the given format (extension) in the directory except those containing the data to be processed by \code{files2SpectraObject}, as all files with that format in the directory will be processed.
+If \code{fileExt} contains any of \code{"dx"}, \code{"DX"}, code{"jdx"} or \code{"JDX"}, then the files will be processed by \code{\link{readJDX}}.  Consider setting \code{debug = TRUE} for this format, as there are many options for JCAMP, and most are untested. See \code{\link{readJDX}} for known limitations.
+
+
+There should be no other files of the given extension in the directory except those containing the data to be processed by \code{files2SpectraObject2}, as all files with that format in the directory will be processed.
 }
 \value{
 A object of class \code{\link{Spectra}}.  An \emph{unnamed} object of S3 class \code{\link{Spectra}} is also written to \code{out.file}.  To read it back into the workspace, use \code{new.name <- loadObject(out.file)} (\code{loadObject} is package \code{R.utils}).
@@ -68,8 +68,7 @@ A object of class \code{\link{Spectra}}.  An \emph{unnamed} object of S3 class \
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
 
-\seealso{
-\code{\link{matrix2SpectraObject}}, \code{\link{files2SpectraObject2}}
+\seealso{\code{\link{matrix2SpectraObject}} and \code{\link{files2SpectraObject}}
 }
 
 
@@ -78,7 +77,7 @@ Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
 }
 
 \section{Warning }{
-Files whose names are not matched using gr.crit are still incorporated into the \code{\link{Spectra}} object, but they are not assigned a group or color and therefore don't plot, but they do take up space in a plot!
+Files whose names are not matched using gr.crit are still incorporated into the \code{\link{Spectra}} object, but they are not assigned a group or color. They don't plot, but they do take up space in a plot!  A warning is issued in these cases, since one wouldn't normally want a spectrum to be orphaned this way.
 }
 
 \keyword{ file }
