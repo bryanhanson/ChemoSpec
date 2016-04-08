@@ -17,31 +17,36 @@ readJDX <- function (file = "", debug = FALSE){
 	if (file == "") stop("No file specified")
 	jdx <- readLines(file)
 
-	# Check for compound JCAMP files, these will have more than one title
-	# The standard requires that title be in the first line; this is a check for parsing non-dx files
+	# Check for compound JCAMP files, these will have more than one title and more than one data block
+	# The standard requires that title be in the first line, but we can just count the
+	# total number of titles to see if we can handle the file.
 	
 	cmpd <- grep("^##TITLE=.*$", jdx)
-	if (cmpd > 1) stop("Compound data sets not supported")
-	if (!cmpd == 1) warning("This may not be a JCAMP-DX file")
+	if (cmpd > 1) stop("Compound (multi-block / multi-spectra) data sets not supported at this time")
+	if (cmpd == 0) stop("This does not appear to be a JCAMP-DX file")
 	
 	# Check for NMR data which is not supported
 	
 	ntup <- grepl("^##NTUPLES", jdx)
 	if (any(ntup)) stop("This looks like NMR data with real & imaginary parts, which is not supported")
 	
+	# Read the data next
+	
 	if (debug) cat("\nFile = ", file, "\n")
 	
-	# This next grep finds this string: ##XYDATA= (X++(Y..Y)) which is the start of the y data
-	spcstart <-  grep("^##XYDATA=\\s*\\(X\\+\\+\\(Y\\.\\.Y\\)\\)$", jdx) + 1
-	if (spcstart == 1) stop("Couldn't find the data block start (see ?readJDX for supported formats)")
+	# This next step finds this string: ##XYDATA= (X++(Y..Y)) which is the start of the data
+	spcstart <-  grep("^##XYDATA=\\s*\\(X\\+\\+\\(Y\\.\\.Y\\)\\)$", jdx)
+	if (spcstart == 0) stop("Couldn't find the data block start (see ?readJDX for supported formats)")
+	spcstart <- spcstart + 1
 	
-	# And then the end of the y values
-#	spcend <- grep("^##END=[[:blank:]]*$", jdx) - 1
-	spcend <- grep("^##END=", jdx) - 1 # some files don't end as above
+	if (debug) print(jdx[1:(spcstart - 2)]) # Provide meta data / file header
+
+	# And then the end of the data
+	spcend <- grep("^##END=", jdx) - 1
 	if (spcend == 0) stop("Couldn't find the data block end")
 	
 	# Some checks
-	if (!length(spcstart) == 1L & length(spcend) == 1L) stop("Problem with delimiting data block")
+	if (!(length(spcstart) == 1L) | (length(spcend) == 1L)) stop("Problem understanding data block")
 	if (!spcstart < spcend) stop("End of data block in the wrong place")
 
 	# Each line of the data block begins with a frequency

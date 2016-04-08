@@ -4,6 +4,10 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.3.30 2016-04-07
+     + Failed to exprot files2SpectraObject2: fixed it.
+     + Some behind-the-scene changes to readJDX, working towards being able to import more formats.
+
 Changes in version 4.3.28 2016-04-02
      + Added function files2SpectraObject2 which offers much more flexibility for file importing.  This new behavior will replace the files2SpectraObject function some time in summer 2016.  Please test the new function!
 
