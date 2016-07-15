@@ -1,4 +1,4 @@
-files2SpectraObject2 <-
+files2SpectraObject <-
 function(gr.crit = NULL, gr.cols = c("auto"),
 	freq.unit = "no frequency unit provided",
 	int.unit = "no intensity unit provided",
@@ -16,25 +16,23 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 # Files should have freq in column 1, absorbance/intensity in column 2.
 # There may or may not be a header (default is FALSE for read.table)
 
-# DX files can be parsed (see readJDX for limitations)
+# DX files can be parsed, but are handled separately (see readJDX for limitations)
 
 	if (!requireNamespace("R.utils", quietly = TRUE)) {
 		stop("You need to install package R.utils to use this function")
 		}
 
 	if (is.null(gr.crit)) stop("No group criteria provided to encode data")
-
-	# First set up some common stuff
 	
-	# if ((format == "csv") | (format == "csv2")) pat = "\\.(csv|CSV)$"
-	# if (format == "dx") pat = "\\.(dx|DX|jdx|JDX)$"
 	DX = FALSE
 	if (grepl("(dx|DX|jdx|JDX)", fileExt)) DX <- TRUE
+
+	# First set up some common stuff
 	
 	files <- list.files(pattern = fileExt)
 	files.noext <- tools::file_path_sans_ext(files)
 
-	spectra <- list() # OK to initialize a list this way
+	spectra <- list()
 	spectra$names <- files.noext
 
 	if (debug) message("\nfiles2SpectraObject is checking the first file")
