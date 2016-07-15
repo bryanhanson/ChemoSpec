@@ -22,6 +22,8 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 		stop("You need to install package R.utils to use this function")
 		}
 
+	message("The default behavior of this function has changed as of July 2016.  See ?files2SpectraObject")
+	
 	if (is.null(gr.crit)) stop("No group criteria provided to encode data")
 	
 	DX = FALSE

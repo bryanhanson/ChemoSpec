@@ -51,6 +51,9 @@ professional instance running in VirtualBox using Firefox and Chrome, and
 runs correctly (Firefox has the same mouse position issue as mentioned above).
 }
 
+\section{NMR Spectra}{
+NMR spectra typically have a large number of data points which really strains JavaScript.  For better performance, consider using \code{\link{removeSample}} so that only the spectra you need to view are passed to the web page.
+}
 
 \value{
 None; side effect is an interactive web page.  The temporary directory

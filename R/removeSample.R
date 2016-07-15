@@ -24,7 +24,7 @@ function(spectra, rem.sam) {
 
 	if (max(rem.sam) > length(spectra$names)) stop("Samples to remove are out of range")
 
-	spectra$data <- spectra$data[-rem.sam,]
+	spectra$data <- spectra$data[-rem.sam, , drop = FALSE]
 	spectra$names <- spectra$names[-rem.sam]
 	spectra$groups <- spectra$groups[-rem.sam, drop = TRUE]
 	spectra$colors <- spectra$colors[-rem.sam]

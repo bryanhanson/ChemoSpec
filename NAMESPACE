@@ -21,7 +21,6 @@ export(
 	sgfSpectra,
 
 	files2SpectraObject, # Importing data
-	files2SpectraObject2,
 	matrix2SpectraObject,
 	groupNcolor,
 	readJDX,
