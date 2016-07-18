@@ -9,7 +9,8 @@ Plots the spectra stored in a \code{\link{Spectra}} object.  One may choose whic
 }
 \usage{
 plotSpectra(spectra, which = c(1), yrange = range(spectra$data),
-	offset = 0, amplify = 1, lab.pos = mean(spectra$freq), ...)
+	offset = 0, amplify = 1, lab.pos = mean(spectra$freq),
+	showGrid = TRUE, ...)
 }
 \arguments{
   \item{spectra}{
@@ -29,6 +30,9 @@ A number specifying an amplification factor to be applied to all spectra.  Usefu
 }
   \item{lab.pos}{
 A number giving the location for the identifying label.  Generally, pick an area that is clear in all spectra plotted.  If no label is desired, give \code{lab.pos} outside the plotted x range.
+}
+  \item{showGrid}{
+Logical.  Places light gray vertical lines at each tick mark if \code{TRUE}.
 }
   \item{\dots}{
 Additional parameters to be passed to plotting functions.

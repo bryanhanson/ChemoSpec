@@ -4,6 +4,9 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.3.37 2016-07-18
+     + plotSpectra gains a showGrid argument, and any grid drawn is now underneath the spectra.  Suggested by Jason James.
+
 Changes in version 4.3.34 2016-07-15
      + removeSample needed a drop = FALSE argument so one could remove all samples but one.
      + files2SpectraObject inherits the behavior of files2SpectraObject2 and is the new default.  Message added to function warning of changes.

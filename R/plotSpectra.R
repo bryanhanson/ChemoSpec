@@ -2,7 +2,8 @@
 plotSpectra <- function(spectra, which = c(1),
 	yrange = range(spectra$data),
 	offset = 0.0, amplify = 1.0,
-	lab.pos = mean(spectra$freq), ...) {
+	lab.pos = mean(spectra$freq),
+	showGrid = TRUE, ...) {
 	
 # Function to plot multiple spectra @ specified expansions & decorate
 # Part of the ChemoSpec package
@@ -15,11 +16,12 @@ plotSpectra <- function(spectra, which = c(1),
 	
 	spectrum <- spectra$data[which[1],]*amplify
 
-	plot(spectra$freq, spectrum, type = "l",
-	xlab = spectra$unit[1], ylab = spectra$unit[2],
-	ylim = yrange, col = spectra$colors[which[1]],
-	frame.plot = FALSE, ...)
-	grid(ny = NA, lty = 1)
+	plot(spectra$freq, spectrum, type = "n",
+		xlab = spectra$unit[1], ylab = spectra$unit[2],
+		ylim = yrange,
+		frame.plot = FALSE, ...)
+	if (showGrid) grid(ny = NA, lty = 1) # grid will be underneath all spectra
+	lines(spectra$freq, spectrum, col = spectra$colors[which[1]], ...)
 	lab.x <- lab.pos
 	spec.index <- findInterval(lab.x, sort(spectra$freq))
 	lab.y <- spectrum[spec.index]
