@@ -1,3 +1,37 @@
+#'
+#'
+#'
+#' Read and process a JCAMP-DX file.
+#' 
+#' This function reads files with the JCAMP-DX format (and extension
+#' \code{.dx}).  This function is not extensively tested.  It does not work
+#' with NMR data.  Not normally called by the user; used by
+#' \code{\link{files2SpectraObject}}.
+#' 
+#' The data block must be of the type XYDATA=(X++(Y..Y)) It handles AFFN format
+#' for the data block and only with '+', '-' or ' ' as the separator.
+#' 
+#' @param file Character; the path to the file to be processed.
+#'
+#' @param debug Logical indicating if file names and progress information
+#' should be printed to the console.  Useful for troubleshooting.
+#'
+#' @return A data frame with the following elements: \item{x}{Extracted
+#' frequency values} \item{y}{Extracted intensities}
+#'
+#' @author Bryan A. Hanson, DePauw University.
+#'
+#' @references The details of the JCAMP-DX formats can be found at at
+#' \url{http://www.jcamp-dx.org/}
+#' 
+#' \url{https://github.com/bryanhanson/ChemoSpec}
+#'
+#' @keywords utilities
+#'
+#' @export readJDX
+#'
+#' @importFrom gsubfn gsubfn
+#'
 readJDX <- function (file = "", debug = FALSE){
 
 # ChemoSpec, Bryan Hanson, November 2012
@@ -78,21 +112,21 @@ readJDX <- function (file = "", debug = FALSE){
 	firstX <- grep("^##FIRSTX=", jdx)
 	if (firstX == 0) stop("Couldn't find FIRSTX")
 	firstX <- jdx[firstX]
-	firstX <- gsubfn::gsubfn("##FIRSTX=", replacement = "", firstX)
+	firstX <- gsubfn("##FIRSTX=", replacement = "", firstX)
 	firstX <- sub(",", ".", firstX) # for EU style files
 	firstX <- as.numeric(firstX)
 
 	lastX <- grep("^##LASTX=", jdx)
 	if (lastX == 0) stop("Couldn't find LASTX")
 	lastX <- jdx[lastX]
-	lastX <- gsubfn::gsubfn("##LASTX=", replacement = "", lastX)
+	lastX <- gsubfn("##LASTX=", replacement = "", lastX)
 	lastX <- sub(",", ".", lastX) # for EU style files
 	lastX <- as.numeric(lastX)
 
 	npoints <- grep("^##NPOINTS=", jdx)
 	if (npoints == 0) stop("Couldn't find NPOINTS")
 	npoints <- jdx[npoints]
-	npoints <- gsubfn::gsubfn("##NPOINTS=", replacement = "", npoints)
+	npoints <- gsubfn("##NPOINTS=", replacement = "", npoints)
 	npoints <- as.integer(npoints)
 
 	if (debug) cat("\tNPOINTS = ", npoints, "\n")
@@ -105,7 +139,7 @@ readJDX <- function (file = "", debug = FALSE){
 	
 	yFac <- grep("^##YFACTOR=", jdx)
 	if (yFac == 0) stop("Couldn't find YFACTOR")
-	yFac <- gsubfn::gsubfn("##YFACTOR=", replacement = "", jdx[yFac])
+	yFac <- gsubfn("##YFACTOR=", replacement = "", jdx[yFac])
 	yFac <- sub(",", ".", yFac) # for EU style files
 	yFac <- as.numeric(yFac)
 	if (debug) cat("\tyFac = ", yFac, "\n")

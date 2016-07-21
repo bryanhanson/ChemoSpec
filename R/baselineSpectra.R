@@ -1,5 +1,62 @@
-
-
+#' 
+#' 
+#' Baseline Correction of a Spectra Object
+#' 
+#' This function mostly wraps functions in package \pkg{baseline} which
+#' carries out a variety of baseline correction routines.  A simple linear
+#' correction method is also available.
+#' 
+#' In plots using methods from the baseline package, the x axis ticks give the
+#' data point index, not the original values from your data. Note that you
+#' cannot zoom the non-interactive display of corrected spectra because the
+#' underlying function hardwires the display.  Try the interactive version
+#' instead (\code{int = TRUE}), or use \code{\link{plotSpectra}} on the
+#' corrected data.
+#' In addition to the methods provided by \code{baseline}, you can also use
+#' \code{method = "linear"}.  This correction is handled locally, and is very
+#' simple: a line is drawn from the first data point to the last, and this
+#' becomes the new baseline.  This is most suitable for cases in which the
+#' baseline rises or falls steadily, as is often seen in chromatograms.
+#' 
+#' @param spectra An object of S3 class \code{\link{Spectra}} to be checked.
+#' 
+#' @param int Logical; if \code{TRUE}, do the correction interactively using
+#' widgets.  No results are saved.  Use this for inspection and exploration
+#' only.
+#' 
+#' @param retC Logical: shall the baseline-corrected spectra be returned in the
+#' \code{Spectra} object?
+#' 
+#' @param \dots Other arguments passed downstream.  The relevant ones can be
+#' found in \code{\link[baseline]{baseline}}.  Be sure to pay attention to
+#' argument \code{method} as you will probably want to use it.  You can also
+#' use \code{method = "linear"} for a simple linear fit, see Details.
+#' 
+#' @return If \code{int = TRUE}, an interactive plot is created.  If \code{int
+#' = FALSE} and \code{retC = FALSE}, an object of class \code{baseline} is
+#' returned (see \code{\link[baseline]{baseline-class}}).  If \code{int =
+#' FALSE} and \code{retC = TRUE}, a \code{Spectra} object containing the
+#' corrected spectra is returned.  In these latter two cases plots are also
+#' drawn.
+#' 
+#' @author Bryan A. Hanson, DePauw University.
+#' 
+#' @references \url{https://github.com/bryanhanson/ChemoSpec}
+#' 
+#' @keywords hplot
+#' 
+#' @examples
+#' 
+#' data(SrE.IR)
+#' require("IDPmisc") # needed specifically for rfbaseline
+#' temp <- baselineSpectra(SrE.IR, int = FALSE, method = "rfbaseline")
+#' par(mfrow = c(1,1)) # cancel 2 panel plot
+#' 
+#' @export baselineSpectra
+#'
+#' @importFrom stats lm predict
+#' @importFrom baseline baselineGUI baseline getCorrected
+#' 
 baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, ...) {
 	
 	# Mostly a simple wrapper to the excellent baseline package
@@ -57,13 +114,13 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, ...) {
 		}
 
 	dat <- spectra$data # possible conflict with baseline's use of spectra
-	if (int) baseline::baselineGUI(dat, ...) # no return value
+	if (int) baselineGUI(dat, ...) # no return value
 	if (!int) {
-		b <- baseline::baseline(dat, ...)
+		b <- baseline(dat, ...)
 		baseline::plot(b)
 		
 		if (retC) {
-			bc <- baseline::getCorrected(b) # the way it is supposed to be done...
+			bc <- getCorrected(b) # the way it is supposed to be done...
 			# works interactively, but not in vignette ???
 			#bc <- b@corrected
 			spectra$data <- bc

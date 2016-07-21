@@ -1,3 +1,69 @@
+#'
+#'
+#'
+#' Outlier Diagnostic Plots for PCA of a Spectra Object
+#' 
+#' A function to carry diagnostics on the PCA results for a
+#' \code{\link{Spectra}} object.  Basically a wrapper to Filzmoser's
+#' \code{\link[chemometrics]{pcaDiagplot}} which colors everything according to
+#' the scheme stored in the \code{\link{Spectra}} object.  Works with PCA
+#' results of either class \code{prcomp} or class \code{princomp}.  Works
+#' with either classical or robust PCA results.
+#' 
+#' If both plots are desired, the output should be directed to a file rather
+#' than the screen.  Otherwise, the 2nd plot overwrites the 1st in the active
+#' graphics window.  Alternatively, just call the function twice, once
+#' specifying \code{OD} and once specifying \code{SD}.
+#' 
+#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#'
+#' @param pca An object of class \code{\link{prcomp}} or \code{\link{prcomp}},
+#' modified to include a character string (\code{$method}) describing the
+#' pre-processing carried out and the type of PCA performed.
+#'
+#' @param pcs As per \code{\link[chemometrics]{pcaDiagplot}}.  The number of
+#' principal components to include.
+#'
+#' @param quantile As per \code{\link[chemometrics]{pcaDiagplot}}.  The
+#' significance criteria to use as a cutoff.
+#'
+#' @param plot A character string, indicating whether to plot the score
+#' distances or orthogonal distances, or both.  Options are \code{c("OD",
+#' "SD")}.
+#'
+#' @param use.sym logical; if true, the color scheme is change to black and
+#' symbols are used for plotting.
+#'
+#' @param \dots Additional parameters to be passed to the plotting functions.
+#'
+#' @return A list is returned as described in
+#' \code{\link[chemometrics]{pcaDiagplot}}, so the result must be assigned or
+#' it will appear at the console.  Side effect is a plot.
+#'
+#' @author Bryan A. Hanson, DePauw University.
+#'
+#' @seealso \code{\link[chemometrics]{pcaDiagplot}} in package
+#' \code{chemometrics} for the underlying function.
+#'
+#' @references K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
+#' Statistical Analysis in Chemometrics}, CRC Press, 2009.
+#' 
+#' \url{https://github.com/bryanhanson/ChemoSpec}\cr
+#'
+#' @keywords multivariate
+#'
+#' @examples
+#' 
+#' data(SrE.IR)
+#' res <- c_pcaSpectra(SrE.IR, choice = "noscale")
+#' temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "OD")
+#' temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "SD")
+#' 
+#' @export pcaDiag
+#'
+#' @importFrom stats qchisq median mad qnorm
+#' @importFrom graphics plot abline
+#'
 pcaDiag <-
 function (spectra, pca, pcs = 3, quantile = 0.975,
 plot = c("OD", "SD"), use.sym = FALSE, ...) {

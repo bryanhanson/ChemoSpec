@@ -1,4 +1,74 @@
-
+#'
+#'
+#' mclust Analysis in 3D
+#' 
+#' This function conducts an mclust analysis of the data provided, and plots
+#' the points in 3D using \pkg{rgl} graphics.  An option is provided for displaying
+#' either classical or robust confidence ellipses.  An internal function not
+#' generally called by the user.  See \code{\link{mclust3dSpectra}} instead.
+#' 
+#' 
+#' @param data A matrix of 3 columns (corresponding to x, y, z) and samples in
+#' rows.
+#' @param ellipse Logical indicating if confidence ellipses should be drawn.
+#'
+#' @param rob Logical; if \code{ellipse = TRUE}, indicates that robust
+#' confidence ellipses should be drawn.  If \code{FALSE}, classical confidence
+#' ellipses are drawn.
+#' @param cl A number indicating the confidence interval for the ellipse.
+#'
+#' @param frac.pts.used If \code{ellipse = TRUE} and \code{rob = TRUE}, a
+#' number indicating the fraction of the data points to be considered "good"
+#' and thus used to compute the robust confidence ellipse.
+#'
+#' @param truth A character vector indicating the known group membership for
+#' reach row of the PC scores.  Generally this would be \code{spectra$groups}.
+#'
+#' @param title A character string for the plot title.
+#'
+#' @param t.pos A character selection from \code{LETTERS[1:8]} ( = A through H)
+#' indicating the desired location for the title.
+#'
+#' @param lab.opts A logical indicating whether or not to display the locations
+#' where the title and legend can be placed.  These locations are the corners
+#' of a cube surrounding the data.
+#'
+#' @param use.sym logical; if true, the color scheme is changed to black and
+#' symbols are used for plotting.
+#'
+#' @param \dots Other parameters to be passed downstream.
+#'
+#' @return The mclust model is returned invisibly, and a plot is produced.
+#'
+#' @seealso \code{\link[mclust]{Mclust}} for background on the method.
+#'
+#' @author Bryan A. Hanson, DePauw University.
+#'
+#' @references \url{https://github.com/bryanhanson/ChemoSpec}
+#'
+#' @keywords multivariate cluster
+#'
+#' @examples
+#' 
+#' \dontrun{
+#'
+#' require("mclust")
+#' set.seed(666)
+#' x <- c(rnorm(10, 3, 0.5), rnorm(10, -1, 0.5))
+#' y <- c(rnorm(10, 1, 1), rnorm(10, -4, 0.5))
+#' z <- c(rnorm(10, -2, 0.5), rnorm(10, 3, 0.5))
+#' x[15] <- y[15] <- z[15] <- 4 # screw up one point
+#' my.truth <- c(rep("Z", 10), rep("Q", 10))
+#' mclust3D(cbind(x, y, z), title = "mclust3D demo",
+#' 	 t.pos = "G", truth = my.truth)
+#' }
+#' 
+#' @export mclust3D
+#'
+#' @importFrom rgl open3d segments3d text3d points3d
+#' @importFrom mclust Mclust classError
+#' @importFrom RColorBrewer brewer.pal
+#'
 mclust3D <- function(data, ellipse = TRUE, rob = FALSE, 
 	cl = 0.95, frac.pts.used = 0.8, truth = NULL,
 	title = "no title provided", t.pos = NULL, lab.opts = FALSE,
@@ -18,10 +88,10 @@ mclust3D <- function(data, ellipse = TRUE, rob = FALSE,
 
 	if (!dim(data)[2] == 3) stop("Data must contain 3 columns (x, y, z)")
 
-	mod <- mclust::Mclust(data, ...)
+	mod <- Mclust(data, ...)
 	gr <- unique(mod$classification)
 	my.col <- c("red", "blue")
-	if (length(gr) > 2) my.col <- RColorBrewer::brewer.pal(length(gr), "Set1")
+	if (length(gr) > 2) my.col <- brewer.pal(length(gr), "Set1")
 	my.sym <- letters[1:length(gr)]
 	df1 <- df2 <- data.frame(x = NA, y = NA, z = NA, sym = NA, col = NA, a = NA)
 
@@ -92,7 +162,7 @@ mclust3D <- function(data, ellipse = TRUE, rob = FALSE,
 	text3d(df1$x, df1$y, df1$z, texts = df1$sym, color = df1$col) # draw original points
 
 	if (!is.null(truth)) { # X out errors in classification
-		ans <- mclust::classError(mod$classification, truth)
+		ans <- classError(mod$classification, truth)
 		wh <- data[ans$misclassified,]
 		if (length(wh) == 0) warning("No points were misclassified, damn you're good!")
 		if (length(wh) > 0) text3d(wh, texts = "X", color = "black", cex = 1.5)

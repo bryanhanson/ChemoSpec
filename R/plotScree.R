@@ -1,5 +1,50 @@
-plotScree <-
-function(pca,  ...) {
+#'
+#'
+#' Scree Plots of PCA Results for a Spectra Object
+#' 
+#' Functions to draw a traditional scree plot or an alternative that is perhaps
+#' more useful.  These illustrate the importance of the components in a PCA
+#' analysis.
+#' 
+#' If you add \code{$method} to the PCA results from other packages, this will
+#' plot a scree plot for any PCA results, not just those from
+#' \code{\link{Spectra}} objects.
+#'
+#' @param pca An object of class \code{\link{prcomp}}, modified to include a
+#' list element called \code{$method}, a character string describing the
+#' pre-processing carried out and the type of PCA performed (it appears on the
+#' plot).  This is automatically provided if \code{ChemoSpec} functions
+#' \code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}} were used to create
+#' \code{pca}.
+#'
+#' @param \dots Additional parameters to be passed to plotting functions.
+#'
+#' @return None.  Side effect is a plot.
+#'
+#' @aliases plotScree plotScree2
+#'
+#' @author Bryan A. Hanson, DePauw University.
+#'
+#' @references The idea for the alternative style plot came from the NIR-Quimiometria
+#'  blog by jrcuesta, at \url{https://nir-quimiometria.blogspot.com/2012/02/pca-for-nir-spectrapart-004-projections.html}
+#' 
+#' \url{https://github.com/bryanhanson/ChemoSpec}
+#'
+#' @keywords multivariate hplot
+#'
+#' @examples
+#' 
+#' data(metMUD1)
+#' pca <- c_pcaSpectra(metMUD1)
+#' plotScree(pca, main = "metMUD1 NMR Data")
+#' plotScree2(pca, main = "metMUD1 NMR Data")
+#' 
+#' @export plotScree plotScree2
+#'
+#' @importFrom graphics plot axis points abline legend
+#'
+#' @describeIn plotScree Traditional scree plot
+plotScree <- function(pca,  ...) {
 
 # Function to do the scree plot
 # Part of the ChemoSpec package

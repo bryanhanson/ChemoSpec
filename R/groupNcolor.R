@@ -1,5 +1,42 @@
-groupNcolor <-
-function(spectra, gr.crit = NULL, gr.cols = c("auto")) {
+#'
+#'
+#' Assign Group Membership and Colors for a Spectra Object
+#' 
+#' A utility function which looks for \code{gr.crit} in the file names of .csv
+#' files and assigns group membership.  Also assigns a color, a symbol and an
+#' alternate symbol to each group.  Warnings are given if there are file names
+#' that don't match entries in \code{gr.crit} or there are entries in
+#' \code{gr.crit} that don't match any file names.  An internal function, not
+#' generally called by the user.
+#' 
+#' 
+#' @param spectra An object of S3 class \code{\link{Spectra}}.  Until this
+#' function acts on \code{spectra} it is not quite complete.
+#' 
+#' @param gr.crit As per \code{\link{files2SpectraObject}}.
+#' 
+#' @param gr.cols As per \code{\link{files2SpectraObject}}.
+#' 
+#' @return A \emph{complete} object of S3 class \code{\link{Spectra}}.  This
+#' function is the last internal step in creating a \code{Spectra} object.
+#' Until this function has done its job, an object of class
+#' \code{\link{Spectra}} will not pass checks as the assembly is not complete
+#' (see \code{\link{chkSpectra}}).
+#' 
+#' @author Bryan A. Hanson, DePauw University.
+#' 
+#' @seealso \code{\link{files2SpectraObject}} for details;
+#' \code{\link{sumGroups}} to see the outcome.
+#' 
+#' @references \url{https://github.com/bryanhanson/ChemoSpec}
+#' 
+#' @keywords utilities color
+#' 
+#' @export groupNcolor
+#'
+#' @importFrom RColorBrewer brewer.pal
+#'
+groupNcolor <- function(spectra, gr.crit = NULL, gr.cols = c("auto")) {
 
 # Function to Process Group Assignments & Assign Colors
 # Part of the ChemoSpec package
@@ -39,7 +76,7 @@ function(spectra, gr.crit = NULL, gr.cols = c("auto")) {
 		if (!requireNamespace("RColorBrewer", quietly = TRUE)) {
 			stop("You need to install package RColorBrewer or supply the colors yourself")
 			}
-		gr.cols <- RColorBrewer::brewer.pal(length(gr.crit), "Set1")
+		gr.cols <- brewer.pal(length(gr.crit), "Set1")
 		for (i in 1:length(gr.crit)) {
 			which <- grep(gr.crit[i], spectra$names)
 			spectra$colors[which] <- gr.cols[i]

@@ -1,3 +1,39 @@
+#'
+#'
+#' Compute Distance Between Rows of a Matrix
+#' 
+#' This function is a wrapper to compute the distance between rows of a matrix
+#' using a number of methods.  Some of these are available in package
+#' \code{\link{stats}} and some in \code{\link[amap]{Dist}} from package \pkg{amap}.
+#' This function determines which method is requested and then the
+#' distance calculation is done by the appropriate method. The exception is the
+#' cosine distance which is calculated locally.
+#' 
+#' Methods \code{c("euclidean", "maximum", "manhattan", "canberra","binary",
+#' "minkowski")} are sent to function \code{\link{dist}} in package
+#' \code{\link{stats}} while methods \code{c("pearson", "correlation",
+#' "spearman", "kendall")} are handled by \code{Dist} in package \code{amap}.
+#' See the respective help pages for details. \code{"cosine"} is handled
+#' locally.
+#' 
+#' @param x A matrix whose rows will be used for the distance calculation.
+#'
+#' @param method A character; one of \code{c("pearson", "correlation",
+#' "spearman", "kendall", "euclidean", "maximum", "manhattan",
+#' "canberra","binary", "minkowski", "cosine")}.
+#'
+#' @return An object of class \code{dist}.
+#'
+#' @author Bryan A. Hanson, DePauw University.
+#' Suggested by and original code written by Roberto Canteri.
+#'
+#' @keywords utilities
+#'
+#' @export rowDist
+#'
+#' @importFrom stats dist as.dist
+#' @importFrom amap Dist
+#'
 rowDist <- function(x, method) {
 
 # Function to access a variety of distance methods which turn out to be in different packages,
@@ -13,7 +49,7 @@ rowDist <- function(x, method) {
 		if (!requireNamespace("amap", quietly = TRUE)) {
 			stop("You need to install package amap to use this function/option")
 			}
-		distance <- amap::Dist(x, method = method)
+		distance <- Dist(x, method = method)
 		}
 		
 	if (method %in% c("euclidean", "maximum", "manhattan", "canberra","binary", "minkowski")) {

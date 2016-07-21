@@ -4,6 +4,12 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.3.128 2016-07-21
+     + Cleaned up a lot of formatting & style issues in documentation.  Merged documentation on selected functions.  Miscellaneous improvements in documentation.
+     + removeSample now checks for additiona data.
+     + sampleDistPlot was not plotting (!).  Fixed.  Also was not passing ... Fixed.
+     + Converted documentation to roxygen2.
+
 Changes in version 4.3.37 2016-07-18
      + plotSpectra gains a showGrid argument, and any grid drawn is now underneath the spectra.  Suggested by Jason James.
 

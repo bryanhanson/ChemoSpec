@@ -1,5 +1,45 @@
-labelExtremes3d <-
-function(data, names, tol) {
+#'
+#'
+#'
+#' Identify Extreme Values in 3D
+#' 
+#' A utility function to identify the extreme values in a 3D plot data set,
+#' presumably so that they can be labeled.  Algorithm is similar to
+#' \code{\link{labelExtremes}}, except that \code{labelExtremes3d} does not do
+#' the plotting (because the results are used by functions that use different
+#' plotting paradigms).  An internal function, not generally called by the
+#' user.
+#' 
+#' 
+#' @param data A matrix of 3 columns containing x, y and z values for the
+#' labels, with rows corresponding to sample names.
+#' 
+#' @param names A character vector of sample names; must have length equal to
+#' \code{nrow(data)}.
+#' 
+#' @param tol A number describing the fraction of points to be labeled.
+#' \code{tol = 1.0} labels all the points; \code{tol = 0.05} labels
+#' \emph{approximately} the most extreme 5 percent.  Note that this is simply
+#' based upon quantiles, assumes that x, y and z are each normally distributed,
+#' and treats x, y and yz separately.  Thus, this is not a formal treatment of
+#' outliers, just a means of labeling points.  Note too that while this
+#' function could deal with groups separately, the way it is called by
+#' \code{\link{plotScoresRGL}} lumps all groups together.
+#' 
+#' @return A data frame containing the x, y and z coordinates, along with the
+#' corresponding labels.
+#' 
+#' @author Bryan A. Hanson, DePauw University.
+#' 
+#' @references \url{https://github.com/bryanhanson/ChemoSpec}
+#' 
+#' @keywords utilities
+#' 
+#' @export labelExtremes3d
+#' 
+#' @importFrom stats quantile 
+#' 
+labelExtremes3d <- function(data, names, tol) {
 
 # Function to find extreme data points for labeling
 # Part of the ChemoSpec package

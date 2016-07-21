@@ -1,5 +1,62 @@
-cv_pcaSpectra <-
-function (spectra, pcs, choice = "noscale", repl = 50, segments = 4, 
+#'
+#'
+#'
+#' Cross-Validation of Classical PCA Results for a Spectra Object
+#' 
+#' This function carries out classical PCA on the data in a
+#' \code{\link{Spectra}} object using a cross-validation method.  A simple
+#' re-write of Peter Filzmoser's \code{\link[chemometrics]{pcaCV}} method
+#' with some small plotting changes.
+#' 
+#' 
+#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' 
+#' @param choice A character string indicating the choice of scaling.  One of
+#' \code{c("noscale", "autoscale", "Pareto").}
+#' 
+#' @param pcs As per \code{\link[chemometrics]{pcaCV}} where it is called amax;
+#' an integer giving the number of PC scores to include.
+#' 
+#' @param repl As per \code{\link[chemometrics]{pcaCV}}; the number of
+#' replicates to perform.
+#' 
+#' @param segments As per \code{\link[chemometrics]{pcaCV}}.
+#' 
+#' @param segment.type As per \code{\link[chemometrics]{pcaCV}}.
+#' 
+#' @param length.seg As per \code{\link[chemometrics]{pcaCV}}.
+#' 
+#' @param trace As per \code{\link[chemometrics]{pcaCV}}.
+#' 
+#' @param \dots Parameters to be passed to the plotting routines.
+#' 
+#' @return A list as described in \code{\link[chemometrics]{pcaCV}}, so the
+#' result must be assigned or it will appear at the console.  Side effect is a
+#' plot.
+#' 
+#' @author Bryan A. Hanson, DePauw University. Derived from \code{\link[chemometrics]{pcaCV}}.
+#' 
+#' @seealso \code{\link[chemometrics]{pcaCV}} for the underlying function.
+#' 
+#' @references K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
+#' Statistical Analysis in Chemometrics}, CRC Press, 2009.
+#' 
+#' \url{https://github.com/bryanhanson/ChemoSpec}\cr
+#' 
+#' @keywords multivariate
+#' 
+#' @examples
+#' 
+#' data(SrE.IR)
+#' pca <- cv_pcaSpectra(SrE.IR, pcs = 5)
+#' 
+#' @export cv_pcaSpectra
+#' 
+#' @importFrom stats sd
+#' @importFrom graphics boxplot legend 
+#' @importFrom pls cvsegments
+#' 
+cv_pcaSpectra <- function (spectra, pcs, choice = "noscale", repl = 50, segments = 4, 
     segment.type = c("random", "consecutive", "interleaved"), 
     length.seg, trace = FALSE, ...) {
 
@@ -57,10 +114,10 @@ function (spectra, pcs, choice = "noscale", repl = 50, segments = 4,
     dimnames(Fit) <- list(paste("rep", 1:repl), 1:amax)
     for (i in 1:repl) {
         if (missing(length.seg)) {
-            segment <- pls::cvsegments(nrow(X), k = segments, type = segment.type)
+            segment <- cvsegments(nrow(X), k = segments, type = segment.type)
         }
         else {
-            segment <- pls::cvsegments(nrow(X), length.seg = length.seg, 
+            segment <- cvsegments(nrow(X), length.seg = length.seg, 
                 type = segment.type)
         }
         if (trace) 

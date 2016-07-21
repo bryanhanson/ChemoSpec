@@ -1,5 +1,63 @@
-
-	
+#'
+#'	
+#' ANOVA-PCA Analysis of Spectra Data
+#' 
+#' ANOVA-PCA is a combination of both methods developed by Harrington.  The
+#' data is partitioned into submatrices corresponding to each experimental
+#' factor, which are then subjected to PCA separately after adding the residual
+#' error back.  If the effect of a factor is large compared to the residual
+#' error, separation along the 1st PC in the score plot should be evident.
+#' With this method, the significance of a factor can be visually determined
+#' (ANOVA-PCA is not blind to group membership). ANOVA-PCA with only one factor
+#' is the same as standard PCA and gives no additional separation.
+#' 
+#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#'
+#' @param fac A vector of character strings giving the factors to be used in
+#' the analysis.  These should be elements of \code{\link{Spectra}}.  Note that
+#' there should be 2 or more factors, because ANOVA-PCA on one factor is the
+#' same as standard PCA.  See the example.
+#'
+#' @return A list of matrices for each factor and their interactions, along
+#' with the residual error and mean centered data matrix.
+#'
+#' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+#'
+#' @seealso This function calls \code{\link{avgFacLvls}}, and the results are
+#' used in \code{\link{aovPCAscores}} and \code{\link{aovPCAloadings}}.
+#'
+#' @references Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for
+#' Discriminant Analysis: ..." Analytica Chimica Acta 629.1-2 (2008): 47-55.
+#' 
+#' Harrington, Vieira, Espinoza, Nien, Romero, and Yergey. "Analysis of
+#' Variance--Principal Component Analysis: ..." Analytica Chimica Acta 544.1-2
+#' (2005): 118-27.
+#' 
+#' \url{https://github.com/bryanhanson/ChemoSpec}
+#'
+#' @keywords multivariate htest
+#'
+#' @examples
+#' 
+#' data(metMUD2)
+#'
+#' # Original factor encoding:
+#' levels(metMUD2$groups)
+#'
+#' # Split those original levels into 2 new ones (re-code them)
+#' new.grps <- list(geneBb = c("B", "b"), geneCc = c("C", "c"))
+#' mM3 <- splitSpectraGroups(metMUD2, new.grps)
+#'
+#' # run aov_pcaSpectra
+#' mats <-aov_pcaSpectra(mM3, fac = c("geneBb", "geneCc"))
+#' apca1 <- aovPCAscores(mM3, mats, plot = 1, main = "aovPCA: B vs b")
+#' apca2 <- aovPCAscores(mM3, mats, plot = 2, main = "aovPCA: C vs c")
+#' apca3 <- aovPCAscores(mM3, mats, plot = 3, main = "aovPCA: Interaction Term")
+#' apca4 <- aovPCAloadings(spectra = mM3, LM = mats, pca = apca1,
+#'   main = "aov_pcaSpectra: Bb Loadings")
+#' 
+#' @export aov_pcaSpectra
+#'
 aov_pcaSpectra <-function(spectra, fac) {
 
 #  Function to conduct ANOVA-PCA per Harrington

@@ -1,4 +1,74 @@
-
+#'
+#'
+#' Plot a Spectra Object Interactively
+#' 
+#' This function uses the d3.js JavaScript library to plot a \code{\link{Spectra}}
+#' object interactively.  This is most useful for data exploration.  For high
+#' quality plots, consider \code{\link{plotSpectra}}.
+#' 
+#' The spectral data are incorporated into the web page. Keep in mind that very large
+#' data sets, like NMR spectra with 32K points, will bog down the browser dramatically.
+#' In these cases, you may need to limit the number of samples in passed to this function.
+#' See \code{\link{removeSample}}.
+#'
+#' @param spectra An object of S3 class \code{\link{Spectra}} to be checked.
+#'
+#' @param browser Character.  Something that will make sense to your OS.  Only
+#' necessary if you want to override your system specified browser as
+#' understood by \code{R}.  See below for further details.
+#'
+#' @param minify Logical.  Shall the JavaScript be minified?  This improves
+#' performance.  However, it requires package \code{js} which in turn requires
+#' package \code{V8}.  The latter is not available on all platforms.  Details
+#' may be available at \url{https://github.com/jeroenooms/v8}
+#'
+#' @return None; side effect is an interactive web page.  The temporary
+#' directory containing the files that drive the web page is written to the
+#' console in case you wish to use those files.  This directory is deleted when
+#' you quit R.  If you wish to read the file, don't minify the code, it will be
+#' unreadable.
+#'
+##' @section Browser Choice: The browser is called by
+##' \code{\link[utils]{browseURL}}, which
+##' in turn uses \code{options("browser")}.  Exactly how this is handled
+##' is OS dependent.
+##'
+##' @section RStudio Viewer: If browser is \code{NULL}, you are using RStudio, and a viewer is specified, this will be called.  You can stop this by with \code{options(viewer = NULL)}.
+##'
+##'
+##' @section Browser Choice (Mac): On a Mac, the default browser is called
+##' by \code{/bin/sh/open}
+##' which in turn looks at which browser you have set in the system settings.  You can
+##' override your default with
+##' \code{browser = "/usr/bin/open -a 'Google Chrome'"} for example.
+##'
+##' @section Browser Choice & Performance:  You can check the performance of
+##' your browser at peacekeeper.futuremark.com  The most relevant score
+##' is the rendering category.
+#'
+#' @author Bryan A. Hanson, DePauw University.
+#'
+#' @seealso \code{\link{plotSpectra}} for non-interactive plotting.  Details
+#' about \code{d3.js} are at \url{www.d3js.org}.
+#'
+#' @references \url{https://github.com/bryanhanson/ChemoSpec}
+#'
+#' @keywords plot
+#'
+#' @examples
+#' 
+#' if (interactive()) {
+#'   require("jsonlite")
+#'   require("js")
+#'   data(metMUD2)
+#'   plotSpectraJS(metMUD2)
+#' }
+#' 
+#' @export plotSpectraJS
+#'
+#' @importFrom utils browseURL
+#' @importFrom jsonlite toJSON
+#'
 plotSpectraJS <- function(spectra, browser = NULL, minify = TRUE) {
 
 	# Bryan A. Hanson, DePauw University, February 2015
@@ -20,23 +90,23 @@ plotSpectraJS <- function(spectra, browser = NULL, minify = TRUE) {
 		# separate JSON entities
 		# These will be global variables in the JavaScript
 	
-		Freq <- jsonlite::toJSON(spectra$freq)
-		D0 <- jsonlite::toJSON(spectra$data)
-		D1 <- jsonlite::toJSON(spectra$data)
-		Names <- jsonlite::toJSON(paste(" ", spectra$names, sep = "  "))
-		Groups <- jsonlite::toJSON(spectra$groups)
-		Colors <- jsonlite::toJSON(spectra$colors)
-		xUnit <- jsonlite::toJSON(spectra$unit[1])
-		Desc <- jsonlite::toJSON(spectra$desc)
-		Dx <- jsonlite::toJSON(range(spectra$freq))
-		Dy <- jsonlite::toJSON(range(spectra$data))
+		Freq <- toJSON(spectra$freq)
+		D0 <- toJSON(spectra$data)
+		D1 <- toJSON(spectra$data)
+		Names <- toJSON(paste(" ", spectra$names, sep = "  "))
+		Groups <- toJSON(spectra$groups)
+		Colors <- toJSON(spectra$colors)
+		xUnit <- toJSON(spectra$unit[1])
+		Desc <- toJSON(spectra$desc)
+		Dx <- toJSON(range(spectra$freq))
+		Dy <- toJSON(range(spectra$data))
 	
 		# Note: D1 is a copy of the data which will be modified for plotting
 		# D0, the original data, and will not be changed
 	
 		# This vector will keep track of which spectra are to be plotted
 	 	sampleBOOL <- c(1L, rep(0, length(spectra$names)-1))
-		sampleBOOL <- jsonlite::toJSON(sampleBOOL)
+		sampleBOOL <- toJSON(sampleBOOL)
 	
 		# Prepare for writing
 		# Groups commented out as it is not currently used

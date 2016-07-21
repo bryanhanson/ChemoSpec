@@ -1,5 +1,62 @@
-removeGroup <-
-function(spectra, rem.group) {
+#'
+#'
+#' Remove Groups or Samples from a Spectra Object
+#' 
+#' Removes specified groups or samples from a \code{\link{Spectra}} object.
+#' 
+#' Both functions will report if extra data elements are found.  These will
+#' probably need to be edited manually.  The indices reported to the console
+#' can be helpful in this regard.
+#'
+#' If \code{rem.sam} is a character vector, the sample
+#' names are grepped for the corresponding values.  \code{rem.group}
+#' also uses grep.  Remember that the
+#' grepping process is greedy, i.e. grepping for "XY" find not only "XY" but
+#' also "XYZ".
+#'
+#' Unused levels in \code{$groups} are dropped.
+#'
+#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#'
+#' @param rem.group A character vector giving the groups to be removed.
+#'
+#' @param rem.sam Either an integer vector specifying the samples to be
+#' removed, or a character vector giving the sample names to be removed.
+#' 
+#' @return A modified object of S3 class \code{\link{Spectra}}.
+#'
+#' @author Bryan A. Hanson, DePauw University.
+#'
+#' @seealso \code{\link{removeFreq}} to remove selected frequencies.
+#'
+#' @references \url{https://github.com/bryanhanson/ChemoSpec}
+#'
+#' @keywords utilities manip
+#'
+#' @examples
+#' 
+#' data(metMUD1)
+#'
+#' # removeGroup
+#' sumSpectra(metMUD1)
+#' trmt <- removeGroup(metMUD1, rem.group = "Cntrl")
+#' sumSpectra(trmt)
+#'
+#' # removeSample
+#' # Removes the 20th spectrum/sample:
+#' new1 <- removeSample(metMUD1, rem.sam = 20)
+#'
+#' # Removes one spectrum/sample with this exact name:
+#' new2 <- removeSample(metMUD1, rem.sam = "Sample_20")
+#'
+#' # Opps! Removes all samples due to greedy grep!
+#' new3 <- removeSample(metMUD1, rem.sam = "Sample")
+#' 
+#' @export removeGroup removeSample
+#'
+#' @describeIn removeGroup Remove groups from a \code{Spectra} object
+#'
+removeGroup <- function(spectra, rem.group) {
 	
 # Function to Remove Selected Groups
 # Part of the ChemoSpec package
@@ -9,7 +66,6 @@ function(spectra, rem.group) {
 	if (missing(rem.group)) stop("Nothing to remove")
 	chkSpectra(spectra)
 	
-	# remove the requested samples by name or number
 	# BE CAREFUL: greping can catch more than you think!
 	
 	k <- c()

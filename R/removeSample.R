@@ -1,5 +1,8 @@
-removeSample <-
-function(spectra, rem.sam) {
+
+#'
+#' @describeIn removeGroup Remove samples from a \code{Spectra} object
+#'
+removeSample <- function(spectra, rem.sam) {
 	
 # Function to Remove Selected Samples
 # Typically used to remove spectra with artifacts
@@ -31,10 +34,20 @@ function(spectra, rem.sam) {
 	spectra$sym <- spectra$sym[-rem.sam]
 	spectra$alt.sym <- spectra$alt.sym[-rem.sam]
 	
+	sn <- names(spectra)
+	tn <- c("freq", "data", "names", "groups", "colors", "sym", "alt.sym", "unit", "desc")
+	extra <- setdiff(sn, tn)
+	if (length(extra) > 0) {
+		msg <- paste("Additional data was found:", extra, "and not modified\n", sep = " ")
+		message(msg)
+		message("If these are per sample data, you may have to manually edit them")
+		msg <- paste("The removal indices are:", rem.sam, sep = " ")
+		message(msg)
+		
+		}
+
 	if (length(spectra$names) == 0) warning("You have removed all your samples!")
 
-	# other aspects of spectra are untouched
-	
 	chkSpectra(spectra)
 	spectra
 

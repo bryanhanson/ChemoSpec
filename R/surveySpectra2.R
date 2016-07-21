@@ -1,7 +1,9 @@
-surveySpectra2 <-
-function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"),
-	lab.pos = 0.9*max(spectra$freq), ...)
-{
+
+#'
+#' @describeIn surveySpectra Spectral survey emphasizing variation among spectra.
+#' 
+surveySpectra2 <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"),
+	lab.pos = 0.9*max(spectra$freq), ...) {
 
 # Function to visually inspect a Spectra object holistically.
 # Part of the ChemoSpec package

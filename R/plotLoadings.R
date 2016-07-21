@@ -1,5 +1,53 @@
-plotLoadings <-
-function(spectra, pca, loads = c(1), ref = 1, ...) {
+#'
+#'
+#' Plot PCA Loadings for a Spectra Object
+#' 
+#' Creates a multi-panel plot of loadings along with a reference spectrum.
+#' 
+#' 
+#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#'
+#' @param pca An object of class \code{\link{prcomp}}, modified to include a
+#' list element called \code{$method}, a character string describing the
+#' pre-processing carried out and the type of PCA performed (it appears on the
+#' plot).  This is automatically provided if \code{ChemoSpec} functions
+#' \code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}} were used to create
+#' \code{pca}.
+#'
+#' @param loads An integer vector giving the loadings to plot.  More than 3
+#' loadings creates a useless plot using the default graphics window.
+#'
+#' @param ref An integer specifying the reference spectrum to plot, which
+#' appears at the bottom of the plot.
+#'
+#' @param \dots Additional parameters to be passed to plotting functions.
+#'
+#' @return None.  Side effect is a plot.
+#'
+#' @author Bryan A. Hanson, DePauw University.
+#'
+#' @seealso See \code{\link{plot2Loadings}} to plot two loadings against each
+#' other, and \code{\link{sPlotSpectra}} for an alternative approach.
+#'
+#' @references \url{https://github.com/bryanhanson/ChemoSpec}
+#'
+#' @keywords multivariate hplot
+#'
+#' @examples
+#' 
+#' data(SrE.IR)
+#' pca <- c_pcaSpectra(SrE.IR, choice = "noscale")
+#' myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
+#' plotLoadings(SrE.IR, pca, main = myt,
+#' 	 loads = 1:2, ref = 1)
+#' 
+#' @export plotLoadings
+#'
+#' @importFrom graphics plot
+#' @importFrom stats relevel
+#' @importFrom lattice xyplot panel.number panel.xyplot
+#'
+plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
 	
 # Function to plot loadings vs. frequencies
 # Part of the ChemoSpec package
@@ -35,7 +83,7 @@ function(spectra, pca, loads = c(1), ref = 1, ...) {
 	# Do the plot
 	# Note: no way exists to plot the x axis reversed for multiple panels
 
-	p <- lattice::xyplot(y ~ x | z, data = df,
+	p <- xyplot(y ~ x | z, data = df,
 		xlab = spectra$unit[1], ylab = "",
 		sub = list(label = pca$method,
 			fontface = "plain"),
@@ -45,10 +93,10 @@ function(spectra, pca, loads = c(1), ref = 1, ...) {
 		strip.left = TRUE, strip = FALSE, col = "black",
 		scales = list(x = "same", y = "free"),
 		panel = function(..., type = "h") {
-			if (lattice::panel.number() == 1) {
-				lattice::panel.xyplot(..., type = "l")
+			if (panel.number() == 1) {
+				panel.xyplot(..., type = "l")
 				} else {
-					lattice::panel.xyplot(..., type = type)
+					panel.xyplot(..., type = type)
 					}
 			}, ...)
 	

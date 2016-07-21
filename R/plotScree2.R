@@ -1,5 +1,6 @@
-plotScree2 <-
-function(pca, ...) {
+#' @describeIn plotScree Alternate scree plot
+
+plotScree2 <- function(pca, ...) {
 
 # Function to make an alternate style of scree plot
 # Part of the ChemoSpec package

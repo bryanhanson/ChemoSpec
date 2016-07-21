@@ -1,5 +1,48 @@
-
-	
+#' 
+#' 
+#' Plot aovPCAscores Loadings of a Spectra Object
+#' 
+#' Uses the results from \code{\link{aovPCAscores}} to plot the corresponding
+#' loadings.
+#' 
+#' 
+#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' 
+#' @param LM List of matrices created by \code{\link{aovPCAscores}}.
+#' 
+#' @param pca PCA output from \code{\link{aovPCAscores}}.
+#' 
+#' @param plot An integer specifying the desired plot. \code{names(LM)} will
+#' show which matrix has which data in it.
+#' 
+#' @param loads An integer vector giving the loadings to plot.  More than 3
+#' loadings creates a useless plot using the default graphics window.
+#' 
+#' @param ref An integer specifying the reference spectrum to plot, which
+#' appears at the bottom of the plot.
+#' 
+#' @param \dots Additional parameters to be passed to plotting functions.
+#' 
+#' @return None. Side effect is a plot.
+#' 
+#' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+#' 
+#' @seealso An example using this function can be seen in
+#' \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotLoadings}}.
+#' 
+#' @references Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for
+#' Discriminant Analysis: ..." Analytica Chimica Acta 629.1-2 (2008): 47-55.
+#' 
+#' Harrington, Vieira, Espinoza, Nien, Romero, and Yergey. "Analysis of
+#' Variance--Principal Component Analysis: ..." Analytica Chimica Acta 544.1-2
+#' (2005): 118-27.
+#' 
+#' \url{https://github.com/bryanhanson/ChemoSpec}
+#' 
+#' @keywords multivariate htest
+#' 
+#' @export aovPCAloadings
+#' 
 aovPCAloadings <-function(spectra, LM, pca, plot = 1, loads = 1, ref = 1, ...) {
 
 #  Function to plot LoadingsLoadings of ANOVA-PCA per Harrington

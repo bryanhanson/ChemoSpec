@@ -1,3 +1,6 @@
+#'
+#' @describeIn files2SpectraObject Import a matrix of data
+#'
 matrix2SpectraObject <-
 function(gr.crit = NULL, gr.cols = c("auto"),
 	freq.unit = "no frequency unit provided",
@@ -44,7 +47,7 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 	
 	datafile <- paste(out.file, ".RData", sep = "")
 
-	R.utils::saveObject(spectra, file = datafile)
+	saveObject(spectra, file = datafile)
 	
 	return(spectra)
 	}
