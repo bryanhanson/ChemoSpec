@@ -194,7 +194,7 @@ files2SpectraObject <- function(gr.crit = NULL,
 	
 	datafile <- paste(out.file, ".RData", sep = "")
 
-	saveObject(spectra, file = datafile)
+	R.utils::saveObject(spectra, file = datafile)
 	
 	return(spectra)
 	}

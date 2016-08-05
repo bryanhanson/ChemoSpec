@@ -114,13 +114,13 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, ...) {
 		}
 
 	dat <- spectra$data # possible conflict with baseline's use of spectra
-	if (int) baselineGUI(dat, ...) # no return value
+	if (int) baseline::baselineGUI(dat, ...) # no return value
 	if (!int) {
-		b <- baseline(dat, ...)
+		b <- baseline::baseline(dat, ...)
 		baseline::plot(b)
 		
 		if (retC) {
-			bc <- getCorrected(b) # the way it is supposed to be done...
+			bc <- baseline::getCorrected(b) # the way it is supposed to be done...
 			# works interactively, but not in vignette ???
 			#bc <- b@corrected
 			spectra$data <- bc

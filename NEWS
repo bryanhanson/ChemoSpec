@@ -4,9 +4,14 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.3.130 2016-08-05
+     + removeFreq needed a drop = FALSE argument for the case where there was just one sample.  Reported by Daniel Montiel-Chicharro.
+     + NOTE: check4Gaps may not identify gaps when only 1 spectrum is present.  Need to follow up.
+     + More clean up of namespace due to now using roxygen.
+ 
 Changes in version 4.3.128 2016-07-21
      + Cleaned up a lot of formatting & style issues in documentation.  Merged documentation on selected functions.  Miscellaneous improvements in documentation.
-     + removeSample now checks for additiona data.
+     + removeSample now checks for additional data.
      + sampleDistPlot was not plotting (!).  Fixed.  Also was not passing ... Fixed.
      + Converted documentation to roxygen2.
 

@@ -56,7 +56,7 @@ hmapSpectra <- function(spectra, ...) {
 		
 	x.lab <- paste(spectra$unit[1], ", reordered", sep = "")
 	
-	res <- hmap(spectra$data, labRow = spectra$names,
+	res <- seriation::hmap(spectra$data, labRow = spectra$names,
 		xlab = x.lab, ylab = "", margins = c(2, 6),
 		key.title = "", ...)
 		

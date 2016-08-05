@@ -70,7 +70,7 @@ removeFreq <- function(spectra, rem.freq) {
 	# rem.freq must be a character string giving a valid logical statement of freq to be removed
 	# generally should be a combination of ?Comparison and ?base::Logic concepts.	
 	rfi <- which(rem.freq)
-	spectra$data <- spectra$data[,-c(rfi)]
+	spectra$data <- spectra$data[,-c(rfi), drop = FALSE]
 	spectra$freq <- spectra$freq[-c(rfi)]
 	chkSpectra(spectra)
 		

@@ -1,6 +1,5 @@
 #'
 #'
-#'
 #' Normalize a Spectra Object
 #' 
 #' This function carries out normalization of the spectra in a

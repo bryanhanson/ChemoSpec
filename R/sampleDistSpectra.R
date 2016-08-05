@@ -56,7 +56,7 @@ sampleDistSpectra <- function(spectra, method = "pearson", plot = TRUE, ...) {
 	
 	if (plot) { # M is class dist, need true matrix to plot
 		myc <- rev(rainbow(20, start = 0.0, end = 0.66))
-		p <- levelplot(as.matrix(M), xlab = "sample", ylab = "sample",
+		p <- lattice::levelplot(as.matrix(M), xlab = "sample", ylab = "sample",
 			col.regions = myc,
 			at = seq(-1.0, 1.0, by = 0.1), ...)
 		print(p)

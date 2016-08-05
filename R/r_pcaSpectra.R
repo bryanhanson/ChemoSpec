@@ -63,7 +63,7 @@ r_pcaSpectra <- function(spectra, choice = "noscale") {
 	
 	note <- choice
 	if (choice == "noscale") choice <- NULL
-	pca <- PCAgrid(spectra$data, k = 10, scale = choice, scores = TRUE)
+	pca <- pcaPP::PCAgrid(spectra$data, k = 10, scale = choice, scores = TRUE)
 	pca$method <- paste("l1median/", note, "/", "robust", sep = "")
 	pca <- r2qPCA(pca) # convert classes
 	}

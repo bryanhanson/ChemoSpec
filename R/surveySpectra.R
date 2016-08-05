@@ -76,7 +76,7 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
 		if (method == "iqr"){
 			y <- aaply(spectra$data, 2, seXyIqr)
 			df <- data.frame(x, y1 = y[,1], y2 = y[,2], y3 = y[,3])
-			p <- xyplot(y1 + y2 + y3 ~ x, data = df,
+			p <- lattice::xyplot(y1 + y2 + y3 ~ x, data = df,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "Full Data Set, median +/- iqr", type = "l", ...)
 			plot(p)
@@ -87,7 +87,7 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
 			y2 <- y1 + s
 			y3 <- y1 - s
 			df <- data.frame(x, y1, y2, y3)
-			p <- xyplot(y1 + y2 + y3 ~ x, data = df,
+			p <- lattice::xyplot(y1 + y2 + y3 ~ x, data = df,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "Full Data Set, mean +/- sd", type = "l", ...)
 			plot(p)
@@ -96,7 +96,7 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
 		if (method == "sem") {
 			y <- aaply(spectra$data, 2, seXy)
 			df <- data.frame(x, y1 = y[,1], y2 = y[,2], y3 = y[,3])
-			p <- xyplot(y1 + y2 + y3 ~ x, data = df,
+			p <- lattice::xyplot(y1 + y2 + y3 ~ x, data = df,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "Full Data Set, mean +/- sem", type = "l", ...)
 			plot(p)
@@ -105,7 +105,7 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
 		if (method == "mad") {
 			y <- aaply(spectra$data, 2, seXyMad)
 			df <- data.frame(x, y1 = y[,1], y2 = y[,2], y3 = y[,3])
-			p <- xyplot(y1 + y2 + y3 ~ x, data = df,
+			p <- lattice::xyplot(y1 + y2 + y3 ~ x, data = df,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "Full Data Set, median +/- mad", type = "l", ...)
 			plot(p)
@@ -114,7 +114,7 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
 		if (method == "sem95") {
 			y <- aaply(spectra$data, 2, seXy95)
 			df <- data.frame(x, y1 = y[,1], y2 = y[,2], y3 = y[,3])
-			p <- xyplot(y1 + y2 + y3 ~ x, data = df,
+			p <- lattice::xyplot(y1 + y2 + y3 ~ x, data = df,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "Full Data Set, mean +/- 95% ci sem", type = "l", ...)
 			plot(p)
@@ -156,7 +156,7 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
 				}
 
 			df1 <- df1[-1,]
-			p <- xyplot(y1 + y2 + y3 ~ x | z, data = df1,
+			p <- lattice::xyplot(y1 + y2 + y3 ~ x | z, data = df1,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "median +/- iqr", type = "l",
 				strip.left = TRUE, strip = FALSE,
@@ -179,7 +179,7 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
 				}
 
 			df1 <- df1[-1,]
-			p <- xyplot(y1 + y2 + y3 ~ x | z, data = df1,
+			p <- lattice::xyplot(y1 + y2 + y3 ~ x | z, data = df1,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "mean +/- sd", type = "l",
 				strip.left = TRUE, strip = FALSE,
@@ -199,7 +199,7 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
 				}
 
 			df1 <- df1[-1,]
-			p <- xyplot(y1 + y2 + y3 ~ x | z, data = df1,
+			p <- lattice::xyplot(y1 + y2 + y3 ~ x | z, data = df1,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "mean +/- sem", type = "l",
 				strip.left = TRUE, strip = FALSE,
@@ -219,7 +219,7 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
 				}
 
 			df1 <- df1[-1,]
-			p <- xyplot(y1 + y2 + y3 ~ x | z, data = df1,
+			p <- lattice::xyplot(y1 + y2 + y3 ~ x | z, data = df1,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "median +/- mad", type = "l",
 				strip.left = TRUE, strip = FALSE,
@@ -239,7 +239,7 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
 				}
 
 			df1 <- df1[-1,]
-			p <- xyplot(y1 + y2 + y3 ~ x | z, data = df1,
+			p <- lattice::xyplot(y1 + y2 + y3 ~ x | z, data = df1,
 				col = c("black", "red", "red"), xlab = spectra$unit[1],
 				ylab = "mean +/- 95 % ci sem", type = "l",
 				strip.left = TRUE, strip = FALSE,

@@ -1,5 +1,4 @@
-#'
-#'
+
 #'
 #' Display the Spectra in a Spectra Object One at a Time
 #' 

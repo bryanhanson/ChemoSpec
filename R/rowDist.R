@@ -1,5 +1,4 @@
 #'
-#'
 #' Compute Distance Between Rows of a Matrix
 #' 
 #' This function is a wrapper to compute the distance between rows of a matrix
@@ -49,7 +48,7 @@ rowDist <- function(x, method) {
 		if (!requireNamespace("amap", quietly = TRUE)) {
 			stop("You need to install package amap to use this function/option")
 			}
-		distance <- Dist(x, method = method)
+		distance <- amap::Dist(x, method = method)
 		}
 		
 	if (method %in% c("euclidean", "maximum", "manhattan", "canberra","binary", "minkowski")) {

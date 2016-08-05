@@ -76,7 +76,7 @@ groupNcolor <- function(spectra, gr.crit = NULL, gr.cols = c("auto")) {
 		if (!requireNamespace("RColorBrewer", quietly = TRUE)) {
 			stop("You need to install package RColorBrewer or supply the colors yourself")
 			}
-		gr.cols <- brewer.pal(length(gr.crit), "Set1")
+		gr.cols <- RColorBrewer::brewer.pal(length(gr.crit), "Set1")
 		for (i in 1:length(gr.crit)) {
 			which <- grep(gr.crit[i], spectra$names)
 			spectra$colors[which] <- gr.cols[i]

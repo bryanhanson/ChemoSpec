@@ -77,6 +77,10 @@ plotSpectraJS <- function(spectra, browser = NULL, minify = TRUE) {
 	if (missing(spectra)) stop("No spectral data provided")
 	chkSpectra(spectra)
 
+	if (!requireNamespace("jsonlite", quietly = TRUE)) {
+		stop("You need install package jsonlite to use this function")
+		}
+
 	# Check to see if spectra$freq is increasing - if not, the scales will be inverted
 	# Silently reverse things
 	if (is.unsorted(spectra$freq)) {
@@ -90,23 +94,23 @@ plotSpectraJS <- function(spectra, browser = NULL, minify = TRUE) {
 		# separate JSON entities
 		# These will be global variables in the JavaScript
 	
-		Freq <- toJSON(spectra$freq)
-		D0 <- toJSON(spectra$data)
-		D1 <- toJSON(spectra$data)
-		Names <- toJSON(paste(" ", spectra$names, sep = "  "))
-		Groups <- toJSON(spectra$groups)
-		Colors <- toJSON(spectra$colors)
-		xUnit <- toJSON(spectra$unit[1])
-		Desc <- toJSON(spectra$desc)
-		Dx <- toJSON(range(spectra$freq))
-		Dy <- toJSON(range(spectra$data))
+		Freq <- jsonlite::toJSON(spectra$freq)
+		D0 <- jsonlite::toJSON(spectra$data)
+		D1 <- jsonlite::toJSON(spectra$data)
+		Names <- jsonlite::toJSON(paste(" ", spectra$names, sep = "  "))
+		Groups <- jsonlite::toJSON(spectra$groups)
+		Colors <- jsonlite::toJSON(spectra$colors)
+		xUnit <- jsonlite::toJSON(spectra$unit[1])
+		Desc <- jsonlite::toJSON(spectra$desc)
+		Dx <- jsonlite::toJSON(range(spectra$freq))
+		Dy <- jsonlite::toJSON(range(spectra$data))
 	
 		# Note: D1 is a copy of the data which will be modified for plotting
 		# D0, the original data, and will not be changed
 	
 		# This vector will keep track of which spectra are to be plotted
 	 	sampleBOOL <- c(1L, rep(0, length(spectra$names)-1))
-		sampleBOOL <- toJSON(sampleBOOL)
+		sampleBOOL <- jsonlite::toJSON(sampleBOOL)
 	
 		# Prepare for writing
 		# Groups commented out as it is not currently used
@@ -184,7 +188,4 @@ plotSpectraJS <- function(spectra, browser = NULL, minify = TRUE) {
 		return(invisible())
 	}
 	
-	if (!requireNamespace("jsonlite", quietly = TRUE)) {
-		stop("You need install package jsonlite to use this function")
-		}
 	}

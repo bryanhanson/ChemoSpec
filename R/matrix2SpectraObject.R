@@ -47,7 +47,7 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 	
 	datafile <- paste(out.file, ".RData", sep = "")
 
-	saveObject(spectra, file = datafile)
+	R.utils::saveObject(spectra, file = datafile)
 	
 	return(spectra)
 	}

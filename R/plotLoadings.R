@@ -93,10 +93,10 @@ plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
 		strip.left = TRUE, strip = FALSE, col = "black",
 		scales = list(x = "same", y = "free"),
 		panel = function(..., type = "h") {
-			if (panel.number() == 1) {
-				panel.xyplot(..., type = "l")
+			if (lattice::panel.number() == 1) {
+				lattice::panel.xyplot(..., type = "l")
 				} else {
-					panel.xyplot(..., type = type)
+					lattice::panel.xyplot(..., type = type)
 					}
 			}, ...)
 	

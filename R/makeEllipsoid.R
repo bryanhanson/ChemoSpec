@@ -1,6 +1,4 @@
 #'
-#'
-#'
 #' Create Ellipsoid
 #' 
 #' Given at least 3 data points, this function creates either classical or
@@ -108,7 +106,7 @@ makeEllipsoid <- function(data, cl = 0.95, rob = FALSE, frac.pts.used = 0.80) {
 	
 	if (rob) {
 		qt <- floor(n * frac.pts.used)
-		robust <- cov.rob(data, method = "mcd", nsamp = "sample", quantile.used = qt)
+		robust <- MASS::cov.rob(data, method = "mcd", nsamp = "sample", quantile.used = qt)
 		j <- length(robust$best)
 		q <- robust$n.obs
 

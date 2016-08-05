@@ -96,7 +96,7 @@ evalClusters <- function(spectra, pkg = "NbClust", hclst = NULL,
 		if (!requireNamespace("NbClust", quietly = TRUE)) {
 			stop("You need install package NbClust to use this function/option")
 			}
-		res <- NbClust(spectra$data, ...)
+		res <- NbClust::NbClust(spectra$data, ...)
 		}
 
 	if (pkg == "clusterCrit") {
@@ -105,7 +105,7 @@ evalClusters <- function(spectra, pkg = "NbClust", hclst = NULL,
 			}
 		if (is.null(hclust)) stop("You must provide an hclust object")
 	 	ct <- cutree(hclst, k = k, h = h)
-		res <- intCriteria(spectra$data, ct, crit, ...)
+		res <- clusterCrit::intCriteria(spectra$data, ct, crit, ...)
 		return(res)
 		}
 	}

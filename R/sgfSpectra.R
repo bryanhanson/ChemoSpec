@@ -53,7 +53,7 @@ sgfSpectra <- function(spectra, m = 0, ...) {
 	
 	
 	for (i in 1:length(spectra$names)) {
-		spectra$data[i,] <- sgolayfilt(spectra$data[i,], m = m, ...)
+		spectra$data[i,] <- signal::sgolayfilt(spectra$data[i,], m = m, ...)
 		}
 
 	chkSpectra(spectra)

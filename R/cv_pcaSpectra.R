@@ -114,10 +114,10 @@ cv_pcaSpectra <- function (spectra, pcs, choice = "noscale", repl = 50, segments
     dimnames(Fit) <- list(paste("rep", 1:repl), 1:amax)
     for (i in 1:repl) {
         if (missing(length.seg)) {
-            segment <- cvsegments(nrow(X), k = segments, type = segment.type)
+            segment <- pls::cvsegments(nrow(X), k = segments, type = segment.type)
         }
         else {
-            segment <- cvsegments(nrow(X), length.seg = length.seg, 
+            segment <- pls::cvsegments(nrow(X), length.seg = length.seg, 
                 type = segment.type)
         }
         if (trace) 

@@ -47,7 +47,7 @@ plotScoresCor <- function (x, quan = 1/2, alpha = 0.025) {
 	}
 
 	x <- as.matrix(x)
-    covr <- covMcd(x, cor = TRUE, alpha = quan)
+    covr <- robustbase::covMcd(x, cor = TRUE, alpha = quan)
     cov.svd <- svd(cov(x), nv = 0)
     covr.svd <- svd(covr$cov, nv = 0)
     r <- cov.svd[["u"]] %*% diag(sqrt(cov.svd[["d"]]))

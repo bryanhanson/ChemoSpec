@@ -59,7 +59,7 @@ mclustSpectra <- function(spectra, pca, pcs = c(1:3), dims = c(1,2),
 	}
 	
 	d <- pca$x[,pcs]
-	mod <- Mclust(d, ...)
+	mod <- mclust::Mclust(d, ...)
 	note <- paste("Mclust optimal model: ", mod$modelName, "\n", sep = "")
 	my.sym <- letters[1:length(unique(mod$classification))]
 
