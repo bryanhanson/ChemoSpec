@@ -1,8 +1,8 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 4.3.130
-Date: 2016-08-05
+Version: 4.3.139
+Date: 2016-08-06
 Author: Bryan A. Hanson DePauw University, Greencastle Indiana USA
 Maintainer: Bryan A. Hanson <hanson@depauw.edu>
 Description: A collection of functions for top-down exploratory data analysis
@@ -20,16 +20,25 @@ Depends:
     R (>= 3.1)
 Imports:
     plyr,
-    rgl,
     stats,
     utils,
-    grDevices,
+    grDevices
+URL: https://github.com/bryanhanson/ChemoSpec
+ByteCompile: TRUE
+BugReports: https://github.com/bryanhanson/ChemoSpec/issues
+VignetteBuilder: knitr
+Suggests:
+    mvbutils,
+    sna,
+    knitr,
+    IDPmisc,
+    js,
+    speaq,
+    NbClust,
     lattice,
     baseline,
     mclust,
-    speaq,
     pls,
-    NbClust,
     clusterCrit,
     R.utils,
     RColorBrewer,
@@ -41,15 +50,6 @@ Imports:
     jsonlite,
     gsubfn,
     amap,
-    signal
-URL: https://github.com/bryanhanson/ChemoSpec
-ByteCompile: TRUE
-BugReports: https://github.com/bryanhanson/ChemoSpec/issues
-VignetteBuilder: knitr
-Suggests:
-    mvbutils,
-    sna,
-    knitr,
-    IDPmisc,
-    js
+    signal,
+    rgl
 RoxygenNote: 5.0.1

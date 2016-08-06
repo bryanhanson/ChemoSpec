@@ -54,7 +54,7 @@
 #' 
 #' @importFrom stats sd
 #' @importFrom graphics boxplot legend 
-#' @importFrom pls cvsegments
+# @importFrom pls cvsegments
 #' 
 cv_pcaSpectra <- function (spectra, pcs, choice = "noscale", repl = 50, segments = 4, 
     segment.type = c("random", "consecutive", "interleaved"), 

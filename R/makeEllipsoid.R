@@ -58,7 +58,7 @@
 #' @export makeEllipsoid
 #' 
 #' @importFrom stats var rnorm qf 
-#' @importFrom MASS cov.rob
+# @importFrom MASS cov.rob
 #'
 makeEllipsoid <- function(data, cl = 0.95, rob = FALSE, frac.pts.used = 0.80) {
 

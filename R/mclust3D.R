@@ -65,9 +65,9 @@
 #' 
 #' @export mclust3D
 #'
-#' @importFrom rgl open3d segments3d text3d points3d
-#' @importFrom mclust Mclust classError
-#' @importFrom RColorBrewer brewer.pal
+# @importFrom rgl open3d segments3d text3d points3d
+# @importFrom mclust Mclust classError
+# @importFrom RColorBrewer brewer.pal
 #'
 mclust3D <- function(data, ellipse = TRUE, rob = FALSE, 
 	cl = 0.95, frac.pts.used = 0.8, truth = NULL,
@@ -138,34 +138,34 @@ mclust3D <- function(data, ellipse = TRUE, rob = FALSE,
 	pos[seq(1,8,2), 3] <- ax.len # z values
 	pos[seq(2,8,2), 3] <- -ax.len
 
-	open3d() # draw axes, then label them
-	segments3d(x.cor[i], y.cor[i], z.cor[i], lwd = 2.0,
+	rgl::open3d() # draw axes, then label them
+	rgl::segments3d(x.cor[i], y.cor[i], z.cor[i], lwd = 2.0,
 		line_antialias = TRUE)
-	text3d(x.cor * 1.1, y.cor * 1.1, z.cor * 1.1, texts = c("", "X", "Y", "Z"),
+	rgl::text3d(x.cor * 1.1, y.cor * 1.1, z.cor * 1.1, texts = c("", "X", "Y", "Z"),
 		adj = c(0, 1))
 
 	if (lab.opts) { # plot letters in the cube corners
 		labs <- LETTERS[1:8]
-		if (!use.sym) text3d(pos, texts = labs, col = "orange")
-		if (use.sym) text3d(pos, texts = labs, col = "black")
+		if (!use.sym) rgl::text3d(pos, texts = labs, col = "orange")
+		if (use.sym) rgl::text3d(pos, texts = labs, col = "black")
 		}
 
 	if ((!is.null(title)) && (!is.null(t.pos))) { # plot title
 		m <- match(t.pos, LETTERS[1:8])
-		text3d(pos[m,], texts = title, adj = c(0.5, 0.5), cex = 1.5)
+		rgl::text3d(pos[m,], texts = title, adj = c(0.5, 0.5), cex = 1.5)
 		}
 
 
 	if (use.sym) df1$col <- df2$col <- "black"
-	if (ellipse) points3d(df2$x, df2$y, df2$z, alpha = df2$a, size = 4, color = df2$col, 
+	if (ellipse) rgl::points3d(df2$x, df2$y, df2$z, alpha = df2$a, size = 4, color = df2$col, 
 		point_antialias = TRUE) # draw ellipsoids
-	text3d(df1$x, df1$y, df1$z, texts = df1$sym, color = df1$col) # draw original points
+	rgl::text3d(df1$x, df1$y, df1$z, texts = df1$sym, color = df1$col) # draw original points
 
 	if (!is.null(truth)) { # X out errors in classification
 		ans <- mclust::classError(mod$classification, truth)
 		wh <- data[ans$misclassified,]
 		if (length(wh) == 0) warning("No points were misclassified, damn you're good!")
-		if (length(wh) > 0) text3d(wh, texts = "X", color = "black", cex = 1.5)
+		if (length(wh) > 0) rgl::text3d(wh, texts = "X", color = "black", cex = 1.5)
 		}
 
 	invisible(mod)

@@ -55,7 +55,7 @@
 #' @export baselineSpectra
 #'
 #' @importFrom stats lm predict
-#' @importFrom baseline baselineGUI baseline getCorrected
+# @importFrom baseline baselineGUI baseline getCorrected
 #' 
 baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, ...) {
 	

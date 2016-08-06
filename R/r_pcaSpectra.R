@@ -43,7 +43,7 @@
 #' 
 #' @export r_pcaSpectra
 #'
-#' @importFrom pcaPP PCAgrid
+# @importFrom pcaPP PCAgrid
 #'
 r_pcaSpectra <- function(spectra, choice = "noscale") {
 

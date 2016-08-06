@@ -45,7 +45,7 @@
 #' @export mclustSpectra
 #'
 #' @importFrom graphics title mtext
-#' @importFrom mclust Mclust
+# @importFrom mclust Mclust
 #'
 mclustSpectra <- function(spectra, pca, pcs = c(1:3), dims = c(1,2),
 	plot = c("BIC", "proj", "error"), use.sym = FALSE, ...) {

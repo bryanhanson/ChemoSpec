@@ -34,7 +34,7 @@
 #' 
 #' @export groupNcolor
 #'
-#' @importFrom RColorBrewer brewer.pal
+# @importFrom RColorBrewer brewer.pal
 #'
 groupNcolor <- function(spectra, gr.crit = NULL, gr.cols = c("auto")) {
 

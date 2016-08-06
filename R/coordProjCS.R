@@ -54,7 +54,7 @@
 #' 
 #' @importFrom graphics par plot title points
 #' @importFrom stats sd 
-#' @importFrom mclust map mclust.options classError mvn2plot
+# @importFrom mclust map mclust.options classError mvn2plot
 #'
 coordProjCS <- 
 function (data, dimens = c(1, 2), parameters = NULL, z = NULL, 

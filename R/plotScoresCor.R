@@ -33,7 +33,7 @@
 #' @export plotScoresCor
 #'
 #' @importFrom stats cov cor qchisq
-#' @importFrom robustbase covMcd
+# @importFrom robustbase covMcd
 #'
 plotScoresCor <- function (x, quan = 1/2, alpha = 0.025) {
 

@@ -65,7 +65,7 @@
 #' @export plotScores3D
 #'
 #' @importFrom graphics plot
-#' @importFrom lattice cloud panel.cloud
+# @importFrom lattice cloud panel.cloud
 #' @importFrom grid grid.text gpar
 #'
 plotScores3D <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,

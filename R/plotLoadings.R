@@ -45,7 +45,7 @@
 #'
 #' @importFrom graphics plot
 #' @importFrom stats relevel
-#' @importFrom lattice xyplot panel.number panel.xyplot
+# @importFrom lattice xyplot panel.number panel.xyplot
 #'
 plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
 	
@@ -83,7 +83,7 @@ plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
 	# Do the plot
 	# Note: no way exists to plot the x axis reversed for multiple panels
 
-	p <- xyplot(y ~ x | z, data = df,
+	p <- lattice::xyplot(y ~ x | z, data = df,
 		xlab = spectra$unit[1], ylab = "",
 		sub = list(label = pca$method,
 			fontface = "plain"),

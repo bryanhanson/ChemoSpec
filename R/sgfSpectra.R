@@ -37,7 +37,7 @@
 #' 
 #' @export sgfSpectra
 #'
-#' @importFrom signal sgolayfilt
+# @importFrom signal sgolayfilt
 #'
 sgfSpectra <- function(spectra, m = 0, ...) {
 	

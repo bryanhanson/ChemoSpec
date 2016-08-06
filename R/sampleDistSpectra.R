@@ -36,7 +36,7 @@
 #' @export sampleDistSpectra
 #'
 #' @importFrom grDevices rainbow
-#' @importFrom lattice levelplot
+# @importFrom lattice levelplot
 #'
 sampleDistSpectra <- function(spectra, method = "pearson", plot = TRUE, ...) {
 	

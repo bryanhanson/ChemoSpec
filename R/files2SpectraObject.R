@@ -119,7 +119,7 @@
 #' 
 #' @importFrom utils read.table
 #' @importFrom tools file_path_sans_ext
-#' @importFrom R.utils saveObject
+# @importFrom R.utils saveObject
 #' 
 files2SpectraObject <- function(gr.crit = NULL,
 	gr.cols = c("auto"),

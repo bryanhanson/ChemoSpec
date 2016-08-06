@@ -81,8 +81,8 @@
 #' @export evalClusters
 #' 
 #' @importFrom stats hclust cutree 
-#' @importFrom clusterCrit intCriteria
-#' @importFrom NbClust NbClust
+# @importFrom clusterCrit intCriteria
+# @importFrom NbClust NbClust
 #'
 evalClusters <- function(spectra, pkg = "NbClust", hclst = NULL,
 	k = NULL, h = NULL, crit = "Dunn", ...) {

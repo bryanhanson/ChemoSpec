@@ -4,6 +4,9 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.3.139 2016-08-06
+     + Further tweaks to namespace.
+
 Changes in version 4.3.130 2016-08-05
      + removeFreq needed a drop = FALSE argument for the case where there was just one sample.  Reported by Daniel Montiel-Chicharro.
      + NOTE: check4Gaps may not identify gaps when only 1 spectrum is present.  Need to follow up.

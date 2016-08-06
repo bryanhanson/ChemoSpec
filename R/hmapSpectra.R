@@ -39,7 +39,7 @@
 #' 
 #' @export hmapSpectra
 #' 
-#' @importFrom seriation hmap
+# @importFrom seriation hmap
 #' 
 hmapSpectra <- function(spectra, ...) {
 	

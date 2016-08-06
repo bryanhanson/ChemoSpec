@@ -31,7 +31,7 @@
 #' @export rowDist
 #'
 #' @importFrom stats dist as.dist
-#' @importFrom amap Dist
+# @importFrom amap Dist
 #'
 rowDist <- function(x, method) {
 

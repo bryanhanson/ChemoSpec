@@ -45,7 +45,7 @@
 #' 
 #' @export clupaSpectra
 #'
-#' @importFrom speaq detectSpecPeaks findRef dohCluster
+# @importFrom speaq detectSpecPeaks findRef dohCluster
 #'
 clupaSpectra <- function(spectra, bT = NULL, ...) {
 	# Wrapper function to carry out hierarchical cluster-based peak alignment

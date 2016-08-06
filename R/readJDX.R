@@ -29,7 +29,7 @@
 #'
 #' @export readJDX
 #'
-#' @importFrom gsubfn gsubfn
+# @importFrom gsubfn gsubfn
 #'
 readJDX <- function (file = "", debug = FALSE){
 

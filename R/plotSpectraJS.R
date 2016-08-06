@@ -67,7 +67,7 @@
 #' @export plotSpectraJS
 #'
 #' @importFrom utils browseURL
-#' @importFrom jsonlite toJSON
+# @importFrom jsonlite toJSON
 #'
 plotSpectraJS <- function(spectra, browser = NULL, minify = TRUE) {
 
