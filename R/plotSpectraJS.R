@@ -9,9 +9,13 @@
 #' The spectral data are incorporated into the web page. Keep in mind that very large
 #' data sets, like NMR spectra with 32K points, will bog down the browser dramatically.
 #' In these cases, you may need to limit the number of samples in passed to this function.
-#' See \code{\link{removeSample}}.
+#' See \code{\link{removeSample}} or use argument \code{which}.
 #'
 #' @param spectra An object of S3 class \code{\link{Spectra}} to be checked.
+#'
+#' @param which Integer.  If not \code{NULL}, specifies by number which spectra to plot.
+#' If greater control is needed, use \code{\link{removeSample}} which is more flexible
+#' before calling this function.
 #'
 #' @param browser Character.  Something that will make sense to your OS.  Only
 #' necessary if you want to override your system specified browser as
@@ -69,7 +73,7 @@
 #' @importFrom utils browseURL
 # @importFrom jsonlite toJSON
 #'
-plotSpectraJS <- function(spectra, browser = NULL, minify = TRUE) {
+plotSpectraJS <- function(spectra, which = NULL, browser = NULL, minify = TRUE) {
 
 	# Bryan A. Hanson, DePauw University, February 2015
 	# This is the R front end controlling everything
@@ -77,6 +81,12 @@ plotSpectraJS <- function(spectra, browser = NULL, minify = TRUE) {
 	if (missing(spectra)) stop("No spectral data provided")
 	chkSpectra(spectra)
 
+	if (!is.null(which)) {
+		if (!is.integer(which)) stop("which must be an integer vector")
+		which2 <- setdiff(1:length(spectra$names), which)
+		spectra <- removeSample(spectra, rem.sam = which2)
+		}
+	
 	if (!requireNamespace("jsonlite", quietly = TRUE)) {
 		stop("You need install package jsonlite to use this function")
 		}

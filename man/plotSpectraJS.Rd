@@ -4,10 +4,14 @@
 \alias{plotSpectraJS}
 \title{Plot a Spectra Object Interactively}
 \usage{
-plotSpectraJS(spectra, browser = NULL, minify = TRUE)
+plotSpectraJS(spectra, which = NULL, browser = NULL, minify = TRUE)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}} to be checked.}
+
+\item{which}{Integer.  If not \code{NULL}, specifies by number which spectra to plot.
+If greater control is needed, use \code{\link{removeSample}} which is more flexible
+before calling this function.}
 
 \item{browser}{Character.  Something that will make sense to your OS.  Only
 necessary if you want to override your system specified browser as
@@ -34,7 +38,7 @@ quality plots, consider \code{\link{plotSpectra}}.
 The spectral data are incorporated into the web page. Keep in mind that very large
 data sets, like NMR spectra with 32K points, will bog down the browser dramatically.
 In these cases, you may need to limit the number of samples in passed to this function.
-See \code{\link{removeSample}}.
+See \code{\link{removeSample}} or use argument \code{which}.
 }
 \section{Browser Choice}{
  The browser is called by
