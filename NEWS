@@ -4,6 +4,10 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 
+     + Improved the way sumSpectra guesses at a tol value to send to check4Gaps.  Improved the way check4Gaps uses that value.
+     + check4Gaps overhauled and simplified.
+
 Changes in version 4.3.139 2016-08-06
      + Further tweaks to namespace.
 

@@ -56,7 +56,7 @@ result appears at the console.
 \examples{
 
 x <- seq(from = 5, to = 12, by = 0.1)
-remove <- 40:45; x <- x[-remove]
+remove <- c(8:11, 40:45); x <- x[-remove]
 gaps <- check4Gaps(x)
 
 data(SrE.IR)

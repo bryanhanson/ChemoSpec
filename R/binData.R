@@ -1,6 +1,4 @@
 #'
-#'
-#'
 #' Bin or Bucket Data
 #' 
 #' This function accepts a vector of x-values and averages them in groups of
@@ -86,7 +84,6 @@ binData <- function(x = NULL, y = NULL, bin.ratio = 2) {
 			if (isWholeNo(no.b)) { chop <- n; break }
 			}
 		rem <- c(1:chop) # chop off the first few data points
-		# warning(chop, " data points were removed from the start of the data to make it divisible by bin.ratio") # no need to warn here, 
 		if (!is.null(x)) x <- x[-rem]
 		if (!is.null(y)) y <- y[-rem]
 		if (!is.null(x)) len <- length(x)

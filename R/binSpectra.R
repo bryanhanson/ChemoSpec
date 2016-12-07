@@ -1,6 +1,4 @@
 #'
-#'
-#'
 #' Bin or Bucket a Spectra Object
 #' 
 #' This function will bin a \code{\link{Spectra}} object by averaging every
@@ -55,13 +53,13 @@ binSpectra <- function(spectra, bin.ratio) {
 	
 	chk <- check4Gaps(spectra$freq) # returns FALSE if no gaps
 
-	if (length(chk) == 1) { # no gaps, proceed to binning
+	if (length(chk) == 1) { # no gaps, proceed to binning (strange way to see if chk is FALSE)
 		bin <- binData(spectra$freq, spectra$data[1,], br) # bin x and get dim for y
 		data <- matrix(NA, nrow = length(spectra$names), ncol = length(bin$sum.y))
 		freq <- bin$mean.x
 
 		for (n in 1:length(spectra$names)) { # bin each set of y data
-			new <- binData(y = spectra$data[n,], bin.ratio = br)
+			new <- binData(spectra$freq, spectra$data[n,], bin.ratio = br)
 			data[n,] <- new$sum.y
 			}
 		
@@ -84,14 +82,12 @@ binSpectra <- function(spectra, bin.ratio) {
 		for (z in 1:nrow(chk)) {
 			which <- chk[z,4]:chk[z,5]
 			bin <- binData(spectra$freq[which],
-				spectra$data[1,which], br) # bin x and get dim for y
+				spectra$data[1, which], br) # bin x and get dim for y
 			data <- matrix(nrow = length(spectra$names), ncol = length(bin$sum.y))
 			freq <- bin$mean.x
 			for (n in 1:length(spectra$names)) { # bin each set of y data
-				new <- binData(y = spectra$data[n, which], bin.ratio = br)
+				new <- binData(spectra$freq[which], spectra$data[n, which], bin.ratio = br)
 				data[n,] <- new$sum.y
-		
-
 				}
 
 			if (!dim(data)[2]*br == length(which)) { # report if data was chopped

@@ -1,5 +1,4 @@
 #'
-#'
 #' Summarize a Spectra Object
 #' 
 #' Provides a summary of a \code{\link{Spectra}} object, essentially a more
@@ -49,8 +48,12 @@ sumSpectra <- function(spectra, ...){
 
 	if (!("tol" %in% args)) {
 		fdiff <- diff(spectra$freq)
-		if (length(unique(fdiff)) == 1) tol <- abs(fdiff[1]) + abs(0.01*fdiff[1])
-		if (!length(unique(fdiff)) == 1) tol <- abs(min(fdiff)) + 0.01*abs(min(fdiff))
+		ff <- 0.5 # Fudge factor
+		if (length(unique(fdiff)) == 1) tol <- abs(fdiff[1])*ff
+		if (length(unique(fdiff)) > 1) tol <- abs(min(fdiff))*ff
+# version prior to December 2016:
+#		if (length(unique(fdiff)) == 1) tol <- abs(fdiff[1]) + abs(0.01*fdiff[1])
+#		if (!length(unique(fdiff)) == 1) tol <- abs(min(fdiff)) + 0.01*abs(min(fdiff))
 		h <- check4Gaps(spectra$freq, tol = tol)	
 		}
 

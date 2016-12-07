@@ -1,8 +1,8 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 4.3.139
-Date: 2016-08-06
+Version: 4.3.161
+Date: 2016-12-06
 Author: Bryan A. Hanson DePauw University, Greencastle Indiana USA
 Maintainer: Bryan A. Hanson <hanson@depauw.edu>
 Description: A collection of functions for top-down exploratory data analysis
