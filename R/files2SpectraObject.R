@@ -4,8 +4,8 @@
 #'
 #' These functions import data into a \code{\link{Spectra}} object.  They use
 #' \code{\link[utils]{read.table}} to read files so they are
-#' very flexible in regard to file formatting.  Be sure to see the \ldots
-#' argument below for import details you need to provide.
+#' very flexible in regard to file formatting.  \pkg{Be sure to see the \ldots
+#' argument below for important details you need to provide.}
 #' 
 #' The matching of \code{gr.crit} against the sample file names is done one at
 #' a time, in order.  This means that the entries in \code{gr.crit} must be
@@ -31,9 +31,9 @@
 #' a spectrum to be orphaned this way.
 #'
 #' If \code{fileExt} contains any of \code{"dx"}, \code{"DX"}, \code{"jdx"} or
-#' \code{"JDX"}, then the files will be processed by \code{\link{readJDX}}.
+#' \code{"JDX"}, then the files will be processed by \code{\link[readJDX]{readJDX}}.
 #' Consider setting \code{debug = TRUE} for this format, as there are many
-#' options for JCAMP, and most are untested. See \code{\link{readJDX}} for
+#' options for JCAMP, and many are untested. See \code{\link[readJDX]{readJDX}} for
 #' known limitations.
 #' 
 #' 
@@ -72,7 +72,10 @@
 #' 
 #' @param debug Logical. Applies to \code{files2SpectraObject} only.
 #' Set to \code{TRUE} for troubleshooting when an error
-#' is thrown during import.
+#' is thrown during import.  In addition, values of 1-5 will work
+#' when importing a JCAMP-DX file via \code{fileExt = ".jdx"} etc.  These
+#' will be passed through to the \code{\link[readJDX]{readJDX}} function.
+#' See there for much more info on importing JCAMP-DX files.
 #' 
 #' @param in.file Character.  Applies to \code{matrix2SpectraObject} only.
 #' Input file name, including extension.
@@ -82,10 +85,10 @@
 #' integrity?  If you are having trouble importing your data, set this to
 #' \code{FALSE} and do \code{str(your object)} to troubleshoot.
 #'
-#' @param ...  Arguments to be passed to \code{\link[utils]{read.table}}.  You
+#' @param ...  Arguments to be passed to \code{\link[utils]{read.table}}.  \pkg{You
 #' MUST supply values for \code{sep}, \code{dec} and \code{header} consistent
 #' with your file structure, unless they are the same as the defaults for
-#' \code{\link[utils]{read.table}}.
+#' \code{\link[utils]{read.table}}}.
 #' 
 #' @return A object of class \code{\link{Spectra}}.  An \emph{unnamed} object
 #' of S3 class \code{\link{Spectra}} is also written to \code{out.file}.  To
@@ -119,8 +122,22 @@
 #' 
 #' @importFrom utils read.table
 #' @importFrom tools file_path_sans_ext
-# @importFrom R.utils saveObject
+#'
+#' @examples
+# Grab an included file and move it to a temporary directory
+#' td <- tempdir()
+#' ed <- system.file("extdata", package = "ChemoSpec")
+#' tf <- "PCRF.jdx"
+#' chk <- file.copy(from = file.path(ed, tf), to = file.path(td, tf),
+#' 	overwrite = TRUE)
+#' setwd(td)
+# Now read in the file, and plot
+#' spec <- files2SpectraObject(gr.crit = "PCRF", freq.unit = "ppm", int.unit = "intensity",
+#' 	descrip = "test import", fileExt = ".jdx")
+#' sumSpectra(spec)
+#' plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
 #' 
+
 files2SpectraObject <- function(gr.crit = NULL,
 	gr.cols = c("auto"),
 	freq.unit = "no frequency unit provided",
@@ -139,19 +156,24 @@ files2SpectraObject <- function(gr.crit = NULL,
 # Files should have freq in column 1, absorbance/intensity in column 2.
 # There may or may not be a header (default is FALSE for read.table)
 
-# DX files can be parsed, but are handled separately (see readJDX for limitations)
+# DX files can be parsed, but are handled via readJDX
 
 	if (!requireNamespace("R.utils", quietly = TRUE)) {
 		stop("You need to install package R.utils to use this function")
 		}
 
-	message("The default behavior of this function has changed as of July 2016.  See ?files2SpectraObject")
+	message("The default behavior of this function has changed as of July 2016.\nSee ?files2SpectraObject.  Really: please read it!")
 	
 	if (is.null(gr.crit)) stop("No group criteria provided to encode data")
 	
 	DX = FALSE
-	if (grepl("(dx|DX|jdx|JDX)", fileExt)) DX <- TRUE
-
+	if (grepl("(dx|DX|jdx|JDX)", fileExt)) {
+		DX <- TRUE
+		if (!requireNamespace("readJDX", quietly = TRUE)) {
+			stop("You need to install package readJDX to import JCAMP-DX files")
+			}
+		}
+		
 	# First set up some common stuff
 	
 	files <- list.files(pattern = fileExt)
@@ -161,10 +183,15 @@ files2SpectraObject <- function(gr.crit = NULL,
 	spectra$names <- files.noext
 
 	if (debug) message("\nfiles2SpectraObject is checking the first file")
-	if (!DX) temp <- read.table(files[1], ...)
-	if (DX) temp <- readJDX(file = files[1], debug = debug)
-
-	spectra$freq <- temp[,1]
+	if (!DX) {
+		temp <- read.table(files[1], ...)
+		spectra$freq <- temp[,1]
+		}
+	if (DX) {
+		temp <- readJDX::readJDX(file = files[1], debug = debug)
+		spectra$freq <- temp[[2]]$x
+		}
+		
 	if (class(spectra$freq) == "integer") {
 		if (debug) message("\nConverting integer frequency values to numeric")
 		spectra$freq <- as.numeric(spectra$freq)
@@ -179,9 +206,14 @@ files2SpectraObject <- function(gr.crit = NULL,
 	
 	for (i in 1:length(files)) {
 		if (debug) cat("Importing file: ", files[i], "\n")
-		if (!DX) temp <- read.table(files[i], ...)
-		if (DX) temp <- readJDX(files[i], debug = debug, ...)
-		spectra$data[i,] <- temp[,2]
+		if (!DX) {
+			temp <- read.table(files[i], ...)
+			spectra$data[i,] <- temp[,2]
+			}
+		if (DX) {
+			temp <- readJDX::readJDX(files[i], debug = debug, ...)
+			spectra$data[i,] <- temp[[2]]$y
+			}
 		}
 
 	# Go get group assignments & colors, to complete assembly of spectra

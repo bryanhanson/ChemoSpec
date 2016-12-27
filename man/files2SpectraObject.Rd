@@ -53,12 +53,15 @@ file.}
 
 \item{debug}{Logical. Applies to \code{files2SpectraObject} only.
 Set to \code{TRUE} for troubleshooting when an error
-is thrown during import.}
+is thrown during import.  In addition, values of 1-5 will work
+when importing a JCAMP-DX file via \code{fileExt = ".jdx"} etc.  These
+will be passed through to the \code{\link[readJDX]{readJDX}} function.
+See there for much more info on importing JCAMP-DX files.}
 
-\item{...}{Arguments to be passed to \code{\link[utils]{read.table}}.  You
+\item{...}{Arguments to be passed to \code{\link[utils]{read.table}}.  \pkg{You
 MUST supply values for \code{sep}, \code{dec} and \code{header} consistent
 with your file structure, unless they are the same as the defaults for
-\code{\link[utils]{read.table}}.}
+\code{\link[utils]{read.table}}}.}
 
 \item{in.file}{Character.  Applies to \code{matrix2SpectraObject} only.
 Input file name, including extension.}
@@ -77,8 +80,8 @@ read it back into the workspace, use \code{new.name <- loadObject(out.file)}
 \description{
 These functions import data into a \code{\link{Spectra}} object.  They use
 \code{\link[utils]{read.table}} to read files so they are
-very flexible in regard to file formatting.  Be sure to see the \ldots
-argument below for import details you need to provide.
+very flexible in regard to file formatting.  \pkg{Be sure to see the \ldots
+argument below for important details you need to provide.}
 }
 \details{
 The matching of \code{gr.crit} against the sample file names is done one at
@@ -105,9 +108,9 @@ plot!  A warning is issued in these cases, since one wouldn't normally want
 a spectrum to be orphaned this way.
 
 If \code{fileExt} contains any of \code{"dx"}, \code{"DX"}, \code{"jdx"} or
-\code{"JDX"}, then the files will be processed by \code{\link{readJDX}}.
+\code{"JDX"}, then the files will be processed by \code{\link[readJDX]{readJDX}}.
 Consider setting \code{debug = TRUE} for this format, as there are many
-options for JCAMP, and most are untested. See \code{\link{readJDX}} for
+options for JCAMP, and many are untested. See \code{\link[readJDX]{readJDX}} for
 known limitations.
 }
 \section{Functions}{
@@ -132,6 +135,19 @@ column, and samples in additional columns, and processes it into a
 \code{\link{Spectra}} object.  The file MUST have a header row which includes
 the sample names.  There need not be a header for the first (frequency)
 column.
+}
+\examples{
+td <- tempdir()
+ed <- system.file("extdata", package = "ChemoSpec")
+tf <- "PCRF.jdx"
+chk <- file.copy(from = file.path(ed, tf), to = file.path(td, tf),
+	overwrite = TRUE)
+setwd(td)
+spec <- files2SpectraObject(gr.crit = "PCRF", freq.unit = "ppm", int.unit = "intensity",
+	descrip = "test import", fileExt = ".jdx")
+sumSpectra(spec)
+plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
+
 }
 \author{
 Bryan A. Hanson, DePauw University.

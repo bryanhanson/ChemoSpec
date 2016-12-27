@@ -1,8 +1,8 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 4.3.163
-Date: 2016-12-06
+Version: 4.3.175
+Date: 2016-12-26
 Author: Bryan A. Hanson DePauw University, Greencastle Indiana USA
 Maintainer: Bryan A. Hanson <hanson@depauw.edu>
 Description: A collection of functions for top-down exploratory data analysis
@@ -51,5 +51,6 @@ Suggests:
     gsubfn,
     amap,
     signal,
-    rgl
+    rgl,
+    readJDX
 RoxygenNote: 5.0.1

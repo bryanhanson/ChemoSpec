@@ -1,3 +1,5 @@
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+
 ## What is ChemoSpec?
 
 `ChemoSpec` is  collection of functions for plotting spectra (NMR, IR, Raman) and carrying out various forms of top-down exploratory data analysis, such as HCA, PCA, model-based clustering and STOCSY analysis.  Robust methods appropriate for this type of high-dimensional data are available.  Designed with metabolomics data sets in mind, where the samples fall into groups such as treatment and control.  Graphical output is formatted consistently for publication quality plots.  ChemoSpec is intended to be very user friendly and help you get usable results quickly.  A vignette illustrating typical operations is available.
@@ -25,10 +27,10 @@ library("ChemoSpec")
 ### To view the Vignette:
 
 ````r
-vignette("ChemoSpec")
+browseVignettes("ChemoSpec")
 ````
 ### License Information
 
-ChemoSpec is distributed under the GPL-3 license, as stated in the DESCRIPTION file.  For more info, see the [GPL site.](https://gnu.org/licenses/gpl.html)
+`ChemoSpec` is distributed under the GPL-3 license, as stated in the DESCRIPTION file.  For more info, see the [GPL site.](https://gnu.org/licenses/gpl.html)
 
 Questions?  hanson@depauw.edu
