@@ -1,10 +1,11 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 4.3.175
-Date: 2016-12-26
-Author: Bryan A. Hanson DePauw University, Greencastle Indiana USA
-Maintainer: Bryan A. Hanson <hanson@depauw.edu>
+Version: 4.4.1
+Date: 2016-12-28
+Authors@R: c(person("Bryan A.", "Hanson", role = c("aut", "cre"), email =
+    "hanson@depauw.edu"), person("Mike", "Bostock", role = c("cph", "ctb"),
+    comment = "author of the d3.js library used in plotSpectraJS, http://d3js.org"))
 Description: A collection of functions for top-down exploratory data analysis
     of spectral data obtained via nuclear magnetic resonance (NMR), infrared (IR) or
     Raman spectroscopy. Includes functions for plotting and inspecting spectra, peak

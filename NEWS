@@ -4,11 +4,15 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
-Changes in version 4.3.163 2016-12-06 ?????????
+Changes in version 4.4.1 2016-12-28
      + check4Gaps overhauled and simplified.
-     + Improved the way sumSpectra guesses at a tol value to send to check4Gaps.  Improved the way check4Gaps uses that value.
+     + Improved the way sumSpectra guesses at a tol value to send to check4Gaps.
+     + Improved the way check4Gaps uses the tol value.
      + plotSpectraJS gains a "which" argument.
      + Removed function readJDX.  There is now a package by that name which is much more powerful and will be used when needed.
+     + Removed CITATION file.
+     + Added Mike Bostock as a ctb in Authors@R.
+     + Updated package references in vignette.
 
 Changes in version 4.3.139 2016-08-06
      + Further tweaks to namespace.
