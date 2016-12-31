@@ -18,6 +18,10 @@
 #' 
 #' @keywords hplot
 #' 
+#' @export loopThruSpectra
+#' 
+#' @importFrom grDevices devAskNewPage 
+#' 
 #' @examples
 #' 
 #' \dontrun{
@@ -25,10 +29,6 @@
 #' data(metMUD1)
 #' loopThruSpectra(metMUD1)
 #' }
-#' 
-#' @export loopThruSpectra
-#' 
-#' @importFrom grDevices devAskNewPage 
 #' 
 loopThruSpectra <- function(Spectra, ...) {
 

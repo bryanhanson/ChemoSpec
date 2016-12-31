@@ -82,7 +82,8 @@ plotSpectraJS <- function(spectra, which = NULL, browser = NULL, minify = TRUE) 
 	chkSpectra(spectra)
 
 	if (!is.null(which)) {
-		if (!is.integer(which)) stop("which must be an integer vector")
+		#if (!is.integer(which)) stop("which must be an integer vector")
+		which <- as.integer(which)
 		which2 <- setdiff(1:length(spectra$names), which)
 		spectra <- removeSample(spectra, rem.sam = which2)
 		}
@@ -156,15 +157,19 @@ plotSpectraJS <- function(spectra, which = NULL, browser = NULL, minify = TRUE) 
 		# The following are used to wrap the entire JS code in a
 		# scoping function so that performance is improved.
 	
-		scopeFunHeader <- "(function() {"
-		scopeFunTail <- "})();"
+		#scopeFunHeader <- "(function() {"
+		#scopeFunTail <- "})();"
 	
 		# Combine, then optionally minify for faster performance, write
 	
-		text = c(scopeFunHeader, data1, data2, data3, data4,
-			data5, data6, data7, data8, data9, data10, data11,
-			js1, js2, js3, js4, js5, scopeFunTail)
+		# text = c(scopeFunHeader, data1, data2, data3, data4,
+			# data5, data6, data7, data8, data9, data10, data11,
+			# js1, js2, js3, js4, js5, scopeFunTail)
 	
+		text = c(data1, data2, data3, data4,
+			data5, data6, data7, data8, data9, data10, data11,
+			js1, js2, js3, js4, js5)
+			
 		if (minify) {
 			if (requireNamespace("js", quietly = TRUE)) {
 				text <- js::uglify_optimize(text, unused = FALSE)
