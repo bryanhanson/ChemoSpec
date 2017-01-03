@@ -31,10 +31,10 @@ var activateBrush = function() {
     }   // end of brushed
 
   // IMPORTANT: xD is a global variable
-  brush = d3.svg.brush() // This is a 1D brush
-    .x(d3.scale.identity().domain([(lPad + specWidth + gap),
-        (lPad + specWidth + gap + mapWidth)]))
-    .on("brushend", brushed)
+  brush = d3.brushX() // This is a 1D brush
+    // .x(d3.scale.identity().domain([(lPad + specWidth + gap),
+    //     (lPad + specWidth + gap + mapWidth)]))
+    // .on("brushend", brushed)
 
   svg.append("svg") // Appends the svg to include the brush
   	.attr("class", "brush")
@@ -114,7 +114,7 @@ var setupCursorReporting = function() {
   var xNat
   xNat = xD[0] + ((mX) * (xD[1] - xD[0]))
 
-  if ((xUnir = "wavenumber") || (xUnit = "Wavenumber")) {
+  if ((xUnit = "wavenumber") || (xUnit = "Wavenumber")) {
     document.getElementById("CURSOR_TB").value = xNat.toFixed(1)
   }
 

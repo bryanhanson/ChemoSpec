@@ -8,7 +8,7 @@ var drawOutlines = function() {
     // Outline the areas in which we will draw things
 
     // svg.append('rect') // outline main window (for troubleshooting)
-    // 	.attr({x: 0, y: 0,
+    // 	.attrs({x: 0, y: 0,
     // 	       width:(winWidth),
     // 	       height: (winHeight),
     // 	       stroke: 'black',
@@ -16,7 +16,7 @@ var drawOutlines = function() {
     // 	       fill:'white'});
 
     svg.append('rect') // outline spec area
-    	.attr({x: lPad,
+    	.attrs({x: lPad,
 	       y: tPad,
 	       width: specWidth,
 	       height: specHeight,
@@ -25,7 +25,7 @@ var drawOutlines = function() {
 	       fill: 'white'});
 
     svg.append('rect') // outline map area
-    	.attr({x: lPad + specWidth + gap,
+    	.attrs({x: lPad + specWidth + gap,
 	       y: tPad + specHeight - mapHeight,
 	       width: mapWidth,
 	       height: mapHeight,
@@ -55,7 +55,7 @@ var setupSelections = function() {
     .append("label")
     .text(function(d) {return d;})
     .insert("input")
-    .attr({
+    .attrs({
         type: "checkbox",
         id: "CB_LABELS",
         class: "checkbox",
@@ -98,7 +98,7 @@ var setupCursorTextBox = function() {
     .append("label")
     .text("cursor    ")
     .insert("input")
-    .attr({
+    .attrs({
         type: "text",
         id: "CURSOR_TB",
         class: "cursor",
@@ -114,7 +114,7 @@ var setupSliders = function() {
     .append("label")
     .text("offset    ")
     .insert("input")
-    .attr({
+    .attrs({
         type: "range",
         id: "OFFSET_SLIDER",
         class: "slider",
