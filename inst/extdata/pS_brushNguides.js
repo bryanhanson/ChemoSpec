@@ -39,6 +39,7 @@ var activateBrush = function() {
       d3.selectAll(".cursorGuide") // remove the cursor
     	    .remove();
       document.getElementById("CURSOR_TB").value = ""
+      xD = Dx // resets cursor value
     }   // end of resetBrush
 
 // The following sets up and positions the brush

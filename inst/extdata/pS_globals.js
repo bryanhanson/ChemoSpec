@@ -42,7 +42,7 @@ var svg = d3.select('#main')
 // Dx & Dy are the data domains passed in by the R function
 // Domains are in native units, as supplied by the user
 
-// xD & yD are the brushing coordinates always on [0,1] ????
+// xD & yD are the currently displayed spectral limits in native units
 
 var xD = Dx,
     yD = Dy;
