@@ -12,41 +12,55 @@ var activateBrush = function() {
   // This helper function must remain inside the activateBrush function
 
   brushed = function() { // Handles the response to brushing
-    var extent, minX, maxX, x0, y0, xL, xU, spanX;
+    var br, coords, minX, maxX, x0, xL, xU, spanX;
 
-    extent = brush.empty() ? [ brush.x().domain()[0], brush.x().domain()[1] ] : brush.extent() // reports in pixels
-    minX = extent[0]
-    maxX = extent[1]
+    br = document.getElementById("BRUSH")
+    coords = d3.brushSelection(br)
+    // In d3 v4 the coordinates returned are screen pixels
+    minX = coords[0]
+    maxX = coords[1]
     x0 = lPad + specWidth + gap // dim of map region
-    y0 = tPad + specHeight + gap
     x1 = x0 + mapWidth
     xL = ((minX-x0)/(x1-x0)) // as a frac of map region
     xU =  ((maxX-x0)/(x1-x0))
     spanX = Dx[1] - Dx[0]
-    // update global xD
-    xD = [((spanX*xL) + Dx[0]), ((spanX*xU) + Dx[0])]
-    brushExtent = [xL, xU]
+    xD = [((spanX*xL) + Dx[0]), ((spanX*xU) + Dx[0])] // xD is global
+    brushExtent = [xL, xU] // brushExtent is global
     clearSpectra();
     updateOffset()
     }   // end of brushed
 
-  // IMPORTANT: xD is a global variable
+    resetBrush = function() { // Handles single click in map region
+      // https://github.com/d3/d3-brush/issues/10 for correct way to
+      // clear a brush
+      brushExtent = [0, 1] // brushExtent is global
+      clearSpectra();
+      updateOffset()
+      d3.selectAll(".cursorGuide") // remove the cursor
+    	    .remove();
+      document.getElementById("CURSOR_TB").value = ""
+    }   // end of resetBrush
+
+// The following sets up and positions the brush
+
   brush = d3.brushX() // This is a 1D brush
-    // .x(d3.scale.identity().domain([(lPad + specWidth + gap),
-    //     (lPad + specWidth + gap + mapWidth)]))
-    // .on("brushend", brushed)
+  x0 = lPad + specWidth + gap // dim of map region
+  y0 = winHeight - mapHeight - tPad
+  x1 = x0 + mapWidth
+  y1 = winHeight - tPad
+  brush.extent([[x0, y0],[x1, y1]])
+    .on("end", brushed) // carry out the zoom
+    .on("start", resetBrush) // single click resets view
 
   svg.append("svg") // Appends the svg to include the brush
   	.attr("class", "brush")
+    .attr("id", "BRUSH")
     .call(brush)
-    .selectAll("rect")
-    .attr("y", (tPad + specHeight - mapHeight))
-    .attr("height", mapHeight); // This is what fixes the brush in y
 
 } // end of activateBrush
 
 // Guide related functions.
-// Note that these need to respond to brushing, which changes xD and yD
+// Note that these need to respond to brushing, which changes xD
 
 var activateGuides = function() {
 
@@ -56,7 +70,6 @@ var activateGuides = function() {
   // IMPORTANT: xD, yD, mX, mY, are global variables
   // Code is copied from exCon, but horiz. cursor removed here
 
-
   getMouseX = function() {
 
     var mouse;
@@ -65,7 +78,7 @@ var activateGuides = function() {
   	mouse = d3.mouse(document.getElementById("SPECTRUM"));
     // mouse seems to report the whole window pixel coordinates
     // not just the spectra region
-    mX = mouse[0] - lPad;
+    mX = mouse[0];
 
   	if (mX < 0) {mX = 0}; // truncate low
   	if (mX > specWidth) {mX = specWidth}; // truncate high
@@ -86,7 +99,7 @@ var activateGuides = function() {
   	d3.selectAll(".cursorGuide") // remove previous lines
   	    .remove();
 
-  	line = d3.svg.line()
+  	line = d3.line()
   	    .x(function(d) { return d.x;})
   	    .y(function(d) { return d.y;})
 

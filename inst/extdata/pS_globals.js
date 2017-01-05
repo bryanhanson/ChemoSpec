@@ -6,22 +6,22 @@
 
 // Define layout variables for each subsection of the display
 // These are fixed sizes, they don't change even if the window is resized
-// 15" MacBookPro Retina screen is 1440 x 900
+// You need to use pretty much all the screen anyway, to see details.
 
 // Official partial abbrevs to be used:
 // locator map: map, spectrum area: spec
 // The entire area containing all of the above is the window,
 // use win (the div is 'main')
 
-var winWidth = 0.9*screen.width, // define sizes of windows
+var winWidth = 0.95*screen.width, // define sizes of windows
     winHeight = 0.7*screen.height, // these values determine the aspect ratio of the layout
-    specWidth = 0.77*winWidth, // < 90% to allow for padding and gaps
+    specWidth = 0.77*winWidth, // < 90% total to allow for padding and gaps
     specHeight = 0.95*winHeight,
     mapWidth = 0.2*winWidth
     mapHeight = 0.18*winHeight;
 
 var gap = 0.02*winWidth, // gap for aesthetics
-    lPad = (screen.width - specWidth - gap - mapWidth)/2,
+    lPad = (winWidth - specWidth - gap - mapWidth)/2,
     // this approach ensures centering in main window
     // rPad = lPad,
     tPad = (winHeight - specHeight)/2
