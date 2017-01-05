@@ -142,13 +142,11 @@ var drawRefSpec = function(row) {
 	refSpec.append("path")
 		.attr("transform", "translate(" + (lPad + specWidth + gap) +","
 			+ (tPad + specHeight - mapHeight) + ")")
-		.attrs({width: mapWidth,
-			height: mapHeight,
-			"class": "line",
-			"class": "refSpectrum",
-			"d": spectrum(xy) // use the return value of spectrum(xy) as 'd'
-			})
-
+    .attr("width", mapWidth)
+		.attr("height", mapHeight)
+		.attr("class", "line")
+		.attr("class", "refSpectrum")
+		.attr("d", spectrum(xy)) // use the return value of spectrum(xy) as 'd'
 	drawRefAxis(xscl)
 
 } // end of drawRefSpec
@@ -186,21 +184,16 @@ var drawSpectra = function(data) {
 	    .x(function(d) { return xscl(d.x);}) // apply the x scale to the x data
 	    .y(function(d) { return yscl(d.y);}) // apply the y scale to the y data
 
-
-    // id's assigned via code should be upper case
 		Spectra = svg.append("g")
-			// .attr({
-			// 	"id": "SPECTRUM"
-			// 	})
 
 		Spectra.append("path")
-			.attrs({width: specWidth,
-				height: specHeight,
-				stroke: Colors[rows[i]],
-				"class": "line",
-				"class": "spectrum",
-				"id": "SPECTRUM",
-				"d": spectrum(xy)}) // use the return value of spectrum(xy) as 'd'
+			.attr("width", specWidth)
+			.attr("height", specHeight)
+		  .attr("stroke", Colors[rows[i]])
+			.attr("class", "line")
+			.attr("class", "spectrum")
+			.attr("id", "SPECTRUM")
+			.attr("d", spectrum(xy)) // use the return value of spectrum(xy) as 'd'
 			.attr("transform", "translate(" + lPad +","
 				+ (tPad) + ")")
   } // End of master loop

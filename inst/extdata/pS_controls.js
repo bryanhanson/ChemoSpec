@@ -7,6 +7,8 @@
 var drawOutlines = function() {
     // Outline the areas in which we will draw things
 
+    // If uncommented, need to use attr not attrs
+
     // svg.append('rect') // outline main window (for troubleshooting)
     // 	.attrs({x: 0, y: 0,
     // 	       width:(winWidth),
@@ -16,23 +18,22 @@ var drawOutlines = function() {
     // 	       fill:'white'});
 
     svg.append('rect') // outline spec area
-    	.attrs({x: lPad,
-	       y: tPad,
-	       width: specWidth,
-	       height: specHeight,
-	       stroke: 'black',
-	       'stroke-width': 1.5,
-	       fill: 'white'});
+      .attr("x", lPad)
+      .attr("y", tPad)
+      .attr("width", specWidth)
+      .attr("height", specHeight)
+      .attr("stroke", "black")
+      .attr("stroke-width", 1.5)
+      .attr("fill", "white")
 
     svg.append('rect') // outline map area
-    	.attrs({x: lPad + specWidth + gap,
-	       y: tPad + specHeight - mapHeight,
-	       width: mapWidth,
-	       height: mapHeight,
-	       stroke: 'black',
-	       'stroke-width': 1.5,
-	       fill:'white'});
-
+       .attr("x", lPad + specWidth + gap)
+       .attr("y", tPad + specHeight - mapHeight)
+       .attr("width", mapWidth)
+       .attr("height", mapHeight)
+       .attr("stroke", "black")
+       .attr("stroke-width", 1.5)
+       .attr("fill", "white")
 } // end of drawOutlines
 
 var drawTitle = function() {
@@ -55,13 +56,11 @@ var setupSelections = function() {
     .append("label")
     .text(function(d) {return d;})
     .insert("input")
-    .attrs({
-        type: "checkbox",
-        id: "CB_LABELS",
-        class: "checkbox",
-        name: function(d, i) {return i;},
-        value: function(d, i) {return i;}
-    })
+    .attr("type", "checkbox")
+    .attr("id", "CB_LABELS")
+    .attr("class", "checkbox")
+    .attr("name", function(d, i) {return i;})
+    .attr("value", function(d, i) {return i;})
     .property("checked", function(d, i) {
       if (i == 0) return 1
       if (i > 0) return 0
@@ -98,12 +97,10 @@ var setupCursorTextBox = function() {
     .append("label")
     .text("cursor    ")
     .insert("input")
-    .attrs({
-        type: "text",
-        id: "CURSOR_TB",
-        class: "cursor",
-        value: ""
-    })
+    .attr("type", "text")
+    .attr("id", "CURSOR_TB")
+    .attr("class", "cursor")
+    .attr("value", "")
 } // End of setupCursorTextBox
 
 var setupSliders = function() {
@@ -114,14 +111,12 @@ var setupSliders = function() {
     .append("label")
     .text("offset    ")
     .insert("input")
-    .attrs({
-        type: "range",
-        id: "OFFSET_SLIDER",
-        class: "slider",
-        min: 0.0,
-        max: 100.0,
-        value: 0.0,
-    })
+    .attr("type", "range")
+    .attr("id", "OFFSET_SLIDER")
+    .attr("class", "slider")
+    .attr("min", 0.0)
+    .attr("max", 100.0)
+    .attr("value", 0.0)
 
     // Add event listeners
 
@@ -143,8 +138,6 @@ var updateOffset = function(value) {
   if (!value) value = offset // Get stored global value if
   // not provided via slider (either at launch or certain
   // function calls come w/o value for value)
-
-  // console.log("offset changed to", value)
 
   // Convert value to be on the scale of the original data
 

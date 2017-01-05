@@ -32,7 +32,7 @@ var activateBrush = function() {
 
     resetBrush = function() { // Handles single click in map region
       // https://github.com/d3/d3-brush/issues/10 for correct way to
-      // clear a brush
+      // clear a brush.  However this works.
       brushExtent = [0, 1] // brushExtent is global
       clearSpectra();
       updateOffset()
@@ -93,7 +93,7 @@ var activateGuides = function() {
 
     xPos = (mX * specWidth) + lPad // mX now in pixels
   	vertU = {x: xPos, y: tPad } // x, y at the top of window
-      // x, y at the bottom of window:
+    // x, y at the bottom of window:
   	vertL = {x: xPos, y: tPad + specHeight }
   	vEnds = [vertU, vertL];
 
