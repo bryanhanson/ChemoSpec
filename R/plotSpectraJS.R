@@ -2,12 +2,12 @@
 #'
 #' Plot a Spectra Object Interactively
 #' 
-#' This function uses the d3.js JavaScript library to plot a \code{\link{Spectra}}
+#' This function uses the d3.js JavaScript library by Mike Bostock to plot a \code{\link{Spectra}}
 #' object interactively.  This is most useful for data exploration.  For high
 #' quality plots, consider \code{\link{plotSpectra}}.
 #' 
 #' The spectral data are incorporated into the web page. Keep in mind that very large
-#' data sets, like NMR spectra with 32K points, will bog down the browser dramatically.
+#' data sets, like NMR spectra with 32K points, will bog down the browser.
 #' In these cases, you may need to limit the number of samples in passed to this function.
 #' See \code{\link{removeSample}} or use argument \code{which}.
 #'
@@ -71,7 +71,6 @@
 #' @export plotSpectraJS
 #'
 #' @importFrom utils browseURL
-# @importFrom jsonlite toJSON
 #'
 plotSpectraJS <- function(spectra, which = NULL, browser = NULL, minify = TRUE) {
 
