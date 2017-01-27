@@ -4,6 +4,9 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.4.11 2017-01-26
+     + Improved (again!) the way tol is selected by sumSpectra.
+
 Changes in version 4.4.3 2017-01-05
      + plotSpectraJS updated to use v4 of the d3 library.
      + plotSpectraJS numerous code improvements and clean up.
