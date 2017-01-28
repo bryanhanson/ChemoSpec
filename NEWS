@@ -4,6 +4,9 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.4.16 2017-01-27
+     + Fixed a bug in reporting by check4Gaps, which was leading to an error in binSpectra (reported by Nabil Mehaba).
+
 Changes in version 4.4.11 2017-01-26
      + Improved (again!) the way tol is selected by sumSpectra.
 

@@ -83,9 +83,9 @@ check4Gaps <- function(x, y = NULL, tol = 0.01, plot = FALSE, silent = FALSE, ..
 	for (i in 1:length(xdiff)) {
 		if (!isTRUE(all.equal(xdiff[i], p, tolerance = tol))) { # detects discontinuity
 			d1 <- c(d1, x[i+1])
-			d1i <- c(d1i, i)
+			d1i <- c(d1i, i+1)
 			d2 <- c(d2, x[i])
-			d2i <- c(d2i, i+1)
+			d2i <- c(d2i, i)
 			}	
 		}
 	# Add the last entry

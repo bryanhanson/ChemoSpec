@@ -44,7 +44,10 @@ binSpectra <- function(spectra, bin.ratio) {
 
 	if (missing(spectra)) stop("No spectral data provided")
 	if (missing(bin.ratio)) stop("No bin.ratio specified")
-	if (!missing(bin.ratio)) if (bin.ratio < 1) stop("bin.ratio < 1.0 which implies data expansion!")
+	if (!missing(bin.ratio)) {
+		if (bin.ratio <= 1) stop("bin.ratio must > 1")
+		if (!isWholeNo(bin.ratio)) stop("bin.ratio must be an integer > 1")
+		}
 	chkSpectra(spectra)
 	br <- bin.ratio
 	
