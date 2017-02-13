@@ -64,11 +64,10 @@ newIR <- removeFreq(SrE.IR, rem.freq = SrE.IR$freq > 1800 & SrE.IR$freq < 2500)
 check4Gaps(newIR$freq, newIR$data[1,], plot = TRUE)
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{utilities}
-

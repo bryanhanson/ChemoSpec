@@ -38,12 +38,11 @@ res <- binSpectra(metMUD1, bin.ratio = 4)
 sumSpectra(res)
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{manip}
 \keyword{utilities}
-

@@ -36,9 +36,6 @@ plotSpectra(aMUD, which = 1:20, lab.pos = 4.5, offset = 0.1,
   main = "Aligned NMR Spectra (alignMUD)")
 
 }
-\author{
-Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
-}
 \references{
 Vu TN, Valkenborg D, Smets K, Verwaest KA, Dommisse R, Lemiere F, Verschoren
 A, Goethals B, Laukens K. "An integrated workflow for robust alignment and
@@ -47,5 +44,7 @@ Bioinformatics vol. 12 pg. 405 (2011).
 
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}
+}
 \keyword{utilities}
-

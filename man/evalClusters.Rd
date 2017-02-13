@@ -72,9 +72,6 @@ res3 <- evalClusters(metMUD2, min.nc = 2, max.nc = 5, method = "average", index 
 }
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 M. Charrad et. al.  "NbClust: An R Package for Determining the
 Relevant Number of Clusters in a Data Set."  J. Stat. Soft. vol. 61 no. 6
@@ -89,6 +86,8 @@ October 2014.
 \code{\link{Spectra}} object.  \code{\link{plotHCA}} for the plotting
 function in \code{ChemoSpec}.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{cluster}
 \keyword{multivariate}
-

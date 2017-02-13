@@ -20,10 +20,10 @@ surveySpectra2(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"),
 \item{by.gr}{Logical, indicating if the analysis is to be done by group or
 not. Applies to \code{surveySpectra} only.}
 
+\item{\dots}{Additional parameters to be passed to the plotting routines.}
+
 \item{lab.pos}{Numeric, giving the frequency where the label should be drawn.
 Applies to \code{surveySpectra2} only.}
-
-\item{\dots}{Additional parameters to be passed to the plotting routines.}
 }
 \value{
 None; side effect is a plot
@@ -53,6 +53,7 @@ scale.
 
 \item \code{surveySpectra2}: Spectral survey emphasizing variation among spectra.
 }}
+
 \examples{
 
 data(SrE.IR)
@@ -61,11 +62,10 @@ surveySpectra(SrE.IR, method = "iqr", main = myt)
 surveySpectra2(SrE.IR, method = "iqr", main = myt)
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{hplot}
-

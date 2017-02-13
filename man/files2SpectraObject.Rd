@@ -119,6 +119,7 @@ known limitations.
 
 \item \code{matrix2SpectraObject}: Import a matrix of data
 }}
+
 \section{files2SpectraObject}{
 
 \code{files2SpectraObject} acts on all files in the current working
@@ -136,6 +137,7 @@ column, and samples in additional columns, and processes it into a
 the sample names.  There need not be a header for the first (frequency)
 column.
 }
+
 \examples{
 td <- tempdir()
 ed <- system.file("extdata", package = "ChemoSpec")
@@ -149,12 +151,11 @@ sumSpectra(spec)
 plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{file}
 \keyword{import}
-

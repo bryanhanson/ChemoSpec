@@ -3,6 +3,10 @@
 \name{seX}
 \alias{seX}
 \alias{seXy}
+\alias{seXyIqr}
+\alias{seXyMad}
+\alias{seXy95}
+\alias{seXy}
 \alias{seXy95}
 \alias{seXyIqr}
 \alias{seXyMad}
@@ -50,6 +54,7 @@ These functions include \code{na.omit}.
 
 \item \code{seXyMad}: median +/- median absolute deviation
 }}
+
 \examples{
 
 x <- rnorm(100)
@@ -60,11 +65,10 @@ seXyMad(x)
 seXyIqr(x)
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{utilities}
-

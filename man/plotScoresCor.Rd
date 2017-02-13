@@ -27,9 +27,6 @@ A utility function which when given a x,y data set computes both classical
 and robust confidence ellipses. An internal function, not generally called
 by the user.
 }
-\author{
-Bryan A. Hanson, DePauw University. Derived from \code{\link[mvoutlier]{cor.plot}}.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
@@ -37,5 +34,7 @@ Bryan A. Hanson, DePauw University. Derived from \code{\link[mvoutlier]{cor.plot
 See function \code{\link[mvoutlier]{cor.plot}} in package
 \pkg{mvoutlier} on which this function is based.
 }
+\author{
+Bryan A. Hanson, DePauw University. Derived from \code{\link[mvoutlier]{cor.plot}}.
+}
 \keyword{multivariate}
-

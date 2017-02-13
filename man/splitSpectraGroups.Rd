@@ -68,14 +68,13 @@ sumSpectra(res) # reports on extra elements
 res$groups <- as.factor(paste(res$geneBb, res$geneCc, sep = ""))
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
 \seealso{
 \code{\link{conColScheme}}.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{utilities}
-

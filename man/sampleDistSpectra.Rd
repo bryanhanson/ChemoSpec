@@ -31,9 +31,6 @@ data(SrE.NMR)
 M <- sampleDistSpectra(SrE.NMR, main = "Sample Correlations for SrE.NMR")
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
@@ -41,5 +38,7 @@ Bryan A. Hanson, DePauw University.
 The sample distances can be used to cluster the samples. See for
 example \code{\link{hcaSpectra}}.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{hplot}
-

@@ -56,9 +56,6 @@ hypTestScores(mM3, pca, fac = c("geneBb", "geneCc"))
 
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
@@ -67,6 +64,8 @@ Bryan A. Hanson, DePauw University.
 additional factor elements in the \code{\link{Spectra}} object, which can then be
 used with this function.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{htest}
 \keyword{multivariate}
-

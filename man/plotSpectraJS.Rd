@@ -64,6 +64,7 @@ override your default with
 your browser at peacekeeper.futuremark.com  The most relevant score
 is the rendering category.
 }
+
 \examples{
 
 if (interactive()) {
@@ -74,9 +75,6 @@ if (interactive()) {
 }
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
@@ -84,5 +82,7 @@ Bryan A. Hanson, DePauw University.
 \code{\link{plotSpectra}} for non-interactive plotting.  Details
 about \code{d3.js} are at \url{www.d3js.org}.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{plot}
-

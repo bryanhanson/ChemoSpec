@@ -49,12 +49,11 @@ chkSpectra(metMUD1, confirm = TRUE) # not OK, you didn't listen to me!
 }
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{classes}
 \keyword{utilities}
-

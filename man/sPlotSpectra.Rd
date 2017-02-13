@@ -40,9 +40,6 @@ splot <- sPlotSpectra(spectra = SrE.IR, pca = IR.pca, pc = 1, tol = 0.001,
   main = myt)
 
 }
-\author{
-Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
-}
 \references{
 Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor,
 Gottfries, Moritz, and Trygg. "Visualization of GC/TOF-MS-Based
@@ -52,5 +49,7 @@ Compounds Usings OPLS Class Models" Analytical Chemistry Vol.80 no.1 pgs.
 
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+}
 \keyword{hplot}
-

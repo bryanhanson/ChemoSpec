@@ -33,9 +33,6 @@ The residual error matrix is then added to the selected matrix before
 performing PCA.  Use \code{names(LM)} to see which factor is stored in which
 matrix.
 }
-\author{
-Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
-}
 \references{
 Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for
 Discriminant Analysis: ..." Analytica Chimica Acta 629.1-2 (2008): 47-55.
@@ -50,6 +47,8 @@ Variance--Principal Component Analysis: ..." Analytica Chimica Acta 544.1-2
 The use of this function can be seen in
 \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotScores}}.
 }
+\author{
+Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+}
 \keyword{htest}
 \keyword{multivariate}
-

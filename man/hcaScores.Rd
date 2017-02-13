@@ -52,9 +52,6 @@ myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 res <- hcaScores(SrE.IR,  pca, scores = c(1:5), main = myt)
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
@@ -64,6 +61,8 @@ Bryan A. Hanson, DePauw University.
 \code{\link{Spectra}} object. \code{\link{plotHCA}} for the function that
 actually does the plotting.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{cluster}
 \keyword{multivariate}
-

@@ -66,15 +66,14 @@ mclust3D(cbind(x, y, z), title = "mclust3D demo",
 }
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
 \seealso{
 \code{\link[mclust]{Mclust}} for background on the method.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{cluster}
 \keyword{multivariate}
-

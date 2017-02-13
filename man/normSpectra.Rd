@@ -42,9 +42,6 @@ res <- normSpectra(SrE.IR)
 sumSpectra(res)
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 Probabalistic Quotient Normalization is reported in F. Dieterle
 et. al. Analytical Chemistry vol. 78 pages 4281-4290 (2006).  The exact same
@@ -54,6 +51,8 @@ group, reported in K. A. Veselkov et. al. Analytical Chemistry vol. 83 pages
 
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{manip}
 \keyword{utilities}
-

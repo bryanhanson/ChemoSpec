@@ -30,11 +30,10 @@ Utility function to carry out misc. labeling functions on the PCA score plot
 of a \code{\link{Spectra}} object.  An internal function, not generally
 called by the user.
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{utilities}
-

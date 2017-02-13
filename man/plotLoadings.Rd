@@ -39,9 +39,6 @@ plotLoadings(SrE.IR, pca, main = myt,
 	 loads = 1:2, ref = 1)
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
@@ -49,6 +46,8 @@ Bryan A. Hanson, DePauw University.
 See \code{\link{plot2Loadings}} to plot two loadings against each
 other, and \code{\link{sPlotSpectra}} for an alternative approach.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{hplot}
 \keyword{multivariate}
-

@@ -57,12 +57,11 @@ sumSpectra(newIR)
 check4Gaps(newIR$freq, newIR$data[1,], plot = TRUE)
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{manip}
 \keyword{utilities}
-

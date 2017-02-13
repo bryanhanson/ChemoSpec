@@ -40,15 +40,14 @@ either class prcomp or princomp.  For details of the structure of
 \code{\link{prcomp}} or \code{\link{princomp}}, see their respective help
 pages.
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
 \seealso{
 \code{\link{prcomp}}, \code{\link{princomp}}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{classes}
 \keyword{utilities}
-

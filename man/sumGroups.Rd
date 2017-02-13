@@ -28,9 +28,6 @@ data(metMUD1)
 sumGroups(metMUD1)
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
@@ -38,5 +35,7 @@ Bryan A. Hanson, DePauw University.
 For a discussion of general issues of color, see
 \code{\link{colorSymbol}}.  To summarize the entire object, \code{\link{sumSpectra}}.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{utilities}
-

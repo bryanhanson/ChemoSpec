@@ -45,9 +45,6 @@ res <- plot2Loadings(SrE.IR, pca, main = myt,
 	 loads = c(1,2), tol = 0.001)
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
@@ -56,6 +53,8 @@ See \code{\link{plotLoadings}} to plot one loading against the
 original variable (frequency) axis.  See \code{\link{sPlotSpectra}} for
 a different approach.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{hplot}
 \keyword{multivariate}
-

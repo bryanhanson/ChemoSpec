@@ -30,11 +30,10 @@ A utility function which plots the sample names next to the sample points.
 The number of samples labeled can be specified by passing it from the
 calling function. An internal function, not generally called by the user.
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{utilities}
-

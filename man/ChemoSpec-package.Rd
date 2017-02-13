@@ -2,8 +2,8 @@
 % Please edit documentation in R/ChemoSpec-package.R
 \docType{package}
 \name{ChemoSpec-package}
-\alias{ChemoSpec}
 \alias{ChemoSpec-package}
+\alias{ChemoSpec}
 \title{Exploratory Chemometrics for Spectroscopy}
 \description{
 A collection of functions for top-down exploratory data analysis of spectral
@@ -18,14 +18,13 @@ publication quality plots.  ChemoSpec is intended to be very user friendly
 and help you get usable results quickly.  A vignette covering typical
 operations is available.
 }
+\references{
+\url{https://github.com/bryanhanson/ChemoSpec}
+}
 \author{
 Bryan A. Hanson and Matthew J. Keinsley.
 
 Maintainer: Bryan A. Hanson \email{hanson@depauw.edu}
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
-}
 \keyword{multivariate}
 \keyword{package}
-

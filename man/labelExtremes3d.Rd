@@ -34,11 +34,10 @@ the plotting (because the results are used by functions that use different
 plotting paradigms).  An internal function, not generally called by the
 user.
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{utilities}
-

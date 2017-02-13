@@ -48,9 +48,6 @@ apca4 <- aovPCAloadings(spectra = mM3, LM = mats, pca = apca1,
   main = "aov_pcaSpectra: Bb Loadings")
 
 }
-\author{
-Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
-}
 \references{
 Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for
 Discriminant Analysis: ..." Analytica Chimica Acta 629.1-2 (2008): 47-55.
@@ -65,6 +62,8 @@ Variance--Principal Component Analysis: ..." Analytica Chimica Acta 544.1-2
 This function calls \code{\link{avgFacLvls}}, and the results are
 used in \code{\link{aovPCAscores}} and \code{\link{aovPCAloadings}}.
 }
+\author{
+Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+}
 \keyword{htest}
 \keyword{multivariate}
-

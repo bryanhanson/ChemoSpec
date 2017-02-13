@@ -56,12 +56,11 @@ This is a modified version of the function \code{coordProj} from package
 plot is changed to simply plot an X over the letters identifying the groups.
 An internal function, not generally called by the user.
 }
-\author{
-Bryan A. Hanson, DePauw University. Derived from \code{\link[mclust]{coordProj}}.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University. Derived from \code{\link[mclust]{coordProj}}.
+}
 \keyword{cluster}
 \keyword{multivariate}
-

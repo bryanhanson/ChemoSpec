@@ -31,9 +31,6 @@ None. Side effect is a plot.
 Uses the results from \code{\link{aovPCAscores}} to plot the corresponding
 loadings.
 }
-\author{
-Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
-}
 \references{
 Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for
 Discriminant Analysis: ..." Analytica Chimica Acta 629.1-2 (2008): 47-55.
@@ -48,6 +45,8 @@ Variance--Principal Component Analysis: ..." Analytica Chimica Acta 544.1-2
 An example using this function can be seen in
 \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotLoadings}}.
 }
+\author{
+Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+}
 \keyword{htest}
 \keyword{multivariate}
-

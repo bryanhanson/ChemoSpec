@@ -56,9 +56,6 @@ temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "OD")
 temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "SD")
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
 Statistical Analysis in Chemometrics}, CRC Press, 2009.
@@ -69,5 +66,7 @@ Statistical Analysis in Chemometrics}, CRC Press, 2009.
 \code{\link[chemometrics]{pcaDiagplot}} in package
 \code{chemometrics} for the underlying function.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{multivariate}
-

@@ -29,9 +29,6 @@ that don't match entries in \code{gr.crit} or there are entries in
 \code{gr.crit} that don't match any file names.  An internal function, not
 generally called by the user.
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
@@ -39,6 +36,8 @@ Bryan A. Hanson, DePauw University.
 \code{\link{files2SpectraObject}} for details;
 \code{\link{sumGroups}} to see the outcome.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{color}
 \keyword{utilities}
-

@@ -13,12 +13,11 @@ or changed using \code{\link{conColScheme}}. Also,
 scheme, but this is intended for the situations when you are creating new
 categories/groups for your samples.
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{color}
 \keyword{utilities}
-

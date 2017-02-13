@@ -33,9 +33,6 @@ IR <- removeFreq(SrE.IR, rem.freq = SrE.IR$freq > 1850 | SrE.IR$freq < 1650)
 res <- hmapSpectra(IR, col = heat.colors(5), labCol = FALSE)
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
@@ -44,5 +41,7 @@ Bryan A. Hanson, DePauw University.
 (there is no package index page); the vignette is a good place to begin
 (\code{browseVignettes("seriation")}).
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{multivariate}
-

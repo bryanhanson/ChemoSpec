@@ -43,9 +43,6 @@ plotScores(metMUD1, pca, main = "metMUD1 NMR Data",
 	 pcs = c(1,2), ellipse = "cls", tol = 0.05)
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
 Statistical Analysis in Chemometrics}, CRC Press, 2009.
@@ -61,5 +58,7 @@ For displaying the results, \code{\link{plotScree}},
 \code{\link{plot2Loadings}}, \code{\link{sPlotSpectra}},
 \code{\link{plotScores3D}}, \code{\link{plotScoresRGL}}.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{multivariate}
-

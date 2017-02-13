@@ -30,13 +30,12 @@ This function plots the results of an HCA analysis of a
 \code{\link{hcaSpectra}} and \code{\link{hcaScores}} use it (see those pages
 for examples).
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
+}
+\author{
+Bryan A. Hanson, DePauw University.
 }
 \keyword{cluster}
 \keyword{hplot}
 \keyword{multivariate}
-

@@ -36,12 +36,11 @@ temp <- plotSpectraDist(SrE.NMR, xlab = txt2, ylab = txt1, main = txt1,
   xlim = c(1,16), ylim = c(0, 0.3), srt = 90)
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{hplot}
 \keyword{multivariate}
-

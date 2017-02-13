@@ -62,9 +62,6 @@ pca <- c_pcaSpectra(metMUD1, choice = "noscale")
 plotScores3D(metMUD1, pca, main = "metMUD1 NMR Spectra")
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
@@ -72,6 +69,8 @@ Bryan A. Hanson, DePauw University.
 For a 2D plot of the scores, see \code{\link{plotScores}}.  For
 interactive 3D plots, use \code{\link{plotScoresRGL}}.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{hplot}
 \keyword{multivariate}
-

@@ -55,11 +55,10 @@ temp <- baselineSpectra(SrE.IR, int = FALSE, method = "rfbaseline")
 par(mfrow = c(1,1)) # cancel 2 panel plot
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{hplot}
-

@@ -19,13 +19,12 @@ This function colors the leaves of a dendrogram object.  The code was taken
 from the help files.  An internal function, not generally called by the
 user.
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
+}
+\author{
+Bryan A. Hanson, DePauw University.
 }
 \keyword{cluster}
 \keyword{color}
 \keyword{utilities}
-

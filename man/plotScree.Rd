@@ -3,6 +3,7 @@
 \name{plotScree}
 \alias{plotScree}
 \alias{plotScree2}
+\alias{plotScree2}
 \title{Scree Plots of PCA Results for a Spectra Object}
 \usage{
 plotScree(pca, ...)
@@ -38,6 +39,7 @@ plot a scree plot for any PCA results, not just those from
 
 \item \code{plotScree2}: Alternate scree plot
 }}
+
 \examples{
 
 data(metMUD1)
@@ -46,15 +48,14 @@ plotScree(pca, main = "metMUD1 NMR Data")
 plotScree2(pca, main = "metMUD1 NMR Data")
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 The idea for the alternative style plot came from the NIR-Quimiometria
  blog by jrcuesta, at \url{https://nir-quimiometria.blogspot.com/2012/02/pca-for-nir-spectrapart-004-projections.html}
 
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{hplot}
 \keyword{multivariate}
-

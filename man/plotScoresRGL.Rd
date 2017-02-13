@@ -76,9 +76,6 @@ plotScoresRGL(metMUD1, pca, title = "metMUD1 NMR Spectra",
 }
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
@@ -87,7 +84,9 @@ Other functions in \code{ChemoSpec} that plot PCA scores are:
 \code{\link{plotScores}} (2D version), and \code{\link{plotScores3D}} (uses
 \code{lattice} graphics).
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{dynamic}
 \keyword{hplot}
 \keyword{multivariate}
-

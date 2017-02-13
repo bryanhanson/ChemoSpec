@@ -53,9 +53,6 @@ plotScores(metMUD1, pca, main = "metMUD1 NMR Data",
 	 pcs = c(1,2), ellipse = "cls", tol = 0.05)
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
@@ -65,7 +62,9 @@ For other ways of displaying the results, \code{\link{plotScree}},
 the scores, see \code{\link{plotScores3D}}, or \code{\link{plotScoresRGL}}
 for an interactive version.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{hplot}
 \keyword{multivariate}
 \keyword{robust}
-

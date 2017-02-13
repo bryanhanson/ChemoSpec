@@ -1,8 +1,8 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 4.4.16
-Date: 2017-01-27
+Version: 4.4.17
+Date: 2017-02-13
 Authors@R: c(person("Bryan A.", "Hanson", role = c("aut", "cre"), email =
     "hanson@depauw.edu"), person("Mike", "Bostock", role = c("cph", "ctb"),
     comment = "author of the d3.js library used in plotSpectraJS, http://d3js.org"))
@@ -54,4 +54,4 @@ Suggests:
     signal,
     rgl,
     readJDX
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

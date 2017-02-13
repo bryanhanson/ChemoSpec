@@ -58,15 +58,14 @@ plot(ell[,1], ell[,2], col = "red", pch = 20, cex = 0.3)
 points(x,y)
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
 \seealso{
 \code{\link{cov.rob}} for the function that does the work.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{multivariate}
 \keyword{utilities}
-

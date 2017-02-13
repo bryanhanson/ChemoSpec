@@ -28,15 +28,14 @@ facs <- factor(c(rep("A",5), rep("B",5), rep("C", 5), rep("D", 5)))
 M2 <- avgFacLvls(M1, fac = facs)
 
 }
-\author{
-Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
 \seealso{
 \code{\link{aov_pcaSpectra}} for full details.
 }
+\author{
+Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+}
 \keyword{htest}
 \keyword{multivariate}
-

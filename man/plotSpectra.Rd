@@ -55,14 +55,13 @@ plotSpectra(metMUD1, main = "metMUD1 NMR Data",
 
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
 \seealso{
 \code{\link{plotSpectraJS}} for the interactive version.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{hplot}
-

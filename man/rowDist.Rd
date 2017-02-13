@@ -37,4 +37,3 @@ Bryan A. Hanson, DePauw University.
 Suggested by and original code written by Roberto Canteri.
 }
 \keyword{utilities}
-

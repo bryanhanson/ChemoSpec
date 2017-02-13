@@ -42,6 +42,7 @@ Unused levels in \code{$groups} are dropped.
 
 \item \code{removeSample}: Remove samples from a \code{Spectra} object
 }}
+
 \examples{
 
 data(metMUD1)
@@ -62,15 +63,14 @@ new2 <- removeSample(metMUD1, rem.sam = "Sample_20")
 new3 <- removeSample(metMUD1, rem.sam = "Sample")
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
 \seealso{
 \code{\link{removeFreq}} to remove selected frequencies.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{manip}
 \keyword{utilities}
-

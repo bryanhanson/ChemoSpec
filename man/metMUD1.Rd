@@ -2,8 +2,8 @@
 % Please edit documentation in R/MUD.R
 \docType{data}
 \name{metMUD1}
-\alias{alignMUD}
 \alias{metMUD1}
+\alias{alignMUD}
 \alias{metMUD2}
 \title{Made Up NMR Data Sets}
 \format{The data is stored as a \code{\link{Spectra}} object.}
@@ -43,11 +43,10 @@ data(metMUD2)
 sumSpectra(metMUD2)
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{datasets}
-

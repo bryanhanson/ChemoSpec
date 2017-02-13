@@ -36,12 +36,11 @@ filters to a \code{\link{Spectra}} object in a convenient way.
   par(mfrow = c(1, 1))
 
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{multivariate}
 \keyword{utilities}
-

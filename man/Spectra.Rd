@@ -29,9 +29,7 @@ first giving the x axis unit, the second the y axis unit.\cr $desc \tab chr
 therefore \cr \tab \tab should probably be kept to 40 characters or less.\cr
 - attr \tab chr "Spectra" \tab The S3 class designation.\cr }
 }
-\author{
-Bryan A. Hanson, DePauw University.
-}
+
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
@@ -42,5 +40,7 @@ object. \code{\link{chkSpectra}} to verify the integrity of a
 \code{Spectra} object. \code{\link{colorSymbol}} for a discussion of color
 options.
 }
+\author{
+Bryan A. Hanson, DePauw University.
+}
 \keyword{classes}
-

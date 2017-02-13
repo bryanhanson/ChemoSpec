@@ -19,14 +19,13 @@ This function determines if a given number is a whole number within a given
 tolerance.  Taken from the help page of \code{\link{is.integer}}.  An
 internal function, not generally called by the user.
 }
-\author{
-Bryan A. Hanson, DePauw University. Carved out of \code{\link{is.integer}}.
-}
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}\cr
 }
 \seealso{
 \code{\link{is.integer}}
 }
+\author{
+Bryan A. Hanson, DePauw University. Carved out of \code{\link{is.integer}}.
+}
 \keyword{utilities}
-

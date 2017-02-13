@@ -47,9 +47,6 @@ data(SrE.IR)
 pca <- cv_pcaSpectra(SrE.IR, pcs = 5)
 
 }
-\author{
-Bryan A. Hanson, DePauw University. Derived from \code{\link[chemometrics]{pcaCV}}.
-}
 \references{
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
 Statistical Analysis in Chemometrics}, CRC Press, 2009.
@@ -59,5 +56,7 @@ Statistical Analysis in Chemometrics}, CRC Press, 2009.
 \seealso{
 \code{\link[chemometrics]{pcaCV}} for the underlying function.
 }
+\author{
+Bryan A. Hanson, DePauw University. Derived from \code{\link[chemometrics]{pcaCV}}.
+}
 \keyword{multivariate}
-
