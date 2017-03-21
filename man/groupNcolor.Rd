@@ -23,7 +23,7 @@ Until this function has done its job, an object of class
 }
 \description{
 A utility function which looks for \code{gr.crit} in the file names of .csv
-files and assigns group membership.  Also assigns a color, a symbol and an
+files and assigns group membership (max 8 groups automatically).  Also assigns a color, a symbol and an
 alternate symbol to each group.  Warnings are given if there are file names
 that don't match entries in \code{gr.crit} or there are entries in
 \code{gr.crit} that don't match any file names.  An internal function, not

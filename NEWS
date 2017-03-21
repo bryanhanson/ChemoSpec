@@ -4,6 +4,10 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.4.20 2017--4-21
+     + Updated groupNcolor to handle larger numbers of groups more automatically.  Default symbols have changed so if one re-imports old data sets you will get different symbols.  Documentation in files2SpectraObject updated to reflect this change.
+     + LoopThruSpectra.R renamed loopThruSpectra.R to quiet a documentation complaint.
+
 Changes in version 4.4.17 2017-02-13
      + Checked against latest R & updated packages.
 

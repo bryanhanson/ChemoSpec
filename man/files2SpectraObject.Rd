@@ -22,15 +22,19 @@ matrix2SpectraObject(gr.crit = NULL, gr.cols = c("auto"),
 searched for among the file names in order to assign an individual
 spectrum/sample to group membership. Warnings are issued if there are file
 names that don't match entries in \code{gr.crit} or there are entries in
-\code{gr.crit} that don't match any file names. See Details for some
-nuances.}
+\code{gr.crit} that don't match any file names.  A maximum of 8 groups
+can automatically be assigned colors and symbols.  If you have more than 8
+groups, you will need to provide a vector of colors (see below) and 
+manually fix the symbols after the \code{Spectra} object is created.
+See Details for some nuances.}
 
 \item{gr.cols}{Group Colors.  Either the word "auto", in which case colors
 will be automatically assigned, or a vector of acceptable color names with
 the same length as \code{gr.crit}. In the latter case, colors will be
 assigned one for one, so the first element of \code{gr.crit} is assigned the
-first element of \code{gr.col} and so forth.  See details below for some
-other issues to consider.}
+first element of \code{gr.col} and so forth. A maximum of 8 colors can be
+assigned automatically, after that, you must give a vector of colors.
+See details below for some other issues to consider.}
 
 \item{freq.unit}{A character string giving the units of the x-axis
 (frequency or wavelength).}
