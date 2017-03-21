@@ -48,7 +48,7 @@ groupNcolor <- function(spectra, gr.crit = NULL, gr.cols = c("auto")) {
 
 	msg1 <- "At least one file name did not correspond any entry in gr.crit and its group is thus NA"
     msg2 <- "More groups than colors, colors will be recycled.\n  Redefine groups or specify colors manually."
-    msg3 <- "Too many groups to use the preferred symbols; setting all symbols to 1.\n  Assign symbols manually."
+    msg3 <- "Too many groups to use the preferred symbols; setting all symbols to 1\n  and alt.sym to 'a'. Assign symbols manually."
     
 	# Use the group criteria (gr.crit) to classify the samples
 
