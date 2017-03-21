@@ -47,8 +47,8 @@ groupNcolor <- function(spectra, gr.crit = NULL, gr.cols = c("auto")) {
 # are warned they will have to fix things manually.
 
 	msg1 <- "At least one file name did not correspond any entry in gr.crit and its group is thus NA"
-    msg2 <- "More groups than colors, colors will be recycled.\nRedefine groups or specify colors manually."
-    msg3 <- "Too many groups to use the preferred symbols; setting all symbols to 1.\nAssign symbols manually."
+    msg2 <- "More groups than colors, colors will be recycled.\n  Redefine groups or specify colors manually."
+    msg3 <- "Too many groups to use the preferred symbols; setting all symbols to 1.\n  Assign symbols manually."
     
 	# Use the group criteria (gr.crit) to classify the samples
 
@@ -95,14 +95,14 @@ groupNcolor <- function(spectra, gr.crit = NULL, gr.cols = c("auto")) {
 	sym.choice <- c(0, 1, 2, 3, 15, 16, 17, 8) # preferred symbols (8 of them)
 	
 	if (length(gr.crit) > 8) {
-		sym1 <- rep(1, length(spectra$names)) 
+		spectra$sym <- rep(1L, length(spectra$names)) 
+		spectra$alt.sym <- rep("a", length(spectra$names)) 
 		warning(msg3)
 		}
 		
 	if (length(gr.crit <= 8)) {
 		sym1 <- sym.choice[1:length(gr.crit)]
 		sym2 <- letters[1:length(gr.crit)]
-
 		for (i in 1:length(gr.crit)) {
 			which <- grep(gr.crit[i], spectra$groups)
 			spectra$sym[which] <- sym1[i]
@@ -111,6 +111,7 @@ groupNcolor <- function(spectra, gr.crit = NULL, gr.cols = c("auto")) {
 		}
 		
 	class(spectra) <- "Spectra"
+	
 	return(spectra) # spectra is now complete!
 	}
 
