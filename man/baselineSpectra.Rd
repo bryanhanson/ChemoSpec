@@ -52,7 +52,6 @@ baseline rises or falls steadily, as is often seen in chromatograms.
 data(SrE.IR)
 require("IDPmisc") # needed specifically for rfbaseline
 temp <- baselineSpectra(SrE.IR, int = FALSE, method = "rfbaseline")
-par(mfrow = c(1,1)) # cancel 2 panel plot
 
 }
 \references{

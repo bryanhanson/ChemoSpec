@@ -4,7 +4,11 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
-Changes in version 4.4.24 2017--4-21
+Changes in version 4.4.26 2017-03-31
+     + Improved normSpectra documentation.
+     + baselineSpectra now resets par() so the two panel display is properly canceled in interactive mode.  Suggested by Dana Nadler.
+
+Changes in version 4.4.24 2017-03-21
      + Updated groupNcolor to handle larger numbers of groups more automatically.  Default symbols have changed so if one re-imports old data sets you will get different symbols.  Documentation in files2SpectraObject updated to reflect this change.
      + LoopThruSpectra.R renamed loopThruSpectra.R to quiet a documentation complaint.
 

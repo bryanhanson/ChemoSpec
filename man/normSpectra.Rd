@@ -23,17 +23,22 @@ An object of S3 class \code{\link{Spectra}}.
 \description{
 This function carries out normalization of the spectra in a
 \code{\link{Spectra}} object.  There are currently four options:
-\code{"PQN"} carries out "Probabalistic Quotient Normalization" as described
-in the reference.  \code{"TotInt"} normalizes by total intensity.  In this
-case, the y-data of a \code{\link{Spectra}} object is normalized by dividing
-each y-value by the sum of the y-values in a given spectrum.  Thus each
-spectrum sums to 1.  This method assumes that the total concentration of
-substances giving peaks does not vary across samples which may not be true.
-\code{"Range"} allows one to do something similar but rather than using the
-sum of the entire spectrum as the denominator, only the sum of the given
-range is used.  This would be appropriate if there was an internal standard
-in the spectrum which was free of interferance. \code{"zero2one"} scales
-each spectrum separately to a [0 \ldots{} 1] scale.
+\itemize{
+  \item \code{"PQN"} carries out "Probabalistic Quotient Normalization" as described
+    in the reference.  This is probably the best option for many data sets.
+  \item \code{"TotInt"} normalizes by total intensity.  In this
+    case, the y-data of a \code{\link{Spectra}} object is normalized by dividing
+    each y-value by the sum of the y-values in a given spectrum.  Thus each
+    spectrum sums to 1.  This method assumes that the total concentration of
+    all substances giving peaks does not vary across samples which may not be true.
+  \item \code{"Range"} allows one to do something similar but rather than using the
+    sum of the entire spectrum as the denominator, only the sum of the given
+    range is used.  This would be appropriate if there was an internal standard
+    in the spectrum which was free of interferance. 
+  \item \code{"zero2one"} scales each spectrum separately to a [0 \ldots{} 1] scale.
+    This is sometimes useful for visual comparison of chromatograms but is
+    inappropriate for metabolomic data sets.
+}
 }
 \examples{
 

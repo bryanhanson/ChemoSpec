@@ -50,12 +50,10 @@
 #' data(SrE.IR)
 #' require("IDPmisc") # needed specifically for rfbaseline
 #' temp <- baselineSpectra(SrE.IR, int = FALSE, method = "rfbaseline")
-#' par(mfrow = c(1,1)) # cancel 2 panel plot
 #' 
 #' @export baselineSpectra
 #'
 #' @importFrom stats lm predict
-# @importFrom baseline baselineGUI baseline getCorrected
 #' 
 baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, ...) {
 	
@@ -113,7 +111,10 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, ...) {
 		stop("You need to install package baseline to use this function")
 		}
 
-	dat <- spectra$data # possible conflict with baseline's use of spectra
+	old.par <- par(no.readonly = TRUE) # interactive baseline makes 2 plots
+	on.exit(par(old.par)) # reset when done (suggested by Dana Nadler)
+     
+    dat <- spectra$data # possible conflict with baseline's use of spectra
 	if (int) baseline::baselineGUI(dat, ...) # no return value
 	if (!int) {
 		b <- baseline::baseline(dat, ...)
