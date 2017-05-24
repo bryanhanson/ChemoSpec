@@ -47,17 +47,24 @@ sumSpectra <- function(spectra, ...){
 	args <- names(as.list(match.call()[-1]))
 
 	if (!("tol" %in% args)) {
-		fdiff <- diff(spectra$freq)
-		tol <- abs(mean(fdiff)) * 1.2
+		# Improvements to the automatic calc of a suitable tol value suggested
+		# by Dana Nadler in e-mails, early March 2017.  Any errors are mine however!		
+		# fdiff includes normal data resolution & any larger gaps
+		# hist(fdiff) should be dominated by data resolution
+		# unique(fdiff) shows that even basic data resolution suffers from encoding differences
+		fdiff <- diff(spectra$freq) 
+		tol <- abs(median(fdiff)) * 1.2 # ensures value is a bit larger than nominal resolution
 		h <- check4Gaps(spectra$freq, tol = tol)	
 		}
+	
 
 	if ("tol" %in% args) h <- check4Gaps(spectra$freq, ...)	
 
 	# Other summaries
 	
 	g <- sumGroups(spectra)
-	res <- abs(spectra$freq[2] - spectra$freq[1])
+	#res <- abs(spectra$freq[2] - spectra$freq[1])
+	res <- abs(median(diff(spectra$freq))) # consistent with method of determining tol above
 	
 	# Now print main summary to console
 	

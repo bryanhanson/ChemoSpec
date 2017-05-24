@@ -81,7 +81,8 @@ check4Gaps <- function(x, y = NULL, tol = 0.01, plot = FALSE, silent = FALSE, ..
 
 	# Check for gaps and build up values and indices
 	for (i in 1:length(xdiff)) {
-		if (!isTRUE(all.equal(xdiff[i], p, tolerance = tol))) { # detects discontinuity
+		# Nuance of all.equal pointed out by Dana Nadler, e-mails March 2017. Thanks!
+		if (!isTRUE(all.equal(xdiff[i], p, tolerance = tol, scale = 1.0))) { # detects discontinuity
 			d1 <- c(d1, x[i+1])
 			d1i <- c(d1i, i+1)
 			d2 <- c(d2, x[i])
