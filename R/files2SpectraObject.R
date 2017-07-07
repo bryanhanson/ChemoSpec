@@ -150,6 +150,8 @@ files2SpectraObject <- function(gr.crit = NULL,
 	fileExt = "\\.(csv|CSV)$",
 	out.file = "mydata", debug = FALSE, ...) {
 		
+	out <- tryCatch(
+	{
 # Function to Read & Prep Spectroscopic Data
 # from raw data files into an Spectra object
 # Part of the ChemoSpec package
@@ -165,8 +167,6 @@ files2SpectraObject <- function(gr.crit = NULL,
 	if (!requireNamespace("R.utils", quietly = TRUE)) {
 		stop("You need to install package R.utils to use this function")
 		}
-
-	message("The default behavior of this function has changed as of July 2016.\nSee ?files2SpectraObject.  Really: please read it!")
 	
 	if (is.null(gr.crit)) stop("No group criteria provided to encode data")
 	
@@ -233,5 +233,17 @@ files2SpectraObject <- function(gr.crit = NULL,
 	R.utils::saveObject(spectra, file = datafile)
 	
 	return(spectra)
+	},
+	
+	error = function(cond) {
+		errmess <- "There was a problem importing your files!\n\nAre you importing csv or similar files?\nDid you get a message such as 'undefined columns selected'?\nYou probably need to specify sep, header and dec values\nPlease read ?files2SpectraObject for details\n\nFor any trouble importing files set debug = TRUE\n"
+		message("\nError message from R: ", cond$message, "\n")
+		message(errmess)
+		return(NA)
+		}
+	
+	) # end of tryCatch
+	
+	return(out)
 	}
 

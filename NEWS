@@ -4,6 +4,10 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.4.38 2017-07-07
+     + tryCatch is now used in files2SpectraObject with improved error messaging.
+     + ChemoSpec requires package speaq for clupaSpectra.  speaq requires data.table  On some platforms data.table may require some tricks in order to get it to build.  For this version I built data.table using the method described here: github.com/Rdatatable/data.table/wiki/Installation  Not sure if this will hang up people or not.
+
 Changes in version 4.4.31 2017-05-24
      + Once again, improved the way tol is automatically handled in sumSpectra.  Special thanks to Dana Nadler for deciphering why the current method was going wrong.  Changes also made in check4Gaps.
 
