@@ -96,11 +96,11 @@ groupNcolor <- function(spectra, gr.crit = NULL, gr.cols = c("auto")) {
 	
 	if (length(gr.crit) > 8) {
 		spectra$sym <- rep(1L, length(spectra$names)) 
-		spectra$alt.sym <- rep("a", length(spectra$names)) 
+		spectra$alt.sym <- rep("a", length(spectra$names))
 		warning(msg3)
 		}
 		
-	if (length(gr.crit <= 8)) {
+	if (length(gr.crit) <= 8) {
 		sym1 <- sym.choice[1:length(gr.crit)]
 		sym2 <- letters[1:length(gr.crit)]
 		for (i in 1:length(gr.crit)) {

@@ -53,8 +53,8 @@ avgFacLvls <- function(matrix, fac) {
 		 # cat("Loop #", i, "\n")
 		 # cat("  Level is  ", lev[i], "\n")
 		 # cat("  Length of level", i, "is", length(w), "\n")
-		 # cat("w = ", w, "\n")
-		m <- M[w,] #submatrix for a given level
+		 # cat("  w = ", w, "\n")
+		m <- M[w,] # submatrix for a given level
 		avg <- colMeans(m)
 		
 # Create a matrix

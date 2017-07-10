@@ -19,14 +19,15 @@ matrix2SpectraObject(gr.crit = NULL, gr.cols = c("auto"),
 }
 \arguments{
 \item{gr.crit}{Group Criteria.  A vector of character strings which will be
-searched for among the file names in order to assign an individual
-spectrum/sample to group membership. Warnings are issued if there are file
+searched for among the file/sample names in order to assign an individual
+spectrum to group membership. This is done using grep, so characters
+like "." (period/dot) do not have their literal meaning (see below).
+Warnings are issued if there are file/sample
 names that don't match entries in \code{gr.crit} or there are entries in
 \code{gr.crit} that don't match any file names.  A maximum of 8 groups
 can automatically be assigned colors and symbols.  If you have more than 8
 groups, you will need to provide a vector of colors (see below) and 
-manually fix the symbols after the \code{Spectra} object is created.
-See Details for some nuances.}
+manually fix the symbols after the \code{Spectra} object is created.}
 
 \item{gr.cols}{Group Colors.  Either the word "auto", in which case colors
 will be automatically assigned, or a vector of acceptable color names with
@@ -87,9 +88,59 @@ These functions import data into a \code{\link{Spectra}} object.  They use
 very flexible in regard to file formatting.  \pkg{Be sure to see the \ldots
 argument below for important details you need to provide.}
 }
-\details{
-The matching of \code{gr.crit} against the sample file names is done one at
-a time, in order.  This means that the entries in \code{gr.crit} must be
+\section{Functions}{
+\itemize{
+\item \code{files2SpectraObject}: Import data from separate csv files
+
+\item \code{matrix2SpectraObject}: Import a matrix of data
+}}
+
+\section{files2SpectraObject}{
+
+\code{files2SpectraObject} acts on all files in the current working
+directory with the specified \code{fileExt} so there should be no
+extra files of that type hanging around (except see next paragraph).
+The first column should
+contain the frequency values and the second column the intensity values. The
+files may have a header or not (supply \code{header = TRUE/FALSE} as
+necessary).  The frequency column is assumed to be the same in all files.
+
+If \code{fileExt} contains any of \code{"dx"}, \code{"DX"}, \code{"jdx"} or
+\code{"JDX"}, then the files will be processed by \code{\link[readJDX]{readJDX}}.
+Consider setting \code{debug = TRUE} for this format, as there are many
+options for JCAMP, and many are untested. See \code{\link[readJDX]{readJDX}} for
+known limitations.
+}
+
+\section{matrix2SpectraObject}{
+
+This function takes a csv-like file, containing frequencies in the first
+column, and samples in additional columns, and processes it into a
+\code{\link{Spectra}} object.  The file MUST have a header row which includes
+the sample names.  There need not be a header for the first (frequency)
+column.
+}
+
+\section{gr.crit and Sample Name Gotchas}{
+
+
+The matching of \code{gr.crit} against the sample file names
+(in \code{files2SpectraObject}) or column headers/sample names
+(in code{matrix2SpectraObject}) is done one at
+a time, in order, using grep.  While powerful, this has the potential to lead
+to some "gotchas" in certain cases, noted below.  
+
+Your file system may allow file/sample names which \code{R} will not like, and will
+cause confusing behavior.  File/sample names become variables in \code{ChemoSpec},
+and \code{R}
+does not like things like "-" (minus sign or hyphen) in file/sample names.  A hyphen
+is converted to a period (".") if found, which is fine for a variable name.
+However, a period in \code{gr.crit} is interpreted from the grep point of view,
+namely a period matches any single character.  At this point, things may behave
+very differently than one might hope.  See \code{\link{make.names}} for allowed
+characters in \code{R} variables and make sure your file/sample names comply.
+
+The entries in \code{gr.crit} must be
 mutually exclusive.  For example, if you have files with names like
 "Control_1" and "Sample_1" and use \code{gr.crit = c("Control", "Sample")}
 groups will be assigned as you would expect.  But, if you have file names
@@ -103,43 +154,17 @@ use \code{gr.crit = c("Control(.*)Sun", "Control(.*)Shade", "Sample(.*)Sun",
 "Sample(.*)Shade")} to have your groups assigned based upon both phrases in
 the file names.
 
-The linking of groups with colors is handled by \code{\link{groupNcolor}}.
+To summarize, \code{gr.crit} is used as a grep pattern, and the file/sample names
+are the target.  Make sure your file/sample names comply with \code{\link{make.names}}.
 
-Samples whose names are not matched using \code{gr.crit} are still
+Finally, samples whose names are not matched using \code{gr.crit} are still
 incorporated into the \code{\link{Spectra}} object, but they are not
 assigned a group or color. Therefore they don't plot, but they do take up space in a
 plot!  A warning is issued in these cases, since one wouldn't normally want
 a spectrum to be orphaned this way.
 
-If \code{fileExt} contains any of \code{"dx"}, \code{"DX"}, \code{"jdx"} or
-\code{"JDX"}, then the files will be processed by \code{\link[readJDX]{readJDX}}.
-Consider setting \code{debug = TRUE} for this format, as there are many
-options for JCAMP, and many are untested. See \code{\link[readJDX]{readJDX}} for
-known limitations.
-}
-\section{Functions}{
-\itemize{
-\item \code{files2SpectraObject}: Import data from separate csv files
-
-\item \code{matrix2SpectraObject}: Import a matrix of data
-}}
-
-\section{files2SpectraObject}{
-
-\code{files2SpectraObject} acts on all files in the current working
-directory with the specified \code{fileExt}.  The first column should
-contain the frequency values and the second column the intensity values. The
-files may have a header or not (supply \code{header = TRUE/FALSE} as
-necessary).  The frequency column is assumed to be the same in all files.
-}
-
-\section{matrix2SpectraObject}{
-
-This function takes a csv-like file, containing frequencies in the first
-column, and samples in additional columns, and processes it into a
-\code{\link{Spectra}} object.  The file MUST have a header row which includes
-the sample names.  There need not be a header for the first (frequency)
-column.
+All these problems can generally be identified by running \code{\link{sumSpectra}}
+once the data is imported.
 }
 
 \examples{
