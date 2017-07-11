@@ -23,6 +23,7 @@
 #' \code{\link{c_pcaSpectra}} and \code{\link{r_pcaSpectra}} for details.
 #' 
 #' @param \dots Additional parameters to be passed to \code{\link{plotScores}}.
+#' For example, you can plot confidence ellipses this way.
 #' 
 #' @return Returns the PCA results, and creates the requested plot.
 #' 

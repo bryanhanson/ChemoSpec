@@ -20,7 +20,8 @@ aovPCAscores(spectra, LM, plot = 1, type = "class", choice = NULL, ...)
 \item{choice}{The type of scaling to be performed.  See
 \code{\link{c_pcaSpectra}} and \code{\link{r_pcaSpectra}} for details.}
 
-\item{\dots}{Additional parameters to be passed to \code{\link{plotScores}}.}
+\item{\dots}{Additional parameters to be passed to \code{\link{plotScores}}.
+For example, you can plot confidence ellipses this way.}
 }
 \value{
 Returns the PCA results, and creates the requested plot.

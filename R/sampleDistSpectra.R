@@ -30,8 +30,9 @@
 #' @examples
 #' 
 #' require("lattice")
-#' data(SrE.NMR)
-#' M <- sampleDistSpectra(SrE.NMR, main = "Sample Correlations for SrE.NMR")
+#' data(SrE.IR)
+#' M <- sampleDistSpectra(SrE.IR, method = "cosine",
+#'   main = "SrE.IR Spectral Angle Between Samples")
 #' 
 #' @export sampleDistSpectra
 #'
@@ -53,14 +54,24 @@ sampleDistSpectra <- function(spectra, method = "pearson", plot = TRUE, ...) {
 	chkSpectra(spectra)
 
 	M <- rowDist(spectra$data, method)
-	
+		
 	if (plot) { # M is class dist, need true matrix to plot
 		myc <- rev(rainbow(20, start = 0.0, end = 0.66))
-		p <- lattice::levelplot(as.matrix(M), xlab = "sample", ylab = "sample",
-			col.regions = myc,
-			at = seq(-1.0, 1.0, by = 0.1), ...)
-		print(p)
+		
+		if (method == "correlation") {
+			p <- lattice::levelplot(as.matrix(M), xlab = "sample", ylab = "sample",
+				col.regions = myc,
+				at = seq(-1.0, 1.0, by = 0.1), ...)
+			print(p)
 		}
+
+		if (!method == "correlation") {
+			p <- lattice::levelplot(as.matrix(M), xlab = "sample", ylab = "sample",
+				col.regions = myc, ...)
+			print(p)
+		}
+
+		} # end of if (plot)
 		
 	return(M)
 	}

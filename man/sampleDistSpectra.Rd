@@ -27,8 +27,9 @@ option.
 \examples{
 
 require("lattice")
-data(SrE.NMR)
-M <- sampleDistSpectra(SrE.NMR, main = "Sample Correlations for SrE.NMR")
+data(SrE.IR)
+M <- sampleDistSpectra(SrE.IR, method = "cosine",
+  main = "SrE.IR Spectral Angle Between Samples")
 
 }
 \references{
