@@ -4,6 +4,9 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.4.76 2017-07-13
+     + Fixed an export reference issue in files2SpectraObject
+
 Changes in version 4.4.72 2017-07-11
      + Improved documentation in aovPCAscores.
      + Added temporary check of speaq namespace availability to clupaSpectra as speaq requires data.table which is broken in the CRAN build system.

@@ -206,14 +206,14 @@ files2SpectraObject <- function(gr.crit = NULL,
 	# First set up some common stuff
 	
 	files <- list.files(pattern = fileExt)
-	files.noext <- file_path_sans_ext(files)
+	files.noext <- tools::file_path_sans_ext(files)
 
 	spectra <- list()
 	spectra$names <- files.noext
 
 	if (debug) message("\nfiles2SpectraObject is checking the first file")
 	if (!DX) {
-		temp <- read.table(files[1], ...)
+		temp <- utils::read.table(files[1], ...)
 		spectra$freq <- temp[,1]
 		}
 	if (DX) {
@@ -236,7 +236,7 @@ files2SpectraObject <- function(gr.crit = NULL,
 	for (i in 1:length(files)) {
 		if (debug) cat("Importing file: ", files[i], "\n")
 		if (!DX) {
-			temp <- read.table(files[i], ...)
+			temp <- utils::read.table(files[i], ...)
 			spectra$data[i,] <- temp[,2]
 			}
 		if (DX) {
