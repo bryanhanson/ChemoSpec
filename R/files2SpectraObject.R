@@ -140,7 +140,7 @@
 #' 
 #' @references \url{https://github.com/bryanhanson/ChemoSpec}
 #' 
-#' @seeAlso The linking of groups with colors is handled by \code{\link{groupNcolor}}.
+#' @seealso The linking of groups with colors is handled by \code{\link{groupNcolor}}.
 #' 
 #' @keywords file
 #' @keywords import

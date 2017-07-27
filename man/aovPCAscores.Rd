@@ -21,7 +21,10 @@ aovPCAscores(spectra, LM, plot = 1, type = "class", choice = NULL, ...)
 \code{\link{c_pcaSpectra}} and \code{\link{r_pcaSpectra}} for details.}
 
 \item{\dots}{Additional parameters to be passed to \code{\link{plotScores}}.
-For example, you can plot confidence ellipses this way.}
+For example, you can plot confidence ellipses this way.  Note that ellipses
+are drawn based on the groups in \code{spectra$groups}, but the separation
+done by \code{aov_pcaSpectra} is based on argument \code{fac}.  These may
+not correspond, but you can edit \code{spectra$groups} to match if necessary.}
 }
 \value{
 Returns the PCA results, and creates the requested plot.

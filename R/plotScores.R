@@ -23,7 +23,8 @@
 #' @param ellipse A character vector specifying the type of ellipses to be
 #' plotted.  One of \code{c("both", "none", "cls", "rob")}.  \code{cls}
 #' specifies classical confidence ellipses, \code{rob} specifies robust
-#' confidence ellipses.
+#' confidence ellipses.  An ellipse is drawn for each group in 
+#' \code{spectra$groups}.
 #'
 #' @param tol A number describing the fraction of points to be labeled.
 #' \code{tol = 1.0} labels all the points; \code{tol = 0.05} labels the most

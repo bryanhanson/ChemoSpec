@@ -4,6 +4,11 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.4.85 2017-07-27
+     + Improved documentation of aovPCAscores regarding plotting ellipses.
+     + Fixed a trivial bug in aov_pcaSpectra.
+     + Added a check to aov_pcaSpectra to ensure that there are not too many levels in argument fac compared to the number of samples.  This nuance was discovered in working through a inquiry brought by Jason James.  Basically, if the number of degrees of freedom (all combinations of levels in fac) exceeds the number of samples you get very strange plots and no error.  Jason figured this out -- thanks Jason!  Function now stops if there are too many levels.
+
 Changes in version 4.4.76 2017-07-13
      + Fixed an export reference issue in files2SpectraObject
 

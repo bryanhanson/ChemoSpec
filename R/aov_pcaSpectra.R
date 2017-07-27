@@ -82,8 +82,6 @@ aov_pcaSpectra <-function(spectra, fac) {
 
 	MC <- scale(spectra$data, scale = FALSE) # mean centered
 	
-	GM <- avgFacLvls(matrix = MC,fac = as.factor(rep(1,nrow (MC)))) # grand mean
-	
 	if (nf == 1) {
 		big <- list(DA = MC)
 		flist <- list(spectra[[fac[1]]])
@@ -102,26 +100,35 @@ aov_pcaSpectra <-function(spectra, fac) {
 			fAC = interaction(spectra[[fac[1]]], spectra[[fac[3]]]),
 			fBC = interaction(spectra[[fac[2]]], spectra[[fac[3]]]))
 		}
-		
+	
+	# Check to see that we have more samples than degrees of freedom in the analysis.
+	# This detail was worked out in correspondence with Jason James, Univ. of Washington.
+	# If this is not checked, you get really strange plots but no errors (duplicated
+	# or missing data points)
+	
+	lvlcnt <- 0L
+	for (i in 1:length(flist)) lvlcnt <- lvlcnt + length(levels(flist[[i]]))
+	if (lvlcnt >= length(spectra$names)) {
+		msg <- paste("There are too many levels (", lvlcnt, ") in argument fac for the number of samples.", sep = "")
+		stop(msg)
+	}
 	# Subtract matrices according to Pinto/Harrington
 	# Run avgFacLvls on each successive residuals matrix 
 	# Number of times avgFacLvls runs depends on number of factors given
-
-	GMR <- MC - GM # grand mean residuals
 
 	# 1 factor aov_pcaSpectra is the same as running regular PCA so issue a warning
 	if (nf == 1) { warning("aov_pcaSpectra is the same as regular PCA for 1 factor")}
 
 	if (nf == 1) { 
-		big[[1]] <- avgFacLvls(matrix = GMR, flist[[1]])
-		DAR <- GMR - big[[1]] 
+		big[[1]] <- avgFacLvls(matrix = MC, flist[[1]])
+		DAR <- MC - big[[1]] 
 		LM <- list(DA = big[[1]], DPE = DAR, MC = MC)
 		names(LM) <-c(fac[1], "Res.Error", "MC Data")
 		} # Harrington eqn (3)
 
 	if (nf == 2) {
-		big[[1]] <- avgFacLvls(matrix = GMR, flist[[1]])
-		DAR <- GMR - big[[1]]
+		big[[1]] <- avgFacLvls(matrix = MC, flist[[1]])
+		DAR <- MC - big[[1]]
 		big[[2]] <- avgFacLvls(matrix = DAR, flist[[2]])
 		DBR <- DAR - big[[2]]
 		big[[3]] <- avgFacLvls(matrix = DBR, flist[[3]])
@@ -131,8 +138,8 @@ aov_pcaSpectra <-function(spectra, fac) {
 		}
 	
 	if (nf == 3) { 
-		big[[1]] <- avgFacLvls(matrix = GMR, flist[[1]])
-		DAR <- GMR - big[[1]]
+		big[[1]] <- avgFacLvls(matrix = MC, flist[[1]])
+		DAR <- MC - big[[1]]
 		big[[2]] <- avgFacLvls(matrix = DAR, flist[[2]])
 		DBR <- DAR - big[[2]]
 		big[[3]] <- avgFacLvls(matrix = DBR, flist[[3]])

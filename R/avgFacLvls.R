@@ -57,10 +57,8 @@ avgFacLvls <- function(matrix, fac) {
 		m <- M[w,] # submatrix for a given level
 		avg <- colMeans(m)
 		
-# Create a matrix
-# in which the averages replace the actual spectra
-	
-		M[w,] <- rep(avg, each = length(w))
+		# Replace the spectra with the group averages
+		for (j in 1:length(w)) M[w[j],] <- avg
 		} 
 		return(M)
 	}
