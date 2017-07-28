@@ -4,6 +4,9 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.4.87 2017-07-28
+     + chkSpectra now checks for NA in spectra$data.
+
 Changes in version 4.4.85 2017-07-27
      + Improved documentation of aovPCAscores regarding plotting ellipses.
      + Fixed a trivial bug in aov_pcaSpectra.

@@ -87,7 +87,17 @@ chkSpectra <- function(spectra, confirm = FALSE) {
 	if (!identical(co, sy)) { warning("The dimensions don't make sense (colors, symbols)"); w <- TRUE }
 	if (!identical(sy, ay)) { warning("The dimensions don't make sense (symbols, alt symbols)"); w <- TRUE }
 	
-	# Add a check for extra list elements (useful with HyperChemoBridge conversions)
+	# Check for NA's in the data (saves some grief and questions later)
+	
+	for (i in 1:nrow(spectra$data)) {
+		prob <- which(is.na(spectra$data[i,]))
+		if (length(prob) > 1L) {
+			msg <- paste("NA found in data for", spectra$names[i], ", please inspect/repair")
+			message(msg)
+			w <- TRUE
+		}	
+	}
+	# Check for extra list elements (useful with HyperChemoBridge conversions)
 
 	if ((length(spectra) > 9 ) && (confirm)) {
 		reqd <- c("freq", "data", "names", "groups", "colors",
@@ -96,6 +106,8 @@ chkSpectra <- function(spectra, confirm = FALSE) {
 		message(">>> Extra data was found in the spectra object:")
 		str(spc)
 		}
+	
+	# Wrap up
 	
 	if ((!w) && (confirm)) message(">>> You must be awesome: These spectra look just dandy!")
 	if (w) {
