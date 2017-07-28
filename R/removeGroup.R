@@ -47,11 +47,8 @@
 #' new1 <- removeSample(metMUD1, rem.sam = 20)
 #'
 #' # Removes one spectrum/sample with this exact name:
-#' new2 <- removeSample(metMUD1, rem.sam = "Sample_20")
+#' new2 <- removeSample(metMUD1, rem.sam = "metMUD1_20")
 #'
-#' # Opps! Removes all samples due to greedy grep!
-#' new3 <- removeSample(metMUD1, rem.sam = "Sample")
-#' 
 #' @export removeGroup removeSample
 #'
 #' @describeIn removeGroup Remove groups from a \code{Spectra} object
@@ -78,7 +75,8 @@ removeGroup <- function(spectra, rem.group) {
 		}
 
 	if (max(rem.group) > length(spectra$groups)) stop("Groups to remove are out of range")
-
+	if (length(rem.group) == 0L) stop("No matching groups found to remove")
+	
 	spectra$data <- spectra$data[-rem.group,]
 	spectra$names <- spectra$names[-rem.group]
 	spectra$groups <- spectra$groups[-rem.group, drop = TRUE]

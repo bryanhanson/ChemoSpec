@@ -57,10 +57,7 @@ sumSpectra(trmt)
 new1 <- removeSample(metMUD1, rem.sam = 20)
 
 # Removes one spectrum/sample with this exact name:
-new2 <- removeSample(metMUD1, rem.sam = "Sample_20")
-
-# Opps! Removes all samples due to greedy grep!
-new3 <- removeSample(metMUD1, rem.sam = "Sample")
+new2 <- removeSample(metMUD1, rem.sam = "metMUD1_20")
 
 }
 \references{
