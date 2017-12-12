@@ -115,13 +115,13 @@
 #' "Control_1" and "Sample_1" and use \code{gr.crit = c("Control", "Sample")}
 #' groups will be assigned as you would expect.  But, if you have file names
 #' like "Control_1_Shade" and "Sample_1_Sun" you can't use \code{gr.crit =
-#' c("Control", "Sample", "Sun", "Shade")} because each criteria is grepped in
+#' c("Control",} \code{"Sample"}, \code{"Sun"}, \code{"Shade")} because each criteria is grepped in
 #' order, and the "Sun/Shade" phrases, being last, will form the basis for your
 #' groups.  Because this is a grep process, you can get around this by using
 #' regular expressions in your \code{gr.crit} argument to specify the desired
 #' groups in a mutually exclusive manner.  In this second example, you could
-#' use \code{gr.crit = c("Control(.*)Sun", "Control(.*)Shade", "Sample(.*)Sun",
-#' "Sample(.*)Shade")} to have your groups assigned based upon both phrases in
+#' use \code{gr.crit = c("Control(.*)Sun"}, \code{"Control(.*)Shade"}, \code{"Sample(.*)Sun"},
+#' \code{"Sample(.*)Shade")} to have your groups assigned based upon both phrases in
 #' the file names.
 #'
 #' To summarize, \code{gr.crit} is used as a grep pattern, and the file/sample names
@@ -153,16 +153,15 @@
 #' @importFrom tools file_path_sans_ext
 #'
 #' @examples
-# Grab an included file and move it to a temporary directory
-#' td <- tempdir()
+#' # Grab an included file
 #' ed <- system.file("extdata", package = "ChemoSpec")
 #' tf <- "PCRF.jdx"
-#' chk <- file.copy(from = file.path(ed, tf), to = file.path(td, tf),
+#' chk <- file.copy(from = file.path(ed, tf), to = file.path(getwd(), tf),
 #' 	overwrite = TRUE)
-#' setwd(td)
-# Now read in the file, and plot
+#'
+#' # Now read in the file, and plot
 #' spec <- files2SpectraObject(gr.crit = "PCRF", freq.unit = "ppm", int.unit = "intensity",
-#' 	descrip = "test import", fileExt = ".jdx")
+#'   descrip = "test import", fileExt = ".jdx")
 #' sumSpectra(spec)
 #' plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
 #' 

@@ -15,7 +15,7 @@
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #' 
 #' @param choice A character string indicating the choice of scaling.  One of
-#' \code{c("noscale", "autoscale", "Pareto").}
+#' \code{c("noscale"}, \code{"autoscale"}, \code{"Pareto")}.
 #' 
 #' @param cent Logical: whether or not to center the data.  Always center the
 #' data unless you know it to be already centered.

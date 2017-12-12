@@ -15,7 +15,7 @@ cv_pcaSpectra(spectra, pcs, choice = "noscale", repl = 50, segments = 4,
 an integer giving the number of PC scores to include.}
 
 \item{choice}{A character string indicating the choice of scaling.  One of
-\code{c("noscale", "autoscale", "Pareto").}}
+\code{c("noscale"}, \code{"autoscale"}, \code{"Pareto")}.}
 
 \item{repl}{As per \code{\link[chemometrics]{pcaCV}}; the number of
 replicates to perform.}

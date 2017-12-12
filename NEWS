@@ -4,6 +4,10 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.4.97 2017-12-12
+     + Changed example in files2SpectraObject to avoid creating a temporary directory, at request of CRAN.
+     + Reformated some c() vectors in the Rd files for better appearance when printed.
+
 Changes in version 4.4.91 2017-07-28
      + chkSpectra now checks for NA in spectra$data.
      + Fixed an example in removeGroups that was failing the check process.  Not sure where this came from, it was not in the version submitted to CRAN yesterday!  Git and I are confused!  Also added a check for zero length grep result on rem.groups, which leads to rather strange behavior.

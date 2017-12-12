@@ -9,9 +9,9 @@ rowDist(x, method)
 \arguments{
 \item{x}{A matrix whose rows will be used for the distance calculation.}
 
-\item{method}{A character; one of \code{c("pearson", "correlation",
-"spearman", "kendall", "euclidean", "maximum", "manhattan",
-"canberra","binary", "minkowski", "cosine")}.}
+\item{method}{A character; one of \code{c("pearson"}, \code{"correlation"},
+\code{"spearman"}, \code{"kendall"}, \code{"euclidean"}, \code{"maximum"}, \code{"manhattan"},
+\code{"canberra"},\code{"binary"}, \code{"minkowski"}, \code{"cosine")}.}
 }
 \value{
 An object of class \code{dist}.
@@ -25,10 +25,10 @@ distance calculation is done by the appropriate method. The exception is the
 cosine distance which is calculated locally.
 }
 \details{
-Methods \code{c("euclidean", "maximum", "manhattan", "canberra","binary",
-"minkowski")} are sent to function \code{\link{dist}} in package
-\code{\link{stats}} while methods \code{c("pearson", "correlation",
-"spearman", "kendall")} are handled by \code{Dist} in package \code{amap}.
+Methods \code{c("euclidean"}, \code{"maximum"}, \code{"manhattan"}, \code{"canberra"},\code{"binary"},
+\code{"minkowski")} are sent to function \code{\link{dist}} in package
+\code{\link{stats}} while methods \code{c("pearson"}, \code{"correlation"},
+\code{"spearman"}, \code{"kendall")} are handled by \code{Dist} in package \code{amap}.
 See the respective help pages for details. \code{"cosine"} is handled
 locally.
 }
