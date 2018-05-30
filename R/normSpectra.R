@@ -12,13 +12,14 @@
 #'     each y-value by the sum of the y-values in a given spectrum.  Thus each
 #'     spectrum sums to 1.  This method assumes that the total concentration of
 #'     all substances giving peaks does not vary across samples which may not be true.
-#'   \item \code{"Range"} allows one to do something similar but rather than using the
+#'   \item \code{"Range"} allows one to do something similar to \code{"TotInt"} but rather than using the
 #'     sum of the entire spectrum as the denominator, only the sum of the given
 #'     range is used.  This would be appropriate if there was an internal standard
-#'     in the spectrum which was free of interferance. 
+#'     in the spectrum which was free of interferance, and one wanted to normalize
+#'     relative to it.
 #'   \item \code{"zero2one"} scales each spectrum separately to a [0 \ldots{} 1] scale.
 #'     This is sometimes useful for visual comparison of chromatograms but is
-#'     inappropriate for metabolomic data sets.
+#'     inappropriate for spectral data sets.
 #' }
 #' 
 #' @param spectra An object of S3 class \code{\link{Spectra}} to be normalized.
@@ -26,10 +27,10 @@
 #' @param method One of \code{c("PQN", "TotInt", "Range", "zero2one")} giving
 #' the method for normalization.
 #'
-#' @param RangeExpress A logical expression giving the frequency range over
-#' which to sum intensities, before dividing the entire spectrum by the summed
-#' values.  For examples of constructing these expressions, see the examples in
-#' \code{\link{removeFreq}}.
+#' @param RangeExpress A vector of
+#' logicals (must be of \code{length(Spectra$freq)}).  This vector should be \code{TRUE} for
+#' the frequency range you want to serve as the basis for norming, and \code{FALSE} otherwise.
+#' The entire spectrum will be divided by the sum of the \code{TRUE} range.  See the examples.
 #'
 #' @return An object of S3 class \code{\link{Spectra}}.
 #'
@@ -48,9 +49,19 @@
 #' @examples
 #' 
 #' data(SrE.IR)
-#' res <- normSpectra(SrE.IR)
-#' sumSpectra(res)
-#' 
+#'
+#' # Default PQN normalization
+#' res1 <- normSpectra(SrE.IR)
+#' plotSpectra(res1) # compare to plotSpectra(SrE.IR)
+#'
+#' # Norm over carbonyl region
+#' RE <- SrE.IR$freq > 1650 & SrE.IR$freq < 1800
+#' res2 <- normSpectra(SrE.IR, method = "Range", RangeExpress = RE)
+#' plotSpectra(res2) # compare to plotSpectra(SrE.IR)
+#'
+#' # Check numerically
+#' rowSums(res2$data[,RE]) # compare to rowSums(SrE.IR$data[,RE])
+#'  
 #' @export normSpectra
 #'
 #' @importFrom stats median

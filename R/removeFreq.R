@@ -8,16 +8,18 @@
 #' interfering peaks (e.g. the water peak in 1H NMR).
 #' 
 #' \code{rem.freq} can be any valid \code{R} statement that leads to a vector of
-#' logicals.  In the examples below, the | and & operators seem backward in
-#' a sense, but R evaluates them one at a time and combines the result to
-#' give the required output.
+#' logicals (must be of \code{length(Spectra$freq)}).  This vector should be \code{TRUE} for
+#' frequencies you want to be removed
+#' and \code{FALSE} for those frequencies which will be kept.
+#' In the examples below, the | and & operators may seem backward in
+#' a sense, but R evaluates them one at a time and then combines them to give
+#' the desired output.  You may wish to look at \code{\link{Comparison}} and
+#' \code{\link{Logic}}. See the examples for common usage.
 #' 
 #' @param spectra An object of S3 class \code{\link{Spectra}} from which to
 #' remove selected frequencies.
 #'
-#' @param rem.freq A valid R statement describing the frequencies to be
-#' removed.  This must comply with \code{\link{Comparison}} and
-#' \code{\link{Logic}}.  See the examples below for common usage.
+#' @param rem.freq A vector of logicals.  See Details.
 #'
 #' @return An object of S3 class \code{\link{Spectra}}.
 #'
@@ -67,8 +69,6 @@ removeFreq <- function(spectra, rem.freq) {
 	if (missing(rem.freq)) stop("Nothing to remove")
 	chkSpectra(spectra)
 	
-	# rem.freq must be a character string giving a valid logical statement of freq to be removed
-	# generally should be a combination of ?Comparison and ?base::Logic concepts.	
 	rfi <- which(rem.freq)
 	spectra$data <- spectra$data[,-c(rfi), drop = FALSE]
 	spectra$freq <- spectra$freq[-c(rfi)]

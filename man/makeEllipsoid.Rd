@@ -46,7 +46,7 @@ generates x, y points suitable for connecting to each other via lines, see
 }
 \note{
 The idea was taken from "An Introduction to rggobi" found at the ggobi
-web site: \url{http://www.ggobi.org}.  I added the robust option.
+web site (originally www.ggobi.org but not available as of June 2018).  I added the robust option.
 }
 \examples{
 

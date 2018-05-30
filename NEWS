@@ -4,6 +4,12 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.4.106 2018-05-30
+     + Improved documentation and examples in removeFreq and normSpectra, based on correspondence with Jacek Zebrowski.
+     + Fixed some dead URLs in the help files.
+     + files2SpectraObject updated to work with readJDX > 0.3 series.
+     + Checked against R devel r74542.
+
 Changes in version 4.4.97 2017-12-12
      + Changed example in files2SpectraObject to avoid creating a temporary directory, at request of CRAN.
      + Reformated some c() vectors in the Rd files for better appearance when printed.

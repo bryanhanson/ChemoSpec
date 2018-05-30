@@ -14,7 +14,7 @@
 #' @return The normalized vector.
 #'
 #' @note The idea was taken from "An Introduction to rggobi" found at the ggobi
-#' web site: \url{http://www.ggobi.org}.
+#' web site (originally www.ggobi.org but not available as of June 2018).
 #'
 #' @author Bryan A. Hanson, DePauw University.
 #'

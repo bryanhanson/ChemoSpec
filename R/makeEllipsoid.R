@@ -36,7 +36,7 @@
 #' likelihood of containing the true mean at the given confidence limit.
 #' 
 #' @note The idea was taken from "An Introduction to rggobi" found at the ggobi
-#' web site: \url{http://www.ggobi.org}.  I added the robust option.
+#' web site (originally www.ggobi.org but not available as of June 2018).  I added the robust option.
 #' 
 #' @author Bryan A. Hanson, DePauw University.
 #' 

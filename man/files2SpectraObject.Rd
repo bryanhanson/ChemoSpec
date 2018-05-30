@@ -176,7 +176,7 @@ chk <- file.copy(from = file.path(ed, tf), to = file.path(getwd(), tf),
 
 # Now read in the file, and plot
 spec <- files2SpectraObject(gr.crit = "PCRF", freq.unit = "ppm", int.unit = "intensity",
-  descrip = "test import", fileExt = ".jdx")
+  descrip = "test import", fileExt = "\\\\.jdx")
 sumSpectra(spec)
 plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
 

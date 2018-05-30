@@ -10,9 +10,7 @@ removeFreq(spectra, rem.freq)
 \item{spectra}{An object of S3 class \code{\link{Spectra}} from which to
 remove selected frequencies.}
 
-\item{rem.freq}{A valid R statement describing the frequencies to be
-removed.  This must comply with \code{\link{Comparison}} and
-\code{\link{Logic}}.  See the examples below for common usage.}
+\item{rem.freq}{A vector of logicals.  See Details.}
 }
 \value{
 An object of S3 class \code{\link{Spectra}}.
@@ -25,9 +23,13 @@ interfering peaks (e.g. the water peak in 1H NMR).
 }
 \details{
 \code{rem.freq} can be any valid \code{R} statement that leads to a vector of
-logicals.  In the examples below, the | and & operators seem backward in
-a sense, but R evaluates them one at a time and combines the result to
-give the required output.
+logicals (must be of \code{length(Spectra$freq)}).  This vector should be \code{TRUE} for
+frequencies you want to be removed
+and \code{FALSE} for those frequencies which will be kept.
+In the examples below, the | and & operators may seem backward in
+a sense, but R evaluates them one at a time and then combines them to give
+the desired output.  You may wish to look at \code{\link{Comparison}} and
+\code{\link{Logic}}. See the examples for common usage.
 }
 \examples{
 

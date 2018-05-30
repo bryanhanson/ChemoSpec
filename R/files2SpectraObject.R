@@ -161,7 +161,7 @@
 #'
 #' # Now read in the file, and plot
 #' spec <- files2SpectraObject(gr.crit = "PCRF", freq.unit = "ppm", int.unit = "intensity",
-#'   descrip = "test import", fileExt = ".jdx")
+#'   descrip = "test import", fileExt = "\\.jdx")
 #' sumSpectra(spec)
 #' plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
 #' 
@@ -217,7 +217,7 @@ files2SpectraObject <- function(gr.crit = NULL,
 		}
 	if (DX) {
 		temp <- readJDX::readJDX(file = files[1], debug = debug)
-		spectra$freq <- temp[[2]]$x
+		spectra$freq <- temp[[4]]$x
 		}
 		
 	if (class(spectra$freq) == "integer") {
@@ -240,7 +240,7 @@ files2SpectraObject <- function(gr.crit = NULL,
 			}
 		if (DX) {
 			temp <- readJDX::readJDX(files[i], debug = debug, ...)
-			spectra$data[i,] <- temp[[2]]$y
+			spectra$data[i,] <- temp[[4]]$y
 			}
 		}
 
