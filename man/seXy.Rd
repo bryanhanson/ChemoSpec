@@ -6,10 +6,6 @@
 \alias{seXyIqr}
 \alias{seXyMad}
 \alias{seXy95}
-\alias{seXy}
-\alias{seXy95}
-\alias{seXyIqr}
-\alias{seXyMad}
 \title{Functions to Compute Measures of Central Tendency and Spread.  seX!}
 \usage{
 seX(x)

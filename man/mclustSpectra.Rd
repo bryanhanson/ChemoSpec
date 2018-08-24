@@ -4,8 +4,8 @@
 \alias{mclustSpectra}
 \title{mclust Analysis of a Spectra Object PCA Results}
 \usage{
-mclustSpectra(spectra, pca, pcs = c(1:3), dims = c(1, 2), plot = c("BIC",
-  "proj", "error"), use.sym = FALSE, ...)
+mclustSpectra(spectra, pca, pcs = c(1:3), dims = c(1, 2),
+  plot = c("BIC", "proj", "error"), use.sym = FALSE, ...)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}

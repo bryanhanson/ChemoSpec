@@ -4,6 +4,9 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 4.4.108 2018-08-24
+     + Checked against R devel r75161 which is R 3.5.1 patched.
+
 Changes in version 4.4.106 2018-05-30
      + Improved documentation and examples in removeFreq and normSpectra, based on correspondence with Jacek Zebrowski.
      + Fixed some dead URLs in the help files.

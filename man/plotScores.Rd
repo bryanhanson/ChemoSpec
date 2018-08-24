@@ -4,8 +4,8 @@
 \alias{plotScores}
 \title{Plot PCA Scores of a Spectra Object}
 \usage{
-plotScores(spectra, pca, pcs = c(1, 2), ellipse = "none", tol = "none",
-  use.sym = FALSE, leg.loc = "topright", ...)
+plotScores(spectra, pca, pcs = c(1, 2), ellipse = "none",
+  tol = "none", use.sym = FALSE, leg.loc = "topright", ...)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}

@@ -18,7 +18,7 @@
 #' becomes the new baseline.  This is most suitable for cases in which the
 #' baseline rises or falls steadily, as is often seen in chromatograms.
 #' 
-#' @param spectra An object of S3 class \code{\link{Spectra}} to be checked.
+#' @param spectra An object of S3 class \code{\link{Spectra}}.
 #' 
 #' @param int Logical; if \code{TRUE}, do the correction interactively using
 #' widgets.  No results are saved.  Use this for inspection and exploration

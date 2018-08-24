@@ -4,7 +4,8 @@
 \alias{aovPCAscores}
 \title{Plot ANOVA-PCA Scores from a Spectra Object}
 \usage{
-aovPCAscores(spectra, LM, plot = 1, type = "class", choice = NULL, ...)
+aovPCAscores(spectra, LM, plot = 1, type = "class", choice = NULL,
+  ...)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}

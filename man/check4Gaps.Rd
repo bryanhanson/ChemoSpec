@@ -4,7 +4,8 @@
 \alias{check4Gaps}
 \title{Check for Missing Values (Gaps) in a Spectra Object}
 \usage{
-check4Gaps(x, y = NULL, tol = 0.01, plot = FALSE, silent = FALSE, ...)
+check4Gaps(x, y = NULL, tol = 0.01, plot = FALSE, silent = FALSE,
+  ...)
 }
 \arguments{
 \item{x}{A numeric vector to be checked for gaps.}

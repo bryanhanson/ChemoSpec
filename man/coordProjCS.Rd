@@ -6,9 +6,10 @@
 \usage{
 coordProjCS(data, dimens = c(1, 2), parameters = NULL, z = NULL,
   classification = NULL, truth = NULL, uncertainty = NULL,
-  what = c("classification", "errors", "uncertainty"), quantiles = c(0.75,
-  0.95), symbols = NULL, colors = NULL, scale = FALSE, xlim = NULL,
-  ylim = NULL, CEX = 1, PCH = ".", identify = FALSE, ...)
+  what = c("classification", "errors", "uncertainty"),
+  quantiles = c(0.75, 0.95), symbols = NULL, colors = NULL,
+  scale = FALSE, xlim = NULL, ylim = NULL, CEX = 1, PCH = ".",
+  identify = FALSE, ...)
 }
 \arguments{
 \item{data}{See \code{coordProj}.}

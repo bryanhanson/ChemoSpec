@@ -3,7 +3,6 @@
 \name{plotScree}
 \alias{plotScree}
 \alias{plotScree2}
-\alias{plotScree2}
 \title{Scree Plots of PCA Results for a Spectra Object}
 \usage{
 plotScree(pca, ...)

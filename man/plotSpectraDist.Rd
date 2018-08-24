@@ -4,7 +4,8 @@
 \alias{plotSpectraDist}
 \title{Plot the Distance Between Spectra in a Spectra Object}
 \usage{
-plotSpectraDist(spectra, method = "pearson", ref = 1, labels = TRUE, ...)
+plotSpectraDist(spectra, method = "pearson", ref = 1, labels = TRUE,
+  ...)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}

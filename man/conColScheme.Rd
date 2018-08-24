@@ -4,7 +4,8 @@
 \alias{conColScheme}
 \title{Change the Color Scheme of a Spectra Object}
 \usage{
-conColScheme(spectra, old = levels(as.factor(spectra$colors)), new = NULL)
+conColScheme(spectra, old = levels(as.factor(spectra$colors)),
+  new = NULL)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}} whose color
