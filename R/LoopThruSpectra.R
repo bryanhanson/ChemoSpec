@@ -36,11 +36,11 @@ loopThruSpectra <- function(Spectra, ...) {
 # in a Spectra object for one at a time inspection
 # Bryan Hanson, DePauw Univ. Oct. 2011
 
-	cat("Type ESC to stop looping through the spectra\n\n")
-	nr <- nrow(Spectra$data)
-	for (n in 1:nr) {
-		tt <- paste("Spectrum #", n, " of ", nr, sep = "")
-		plotSpectra(Spectra, which = n, main = tt, ...)
+	cat("Press ESC to stop looping through the spectra\n\n")
+	ns <- length(Spectra$names)
+	for (i in 1:ns) {
+		tt <- paste(Spectra$names[i], "(#", i, " of ", ns, ")", sep = "")
+		plotSpectra(Spectra, which = i, main = tt, ...)
 		devAskNewPage(ask = TRUE)
 		}
 	devAskNewPage(ask = FALSE)

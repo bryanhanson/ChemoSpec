@@ -10,7 +10,8 @@ c_pcaSpectra(spectra, choice = "noscale", cent = TRUE)
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
 
 \item{choice}{A character string indicating the choice of scaling.  One of
-\code{c("noscale"}, \code{"autoscale"}, \code{"Pareto")}.}
+\code{c("noscale"}, \code{"autoscale"}, \code{"Pareto")}. \code{"autoscale"}
+is called "standard normal variate" in some literature.}
 
 \item{cent}{Logical: whether or not to center the data.  Always center the
 data unless you know it to be already centered.}

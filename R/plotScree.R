@@ -56,8 +56,7 @@ plotScree <- function(pca,  ...) {
 	
 	eigensum <- sum(pca$sdev*pca$sdev)
 	variance <- 100*(pca$sdev*pca$sdev/eigensum)
-	cumvariance <- variance  # temporary definition as a vector of proper length
-	for (n in c(1:length(variance))) {cumvariance[n] <- sum(variance[1:n])}
+	cumvariance <- cumsum(variance)
 
 	ncp <- length(variance)
 	if (ncp > 10) ncp <- 10

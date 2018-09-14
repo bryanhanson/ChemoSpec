@@ -10,7 +10,7 @@ spectra themselves.  \code{Spectra} objects are created by
 \code{\link{files2SpectraObject}} or \code{\link{matrix2SpectraObject}}.
 }
 \section{Structure}{
- The structure of a \code{Spectra} object is a list of 7
+ The structure of a \code{Spectra} object is a list of 9
 elements and an attribute as follows:
 
 \tabular{lll}{ \emph{element} \tab \emph{type} \tab \emph{description}\cr
