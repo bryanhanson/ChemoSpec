@@ -71,13 +71,13 @@ sumSpectra <- function(spectra, ...){
 	cat("\n", spectra$desc, "\n\n")
 	cat("\tThere are ", length(spectra$names), " spectra in this set.\n", sep = "")
 	cat("\t", "The y-axis unit is ", spectra$unit[2], ".\n\n", sep = "")
-	cat("\tThe frequency scale runs from ", spectra$freq[1], " to ", 
+	cat("\tThe frequency scale runs from\n\t", spectra$freq[1], " to ", 
 		spectra$freq[length(spectra$freq)], " ", spectra$unit[1], "\n", sep = "")
-	cat("\tThere are ", length(spectra$freq), " frequency (x-axis) data points.\n", 
+	cat("\tThere are ", length(spectra$freq), " frequency values.\n", 
 		sep = "")
-	cat("\tThe frequency resolution is ", res, " ", spectra$unit[1], "/point.\n\n", sep = "")
+	cat("\tThe frequency resolution is\n\t", res, " ", spectra$unit[1], "/point.\n\n", sep = "")
 	if (length(h) > 1) {
-		cat("\tThis data set is not continuous along the frequency axis.\n")
+		cat("\tThis data set is not continuous\nalong the frequency axis.\n")
 		cat("\tHere are the data chunks:\n\n")
 		print(h)
 		}
@@ -95,6 +95,6 @@ sumSpectra <- function(spectra, ...){
 		cat(msg)
 		}
 	
-	cat("\n*** Note: this data is an S3 object of class 'Spectra'\n")
+	cat("\nNote: this data is an\nS3 object of class 'Spectra'\n")
 	}
 

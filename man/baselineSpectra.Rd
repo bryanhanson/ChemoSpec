@@ -50,8 +50,7 @@ baseline rises or falls steadily, as is often seen in chromatograms.
 \examples{
 
 data(SrE.IR)
-require("IDPmisc") # needed specifically for rfbaseline
-temp <- baselineSpectra(SrE.IR, int = FALSE, method = "rfbaseline")
+temp <- baselineSpectra(SrE.IR, int = FALSE, method = "modpolyfit")
 
 }
 \references{

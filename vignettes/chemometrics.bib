@@ -1,26 +1,22 @@
-  @Manual{Butts2010,
-    title = {sna: Tools for Social Network Analysis},
-    author = {Carter T. Butts},
-    year = {2016},
-    note = {R package version 2.4},
-    url = {http://CRAN.R-project.org/package=sna},
-  }
 
-  @Manual{knitr-pkg,
-    title = {knitr: A general-purpose package for dynamic report generation in R},
-    author = {Yihui Xie},
-    year = {2017},
-    note = {R package version 1.16},
-    url = {http://CRAN.R-project.org/package=knitr},
-  }
+@Manual{knitr-pkg,
+  title = {knitr: A General-Purpose Package for Dynamic Report Generation in R},
+  author = {Yihui Xie},
+  year = {2018},
+  note = {R package version 1.20},
+  url = {https://yihui.name/knitr/},
+}
 
-  @Manual{ChemoSpec-pkg,
-    title = {ChemoSpec: Exploratory Chemometrics for Spectroscopy},
-    author = {Bryan A. Hanson},
-    year = {2017},
-    note = {R package version 4.4.x},
-    web = {github.com/bryanhanson/ChemoSpec},
-  }
+
+@Manual{ChemoSpec-pkg,
+  title = {ChemoSpec: Exploratory Chemometrics for Spectroscopy},
+  author = {Bryan A. Hanson},
+  year = {2018},
+  note = {R package version 4.4.117},
+  url = {https://github.com/bryanhanson/ChemoSpec},
+}
+
+
 
 @Book{Filz,
 	title = {Introduction to Multivariate Statistical Analysis in Chemometrics},
@@ -29,13 +25,14 @@
 	publisher = {CRC Press},
 }
 
- @Manual{hyperSpec-pkg,
-    title = {hyperSpec: a package to handle hyperspectral data sets in R},
-    author = {Claudia Beleites and Valter Sergo},
-    year = {2015},
-    note = {R package version 0.98-20161118},
-    url = {http://hyperspec.r-forge.r-project.org},
-  }
+@Manual{hyperSpec-pkg,
+  title = {hyperSpec: a package to handle hyperspectral data sets in R},
+  author = {Claudia Beleites and Valter Sergo},
+  year = {2018},
+  note = {R package version 0.99-20180627},
+  url = {http://hyperspec.r-forge.r-project.org},
+}
+
 
 @Book{Wehrens,
 	title = {Chemometrics with R: Multivariate Data Analysis in the Natural Sciences and Life Sciences},
@@ -66,14 +63,6 @@ URL = {http://pubs.acs.org/doi/abs/10.1021/ac0713510},
    year = {2008}
 }
 
-@Manual{mvb-pkg,
-    title = {mvbutils: Workspace organization, code and documentation editing, package
-prep and editing, etc.},
-    author = {Mark V. Bravington},
-    year = {2013},
-    note = {R package version 2.7.4.1},
-    url = {http://CRAN.R-project.org/package=mvbutils},
-  }
 
 @Article{Scale-Norm-Nicholson,
    author = {Craig, A. and Cloareo, O. and Holmes, E. and Nicholson, J. K. and Lindon, J. C.},
@@ -85,13 +74,17 @@ prep and editing, etc.},
    year = {2006}
 }
 
-@Manual{mclust-pkg,
-    title = {mclust: Model-Based Clustering / Normal Mixture Modeling},
-    author = {Chris Fraley and Adrian Raftery},
-    year = {2016},
-    note = {R package version 5.3},
-    url = {http://CRAN.R-project.org/package=mclust},
-  }
+@Article{mclust-RJ,
+  title = {{mclust} 5: clustering, classification and density estimation using {G}aussian finite mixture models},
+  author = {Luca Scrucca and Michael Fop and Thomas Brendan Murphy and Adrian E. Raftery},
+  journal = {The {R} Journal},
+  year = {2017},
+  volume = {8},
+  number = {1},
+  pages = {205--233},
+  url = {https://journal.r-project.org/archive/2017/RJ-2017-008/RJ-2017-008.pdf},
+}
+
 
 @Article{Adaptive-binning,
    author = {De Meyer, T. and Sinnaeve, D. and Van Gasse, B. and Tsiporkova, E. and Rietzschel, E. R. and De Buyzere, M. L. and Gillebert, T. C. and Bekaert, S. and Martins, J. C. and Van Criekinge, W.},
@@ -103,37 +96,6 @@ prep and editing, etc.},
    year = {2008}
 }
 
-@Article{TIMP-art,
-    author = {Katharine M. Mullen and Ivo H. M. van Stokkum},
-    title = {{TIMP}: an {R} package for modeling multi-way spectroscopic measurements},
-    journal = {Journal of Statistical Software},
-    year = {2007},
-    volume = {18},
-    number = {3},
-    url = {http://www.jstatsoft.org/v18/i03/},
-}
-
-@Article{mclust-art,
-   author = {Fraley, C. and Raftery, A. E.},
-   title = {Model-based clustering, discriminant analysis, and density estimation},
-   journal = {Journal of the American Statistical Association},
-   volume = {97},
-   number = {458},
-   pages = {611-631},
-   year = {2002}
-}
-
-@Article{mclust-RJ,
-   author = {Luca Scrucca and Michael Fop and T. Brendan Murphy and Adrian E. Raftery},
-   title = {mclust 5: Clustering, Classification and Density Estimation Using Gaussian Finite Mixture Models},
-   journal = {The R Journal},
-   volume = {8},
-   number = {1},
-   pages = {289-317},
-   year = {2016},
-   ISSN = {2073-4859},
-   URL = {https://journal.r-project.org/archive/2016-1/scrucca-fop-murphy-etal.pdf}
-}
 
 @Article{Error-Struc-NMR,
    author = {Karakach, T. K. and Wentzell, P. D. and Walter, J. A.},
@@ -168,9 +130,9 @@ prep and editing, etc.},
 
 @Manual{hCB-pkg,
     title = {hyperChemoBridge: Bridge between hyperSpec \& ChemoSpec},
-    author = {Conor McManus},
-    year = {2016},
-    note = {R package version 1.1.26},
+    author = {Bryan A. Hanson and Conor McManus},
+    year = {2018},
+    note = {R package version 1.1.28},
     url = {https://github.com/Chathurga/HyperChemoBridge},
 }
 
