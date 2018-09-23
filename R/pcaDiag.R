@@ -105,12 +105,12 @@ plot = c("OD", "SD"), use.sym = FALSE, ...) {
     if ("OD" %in% plot) {
 		if (!use.sym) {
 			plot(ODist, ylim = c(0, max(ODist)), ylab = "orthogonal distance", 
-			xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers based on Orthogonal Distance",
+			xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Orthogonal Distance",
 			col = spectra$colors, pch = 20, ...)
 			}
 		if (use.sym) {
 			plot(ODist, ylim = c(0, max(ODist)), ylab = "orthogonal distance", 
-			xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers based on Orthogonal Distance",
+			xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Orthogonal Distance",
 			pch = spectra$sym, ...)
 				}
 		abline(h = critOD, lty = 2)

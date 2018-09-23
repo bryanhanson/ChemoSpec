@@ -92,7 +92,7 @@ I assume you have at least a bare-bones knowledge of \texttt{R} as you begin to 
 
 Finally, some conventions for this document:  names of \texttt{R} "objects" such as packages, functions, function arguments, and data sets are in \texttt{typewriter} font.  File names are in regular font, but blue.  The commands you issue at the console and the output are shown with a light grey background, and are colored according to use and purpose, courtesy of the excellent \texttt{knitr} package \citep{knitr-pkg}.
 
-By the way, if you try \texttt{ChemoSpec} and find it useful, have questions, have opinions, or have suggestions, please do let me know.  The version you are using already incorporates a great deal of user input, why not add yours?  Possible bugs and feature requests should be documented using the Github issues system at \href{http://github.com/bryanhanson/ChemoSpec/issues}{github.com/bryanhanson/ChemoSpec/issues}
+By the way, if you try \texttt{ChemoSpec} and find it useful, have questions, have opinions, or have suggestions, please do let me know.  The version you are using already incorporates a great deal of user input, why not add yours?  Possible bugs and feature requests should be documented using the Github issues system at \href{http://github.com/bryanhanson/ChemoSpec/issues}{github.com/bryanhanson/ChemoSpec/issues}.
 
 # A Sample Workflow
 
@@ -146,7 +146,7 @@ Now it is ready to use.
 
 ## Working with Chromatograms
 
-While all the language in this vignette and in the package are geared toward analysis of spectra, \texttt{ChemoSpec} can also work with chromatograms as the raw data.  In this case, time replaces frequency of course, but other than that the analysis is virtually the same.  So the only real difference is when you issue the command \texttt{files2SpectraObject}, you will give the frequency unit along these lines: \texttt{freq.unit = "time (minutes)"}.
+While all the language in this vignette and in the package are geared toward analysis of spectra, \texttt{ChemoSpec} can also works quite well with chromatograms as the raw data.  In this case, time replaces frequency of course, but other than that the analysis is virtually the same.  So the only real difference is when you import the data, e.g. via \texttt{files2SpectraObject}, you will give the frequency unit along these lines: \texttt{freq.unit = "time (minutes)"}.
 
 ## Built-in Data Sets
 
@@ -157,7 +157,7 @@ Also included is \texttt{SrE.NMR} which is the corresponding set of NMR spectra,
 The \texttt{SrE.IR} data set is used as the example in this vignette as the sample spectra are fairly different and give good separation by most chemometric methods.  The \texttt{CuticleIR} spectra differ in much more subtle ways and as as result are more of a challenge to analyze.  For more details about these data sets, type \texttt{?data\_set\_name} at the console.
 
 
-## Preliminary Inspection of Data
+## Summarize the Data
 
  \label{sec-prelim} \emph{The} first thing you should do, and this is very important, is to make sure your data are in good shape.  First, you can summarize the data set you created, and verify that the data ranges and other details look like you expect them to:
 
@@ -222,7 +222,7 @@ grep("OO", SrE.IR$names)
 ```
 # Data Pre-Processing Options
 
-There are a number of data pre-processing options available for your consideration.  The main choices are whether to normalize the data, whether to bin the data, and whether to scale the data.  Data scaling is handled by the PCA routines, see Section \ref{sec-pca}.  Baseline correction is another typical action.
+There are a number of data pre-processing options available for your consideration.  The main choices are whether to normalize the data, whether to bin the data, and whether to scale the data.  Baseline correction is another typical action, and for some NMR data sets one might need to carry out aligment.  Data scaling is handled by the PCA routines, see Section \ref{sec-pca}.  \cite{Engel2013} has a good discussion of pre-processing.  \cite{Karakach2009} has a good discussion of error sources in $\mathsf{^{1}H}$ NMR data.
 
 ## Correcting Baseline Drift
 
@@ -255,15 +255,19 @@ tmp <- binSpectra(SrE.IR, bin.ratio = 4)
 sumSpectra(tmp)
 ```
 
-Compare the results here with the \texttt{sumSpectra} of the full data set (Section \ref{sec-prelim}). In particular note that the frequency resolution has gone down due to the binning process.  \texttt{ChemoSpec} uses the simplest of binning algorithms: after perhaps dropping a few points (with a warning) to make your data set divisible by the specified \texttt{bin.ratio}, data points are replaced by the average frequency and the sum of the grouped intensities.  Depending upon the fine structure in your data and the \texttt{bin.ratio} this might cause important peaks to be split between different bins.  There are more sophisticated binning algorithms in the literature that try to address this, but none are currently implemented in \texttt{ChemoSpec} \citep{Gaussian-binning, Adaptive-binning}.  Better to align the spectra as described above.
+Compare the results here with the \texttt{sumSpectra} of the full data set (Section \ref{sec-prelim}). In particular note that the frequency resolution has gone down due to the binning process.  \texttt{ChemoSpec} uses the simplest of binning algorithms: after perhaps dropping a few points (with a warning) to make your data set divisible by the specified \texttt{bin.ratio}, data points are replaced by the average frequency and the sum of the grouped intensities.  Depending upon the fine structure in your data and the \texttt{bin.ratio} this might cause important peaks to be split between different bins.  There are more sophisticated binning algorithms in the literature that try to address this, but none are currently implemented in \texttt{ChemoSpec} \citep{Gaussian-binning, Adaptive-binning, Sousa2013}.  It's probably better to align the spectra as described above.
 
 ## Normalization
 
 Normalization is handled by the \texttt{normSpectra} function.  Usually one normalizes data in which the sample preparation procedure may lead to differences in concentration, such as body fluids that might have been diluted during handling, or that vary due to the physiological state of the organism studied.  The \texttt{SrE.IR} data set is taken by placing the oil extract directly on an ATR device and no dilution is possible, so normalization isn't really appropriate.  Please see the help page for the normalization options.  The literature contains a number of useful discussions about normalization issues.\citep{Scale-Norm-Nicholson, NMR-Norm, Cent-Scale-Norm, Filz, Raftery-Signal-Processing}
 
-# Identifying \& Removing Problematic Samples
+# Editing the Data Set \& Spectral Regions
 
-In the process of plotting and inspecting your spectra, you may find some spectra/samples that have problems.  Perhaps they have instrumental artifacts.  Or maybe you have decided to eliminate one subgroup of samples from your data set to see how the results differ.  To  remove a particular sample, or samples meeting a certain criteria, you use the \texttt{removeSample} function.  This function uses a grepping process based on its \texttt{rem.sam} argument, so you must be careful due to the greediness of grep.  Let's imagine that sample TD\_adSrE has artifacts and needs to be removed.  The command would be:
+In the process of plotting and inspecting your spectra, you may find some spectra/samples that have problems.  Perhaps they have instrumental artifacts.  Or maybe you have decided to eliminate one subgroup of samples from your data set to see how the results differ.
+
+## Removing Individual Samples
+
+To  remove a particular sample, or samples meeting a certain criteria, you use the \texttt{removeSample} function.  This function uses a grepping process based on its \texttt{rem.sam} argument, so you must be careful due to the greediness of grep.  Let's imagine that sample TD\_adSrE has artifacts and needs to be removed.  The command would be:
 
 ```{r Chunk11}
 noTD <- removeSample(SrE2.IR,
@@ -293,7 +297,7 @@ This is what is meant by "grep is greedy".  In this situation, you have three ch
 
 \texttt{removeSample} uses the names of the samples (in \texttt{Spectra\$names}) to identify and remove individual samples from the \texttt{Spectra} object.  There is also a function \texttt{removeGroup} which will remove samples belonging to a particular group in \texttt{Spectra\$groups}.
 
-## Identifying \& Removing Regions of No Interest
+## Identifying \& Removing Frequencies of No Interest
 
 Many spectra will have regions that should be removed before analysis.  It may be an uninformative, interfering peak like the water peak in $\mathsf{^{1}H}$ NMR, or the $\mathsf{CO_2}$ peak in IR.  Or, there may be regions of the spectra that simply don't have much information -- they contribute a noisy baseline and not much else.  An example would be the region from about 1,800 or 1,900 $\mathsf{cm^{-1}}$ to about 2,500 $\mathsf{cm^{-1}}$ in IR, a region where there are typically no peaks except for the atmospheric $\mathsf{CO_2}$ stretch, and rarely (be careful!) alkyne stretches.
 
@@ -563,7 +567,7 @@ hcaScores(SrE3.IR,  class,
 
 ## ANOVA-PCA
 
-Harrington \emph{et. al.}\citep{Harrington2005} (and a few others\citep{Pinto2008}) have demonstrated a method which combines traditional ANOVA with PCA.  Standard PCA is blind to class membership, though one generally colors the points in a score plot using the known class membership.  ANOVA-PCA uses the class membership to divide the original centered data matrix into submatrices.  Each submatrix corresponds to a particular factor, and the rows of the submatrix have been replaced by the average spectrum of each level of the factor.  The original data set is thought of as a sum of these submatrices plus residual error.  The residual error is added back to each submatrix and then PCA is performed.  This is conceptually illustrated in Figures \ref{aovPCA2} and \ref{aovPCA1}.
+Harrington \emph{et. al.}\citep{Harrington2005} (and a few others -- \cite{Pinto2008}) have demonstrated a method which combines traditional ANOVA with PCA.  Standard PCA is blind to class membership, though one generally colors the points in a score plot using the known class membership.  ANOVA-PCA uses the class membership to divide the original centered data matrix into submatrices.  Each submatrix corresponds to a particular factor, and the rows of the submatrix have been replaced by the average spectrum of each level of the factor.  The original data set is thought of as a sum of these submatrices plus residual error.  The residual error is added back to each submatrix and then PCA is performed.  This is conceptually illustrated in Figures \ref{aovPCA2} and \ref{aovPCA1}.
 
 \begin{figure}
 \begin{center}
@@ -634,7 +638,7 @@ See the help files of course  \ldots
 
 \end{enumerate}
 
-# Colors and Symbol Options \label{ColSym}
+# Color and Symbol Options \label{ColSym}
 
 In \texttt{ChemoSpec}, the user may use any color name/format known to \texttt{R}.  For ease of comparison, it would be nice to plan ahead and use the same color scheme for all your plots.  However, if you are just doing preliminary work, \texttt{ChemoSpec} will choose colors for you automatically.
 
