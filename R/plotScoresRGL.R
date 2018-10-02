@@ -77,8 +77,7 @@
 #' }
 #' 
 #' @export plotScoresRGL
-#'
-# @importFrom rgl open3d segments3d points3d text3d
+#' @importFrom ChemoSpecUtils sumGroups
 #'
 plotScoresRGL <- function(spectra, pca, pcs = c(1:3), 
 	ellipse = TRUE, rob = FALSE, cl = 0.95, frac.pts.used = 0.8,

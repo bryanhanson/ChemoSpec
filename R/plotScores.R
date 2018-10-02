@@ -62,6 +62,7 @@
 #'
 #' @importFrom graphics plot lines legend
 #' @importFrom plyr dlply llply m_ply
+#' @importFrom ChemoSpecUtils addLegend sumGroups
 #'
 plotScores <- function(spectra, pca,
 	pcs = c(1,2), ellipse = "none", tol = "none",
@@ -240,12 +241,7 @@ plotScores <- function(spectra, pca,
 	plotScoresDecoration(spectra, pca, pcs, tol)
 	
 	if (leg.loc == "none") return()
-	leg.txt <- c("Key", gr$group)
-	leg.col <- c("black", gr$color)
-	if (use.sym) leg.col = "black"
-	leg.pch <- NA
-	if (use.sym) leg.pch <- c(NA, gr$sym)
-	legend(leg.loc, leg.txt, text.col = leg.col, bty = "o", cex = 0.75, pch = leg.pch)
+	if (leg.loc != "none") addLegend(spectra, leg.loc, use.sym, bty = "o")
 
 }
 

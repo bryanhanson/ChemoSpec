@@ -35,6 +35,7 @@
 #'
 #' @importFrom stats as.dendrogram dendrapply
 #' @importFrom graphics plot legend
+#' @importFrom ChemoSpecUtils sumGroups
 #'
 plotHCA <- function(spectra, hclst, sub.title, use.sym, leg.loc, ...) {
 

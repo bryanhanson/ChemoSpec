@@ -51,17 +51,6 @@ plotScoresDecoration <- function(spectra, pca, pcs = c(1,2), tol = "none") {
 	p <- pca$x[,pcs] # get info needed to label the points by sample names
 	pl <- spectra$names
 	
-	lt <- levels(spectra$groups) # get legend stuff ready
-	lc <- lt # intialize to correct length
-	for (z in 1:length(lt)) {
-		i <- match(lt[z], spectra$groups)
-		lc[z] <- spectra$colors[i]
-		}
-
-	# now, actually label the plot
-	
-#	rug(pca$x[,pcs[1]])
-#	rug(pca$x[,pcs[2]], side = 2)
 	title(xlab = txt.x, ylab = txt.y)
 	legend("topleft", y = NULL, pca$method, bty = "n", cex = 0.75)
 		

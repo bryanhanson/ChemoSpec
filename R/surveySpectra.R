@@ -52,7 +52,7 @@
 #' @importFrom stats sd
 #' @importFrom graphics plot lines text
 #' @importFrom plyr aaply
-# @importFrom lattice xyplot
+#' @importFrom ChemoSpecUtils sumGroups
 #'
 #' @describeIn surveySpectra Spectral survey emphasizing mean or median spectrum, optionally by group.
 #' 
