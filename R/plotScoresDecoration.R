@@ -31,11 +31,11 @@
 #'
 #' @keywords utilities
 #'
-#' @export plotScoresDecoration
-#'
+#' @export
+#' @noRd
 #' @importFrom graphics title legend
 #'
-plotScoresDecoration <- function(spectra, pca, pcs = c(1,2), tol = "none") {
+.plotScoresDecoration <- function(spectra, pca, pcs = c(1,2), tol = "none") {
 	
 # Function to do some plot annotations on the PCA score plot
 # These tasks are done in all 4 cases in plotScores, so keeping it here makes
@@ -54,6 +54,6 @@ plotScoresDecoration <- function(spectra, pca, pcs = c(1,2), tol = "none") {
 	title(xlab = txt.x, ylab = txt.y)
 	legend("topleft", y = NULL, pca$method, bty = "n", cex = 0.75)
 		
-	if (is.numeric(tol)) labelExtremes(p, pl, tol)
+	if (is.numeric(tol)) .labelExtremes(p, pl, tol)
 	}
 

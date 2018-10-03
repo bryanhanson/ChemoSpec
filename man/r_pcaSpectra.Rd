@@ -13,8 +13,8 @@ r_pcaSpectra(spectra, choice = "noscale")
 carried out.  One of \code{c("noscale", "mad")}.}
 }
 \value{
-An object of classes \code{conPCA} and \code{princomp} (see
-\code{\link{q2rPCA}}).  It includes a list element called \code{$method}, a
+An object of classes \code{conPCA} and \code{princomp}.
+It includes a list element called \code{$method}, a
 character string describing the pre-processing carried out and the type of
 PCA performed (it appears on plots which you might make).
 }

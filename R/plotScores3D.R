@@ -102,11 +102,11 @@ plotScores3D <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE
 	z.lab <- paste("PC", pcs[3], " (", format(variance[3], digits=2), "%", ")", sep = "")
 	
 	for (n in 1:length(gr$group)) { # work through the groups, add ellipses if n > 3
-		# note that makeEllipsoid has further checks for the number of data points
+		# note that .makeEllipsoid has further checks for the number of data points
 
 		w <- grep(gr$group[n], spectra$groups)
 		if ((gr$no.[n] > 3) && (ellipse)) { # gather the ellipsoid points
-			ell <- makeEllipsoid(pca$x[w,pcs], rob = rob, cl = cl, frac.pts.used = frac.pts.used)
+			ell <- .makeEllipsoid(pca$x[w,pcs], rob = rob, cl = cl, frac.pts.used = frac.pts.used)
 			x <- ell[,1]
 			y <- ell[,2]
 			z <- ell[,3]
@@ -140,15 +140,6 @@ plotScores3D <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE
 		key = cube.key,
 		panel = function(...) {
 			lattice::panel.cloud(...)
-#			if (tol > 0) {
-#				pts <- labelExtremes3d(pca$x[,pcs], names = spectra$names, tol = tol)
-#				labs <- as.character(pts[,4])
-#				pts <- t(pts[,1:3])
-#				#print(pts)
-#				#print(labs)
-#				chk1 <<- pts
-#				panel.3d.text(xyz.in.row = pts, labels = labs, ...)
-#				}
 			}
 		)
 

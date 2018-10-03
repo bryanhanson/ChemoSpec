@@ -14,7 +14,7 @@
 #' \code{\link{prcomp}} or \code{\link{princomp}}, see their respective help
 #' pages.
 #' 
-#' @aliases q2rPCA r2qPCA
+#' @aliases .q2rPCA .r2qPCA
 #'
 #' @param x An object of either class \code{prcomp} or class
 #' \code{princomp}.  It will be converted to a form that can be used by
@@ -41,9 +41,10 @@
 #'
 #' @keywords classes utilities
 #'
-#' @export q2rPCA
+#' @export
+#' @noRd
 #'
-q2rPCA <- function(x) {
+.q2rPCA <- function(x) {
 	
 # Converts objects of class prcomp (Q-mode PCA) to class princomp (R-mode PCA)
 # Bryan Hanson, DePauw Univ, Sept 2009

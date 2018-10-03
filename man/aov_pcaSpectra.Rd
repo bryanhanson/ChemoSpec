@@ -59,7 +59,7 @@ Variance--Principal Component Analysis: ..." Analytica Chimica Acta 544.1-2
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
 \seealso{
-This function calls \code{\link{avgFacLvls}}, and the results are
+The output of this function is used in
 used in \code{\link{aovPCAscores}} and \code{\link{aovPCAloadings}}.
 }
 \author{

@@ -38,7 +38,7 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 	
 	# Go get group assignments & colors, to complete assembly of spectra
 
-	spectra <- groupNcolor(spectra, gr.crit, gr.cols)
+	spectra <- .groupNcolor(spectra, gr.crit, gr.cols)
 	spectra$unit[1] <- freq.unit
 	spectra$unit[2] <- int.unit
 	spectra$desc <- descrip

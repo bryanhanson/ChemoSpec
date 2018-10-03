@@ -50,9 +50,10 @@
 #' res <- binData(x, y, bin.ratio = 7)
 #' length(res$mean.x)
 #' 
-#' @export binData
-#' 
-binData <- function(x = NULL, y = NULL, bin.ratio = 2) {
+#' @export
+#' @noRd
+#'
+.binData <- function(x = NULL, y = NULL, bin.ratio = 2) {
 	
 # Function to bin or bucket spectral data
 # Part of the ChemoSpec package
@@ -63,7 +64,7 @@ binData <- function(x = NULL, y = NULL, bin.ratio = 2) {
 	# Drop a few data points on one end so that it does
 
 	if (bin.ratio <= 1) stop("bin.ratio must > 1")
-	if (!isWholeNo(bin.ratio)) stop("bin.ratio must be an integer > 1")
+	if (!.isWholeNo(bin.ratio)) stop("bin.ratio must be an integer > 1")
 	if (!is.null(y) && !is.null(x)) {
 		if (!identical(length(x), length(y))) stop("x and y vectors in binData have different lengths")
 		}
@@ -74,14 +75,14 @@ binData <- function(x = NULL, y = NULL, bin.ratio = 2) {
 	if (!is.null(x)) len <- length(x)
 	if (!is.null(y)) len <- length(y)
 	no.bins <- len/br # initial value; maybe final too
-	if (!isWholeNo(no.bins)) { # trim data just a bit so no.bins is a whole number
+	if (!.isWholeNo(no.bins)) { # trim data just a bit so no.bins is a whole number
 		chop <- NULL
 		n <- 0
 		while (n < br) {
 			n <- n + 1
 			l <- len - n
 			no.b <- l/br
-			if (isWholeNo(no.b)) { chop <- n; break }
+			if (.isWholeNo(no.b)) { chop <- n; break }
 			}
 		rem <- c(1:chop) # chop off the first few data points
 		if (!is.null(x)) x <- x[-rem]

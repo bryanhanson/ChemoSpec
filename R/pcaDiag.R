@@ -71,7 +71,7 @@ plot = c("OD", "SD"), use.sym = FALSE, ...) {
 # Function for PCA Diagnostic Plots (modified from Filzmosers version in {chemometrics})
 # Part of the ChemoSpec package.  Bryan Hanson, DePauw Univ, Sept 2009
 
-	if ("prcomp" %in% class(pca)) pca <- q2rPCA(pca)
+	if ("prcomp" %in% class(pca)) pca <- .q2rPCA(pca)
 	X <- spectra$data
 	X.pca <- pca
 	a <- pcs
@@ -99,7 +99,7 @@ plot = c("OD", "SD"), use.sym = FALSE, ...) {
 		y.data <- subset(SDist, SDist > critSD)
 		x.data <- which(SDist %in% y.data, arr.ind = TRUE)
 		data <- cbind(x.data, y.data)
-		if (!length(x.data) == 0) labelExtremes(data, names = spectra$names[x.data], tol = 1.0)
+		if (!length(x.data) == 0) .labelExtremes(data, names = spectra$names[x.data], tol = 1.0)
         }
         
     if ("OD" %in% plot) {
@@ -118,7 +118,7 @@ plot = c("OD", "SD"), use.sym = FALSE, ...) {
 		y.data <- subset(ODist, ODist > critOD)
 		x.data <- which(ODist %in% y.data, arr.ind = TRUE)
 		data <- cbind(x.data, y.data)
-		if (!length(x.data) == 0) labelExtremes(data, names = spectra$names[x.data], tol = 1.0)
+		if (!length(x.data) == 0) .labelExtremes(data, names = spectra$names[x.data], tol = 1.0)
 		}
 		
     list(SDist = SDist, ODist = ODist, critSD = critSD, critOD = critOD)

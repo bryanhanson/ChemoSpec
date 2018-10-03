@@ -21,7 +21,7 @@
 #' distributed, and treats x and y separately.  Thus, this is not a formal
 #' treatment of outliers, just a means of labeling points.  Note too that while
 #' this function could deal with groups separately, the way it is called by
-#' \code{\link{plotScoresDecoration}} lumps all groups together.
+#' \code{\link{.plotScoresDecoration}} lumps all groups together.
 #' 
 #' @return None.  Annotates the plot with labels.
 #' 
@@ -31,12 +31,13 @@
 #' 
 #' @keywords utilities
 #' 
-#' @export labelExtremes
+#' @export
 #' 
 #' @importFrom stats quantile
 #' @importFrom graphics text 
-#' 
-labelExtremes <- function(data, names, tol) {
+#' @noRd
+#'
+.labelExtremes <- function(data, names, tol) {
 
 # Function to label extreme data points
 # Part of the ChemoSpec package

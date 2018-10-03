@@ -12,8 +12,8 @@
 #' @param choice A character vector describing the type of scaling to be
 #' carried out.  One of \code{c("noscale", "mad")}.
 #'
-#' @return An object of classes \code{conPCA} and \code{princomp} (see
-#' \code{\link{q2rPCA}}).  It includes a list element called \code{$method}, a
+#' @return An object of classes \code{conPCA} and \code{princomp}.
+#' It includes a list element called \code{$method}, a
 #' character string describing the pre-processing carried out and the type of
 #' PCA performed (it appears on plots which you might make).
 #'
@@ -43,7 +43,6 @@
 #' 
 #' @export r_pcaSpectra
 #'
-# @importFrom pcaPP PCAgrid
 #'
 r_pcaSpectra <- function(spectra, choice = "noscale") {
 
@@ -65,6 +64,6 @@ r_pcaSpectra <- function(spectra, choice = "noscale") {
 	if (choice == "noscale") choice <- NULL
 	pca <- pcaPP::PCAgrid(spectra$data, k = 10, scale = choice, scores = TRUE)
 	pca$method <- paste("l1median/", note, "/", "robust", sep = "")
-	pca <- r2qPCA(pca) # convert classes
+	pca <- .r2qPCA(pca) # convert classes
 	}
 

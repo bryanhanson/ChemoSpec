@@ -88,7 +88,7 @@ sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05, ...) {
 
 	# Next, if requested, we will label the extreme points on both dimensions
 	
-	if (is.numeric(tol)) labelExtremes(ans[,2:3], spectra$freq, tol)	
+	if (is.numeric(tol)) .labelExtremes(ans[,2:3], spectra$freq, tol)	
  
  	ans
 	}

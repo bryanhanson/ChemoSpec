@@ -29,16 +29,12 @@
 #'
 #  This import/export business based on stackoverflow.com/a/35118850/633251
 #'
-#' @importFrom ChemoSpecUtils addLegend chkSpectra sumSpectra sumGroups 
-#' @export  addLegend chkSpectra sumSpectra sumGroups
+#' @importFrom ChemoSpecUtils .addLegend chkSpectra sumSpectra sumGroups 
+#' @export  .addLegend chkSpectra sumSpectra sumGroups
 #'
 #' @importFrom ChemoSpecUtils removeFreq removeGroup removeSample
 #' @export removeFreq removeGroup removeSample
 #'
 NULL
-
-# Functions from ChemoSpecUtils are imported and then exported from here
-# based on the SO answer https://stackoverflow.com/a/35118850/633251
-#
 
 

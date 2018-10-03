@@ -50,13 +50,13 @@
 #' 
 #' @keywords multivariate cluster
 #' 
-#' @export coordProjCS
+#' @export
 #' 
 #' @importFrom graphics par plot title points
 #' @importFrom stats sd 
-# @importFrom mclust map mclust.options classError mvn2plot
+#' @noRd
 #'
-coordProjCS <- 
+.coordProjCS <- 
 function (data, dimens = c(1, 2), parameters = NULL, z = NULL, 
     classification = NULL, truth = NULL, uncertainty = NULL, 
     what = c("classification", "errors", "uncertainty"), quantiles = c(0.75, 

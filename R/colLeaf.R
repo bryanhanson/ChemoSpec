@@ -17,11 +17,12 @@
 #' 
 #' @keywords utilities cluster color
 #' 
-#' @export colLeaf
+#' @export
 #' 
 #' @importFrom stats is.leaf 
+#' @noRd
 #' 
-colLeaf <- function(n, spectra) { # this is called iteratively by dendrapply
+.colLeaf <- function(n, spectra) { # this is called iteratively by dendrapply
 
 # A little trick to color leaves properly, derived from the archives
 # Part of the ChemoSpec package

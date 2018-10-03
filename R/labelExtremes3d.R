@@ -4,11 +4,8 @@
 #' Identify Extreme Values in 3D
 #' 
 #' A utility function to identify the extreme values in a 3D plot data set,
-#' presumably so that they can be labeled.  Algorithm is similar to
-#' \code{\link{labelExtremes}}, except that \code{labelExtremes3d} does not do
-#' the plotting (because the results are used by functions that use different
-#' plotting paradigms).  An internal function, not generally called by the
-#' user.
+#' presumably so that they can be labeled. An internal function,
+#' not generally called by the user.
 #' 
 #' 
 #' @param data A matrix of 3 columns containing x, y and z values for the
@@ -35,11 +32,11 @@
 #' 
 #' @keywords utilities
 #' 
-#' @export labelExtremes3d
-#' 
+#' @export
+#' @noRd
 #' @importFrom stats quantile 
 #' 
-labelExtremes3d <- function(data, names, tol) {
+.labelExtremes3d <- function(data, names, tol) {
 
 # Function to find extreme data points for labeling
 # Part of the ChemoSpec package

@@ -29,9 +29,10 @@
 #' facs <- factor(c(rep("A",5), rep("B",5), rep("C", 5), rep("D", 5)))
 #' M2 <- avgFacLvls(M1, fac = facs)
 #' 
-#' @export avgFacLvls
-#' 
-avgFacLvls <- function(matrix, fac) {
+#' @export
+#' @noRd
+#'
+.avgFacLvls <- function(matrix, fac) {
 
 # Script to replace rows of a matrix with the averages
 # of their group (as identified by fac)

@@ -184,9 +184,6 @@ plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
 \references{
 \url{https://github.com/bryanhanson/ChemoSpec}
 }
-\seealso{
-The linking of groups with colors is handled by \code{\link{groupNcolor}}.
-}
 \author{
 Bryan A. Hanson, DePauw University.
 }

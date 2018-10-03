@@ -1,8 +1,8 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 5.0.0
-Date: 2018-10-01
+Version: 5.0.49
+Date: 2018-10-03
 Authors@R: c(person("Bryan A.", "Hanson", role = c("aut", "cre"), email =
     "hanson@depauw.edu"), person("Mike", "Bostock", role = c("cph", "ctb"),
     comment = "author of the d3.js library used in plotSpectraJS, http://d3js.org"))

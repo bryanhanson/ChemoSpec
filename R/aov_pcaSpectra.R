@@ -23,7 +23,7 @@
 #'
 #' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
 #'
-#' @seealso This function calls \code{\link{avgFacLvls}}, and the results are
+#' @seealso The output of this function is used in
 #' used in \code{\link{aovPCAscores}} and \code{\link{aovPCAloadings}}.
 #'
 #' @references Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for
@@ -56,7 +56,7 @@
 #' apca4 <- aovPCAloadings(spectra = mM3, LM = mats, pca = apca1,
 #'   main = "aov_pcaSpectra: Bb Loadings")
 #' 
-#' @export aov_pcaSpectra
+#' @export
 #'
 aov_pcaSpectra <-function(spectra, fac) {
 
@@ -120,35 +120,35 @@ aov_pcaSpectra <-function(spectra, fac) {
 	if (nf == 1) { warning("aov_pcaSpectra is the same as regular PCA for 1 factor")}
 
 	if (nf == 1) { 
-		big[[1]] <- avgFacLvls(matrix = MC, flist[[1]])
+		big[[1]] <- .avgFacLvls(matrix = MC, flist[[1]])
 		DAR <- MC - big[[1]] 
 		LM <- list(DA = big[[1]], DPE = DAR, MC = MC)
 		names(LM) <-c(fac[1], "Res.Error", "MC Data")
 		} # Harrington eqn (3)
 
 	if (nf == 2) {
-		big[[1]] <- avgFacLvls(matrix = MC, flist[[1]])
+		big[[1]] <- .avgFacLvls(matrix = MC, flist[[1]])
 		DAR <- MC - big[[1]]
-		big[[2]] <- avgFacLvls(matrix = DAR, flist[[2]])
+		big[[2]] <- .avgFacLvls(matrix = DAR, flist[[2]])
 		DBR <- DAR - big[[2]]
-		big[[3]] <- avgFacLvls(matrix = DBR, flist[[3]])
+		big[[3]] <- .avgFacLvls(matrix = DBR, flist[[3]])
 		DABR <- DBR - big [[3]]
 		LM <- list(DA = big[[1]], DB = big[[2]], DAB = big[[3]], DPE = DABR, MC = MC)
 		names(LM) <- c(fac[1], fac[2], paste(fac[1], "x", fac[2], sep = " "), "Res.Error", "MC Data")
 		}
 	
 	if (nf == 3) { 
-		big[[1]] <- avgFacLvls(matrix = MC, flist[[1]])
+		big[[1]] <- .avgFacLvls(matrix = MC, flist[[1]])
 		DAR <- MC - big[[1]]
-		big[[2]] <- avgFacLvls(matrix = DAR, flist[[2]])
+		big[[2]] <- .avgFacLvls(matrix = DAR, flist[[2]])
 		DBR <- DAR - big[[2]]
-		big[[3]] <- avgFacLvls(matrix = DBR, flist[[3]])
+		big[[3]] <- .avgFacLvls(matrix = DBR, flist[[3]])
 		DCR <- DBR - big[[3]]
-		big[[4]] <- avgFacLvls(matrix = DCR, flist[[4]])
+		big[[4]] <- .avgFacLvls(matrix = DCR, flist[[4]])
 		DABR <- DCR - big[[4]]
-		big[[5]] <- avgFacLvls(matrix = DABR, flist[[5]])
+		big[[5]] <- .avgFacLvls(matrix = DABR, flist[[5]])
 		DACR <- DABR - big[[5]]
-		big[[6]] <- avgFacLvls(matrix = DACR, flist[[6]])
+		big[[6]] <- .avgFacLvls(matrix = DACR, flist[[6]])
 		DBCR <- DACR - big[[6]]
 		LM <- list(DA = big[[1]], DB = big[[2]], DC = big[[3]], DAB = big[[4]],
 			DAC = big[[5]], DBC = big[[6]], DPE = DBCR, MC = MC)
@@ -157,6 +157,5 @@ aov_pcaSpectra <-function(spectra, fac) {
 			"Res.Error", "MC Data")
 		}
 	
-	LM # return value
-	
+	return(LM)	
 	}

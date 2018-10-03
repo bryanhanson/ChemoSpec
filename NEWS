@@ -4,7 +4,10 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
-Changes in version 5.5.0 2018-10-01
+Changes in version 5.0.49 2018-10-03
+     + A number of user-facing functions but which users probably never used directly were set to non-user-facing status.  This gives a smaller manual and a simpler help file index.
+
+Changes in version 5.0.0 2018-10-01
      + New package ChemoSpecUtils provides some functions, to both ChemoSpec and ChemoSpec2D.  This is a fundamental change to package structure, but should be essentially invisible to users.
 
 Changes in version 4.4.125 2018-09-22

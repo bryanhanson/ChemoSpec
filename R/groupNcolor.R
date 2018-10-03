@@ -32,11 +32,11 @@
 #' 
 #' @keywords utilities color
 #' 
-#' @export groupNcolor
+#' @export
 #'
-# @importFrom RColorBrewer brewer.pal
+#' @noRd
 #'
-groupNcolor <- function(spectra, gr.crit = NULL, gr.cols = c("auto")) {
+.groupNcolor <- function(spectra, gr.crit = NULL, gr.cols = c("auto")) {
 
 # Function to Process Group Assignments & Assign Colors & Symbols
 # Part of the ChemoSpec package

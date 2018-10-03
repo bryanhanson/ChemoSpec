@@ -74,12 +74,12 @@ mclustSpectra <- function(spectra, pca, pcs = c(1:3), dims = c(1,2),
 		
 	if (plot == "proj") {
 		if (!use.sym) {
-			coordProjCS(d, dimens = dims, what = "classification",
+			.coordProjCS(d, dimens = dims, what = "classification",
 				classification = mod$classification, parameters = mod$parameters,
 				symbols = my.sym)
 			}
 		if (use.sym) {
-			coordProjCS(d, dimens = dims, what = "classification",
+			.coordProjCS(d, dimens = dims, what = "classification",
 				classification = mod$classification,
 				parameters = mod$parameters, colors = "black")
 			}
@@ -89,7 +89,7 @@ mclustSpectra <- function(spectra, pca, pcs = c(1:3), dims = c(1,2),
 		}
 
 	if (plot == "errors") {
-		coordProjCS(d, dimens = dims, what = "errors",
+		.coordProjCS(d, dimens = dims, what = "errors",
 			classification = mod$classification, parameters = mod$parameters,
 			truth = spectra$groups, symbols = my.sym)
 		sub <- paste(spectra$desc, pca$method, sep = "  ")

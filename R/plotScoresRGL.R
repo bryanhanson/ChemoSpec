@@ -122,7 +122,7 @@ plotScoresRGL <- function(spectra, pca, pcs = c(1:3),
 	if (use.sym) rgl::text3d(x, y, z, texts = lets) # draw data points
 
 	if (tol > 0) {
-		pts <- labelExtremes3d(pca$x[,pcs], names = spectra$names, tol = tol)
+		pts <-.labelExtremes3d(pca$x[,pcs], names = spectra$names, tol = tol)
 		rgl::text3d(pts[,1], pts[,2], pts[,3], texts = pts[,4], cex = 0.75, adj = c(0,0))
 		}
 
@@ -132,7 +132,7 @@ plotScoresRGL <- function(spectra, pca, pcs = c(1:3),
 				d <- pca$x[,pcs]
 				w <- grep(gr$group[n], spectra$groups)
 				d <- d[w,]
-				ell <- makeEllipsoid(d, rob = rob, cl = cl, frac.pts.used = frac.pts.used, ...)
+				ell <- .makeEllipsoid(d, rob = rob, cl = cl, frac.pts.used = frac.pts.used, ...)
 				x <- ell[,1]
 				y <- ell[,2]
 				z <- ell[,3]

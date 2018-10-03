@@ -30,12 +30,11 @@
 #'
 #' @keywords multivariate
 #'
-#' @export plotScoresCor
-#'
+#' @export
+#' @noRd
 #' @importFrom stats cov cor qchisq
-# @importFrom robustbase covMcd
 #'
-plotScoresCor <- function (x, quan = 1/2, alpha = 0.025) {
+.plotScoresCor <- function (x, quan = 1/2, alpha = 0.025) {
 
 # Function to plot robust correlation ellipsoids for x, y data
 # Modifed slightly from cor.plot {mvoutlier}

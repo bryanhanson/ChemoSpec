@@ -78,9 +78,6 @@ hcaScores <- function(spectra, pca, scores = c(1:5),
 
 	sub.title <- paste("clustering method: ", c.method, "      distance method: ", d.method, sep = "")
 
-	# res <- plotHCA(spectra = spectra, distance = distance, sub.title = sub.title,
-		# method = c.method, use.sym = use.sym, ...)
-	# return(res)
 	hclst <- hclust(distance, method = c.method)
 
 	d <- plotHCA(spectra = spectra, hclst = hclst, sub.title = sub.title,

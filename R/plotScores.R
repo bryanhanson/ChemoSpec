@@ -62,7 +62,7 @@
 #'
 #' @importFrom graphics plot lines legend
 #' @importFrom plyr dlply llply m_ply
-#' @importFrom ChemoSpecUtils addLegend sumGroups
+#' @importFrom ChemoSpecUtils .addLegend sumGroups
 #'
 plotScores <- function(spectra, pca,
 	pcs = c(1,2), ellipse = "none", tol = "none",
@@ -73,7 +73,7 @@ plotScores <- function(spectra, pca,
 # Bryan Hanson, DePauw University, Aug 2009
 # Generates 2D plots of scores specified by argument pcs
 # Part of this depends on a modified cor.plot {mvoutlier}
-# which is called plotScoresCor
+# which is called .plotScoresCor
 
 	if (length(pcs) != 2) stop("You must choose exactly two PC's to plot")
 	if (missing(spectra)) stop("No spectral data set provided")
@@ -107,7 +107,7 @@ plotScores <- function(spectra, pca,
 	# the scores well outside them, if there is an outlier.
 	# Must check all cases!
 	
-	ell <- llply(groups[idx], plotScoresCor) # these are the ellipses we'll need later
+	ell <- llply(groups[idx], .plotScoresCor) # these are the ellipses we'll need later
 
 	x.scores <- range(llply(groups, subset, select = 1))
 	y.scores <- range(llply(groups, subset, select = 2)) 
@@ -172,7 +172,7 @@ plotScores <- function(spectra, pca,
 
 	if (ellipse == "cls") {
 	
-	ell <- llply(groups[idx], plotScoresCor) # these are the ellipses we'll need later
+	ell <- llply(groups[idx], .plotScoresCor) # these are the ellipses we'll need later
 
 	x.scores <- range(llply(groups, subset, select = 1))
 	y.scores <- range(llply(groups, subset, select = 2)) 
@@ -207,7 +207,7 @@ plotScores <- function(spectra, pca,
 
 	if (ellipse == "rob") {
 	
-	ell <- llply(groups[idx], plotScoresCor) # these are the ellipses we'll need later
+	ell <- llply(groups[idx], .plotScoresCor) # these are the ellipses we'll need later
 
 	x.scores <- range(llply(groups, subset, select = 1))
 	y.scores <- range(llply(groups, subset, select = 2)) 
@@ -238,10 +238,10 @@ plotScores <- function(spectra, pca,
 
 	# Decorations that apply to all cases
 	
-	plotScoresDecoration(spectra, pca, pcs, tol)
+	.plotScoresDecoration(spectra, pca, pcs, tol)
 	
 	if (leg.loc == "none") return()
-	if (leg.loc != "none") addLegend(spectra, leg.loc, use.sym, bty = "o")
+	if (leg.loc != "none") .addLegend(spectra, leg.loc, use.sym, bty = "n")
 
 }
 

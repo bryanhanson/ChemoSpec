@@ -1,5 +1,4 @@
-r2qPCA <-
-function(x) {
+.r2qPCA <- function(x) {
 
 # Converts objects of class princomp (R-mode PCA) to class prcomp (Q-mode PCA)
 # Bryan Hanson, DePauw Univ, Sept 2009

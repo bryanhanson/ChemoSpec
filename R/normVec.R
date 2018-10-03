@@ -28,11 +28,12 @@
 #' range(x1)
 #' sd(x1)/diff(range(x1))
 #'
-#' x2 <- normVec(x1)
+#' x2 <- .normVec(x1)
 #' range(x2)
 #' sd(x2)/diff(range(x2))
 #' 
 #' 
-#' @export normVec
+#' @export
+#' @noRd
 #'
-normVec <- function(x) x/sqrt(sum(x^2))
+.normVec <- function(x) x/sqrt(sum(x^2))

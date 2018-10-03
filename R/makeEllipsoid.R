@@ -51,16 +51,15 @@
 #' # 2D example
 #' x <- rnorm(10, 2, 0.5)
 #' y <- rnorm(10, -2, 2)
-#' ell <- makeEllipsoid(cbind(x,y), cl = 0.99)
+#' ell <- .makeEllipsoid(cbind(x,y), cl = 0.99)
 #' plot(ell[,1], ell[,2], col = "red", pch = 20, cex = 0.3)
 #' points(x,y)
 #' 
-#' @export makeEllipsoid
-#' 
+#' @export
+#' @noRd
 #' @importFrom stats var rnorm qf 
-# @importFrom MASS cov.rob
 #'
-makeEllipsoid <- function(data, cl = 0.95, rob = FALSE, frac.pts.used = 0.80) {
+.makeEllipsoid <- function(data, cl = 0.95, rob = FALSE, frac.pts.used = 0.80) {
 
 # Function to make an ellipsoid surrounding a given set of 2 or 3D data
 # Part of the ChemoSpec package
@@ -93,7 +92,7 @@ makeEllipsoid <- function(data, cl = 0.95, rob = FALSE, frac.pts.used = 0.80) {
 		}
 
 	sphere <- matrix(rnorm(npoints*p), ncol = p)
-	cntr <- t(apply(sphere, 1, normVec))  # normalized sphere
+	cntr <- t(apply(sphere, 1, .normVec))  # normalized sphere
 	
 	if (!rob) {
 		cov <- var(data)

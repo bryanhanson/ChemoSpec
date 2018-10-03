@@ -84,7 +84,7 @@ plot2Loadings <- function(spectra, pca, loads = c(1,2), tol = 0.05, ...) {
 
 	# Next, if requested, we will label the extreme points on both dimensions
 	
-	if (is.numeric(tol)) labelExtremes(pca$rotation[,loads], spectra$freq, tol)
+	if (is.numeric(tol)) .labelExtremes(pca$rotation[,loads], spectra$freq, tol)
 	
 	res <- data.frame(freq = spectra$freq, load1 = loadings1, load2 = loadings2)
 	return(res)

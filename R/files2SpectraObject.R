@@ -140,8 +140,6 @@
 #' 
 #' @references \url{https://github.com/bryanhanson/ChemoSpec}
 #' 
-#' @seealso The linking of groups with colors is handled by \code{\link{groupNcolor}}.
-#' 
 #' @keywords file
 #' @keywords import
 #' 
@@ -246,7 +244,7 @@ files2SpectraObject <- function(gr.crit = NULL,
 
 	# Go get group assignments & colors, to complete assembly of spectra
 
-	spectra <- groupNcolor(spectra, gr.crit, gr.cols)
+	spectra <- .groupNcolor(spectra, gr.crit, gr.cols)
 	spectra$unit[1] <- freq.unit
 	spectra$unit[2] <- int.unit
 	spectra$desc <- descrip

@@ -107,7 +107,7 @@ mclust3D <- function(data, ellipse = TRUE, rob = FALSE,
 		df1 <- rbind(df1, temp)
 
 		if ((length(w)) > 3 && (ellipse)) { # now gather the ellipsoid points
-			ell <- makeEllipsoid(data[w,], rob = rob, ...)
+			ell <- .makeEllipsoid(data[w,], rob = rob, ...)
 			x <- ell[,1]
 			y <- ell[,2]
 			z <- ell[,3]

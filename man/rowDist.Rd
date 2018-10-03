@@ -19,7 +19,7 @@ An object of class \code{dist}.
 \description{
 This function is a wrapper to compute the distance between rows of a matrix
 using a number of methods.  Some of these are available in package
-\code{\link{stats}} and some in \code{\link[amap]{Dist}} from package \pkg{amap}.
+\code{\link{stats}} and some in \code{\link[amap]{Dist}} from package \code{amap}.
 This function determines which method is requested and then the
 distance calculation is done by the appropriate method. The exception is the
 cosine distance which is calculated locally.
