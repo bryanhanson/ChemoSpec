@@ -1,6 +1,4 @@
 #'
-#'
-#'
 #' Plot Spectra Object
 #' 
 #' Plots the spectra stored in a \code{\link{Spectra}} object.  One may choose
@@ -35,6 +33,9 @@
 #' @param showGrid Logical.  Places light gray vertical lines at each tick mark
 #' if \code{TRUE}.
 #'
+#' @param leg.loc Character; if \code{"none"} no legend will be drawn.
+#' Otherwise, any string acceptable to \code{\link{legend}}.
+#'
 #' @param \dots Additional parameters to be passed to plotting functions.
 #'
 #' @return None.  Side effect is a plot.
@@ -54,7 +55,12 @@
 #' 	 which = c(10, 11), yrange = c(0,1.5),
 #' 	 offset = 0.06, amplify = 10, lab.pos = 0.5)
 #' 
-#' 
+#' # Add a legend at x, y coords
+#' plotSpectra(metMUD1, main = "metMUD1 NMR Data",
+#' 	 which = c(10, 11), yrange = c(0,1.5),
+#' 	 offset = 0.06, amplify = 10, lab.pos = 0.5,
+#'   leg.loc = list(x = 3.2, y = 1.45))
+#'
 #' @export plotSpectra
 #'
 #' @importFrom graphics grid lines text points plot
@@ -63,7 +69,7 @@ plotSpectra <- function(spectra, which = c(1),
 	yrange = range(spectra$data),
 	offset = 0.0, amplify = 1.0,
 	lab.pos = mean(spectra$freq),
-	showGrid = TRUE, ...) {
+	showGrid = TRUE, leg.loc = "none", ...) {
 	
 # Function to plot multiple spectra @ specified expansions & decorate
 # Part of the ChemoSpec package
@@ -96,5 +102,8 @@ plotSpectra <- function(spectra, which = c(1),
 		lab.y <- spectrum[spec.index]
 		text(lab.x, lab.y, labels = spectra$names[n], pos = 3, cex = 0.75)
 		}
+
+	if (all(leg.loc != "none")) .addLegend(spectra, leg.loc, use.sym = FALSE, bty = "n")
+
 	}
 

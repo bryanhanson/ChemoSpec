@@ -45,7 +45,7 @@ plotHCA <- function(spectra, hclst, sub.title, use.sym, leg.loc, ...) {
 
 	cluster <- as.dendrogram(hclst)
 	if (!use.sym) cluster <- dendrapply(cluster, .colLeaf, spectra)
-	cluster <- dendrapply(cluster, shrinkLeaf, spectra)
+	cluster <- dendrapply(cluster, .shrinkLeaf, spectra)
 
 	plot(cluster, sub = sub.title, horiz = FALSE, ...)
 	

@@ -17,7 +17,7 @@ surveySpectra2 <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr
 	# Compute the requested data
 	
 	if (method == "iqr"){
-		y <- aaply(spectra$data, 2, seXyIqr)
+		y <- aaply(spectra$data, 2, .seXyIqr)
 		y <- y[,3] - y[,2]
 		lab <- "iqr"
 		}
@@ -28,19 +28,19 @@ surveySpectra2 <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr
 		}
 
 	if (method == "sem") {
-		y <- aaply(spectra$data, 2, seXy)
+		y <- aaply(spectra$data, 2, .seXy)
 		y <- y[,3] - y[,2]
 		lab <- "sem"
 		}
 
 	if (method == "mad") {
-		y <- aaply(spectra$data, 2, seXyMad)
+		y <- aaply(spectra$data, 2, .seXyMad)
 		y <- y[,3] - y[,2]
 		lab <- "mad"
 		}
 
 	if (method == "sem95") {
-		y <- aaply(spectra$data, 2, seXy95)
+		y <- aaply(spectra$data, 2, .seXy95)
 		y <- y[,3] - y[,2]
 		lab <- "sem95"
 		}

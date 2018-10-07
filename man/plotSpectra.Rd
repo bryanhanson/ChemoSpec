@@ -6,7 +6,7 @@
 \usage{
 plotSpectra(spectra, which = c(1), yrange = range(spectra$data),
   offset = 0, amplify = 1, lab.pos = mean(spectra$freq),
-  showGrid = TRUE, ...)
+  showGrid = TRUE, leg.loc = "none", ...)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
@@ -35,6 +35,9 @@ is desired, give \code{lab.pos} outside the plotted x range.}
 \item{showGrid}{Logical.  Places light gray vertical lines at each tick mark
 if \code{TRUE}.}
 
+\item{leg.loc}{Character; if \code{"none"} no legend will be drawn.
+Otherwise, any string acceptable to \code{\link{legend}}.}
+
 \item{\dots}{Additional parameters to be passed to plotting functions.}
 }
 \value{
@@ -53,6 +56,11 @@ plotSpectra(metMUD1, main = "metMUD1 NMR Data",
 	 which = c(10, 11), yrange = c(0,1.5),
 	 offset = 0.06, amplify = 10, lab.pos = 0.5)
 
+# Add a legend at x, y coords
+plotSpectra(metMUD1, main = "metMUD1 NMR Data",
+	 which = c(10, 11), yrange = c(0,1.5),
+	 offset = 0.06, amplify = 10, lab.pos = 0.5,
+  leg.loc = list(x = 3.2, y = 1.45))
 
 }
 \references{

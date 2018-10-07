@@ -4,6 +4,11 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 5.0.72 2018-10-06
+     + A few more functions were set to non-user-facing status.
+     + plotSpectra gains the option to plot a legend.
+     + Lots of checking against ChemoSpecUtils interaction.
+
 Changes in version 5.0.49 2018-10-03
      + A number of user-facing functions but which users probably never used directly were set to non-user-facing status.  This gives a smaller manual and a simpler help file index.
 

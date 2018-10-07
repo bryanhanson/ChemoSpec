@@ -19,11 +19,11 @@
 #'
 #' @keywords utilities cluster
 #'
-#' @export shrinkLeaf
-#'
+#' @export
+#' @noRd
 #' @importFrom stats is.leaf
 #'
-shrinkLeaf <- function(n, spectra) { # this is called iteratively by dendrapply
+.shrinkLeaf <- function(n, spectra) { # this is called iteratively by dendrapply
 
 # A little trick to color leaves properly, derived from the archives
 # Part of the ChemoSpec package
