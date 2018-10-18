@@ -1,3 +1,7 @@
+template:
+  params:
+    bootswatch: cerulean
+    
 reference:
 - title: "Importing Data"
   contents:
