@@ -4,6 +4,9 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 5.0.xx 2018-10-18
+     + Continued polishing pkgdown site details.
+
 Changes in version 5.0.94 2018-10-17
      + Updated .bib for vignette to work with pkgdown.
      + Setup pkgdown infrastructure.
