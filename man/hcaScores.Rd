@@ -58,8 +58,7 @@ res <- hcaScores(SrE.IR,  pca, scores = c(1:5), main = myt)
 \seealso{
 \code{\link{hclust}} for the underlying function. See
 \code{\link{hcaSpectra}} for HCA of the entire data set stored in the
-\code{\link{Spectra}} object. \code{\link{plotHCA}} for the function that
-actually does the plotting.
+\code{\link{Spectra}} object.
 }
 \author{
 Bryan A. Hanson, DePauw University.

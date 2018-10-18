@@ -59,17 +59,14 @@
 #' z <- c(rnorm(10, -2, 0.5), rnorm(10, 3, 0.5))
 #' x[15] <- y[15] <- z[15] <- 4 # screw up one point
 #' my.truth <- c(rep("Z", 10), rep("Q", 10))
-#' mclust3D(cbind(x, y, z), title = "mclust3D demo",
+#' .mclust3D(cbind(x, y, z), title = "mclust3D demo",
 #' 	 t.pos = "G", truth = my.truth)
 #' }
 #' 
-#' @export mclust3D
+#' @export .mclust3D
+#' @noRd
 #'
-# @importFrom rgl open3d segments3d text3d points3d
-# @importFrom mclust Mclust classError
-# @importFrom RColorBrewer brewer.pal
-#'
-mclust3D <- function(data, ellipse = TRUE, rob = FALSE, 
+.mclust3D <- function(data, ellipse = TRUE, rob = FALSE, 
 	cl = 0.95, frac.pts.used = 0.8, truth = NULL,
 	title = "no title provided", t.pos = NULL, lab.opts = FALSE,
 	use.sym = FALSE, ...) {

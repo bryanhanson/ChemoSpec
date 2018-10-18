@@ -1,30 +1,36 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 5.0.72
-Date: 2018-10-06
-Authors@R: c(person("Bryan A.", "Hanson", role = c("aut", "cre"), email =
-    "hanson@depauw.edu"), person("Mike", "Bostock", role = c("cph", "ctb"),
-    comment = "author of the d3.js library used in plotSpectraJS, http://d3js.org"))
+Version: 5.0.94
+Date: 2018-10-17
+Authors@R: c(
+    person("Bryan A.", "Hanson",
+    role = c("aut", "cre"), email =
+    "hanson@depauw.edu",
+    comment = "ORCID 0000-0003-3536-8246"),
+    person("Mike", "Bostock",
+    role = c("cph", "ctb"),
+    comment = "author of the d3.js library used by plotSpectraJS, http://d3js.org"))
 Description: A collection of functions for top-down exploratory data analysis
-    of spectral data obtained via nuclear magnetic resonance (NMR), infrared (IR) or
-    Raman spectroscopy. Includes functions for plotting and inspecting spectra, peak
-    alignment, hierarchical cluster analysis (HCA), principal components analysis
-    (PCA) and model-based clustering. Robust methods appropriate for this type of
-    high-dimensional data are available. ChemoSpec is designed with metabolomics
-    data sets in mind, where the samples fall into groups such as treatment and
-    control. Graphical output is formatted consistently for publication quality
-    plots. ChemoSpec is intended to be very user friendly and help you get usable
+    of spectral data including nuclear magnetic resonance (NMR), infrared (IR),
+    Raman, X-ray fluorescence (XRF) and other similar types of spectroscopy.
+    Includes functions for plotting and inspecting spectra, peak alignment,
+    hierarchical cluster analysis (HCA), principal components analysis (PCA) and
+    model-based clustering. Robust methods appropriate for this type of high-dimensional
+    data are available. ChemoSpec is designed for structured experiments, such as
+    metabolomics investigations, where the samples fall into treatment and
+    control groups. Graphical output is formatted consistently for publication quality
+    plots. ChemoSpec is intended to be very user friendly and to help you get usable
     results quickly. A vignette covering typical operations is available.
 License: GPL-3
 Depends:
-    R (>= 3.1)
+    R (>= 3.1),
+    ChemoSpecUtils
 Imports:
     plyr,
     stats,
     utils,
-    grDevices,
-    ChemoSpecUtils
+    grDevices
 URL: https://github.com/bryanhanson/ChemoSpec
 ByteCompile: TRUE
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
@@ -51,6 +57,6 @@ Suggests:
     amap,
     signal,
     rgl,
-    readJDX,
+    readJDX (>= 0.3),
     speaq
 RoxygenNote: 6.1.0

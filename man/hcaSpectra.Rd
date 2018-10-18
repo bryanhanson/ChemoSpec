@@ -46,8 +46,7 @@ res <- hcaSpectra(SrE.IR, main = myt)
 \seealso{
 \code{\link{hclust}} for the underlying function.
 \code{\link{hcaScores}} for similar analysis of PCA scores from a
-\code{\link{Spectra}} object. \code{\link{plotHCA}} for the function that
-actually does the plotting.
+\code{\link{Spectra}} object.
 }
 \author{
 Bryan A. Hanson, DePauw University.

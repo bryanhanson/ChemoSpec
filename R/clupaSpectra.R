@@ -32,13 +32,7 @@
 #' 
 #' @examples
 #' 
-#' # July 2017: This function requires pkg speaq which in turn
-#' # requires pkg data.table, which is broken in the CRAN build
-#' # chain.  We make a check of the status so we can pass CRAN!
-#'
-#' if (requireNamespace("speaq", quietly = TRUE)) {
-#'
-#' data(alignMUD)
+##' data(alignMUD)
 #'
 #' plotSpectra(alignMUD, which = 1:20, lab.pos = 4.5, offset = 0.1,
 #'   yrange = c(0, 1900), amp = 500, xlim = c(1.5, 1.8),
@@ -49,7 +43,6 @@
 #'   yrange = c(0, 1900), amp = 500, xlim = c(1.5, 1.8),
 #'   main = "Aligned NMR Spectra (alignMUD)")
 #' 
-#' } # end of namespace check
 #'
 #' @export clupaSpectra
 #'

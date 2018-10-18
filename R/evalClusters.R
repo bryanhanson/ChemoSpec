@@ -48,8 +48,7 @@
 #' @seealso \code{\link{hclust}} for the underlying base function.
 #' \code{\link{hcaSpectra}} for HCA analysis of a \code{\link{Spectra}} object.
 #' \code{\link{hcaScores}} for HCA analysis of PCA scores from a
-#' \code{\link{Spectra}} object.  \code{\link{plotHCA}} for the plotting
-#' function in \code{ChemoSpec}.
+#' \code{\link{Spectra}} object.
 #' 
 #' @references M. Charrad et. al.  "NbClust: An R Package for Determining the
 #' Relevant Number of Clusters in a Data Set."  J. Stat. Soft. vol. 61 no. 6

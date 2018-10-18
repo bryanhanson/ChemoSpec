@@ -4,6 +4,21 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 5.0.94 2018-10-17
+     + Updated .bib for vignette to work with pkgdown.
+     + Setup pkgdown infrastructure.
+     + plotHCA and mclust3D moved to non-user-facing status.
+
+Changes in version 5.0.88 2018-10-14
+     + Freshened package description.
+     + Checked against R devel r75432 which is R 3.5.1 patched.
+     + Removed extra check in clupaSpectra example.
+     + Suggests readJDX > 0.3
+
+Changes in version 5.0.78 2018-10-08
+     + groupNcolor moved to ChemoSpecUtils.
+     + Updated README.md
+
 Changes in version 5.0.72 2018-10-06
      + A few more functions were set to non-user-facing status.
      + plotSpectra gains the option to plot a legend.
@@ -107,7 +122,7 @@ Changes in version 4.3.130 2016-08-05
      + removeFreq needed a drop = FALSE argument for the case where there was just one sample.  Reported by Daniel Montiel-Chicharro.
      + NOTE: check4Gaps may not identify gaps when only 1 spectrum is present.  Need to follow up.
      + More clean up of namespace due to now using roxygen.
- 
+
 Changes in version 4.3.128 2016-07-21
      + Cleaned up a lot of formatting & style issues in documentation.  Merged documentation on selected functions.  Miscellaneous improvements in documentation.
      + removeSample now checks for additional data.
@@ -158,7 +173,7 @@ Changes in version 4.2.8 2016-01-26
      + Minor updates to vignette.
      + surveySpectra2 example added to vignette.
      + Removed the following functions, which will re-appear in a new package, ChemoSpecMarkeR: chooseLvls, cleanSTOCSYpeaks, collapseRowsOrCols, corSpectra, covSpectra, covSpectraJS, sortCrossPeaks.
- 
+
 Changes in version 4.1.15 2015-07-23
      + Labeling in surveySpectra2 changed (removed "relative").
      + getMaxCovByFreq renamed to sortCrossPeaks.  The function now ignores (flexibly) peaks near the diagonal, where the covariance is actually the variance of the peak.  The column names of the return value were made clearer.  Rd file adjusted accordingly.
@@ -325,7 +340,7 @@ Changes in version 1.60-1 2012-12-28
      + Added functions calcSN and findTMS which work with the above functions.
      + Modified getManyCsv so that it warns about deprecation when run.
 
-Changes in version 1.51-2 
+Changes in version 1.51-2
      + Added ... to sumSpectra so one can pass argument tol through to check4Gaps.  Otherwise, for some data sets a gap is detected between each data point, which is annoying at best.
      + Made modifications so that ChemoSpec works with mclust 4.0.  These were begun in 1.51-1 but not completed until this version.
 
@@ -373,10 +388,10 @@ Changes in version 1.48-2 2011-10-19
      + Some small user-invisible changes to make ChemoSpec compatible with R 2.14.0 due out in a few days.
 
 Changes in version 1.48-1 2011-10-19
-     + NOTE: With these changes, some old code may break! Just a littleÉ
+     + NOTE: With these changes, some old code may break! Just a littleï¿½
      + Thanks to Roberto Canteri (RC) of Fondazione Bruno Kessler for bringing some small bugs to my attention, and making some very useful suggestions.  Details below.
      + Added a method argument to normSpectra to pave the way for further options.
-     + Converted sPlotSpectra to use base graphics (instead of ggplot2) so that  existing functions could be used to label points extreme points.  Thus an argument "tol" was added. 
+     + Converted sPlotSpectra to use base graphics (instead of ggplot2) so that  existing functions could be used to label points extreme points.  Thus an argument "tol" was added.
      + Fixed a few help file issues.
      + Fixed a bug in plotHCA (a mis-placed parenthesis; noted by RC)
      + Added a function rowDist, written and suggested by RC, to give more options for distance calculations when doing HCA.  Changed functions hcaScores and hcaSpectra to use this new function, which required that the old argument method be renamed c.method and a new argument called d.method be added.  The full range of distance methods and clustering methods can now be employed.

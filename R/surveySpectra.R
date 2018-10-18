@@ -129,7 +129,7 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
 		dropGroups <- FALSE
 		for (n in 1:length(gr$group)) {
 			if (gr$no.[n] <= 3) {
-				warning("\nGroup ", gr$group[n],
+				message("\nGroup ", gr$group[n],
 			" has 3 or fewer members\n so your stats are not very useful...\n This group has been dropped for display purposes!")
 				rem <- c(rem, gr$group[n])
 				dropGroups <- TRUE

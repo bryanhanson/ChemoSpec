@@ -41,8 +41,7 @@
 #' 
 #' @seealso \code{\link{hclust}} for the underlying function. See
 #' \code{\link{hcaSpectra}} for HCA of the entire data set stored in the
-#' \code{\link{Spectra}} object. \code{\link{plotHCA}} for the function that
-#' actually does the plotting.
+#' \code{\link{Spectra}} object.
 #' 
 #' @references \url{https://github.com/bryanhanson/ChemoSpec}
 #' 
@@ -80,7 +79,7 @@ hcaScores <- function(spectra, pca, scores = c(1:5),
 
 	hclst <- hclust(distance, method = c.method)
 
-	d <- plotHCA(spectra = spectra, hclst = hclst, sub.title = sub.title,
+	d <- .plotHCA(spectra = spectra, hclst = hclst, sub.title = sub.title,
 		use.sym = use.sym, leg.loc = leg.loc, ...)
 	L = list(hclst = hclst, dend = d)
 	return(L)

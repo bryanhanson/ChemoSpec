@@ -31,13 +31,14 @@
 #'
 #' @keywords hplot multivariate cluster
 #'
-#' @export plotHCA
+#' @export .plotHCA
 #'
 #' @importFrom stats as.dendrogram dendrapply
 #' @importFrom graphics plot legend
 #' @importFrom ChemoSpecUtils sumGroups
+#' @noRd
 #'
-plotHCA <- function(spectra, hclst, sub.title, use.sym, leg.loc, ...) {
+.plotHCA <- function(spectra, hclst, sub.title, use.sym, leg.loc, ...) {
 
 # Function to plot HCA results, basically a wrapper to existing methods
 # Part of the ChemoSpec package

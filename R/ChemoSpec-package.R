@@ -32,8 +32,8 @@
 #' @importFrom ChemoSpecUtils .addLegend chkSpectra sumSpectra sumGroups .plotScores
 #' @export  .addLegend chkSpectra sumSpectra sumGroups .plotScores
 #'
-#' @importFrom ChemoSpecUtils removeFreq removeGroup removeSample
-#' @export removeFreq removeGroup removeSample
+#' @importFrom ChemoSpecUtils removeFreq removeGroup removeSample .groupNcolor
+#' @export removeFreq removeGroup removeSample .groupNcolor
 #'
 #' @importFrom ChemoSpecUtils .labelExtremes .plotScoresDecoration .plotScoresCor
 #' @export .labelExtremes .plotScoresDecoration .plotScoresCor

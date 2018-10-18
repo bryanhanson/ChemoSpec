@@ -83,8 +83,7 @@ October 2014.
 \code{\link{hclust}} for the underlying base function.
 \code{\link{hcaSpectra}} for HCA analysis of a \code{\link{Spectra}} object.
 \code{\link{hcaScores}} for HCA analysis of PCA scores from a
-\code{\link{Spectra}} object.  \code{\link{plotHCA}} for the plotting
-function in \code{ChemoSpec}.
+\code{\link{Spectra}} object.
 }
 \author{
 Bryan A. Hanson, DePauw University.

@@ -1,6 +1,4 @@
 #'
-#'
-#'
 #' Determine if a Number is a Whole Number
 #' 
 #' This function determines if a given number is a whole number within a given
