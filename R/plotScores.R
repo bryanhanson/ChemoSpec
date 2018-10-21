@@ -65,7 +65,7 @@ plotScores <- function(spectra, pca,
 	use.sym = FALSE, leg.loc = "topright", ...) {
 
 	.plotScores(spectra, pca,
-	pcs = c(1,2), ellipse = ellipse, tol = tol,
+	pcs = pcs, ellipse = ellipse, tol = tol,
 	use.sym = use.sym, leg.loc = leg.loc, ...)
 
 }
