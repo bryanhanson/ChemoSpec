@@ -2,10 +2,9 @@
 % Please edit documentation in R/removeSampleStub.R
 \name{removeSample}
 \alias{removeSample}
-\title{Remove Groups or Samples from a Spectra or Spectra2D Object}
+\title{Remove Samples from a Spectra or Spectra2D Object}
 \description{
-These functions are used by \code{ChemoSpec} and \code{ChemoSpec2D}, but are
+This function is used by \code{ChemoSpec} and \code{ChemoSpec2D}, but is
 formally part of \code{ChemoSpecUtils}.  You can access
-full documentation via \code{\link[ChemoSpecUtils]{removeGroup}} or
-\code{\link[ChemoSpecUtils]{removeSample}}.
+full documentation via \code{\link[ChemoSpecUtils]{removeSample}}.
 }

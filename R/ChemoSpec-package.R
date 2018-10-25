@@ -38,6 +38,9 @@
 #' @importFrom ChemoSpecUtils .labelExtremes .plotScoresDecoration .plotScoresCor
 #' @export .labelExtremes .plotScoresDecoration .plotScoresCor
 #' 
+#' @importFrom ChemoSpecUtils check4Gaps
+#' @export check4Gaps
+#'
 NULL
 
 

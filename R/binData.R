@@ -69,7 +69,7 @@
 		if (!identical(length(x), length(y))) stop("x and y vectors in binData have different lengths")
 		}
 	chk <- check4Gaps(x, silent = TRUE)
-	if (length(chk) > 1) stop("The data being binned has gaps and cannot be binned accurately")
+	if (nrow(chk) > 1) stop("The data being binned has gaps and cannot be binned accurately")
 	br <- bin.ratio
 	
 	if (!is.null(x)) len <- length(x)
