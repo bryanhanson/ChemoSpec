@@ -1,8 +1,8 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 5.0.109
-Date: 2018-10-22
+Version: 5.0.140
+Date: 2018-10-28
 Authors@R: c(
     person("Bryan A.", "Hanson",
     role = c("aut", "cre"), email =
@@ -25,16 +25,12 @@ Description: A collection of functions for top-down exploratory data analysis
 License: GPL-3
 Depends:
     R (>= 3.1),
-    ChemoSpecUtils
+    ChemoSpecUtils (>= 0.2)
 Imports:
     plyr,
     stats,
     utils,
     grDevices
-URL: https://bryanhanson.github.io/ChemoSpec/, https://github.com/bryanhanson/ChemoSpec
-ByteCompile: TRUE
-BugReports: https://github.com/bryanhanson/ChemoSpec/issues
-VignetteBuilder: knitr
 Suggests:
     IDPmisc,
     knitr,
@@ -54,9 +50,12 @@ Suggests:
     pcaPP,
     jsonlite,
     gsubfn,
-    amap,
     signal,
     rgl,
     readJDX (>= 0.3),
     speaq
+URL: https://bryanhanson.github.io/ChemoSpec/, https://github.com/bryanhanson/ChemoSpec
+BugReports: https://github.com/bryanhanson/ChemoSpec/issues
+ByteCompile: TRUE
+VignetteBuilder: knitr
 RoxygenNote: 6.1.0

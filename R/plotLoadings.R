@@ -45,7 +45,6 @@
 #'
 #' @importFrom graphics plot
 #' @importFrom stats relevel
-# @importFrom lattice xyplot panel.number panel.xyplot
 #'
 plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
 	

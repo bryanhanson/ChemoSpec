@@ -45,7 +45,7 @@
 #' 
 aovPCAloadings <-function(spectra, LM, pca, plot = 1, loads = 1, ref = 1, ...) {
 
-#  Function to plot LoadingsLoadings of ANOVA-PCA per Harrington
+#  Function to plot Loadings of ANOVA-PCA per Harrington
 #  Bryan Hanson and Matt Keinsley
 #  DePauw University, June 2011
 

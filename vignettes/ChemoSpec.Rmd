@@ -413,7 +413,6 @@ SD plots & & \texttt{pcaDiag}\\
 \textbf{Choosing the correct no. of PCs} & & \\
 \hline
 scree plot & & \texttt{plotScree}\\
-alternate style scree plot & & \texttt{plotScree2}\\
 bootstrap analysis (classical PCA only) & & \texttt{cv\_pcaSpectra} \\
 &&\\
 
@@ -455,9 +454,9 @@ You can choose \texttt{"none"} for no ellipses, \texttt{"cls"} for classically c
 
 
 ```{r Chunk10a, fig.cap = "\\label{classPCA}Classical PCA scores."}
-class <- c_pcaSpectra(SrE3.IR,
+c_res <- c_pcaSpectra(SrE3.IR,
   choice = "noscale")
-plotScores(SrE3.IR, class,
+plotScores(SrE3.IR, c_res,
   main = myt,
   pcs = c(1,2),
   ellipse = "rob",
@@ -465,9 +464,9 @@ plotScores(SrE3.IR, class,
 ```
 
 ```{r Chunk21, fig.cap = "\\label{robPCA}Robust PCA scores."}
-robust <- r_pcaSpectra(SrE3.IR,
+r_res <- r_pcaSpectra(SrE3.IR,
   choice = "noscale")
-plotScores(SrE3.IR, robust,
+plotScores(SrE3.IR, r_res,
   main = myt,
   pcs = c(1,2),
   ellipse = "rob",
@@ -478,13 +477,13 @@ Plots such as shown in Figures \ref{classPCA} and \ref{robPCA} can give you an i
 
 
 ```{r Chunk22, fig.cap = "\\label{OD}Diagnostics: orthogonal distances."  }
-diagnostics <- pcaDiag(SrE3.IR, class,
+diagnostics <- pcaDiag(SrE3.IR, c_res,
   pcs = 2,
   plot = "OD")
 ```
 
 ```{r Chunk23, fig.cap = "\\label{SD}Diagnostics: score distances." }
-diagnostics <- pcaDiag(SrE3.IR, class,
+diagnostics <- pcaDiag(SrE3.IR, c_res,
   pcs = 2,
   plot = "SD")
 ```
@@ -495,11 +494,11 @@ If you are using classical PCA, you can also get a sense of the number of PCs ne
 
 
 ```{r Chunk24, fig.cap = "\\label{scree}Scree plot."}
-plotScree(class, main = myt)
+plotScree(c_res, main = myt)
 ```
 
 ```{r Chunk24a, fig.cap = "\\label{scree2}Alternate style scree plot."}
-plotScree2(class, main = myt)
+plotScree(c_res, style = "alt", main = myt)
 ```
 
 ```{r Chunk25, fig.cap = "\\label{boot}Bootstrap analysis for no. of principal components."  }
@@ -510,7 +509,7 @@ out <- cv_pcaSpectra(SrE3.IR,
 Now let's turn to viewing scores in 3D.  There are currently two options in \texttt{ChemoSpec}: plotting using \texttt{lattice} graphics, which produces a static plot that you have to adjust manually, and an interactive plot based on package \texttt{rgl}.  Probably the best place to start is with \texttt{plotScoresRGL}.  It it well suited to exploring data, and can be printed out in high quality.  However, the nature of the \texttt{openGL} graphics device means that the title and the legend move with the data, so this may not give a hardcopy suitable for publications.  This interactive plot cannot be invoked in this document, but here are the necessary commands:
 
 ```{r Chunk26,  results = "hide", eval = FALSE }
-plotScoresRGL(SrE3.IR, class,
+plotScoresRGL(SrE3.IR, c_res,
   main = "S. repens IR Spectra",
   leg.pos = "A",
   t.pos = "B") # not run - it's interactive!
@@ -520,7 +519,7 @@ For full details, of course take a look at the manual page, \texttt{?plotScoresR
 
 
 ```{r Chunk27, fig.cap = "\\label{s3D}Plotting scores in 3D using plotScores3D.", fig.dim = c(7,7), out.width = "\\linewidth", out.height = "\\linewidth"}
-plotScores3D(SrE3.IR, class,
+plotScores3D(SrE3.IR, c_res,
   main = myt,
   ellipse = FALSE)
 ```
@@ -529,7 +528,7 @@ In addition to the scores, PCA also produces loadings which tell you how each va
 
 
 ```{r Chunk29, fig.cap = "\\label{load}Loading plot.", fig.dim = c(7,7), out.width = "\\linewidth", out.height = "\\linewidth"}
-plotLoadings(SrE3.IR, class,
+plotLoadings(SrE3.IR, c_res,
   main = myt,
   loads = c(1, 2),
   ref = 1)
@@ -539,7 +538,7 @@ You can also plot one loading against another, using function \texttt{plot2Loadi
 
 
 ```{r Chunk30, fig.cap = "\\label{load2}Plotting one loading vs. another."   }
-res <- plot2Loadings(SrE3.IR, class,
+res <- plot2Loadings(SrE3.IR, c_res,
   main = myt,
   loads = c(1, 2),
   tol = 0.002)
@@ -549,14 +548,14 @@ However, a potentially more useful approach is to use an s-plot to determine whi
 
 
 ```{r Chunk30a,  fig.cap = "\\label{splot}s-Plot to identify influential frequencies."  }
-spt <- sPlotSpectra(SrE3.IR, class,
+spt <- sPlotSpectra(SrE3.IR, c_res,
   main = myt,
   pc = 1,
   tol = 0.001)
 ```
 
 ```{r Chunk30b,  fig.cap = "\\label{splot2}s-Plot detail."  }
-spt <- sPlotSpectra(SrE3.IR, class,
+spt <- sPlotSpectra(SrE3.IR, c_res,
   main = "Detail of s-Plot",
   pc = 1,
   tol = 0.05,
@@ -567,7 +566,7 @@ spt <- sPlotSpectra(SrE3.IR, class,
 Finally, you can blend the ideas of PCA and HCA.  Since PCA eliminates the noise in a data set (after you have selected the important PCs), you can carry out HCA on the PCA scores, as now the scores represent the cleaned up data.  The result using the \texttt{SrE.IR} data set are not different than doing HCA on the raw spectra, so we won't illustrate it, but the command would be:
 
 ```{r Chunk31,  results = "hide", eval = FALSE }
-hcaScores(SrE3.IR,  class,
+hcaScores(SrE3.IR,  c_res,
   scores = c(1:5),
   main = myt)
 ```
@@ -602,19 +601,19 @@ PCA and HCA are techniques which are unsupervised and assume no underlying model
 
 
 ```{r  Chunk35, fig.cap = "\\label{mclust1}mclust chooses an optimal model.", results = "hide"}
-model <- mclustSpectra(SrE3.IR, class,
+model <- mclustSpectra(SrE3.IR, c_res,
   plot = "BIC",
   main = myt)
 ```
 
 ```{r Chunk36, fig.cap = "\\label{mclust2}mclust's thoughts on the matter.", results = "hide"}
-model <- mclustSpectra(SrE3.IR, class,
+model <- mclustSpectra(SrE3.IR, c_res,
   plot = "proj",
   main = myt)
 ```
 
 ```{r Chunk37, fig.cap = "\\label{mclust3}Comparing mclust results to the TRUTH.", results = "hide"}
-model <- mclustSpectra(SrE3.IR, class,
+model <- mclustSpectra(SrE3.IR, c_res,
   plot = "errors",
   main = myt,
   truth = SrE3.IR$groups)
@@ -624,7 +623,7 @@ You can also do a similar analysis in 3D, using \texttt{mclust3dSpectra}.  This 
 
 ```{r Chunk33,  results = "hide", eval = FALSE }
 # not run - it's interactive!
-mclust3dSpectra(SrE3.IR, class)
+mclust3dSpectra(SrE3.IR, c_res)
 ```
 
 You have all the options here that you do with \texttt{plotScoresRGL}, namely, classical, robust or no ellipses, control of the ellipse details, and labeling of extreme points.
