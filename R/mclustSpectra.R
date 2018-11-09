@@ -54,6 +54,8 @@ mclustSpectra <- function(spectra, pca, pcs = c(1:3), dims = c(1,2),
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, Dec 2009
 
+	.chkArgs(mode = 12L)
+	
 	if (!requireNamespace("mclust", quietly = TRUE)) {
 		stop("You need to install package mclust to use this function")
 	}

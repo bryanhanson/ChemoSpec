@@ -48,6 +48,7 @@ hmapSpectra <- function(spectra, ...) {
 	# Bryan Hanson, DePauw Univ, July 2010
 	# Part of the ChemoSpec package
 
+	.chkArgs(mode = 11L)
 	chkSpectra(spectra)
 
 	if (!requireNamespace("seriation", quietly = TRUE)) {

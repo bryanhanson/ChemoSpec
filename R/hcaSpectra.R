@@ -55,7 +55,7 @@ hcaSpectra <- function(spectra,
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, June 2008
 
-	if (missing(spectra)) stop("No spectral data provided")
+	.chkArgs(mode = 11L)
 	chkSpectra(spectra)	
 	
 	if (use.sym) spectra$names <- paste(spectra$alt.sym, spectra$names, sep = " ")

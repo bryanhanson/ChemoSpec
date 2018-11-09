@@ -56,6 +56,8 @@ aovPCAscores <- function(spectra, LM, plot = 1, type = "class", choice = NULL, .
 
 # LM is the list of matrices from aov_pcaSpectra
 
+	.chkArgs(mode = 11L)
+	
 	if (plot > length(LM)){
 		stop("Error, matrix to be plotted does not exist. Please choose a different plot!")}
 	
@@ -68,9 +70,9 @@ aovPCAscores <- function(spectra, LM, plot = 1, type = "class", choice = NULL, .
 	spectra$data <- LM[[plot]] + LM$Res.Error
 
 	if (is.null(choice)) choice = "noscale"
-	if (type == "class") pca <- c_pcaSpectra(spectra, choice = choice, cent = FALSE)
-	if (type == "rob") pca <- r_pcaSpectra(spectra, choice = choice)
+	if (type == "class") so <- c_pcaSpectra(spectra, choice = choice, cent = FALSE)
+	if (type == "rob") so <- r_pcaSpectra(spectra, choice = choice)
 
-	plotScores(spectra, pca, ...)	# at this point, just a typical score plot
-	return(pca)
+	plotScores(spectra, so, ...)	# at this point, just a typical score plot
+	return(so)
 	}

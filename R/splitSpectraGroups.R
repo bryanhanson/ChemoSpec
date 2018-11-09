@@ -81,7 +81,7 @@ splitSpectraGroups <- function(spectra, inst = NULL, rep.cols = NULL, ...) {
 # with a new one corresponding to the new levels.
 # This is different effect than conColScheme.
 
-	if (missing(spectra)) stop("No spectral data set provided")
+	.chkArgs(mode = 11L)
 	chkSpectra(spectra)
 	if (is.null(inst)) stop("No splitting instructions provided")
 

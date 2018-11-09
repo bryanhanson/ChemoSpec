@@ -60,7 +60,7 @@ c_pcaSpectra <- function(spectra, choice = "noscale", cent = TRUE) {
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, Sept 2009
 	
-	if (missing(spectra)) stop("No spectral data set passed to PCA")
+	.chkArgs(mode = 11L)
 	
 	choices <- c("noscale", "autoscale", "Pareto") # trap for invalid scaling method
 	check <- choice %in% choices

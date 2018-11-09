@@ -42,7 +42,7 @@ binSpectra <- function(spectra, bin.ratio) {
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, Nov 2009
 
-	if (missing(spectra)) stop("No spectral data provided")
+	.chkArgs(mode = 11L)
 	if (missing(bin.ratio)) stop("No bin.ratio specified")
 	if (!missing(bin.ratio)) {
 		if (bin.ratio <= 1) stop("bin.ratio must > 1")

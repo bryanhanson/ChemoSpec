@@ -48,7 +48,7 @@ sgfSpectra <- function(spectra, m = 0, ...) {
 		stop("You need to install package signal to use this function")
 		}	
 
-	if (missing(spectra)) stop("No spectral data provided")
+	.chkArgs(mode = 11L)
 	chkSpectra(spectra)
 	
 	

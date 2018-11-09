@@ -9,6 +9,7 @@ surveySpectra2 <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, May 2015
 
+	.chkArgs(mode = 11L)
 	chkSpectra(spectra)
 	
 	x <- spectra$freq

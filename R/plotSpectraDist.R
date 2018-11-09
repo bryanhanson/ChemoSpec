@@ -47,9 +47,7 @@ plotSpectraDist <- function(spectra, method = "pearson", ref = 1, labels = TRUE,
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, March 2016
 	
-	#print(length(ref))
-	#if (length(ref > 1L)) stop("ref should be a single number")
-	if (missing(spectra)) stop("No spectral data provided")
+	.chkArgs(mode = 11L)
 	chkSpectra(spectra)
 	
 	DM <- as.matrix(rowDist(spectra$data, method = method))

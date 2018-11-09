@@ -71,6 +71,7 @@ plot = c("OD", "SD"), use.sym = FALSE, ...) {
 # Function for PCA Diagnostic Plots (modified from Filzmosers version in {chemometrics})
 # Part of the ChemoSpec package.  Bryan Hanson, DePauw Univ, Sept 2009
 
+	.chkArgs(mode = 11L) # pca cannot be checked, see next line
 	if ("prcomp" %in% class(pca)) pca <- .q2rPCA(pca)
 	X <- spectra$data
 	X.pca <- pca

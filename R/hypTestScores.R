@@ -70,10 +70,7 @@ hypTestScores <- function(spectra, pca, pcs = 1:3, fac = NULL, ...) {
 # This conducts a very simple hypothesis test, no contrasts or projections
 # Fancier processing might be possible by using ... to pass along lm options
 
-	if (missing(spectra)) stop("No spectral data set provided")
-	if (missing(pca)) stop("No pca results provided")
-	if (!("princomp" %in% class(pca) || "prcomp" %in% class(pca)))
-		stop("Your pca results look corrupt!")
+	.chkArgs(mode = 12L)
 	if (is.null(fac)) stop("No factors specified")
 	chkSpectra(spectra)
 	

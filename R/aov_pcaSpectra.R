@@ -65,11 +65,8 @@ aov_pcaSpectra <-function(spectra, fac) {
 #  Matt Keinsley & Bryan Hanson
 #  DePauw University, Nov. 2010 onward (completed July 2011)
 
-# spectra must be an object of class Spectra from ChemoSpec
-# fac is a vector character strings giving the names of slots in spectra
-
-	if (missing(spectra)){
-		stop("No spectral data set given")}
+	.chkArgs(mode = 11L)
+	
 	if (length(fac) > 3 ) {
 		stop("Cannot process more than 3 factors!")}
 	chkSpectra(spectra)

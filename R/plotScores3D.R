@@ -84,8 +84,9 @@ plotScores3D <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE
 		stop("You need to install package grid to use this function")
 	}
 
-	if (!length(pcs) == 3) stop("Please give exactly 3 PCs to plot")
+	.chkArgs(mode = 12L)
 	chkSpectra(spectra)
+	if (!length(pcs) == 3) stop("Please give exactly 3 PCs to plot")
 
 	x <- pca$x[, pcs[1]] # organize a few things
 	y <- pca$x[, pcs[2]]

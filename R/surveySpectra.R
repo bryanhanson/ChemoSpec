@@ -67,6 +67,7 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
 		stop("You need to install package lattice to use this function")
 	}
 
+	.chkArgs(mode = 11L)
 	chkSpectra(spectra)
 	
 	# Organize and compute the requested data

@@ -75,7 +75,7 @@ plotSpectra <- function(spectra, which = c(1),
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, June 2009
 
-	if (missing(spectra)) stop("No spectral data provided")
+	.chkArgs(mode = 11L)
 	chkSpectra(spectra)
 	
 	# set up and plot the first spectrum

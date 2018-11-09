@@ -72,7 +72,7 @@ normSpectra <- function(spectra, method = "PQN", RangeExpress = NULL) {
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, Nov 2009
 
-	if (missing(spectra)) stop("No spectral data provided")
+	.chkArgs(mode = 11L)
 	chkSpectra(spectra)
 
 # normalize using the probablistic quotient normalization (PQN)

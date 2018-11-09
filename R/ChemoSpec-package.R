@@ -29,8 +29,8 @@
 #'
 #  This import/export business based on stackoverflow.com/a/35118850/633251
 #'
-#' @importFrom ChemoSpecUtils rowDist hcaScores .shrinkLeaf .colLeaf .plotHCA
-#' @export rowDist hcaScores .shrinkLeaf .colLeaf .plotHCA
+#' @importFrom ChemoSpecUtils rowDist hcaScores .shrinkLeaf .colLeaf .plotHCA .chkArgs
+#' @export rowDist hcaScores .shrinkLeaf .colLeaf .plotHCA .chkArgs
 #'
 #' @importFrom ChemoSpecUtils chkSpectra sumSpectra sumGroups check4Gaps
 #' @export  chkSpectra sumSpectra sumGroups check4Gaps

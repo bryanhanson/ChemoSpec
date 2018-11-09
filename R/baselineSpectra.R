@@ -64,6 +64,8 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, ...) {
 	# "method" is not a formal argument for compatibility with baseline
 	# but we do need it if processing locally.
 	
+	.chkArgs(mode = 11L)
+	
 	dots <- list(...)
 	linear <- FALSE
 	if (any(names(dots) == "method")) {

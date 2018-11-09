@@ -4,10 +4,10 @@
 \alias{loopThruSpectra}
 \title{Display the Spectra in a Spectra Object One at a Time}
 \usage{
-loopThruSpectra(Spectra, ...)
+loopThruSpectra(spectra, ...)
 }
 \arguments{
-\item{Spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
 
 \item{\dots}{Parameters to be passed downstream.}
 }

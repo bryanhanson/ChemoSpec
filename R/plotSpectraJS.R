@@ -77,7 +77,7 @@ plotSpectraJS <- function(spectra, which = NULL, browser = NULL, minify = TRUE) 
 	# Bryan A. Hanson, DePauw University, February 2015
 	# This is the R front end controlling everything
 
-	if (missing(spectra)) stop("No spectral data provided")
+	.chkArgs(mode = 11L)
 	chkSpectra(spectra)
 
 	if (!is.null(which)) {

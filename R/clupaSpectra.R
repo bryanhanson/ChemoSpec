@@ -54,6 +54,8 @@ clupaSpectra <- function(spectra, bT = NULL, ...) {
 	# Part of the ChemoSpec package
 	# Bryan Hanson, DePauw University, January 2015
 
+	.chkArgs(mode = 11L)
+	
 	if (!requireNamespace("speaq", quietly = TRUE)) {
 		stop("You need to install package speaq to use this function")
 		}

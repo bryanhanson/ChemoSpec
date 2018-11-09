@@ -85,6 +85,8 @@ mclust3dSpectra <- function(spectra, pca, pcs = c(1:3),
 # Bryan Hanson, DePauw University, Dec 2009
 # Part of the ChemoSpec package
 
+	.chkArgs(mode = 12L)
+	
 	mod <- .mclust3D(pca$x[,pcs], ellipse = ellipse, rob = rob, cl = cl,
 		frac.pts.used = frac.pts.used,
 		truth = truth, title = title, t.pos = t.pos, lab.opts = lab.opts,

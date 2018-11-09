@@ -68,9 +68,7 @@ cv_pcaSpectra <- function (spectra, pcs, choice = "noscale", repl = 50, segments
 		stop("You need to install package pls to use this function")
 	}
 
-	if (missing(spectra)) stop("No spectral data set passed to PCA")
-	if (!class(spectra) == "Spectra") stop("Your spectral data set looks corrupt!")
-	
+	.chkArgs(mode = 11L)	
 	choices <- c("noscale", "autoscale", "Pareto") # trap for invalid scaling method
 	check <- choice %in% choices
 	if (!check) stop("The choice of scaling parameter was invalid")

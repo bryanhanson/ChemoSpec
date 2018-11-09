@@ -88,8 +88,9 @@ plotScoresRGL <- function(spectra, pca, pcs = c(1:3),
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, Dec 2009
 
-	if (!length(pcs) == 3) stop("Please give exactly 3 PCs to plot")
+	.chkArgs(mode = 12L)
 	chkSpectra(spectra)
+	if (!length(pcs) == 3) stop("Please give exactly 3 PCs to plot")
 
 	x <- pca$x[, pcs[1]]
 	y <- pca$x[, pcs[2]]

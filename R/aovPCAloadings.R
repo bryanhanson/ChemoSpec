@@ -51,7 +51,9 @@ aovPCAloadings <-function(spectra, LM, pca, plot = 1, loads = 1, ref = 1, ...) {
 
 #  LM is the output from aov_pcaSpectra (a list of matrices)
 
+	.chkArgs(mode = 11L)
 	chkSpectra(spectra)
+	
 	if (plot > length(LM)){
 		stop("Error, plot does not exist. Please choose a different plot!")}
 

@@ -4,6 +4,9 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 5.0.165 2018-11-09
+     + Consistent argument checking implemented via ChemoSpecUtils::.chkArgs.
+
 Changes in version 5.0.140 2018-10-28
      + plotScree2 deprecated.  The same plot can now be made with plotScree(pca, style = "alt").
      + plotScores, plotScree made generic and moved to ChemoSpecUtils.

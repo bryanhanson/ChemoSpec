@@ -50,7 +50,7 @@ r_pcaSpectra <- function(spectra, choice = "noscale") {
 		stop("You need to install package pcaPP to use this function")
 	}
 	
-	if (missing(spectra)) stop("No spectral data set provided")
+	.chkArgs(mode = 11L)
 	chkSpectra(spectra)
 	
 	choices <- c("noscale", "mad") # trap for invalid scaling method

@@ -50,7 +50,7 @@ sampleDistSpectra <- function(spectra, method = "pearson", plot = TRUE, ...) {
 		stop("You need to install package lattice to use this function")
 	}
 	
-	if (missing(spectra)) stop("No spectral data provided")
+	.chkArgs(mode = 11L)
 	chkSpectra(spectra)
 
 	M <- rowDist(spectra$data, method)

@@ -91,6 +91,8 @@ evalClusters <- function(spectra, pkg = "NbClust", hclst = NULL,
 # Part of the ChemoSpec package
 # Bryan Hanson, DePauw University, Dec 2014
 
+	.chkArgs(mode = 11L)
+	
 	if (pkg == "NbClust") {
 		if (!requireNamespace("NbClust", quietly = TRUE)) {
 			stop("You need install package NbClust to use this function/option")

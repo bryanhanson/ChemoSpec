@@ -56,10 +56,7 @@ plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
 		stop("You need to install package lattice to use this function")
 	}
 	
-	if (missing(spectra)) stop("No spectral data set provided")
-	if (missing(pca)) stop("No PCA results provided")
-	if (!class(spectra) == "Spectra") stop("Your spectral data set looks corrupt!")
-	if (!("princomp" %in% class(pca) || "prcomp" %in% class(pca))) stop("Your pca results look corrupt!")
+	.chkArgs(mode = 12L)
 	
 	# Stack the requested data into a data frame for plotting
 	

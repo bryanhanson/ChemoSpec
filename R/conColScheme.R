@@ -42,7 +42,8 @@ conColScheme <- function(spectra, old = levels(as.factor(spectra$colors)), new =
 # Part of ChemoSpec package
 # Bryan Hanson, DePauw Univ, Dec 2009
 	
-	chkSpectra(spectra) # verify it's legit
+	.chkArgs(mode = 11L)
+	chkSpectra(spectra)
 	if (!length(old) == length(new)) stop("Old and new color schemes not of same length")
 	new.spec <- spectra
 	
