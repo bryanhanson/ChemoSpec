@@ -76,7 +76,7 @@ desc <- packageDescription("ChemoSpec")
 
 # Stuff specifically for knitr:
 
-#opts_chunk$set(out.width = "0.8\\textwidth", fig.align = "center", fig.width = 7, fig.height = 7, tidy = FALSE, tidy.opts = list(width.cutoff = 25), cache = FALSE)
+#opts_chunk$set(eval = FALSE)
 ```
 
 This vignette is based upon \texttt{ChemoSpec} version `r desc$Version`.
@@ -370,8 +370,7 @@ Notice that \texttt{sumSpectra} has identified a gap in the data set.  You can s
 
 
 ```{r Chunk7, fig.cap = "\\label{gaps}Identifying gaps in a data set."}
-check4Gaps(SrE3.IR$freq, SrE3.IR$data[1,],
-  plot = TRUE)
+check4Gaps(SrE3.IR$freq, SrE3.IR$data[1,])
 ```
 
 # Exploratory Data Analysis

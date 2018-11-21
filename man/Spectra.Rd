@@ -30,15 +30,12 @@ therefore \cr \tab \tab should probably be kept to 40 characters or less.\cr
 - attr \tab chr "Spectra" \tab The S3 class designation.\cr }
 }
 
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
-}
 \seealso{
 \code{\link{sumSpectra}} to summarize a \code{Spectra} object.
 \code{\link{sumGroups}} to summarize group membership of a \code{Spectra}
 object. \code{\link{chkSpectra}} to verify the integrity of a
 \code{Spectra} object. \code{\link{colorSymbol}} for a discussion of color
-options.
+options. Finally, additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

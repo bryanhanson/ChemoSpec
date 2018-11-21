@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Scree Plots of PCA Results for a Spectra Object — plotScree • ChemoSpec</title>
+<title>Scree Plots from PCA or MIA Analysis of a Spectra or Spectra2D Object — plotScree • ChemoSpec</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -32,11 +32,11 @@
 
 
 
-<meta property="og:title" content="Scree Plots of PCA Results for a Spectra Object — plotScree" />
+<meta property="og:title" content="Scree Plots from PCA or MIA Analysis of a Spectra or Spectra2D Object — plotScree" />
 
-<meta property="og:description" content="Functions to draw a traditional scree plot or an alternative that is perhaps
-more useful.  These illustrate the importance of the components in a PCA
-analysis." />
+<meta property="og:description" content="This function is used by ChemoSpec and ChemoSpec2D, but is
+formally part of ChemoSpecUtils.  You can access
+full documentation via plotScree." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -66,7 +66,7 @@ analysis." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.96</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.165</span>
       </span>
     </div>
 
@@ -83,6 +83,9 @@ analysis." />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -105,91 +108,26 @@ analysis." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Scree Plots of PCA Results for a Spectra Object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/bryanhanson/ChemoSpec/blob/master/R/plotScree.R'><code>R/plotScree.R</code></a>, <a href='https://github.com/bryanhanson/ChemoSpec/blob/master/R/plotScree2.R'><code>R/plotScree2.R</code></a></small>
+    <h1>Scree Plots from PCA or MIA Analysis of a Spectra or Spectra2D Object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/bryanhanson/ChemoSpec/blob/master/R/plotScreeStub.R'><code>R/plotScreeStub.R</code></a></small>
     <div class="hidden name"><code>plotScree.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Functions to draw a traditional scree plot or an alternative that is perhaps
-more useful.  These illustrate the importance of the components in a PCA
-analysis.</p>
+    <p>This function is used by <code>ChemoSpec</code> and <code>ChemoSpec2D</code>, but is
+formally part of <code>ChemoSpecUtils</code>.  You can access
+full documentation via <code><a href='http://www.rdocumentation.org/packages/ChemoSpecUtils/topics/plotScree'>plotScree</a></code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plotScree</span>(<span class='no'>pca</span>, <span class='no'>...</span>)
+        
 
-<span class='fu'>plotScree2</span>(<span class='no'>pca</span>, <span class='no'>...</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>pca</th>
-      <td><p>An object of class <code>prcomp</code>, modified to include a
-list element called <code>$method</code>, a character string describing the
-pre-processing carried out and the type of PCA performed (it appears on the
-plot).  This is automatically provided if <code>ChemoSpec</code> functions
-<code><a href='c_pcaSpectra.html'>c_pcaSpectra</a></code> or <code><a href='r_pcaSpectra.html'>r_pcaSpectra</a></code> were used to create
-<code>pca</code>.</p></td>
-    </tr>
-    <tr>
-      <th>&#8230;</th>
-      <td><p>Additional parameters to be passed to plotting functions.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>None.  Side effect is a plot.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>If you add <code>$method</code> to the PCA results from other packages, this will
-plot a scree plot for any PCA results, not just those from
-<code><a href='Spectra.html'>Spectra</a></code> objects.</p>
-    
-    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
-
-    <ul>
-<li><p><code>plotScree</code>: Traditional scree plot</p></li>
-<li><p><code>plotScree2</code>: Alternate scree plot</p></li>
-</ul>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>The idea for the alternative style plot came from the NIR-Quimiometria
- blog by jrcuesta, at <a href='https://nir-quimiometria.blogspot.com/2012/02/pca-for-nir-spectrapart-004-projections.html'>https://nir-quimiometria.blogspot.com/2012/02/pca-for-nir-spectrapart-004-projections.html</a></p>
-<p><a href='https://github.com/bryanhanson/ChemoSpec'>https://github.com/bryanhanson/ChemoSpec</a></p>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>data</span>(<span class='no'>metMUD1</span>)
-<span class='no'>pca</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='c_pcaSpectra.html'>c_pcaSpectra</a></span>(<span class='no'>metMUD1</span>)
-<span class='fu'>plotScree</span>(<span class='no'>pca</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"metMUD1 NMR Data"</span>)</div><div class='img'><img src='plotScree-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotScree2</span>(<span class='no'>pca</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"metMUD1 NMR Data"</span>)</div><div class='img'><img src='plotScree-2.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#functions">Functions</a></li>
-
-      <li><a href="#references">References</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    
-Bryan A. Hanson, DePauw University.
+                </ul>
 
   </div>
 </div>

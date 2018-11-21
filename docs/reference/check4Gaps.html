@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check for Missing Values (Gaps) in a Spectra Object — check4Gaps • ChemoSpec</title>
+<title>Check for Discontinuities (Gaps) in a Vector &amp; Optionally Make a Plot — check4Gaps • ChemoSpec</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -32,14 +32,11 @@
 
 
 
-<meta property="og:title" content="Check for Missing Values (Gaps) in a Spectra Object — check4Gaps" />
+<meta property="og:title" content="Check for Discontinuities (Gaps) in a Vector &amp; Optionally Make a Plot — check4Gaps" />
 
-<meta property="og:description" content="This function may be used with a Spectra object to see if
-there are any gaps or discontinuities in the frequency axis.  Gaps may arise
-when unwanted frequencies are removed (e.g, water peaks in 1H NMR, or
-uninteresting regions in any kind of spectroscopy).  As written, it can be
-used to check for gaps in any appropriate numeric vector.  A plot of the
-gaps is optional." />
+<meta property="og:description" content="This function is used by ChemoSpec and ChemoSpec2D, but is
+formally part of ChemoSpecUtils.  You can access
+full documentation via check4Gaps." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +66,7 @@ gaps is optional." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.96</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.165</span>
       </span>
     </div>
 
@@ -86,6 +83,9 @@ gaps is optional." />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -108,119 +108,26 @@ gaps is optional." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check for Missing Values (Gaps) in a Spectra Object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/bryanhanson/ChemoSpec/blob/master/R/check4Gaps.R'><code>R/check4Gaps.R</code></a></small>
+    <h1>Check for Discontinuities (Gaps) in a Vector &amp; Optionally Make a Plot</h1>
+    <small class="dont-index">Source: <a href='https://github.com/bryanhanson/ChemoSpec/blob/master/R/check4GapsStub.R'><code>R/check4GapsStub.R</code></a></small>
     <div class="hidden name"><code>check4Gaps.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function may be used with a <code><a href='Spectra.html'>Spectra</a></code> object to see if
-there are any gaps or discontinuities in the frequency axis.  Gaps may arise
-when unwanted frequencies are removed (e.g, water peaks in 1H NMR, or
-uninteresting regions in any kind of spectroscopy).  As written, it can be
-used to check for gaps in any appropriate numeric vector.  A plot of the
-gaps is optional.</p>
+    <p>This function is used by <code>ChemoSpec</code> and <code>ChemoSpec2D</code>, but is
+formally part of <code>ChemoSpecUtils</code>.  You can access
+full documentation via <code><a href='http://www.rdocumentation.org/packages/ChemoSpecUtils/topics/check4Gaps'>check4Gaps</a></code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>check4Gaps</span>(<span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>0.01</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>A numeric vector to be checked for gaps.</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>An optional vector of y-values which correspond to the <code>x</code>
-values.  Only needed if <code>plot = TRUE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>tol</th>
-      <td><p>A number indicating the tolerance for checking to see if the step
-between successive <code>x</code> values are the same.  Depending upon how the
-<code>x</code> values are stored and rounded, you may need to change the value of
-<code>tol</code> to avoid flagging trivial "gaps".</p></td>
-    </tr>
-    <tr>
-      <th>plot</th>
-      <td><p>Logical indicating if a plot of the gaps should be made.  If
-<code>TRUE</code>, <code>y</code> must be provided.  The plot is labeled consistent with
-calling this function on a <code><a href='Spectra.html'>Spectra</a></code> object.</p></td>
-    </tr>
-    <tr>
-      <th>silent</th>
-      <td><p>Logical indicating a "no gap" condition (return value is
-<code>FALSE</code>) should not be reported to the console.  Important because
-<code>check4Gaps</code> is called iteratively by other functions.</p></td>
-    </tr>
-    <tr>
-      <th>&#8230;</th>
-      <td><p>Other parameters to be passed to the plot routines if
-<code>plot = TRUE</code>, e.g. <code>xlim</code>.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+        
 
-    <p>A data frame giving the data chunks found, with one chunk per line.
-Also a plot if requested.  In the event there are no gaps found,
-<code>FALSE</code> is returned.</p>
-<dt>beg.freq </dt><dd><p>The first frequency value in a
-given data chunk.</p></dd> <dt>end.freq </dt><dd><p>The last frequency value in a given data
-chunk.</p></dd> <dt>size </dt><dd><p>The length (in frequency units) of the data chunk.</p></dd>
-<dt>beg.indx </dt><dd><p>The index of the first frequency value in the data chunk.</p></dd>
-<dt>eng.indx </dt><dd><p>The index of the last frequency value in the data chunk.</p></dd>
-
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The basic procedure is to compare x[n + 1] - x[n] for successive values of
-n.  When this value jumps, there is a gap which is flagged. <code>beg.indx</code>
-and <code>end.indx</code> will always be contiguous as indices must be; it is the
-<code>x</code> values that jump or have the gap.  The indices are provided as they
-are more convenient in some programming contexts.  If not assigned, the
-result appears at the console.</p>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p><a href='https://github.com/bryanhanson/ChemoSpec'>https://github.com/bryanhanson/ChemoSpec</a></p>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>seq</span>(<span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>0.1</span>)
-<span class='no'>remove</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='fl'>8</span>:<span class='fl'>11</span>, <span class='fl'>40</span>:<span class='fl'>45</span>); <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>x</span>[-<span class='no'>remove</span>]
-<span class='no'>gaps</span> <span class='kw'>&lt;-</span> <span class='fu'>check4Gaps</span>(<span class='no'>x</span>)
-
-<span class='fu'>data</span>(<span class='no'>SrE.IR</span>)
-<span class='no'>newIR</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='removeFreq.html'>removeFreq</a></span>(<span class='no'>SrE.IR</span>, <span class='kw'>rem.freq</span> <span class='kw'>=</span> <span class='no'>SrE.IR</span>$<span class='no'>freq</span> <span class='kw'>&gt;</span> <span class='fl'>1800</span> <span class='kw'>&amp;</span> <span class='no'>SrE.IR</span>$<span class='no'>freq</span> <span class='kw'>&lt;</span> <span class='fl'>2500</span>)
-<span class='fu'>check4Gaps</span>(<span class='no'>newIR</span>$<span class='no'>freq</span>, <span class='no'>newIR</span>$<span class='no'>data</span>[<span class='fl'>1</span>,], <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='check4Gaps-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt;    beg.freq end.freq     size beg.indx end.indx
-#&gt; 1  399.2123 1799.348 1400.136        1      727
-#&gt; 2 2501.3450 3999.837 1498.492      728     1505</div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#references">References</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    
-Bryan A. Hanson, DePauw University.
+                </ul>
 
   </div>
 </div>

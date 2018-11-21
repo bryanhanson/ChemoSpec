@@ -1,5 +1,4 @@
 #'
-#'
 #' Made Up NMR Data Sets
 #' 
 #' These data sets are simulated 300 MHz NMR spectra.  They are designed mainly
@@ -35,10 +34,10 @@
 #'
 #' @format The data is stored as a \code{\link{Spectra}} object.
 #'
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
-#'
 #' @source Created using various tools.  Contact the author for a script if
 #' interested.
+#'
+#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @examples
 #' data(metMUD1)

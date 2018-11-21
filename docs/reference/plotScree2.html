@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Display the Spectra in a Spectra Object One at a Time — loopThruSpectra • ChemoSpec</title>
+<title>Alternate Style Scree Plot DEPRECATED — plotScree2 • ChemoSpec</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -32,11 +32,9 @@
 
 
 
-<meta property="og:title" content="Display the Spectra in a Spectra Object One at a Time — loopThruSpectra" />
+<meta property="og:title" content="Alternate Style Scree Plot DEPRECATED — plotScree2" />
 
-<meta property="og:description" content="Plots each spectrum in a Spectra object one at a time, and
-waits for a return in the console before plotting the next spectrum.  Use
-ESC to get out of the loop." />
+<meta property="og:description" content="This function is deprecated.  Please use plotScree(pca, style = 'alt')" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,50 +106,44 @@ ESC to get out of the loop." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Display the Spectra in a Spectra Object One at a Time</h1>
-    <small class="dont-index">Source: <a href='https://github.com/bryanhanson/ChemoSpec/blob/master/R/LoopThruSpectra.R'><code>R/LoopThruSpectra.R</code></a></small>
-    <div class="hidden name"><code>loopThruSpectra.Rd</code></div>
+    <h1>Alternate Style Scree Plot DEPRECATED</h1>
+    <small class="dont-index">Source: <a href='https://github.com/bryanhanson/ChemoSpec/blob/master/R/plotScree2.R'><code>R/plotScree2.R</code></a></small>
+    <div class="hidden name"><code>plotScree2.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Plots each spectrum in a <code><a href='Spectra.html'>Spectra</a></code> object one at a time, and
-waits for a return in the console before plotting the next spectrum.  Use
-<code>ESC</code> to get out of the loop.</p>
+    <p>This function is deprecated.  Please use <code><a href='plotScree.html'>plotScree(pca, style = 'alt')</a></code></p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>loopThruSpectra</span>(<span class='no'>spectra</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>plotScree2</span>(<span class='no'>pca</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>spectra</th>
-      <td><p>An object of S3 class <code><a href='Spectra.html'>Spectra</a></code>.</p></td>
+      <th>pca</th>
+      <td><ul>
+<li><p>An object of class <code>prcomp</code>, modified to include a
+list element called <code>$method</code>, a character string describing the
+pre-processing carried out and the type of PCA performed (it appears on the
+plot).  This is automatically provided if <code>ChemoSpec</code> functions
+<code><a href='c_pcaSpectra.html'>c_pcaSpectra</a></code> or <code><a href='r_pcaSpectra.html'>r_pcaSpectra</a></code>
+were used to create <code>pca</code>.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>&#8230;</th>
-      <td><p>Parameters to be passed downstream.</p></td>
+      <td><p>Additional parameters to be passed to plotting functions.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>None. Side effect is a plot.</p>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p><a href='https://github.com/bryanhanson/ChemoSpec'>https://github.com/bryanhanson/ChemoSpec</a></p>
+    <p>None.  Side effect is a plot.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-</div><span class='co'># NOT RUN {</span>
-<span class='fu'>data</span>(<span class='no'>metMUD1</span>)
-<span class='fu'>loopThruSpectra</span>(<span class='no'>metMUD1</span>)
-<span class='co'># }</span><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -159,15 +151,7 @@ waits for a return in the console before plotting the next spectrum.  Use
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#references">References</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    
-Bryan A. Hanson, DePauw University.
+          </ul>
 
   </div>
 </div>

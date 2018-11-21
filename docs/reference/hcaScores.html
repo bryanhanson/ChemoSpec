@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>HCA on PCA scores from a Spectra Object — hcaScores • ChemoSpec</title>
+<title>HCA on PCA/MIA/PARAFAC scores from a Spectra or Spectra2D Object — hcaScores • ChemoSpec</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -32,12 +32,11 @@
 
 
 
-<meta property="og:title" content="HCA on PCA scores from a Spectra Object — hcaScores" />
+<meta property="og:title" content="HCA on PCA/MIA/PARAFAC scores from a Spectra or Spectra2D Object — hcaScores" />
 
-<meta property="og:description" content="A wrapper which performs HCA on the scores from a PCA of a
-Spectra object, color-coding the results as specified in the
-object.  Many methods for computing the clusters and distances are
-available." />
+<meta property="og:description" content="This function is used by ChemoSpec and ChemoSpec2D, but is
+formally part of ChemoSpecUtils.  You can access
+full documentation via hcaScores." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -67,7 +66,7 @@ available." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.96</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.165</span>
       </span>
     </div>
 
@@ -84,6 +83,9 @@ available." />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -106,111 +108,26 @@ available." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>HCA on PCA scores from a Spectra Object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/bryanhanson/ChemoSpec/blob/master/R/hcaScores.R'><code>R/hcaScores.R</code></a></small>
+    <h1>HCA on PCA/MIA/PARAFAC scores from a Spectra or Spectra2D Object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/bryanhanson/ChemoSpec/blob/master/R/hcaScoresStub.R'><code>R/hcaScoresStub.R</code></a></small>
     <div class="hidden name"><code>hcaScores.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A wrapper which performs HCA on the scores from a PCA of a
-<code><a href='Spectra.html'>Spectra</a></code> object, color-coding the results as specified in the
-object.  Many methods for computing the clusters and distances are
-available.</p>
+    <p>This function is used by <code>ChemoSpec</code> and <code>ChemoSpec2D</code>, but is
+formally part of <code>ChemoSpecUtils</code>.  You can access
+full documentation via <code><a href='http://www.rdocumentation.org/packages/ChemoSpecUtils/topics/hcaScores'>hcaScores</a></code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>hcaScores</span>(<span class='no'>spectra</span>, <span class='no'>pca</span>, <span class='kw'>scores</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>:<span class='fl'>5</span>), <span class='kw'>c.method</span> <span class='kw'>=</span> <span class='st'>"complete"</span>,
-  <span class='kw'>d.method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>, <span class='kw'>use.sym</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>leg.loc</span> <span class='kw'>=</span> <span class='st'>"topright"</span>, <span class='no'>...</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>spectra</th>
-      <td><p>An object of S3 class <code><a href='Spectra.html'>Spectra</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>pca</th>
-      <td><p>An object of class <code>prcomp</code>, modified to include a
-list element called <code>$method</code>, a character string describing the
-pre-processing carried out and the type of PCA performed (it appears on the
-plot).  This is automatically provided if <code>ChemoSpec</code> functions
-<code><a href='c_pcaSpectra.html'>c_pcaSpectra</a></code> or <code><a href='r_pcaSpectra.html'>r_pcaSpectra</a></code> were used to create
-<code>pca</code>.</p></td>
-    </tr>
-    <tr>
-      <th>scores</th>
-      <td><p>A vector of integers specifying which scores to use for the
-HCA.</p></td>
-    </tr>
-    <tr>
-      <th>c.method</th>
-      <td><p>A character string describing the clustering method; must be
-acceptable to <code>hclust</code>.</p></td>
-    </tr>
-    <tr>
-      <th>d.method</th>
-      <td><p>A character string describing the distance calculation
-method; must be acceptable as a method in <code><a href='rowDist.html'>rowDist</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>use.sym</th>
-      <td><p>A logical; if true, use no color and use lower-case letters
-to indicate group membership.</p></td>
-    </tr>
-    <tr>
-      <th>leg.loc</th>
-      <td><p>Character; if <code>"none"</code> no legend will be drawn.
-Otherwise, any string acceptable to <code>legend</code>.</p></td>
-    </tr>
-    <tr>
-      <th>&#8230;</th>
-      <td><p>Additional parameters to be passed to the plotting functions.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+        
 
-    <p>A list, containing an object of class <code>hclust</code> and an
-object of class <code>dendrogram</code>.  The side effect is a plot.</p>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p><a href='https://github.com/bryanhanson/ChemoSpec'>https://github.com/bryanhanson/ChemoSpec</a></p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code>hclust</code> for the underlying function. See
-<code><a href='hcaSpectra.html'>hcaSpectra</a></code> for HCA of the entire data set stored in the
-<code><a href='Spectra.html'>Spectra</a></code> object.</p></div>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>data</span>(<span class='no'>SrE.IR</span>)
-<span class='no'>pca</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='c_pcaSpectra.html'>c_pcaSpectra</a></span>(<span class='no'>SrE.IR</span>, <span class='kw'>choice</span> <span class='kw'>=</span> <span class='st'>"noscale"</span>)
-<span class='no'>myt</span> <span class='kw'>&lt;-</span> <span class='fu'>expression</span>(<span class='fu'>bolditalic</span>(<span class='no'>Serenoa</span>)~<span class='fu'>bolditalic</span>(<span class='no'>repens</span>)~<span class='fu'>bold</span>(<span class='no'>IR</span>~<span class='no'>Spectra</span>))
-<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>hcaScores</span>(<span class='no'>SrE.IR</span>,  <span class='no'>pca</span>, <span class='kw'>scores</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>:<span class='fl'>5</span>), <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>myt</span>)</div><div class='img'><img src='hcaScores-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#references">References</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    
-Bryan A. Hanson, DePauw University.
+                </ul>
 
   </div>
 </div>

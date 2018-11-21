@@ -50,11 +50,10 @@ pca <- cv_pcaSpectra(SrE.IR, pcs = 5)
 \references{
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
 Statistical Analysis in Chemometrics}, CRC Press, 2009.
-
-\url{https://github.com/bryanhanson/ChemoSpec}\cr
 }
 \seealso{
 \code{\link[chemometrics]{pcaCV}} for the underlying function.
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University. Derived from \code{\link[chemometrics]{pcaCV}}.

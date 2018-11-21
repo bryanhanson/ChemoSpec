@@ -1,10 +1,8 @@
 #' 
-#' 
 #' Plot aovPCAscores Loadings of a Spectra Object
 #' 
 #' Uses the results from \code{\link{aovPCAscores}} to plot the corresponding
 #' loadings.
-#' 
 #' 
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #' 
@@ -29,6 +27,7 @@
 #' 
 #' @seealso An example using this function can be seen in
 #' \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotLoadings}}.
+#' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #' 
 #' @references Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for
 #' Discriminant Analysis: ..." Analytica Chimica Acta 629.1-2 (2008): 47-55.
@@ -36,8 +35,6 @@
 #' Harrington, Vieira, Espinoza, Nien, Romero, and Yergey. "Analysis of
 #' Variance--Principal Component Analysis: ..." Analytica Chimica Acta 544.1-2
 #' (2005): 118-27.
-#' 
-#' \url{https://github.com/bryanhanson/ChemoSpec}
 #' 
 #' @keywords multivariate htest
 #' 

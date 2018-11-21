@@ -1,11 +1,8 @@
 #'
-#'
-#'
 #' Hierarchical Cluster-Based Peak Alignment on a Spectra Object
 #' 
 #' This function is a wrapper to several functions in the \pkg{speaq} package.
 #' It implements the CluPA algorithm described in the reference.
-#' 
 #' 
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #' 
@@ -26,8 +23,8 @@
 #' simplified quantitative analysis of NMR spectrometry data" BMC
 #' Bioinformatics vol. 12 pg. 405 (2011).
 #' 
-#' \url{https://github.com/bryanhanson/ChemoSpec}
-#' 
+#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#'
 #' @keywords utilities
 #' 
 #' @examples
@@ -49,10 +46,6 @@
 # @importFrom speaq detectSpecPeaks findRef dohCluster
 #'
 clupaSpectra <- function(spectra, bT = NULL, ...) {
-	# Wrapper function to carry out hierarchical cluster-based peak alignment
-	# for NMR spectra (after Vu, Laukens, Valkenborg)
-	# Part of the ChemoSpec package
-	# Bryan Hanson, DePauw University, January 2015
 
 	.chkArgs(mode = 11L)
 	

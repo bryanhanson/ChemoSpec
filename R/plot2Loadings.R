@@ -9,7 +9,6 @@
 #' determine which variables are contributing the most to the clustering on a
 #' score plot.
 #' 
-#' 
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
 #' @param pca An object of class \code{\link{prcomp}}, modified to include a
@@ -34,9 +33,9 @@
 #'
 #' @seealso See \code{\link{plotLoadings}} to plot one loading against the
 #' original variable (frequency) axis.  See \code{\link{sPlotSpectra}} for
-#' a different approach.
+#' a different approach.  Additional documentation at
+#' \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
 #'
 #' @keywords multivariate hplot
 #'

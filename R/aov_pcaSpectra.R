@@ -25,6 +25,7 @@
 #'
 #' @seealso The output of this function is used in
 #' used in \code{\link{aovPCAscores}} and \code{\link{aovPCAloadings}}.
+#' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @references Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for
 #' Discriminant Analysis: ..." Analytica Chimica Acta 629.1-2 (2008): 47-55.
@@ -33,8 +34,6 @@
 #' Variance--Principal Component Analysis: ..." Analytica Chimica Acta 544.1-2
 #' (2005): 118-27.
 #' 
-#' \url{https://github.com/bryanhanson/ChemoSpec}
-#'
 #' @keywords multivariate htest
 #'
 #' @examples
@@ -74,7 +73,6 @@ aov_pcaSpectra <-function(spectra, fac) {
 	nf <- length(fac)
 
 # Naming of matrices follows Harrington 2005, at least some of the time
-
 # Hardwire all possible matrices for each factor 
 
 	MC <- scale(spectra$data, scale = FALSE) # mean centered

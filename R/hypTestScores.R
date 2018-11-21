@@ -1,5 +1,4 @@
 #'
-#'
 #' Conduct MANOVA using PCA Scores and Factors in a Spectra Object
 #' 
 #' This function provides a convenient interface for carrying out manova using
@@ -35,10 +34,9 @@
 #' 
 #' @seealso \code{\link{splitSpectraGroups}} which can be used to create
 #' additional factor elements in the \code{\link{Spectra}} object, which can then be
-#' used with this function.
-#' 
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
-#' 
+#' used with this function.  Additional documentation at
+#' \url{https://bryanhanson.github.io/ChemoSpec/}
+#'
 #' @keywords multivariate htest
 #' 
 #' @examples
@@ -63,10 +61,6 @@
 #' 
 hypTestScores <- function(spectra, pca, pcs = 1:3, fac = NULL, ...) {
 
-# Function to carry out hypothesis test on PCA scores
-# Part of the ChemoSpec package
-# Bryan Hanson, DePauw University, August 2010
-
 # This conducts a very simple hypothesis test, no contrasts or projections
 # Fancier processing might be possible by using ... to pass along lm options
 
@@ -80,14 +74,11 @@ hypTestScores <- function(spectra, pca, pcs = 1:3, fac = NULL, ...) {
 	
 	form <- with(spectra, as.formula(paste("scores", "~", paste(fac, collapse = "*"))))
 
-	
 	# Do the hyp test; R knows if scores is multivariate or not,
 	# but the summary format differs between aov and manova
-	# 
 
 	if (length(pcs) > 1) out <- manova(formula = form, ...)
 	if (length(pcs) == 1) out <- aov(formula = form, ...)
 	
 	invisible(out)
-	
 	}

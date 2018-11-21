@@ -1,11 +1,9 @@
 #'
-#'
 #' Compute the Distance Between Samples in a Spectra Object
 #' 
 #' Compute the Distance between samples in a Spectra object.  This is a means
 #' to quantify the similarity between samples.  A heat map style plot is an
 #' option.
-#' 
 #' 
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
@@ -21,9 +19,9 @@
 #' @author Bryan A. Hanson, DePauw University.
 #'
 #' @seealso The sample distances can be used to cluster the samples. See for
-#' example \code{\link{hcaSpectra}}.
+#' example \code{\link{hcaSpectra}}. Additional documentation
+#' at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
 #'
 #' @keywords hplot
 #'
@@ -41,11 +39,6 @@
 #'
 sampleDistSpectra <- function(spectra, method = "pearson", plot = TRUE, ...) {
 	
-# Function to compute sample (row)-wise distances
-# of a Spectra object
-# Part of the ChemoSpec package
-# Bryan Hanson, DePauw University, January 2015
-
 	if (!requireNamespace("lattice", quietly = TRUE)) {
 		stop("You need to install package lattice to use this function")
 	}

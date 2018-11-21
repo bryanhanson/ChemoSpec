@@ -42,11 +42,9 @@ mclustSpectra(SrE.IR, class, main = "Cuticle IR", plot = "error",
 	 truth = metMUD1$groups)
 
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
-}
 \seealso{
 \code{\link[mclust]{Mclust}} for background on the method.
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

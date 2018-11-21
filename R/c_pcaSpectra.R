@@ -30,6 +30,7 @@
 #' 
 #' @seealso \code{\link{prcomp}} for the underlying function,
 #' \code{\link{r_pcaSpectra}} for analogous robust PCA calculations.
+#' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #' 
 #' For displaying the results, \code{\link{plotScree}},
 #' \code{\link{plotScores}}, \code{\link{plotLoadings}},
@@ -38,8 +39,6 @@
 #' 
 #' @references K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
 #' Statistical Analysis in Chemometrics}, CRC Press, 2009.
-#' 
-#' \url{https://github.com/bryanhanson/ChemoSpec}\cr
 #' 
 #' @keywords multivariate
 #' 
@@ -56,10 +55,6 @@
 #' 
 c_pcaSpectra <- function(spectra, choice = "noscale", cent = TRUE) {
 
-# Function to carry out classical Principal Components Analysis
-# Part of the ChemoSpec package
-# Bryan Hanson, DePauw University, Sept 2009
-	
 	.chkArgs(mode = 11L)
 	
 	choices <- c("noscale", "autoscale", "Pareto") # trap for invalid scaling method

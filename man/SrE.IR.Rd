@@ -33,7 +33,7 @@ data(SrE.NMR)
 sumSpectra(SrE.NMR)
 
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
+\seealso{
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \keyword{datasets}

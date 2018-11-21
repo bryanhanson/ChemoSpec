@@ -1,12 +1,9 @@
 #'
-#'
-#'
 #' Plot HCA Results of a Spectra Object
 #' 
 #' A wrapper which carries out HCA and plots a dendrogram colored by the
 #' information in a \code{\link{Spectra}} object.  Many methods for computing
 #' the clusters and distances are available.
-#' 
 #' 
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #' 
@@ -31,10 +28,9 @@
 #' 
 #' @seealso \code{\link{hclust}} for the underlying function.
 #' \code{\link{hcaScores}} for similar analysis of PCA scores from a
-#' \code{\link{Spectra}} object.
-#' 
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
-#' 
+#' \code{\link{Spectra}} object.  Additional documentation at
+#' \url{https://bryanhanson.github.io/ChemoSpec/}
+#'
 #' @keywords multivariate cluster
 #' 
 #' @examples
@@ -50,10 +46,6 @@
 hcaSpectra <- function(spectra,
 	c.method = "complete", d.method = "euclidean",
 	use.sym = FALSE, leg.loc = "topright", ...) {
-
-# Function to carry out HCA, basically a wrapper to existing methods
-# Part of the ChemoSpec package
-# Bryan Hanson, DePauw University, June 2008
 
 	.chkArgs(mode = 11L)
 	chkSpectra(spectra)	

@@ -48,7 +48,9 @@ is OS dependent.
 }
 
 \section{RStudio Viewer}{
- If browser is \code{NULL}, you are using RStudio, and a viewer is specified, this will be called.  You can stop this by with \code{options(viewer = NULL)}.
+ If browser is \code{NULL}, you are using RStudio, and a
+viewer is specified, this will be called.  You can stop this by with
+\code{options(viewer = NULL)}.
 }
 
 \section{Browser Choice (Mac)}{
@@ -75,12 +77,10 @@ if (interactive()) {
 }
 
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
-}
 \seealso{
 \code{\link{plotSpectra}} for non-interactive plotting.  Details
-about \code{d3.js} are at \url{www.d3js.org}.
+about \code{d3.js} are at \url{www.d3js.org}. Additional documentation at
+\url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

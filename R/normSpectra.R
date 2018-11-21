@@ -1,5 +1,4 @@
 #'
-#'
 #' Normalize a Spectra Object
 #' 
 #' This function carries out normalization of the spectra in a
@@ -42,7 +41,7 @@
 #' group, reported in K. A. Veselkov et. al. Analytical Chemistry vol. 83 pages
 #' 5864-5872 (2011).
 #' 
-#' \url{https://github.com/bryanhanson/ChemoSpec}
+#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @keywords utilities manip
 #'

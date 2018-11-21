@@ -15,21 +15,19 @@
 #' are largely fatty acids.  As a result, the spectra of these two groups are
 #' subtly different.
 #' 
-#' 
 #' @name SrE.IR
 #'
 #' @aliases SrE.IR SrE.NMR
-#'
 #'
 #' @docType data
 #'
 #' @format The data are stored as a \code{\link{Spectra}} object.
 #'
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
-#'
 #' @source IR data collected in the author's laboratory.  NMR data collected at
 #' Purdue University with the generosity and assistance of Prof. Dan Raftery
 #' and Mr. Tao Ye.
+#'
+#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @keywords datasets
 #'

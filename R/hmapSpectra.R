@@ -1,6 +1,4 @@
 #'
-#'
-#'
 #' Seriated Heat Map for a Spectra Object
 #' 
 #' Creates a heat map with marginal dendrograms using seriation procedures.
@@ -9,8 +7,7 @@
 #' are in that corner as well. This is achieved by using heirchical cluster
 #' analysis and then re-ordering the clusters in a coordinated way across each
 #' dimension.  See the vignette for package \pkg{seriation}.
-#' 
-#' 
+#'
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #' 
 #' @param \dots Additional arguments to be passed downstream.  A great deal of
@@ -24,9 +21,8 @@
 #' 
 #' @seealso \code{\link[seriation]{hmap}} which will get you to the package
 #' (there is no package index page); the vignette is a good place to begin
-#' (\code{browseVignettes("seriation")}).
-#' 
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
+#' (\code{browseVignettes("seriation")}).  Additional documentation at
+#' \url{https://bryanhanson.github.io/ChemoSpec/}
 #' 
 #' @keywords multivariate
 #' 
@@ -43,11 +39,6 @@
 #' 
 hmapSpectra <- function(spectra, ...) {
 	
-	# Function to display heat map of
-	# seriated HCA
-	# Bryan Hanson, DePauw Univ, July 2010
-	# Part of the ChemoSpec package
-
 	.chkArgs(mode = 11L)
 	chkSpectra(spectra)
 

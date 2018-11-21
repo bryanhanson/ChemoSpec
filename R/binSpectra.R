@@ -23,8 +23,8 @@
 #' 
 #' @author Bryan A. Hanson, DePauw University.
 #' 
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
-#' 
+#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#'
 #' @keywords utilities manip
 #' 
 #' @examples
@@ -38,10 +38,6 @@
 #' 
 binSpectra <- function(spectra, bin.ratio) {
 
-# Function to bin or bucket a Spectra object
-# Part of the ChemoSpec package
-# Bryan Hanson, DePauw University, Nov 2009
-
 	.chkArgs(mode = 11L)
 	if (missing(bin.ratio)) stop("No bin.ratio specified")
 	if (!missing(bin.ratio)) {
@@ -54,9 +50,9 @@ binSpectra <- function(spectra, bin.ratio) {
 	# If there are gaps in the data, each data chunk must be separately binned,
 	# then the whole re-assembled.
 	
-	chk <- check4Gaps(spectra$freq) # returns FALSE if no gaps
+	chk <- check4Gaps(spectra$freq, silent = TRUE)
 
-	if (length(chk) == 1) { # no gaps, proceed to binning (strange way to see if chk is FALSE)
+	if (nrow(chk) == 1) { # no gaps, proceed to binning
 		bin <- .binData(spectra$freq, spectra$data[1,], br) # bin x and get dim for y
 		data <- matrix(NA, nrow = length(spectra$names), ncol = length(bin$sum.y))
 		freq <- bin$mean.x
@@ -77,7 +73,7 @@ binSpectra <- function(spectra, bin.ratio) {
 		spectra$data <- data
 		}		
 
-	if (length(chk) > 1) { # there are gaps, bin each data chunk separately
+	if (nrow(chk) > 1) { # there are gaps, bin each data chunk separately
 		tmpfreq <- c()
 		tmpdata <- matrix(nrow = length(spectra$names), ncol = 1)
 		tot <- 0
@@ -105,7 +101,7 @@ binSpectra <- function(spectra, bin.ratio) {
 			tmpdata <- cbind(tmpdata, data)
 			}
 			
-		if (length(chk) > 1) cat("A total of", tot, "data points were removed to preserve the requested bin.ratio\n")
+		if (nrow(chk) > 1) cat("A total of", tot, "data points were removed to preserve the requested bin.ratio\n")
 			
 		spectra$freq <- tmpfreq
 		spectra$data <- tmpdata[,-1]

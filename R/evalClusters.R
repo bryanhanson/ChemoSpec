@@ -1,5 +1,4 @@
 #'
-#'
 #' Evaluate or Compare the Quality of Clusters Quantitatively
 #' 
 #' This function is a wrapper to two functions: \code{intCriteria} function in
@@ -48,13 +47,12 @@
 #' @seealso \code{\link{hclust}} for the underlying base function.
 #' \code{\link{hcaSpectra}} for HCA analysis of a \code{\link{Spectra}} object.
 #' \code{\link{hcaScores}} for HCA analysis of PCA scores from a
-#' \code{\link{Spectra}} object.
+#' \code{\link{Spectra}} object. Additional documentation at
+#' \url{https://bryanhanson.github.io/ChemoSpec/}
 #' 
 #' @references M. Charrad et. al.  "NbClust: An R Package for Determining the
 #' Relevant Number of Clusters in a Data Set."  J. Stat. Soft. vol. 61 no. 6
 #' October 2014.
-#' 
-#' \url{https://github.com/bryanhanson/ChemoSpec}
 #' 
 #' @keywords multivariate cluster
 #' 
@@ -80,16 +78,9 @@
 #' @export evalClusters
 #' 
 #' @importFrom stats hclust cutree 
-# @importFrom clusterCrit intCriteria
-# @importFrom NbClust NbClust
 #'
 evalClusters <- function(spectra, pkg = "NbClust", hclst = NULL,
 	k = NULL, h = NULL, crit = "Dunn", ...) {
-
-# Function to evaluate the quality of clusters found by hcaScores or hcaSpectra
-# Basically a wrapper for NbClust and clusterCrit
-# Part of the ChemoSpec package
-# Bryan Hanson, DePauw University, Dec 2014
 
 	.chkArgs(mode = 11L)
 	

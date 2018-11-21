@@ -1,5 +1,4 @@
 #'
-#'
 #' Plot Measures of Central Tendency and Spread for a Spectra Object
 #' 
 #' Compute and plot various measures of central tendency and
@@ -32,11 +31,11 @@
 #' @param lab.pos Numeric, giving the frequency where the label should be drawn.
 #' Applies to \code{surveySpectra2} only.
 #'
+#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#'
 #' @return None; side effect is a plot
 #'
 #' @author Bryan A. Hanson, DePauw University.
-#'
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
 #'
 #' @keywords hplot
 #'
@@ -58,10 +57,6 @@
 #' 
 surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"),
 	by.gr = TRUE,  ...) {
-
-# Function to show means and spread of Spectra objects by group
-# Part of the ChemoSpec package
-# Bryan Hanson, DePauw University, Dec 2009
 
 	if (!requireNamespace("lattice", quietly = TRUE)) {
 		stop("You need to install package lattice to use this function")

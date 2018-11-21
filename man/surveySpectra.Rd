@@ -62,8 +62,8 @@ surveySpectra(SrE.IR, method = "iqr", main = myt)
 surveySpectra2(SrE.IR, method = "iqr", main = myt)
 
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
+\seealso{
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

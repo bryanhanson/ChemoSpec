@@ -1,6 +1,4 @@
 #'
-#'
-#'
 #' Interactive 3D Score Plot of a Spectra Object
 #' 
 #' This function uses the \code{\link[rgl]{rgl}} package to create an interactive
@@ -60,16 +58,15 @@
 #'
 #' @seealso Other functions in \code{ChemoSpec} that plot PCA scores are:
 #' \code{\link{plotScores}} (2D version), and \code{\link{plotScores3D}} (uses
-#' \code{lattice} graphics).
+#' \code{lattice} graphics).  Additional documentation at
+#' \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
 #'
 #' @keywords multivariate hplot dynamic
 #'
 #' @examples
 #' 
 #' \dontrun{
-#'
 #' data(metMUD1)
 #' pca <- c_pcaSpectra(metMUD1, choice = "autoscale")
 #' plotScoresRGL(metMUD1, pca, title = "metMUD1 NMR Spectra",
@@ -83,10 +80,6 @@ plotScoresRGL <- function(spectra, pca, pcs = c(1:3),
 	ellipse = TRUE, rob = FALSE, cl = 0.95, frac.pts.used = 0.8,
 	title = NULL, t.pos = NULL, leg.pos = NULL, lab.opts = FALSE,
 	tol = 0.01, use.sym = FALSE,...) {
-
-# Function to do an interactive 3D plot of PCA scores using rgl
-# Part of the ChemoSpec package
-# Bryan Hanson, DePauw University, Dec 2009
 
 	.chkArgs(mode = 12L)
 	chkSpectra(spectra)

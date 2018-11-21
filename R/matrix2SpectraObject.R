@@ -25,6 +25,9 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 	if (is.null(gr.crit)) stop("No group criteria provided to encode data")
 	if (is.null(in.file)) stop("You need to specify an input file")
 
+	out <- tryCatch(
+	{
+
 	# Get the data matrix
 	specs <- read.table(in.file, header = TRUE, ...)
 	
@@ -43,12 +46,22 @@ function(gr.crit = NULL, gr.cols = c("auto"),
 	spectra$unit[2] <- int.unit
 	spectra$desc <- descrip
 	
-	if(chk) chkSpectra(spectra)
+	if (chk) chkSpectra(spectra)
 	
 	datafile <- paste(out.file, ".RData", sep = "")
-
 	R.utils::saveObject(spectra, file = datafile)
-	
 	return(spectra)
+	},
+	
+	error = function(cond) {
+		errmess <- "There was a problem processing your matrix!\n\nDid you get a message such as 'subscript out of bounds'? You probably need to specify sep and possibly dec values. Please read ?files2Spectra2DObject for details.\n\nIf that doesn't fix things, set chk = FALSE and inspect the resulting object.\n"
+		message("\nError message from R: ", cond$message, "\n")
+		message(errmess)
+		return(NA)
+		}
+	
+	) # end of tryCatch
+	
+	return(out)
 	}
 

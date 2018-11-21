@@ -39,12 +39,10 @@ plotLoadings(SrE.IR, pca, main = myt,
 	 loads = 1:2, ref = 1)
 
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
-}
 \seealso{
 See \code{\link{plot2Loadings}} to plot two loadings against each
 other, and \code{\link{sPlotSpectra}} for an alternative approach.
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

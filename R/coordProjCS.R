@@ -5,7 +5,6 @@
 #' plot is changed to simply plot an X over the letters identifying the groups.
 #' An internal function, not generally called by the user.
 #' 
-#' 
 #' @param data See \code{coordProj}.
 #' 
 #' @param dimens See \code{coordProj}.
@@ -46,12 +45,12 @@
 #' 
 #' @author Bryan A. Hanson, DePauw University. Derived from \code{\link[mclust]{coordProj}}.
 #' 
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
-#' 
 #' @keywords multivariate cluster
 #' 
 #' @export
 #' 
+#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#'
 #' @importFrom graphics par plot title points
 #' @importFrom stats sd 
 #' @noRd
@@ -70,8 +69,6 @@ function (data, dimens = c(1, 2), parameters = NULL, z = NULL,
 	}
 	
 	# This is a modified version of coordProj{mclust} for use in ChemoSpec
-	# Part of the ChemoSpec package
-	# Bryan Hanson, DePauw Univ, Dec 2009
 	
     if (is.null(dimens)) 
         dimens <- c(1, 2)

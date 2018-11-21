@@ -40,13 +40,11 @@ myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
 res <- hcaSpectra(SrE.IR, main = myt)
 
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
-}
 \seealso{
 \code{\link{hclust}} for the underlying function.
 \code{\link{hcaScores}} for similar analysis of PCA scores from a
-\code{\link{Spectra}} object.
+\code{\link{Spectra}} object.  Additional documentation at
+\url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

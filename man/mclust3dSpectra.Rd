@@ -70,7 +70,6 @@ in 2D plots from \code{Mclust}.
 \examples{
 
 \dontrun{
-
 require(mclust)
 data(metMUD1)
 class <- c_pcaSpectra(metMUD1)
@@ -79,11 +78,9 @@ mclust3dSpectra(metMUD1, class, title = "mclust3dSpectra demo",
 }
 
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
-}
 \seealso{
 \code{\link[mclust]{Mclust}} for background on the method.
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

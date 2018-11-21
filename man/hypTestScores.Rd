@@ -56,13 +56,11 @@ hypTestScores(mM3, pca, fac = c("geneBb", "geneCc"))
 
 
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
-}
 \seealso{
 \code{\link{splitSpectraGroups}} which can be used to create
 additional factor elements in the \code{\link{Spectra}} object, which can then be
-used with this function.
+used with this function.  Additional documentation at
+\url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

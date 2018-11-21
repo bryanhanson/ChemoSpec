@@ -37,12 +37,10 @@ newSpec <- conColScheme(metMUD1, new = c("pink", "violet"))
 sumSpectra(newSpec)
 
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
-}
 \seealso{
 For a discussion of general issues of color, see
-\code{\link{colorSymbol}}.
+\code{\link{colorSymbol}}. Additional documentation at
+\url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

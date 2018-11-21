@@ -45,13 +45,11 @@ res <- plot2Loadings(SrE.IR, pca, main = myt,
 	 loads = c(1,2), tol = 0.001)
 
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
-}
 \seealso{
 See \code{\link{plotLoadings}} to plot one loading against the
 original variable (frequency) axis.  See \code{\link{sPlotSpectra}} for
-a different approach.
+a different approach.  Additional documentation at
+\url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

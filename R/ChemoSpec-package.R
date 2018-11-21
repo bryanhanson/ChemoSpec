@@ -23,9 +23,9 @@
 #' 
 #' Maintainer: Bryan A. Hanson \email{hanson@@depauw.edu}
 #' 
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
-#' 
 #' @keywords package multivariate
+#'
+#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #  This import/export business based on stackoverflow.com/a/35118850/633251
 #'

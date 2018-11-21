@@ -67,7 +67,7 @@ argument below for important details you need to provide." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.96</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.165</span>
       </span>
     </div>
 
@@ -84,6 +84,9 @@ argument below for important details you need to provide." />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -311,7 +314,9 @@ once the data is imported.</p>
 <span class='co'># Now read in the file, and plot</span>
 <span class='no'>spec</span> <span class='kw'>&lt;-</span> <span class='fu'>files2SpectraObject</span>(<span class='kw'>gr.crit</span> <span class='kw'>=</span> <span class='st'>"PCRF"</span>, <span class='kw'>freq.unit</span> <span class='kw'>=</span> <span class='st'>"ppm"</span>, <span class='kw'>int.unit</span> <span class='kw'>=</span> <span class='st'>"intensity"</span>,
   <span class='kw'>descrip</span> <span class='kw'>=</span> <span class='st'>"test import"</span>, <span class='kw'>fileExt</span> <span class='kw'>=</span> <span class='st'>"\\.jdx"</span>)
-<span class='fu'><a href='sumSpectra.html'>sumSpectra</a></span>(<span class='no'>spec</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='sumSpectra.html'>sumSpectra</a></span>(<span class='no'>spec</span>)</div><div class='output co'>#&gt; No gaps were found by check4Gaps
+#&gt; No plot will be made
+#&gt; 
 #&gt;  test import 
 #&gt; 
 #&gt; 	There are 1 spectra in this set.
@@ -336,7 +341,8 @@ once the data is imported.</p>
 #&gt; 1  PCRF   1 #E41A1C      0       a
 #&gt; 
 #&gt; 
-#&gt; *** Note: this data is an S3 object of class 'Spectra2D'</div><div class='input'><span class='fu'><a href='plotSpectra.html'>plotSpectra</a></span>(<span class='no'>spec</span>, <span class='kw'>lab.pos</span> <span class='kw'>=</span> <span class='fl'>3.5</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Reduced Fat Potato Chip"</span>)</div><div class='img'><img src='files2SpectraObject-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; *** Note: this is an S3 object
+#&gt; of class 'Spectra'</div><div class='input'><span class='fu'><a href='plotSpectra.html'>plotSpectra</a></span>(<span class='no'>spec</span>, <span class='kw'>lab.pos</span> <span class='kw'>=</span> <span class='fl'>3.5</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Reduced Fat Potato Chip"</span>)</div><div class='img'><img src='files2SpectraObject-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

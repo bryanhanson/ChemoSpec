@@ -69,7 +69,6 @@ rgl.snapshot("file_name.png")} to create the hardcopy.
 \examples{
 
 \dontrun{
-
 data(metMUD1)
 pca <- c_pcaSpectra(metMUD1, choice = "autoscale")
 plotScoresRGL(metMUD1, pca, title = "metMUD1 NMR Spectra",
@@ -77,13 +76,11 @@ plotScoresRGL(metMUD1, pca, title = "metMUD1 NMR Spectra",
 }
 
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
-}
 \seealso{
 Other functions in \code{ChemoSpec} that plot PCA scores are:
 \code{\link{plotScores}} (2D version), and \code{\link{plotScores3D}} (uses
-\code{lattice} graphics).
+\code{lattice} graphics).  Additional documentation at
+\url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

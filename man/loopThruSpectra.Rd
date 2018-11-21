@@ -22,14 +22,13 @@ waits for a return in the console before plotting the next spectrum.  Use
 \examples{
 
 \dontrun{
-
 data(metMUD1)
 loopThruSpectra(metMUD1)
 }
 
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
+\seealso{
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

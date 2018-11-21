@@ -82,7 +82,7 @@ have brought bugs to my attention, suggested new features and provided
 fixes. I am grateful to all of them. Each is listed in either the code,
 the NEWS file or the Github issues tracker.}
 
-This vignette is based upon \texttt{ChemoSpec} version 5.0.96.
+This vignette is based upon \texttt{ChemoSpec} version 5.0.165.
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -351,6 +351,8 @@ and other details look like you expect them to:
 
 \begin{ShadedResult}
 \begin{verbatim}
+#  No gaps were found by check4Gaps
+#  No plot will be made
 #  
 #   Serenoa repens IR quality study 
 #  
@@ -386,7 +388,8 @@ and other details look like you expect them to:
 #  4       a
 #  
 #  
-#  *** Note: this data is an S3 object of class 'Spectra2D'
+#  *** Note: this is an S3 object
+#  of class 'Spectra'
 \end{verbatim}
 \end{ShadedResult}
 
@@ -604,6 +607,7 @@ This example illustrates the process but is not necessary with IR data:
 \begin{verbatim}
 #  No gaps were found by check4Gaps
 #  No plot will be made
+#  A total of 0 data points were removed to preserve the requested bin.ratio
 \end{verbatim}
 \end{ShadedResult}
 
@@ -615,6 +619,8 @@ This example illustrates the process but is not necessary with IR data:
 
 \begin{ShadedResult}
 \begin{verbatim}
+#  No gaps were found by check4Gaps
+#  No plot will be made
 #  
 #   Serenoa repens IR quality study 
 #  
@@ -650,7 +656,8 @@ This example illustrates the process but is not necessary with IR data:
 #  4       a
 #  
 #  
-#  *** Note: this data is an S3 object of class 'Spectra2D'
+#  *** Note: this is an S3 object
+#  of class 'Spectra'
 \end{verbatim}
 \end{ShadedResult}
 
@@ -711,6 +718,8 @@ TD\_adSrE has artifacts and needs to be removed. The command would be:
 
 \begin{ShadedResult}
 \begin{verbatim}
+#  No gaps were found by check4Gaps
+#  No plot will be made
 #  
 #   Serenoa repens IR quality study 
 #  
@@ -746,7 +755,8 @@ TD\_adSrE has artifacts and needs to be removed. The command would be:
 #  4       a
 #  
 #  
-#  *** Note: this data is an S3 object of class 'Spectra2D'
+#  *** Note: this is an S3 object
+#  of class 'Spectra'
 \end{verbatim}
 \end{ShadedResult}
 
@@ -1028,7 +1038,8 @@ follows. Note that there are fewer frequency points now.
 #  4       a
 #  
 #  
-#  *** Note: this data is an S3 object of class 'Spectra2D'
+#  *** Note: this is an S3 object
+#  of class 'Spectra'
 \end{verbatim}
 \end{ShadedResult}
 
@@ -1044,14 +1055,6 @@ both the numerical results and a figure are provided.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-
-{\centering \includegraphics{/Users/bryanhanson/Documents/Professional/Research/R_Pkgs/ChemoSpec/docs/articles/ChemoSpec_files/figure-latex/Chunk7-1} 
-
-}
-
-\caption{\label{gaps}Identifying gaps in a data set.}\label{fig:Chunk7}
-\end{figure}
 \begin{ShadedResult}
 \begin{verbatim}
 #     beg.freq end.freq     size
@@ -1151,7 +1154,6 @@ SD plots & & \texttt{pcaDiag}\\
 \textbf{Choosing the correct no. of PCs} & & \\
 \hline
 scree plot & & \texttt{plotScree}\\
-alternate style scree plot & & \texttt{plotScree2}\\
 bootstrap analysis (classical PCA only) & & \texttt{cv\_pcaSpectra} \\
 &&\\
 
@@ -1248,9 +1250,9 @@ more likely candidates for outlier status.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{class <-}\StringTok{ }\KeywordTok{c_pcaSpectra}\NormalTok{(SrE3.IR,}
+\NormalTok{c_res <-}\StringTok{ }\KeywordTok{c_pcaSpectra}\NormalTok{(SrE3.IR,}
   \DataTypeTok{choice =} \StringTok{"noscale"}\NormalTok{)}
-\KeywordTok{plotScores}\NormalTok{(SrE3.IR, class,}
+\KeywordTok{plotScores}\NormalTok{(SrE3.IR, c_res,}
   \DataTypeTok{main =}\NormalTok{ myt,}
   \DataTypeTok{pcs =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{),}
   \DataTypeTok{ellipse =} \StringTok{"rob"}\NormalTok{,}
@@ -1281,9 +1283,9 @@ more likely candidates for outlier status.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{robust <-}\StringTok{ }\KeywordTok{r_pcaSpectra}\NormalTok{(SrE3.IR,}
+\NormalTok{r_res <-}\StringTok{ }\KeywordTok{r_pcaSpectra}\NormalTok{(SrE3.IR,}
   \DataTypeTok{choice =} \StringTok{"noscale"}\NormalTok{)}
-\KeywordTok{plotScores}\NormalTok{(SrE3.IR, robust,}
+\KeywordTok{plotScores}\NormalTok{(SrE3.IR, r_res,}
   \DataTypeTok{main =}\NormalTok{ myt,}
   \DataTypeTok{pcs =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{),}
   \DataTypeTok{ellipse =} \StringTok{"rob"}\NormalTok{,}
@@ -1291,6 +1293,17 @@ more likely candidates for outlier status.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{ShadedResult}
+\begin{verbatim}
+#  Warning in if (!soOK)
+#  stop("Argument 'so' was not
+#  found or did not have class
+#  prcomp or pcaCon"): the
+#  condition has length > 1 and
+#  only the first element will be
+#  used
+\end{verbatim}
+\end{ShadedResult}
 \begin{ShadedResult}
 \begin{verbatim}
 #  Group EPO
@@ -1321,7 +1334,7 @@ Varmuza and Filzmoser, Chapter 3 \citep{Filzmoser2009}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{diagnostics <-}\StringTok{ }\KeywordTok{pcaDiag}\NormalTok{(SrE3.IR, class,}
+\NormalTok{diagnostics <-}\StringTok{ }\KeywordTok{pcaDiag}\NormalTok{(SrE3.IR, c_res,}
   \DataTypeTok{pcs =} \DecValTok{2}\NormalTok{,}
   \DataTypeTok{plot =} \StringTok{"OD"}\NormalTok{)}
 \end{Highlighting}
@@ -1338,7 +1351,7 @@ Varmuza and Filzmoser, Chapter 3 \citep{Filzmoser2009}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{diagnostics <-}\StringTok{ }\KeywordTok{pcaDiag}\NormalTok{(SrE3.IR, class,}
+\NormalTok{diagnostics <-}\StringTok{ }\KeywordTok{pcaDiag}\NormalTok{(SrE3.IR, c_res,}
   \DataTypeTok{pcs =} \DecValTok{2}\NormalTok{,}
   \DataTypeTok{plot =} \StringTok{"SD"}\NormalTok{)}
 \end{Highlighting}
@@ -1371,7 +1384,7 @@ level, while the scree plots suggest that 2 PC are sufficient.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plotScree}\NormalTok{(class, }\DataTypeTok{main =}\NormalTok{ myt)}
+\KeywordTok{plotScree}\NormalTok{(c_res, }\DataTypeTok{main =}\NormalTok{ myt)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1386,7 +1399,7 @@ level, while the scree plots suggest that 2 PC are sufficient.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plotScree2}\NormalTok{(class, }\DataTypeTok{main =}\NormalTok{ myt)}
+\KeywordTok{plotScree}\NormalTok{(c_res, }\DataTypeTok{style =} \StringTok{"alt"}\NormalTok{, }\DataTypeTok{main =}\NormalTok{ myt)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1428,7 +1441,7 @@ but here are the necessary commands:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plotScoresRGL}\NormalTok{(SrE3.IR, class,}
+\KeywordTok{plotScoresRGL}\NormalTok{(SrE3.IR, c_res,}
   \DataTypeTok{main =} \StringTok{"S. repens IR Spectra"}\NormalTok{,}
   \DataTypeTok{leg.pos =} \StringTok{"A"}\NormalTok{,}
   \DataTypeTok{t.pos =} \StringTok{"B"}\NormalTok{) }\CommentTok{# not run - it's interactive!}
@@ -1445,7 +1458,7 @@ hard to see.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plotScores3D}\NormalTok{(SrE3.IR, class,}
+\KeywordTok{plotScores3D}\NormalTok{(SrE3.IR, c_res,}
   \DataTypeTok{main =}\NormalTok{ myt,}
   \DataTypeTok{ellipse =} \OtherTok{FALSE}\NormalTok{)}
 \end{Highlighting}
@@ -1474,7 +1487,7 @@ vs.~unsaturated fatty acid chains (the latter having
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plotLoadings}\NormalTok{(SrE3.IR, class,}
+\KeywordTok{plotLoadings}\NormalTok{(SrE3.IR, c_res,}
   \DataTypeTok{main =}\NormalTok{ myt,}
   \DataTypeTok{loads =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{),}
   \DataTypeTok{ref =} \DecValTok{1}\NormalTok{)}
@@ -1500,7 +1513,7 @@ pair of PCs, and hence, drive your data clustering.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{res <-}\StringTok{ }\KeywordTok{plot2Loadings}\NormalTok{(SrE3.IR, class,}
+\NormalTok{res <-}\StringTok{ }\KeywordTok{plot2Loadings}\NormalTok{(SrE3.IR, c_res,}
   \DataTypeTok{main =}\NormalTok{ myt,}
   \DataTypeTok{loads =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{),}
   \DataTypeTok{tol =} \FloatTok{0.002}\NormalTok{)}
@@ -1533,7 +1546,7 @@ This method was reported in\cite{Wiklund2008}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{spt <-}\StringTok{ }\KeywordTok{sPlotSpectra}\NormalTok{(SrE3.IR, class,}
+\NormalTok{spt <-}\StringTok{ }\KeywordTok{sPlotSpectra}\NormalTok{(SrE3.IR, c_res,}
   \DataTypeTok{main =}\NormalTok{ myt,}
   \DataTypeTok{pc =} \DecValTok{1}\NormalTok{,}
   \DataTypeTok{tol =} \FloatTok{0.001}\NormalTok{)}
@@ -1551,7 +1564,7 @@ This method was reported in\cite{Wiklund2008}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{spt <-}\StringTok{ }\KeywordTok{sPlotSpectra}\NormalTok{(SrE3.IR, class,}
+\NormalTok{spt <-}\StringTok{ }\KeywordTok{sPlotSpectra}\NormalTok{(SrE3.IR, c_res,}
   \DataTypeTok{main =} \StringTok{"Detail of s-Plot"}\NormalTok{,}
   \DataTypeTok{pc =} \DecValTok{1}\NormalTok{,}
   \DataTypeTok{tol =} \FloatTok{0.05}\NormalTok{,}
@@ -1578,7 +1591,7 @@ but the command would be:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{hcaScores}\NormalTok{(SrE3.IR,  class,}
+\KeywordTok{hcaScores}\NormalTok{(SrE3.IR,  c_res,}
   \DataTypeTok{scores =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{),}
   \DataTypeTok{main =}\NormalTok{ myt)}
 \end{Highlighting}
@@ -1676,7 +1689,7 @@ more.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{model <-}\StringTok{ }\KeywordTok{mclustSpectra}\NormalTok{(SrE3.IR, class,}
+\NormalTok{model <-}\StringTok{ }\KeywordTok{mclustSpectra}\NormalTok{(SrE3.IR, c_res,}
   \DataTypeTok{plot =} \StringTok{"BIC"}\NormalTok{,}
   \DataTypeTok{main =}\NormalTok{ myt)}
 \end{Highlighting}
@@ -1693,7 +1706,7 @@ more.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{model <-}\StringTok{ }\KeywordTok{mclustSpectra}\NormalTok{(SrE3.IR, class,}
+\NormalTok{model <-}\StringTok{ }\KeywordTok{mclustSpectra}\NormalTok{(SrE3.IR, c_res,}
   \DataTypeTok{plot =} \StringTok{"proj"}\NormalTok{,}
   \DataTypeTok{main =}\NormalTok{ myt)}
 \end{Highlighting}
@@ -1710,7 +1723,7 @@ more.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{model <-}\StringTok{ }\KeywordTok{mclustSpectra}\NormalTok{(SrE3.IR, class,}
+\NormalTok{model <-}\StringTok{ }\KeywordTok{mclustSpectra}\NormalTok{(SrE3.IR, c_res,}
   \DataTypeTok{plot =} \StringTok{"errors"}\NormalTok{,}
   \DataTypeTok{main =}\NormalTok{ myt,}
   \DataTypeTok{truth =}\NormalTok{ SrE3.IR}\OperatorTok{$}\NormalTok{groups)}
@@ -1735,7 +1748,7 @@ demonstrated here, but the commands would be:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# not run - it's interactive!}
-\KeywordTok{mclust3dSpectra}\NormalTok{(SrE3.IR, class)}
+\KeywordTok{mclust3dSpectra}\NormalTok{(SrE3.IR, c_res)}
 \end{Highlighting}
 \end{Shaded}
 

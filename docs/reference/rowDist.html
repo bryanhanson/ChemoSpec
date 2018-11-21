@@ -34,12 +34,9 @@
 
 <meta property="og:title" content="Compute Distance Between Rows of a Matrix — rowDist" />
 
-<meta property="og:description" content="This function is a wrapper to compute the distance between rows of a matrix
-using a number of methods.  Some of these are available in package
-stats and some in Dist from package amap.
-This function determines which method is requested and then the
-distance calculation is done by the appropriate method. The exception is the
-cosine distance which is calculated locally." />
+<meta property="og:description" content="This function is used by ChemoSpec and ChemoSpec2D, but is
+formally part of ChemoSpecUtils.  You can access
+full documentation via rowDist." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +66,7 @@ cosine distance which is calculated locally." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.96</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.165</span>
       </span>
     </div>
 
@@ -86,6 +83,9 @@ cosine distance which is calculated locally." />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -109,67 +109,25 @@ cosine distance which is calculated locally." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compute Distance Between Rows of a Matrix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/bryanhanson/ChemoSpec/blob/master/R/rowDist.R'><code>R/rowDist.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/bryanhanson/ChemoSpec/blob/master/R/rowDistStub.R'><code>R/rowDistStub.R</code></a></small>
     <div class="hidden name"><code>rowDist.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function is a wrapper to compute the distance between rows of a matrix
-using a number of methods.  Some of these are available in package
-<code>stats</code> and some in <code><a href='http://www.rdocumentation.org/packages/amap/topics/dist'>Dist</a></code> from package <code>amap</code>.
-This function determines which method is requested and then the
-distance calculation is done by the appropriate method. The exception is the
-cosine distance which is calculated locally.</p>
+    <p>This function is used by <code>ChemoSpec</code> and <code>ChemoSpec2D</code>, but is
+formally part of <code>ChemoSpecUtils</code>.  You can access
+full documentation via <code><a href='http://www.rdocumentation.org/packages/ChemoSpecUtils/topics/rowDist'>rowDist</a></code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>rowDist</span>(<span class='no'>x</span>, <span class='no'>method</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>A matrix whose rows will be used for the distance calculation.</p></td>
-    </tr>
-    <tr>
-      <th>method</th>
-      <td><p>A character; one of <code>c("pearson"</code>, <code>"correlation"</code>,
-<code>"spearman"</code>, <code>"kendall"</code>, <code>"euclidean"</code>, <code>"maximum"</code>, <code>"manhattan"</code>,
-<code>"canberra"</code>,<code>"binary"</code>, <code>"minkowski"</code>, <code>"cosine")</code>.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>An object of class <code>dist</code>.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Methods <code>c("euclidean"</code>, <code>"maximum"</code>, <code>"manhattan"</code>, <code>"canberra"</code>,<code>"binary"</code>,
-<code>"minkowski")</code> are sent to function <code>dist</code> in package
-<code>stats</code> while methods <code>c("pearson"</code>, <code>"correlation"</code>,
-<code>"spearman"</code>, <code>"kendall")</code> are handled by <code>Dist</code> in package <code>amap</code>.
-See the respective help pages for details. <code>"cosine"</code> is handled
-locally.</p>
-    
+        
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-          </ul>
-
-    <h2>Author</h2>
-    
-Bryan A. Hanson, DePauw University.
-Suggested by and original code written by Roberto Canteri.
+                </ul>
 
   </div>
 </div>

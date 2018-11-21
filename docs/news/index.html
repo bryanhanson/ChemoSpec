@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Display the Spectra in a Spectra Object One at a Time — loopThruSpectra • ChemoSpec</title>
+<title>Changelog • ChemoSpec</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -32,12 +32,7 @@
 
 
 
-<meta property="og:title" content="Display the Spectra in a Spectra Object One at a Time — loopThruSpectra" />
-
-<meta property="og:description" content="Plots each spectrum in a Spectra object one at a time, and
-waits for a return in the console before plotting the next spectrum.  Use
-ESC to get out of the loop." />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Changelog" />
 
 
 
@@ -53,7 +48,7 @@ ESC to get out of the loop." />
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -108,68 +103,48 @@ ESC to get out of the loop." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Display the Spectra in a Spectra Object One at a Time</h1>
-    <small class="dont-index">Source: <a href='https://github.com/bryanhanson/ChemoSpec/blob/master/R/LoopThruSpectra.R'><code>R/LoopThruSpectra.R</code></a></small>
-    <div class="hidden name"><code>loopThruSpectra.Rd</code></div>
+      <h1>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/bryanhanson/ChemoSpec/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="ref-description">
-    
-    <p>Plots each spectrum in a <code><a href='Spectra.html'>Spectra</a></code> object one at a time, and
-waits for a return in the console before plotting the next spectrum.  Use
-<code>ESC</code> to get out of the loop.</p>
-    
-    </div>
-
-    <pre class="usage"><span class='fu'>loopThruSpectra</span>(<span class='no'>spectra</span>, <span class='no'>...</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>spectra</th>
-      <td><p>An object of S3 class <code><a href='Spectra.html'>Spectra</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>&#8230;</th>
-      <td><p>Parameters to be passed downstream.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>None. Side effect is a plot.</p>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p><a href='https://github.com/bryanhanson/ChemoSpec'>https://github.com/bryanhanson/ChemoSpec</a></p>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-</div><span class='co'># NOT RUN {</span>
-<span class='fu'>data</span>(<span class='no'>metMUD1</span>)
-<span class='fu'>loopThruSpectra</span>(<span class='no'>metMUD1</span>)
-<span class='co'># }</span><div class='input'>
-</div></pre>
+    <div id="chemospec-5-0-xxx-2018-11-xx" class="section level1">
+<h1 class="page-header">
+<a href="#chemospec-5-0-xxx-2018-11-xx" class="anchor"></a>ChemoSpec 5.0.xxx 2018-11-xx<small> Unreleased </small>
+</h1>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug Fixes</h2>
+<ul>
+<li>Fixed a problem with color assignment in .groupNcolor (the problem seems to have been present from the very beginning). Reported by Reinhard Kerschner (many thanks!). Note .groupNcolor now resides in ChemoSpecUtils. Reported here for convenience.</li>
+</ul>
+</div>
+<div id="improvements" class="section level2">
+<h2 class="hasAnchor">
+<a href="#improvements" class="anchor"></a>Improvements</h2>
+<ul>
+<li>files2SpectraObject now uses tryCatch to more gracefully fail and offer suggestions to user.</li>
+</ul>
+</div>
+<div id="notices" class="section level2">
+<h2 class="hasAnchor">
+<a href="#notices" class="anchor"></a>Notices</h2>
+<ul>
+<li>Older news may be found via <code>news(package = "ChemoSpec")</code>.</li>
+<li>The changelog/NEWS file has moved to <a href="bryanhanson.github.io/ChemoSpec/">https://bryanhanson.github.io/ChemoSpec/</a>, but you must know that since you are viewing it!</li>
+</ul>
+</div>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#references">References</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    
-Bryan A. Hanson, DePauw University.
-
+    <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#chemospec-5-0-xxx-2018-11-xx">5.0</a></li>
+      </ul>
+    </div>
   </div>
+
 </div>
 
       <footer>

@@ -1,5 +1,4 @@
 #'
-#'
 #' Plot a Spectra Object Interactively
 #' 
 #' This function uses the d3.js JavaScript library by Mike Bostock to plot a \code{\link{Spectra}}
@@ -37,8 +36,9 @@
 ##' in turn uses \code{options("browser")}.  Exactly how this is handled
 ##' is OS dependent.
 ##'
-##' @section RStudio Viewer: If browser is \code{NULL}, you are using RStudio, and a viewer is specified, this will be called.  You can stop this by with \code{options(viewer = NULL)}.
-##'
+##' @section RStudio Viewer: If browser is \code{NULL}, you are using RStudio, and a
+#' viewer is specified, this will be called.  You can stop this by with
+#' \code{options(viewer = NULL)}.
 ##'
 ##' @section Browser Choice (Mac): On a Mac, the default browser is called
 ##' by \code{/bin/sh/open}
@@ -53,9 +53,9 @@
 #' @author Bryan A. Hanson, DePauw University.
 #'
 #' @seealso \code{\link{plotSpectra}} for non-interactive plotting.  Details
-#' about \code{d3.js} are at \url{www.d3js.org}.
+#' about \code{d3.js} are at \url{www.d3js.org}. Additional documentation at
+#' \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
 #'
 #' @keywords plot
 #'
@@ -74,14 +74,12 @@
 #'
 plotSpectraJS <- function(spectra, which = NULL, browser = NULL, minify = TRUE) {
 
-	# Bryan A. Hanson, DePauw University, February 2015
 	# This is the R front end controlling everything
 
 	.chkArgs(mode = 11L)
 	chkSpectra(spectra)
 
 	if (!is.null(which)) {
-		#if (!is.integer(which)) stop("which must be an integer vector")
 		which <- as.integer(which)
 		which2 <- setdiff(1:length(spectra$names), which)
 		spectra <- removeSample(spectra, rem.sam = which2)
@@ -160,10 +158,6 @@ plotSpectraJS <- function(spectra, which = NULL, browser = NULL, minify = TRUE) 
 		#scopeFunTail <- "})();"
 	
 		# Combine, then optionally minify for faster performance, write
-	
-		# text = c(scopeFunHeader, data1, data2, data3, data4,
-			# data5, data6, data7, data8, data9, data10, data11,
-			# js1, js2, js3, js4, js5, scopeFunTail)
 	
 		text = c(data1, data2, data3, data4,
 			data5, data6, data7, data8, data9, data10, data11,

@@ -1,5 +1,4 @@
 #'
-#'
 #' Functions to Compute Measures of Central Tendency and Spread.  seX!
 #' 
 #' These functions compute various measures of central tendency and spread.
@@ -22,9 +21,9 @@
 #'
 #' @author Bryan A. Hanson, DePauw University.
 #'
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
-#'
 #' @keywords utilities
+#'
+#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @examples
 #' 
@@ -39,13 +38,11 @@
 #'
 #' @importFrom stats na.omit sd fivenum median
 #'
-
 #' @describeIn .seXy standard error of x
 
 .seX <- function(x) sd(x, na.rm = TRUE)/sqrt(length(na.omit(x)))
 
 #' @describeIn .seXy mean +/- the standard error
-
 .seXy <- function(x) {
 	m <- mean(na.omit(x))
 	se <- .seX(x)
@@ -70,7 +67,7 @@
 	c(y = i[3], ymin = i[2], ymax = i[4])
 	}
 	
-
+	
 #' @describeIn .seXy median +/- median absolute deviation
 .seXyMad <- function(x) {
 	m <- median(na.omit(x))

@@ -36,14 +36,12 @@
 #' 
 #' @author Bryan A. Hanson, DePauw University.
 #' 
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
-#' 
 #' @keywords utilities manip
 #' 
 #' @examples
 #' 
 #' x <- seq(0, 1000, length.out = 3000); y <- rnorm(3000)
-#' res <- binData(x, y)
+#' res <- .binData(x, y)
 #' length(res$mean.x) # will be half of the original length
 #'
 #' # Now try it with bin.ratio that does not divide into 3000
@@ -54,10 +52,6 @@
 #' @noRd
 #'
 .binData <- function(x = NULL, y = NULL, bin.ratio = 2) {
-	
-# Function to bin or bucket spectral data
-# Part of the ChemoSpec package
-# Bryan Hanson, DePauw University, November 2009
 
 	# Be careful:
 	# bin.ratio may not divide evenly into no. data points
@@ -68,6 +62,7 @@
 	if (!is.null(y) && !is.null(x)) {
 		if (!identical(length(x), length(y))) stop("x and y vectors in binData have different lengths")
 		}
+
 	chk <- check4Gaps(x, silent = TRUE)
 	if (nrow(chk) > 1) stop("The data being binned has gaps and cannot be binned accurately")
 	br <- bin.ratio

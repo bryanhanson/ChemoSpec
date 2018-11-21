@@ -42,8 +42,9 @@ Vu TN, Valkenborg D, Smets K, Verwaest KA, Dommisse R, Lemiere F, Verschoren
 A, Goethals B, Laukens K. "An integrated workflow for robust alignment and
 simplified quantitative analysis of NMR spectrometry data" BMC
 Bioinformatics vol. 12 pg. 405 (2011).
-
-\url{https://github.com/bryanhanson/ChemoSpec}
+}
+\seealso{
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University. \email{hanson@depauw.edu}

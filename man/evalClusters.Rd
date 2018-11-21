@@ -76,14 +76,13 @@ res3 <- evalClusters(metMUD2, min.nc = 2, max.nc = 5, method = "average", index 
 M. Charrad et. al.  "NbClust: An R Package for Determining the
 Relevant Number of Clusters in a Data Set."  J. Stat. Soft. vol. 61 no. 6
 October 2014.
-
-\url{https://github.com/bryanhanson/ChemoSpec}
 }
 \seealso{
 \code{\link{hclust}} for the underlying base function.
 \code{\link{hcaSpectra}} for HCA analysis of a \code{\link{Spectra}} object.
 \code{\link{hcaScores}} for HCA analysis of PCA scores from a
-\code{\link{Spectra}} object.
+\code{\link{Spectra}} object. Additional documentation at
+\url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

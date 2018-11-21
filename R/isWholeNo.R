@@ -5,7 +5,6 @@
 #' tolerance.  Taken from the help page of \code{\link{is.integer}}.  An
 #' internal function, not generally called by the user.
 #' 
-#' 
 #' @param x A number to be tested.
 #' 
 #' @param tol Tolerance for the test.
@@ -16,19 +15,13 @@
 #' 
 #' @seealso \code{\link{is.integer}}
 #' 
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}\cr
-#' 
 #' @keywords utilities
 #' 
 #' @export
 #' @noRd
 #'
-.isWholeNo <- function(x, tol = .Machine$double.eps^0.5)  {
-	
-# Taken from the help to is.integer()
-# Bryan Hanson, DePauw Univ, Nov 2009
-# Used by binSpec in ChemoSpec
-	
+.isWholeNo <- function(x, tol = .Machine$double.eps^0.5)  {	
 	abs(x - round(x)) < tol
-	
-	}
+}
+
+

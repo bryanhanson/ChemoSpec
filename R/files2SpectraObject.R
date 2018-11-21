@@ -1,5 +1,4 @@
 #'
-#'
 #' Import Data into a Spectra Object
 #'
 #' These functions import data into a \code{\link{Spectra}} object.  They use
@@ -138,8 +137,8 @@
 #'
 #' @author Bryan A. Hanson, DePauw University.
 #' 
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
-#' 
+#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#'
 #' @keywords file
 #' @keywords import
 #' 
@@ -174,10 +173,6 @@ files2SpectraObject <- function(gr.crit = NULL,
 		
 	out <- tryCatch(
 	{
-# Function to Read & Prep Spectroscopic Data
-# from raw data files into an Spectra object
-# Part of the ChemoSpec package
-# Bryan Hanson, DePauw University, Aug 2009
 
 # This function acts on all files in the working directory with the specified extension
 

@@ -47,12 +47,11 @@ plotScores(metMUD1, pca, main = "metMUD1 NMR Data",
 \references{
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
 Statistical Analysis in Chemometrics}, CRC Press, 2009.
-
-\url{https://github.com/bryanhanson/ChemoSpec}\cr
 }
 \seealso{
 \code{\link{prcomp}} for the underlying function,
 \code{\link{r_pcaSpectra}} for analogous robust PCA calculations.
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 
 For displaying the results, \code{\link{plotScree}},
 \code{\link{plotScores}}, \code{\link{plotLoadings}},

@@ -66,7 +66,7 @@ process quickly." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.96</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.165</span>
       </span>
     </div>
 
@@ -83,6 +83,9 @@ process quickly." />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -154,7 +157,9 @@ independent. This data set is normalized.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>metMUD1</span>)
-<span class='fu'><a href='sumSpectra.html'>sumSpectra</a></span>(<span class='no'>metMUD1</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='sumSpectra.html'>sumSpectra</a></span>(<span class='no'>metMUD1</span>)</div><div class='output co'>#&gt; No gaps were found by check4Gaps
+#&gt; No plot will be made
+#&gt; 
 #&gt;  metMUD1: cntrl + trmt 4 non-correlated metabolites 
 #&gt; 
 #&gt; 	There are 20 spectra in this set.
@@ -180,8 +185,11 @@ independent. This data set is normalized.</p>
 #&gt; 2  Trmt  10   red     19       t
 #&gt; 
 #&gt; 
-#&gt; *** Note: this data is an S3 object of class 'Spectra2D'</div><div class='input'><span class='fu'>data</span>(<span class='no'>metMUD2</span>)
-<span class='fu'><a href='sumSpectra.html'>sumSpectra</a></span>(<span class='no'>metMUD2</span>)</div><div class='output co'>#&gt; 
+#&gt; *** Note: this is an S3 object
+#&gt; of class 'Spectra'</div><div class='input'><span class='fu'>data</span>(<span class='no'>metMUD2</span>)
+<span class='fu'><a href='sumSpectra.html'>sumSpectra</a></span>(<span class='no'>metMUD2</span>)</div><div class='output co'>#&gt; No gaps were found by check4Gaps
+#&gt; No plot will be made
+#&gt; 
 #&gt;  metMUD2: 4 groups; 4 metabolites: 2 +correlated, 2 -correlated, 1 random 
 #&gt; 
 #&gt; 	There are 20 spectra in this set.
@@ -209,7 +217,8 @@ independent. This data set is normalized.</p>
 #&gt; 4  ABCD   5 black      0       w
 #&gt; 
 #&gt; 
-#&gt; *** Note: this data is an S3 object of class 'Spectra2D'</div><div class='input'>
+#&gt; *** Note: this is an S3 object
+#&gt; of class 'Spectra'</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

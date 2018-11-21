@@ -55,12 +55,11 @@ Discriminant Analysis: ..." Analytica Chimica Acta 629.1-2 (2008): 47-55.
 Harrington, Vieira, Espinoza, Nien, Romero, and Yergey. "Analysis of
 Variance--Principal Component Analysis: ..." Analytica Chimica Acta 544.1-2
 (2005): 118-27.
-
-\url{https://github.com/bryanhanson/ChemoSpec}
 }
 \seealso{
 The output of this function is used in
 used in \code{\link{aovPCAscores}} and \code{\link{aovPCAloadings}}.
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Matthew J. Keinsley and Bryan A. Hanson, DePauw University.

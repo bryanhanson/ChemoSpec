@@ -41,9 +41,8 @@
 #' 
 #' @author Bryan A. Hanson, DePauw University.
 #' 
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
-#' 
 #' @keywords hplot
+#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #' 
 #' @examples
 #' 

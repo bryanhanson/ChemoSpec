@@ -6,7 +6,6 @@
 #' offset or stacked.  The vertical scale is controlled by a combination of
 #' several parameters.
 #' 
-#' 
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
 #' @param which An integer vector specifying which spectra to plot, and the
@@ -43,8 +42,8 @@
 #' @author Bryan A. Hanson, DePauw University.
 #'
 #' @seealso \code{\link{plotSpectraJS}} for the interactive version.
+#' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
 #'
 #' @keywords hplot
 #'
@@ -71,10 +70,6 @@ plotSpectra <- function(spectra, which = c(1),
 	lab.pos = mean(spectra$freq),
 	showGrid = TRUE, leg.loc = "none", ...) {
 	
-# Function to plot multiple spectra @ specified expansions & decorate
-# Part of the ChemoSpec package
-# Bryan Hanson, DePauw University, June 2009
-
 	.chkArgs(mode = 11L)
 	chkSpectra(spectra)
 	

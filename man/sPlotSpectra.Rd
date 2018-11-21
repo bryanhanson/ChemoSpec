@@ -46,8 +46,9 @@ Gottfries, Moritz, and Trygg. "Visualization of GC/TOF-MS-Based
 Metabololomics Data for Identification of Biochemically Interesting
 Compounds Usings OPLS Class Models" Analytical Chemistry Vol.80 no.1 pgs.
 115-122 (2008).
-
-\url{https://github.com/bryanhanson/ChemoSpec}
+}
+\seealso{
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Matthew J. Keinsley and Bryan A. Hanson, DePauw University.

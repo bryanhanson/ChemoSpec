@@ -41,9 +41,8 @@
 #' @author Bryan A. Hanson, DePauw University.
 #' 
 #' @seealso \code{\link{cov.rob}} for the function that does the work.
-#' 
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
-#' 
+#' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#'
 #' @keywords multivariate utilities
 #' 
 #' @examples
@@ -60,10 +59,6 @@
 #' @importFrom stats var rnorm qf 
 #'
 .makeEllipsoid <- function(data, cl = 0.95, rob = FALSE, frac.pts.used = 0.80) {
-
-# Function to make an ellipsoid surrounding a given set of 2 or 3D data
-# Part of the ChemoSpec package
-# Bryan Hanson, DePauw University, Dec 2009
 
 # This function generates a random set of points on a sphere, and turns it into an ellipsoid.
 # If rob = FALSE, it is shaped and sized to match the desired classical confidence level.

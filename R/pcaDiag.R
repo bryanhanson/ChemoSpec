@@ -1,6 +1,4 @@
 #'
-#'
-#'
 #' Outlier Diagnostic Plots for PCA of a Spectra Object
 #' 
 #' A function to carry diagnostics on the PCA results for a
@@ -40,6 +38,8 @@
 #' \code{\link[chemometrics]{pcaDiagplot}}, so the result must be assigned or
 #' it will appear at the console.  Side effect is a plot.
 #'
+#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#'
 #' @author Bryan A. Hanson, DePauw University.
 #'
 #' @seealso \code{\link[chemometrics]{pcaDiagplot}} in package
@@ -48,8 +48,6 @@
 #' @references K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
 #' Statistical Analysis in Chemometrics}, CRC Press, 2009.
 #' 
-#' \url{https://github.com/bryanhanson/ChemoSpec}\cr
-#'
 #' @keywords multivariate
 #'
 #' @examples
@@ -67,9 +65,6 @@
 pcaDiag <-
 function (spectra, pca, pcs = 3, quantile = 0.975,
 plot = c("OD", "SD"), use.sym = FALSE, ...) {
-
-# Function for PCA Diagnostic Plots (modified from Filzmosers version in {chemometrics})
-# Part of the ChemoSpec package.  Bryan Hanson, DePauw Univ, Sept 2009
 
 	.chkArgs(mode = 11L) # pca cannot be checked, see next line
 	if ("prcomp" %in% class(pca)) pca <- .q2rPCA(pca)

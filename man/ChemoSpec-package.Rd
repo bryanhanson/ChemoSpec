@@ -18,8 +18,8 @@ publication quality plots.  ChemoSpec is intended to be very user friendly
 and help you get usable results quickly.  A vignette covering typical
 operations is available.
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
+\seealso{
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson and Matthew J. Keinsley.

@@ -1,5 +1,4 @@
 #'
-#'
 #' Conversion Between PCA Classes
 #' 
 #' Utility to convert objects of S3 class \code{prcomp} (Q-mode PCA) to
@@ -36,8 +35,7 @@
 #' @author Bryan A. Hanson, DePauw University.
 #'
 #' @seealso \code{\link{prcomp}}, \code{\link{princomp}}
-#'
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
+#' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @keywords classes utilities
 #'
@@ -46,10 +44,6 @@
 #'
 .q2rPCA <- function(x) {
 	
-# Converts objects of class prcomp (Q-mode PCA) to class princomp (R-mode PCA)
-# Bryan Hanson, DePauw Univ, Sept 2009
-# original is modified by adding list elements (these could be removed to save space)
-
 	if (!"prcomp" %in% class(x)) stop("The PCA object was not of class prcomp")
 
 	# sdev, center and scale for both classes are the same; no change necessary

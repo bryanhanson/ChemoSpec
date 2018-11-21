@@ -1,9 +1,7 @@
 #'
-#'
 #' Plot PCA Loadings for a Spectra Object
 #' 
 #' Creates a multi-panel plot of loadings along with a reference spectrum.
-#' 
 #' 
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
@@ -28,8 +26,8 @@
 #'
 #' @seealso See \code{\link{plot2Loadings}} to plot two loadings against each
 #' other, and \code{\link{sPlotSpectra}} for an alternative approach.
+#' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
 #'
 #' @keywords multivariate hplot
 #'
@@ -48,10 +46,6 @@
 #'
 plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
 	
-# Function to plot loadings vs. frequencies
-# Part of the ChemoSpec package
-# Bryan Hanson, DePauw University, June 2008
-
 	if (!requireNamespace("lattice", quietly = TRUE)) {
 		stop("You need to install package lattice to use this function")
 	}

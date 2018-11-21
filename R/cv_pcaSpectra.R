@@ -1,13 +1,10 @@
 #'
-#'
-#'
 #' Cross-Validation of Classical PCA Results for a Spectra Object
 #' 
 #' This function carries out classical PCA on the data in a
 #' \code{\link{Spectra}} object using a cross-validation method.  A simple
 #' re-write of Peter Filzmoser's \code{\link[chemometrics]{pcaCV}} method
 #' with some small plotting changes.
-#' 
 #' 
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #' 
@@ -37,11 +34,10 @@
 #' @author Bryan A. Hanson, DePauw University. Derived from \code{\link[chemometrics]{pcaCV}}.
 #' 
 #' @seealso \code{\link[chemometrics]{pcaCV}} for the underlying function.
+#' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #' 
 #' @references K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
 #' Statistical Analysis in Chemometrics}, CRC Press, 2009.
-#' 
-#' \url{https://github.com/bryanhanson/ChemoSpec}\cr
 #' 
 #' @keywords multivariate
 #' 
@@ -54,15 +50,10 @@
 #' 
 #' @importFrom stats sd
 #' @importFrom graphics boxplot legend 
-# @importFrom pls cvsegments
 #' 
 cv_pcaSpectra <- function (spectra, pcs, choice = "noscale", repl = 50, segments = 4, 
     segment.type = c("random", "consecutive", "interleaved"), 
     length.seg, trace = FALSE, ...) {
-
-# Function for CV of PCA scores (modified from Filzmosers version in {chemometrics})
-# Part of the ChemoSpec package.  Bryan Hanson, DePauw Univ, Sept 2009
-# Conducts classical, not robust, PCA
 
 	if (!requireNamespace("pls", quietly = TRUE)) {
 		stop("You need to install package pls to use this function")

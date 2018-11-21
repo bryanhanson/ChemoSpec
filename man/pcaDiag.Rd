@@ -59,10 +59,10 @@ temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "SD")
 \references{
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
 Statistical Analysis in Chemometrics}, CRC Press, 2009.
-
-\url{https://github.com/bryanhanson/ChemoSpec}\cr
 }
 \seealso{
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+
 \code{\link[chemometrics]{pcaDiagplot}} in package
 \code{chemometrics} for the underlying function.
 }

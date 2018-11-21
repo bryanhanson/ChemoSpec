@@ -1,5 +1,4 @@
 #' 
-#' 
 #' mclust Analysis of a Spectra Object in 3D
 #' 
 #' This function conducts an mclust analysis of the PCA results of a
@@ -59,14 +58,13 @@
 #' @author Bryan A. Hanson, DePauw University.
 #'
 #' @seealso \code{\link[mclust]{Mclust}} for background on the method.
+#' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
 #'
 #' @keywords multivariate cluster
 #' @examples
 #' 
 #' \dontrun{
-#'
 #' require(mclust)
 #' data(metMUD1)
 #' class <- c_pcaSpectra(metMUD1)
@@ -81,10 +79,6 @@ mclust3dSpectra <- function(spectra, pca, pcs = c(1:3),
 	truth = NULL, title = "no title provided", t.pos = NULL,
 	lab.opts = FALSE, use.sym = FALSE, ...) {
 	
-# Wrapper to plot mclust results in 3D with confidence ellipses
-# Bryan Hanson, DePauw University, Dec 2009
-# Part of the ChemoSpec package
-
 	.chkArgs(mode = 12L)
 	
 	mod <- .mclust3D(pca$x[,pcs], ellipse = ellipse, rob = rob, cl = cl,

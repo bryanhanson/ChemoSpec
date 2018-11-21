@@ -1,5 +1,4 @@
 #'
-#'
 #' Spectra Objects
 #' 
 #' In \code{ChemoSpec}, spectral data sets are stored in an S3 class called
@@ -33,11 +32,10 @@
 #' \code{\link{sumGroups}} to summarize group membership of a \code{Spectra}
 #' object. \code{\link{chkSpectra}} to verify the integrity of a
 #' \code{Spectra} object. \code{\link{colorSymbol}} for a discussion of color
-#' options.
+#' options. Finally, additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#'
 #'
 #' @name Spectra
-#'
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
 #'
 #' @keywords classes
 NULL

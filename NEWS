@@ -4,6 +4,11 @@ Exploratory Chemometrics for Spectroscopy
 Bryan A. Hanson DePauw University, Greencastle Indiana USA
 URL: github.com/bryanhanson/ChemoSpec
 
+Changes in version 5.0.xxx 2018-11-xx
+     + Fixed a problem with color assignment in .groupNcolor (the problem seems to have been present from the very beginning).  Reported by Reinhard Kerschner (many thanks!). Note .groupNcolor now resides in ChemoSpecUtils.  Reported here for convenience.
+     + files2SpectraObject now uses tryCatch to more gracefully fail and offer suggestions to user.
+     + From this version onward, this NEWS file will not be updated.  Instead, get news about ChemoSpec development at https://bryanhanson.github.io/ChemoSpec/
+
 Changes in version 5.0.165 2018-11-09
      + Consistent argument checking implemented via ChemoSpecUtils::.chkArgs.
 

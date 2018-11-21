@@ -37,8 +37,8 @@ temp <- plotSpectraDist(SrE.NMR, xlab = txt2, ylab = txt1, main = txt1,
   xlim = c(1,16), ylim = c(0, 0.3), srt = 90)
 
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
+\seealso{
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

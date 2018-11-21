@@ -1,11 +1,9 @@
 #'
-#'
 #' Robust PCA of a Spectra Object
 #' 
 #' A wrapper which carries out robust PCA analysis on a \code{\link{Spectra}}
 #' object.  The data are row- and column-centered, and the user can select
 #' various options for scaling.
-#' 
 #' 
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
@@ -19,6 +17,7 @@
 #'
 #' @seealso See \code{\link[pcaPP]{PCAgrid}} on which this function is based.
 #' For the classical version, see \code{\link{c_pcaSpectra}}.
+#' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #' 
 #' For displaying the results, \code{\link{plotScree}}, 
 #' \code{\link{plotScores}}, \code{\link{plotLoadings}},
@@ -28,9 +27,9 @@
 #' @references K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
 #' Statistical Analysis in Chemometrics}, CRC Press, 2009.
 #' 
-#' \url{https://github.com/bryanhanson/ChemoSpec}\cr
-#'
 #' @author Bryan A. Hanson, DePauw University.
+#'
+#' @seealso \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @keywords multivariate robust
 #'

@@ -64,8 +64,9 @@ et. al. Analytical Chemistry vol. 78 pages 4281-4290 (2006).  The exact same
 mathematics are called "median fold change normalization" by Nicholson's
 group, reported in K. A. Veselkov et. al. Analytical Chemistry vol. 83 pages
 5864-5872 (2011).
-
-\url{https://github.com/bryanhanson/ChemoSpec}
+}
+\seealso{
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

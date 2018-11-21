@@ -63,11 +63,9 @@ plotSpectra(metMUD1, main = "metMUD1 NMR Data",
   leg.loc = list(x = 3.2, y = 1.45))
 
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
-}
 \seealso{
 \code{\link{plotSpectraJS}} for the interactive version.
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

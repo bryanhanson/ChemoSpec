@@ -1,11 +1,9 @@
 #'
-#'
 #' Apply Savitzky-Golay filters to a Spectra object
 #' 
 #' This function is a simple wrapper around the function
 #' \code{\link[signal]{sgolayfilt}}.  It allows one to apply Savitzky-Golay
 #' filters to a \code{\link{Spectra}} object in a convenient way.
-#' 
 #' 
 #' @param spectra An object of S3 class \code{\link{Spectra}} to be checked.
 #'
@@ -19,9 +17,9 @@
 #'
 #' @author Bryan A. Hanson, DePauw University.
 #'
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
-#'
 #' @keywords utilities multivariate
+#'
+#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @examples
 #' 
@@ -41,9 +39,6 @@
 #'
 sgfSpectra <- function(spectra, m = 0, ...) {
 	
-# Function to filter a Spectra object
-# Bryan Hanson, DePauw University, Feb 2016
-
 	if (!requireNamespace("signal", quietly = TRUE)) {
 		stop("You need to install package signal to use this function")
 		}	

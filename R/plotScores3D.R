@@ -1,11 +1,9 @@
 #'
-#'
 #' 3D PCA Score Plot for a Spectra Object
 #' 
 #' Creates a basic 3D plot of PCA scores from the analysis of a
 #' \code{\link{Spectra}} object, color coded according the to scheme stored in
 #' the object.
-#' 
 #' 
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
@@ -50,9 +48,9 @@
 #' @author Bryan A. Hanson, DePauw University.
 #'
 #' @seealso For a 2D plot of the scores, see \code{\link{plotScores}}.  For
-#' interactive 3D plots, use \code{\link{plotScoresRGL}}.
+#' interactive 3D plots, use \code{\link{plotScoresRGL}}.  Additional documentation
+#' at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
 #'
 #' @keywords multivariate hplot
 #'
@@ -71,10 +69,6 @@
 plotScores3D <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
 	cl = 0.95, frac.pts.used = 0.8,
 	view = list(y = 34, x = 10, z = 0), tol = 0.01, use.sym = FALSE, ...) {
-
-# Function to do a 3D plot of PCA scores
-# Part of the ChemoSpec package
-# Bryan Hanson, DePauw University, Sept 2009
 
 	if (!requireNamespace("lattice", quietly = TRUE)) {
 		stop("You need to install package lattice to use this function")

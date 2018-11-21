@@ -18,8 +18,7 @@
 #' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
 #' 
 #' @seealso \code{\link{aov_pcaSpectra}} for full details.
-#' 
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
+#' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #' 
 #' @keywords multivariate htest
 #' 
@@ -47,7 +46,6 @@
 		}
 
 	lev <- levels(fac)
-	# cat("Lev = ", lev, "\n")
 
 	for (i in 1:length(lev)) {
 		w <- which(fac  == lev[i])

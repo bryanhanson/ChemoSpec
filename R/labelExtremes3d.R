@@ -1,12 +1,9 @@
 #'
-#'
-#'
 #' Identify Extreme Values in 3D
 #' 
 #' A utility function to identify the extreme values in a 3D plot data set,
 #' presumably so that they can be labeled. An internal function,
 #' not generally called by the user.
-#' 
 #' 
 #' @param data A matrix of 3 columns containing x, y and z values for the
 #' labels, with rows corresponding to sample names.
@@ -28,8 +25,8 @@
 #' 
 #' @author Bryan A. Hanson, DePauw University.
 #' 
-#' @references \url{https://github.com/bryanhanson/ChemoSpec}
-#' 
+#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#'
 #' @keywords utilities
 #' 
 #' @export
@@ -38,10 +35,6 @@
 #' 
 .labelExtremes3d <- function(data, names, tol) {
 
-# Function to find extreme data points for labeling
-# Part of the ChemoSpec package
-# Bryan Hanson, DePauw Univ, Dec 2009
-	
 	px <- data[,1]
 	py <- data[,2]
 	pz <- data[,3]

@@ -13,8 +13,8 @@ or changed using \code{\link{conColScheme}}. Also,
 scheme, but this is intended for the situations when you are creating new
 categories/groups for your samples.
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
+\seealso{
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

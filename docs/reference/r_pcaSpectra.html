@@ -66,7 +66,7 @@ various options for scaling." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.96</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.165</span>
       </span>
     </div>
 
@@ -83,6 +83,9 @@ various options for scaling." />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -162,7 +165,7 @@ For the classical version, see <code><a href='c_pcaSpectra.html'>c_pcaSpectra</a
 <span class='fu'>data</span>(<span class='no'>metMUD1</span>)
 <span class='no'>pca</span> <span class='kw'>&lt;-</span> <span class='fu'>r_pcaSpectra</span>(<span class='no'>metMUD1</span>)
 <span class='fu'><a href='plotScores.html'>plotScores</a></span>(<span class='no'>metMUD1</span>, <span class='no'>pca</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"metMUD1 NMR Data"</span>,
-  <span class='kw'>pcs</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>2</span>), <span class='kw'>ellipse</span> <span class='kw'>=</span> <span class='st'>"cls"</span>, <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>0.05</span>)</div><div class='img'><img src='r_pcaSpectra-1.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='kw'>pcs</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>2</span>), <span class='kw'>ellipse</span> <span class='kw'>=</span> <span class='st'>"cls"</span>, <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>0.05</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: the condition has length &gt; 1 and only the first element will be used</span></div><div class='output co'>#&gt; <span class='error'>Error in (function (spectra, so, pcs = c(1, 2), ellipse = "none", tol = "none",     use.sym = FALSE, leg.loc = "topright", ...) {    if (length(pcs) != 2)         stop("You must choose exactly two PC's to plot")    case &lt;- NULL    if ((class(so) == "prcomp") || (class(so) == "conPCA"))         case &lt;- "PCA"    if ((class(so) == "parafac") || (class(so) == "mia"))         case &lt;- "MIA"    if (is.null(case))         stop("Your score object has the wrong class! Double check that the Spectra object is the 1st argument and the score object is the 2nd argument.")    if ((case == "MIA") &amp;&amp; (use.sym))         stop("ChemoSpec2D does not support use.sym.")    chkSpectra(spectra)    if (case == "PCA")         DF &lt;- data.frame(so$x[, pcs], group = spectra$groups)    if (case == "MIA")         DF &lt;- data.frame(so$C[, pcs], group = spectra$groups)    GRPS &lt;- dlply(DF, "group", subset, select = c(1, 2))    if ((ellipse == "cls") || (ellipse == "rob") || (ellipse ==         "both")) {        gr &lt;- sumGroups(spectra)        for (n in 1:length(gr$group)) {            if (gr$no.[n] == 1)                 message("Group ", gr$group[n], "\n\thas only 1 member (no ellipse possible)")            if (gr$no.[n] == 2)                 message("Group ", gr$group[n], "\n\thas only 2 members (no ellipse possible)")            if (gr$no.[n] == 3)                 message("Group ", gr$group[n], "\n\thas only 3 members (ellipse not drawn)")        }        idx &lt;- which(gr$no. &gt; 3)        gr &lt;- gr[idx, ]        ELL &lt;- llply(GRPS[idx], .computeEllipses)        x.scores &lt;- range(llply(GRPS, subset, select = 1))        y.scores &lt;- range(llply(GRPS, subset, select = 2))        x.ell &lt;- range(llply(ELL, function(x) {            range(x[1])        }))        y.ell &lt;- range(llply(ELL, function(x) {            range(x[2])        }))        x.ell.r &lt;- range(llply(ELL, function(x) {            range(x[4])        }))        y.ell.r &lt;- range(llply(ELL, function(x) {            range(x[5])        }))        x.all &lt;- range(x.scores, x.ell, x.ell.r) * c(1, 1.15)        y.all &lt;- range(y.scores, y.ell, y.ell.r) * c(1, 1.15)    }    if (ellipse == "none") {        x.scores &lt;- range(llply(GRPS, subset, select = 1))        y.scores &lt;- range(llply(GRPS, subset, select = 2))        x.all &lt;- range(x.scores) * c(1, 1.15)        y.all &lt;- range(y.scores) * c(1, 1.15)    }    .drawPoints(DF[, 1:2], spectra, case = case, use.sym = use.sym,         xlim = x.all, ylim = y.all, ...)    if ((ellipse == "cls") | (ellipse == "rob") | (ellipse ==         "both"))         .drawEllipses(ELL, gr, ellipse, use.sym, ...)    if (case == "PCA") {        .addMethod(so)        if (leg.loc != "none")             .addLegend(spectra, leg.loc, use.sym, bty = "n")        .addEllipseInfo(ellipse)    }    if (case == "MIA") {        if (leg.loc != "none")             .addLegend(spectra, leg.loc, use.sym = FALSE, bty = "n")        .addEllipseInfo(ellipse)    }    if (tol != "none")         .labelExtremes(DF[, 1:2], spectra$names, tol)})(spectra = metMUD1, so = pca, pcs = c(1, 2), ellipse = "cls",     tol = 0.05, main = "metMUD1 NMR Data", xlab = "PC1 score (86%)",     ylab = "PC2 score (12%)"): object 'pca' not found</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

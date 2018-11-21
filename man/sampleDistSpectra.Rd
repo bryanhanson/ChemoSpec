@@ -32,12 +32,10 @@ M <- sampleDistSpectra(SrE.IR, method = "cosine",
   main = "SrE.IR Spectral Angle Between Samples")
 
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
-}
 \seealso{
 The sample distances can be used to cluster the samples. See for
-example \code{\link{hcaSpectra}}.
+example \code{\link{hcaSpectra}}. Additional documentation
+at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.

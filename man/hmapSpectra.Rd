@@ -33,13 +33,11 @@ IR <- removeFreq(SrE.IR, rem.freq = SrE.IR$freq > 1850 | SrE.IR$freq < 1650)
 res <- hmapSpectra(IR, col = heat.colors(5), labCol = FALSE)
 
 }
-\references{
-\url{https://github.com/bryanhanson/ChemoSpec}
-}
 \seealso{
 \code{\link[seriation]{hmap}} which will get you to the package
 (there is no package index page); the vignette is a good place to begin
-(\code{browseVignettes("seriation")}).
+(\code{browseVignettes("seriation")}).  Additional documentation at
+\url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.
