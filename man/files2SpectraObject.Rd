@@ -50,7 +50,8 @@ length be less than about 40 characters.}
 \item{fileExt}{A character string giving the extension of the files to be
 processed. \code{regex} strings can be used.  For instance, the default
 finds files with either \code{".csv"} or \code{".CSV"} as the extension.
-Matching is done via a grep process, which is greedy.}
+Matching is done via a grep process, which is greedy.  See also the 
+"Advanced Tricks" section.}
 
 \item{out.file}{A file name.  The
 completed object of S3 class \code{\link{Spectra}} will be written to this
@@ -63,7 +64,8 @@ when importing a JCAMP-DX file via \code{fileExt = ".jdx"} etc.  These
 will be passed through to the \code{\link[readJDX]{readJDX}} function.
 See there for much more info on importing JCAMP-DX files.}
 
-\item{...}{Arguments to be passed to \code{\link[utils]{read.table}}.  \pkg{You
+\item{...}{Arguments to be passed to \code{\link[utils]{read.table}} (and
+\code{\link{list.files}}; see the "Advanced Tricks" section.  \pkg{You
 MUST supply values for \code{sep}, \code{dec} and \code{header} consistent
 with your file structure, unless they are the same as the defaults for
 \code{\link[utils]{read.table}}}.}
@@ -167,6 +169,18 @@ All these problems can generally be identified by running \code{\link{sumSpectra
 once the data is imported.
 }
 
+\section{Advanced Tricks}{
+
+The ... argument not only passes any values given for \code{sep}, \code{dec} and \code{header}
+to \code{read.table}, one can also pass selected arguments to \code{list.files}. If your data
+is contained in a directory with sub-directories, you can use \code{recursive = TRUE}
+to grab all the files.  If the current working directory is not the directory containing
+the data files, you can use \code{path = "my_path"} to point to the desired top-level
+directory.  Also, while argument \code{fileExt} appears to be a file extension (from its
+name and the description elsewhere), it's actually just a grep pattern that you can apply
+to any part of the file name if you know how to contruct the proper pattern.
+}
+
 \examples{
 # Grab an included file
 ed <- system.file("extdata", package = "ChemoSpec")
@@ -182,7 +196,8 @@ plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
 
 }
 \seealso{
-Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}, 
+especially \code{\link{updateGroups}}.
 }
 \author{
 Bryan A. Hanson, DePauw University.

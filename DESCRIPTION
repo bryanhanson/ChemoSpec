@@ -1,8 +1,8 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 5.0.193
-Date: 2018-11-20
+Version: 5.0.204
+Date: 2018-11-23
 Authors@R: c(
     person("Bryan A.", "Hanson",
     role = c("aut", "cre"), email =
@@ -10,7 +10,10 @@ Authors@R: c(
     comment = "ORCID 0000-0003-3536-8246"),
     person("Mike", "Bostock",
     role = c("cph", "ctb"),
-    comment = "author of the d3.js library used by plotSpectraJS, http://d3js.org"))
+    comment = "author of the d3.js library used by plotSpectraJS, http://d3js.org"),
+    person("Matt", "Keinsley",
+    role = "ctb",
+    comment = "author of initial AOV-PCA code"))
 Description: A collection of functions for top-down exploratory data analysis
     of spectral data including nuclear magnetic resonance (NMR), infrared (IR),
     Raman, X-ray fluorescence (XRF) and other similar types of spectroscopy.

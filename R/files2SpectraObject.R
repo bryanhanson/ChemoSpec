@@ -38,7 +38,8 @@
 #' @param fileExt A character string giving the extension of the files to be
 #' processed. \code{regex} strings can be used.  For instance, the default
 #' finds files with either \code{".csv"} or \code{".CSV"} as the extension.
-#' Matching is done via a grep process, which is greedy.
+#' Matching is done via a grep process, which is greedy.  See also the 
+#' "Advanced Tricks" section.
 #' 
 #' @param out.file A file name.  The
 #' completed object of S3 class \code{\link{Spectra}} will be written to this
@@ -59,7 +60,8 @@
 #' integrity?  If you are having trouble importing your data, set this to
 #' \code{FALSE} and do \code{str(your object)} to troubleshoot.
 #'
-#' @param ...  Arguments to be passed to \code{\link[utils]{read.table}}.  \pkg{You
+#' @param ...  Arguments to be passed to \code{\link[utils]{read.table}} (and
+#' \code{\link{list.files}}; see the "Advanced Tricks" section.  \pkg{You
 #' MUST supply values for \code{sep}, \code{dec} and \code{header} consistent
 #' with your file structure, unless they are the same as the defaults for
 #' \code{\link[utils]{read.table}}}.
@@ -135,9 +137,20 @@
 #' All these problems can generally be identified by running \code{\link{sumSpectra}}
 #' once the data is imported.
 #'
+#' @section Advanced Tricks:
+#' The ... argument not only passes any values given for \code{sep}, \code{dec} and \code{header}
+#' to \code{read.table}, one can also pass selected arguments to \code{list.files}. If your data
+#' is contained in a directory with sub-directories, you can use \code{recursive = TRUE}
+#' to grab all the files.  If the current working directory is not the directory containing
+#' the data files, you can use \code{path = "my_path"} to point to the desired top-level
+#' directory.  Also, while argument \code{fileExt} appears to be a file extension (from its
+#' name and the description elsewhere), it's actually just a grep pattern that you can apply
+#' to any part of the file name if you know how to contruct the proper pattern.
+#'
 #' @author Bryan A. Hanson, DePauw University.
 #' 
-#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}, 
+#' especially \code{\link{updateGroups}}.
 #'
 #' @keywords file
 #' @keywords import
@@ -146,7 +159,7 @@
 #'
 #' @describeIn files2SpectraObject Import data from separate csv files
 #' 
-#' @importFrom utils read.table
+#' @importFrom utils read.table setTxtProgressBar txtProgressBar
 #' @importFrom tools file_path_sans_ext
 #'
 #' @examples
@@ -187,6 +200,8 @@ files2SpectraObject <- function(gr.crit = NULL,
 	
 	if (is.null(gr.crit)) stop("No group criteria provided to encode data")
 	
+	argsLF <- argsRT <- as.list(match.call())[-1] # TWO copies to be used momentarily
+	
 	DX = FALSE
 	if (grepl("(dx|DX|jdx|JDX)", fileExt)) {
 		DX <- TRUE
@@ -195,17 +210,42 @@ files2SpectraObject <- function(gr.crit = NULL,
 			}
 		}
 		
-	# First set up some common stuff
+	# Clean up args before calling list.files by removing arguments not used by list.files
+	# Set some defaults if a value is not passed
+	if ("sep" %in% names(argsLF)) argsLF$sep <- NULL	  
+	if ("dec" %in% names(argsLF)) argsLF$dec <- NULL	  
+	if ("header" %in% names(argsLF)) argsLF$header <- NULL	
+	if ("gr.crit" %in% names(argsLF)) argsLF$gr.crit <- NULL	
+	if ("freq.unit" %in% names(argsLF)) argsLF$freq.unit <- NULL	
+	if ("int.unit" %in% names(argsLF)) argsLF$int.unit <- NULL	
+	if ("descrip" %in% names(argsLF)) argsLF$descrip <- NULL	
+	if ("fileExt" %in% names(argsLF)) argsLF$fileExt <- NULL # this would be a duplicate
+	if (!("path" %in% names(argsLF))) argsLF$path <- getwd()
+	if (!("recursive" %in% names(argsLF))) argsLF$recursive <- FALSE
+	if ("debug" %in% names(argsLF)) argsLF$debug <- NULL	
 	
-	files <- list.files(pattern = fileExt)
-	files.noext <- tools::file_path_sans_ext(files)
+	argsLF <- c(argsLF, list(pattern = fileExt, full.names = TRUE))
+
+	files <- do.call(list.files, argsLF)
+	files.noext <- tools::file_path_sans_ext(basename(files))
 
 	spectra <- list()
 	spectra$names <- files.noext
-
+	
+	# Clean up args before calling read.table by removing arguments not used by read.table
+	  
+	if ("path" %in% names(argsRT)) argsRT$path <- NULL	  
+	if ("recursive" %in% names(argsRT)) argsRT$recursive <- NULL	  
+	if ("gr.crit" %in% names(argsRT)) argsRT$gr.crit <- NULL	
+	if ("freq.unit" %in% names(argsRT)) argsRT$freq.unit <- NULL	
+	if ("int.unit" %in% names(argsRT)) argsRT$int.unit <- NULL	
+	if ("descrip" %in% names(argsRT)) argsRT$descrip <- NULL	
+	if ("fileExt" %in% names(argsRT)) argsRT$fileExt <- NULL	
+	if ("debug" %in% names(argsRT)) argsRT$debug <- NULL	
+	
 	if (debug) message("\nfiles2SpectraObject is checking the first file")
 	if (!DX) {
-		temp <- utils::read.table(files[1], ...)
+		temp <- do.call(utils::read.table, args = c(argsRT, list(file = files[1])))
 		spectra$freq <- temp[,1]
 		}
 	if (DX) {
@@ -219,24 +259,44 @@ files2SpectraObject <- function(gr.crit = NULL,
 		}
 	
 	spectra$data <- matrix(data = NA_real_, nrow = length(files), ncol = length(spectra$freq))
-	
+
 	# Loop over all files (you have to read the whole file then grab
 	# just the part you want, i.e. the 2nd column)
 
 	if (debug) message("\nfiles2SpectraObject will now import your files")
 	
+	if (!debug) {
+		# Code for progress bar contributed by Reinhard Kerschner
+		env <- environment() # NEW set environment for progress bar
+		pb_Max <- length(files)
+		counter <- 0
+		message("\nReading ", pb_Max, " files...\n")
+		pb <- txtProgressBar(min = 0, max = pb_Max, style = 3)
+	}
+	
 	for (i in 1:length(files)) {
 		if (debug) cat("Importing file: ", files[i], "\n")
 		if (!DX) {
-			temp <- utils::read.table(files[i], ...)
+			temp <- do.call(utils::read.table, args = c(argsRT, list(file = files[i])))
 			spectra$data[i,] <- temp[,2]
 			}
 		if (DX) {
-			temp <- readJDX::readJDX(files[i], debug = debug, ...)
+			temp <- readJDX::readJDX(files[i], debug = debug)
 			spectra$data[i,] <- temp[[4]]$y
 			}
-		}
+	  
+	  	if (!debug){
+	  		curVal <- get("counter", envir=env)
+	  		assign("counter", curVal +1, envir=env)
+	  		setTxtProgressBar(get("pb", envir=env), curVal +1)
+	  	}
+	} # end of looping over files
 
+	if (!debug) {
+		close(pb)
+		message("\nAssigning ", pb_Max, " spectra to ", length(gr.crit), " groups...\n")
+	}
+	
 	# Go get group assignments & colors, to complete assembly of spectra
 
 	spectra <- .groupNcolor(spectra, gr.crit, gr.cols, mode = "1D")
@@ -244,6 +304,8 @@ files2SpectraObject <- function(gr.crit = NULL,
 	spectra$unit[2] <- int.unit
 	spectra$desc <- descrip
 	chkSpectra(spectra)
+	
+	if (!debug) message("Success!\n")
 	
 	datafile <- paste(out.file, ".RData", sep = "")
 
