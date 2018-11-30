@@ -182,6 +182,7 @@ to any part of the file name if you know how to contruct the proper pattern.
 }
 
 \examples{
+\dontrun{
 # Grab an included file
 ed <- system.file("extdata", package = "ChemoSpec")
 tf <- "PCRF.jdx"
@@ -193,6 +194,7 @@ spec <- files2SpectraObject(gr.crit = "PCRF", freq.unit = "ppm", int.unit = "int
   descrip = "test import", fileExt = "\\\\.jdx")
 sumSpectra(spec)
 plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
+}
 
 }
 \seealso{

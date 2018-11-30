@@ -1,8 +1,8 @@
 
-# ChemoSpec 5.0.204 2018-11-23
+# ChemoSpec 5.0.207 2018-11-28
 
 ## Improvements
-* `files2SpectraObject` can now accept optional arguments `path` and `recursive` to allow reading through a directory substructure.  Suggested by Reinhard Kerschner along with preliminary code (thanks!).  In addition, a progress bar is now displayed unless `debug = TRUE`.
+* `files2SpectraObject` can now accept optional arguments `path` and `recursive` to allow reading through a directory substructure.  In addition, a progress bar is now displayed unless `debug = TRUE`. Both features suggested by Reinhard Kerschner along with preliminary code (thanks!).
 
 # ChemoSpec 5.0.193 2018-11-20
 

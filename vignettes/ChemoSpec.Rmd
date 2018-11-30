@@ -52,7 +52,7 @@ output: pinp::pinp
 # Required: Vignette metadata for inclusion in a package.
 vignette: >
   %\VignetteIndexEntry{An R Package for Chemometric Analysis of Spectra (NMR, IR etc}
-  %\VignetteKeywords{chemometrics, spectroscopy, nmr, ir, raman, cd}
+  %\VignetteKeywords{chemometrics, spectroscopy, nmr, ir, raman, cd, xrf}
   %\VignettePackage{ChemoSpec}
   %\VignetteEngine{knitr::rmarkdown}
 

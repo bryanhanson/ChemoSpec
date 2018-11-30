@@ -163,6 +163,7 @@
 #' @importFrom tools file_path_sans_ext
 #'
 #' @examples
+#' \dontrun{
 #' # Grab an included file
 #' ed <- system.file("extdata", package = "ChemoSpec")
 #' tf <- "PCRF.jdx"
@@ -174,7 +175,8 @@
 #'   descrip = "test import", fileExt = "\\.jdx")
 #' sumSpectra(spec)
 #' plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
-#' 
+#' }
+#'
 
 files2SpectraObject <- function(gr.crit = NULL,
 	gr.cols = c("auto"),
