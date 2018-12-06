@@ -171,12 +171,15 @@ once the data is imported.
 
 \section{Advanced Tricks}{
 
-The ... argument not only passes any values given for \code{sep}, \code{dec} and \code{header}
-to \code{read.table}, one can also pass selected arguments to \code{list.files}. If your data
-is contained in a directory with sub-directories, you can use \code{recursive = TRUE}
-to grab all the files.  If the current working directory is not the directory containing
+The ... argument can be used to pass any argument to \code{read.table} or \code{list.files}.
+This includes the possibility of passing arguments that will cause trouble later, for instance
+\code{na.strings} in \code{read.table}.  While one might successfully read in data with \code{NA},
+it will eventually cause problems.  The intent of this feature is to allow one to recurse
+a directory tree containing the data, and/or to specify a starting point other than the current
+working directory.  So for instance if the current working directory is not the directory containing
 the data files, you can use \code{path = "my_path"} to point to the desired top-level
-directory.  Also, while argument \code{fileExt} appears to be a file extension (from its
+directory, and \code{recursive = TRUE} to work your way through a set of subdirectories
+Also, while argument \code{fileExt} appears to be a file extension (from its
 name and the description elsewhere), it's actually just a grep pattern that you can apply
 to any part of the file name if you know how to contruct the proper pattern.
 }

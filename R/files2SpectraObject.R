@@ -138,12 +138,15 @@
 #' once the data is imported.
 #'
 #' @section Advanced Tricks:
-#' The ... argument not only passes any values given for \code{sep}, \code{dec} and \code{header}
-#' to \code{read.table}, one can also pass selected arguments to \code{list.files}. If your data
-#' is contained in a directory with sub-directories, you can use \code{recursive = TRUE}
-#' to grab all the files.  If the current working directory is not the directory containing
+#' The ... argument can be used to pass any argument to \code{read.table} or \code{list.files}.
+#' This includes the possibility of passing arguments that will cause trouble later, for instance
+#' \code{na.strings} in \code{read.table}.  While one might successfully read in data with \code{NA},
+#' it will eventually cause problems.  The intent of this feature is to allow one to recurse
+#' a directory tree containing the data, and/or to specify a starting point other than the current
+#' working directory.  So for instance if the current working directory is not the directory containing
 #' the data files, you can use \code{path = "my_path"} to point to the desired top-level
-#' directory.  Also, while argument \code{fileExt} appears to be a file extension (from its
+#' directory, and \code{recursive = TRUE} to work your way through a set of subdirectories
+#' Also, while argument \code{fileExt} appears to be a file extension (from its
 #' name and the description elsewhere), it's actually just a grep pattern that you can apply
 #' to any part of the file name if you know how to contruct the proper pattern.
 #'
@@ -204,7 +207,7 @@ files2SpectraObject <- function(gr.crit = NULL,
 	
 	argsLF <- argsRT <- as.list(match.call())[-1] # TWO copies to be used momentarily
 	
-	DX = FALSE
+	DX <- FALSE
 	if (grepl("(dx|DX|jdx|JDX)", fileExt)) {
 		DX <- TRUE
 		if (!requireNamespace("readJDX", quietly = TRUE)) {
@@ -212,42 +215,16 @@ files2SpectraObject <- function(gr.crit = NULL,
 			}
 		}
 		
-	# Clean up args before calling list.files by removing arguments not used by list.files
-	# Set some defaults if a value is not passed
-	if ("sep" %in% names(argsLF)) argsLF$sep <- NULL	  
-	if ("dec" %in% names(argsLF)) argsLF$dec <- NULL	  
-	if ("header" %in% names(argsLF)) argsLF$header <- NULL	
-	if ("gr.crit" %in% names(argsLF)) argsLF$gr.crit <- NULL	
-	if ("freq.unit" %in% names(argsLF)) argsLF$freq.unit <- NULL	
-	if ("int.unit" %in% names(argsLF)) argsLF$int.unit <- NULL	
-	if ("descrip" %in% names(argsLF)) argsLF$descrip <- NULL	
-	if ("fileExt" %in% names(argsLF)) argsLF$fileExt <- NULL # this would be a duplicate
-	if (!("path" %in% names(argsLF))) argsLF$path <- getwd()
-	if (!("recursive" %in% names(argsLF))) argsLF$recursive <- FALSE
-	if ("debug" %in% names(argsLF)) argsLF$debug <- NULL	
-	
-	argsLF <- c(argsLF, list(pattern = fileExt, full.names = TRUE))
-
+	argsLF <- c(.cleanArgs(argsLF, "list.files"), list(pattern = fileExt, full.names = TRUE))
 	files <- do.call(list.files, argsLF)
 	files.noext <- tools::file_path_sans_ext(basename(files))
 
 	spectra <- list()
 	spectra$names <- files.noext
-	
-	# Clean up args before calling read.table by removing arguments not used by read.table
-	  
-	if ("path" %in% names(argsRT)) argsRT$path <- NULL	  
-	if ("recursive" %in% names(argsRT)) argsRT$recursive <- NULL	  
-	if ("gr.crit" %in% names(argsRT)) argsRT$gr.crit <- NULL	
-	if ("freq.unit" %in% names(argsRT)) argsRT$freq.unit <- NULL	
-	if ("int.unit" %in% names(argsRT)) argsRT$int.unit <- NULL	
-	if ("descrip" %in% names(argsRT)) argsRT$descrip <- NULL	
-	if ("fileExt" %in% names(argsRT)) argsRT$fileExt <- NULL	
-	if ("debug" %in% names(argsRT)) argsRT$debug <- NULL	
-	
+		
 	if (debug) message("\nfiles2SpectraObject is checking the first file")
 	if (!DX) {
-		temp <- do.call(utils::read.table, args = c(argsRT, list(file = files[1])))
+		temp <- do.call(utils::read.table, args = c(.cleanArgs(argsRT, "read.table"), list(file = files[1])))
 		spectra$freq <- temp[,1]
 		}
 	if (DX) {
@@ -279,7 +256,7 @@ files2SpectraObject <- function(gr.crit = NULL,
 	for (i in 1:length(files)) {
 		if (debug) cat("Importing file: ", files[i], "\n")
 		if (!DX) {
-			temp <- do.call(utils::read.table, args = c(argsRT, list(file = files[i])))
+			temp <- do.call(utils::read.table, args = c(.cleanArgs(argsRT, "read.table"), list(file = files[i])))
 			spectra$data[i,] <- temp[,2]
 			}
 		if (DX) {

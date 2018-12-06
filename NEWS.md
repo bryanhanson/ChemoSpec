@@ -1,4 +1,11 @@
 
+# ChemoSpec 5.0.215 2018-12-06
+## Improvements
+* `files2SpectraObject` can now accept *any* arguments to `list.files` or `read.table` via the ... mechanism.  Arguments are sanitized more robustly.  However, it is possible to pass arguments that may not be of real utility.  For instance `na.strings` can be specified, but any `NA` in the data imported will eventually cause problems.
+
+## Misc.
+* `plotScree` added to `r_pcaSpectra` example.
+
 # ChemoSpec 5.0.207 2018-11-28
 
 ## Improvements
