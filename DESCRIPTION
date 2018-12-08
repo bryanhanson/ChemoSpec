@@ -1,8 +1,8 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 5.0.215
-Date: 2018-12-06
+Version: 5.0.218
+Date: 2018-12-07
 Authors@R: c(
     person("Bryan A.", "Hanson",
     role = c("aut", "cre"), email =
@@ -57,7 +57,8 @@ Suggests:
     signal,
     rgl,
     readJDX (>= 0.3),
-    speaq
+    speaq,
+    testthat
 URL: https://bryanhanson.github.io/ChemoSpec/, https://github.com/bryanhanson/ChemoSpec
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE

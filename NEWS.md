@@ -1,4 +1,8 @@
 
+# ChemoSpec 5.0.xx 2018-12-xx
+## Misc.
+* Unit tests added for `.cleanArgs`.
+
 # ChemoSpec 5.0.215 2018-12-06
 ## Improvements
 * `files2SpectraObject` can now accept *any* arguments to `list.files` or `read.table` via the ... mechanism.  Arguments are sanitized more robustly.  However, it is possible to pass arguments that may not be of real utility.  For instance `na.strings` can be specified, but any `NA` in the data imported will eventually cause problems.
