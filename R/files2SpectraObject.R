@@ -205,7 +205,11 @@ files2SpectraObject <- function(gr.crit = NULL,
 	
 	if (is.null(gr.crit)) stop("No group criteria provided to encode data")
 	
+	# Clean up args found in ... for further use
 	argsLF <- argsRT <- as.list(match.call())[-1] # TWO copies to be used momentarily
+	argsRT <- .cleanArgs(argsRT, "read.table") # further update below
+	argsLF <- .cleanArgs(argsLF, "list.files")
+	argsLF <- c(argsLF, list(pattern = fileExt, full.names = TRUE))
 	
 	DX <- FALSE
 	if (grepl("(dx|DX|jdx|JDX)", fileExt)) {
@@ -215,7 +219,6 @@ files2SpectraObject <- function(gr.crit = NULL,
 			}
 		}
 		
-	argsLF <- c(.cleanArgs(argsLF, "list.files"), list(pattern = fileExt, full.names = TRUE))
 	files <- do.call(list.files, argsLF)
 	files.noext <- tools::file_path_sans_ext(basename(files))
 
@@ -224,7 +227,7 @@ files2SpectraObject <- function(gr.crit = NULL,
 		
 	if (debug) message("\nfiles2SpectraObject is checking the first file")
 	if (!DX) {
-		temp <- do.call(utils::read.table, args = c(.cleanArgs(argsRT, "read.table"), list(file = files[1])))
+		temp <- do.call(utils::read.table, args = c(argsRT, list(file = files[1])))
 		spectra$freq <- temp[,1]
 		}
 	if (DX) {
@@ -256,7 +259,7 @@ files2SpectraObject <- function(gr.crit = NULL,
 	for (i in 1:length(files)) {
 		if (debug) cat("Importing file: ", files[i], "\n")
 		if (!DX) {
-			temp <- do.call(utils::read.table, args = c(.cleanArgs(argsRT, "read.table"), list(file = files[i])))
+			temp <- do.call(utils::read.table, args = c(argsRT, list(file = files[i])))
 			spectra$data[i,] <- temp[,2]
 			}
 		if (DX) {
