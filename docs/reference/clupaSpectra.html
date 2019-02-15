@@ -8,20 +8,18 @@
 
 <title>Hierarchical Cluster-Based Peak Alignment on a Spectra Object — clupaSpectra • ChemoSpec</title>
 
-<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
-
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.1/clipboard.min.js" integrity="sha256-hIvIxeqhGZF+VVeM55k0mJvWpQ6gTkWk3Emc+NmowYA=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
 <!-- sticky kit -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
@@ -41,7 +39,8 @@ It implements the CluPA algorithm described in the reference." />
 
 
 <!-- mathjax -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -65,7 +64,7 @@ It implements the CluPA algorithm described in the reference." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.165</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.225</span>
       </span>
     </div>
 
@@ -150,156 +149,45 @@ range of the data, in <code>spectra$data</code>.  Passed to
 A, Goethals B, Laukens K. "An integrated workflow for robust alignment and
 simplified quantitative analysis of NMR spectrometry data" BMC
 Bioinformatics vol. 12 pg. 405 (2011).</p>
-<p><a href='https://github.com/bryanhanson/ChemoSpec'>https://github.com/bryanhanson/ChemoSpec</a></p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Additional documentation at <a href='https://bryanhanson.github.io/ChemoSpec/'>https://bryanhanson.github.io/ChemoSpec/</a></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>data</span>(<span class='no'>alignMUD</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>alignMUD</span>)
 
 <span class='fu'><a href='plotSpectra.html'>plotSpectra</a></span>(<span class='no'>alignMUD</span>, <span class='kw'>which</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>20</span>, <span class='kw'>lab.pos</span> <span class='kw'>=</span> <span class='fl'>4.5</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>yrange</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1900</span>), <span class='kw'>amp</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1.5</span>, <span class='fl'>1.8</span>),
+  <span class='kw'>yrange</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1900</span>), <span class='kw'>amp</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1.5</span>, <span class='fl'>1.8</span>),
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Misaligned NMR Spectra (alignMUD)"</span>)</div><div class='img'><img src='clupaSpectra-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>aMUD</span> <span class='kw'>&lt;-</span> <span class='fu'>clupaSpectra</span>(<span class='no'>alignMUD</span>)</div><div class='output co'>#&gt; [1] "j =1 peak =292 savedpeak = 292"
-#&gt; [1] "j =2 peak =164 savedpeak = 292"
-#&gt; [1] "j =5 peak =370 savedpeak = 882"
-#&gt; [1] "j =6 peak =242 savedpeak = 882"  "j =6 peak =367 savedpeak = 1007"
-#&gt; [1] "j =7 peak =114 savedpeak = 882"  "j =7 peak =239 savedpeak = 1007"
-#&gt; [1] "j =8 peak =111 savedpeak = 1007" "j =8 peak =316 savedpeak = 1212"
-#&gt; 
-#&gt;  Spectrum 1 has 4 peaks[1] "j =1 peak =291 savedpeak = 291"
-#&gt; [1] "j =2 peak =163 savedpeak = 291"
-#&gt; [1] "j =5 peak =369 savedpeak = 881"
-#&gt; [1] "j =6 peak =241 savedpeak = 881" "j =6 peak =357 savedpeak = 997"
-#&gt; [1] "j =7 peak =113 savedpeak = 881" "j =7 peak =229 savedpeak = 997"
-#&gt; [1] "j =8 peak =101 savedpeak = 997"  "j =8 peak =315 savedpeak = 1211"
-#&gt; 
-#&gt;  Spectrum 2 has 4 peaks[1] "j =1 peak =294 savedpeak = 294"
-#&gt; [1] "j =2 peak =166 savedpeak = 294"
-#&gt; [1] "j =5 peak =372 savedpeak = 884"
-#&gt; [1] "j =6 peak =244 savedpeak = 884"  "j =6 peak =360 savedpeak = 1000"
-#&gt; [1] "j =7 peak =116 savedpeak = 884"  "j =7 peak =232 savedpeak = 1000"
-#&gt; [1] "j =8 peak =104 savedpeak = 1000" "j =8 peak =318 savedpeak = 1214"
-#&gt; 
-#&gt;  Spectrum 3 has 4 peaks[1] "j =1 peak =294 savedpeak = 294"
-#&gt; [1] "j =2 peak =166 savedpeak = 294"
-#&gt; [1] "j =5 peak =372 savedpeak = 884"
-#&gt; [1] "j =6 peak =244 savedpeak = 884"  "j =6 peak =369 savedpeak = 1009"
-#&gt; [1] "j =7 peak =116 savedpeak = 884"  "j =7 peak =241 savedpeak = 1009"
-#&gt; [1] "j =8 peak =113 savedpeak = 1009" "j =8 peak =318 savedpeak = 1214"
-#&gt; 
-#&gt;  Spectrum 4 has 4 peaks[1] "j =1 peak =290 savedpeak = 290"
-#&gt; [1] "j =2 peak =162 savedpeak = 290"
-#&gt; [1] "j =5 peak =368 savedpeak = 880"
-#&gt; [1] "j =6 peak =240 savedpeak = 880"  "j =6 peak =365 savedpeak = 1005"
-#&gt; [1] "j =7 peak =112 savedpeak = 880"  "j =7 peak =237 savedpeak = 1005"
-#&gt; [1] "j =8 peak =109 savedpeak = 1005" "j =8 peak =314 savedpeak = 1210"
-#&gt; 
-#&gt;  Spectrum 5 has 4 peaks[1] "j =1 peak =291 savedpeak = 291"
-#&gt; [1] "j =2 peak =163 savedpeak = 291"
-#&gt; [1] "j =5 peak =369 savedpeak = 881"
-#&gt; [1] "j =6 peak =241 savedpeak = 881"  "j =6 peak =366 savedpeak = 1006"
-#&gt; [1] "j =7 peak =113 savedpeak = 881"  "j =7 peak =238 savedpeak = 1006"
-#&gt; [1] "j =8 peak =110 savedpeak = 1006" "j =8 peak =315 savedpeak = 1211"
-#&gt; 
-#&gt;  Spectrum 6 has 4 peaks[1] "j =1 peak =291 savedpeak = 291"
-#&gt; [1] "j =2 peak =163 savedpeak = 291"
-#&gt; [1] "j =5 peak =369 savedpeak = 881"
-#&gt; [1] "j =6 peak =241 savedpeak = 881"  "j =6 peak =366 savedpeak = 1006"
-#&gt; [1] "j =7 peak =113 savedpeak = 881"  "j =7 peak =238 savedpeak = 1006"
-#&gt; [1] "j =8 peak =110 savedpeak = 1006" "j =8 peak =315 savedpeak = 1211"
-#&gt; 
-#&gt;  Spectrum 7 has 4 peaks[1] "j =1 peak =293 savedpeak = 293"
-#&gt; [1] "j =2 peak =165 savedpeak = 293"
-#&gt; [1] "j =5 peak =371 savedpeak = 883"
-#&gt; [1] "j =6 peak =243 savedpeak = 883"  "j =6 peak =368 savedpeak = 1008"
-#&gt; [1] "j =7 peak =115 savedpeak = 883"  "j =7 peak =240 savedpeak = 1008"
-#&gt; [1] "j =8 peak =112 savedpeak = 1008" "j =8 peak =317 savedpeak = 1213"
-#&gt; 
-#&gt;  Spectrum 8 has 4 peaks[1] "j =1 peak =295 savedpeak = 295"
-#&gt; [1] "j =2 peak =167 savedpeak = 295"
-#&gt; [1] "j =5 peak =373 savedpeak = 885"
-#&gt; [1] "j =6 peak =245 savedpeak = 885"  "j =6 peak =370 savedpeak = 1010"
-#&gt; [1] "j =7 peak =117 savedpeak = 885"  "j =7 peak =242 savedpeak = 1010"
-#&gt; [1] "j =8 peak =114 savedpeak = 1010" "j =8 peak =319 savedpeak = 1215"
-#&gt; 
-#&gt;  Spectrum 9 has 4 peaks[1] "j =1 peak =293 savedpeak = 293"
-#&gt; [1] "j =2 peak =165 savedpeak = 293"
-#&gt; [1] "j =5 peak =371 savedpeak = 883"
-#&gt; [1] "j =6 peak =243 savedpeak = 883" "j =6 peak =359 savedpeak = 999"
-#&gt; [1] "j =7 peak =115 savedpeak = 883" "j =7 peak =231 savedpeak = 999"
-#&gt; [1] "j =8 peak =103 savedpeak = 999"  "j =8 peak =317 savedpeak = 1213"
-#&gt; 
-#&gt;  Spectrum 10 has 4 peaks[1] "j =1 peak =294 savedpeak = 294"
-#&gt; [1] "j =2 peak =166 savedpeak = 294"
-#&gt; [1] "j =5 peak =372 savedpeak = 884"
-#&gt; [1] "j =6 peak =244 savedpeak = 884"  "j =6 peak =369 savedpeak = 1009"
-#&gt; [1] "j =7 peak =116 savedpeak = 884"  "j =7 peak =241 savedpeak = 1009"
-#&gt; [1] "j =8 peak =113 savedpeak = 1009" "j =8 peak =318 savedpeak = 1214"
-#&gt; 
-#&gt;  Spectrum 11 has 4 peaks[1] "j =1 peak =294 savedpeak = 294"
-#&gt; [1] "j =2 peak =166 savedpeak = 294"
-#&gt; [1] "j =5 peak =372 savedpeak = 884"
-#&gt; [1] "j =6 peak =244 savedpeak = 884"  "j =6 peak =369 savedpeak = 1009"
-#&gt; [1] "j =7 peak =116 savedpeak = 884"  "j =7 peak =241 savedpeak = 1009"
-#&gt; [1] "j =8 peak =113 savedpeak = 1009" "j =8 peak =318 savedpeak = 1214"
-#&gt; 
-#&gt;  Spectrum 12 has 4 peaks[1] "j =1 peak =291 savedpeak = 291"
-#&gt; [1] "j =2 peak =163 savedpeak = 291"
-#&gt; [1] "j =5 peak =369 savedpeak = 881"
-#&gt; [1] "j =6 peak =241 savedpeak = 881"  "j =6 peak =366 savedpeak = 1006"
-#&gt; [1] "j =7 peak =113 savedpeak = 881"  "j =7 peak =238 savedpeak = 1006"
-#&gt; [1] "j =8 peak =110 savedpeak = 1006" "j =8 peak =315 savedpeak = 1211"
-#&gt; 
-#&gt;  Spectrum 13 has 4 peaks[1] "j =1 peak =295 savedpeak = 295"
-#&gt; [1] "j =2 peak =167 savedpeak = 295"
-#&gt; [1] "j =5 peak =373 savedpeak = 885"
-#&gt; [1] "j =6 peak =245 savedpeak = 885"  "j =6 peak =361 savedpeak = 1001"
-#&gt; [1] "j =7 peak =117 savedpeak = 885"  "j =7 peak =233 savedpeak = 1001"
-#&gt; [1] "j =8 peak =105 savedpeak = 1001" "j =8 peak =319 savedpeak = 1215"
-#&gt; 
-#&gt;  Spectrum 14 has 4 peaks[1] "j =1 peak =293 savedpeak = 293"
-#&gt; [1] "j =2 peak =165 savedpeak = 293"
-#&gt; [1] "j =5 peak =371 savedpeak = 883"
-#&gt; [1] "j =6 peak =243 savedpeak = 883"  "j =6 peak =368 savedpeak = 1008"
-#&gt; [1] "j =7 peak =115 savedpeak = 883"  "j =7 peak =240 savedpeak = 1008"
-#&gt; [1] "j =8 peak =112 savedpeak = 1008" "j =8 peak =317 savedpeak = 1213"
-#&gt; 
-#&gt;  Spectrum 15 has 4 peaks[1] "j =1 peak =294 savedpeak = 294"
-#&gt; [1] "j =2 peak =166 savedpeak = 294"
-#&gt; [1] "j =5 peak =372 savedpeak = 884"
-#&gt; [1] "j =6 peak =244 savedpeak = 884"  "j =6 peak =360 savedpeak = 1000"
-#&gt; [1] "j =7 peak =116 savedpeak = 884"  "j =7 peak =232 savedpeak = 1000"
-#&gt; [1] "j =8 peak =104 savedpeak = 1000" "j =8 peak =318 savedpeak = 1214"
-#&gt; 
-#&gt;  Spectrum 16 has 4 peaks[1] "j =1 peak =293 savedpeak = 293"
-#&gt; [1] "j =2 peak =165 savedpeak = 293"
-#&gt; [1] "j =5 peak =371 savedpeak = 883"
-#&gt; [1] "j =6 peak =243 savedpeak = 883"  "j =6 peak =368 savedpeak = 1008"
-#&gt; [1] "j =7 peak =115 savedpeak = 883"  "j =7 peak =240 savedpeak = 1008"
-#&gt; [1] "j =8 peak =112 savedpeak = 1008" "j =8 peak =317 savedpeak = 1213"
-#&gt; 
-#&gt;  Spectrum 17 has 4 peaks[1] "j =1 peak =291 savedpeak = 291"
-#&gt; [1] "j =2 peak =163 savedpeak = 291"
-#&gt; [1] "j =5 peak =369 savedpeak = 881"
-#&gt; [1] "j =6 peak =241 savedpeak = 881"  "j =6 peak =366 savedpeak = 1006"
-#&gt; [1] "j =7 peak =113 savedpeak = 881"  "j =7 peak =238 savedpeak = 1006"
-#&gt; [1] "j =8 peak =110 savedpeak = 1006" "j =8 peak =315 savedpeak = 1211"
-#&gt; 
-#&gt;  Spectrum 18 has 4 peaks[1] "j =1 peak =294 savedpeak = 294"
-#&gt; [1] "j =2 peak =166 savedpeak = 294"
-#&gt; [1] "j =5 peak =372 savedpeak = 884"
-#&gt; [1] "j =6 peak =244 savedpeak = 884"  "j =6 peak =369 savedpeak = 1009"
-#&gt; [1] "j =7 peak =116 savedpeak = 884"  "j =7 peak =241 savedpeak = 1009"
-#&gt; [1] "j =8 peak =113 savedpeak = 1009" "j =8 peak =318 savedpeak = 1214"
-#&gt; 
-#&gt;  Spectrum 19 has 4 peaks[1] "j =1 peak =291 savedpeak = 291"
-#&gt; [1] "j =2 peak =163 savedpeak = 291"
-#&gt; [1] "j =5 peak =369 savedpeak = 881"
-#&gt; [1] "j =6 peak =241 savedpeak = 881" "j =6 peak =357 savedpeak = 997"
-#&gt; [1] "j =7 peak =113 savedpeak = 881" "j =7 peak =229 savedpeak = 997"
-#&gt; [1] "j =8 peak =101 savedpeak = 997"  "j =8 peak =315 savedpeak = 1211"
-#&gt; 
+<span class='no'>aMUD</span> <span class='kw'>&lt;-</span> <span class='fu'>clupaSpectra</span>(<span class='no'>alignMUD</span>)</div><div class='output co'>#&gt; <span class='message'>Registered S3 methods overwritten by 'ggplot2':</span>
+#&gt; <span class='message'>  method         from </span>
+#&gt; <span class='message'>  [.quosures     rlang</span>
+#&gt; <span class='message'>  c.quosures     rlang</span>
+#&gt; <span class='message'>  print.quosures rlang</span></div><div class='output co'>#&gt; <span class='message'>Registered S3 method overwritten by 'rvest':</span>
+#&gt; <span class='message'>  method            from</span>
+#&gt; <span class='message'>  read_xml.response xml2</span></div><div class='output co'>#&gt; 
+#&gt;  Spectrum 1 has 4 peaks
+#&gt;  Spectrum 2 has 4 peaks
+#&gt;  Spectrum 3 has 4 peaks
+#&gt;  Spectrum 4 has 4 peaks
+#&gt;  Spectrum 5 has 4 peaks
+#&gt;  Spectrum 6 has 4 peaks
+#&gt;  Spectrum 7 has 4 peaks
+#&gt;  Spectrum 8 has 4 peaks
+#&gt;  Spectrum 9 has 4 peaks
+#&gt;  Spectrum 10 has 4 peaks
+#&gt;  Spectrum 11 has 4 peaks
+#&gt;  Spectrum 12 has 4 peaks
+#&gt;  Spectrum 13 has 4 peaks
+#&gt;  Spectrum 14 has 4 peaks
+#&gt;  Spectrum 15 has 4 peaks
+#&gt;  Spectrum 16 has 4 peaks
+#&gt;  Spectrum 17 has 4 peaks
+#&gt;  Spectrum 18 has 4 peaks
+#&gt;  Spectrum 19 has 4 peaks
 #&gt;  Spectrum 20 has 4 peaks
 #&gt;  --------------------------------
 #&gt;  CluPA will run with maxShift= 100
@@ -327,8 +215,8 @@ Bioinformatics vol. 12 pg. 405 (2011).</p>
 #&gt;  aligning spectrum  19
 #&gt;  aligning spectrum  20
 #&gt;  Median pearson correlation of aligned spectra: 0.9999948
-#&gt;  Alignment time:  9e-04  minutes</div><div class='input'><span class='fu'><a href='plotSpectra.html'>plotSpectra</a></span>(<span class='no'>aMUD</span>, <span class='kw'>which</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>20</span>, <span class='kw'>lab.pos</span> <span class='kw'>=</span> <span class='fl'>4.5</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>yrange</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1900</span>), <span class='kw'>amp</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1.5</span>, <span class='fl'>1.8</span>),
+#&gt;  Alignment time:  0.0009666667  minutes</div><div class='input'><span class='fu'><a href='plotSpectra.html'>plotSpectra</a></span>(<span class='no'>aMUD</span>, <span class='kw'>which</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>20</span>, <span class='kw'>lab.pos</span> <span class='kw'>=</span> <span class='fl'>4.5</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
+  <span class='kw'>yrange</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1900</span>), <span class='kw'>amp</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1.5</span>, <span class='fl'>1.8</span>),
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Aligned NMR Spectra (alignMUD)"</span>)</div><div class='img'><img src='clupaSpectra-2.png' alt='' width='700' height='433' /></div><div class='input'>
 
 </div></pre>
@@ -341,14 +229,14 @@ Bioinformatics vol. 12 pg. 405 (2011).</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#references">References</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
 
     <h2>Author</h2>
-    
-Bryan A. Hanson, DePauw University. <a href='mailto:hanson@depauw.edu'>hanson@depauw.edu</a>
-
+    <p>Bryan A. Hanson, DePauw University. <a href='mailto:hanson@depauw.edu'>hanson@depauw.edu</a></p>
   </div>
 </div>
 
@@ -358,9 +246,8 @@ Bryan A. Hanson, DePauw University. <a href='mailto:hanson@depauw.edu'>hanson@de
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
-
       </footer>
    </div>
 

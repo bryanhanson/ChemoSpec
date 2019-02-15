@@ -52,8 +52,11 @@ user friendly and to help you get usable results quickly. A vignette
 covering typical operations is available.
 \end{abstract}
 
-\dates{This version was compiled on \today}
-\doi{github.com/bryanhanson/ChemoSpec}
+\dates{This version was compiled on \today} 
+
+% initially we use doi so keep for backwards compatibility
+\doifooter{github.com/bryanhanson/ChemoSpec}
+% new name is doi_footer
 
 \pinpfootercontents{ChemoSpec}
 
@@ -82,7 +85,7 @@ have brought bugs to my attention, suggested new features and provided
 fixes. I am grateful to all of them. Each is listed in either the code,
 the NEWS file or the Github issues tracker.}
 
-This vignette is based upon \texttt{ChemoSpec} version 5.0.165.
+This vignette is based upon \texttt{ChemoSpec} version 5.0.226.
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -351,8 +354,6 @@ and other details look like you expect them to:
 
 \begin{ShadedResult}
 \begin{verbatim}
-#  No gaps were found by check4Gaps
-#  No plot will be made
 #  
 #   Serenoa repens IR quality study 
 #  
@@ -365,14 +366,6 @@ and other details look like you expect them to:
 #   The frequency resolution is
 #   1.9286 wavenumber/point.
 #  
-#   This data set is not continuous
-#   along the frequency axis.
-#   Here are the data chunks:
-#  
-#    beg.freq end.freq     size
-#  1 399.2123 3999.837 3600.625
-#    beg.indx end.indx
-#  1        1     1868
 #  
 #   The spectra are divided into 4 groups: 
 #  
@@ -477,8 +470,8 @@ These sample plots display the IR spectra in two ways that may be
 upsetting to some readers: First, the x-axis is ``backwards'', because
 the underlying spectra were originally saved with an ascending frequency
 axis (which is not always the case). This is readily fixed by supplying
-the \texttt{xlim} argument in the desired order, e.g.
-\texttt{xlim = c(1800, 1650)} in the previous example. Second, the
+the \texttt{xlim} argument in the desired order,
+e.g.~\texttt{xlim = c(1800, 1650)} in the previous example. Second, the
 vertical scale in these examples is absorbance. When using IR for
 structural elucidation, the vertical axis is typically \%T, with the
 peaks pointing downward. However, absorbance mode is the appropriate one
@@ -600,27 +593,12 @@ This example illustrates the process but is not necessary with IR data:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{tmp <-}\StringTok{ }\KeywordTok{binSpectra}\NormalTok{(SrE.IR, }\DataTypeTok{bin.ratio =} \DecValTok{4}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{ShadedResult}
-\begin{verbatim}
-#  No gaps were found by check4Gaps
-#  No plot will be made
-#  A total of 0 data points were removed to preserve the requested bin.ratio
-\end{verbatim}
-\end{ShadedResult}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \KeywordTok{sumSpectra}\NormalTok{(tmp)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{ShadedResult}
 \begin{verbatim}
-#  No gaps were found by check4Gaps
-#  No plot will be made
 #  
 #   Serenoa repens IR quality study 
 #  
@@ -633,14 +611,6 @@ This example illustrates the process but is not necessary with IR data:
 #   The frequency resolution is
 #   7.71425 wavenumber/point.
 #  
-#   This data set is not continuous
-#   along the frequency axis.
-#   Here are the data chunks:
-#  
-#    beg.freq end.freq     size
-#  1 402.1052 3996.945 3594.839
-#    beg.indx end.indx
-#  1        1      467
 #  
 #   The spectra are divided into 4 groups: 
 #  
@@ -718,8 +688,6 @@ TD\_adSrE has artifacts and needs to be removed. The command would be:
 
 \begin{ShadedResult}
 \begin{verbatim}
-#  No gaps were found by check4Gaps
-#  No plot will be made
 #  
 #   Serenoa repens IR quality study 
 #  
@@ -732,14 +700,6 @@ TD\_adSrE has artifacts and needs to be removed. The command would be:
 #   The frequency resolution is
 #   1.9286 wavenumber/point.
 #  
-#   This data set is not continuous
-#   along the frequency axis.
-#   Here are the data chunks:
-#  
-#    beg.freq end.freq     size
-#  1 399.2123 3999.837 3600.625
-#    beg.indx end.indx
-#  1        1     1868
 #  
 #   The spectra are divided into 4 groups: 
 #  
@@ -1050,11 +1010,18 @@ both the numerical results and a figure are provided.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{check4Gaps}\NormalTok{(SrE3.IR}\OperatorTok{$}\NormalTok{freq, SrE3.IR}\OperatorTok{$}\NormalTok{data[}\DecValTok{1}\NormalTok{,],}
-  \DataTypeTok{plot =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{check4Gaps}\NormalTok{(SrE3.IR}\OperatorTok{$}\NormalTok{freq, SrE3.IR}\OperatorTok{$}\NormalTok{data[}\DecValTok{1}\NormalTok{,])}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{figure}
+
+{\centering \includegraphics{/Users/bryanhanson/Documents/Professional/Research/R_Pkgs/ChemoSpec/docs/articles/ChemoSpec_files/figure-latex/Chunk7-1} 
+
+}
+
+\caption{\label{gaps}Identifying gaps in a data set.}\label{fig:Chunk7}
+\end{figure}
 \begin{ShadedResult}
 \begin{verbatim}
 #     beg.freq end.freq     size
@@ -1293,17 +1260,6 @@ more likely candidates for outlier status.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{ShadedResult}
-\begin{verbatim}
-#  Warning in if (!soOK)
-#  stop("Argument 'so' was not
-#  found or did not have class
-#  prcomp or pcaCon"): the
-#  condition has length > 1 and
-#  only the first element will be
-#  used
-\end{verbatim}
-\end{ShadedResult}
 \begin{ShadedResult}
 \begin{verbatim}
 #  Group EPO

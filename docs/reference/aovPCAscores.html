@@ -8,20 +8,18 @@
 
 <title>Plot ANOVA-PCA Scores from a Spectra Object — aovPCAscores • ChemoSpec</title>
 
-<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
-
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.1/clipboard.min.js" integrity="sha256-hIvIxeqhGZF+VVeM55k0mJvWpQ6gTkWk3Emc+NmowYA=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
 <!-- sticky kit -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
@@ -45,7 +43,8 @@ matrix." />
 
 
 <!-- mathjax -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -69,7 +68,7 @@ matrix." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.165</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.0.225</span>
       </span>
     </div>
 
@@ -122,7 +121,7 @@ matrix." />
 the scores. 
 Argument <code>plot</code> is used to select a matrix from those in <code>LM</code>.
 The residual error matrix is then added to the selected matrix before
-performing PCA.  Use <code>names(LM)</code> to see which factor is stored in which
+performing PCA.  Use <code><a href='https://www.rdocumentation.org/packages/base/topics/names'>names(LM)</a></code> to see which factor is stored in which
 matrix.</p>
     
     </div>
@@ -177,12 +176,12 @@ Discriminant Analysis: ..." Analytica Chimica Acta 629.1-2 (2008): 47-55.</p>
 <p>Harrington, Vieira, Espinoza, Nien, Romero, and Yergey. "Analysis of
 Variance--Principal Component Analysis: ..." Analytica Chimica Acta 544.1-2
 (2005): 118-27.</p>
-<p><a href='https://github.com/bryanhanson/ChemoSpec'>https://github.com/bryanhanson/ChemoSpec</a></p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>The use of this function can be seen in
-<code><a href='aov_pcaSpectra.html'>aov_pcaSpectra</a></code>.  See also <code><a href='plotScores.html'>plotScores</a></code>.</p></div>
+<code><a href='aov_pcaSpectra.html'>aov_pcaSpectra</a></code>.  See also <code><a href='plotScores.html'>plotScores</a></code>.
+Additional documentation at <a href='https://bryanhanson.github.io/ChemoSpec/'>https://bryanhanson.github.io/ChemoSpec/</a></p></div>
     
 
   </div>
@@ -199,9 +198,7 @@ Variance--Principal Component Analysis: ..." Analytica Chimica Acta 544.1-2
           </ul>
 
     <h2>Author</h2>
-    
-Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
-
+    <p>Matthew J. Keinsley and Bryan A. Hanson, DePauw University.</p>
   </div>
 </div>
 
@@ -211,9 +208,8 @@ Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
-
       </footer>
    </div>
 
