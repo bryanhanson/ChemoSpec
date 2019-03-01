@@ -35,7 +35,7 @@ loopThruSpectra <- function(spectra, ...) {
 	cat("Press ESC to stop looping through the spectra\n\n")
 	ns <- length(spectra$names)
 	for (i in 1:ns) {
-		tt <- paste(spectra$names[i], "(#", i, " of ", ns, ")", sep = "")
+		tt <- paste(spectra$names[i], " (#", i, " of ", ns, ")", sep = "")
 		plotSpectra(spectra, which = i, main = tt, ...)
 		devAskNewPage(ask = TRUE)
 		}

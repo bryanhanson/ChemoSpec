@@ -1,5 +1,5 @@
 
-# ChemoSpec 5.0.225 2018-12-19
+# ChemoSpec 5.0.229 2019-02-28
 ## Misc.
 * Unit tests added for `.cleanArgs`.
 
