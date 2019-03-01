@@ -13,7 +13,7 @@ author:
 
 address:
   - code: a
-    address: Dept. of Chemistry \& Biochemistry, DePauw University; \url{hanson@depauw.edu}
+    address: Prof. Emeritus, Dept. of Chemistry \& Biochemistry, DePauw University; \url{hanson@depauw.edu}
 
 doi: "github.com/bryanhanson/ChemoSpec"
 
@@ -660,7 +660,7 @@ pastel scheme: c("seagreen", "brown2", "skyblue2", "hotpink3", "chartreuse3", "d
 These schemes give eight distinct colors, and most people will have trouble distinguishing more than eight.  Finally, the current color scheme of a \texttt{Spectra} object may be determined using \texttt{sumSpectra} or changed using \texttt{conColScheme}.
 
 
-```{r  Chunk4,  echo = FALSE, fig.cap = "\\label{colors}Recommended color sets in \texttt{ChemoSpec}." }
+```{r  Chunk4,  echo = FALSE, fig.cap = "\\label{colors}Recommended color sets in \texttt{ChemoSpec}.", fig.height = 4 }
 par(mfrow = c(2,1), mar = c(3, 1, 2, 1))
 display.brewer.pal(8, "Set1")
 title(main = "ChemoSpec Primary Scheme")

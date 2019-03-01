@@ -1,13 +1,13 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 5.0.225
-Date: 2018-12-19
+Version: 5.0.229
+Date: 2019-02-28
 Authors@R: c(
     person("Bryan A.", "Hanson",
     role = c("aut", "cre"), email =
     "hanson@depauw.edu",
-    comment = "ORCID 0000-0003-3536-8246"),
+    comment = c("ORCID 0000-0003-3536-8246")),
     person("Mike", "Bostock",
     role = c("cph", "ctb"),
     comment = "author of the d3.js library used by plotSpectraJS, http://d3js.org"),
@@ -59,7 +59,7 @@ Suggests:
     readJDX (>= 0.3),
     speaq,
     testthat
-URL: https://bryanhanson.github.io/ChemoSpec/, https://github.com/bryanhanson/ChemoSpec
+URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE
 VignetteBuilder: knitr
