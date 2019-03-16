@@ -1,4 +1,11 @@
 
+# ChemoSpec 5.0.xxx 2019-xx-xx
+## New Features
+* Function `s_pcaSpectra` which performs sparse PCA added.
+
+## Improvements
+* Numerous internal changes to the handling of PCA results were made to accommodate the introduction of sparse PCA features, and allow for easier future introduction of other PCA methods.
+
 # ChemoSpec 5.0.229 2019-02-28
 ## Misc.
 * Unit tests added for `.cleanArgs`.

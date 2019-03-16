@@ -10,10 +10,10 @@
 #' @param choice A character vector describing the type of scaling to be
 #' carried out.  One of \code{c("noscale", "mad")}.
 #'
-#' @return An object of classes \code{conPCA} and \code{princomp}.
+#' @return An object of classes \code{converted_from_princomp} and \code{prcomp}.
 #' It includes a list element called \code{$method}, a
 #' character string describing the pre-processing carried out and the type of
-#' PCA performed (it appears on plots which you might make).
+#' PCA performed (used to annotate plots).
 #'
 #' @seealso See \code{\link[pcaPP]{PCAgrid}} on which this function is based.
 #' For the classical version, see \code{\link{c_pcaSpectra}}.

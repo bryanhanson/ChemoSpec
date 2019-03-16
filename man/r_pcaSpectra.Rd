@@ -13,10 +13,10 @@ r_pcaSpectra(spectra, choice = "noscale")
 carried out.  One of \code{c("noscale", "mad")}.}
 }
 \value{
-An object of classes \code{conPCA} and \code{princomp}.
+An object of classes \code{converted_from_princomp} and \code{prcomp}.
 It includes a list element called \code{$method}, a
 character string describing the pre-processing carried out and the type of
-PCA performed (it appears on plots which you might make).
+PCA performed (used to annotate plots).
 }
 \description{
 A wrapper which carries out robust PCA analysis on a \code{\link{Spectra}}

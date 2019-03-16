@@ -50,6 +50,7 @@
 #' @export plot2Loadings
 #'
 #' @importFrom graphics plot abline legend
+#' @importFrom ChemoSpecUtils .getVarExplained
 #'
 plot2Loadings <- function(spectra, pca, loads = c(1,2), tol = 0.05, ...) {
 	
@@ -66,8 +67,7 @@ plot2Loadings <- function(spectra, pca, loads = c(1,2), tol = 0.05, ...) {
 	loadings1 = pca$rotation[,loads[1]]
 	loadings2 = pca$rotation[,loads[2]]
 	
-	eigensum <- sum(pca$sdev*pca$sdev) # prepare axis labels
-	variance <- 100*(pca$sdev*pca$sdev/eigensum)
+	variance <- .getVarExplained(pca)
 	txt1 <- paste("PC", loads[1], " (", format(variance[loads[1]], digits=2), "%", ") loadings", sep = "")
 	txt2 <- paste("PC", loads[2], " (", format(variance[loads[2]], digits=2), "%", ") loadings", sep = "")
 	

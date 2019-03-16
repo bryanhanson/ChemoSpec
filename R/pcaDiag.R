@@ -15,7 +15,7 @@
 #' 
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
-#' @param pca An object of class \code{\link{prcomp}} or \code{\link{prcomp}},
+#' @param pca An object of class \code{\link{prcomp}}
 #' modified to include a character string (\code{$method}) describing the
 #' pre-processing carried out and the type of PCA performed.
 #'
@@ -66,8 +66,11 @@ pcaDiag <-
 function (spectra, pca, pcs = 3, quantile = 0.975,
 plot = c("OD", "SD"), use.sym = FALSE, ...) {
 
-	.chkArgs(mode = 11L) # pca cannot be checked, see next line
+	msg <- "This function cannot be used with data from sparse pca"
+	if ("converted_from_arrayspc" %in% class(pca)) stop(msg)
+	.chkArgs(mode = 12L)
 	if ("prcomp" %in% class(pca)) pca <- .q2rPCA(pca)
+	
 	X <- spectra$data
 	X.pca <- pca
 	a <- pcs

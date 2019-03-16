@@ -1,17 +1,19 @@
 .r2qPCA <- function(x) {
 
-# Converts objects of class princomp (R-mode PCA) to class prcomp (Q-mode PCA)
-# Bryan Hanson, DePauw Univ, Sept 2009
-# original is modified by adding list elements (these could be removed to save space)
+# Modifies objects of class princomp (R-mode PCA) to more closely resemble class prcomp (Q-mode PCA)
 
 	if (!"princomp" %in% class(x)) stop("The PCA object was not of class princomp")
 	
 	# sdev, center and scale for both classes are the same; no change necessary
+	# Other list elements carried along unchanged
+	# Can fully pass as class prcomp
 			
 	x$rotation <- x$loadings
-	x$x <- x$scores	
-	class(x) <- c("conPCA", class(x))
+	x$loadings <- NULL
+	x$x <- x$scores
+	x$scores <- NULL
+	class(x) <- c("converted_from_princomp", "prcomp")
 	x
 	
-	}
+}
 
