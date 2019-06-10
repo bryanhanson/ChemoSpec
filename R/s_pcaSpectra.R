@@ -21,7 +21,8 @@
 #' 
 #' @param ... Other parameters to be passed to \code{\link[elasticnet]{arrayspc}}.
 #' 
-#' @return A modified object of class \code{\link{prcomp}}, which includes a list
+#' @return An object of class \code{prcomp} and \code{converted_from_arrayspc}, 
+#' which includes a list
 #' element called \code{$method}, a character string describing the
 #' pre-processing carried out and the type of PCA performed (used to annotate
 #' plots).  A check is carried out to see if the computation was successful
@@ -30,8 +31,9 @@
 #' @author Bryan A. Hanson, DePauw University.
 #' 
 #' @seealso \code{\link[elasticnet]{arrayspc}} for the underlying function,
-#' \code{\link{c_pcaSpectra}} for classical PCA calculations and
-#' \code{\link{r_pcaSpectra}} for robust PCA calculations.
+#' \code{\link{c_pcaSpectra}} for classical PCA calculations,
+#' \code{\link{r_pcaSpectra}} for robust PCA calculations,
+#' \code{\link{irlba_pcaSpectra}} for PCA via the IRLBA algorithm.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #' 
 #' For displaying the results, \code{\link{plotScree}},
@@ -48,9 +50,12 @@
 #' 
 #' data(SrE.NMR)
 #' pca <- s_pcaSpectra(SrE.NMR)
+#' plotScree(pca)
 #' plotScores(SrE.NMR, pca, main = "SrE NMR Data",
 #' 	 pcs = c(1,2), ellipse = "cls", tol = 0.05)
-#' 
+#' plotLoadings(SrE.NMR, pca, main = "SrE NMR Data",
+#' 	 loads = 1:2, ref = 1)
+#'
 #' @export s_pcaSpectra
 #' 
 #' @importFrom stats sd

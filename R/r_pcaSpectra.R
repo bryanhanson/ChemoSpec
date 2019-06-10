@@ -15,10 +15,12 @@
 #' character string describing the pre-processing carried out and the type of
 #' PCA performed (used to annotate plots).
 #'
-#' @seealso See \code{\link[pcaPP]{PCAgrid}} on which this function is based.
-#' For the classical version, see \code{\link{c_pcaSpectra}}.
+#' @seealso \code{\link[pcaPP]{PCAgrid}} for the underlying function,
+#' \code{\link{c_pcaSpectra}} for classical PCA calculations,
+#' \code{\link{s_pcaSpectra}} for sparse PCA calculations,
+#' \code{\link{irlba_pcaSpectra}} for PCA via the IRLBA algorithm.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
-#' 
+#'
 #' For displaying the results, \code{\link{plotScree}}, 
 #' \code{\link{plotScores}}, \code{\link{plotLoadings}},
 #' \code{\link{plot2Loadings}}, \code{\link{sPlotSpectra}},
@@ -37,9 +39,11 @@
 #' 
 #' data(metMUD1)
 #' pca <- r_pcaSpectra(metMUD1)
+#' plotScree(pca)
 #' plotScores(metMUD1, pca, main = "metMUD1 NMR Data",
 #'   pcs = c(1,2), ellipse = "cls", tol = 0.05)
-#' plotScree(pca)
+#' plotLoadings(metMUD1, pca, main = "metMUD1 NMR Data",
+#' 	 loads = 1:2, ref = 1)
 #'
 #' @export r_pcaSpectra
 #'

@@ -23,16 +23,17 @@
 #' 
 #' @param ... Other parameters to be passed to \code{\link[irlba]{irlba}}.
 #' 
-#' @return A modified object of class \code{\link{prcomp}}, which includes a list
-#' element called \code{$method}, a character string describing the
+#' @return A modified object of class \code{prcomp} and \code{computed_via_irlba},
+#' which includes a list element called \code{$method}, a character string describing the
 #' pre-processing carried out and the type of PCA performed (used to annotate
 #' plots).
 #' 
 #' @author Bryan A. Hanson, DePauw University.
 #' 
 #' @seealso \code{\link[irlba]{prcomp_irlba}} for the underlying function,
-#' \code{\link{c_pcaSpectra}} for classical PCA calculations and
-#' \code{\link{r_pcaSpectra}} for robust PCA calculations.
+#' \code{\link{c_pcaSpectra}} for classical PCA calculations,
+#' \code{\link{r_pcaSpectra}} for robust PCA calculations,
+#' \code{\link{s_pcaSpectra}} for sparse PCA calculations.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #' 
 #' For displaying the results, \code{\link{plotScree}},
@@ -40,7 +41,8 @@
 #' \code{\link{plot2Loadings}}, \code{\link{sPlotSpectra}},
 #' \code{\link{plotScores3D}}, \code{\link{plotScoresRGL}}.
 #' 
-#' @references J. Baglama and L. Reichel, "Augmented Implicitly Restarted Lanczos Bidiagonalization Methods"  \emph{SIAM J. Sci. Comput.} (2005). 
+#' @references J. Baglama and L. Reichel, "Augmented Implicitly Restarted Lanczos
+#' Bidiagonalization Methods"  \emph{SIAM J. Sci. Comput.} (2005). 
 #' 
 #' @keywords multivariate
 #' 
@@ -48,8 +50,11 @@
 #' 
 #' data(SrE.NMR)
 #' pca <- irlba_pcaSpectra(SrE.NMR)
+#' plotScree(pca)
 #' plotScores(SrE.NMR, pca, main = "SrE NMR Data",
 #' 	 pcs = c(1,2), ellipse = "cls", tol = 0.05)
+#' plotLoadings(SrE.NMR, pca, main = "SrE NMR Data",
+#' 	 loads = 1:2, ref = 1)
 #' 
 #' @export irlba_pcaSpectra
 #' 
@@ -72,22 +77,21 @@ irlba_pcaSpectra <- function(spectra, choice = "noscale", n = 3, center = TRUE, 
 	
 	if (choice == "noscale") {
 		X <- scale(spectra$data, center = center, scale = FALSE)
-		pca <- irlba::prcomp_irlba(x = spectra$data, n = n, center = FALSE, scale. = FALSE, ...)
 	}
 
 	if (choice == "Pareto") {
 		col.sd <- apply(spectra$data, 2, sd)
 		X <- scale(spectra$data, center = center, scale = col.sd^0.5)
-		pca <- irlba::prcomp_irlba(x = spectra$data, n = n, center = FALSE, scale. = FALSE, ...)
 	}
 
 	if (choice == "autoscale") {
 		col.sd <- apply(spectra$data, 2, sd)
 		X <- scale(spectra$data, center = center, scale = col.sd)
-		pca <- irlba::prcomp_irlba(x = spectra$data, n = n, center = FALSE, scale. = FALSE, ...)
 	}
 	
-	# Modify the arrayspc class to conform to prcomp
+	pca <- irlba::prcomp_irlba(x = X, n = n, center = FALSE, scale. = FALSE, ...)
+
+	# Modify the class
 	pca$method <- paste("centered/", choice, "/", "irlba", sep = "")
 	class(pca) <- c("computed_via_irlba", "prcomp")
 	pca

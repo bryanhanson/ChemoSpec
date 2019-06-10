@@ -40,8 +40,11 @@ deviation.
 
 data(metMUD1)
 pca <- c_pcaSpectra(metMUD1)
+plotScree(pca)
 plotScores(metMUD1, pca, main = "metMUD1 NMR Data",
 	 pcs = c(1,2), ellipse = "cls", tol = 0.05)
+plotLoadings(metMUD1, pca, main = "metMUD1 NMR Data",
+	 loads = 1:2, ref = 1)
 
 }
 \references{
@@ -50,7 +53,9 @@ Statistical Analysis in Chemometrics}, CRC Press, 2009.
 }
 \seealso{
 \code{\link{prcomp}} for the underlying function,
-\code{\link{r_pcaSpectra}} for analogous robust PCA calculations.
+\code{\link{s_pcaSpectra}} for sparse PCA calculations,
+\code{\link{r_pcaSpectra}} for robust PCA calculations,
+\code{\link{irlba_pcaSpectra}} for PCA via the IRLBA algorithm.
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 
 For displaying the results, \code{\link{plotScree}},

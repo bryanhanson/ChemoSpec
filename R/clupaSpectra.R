@@ -43,7 +43,6 @@
 #'
 #' @export clupaSpectra
 #'
-# @importFrom speaq detectSpecPeaks findRef dohCluster
 #'
 clupaSpectra <- function(spectra, bT = NULL, ...) {
 

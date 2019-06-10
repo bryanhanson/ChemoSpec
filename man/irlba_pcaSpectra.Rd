@@ -22,8 +22,8 @@ for PCA, either before arriving here or via this argument.}
 \item{...}{Other parameters to be passed to \code{\link[irlba]{irlba}}.}
 }
 \value{
-A modified object of class \code{\link{prcomp}}, which includes a list
-element called \code{$method}, a character string describing the
+A modified object of class \code{prcomp} and \code{computed_via_irlba},
+which includes a list element called \code{$method}, a character string describing the
 pre-processing carried out and the type of PCA performed (used to annotate
 plots).
 }
@@ -43,17 +43,22 @@ deviation.
 
 data(SrE.NMR)
 pca <- irlba_pcaSpectra(SrE.NMR)
+plotScree(pca)
 plotScores(SrE.NMR, pca, main = "SrE NMR Data",
 	 pcs = c(1,2), ellipse = "cls", tol = 0.05)
+plotLoadings(SrE.NMR, pca, main = "SrE NMR Data",
+	 loads = 1:2, ref = 1)
 
 }
 \references{
-J. Baglama and L. Reichel, "Augmented Implicitly Restarted Lanczos Bidiagonalization Methods"  \emph{SIAM J. Sci. Comput.} (2005).
+J. Baglama and L. Reichel, "Augmented Implicitly Restarted Lanczos
+Bidiagonalization Methods"  \emph{SIAM J. Sci. Comput.} (2005).
 }
 \seealso{
 \code{\link[irlba]{prcomp_irlba}} for the underlying function,
-\code{\link{c_pcaSpectra}} for classical PCA calculations and
-\code{\link{r_pcaSpectra}} for robust PCA calculations.
+\code{\link{c_pcaSpectra}} for classical PCA calculations,
+\code{\link{r_pcaSpectra}} for robust PCA calculations,
+\code{\link{s_pcaSpectra}} for sparse PCA calculations.
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 
 For displaying the results, \code{\link{plotScree}},
