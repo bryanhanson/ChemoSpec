@@ -1,8 +1,8 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 5.0.250
-Date: 2019-03-16
+Version: 5.1.9
+Date: 2019-06-09
 Authors@R: c(
     person("Bryan A.", "Hanson",
     role = c("aut", "cre"), email =
@@ -27,42 +27,24 @@ Description: A collection of functions for top-down exploratory data analysis
     to help you get usable results quickly. A vignette covering typical operations
     is available.
 License: GPL-3
-Depends:
-    R (>= 3.1),
-    ChemoSpecUtils (>= 0.2)
-Imports:
-    plyr,
-    stats,
-    utils,
-    grDevices
-Suggests:
-    IDPmisc,
-    knitr,
-    js,
-    NbClust,
-    lattice,
-    baseline,
-    mclust,
-    pls,
-    clusterCrit,
-    R.utils,
-    RColorBrewer,
-    seriation,
-    MASS,
-    robustbase,
-    grid,
-    pcaPP,
-    jsonlite,
-    gsubfn,
-    signal,
-    rgl,
-    readJDX (>= 0.3),
-    speaq,
-    testthat,
-    elasticnet,
-    irlba
+Depends: R (>= 3.5), ChemoSpecUtils (>= 0.3)
+Imports: plyr, stats, utils, grDevices
+Suggests: IDPmisc, knitr, js, NbClust, lattice, baseline, mclust, pls,
+        clusterCrit, R.utils, RColorBrewer, seriation, MASS,
+        robustbase, grid, pcaPP, jsonlite, gsubfn, signal, rgl, readJDX
+        (>= 0.3), speaq, testthat, elasticnet, irlba, amap, rmarkdown,
+        pinp
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
+NeedsCompilation: no
+Packaged: 2019-06-09 18:30:21 UTC; bryanhanson
+Author: Bryan A. Hanson [aut, cre] (<https://orcid.org/0000-0003-3536-8246>),
+  Mike Bostock [cph, ctb] (author of the d3.js library used by
+    plotSpectraJS, http://d3js.org),
+  Matt Keinsley [ctb] (author of initial AOV-PCA code)
+Maintainer: Bryan A. Hanson <hanson@depauw.edu>
+Repository: CRAN
+Date/Publication: 2019-06-09 18:50:03 UTC

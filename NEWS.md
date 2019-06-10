@@ -1,5 +1,5 @@
 
-# ChemoSpec 5.1.9 2019-06-09
+# ChemoSpec 5.1.8 2019-06-09
 ## New Features
 * Function `s_pcaSpectra` which performs sparse PCA added.
 * Function `irlba_pcaSpectra` which performs IRLBA PCA added.
