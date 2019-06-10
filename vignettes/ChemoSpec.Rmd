@@ -403,6 +403,8 @@ Table \ref{opt} gives an overview of the options available in \texttt{ChemoSpec}
 \hline
 classical PCA &  no scaling, autoscaling, Pareto scaling & \texttt{c\_pcaSpectra} \\
 robust PCA & no scaling, median absolute deviation & \texttt{r\_pcaSpectra} \\
+sparse PCA & no scaling, autoscaling, Pareto scaling & \texttt{s\_pcaSpectra} \\
+IRLBA PCA & no scaling, autoscaling, Pareto scaling & \texttt{irlba\_pcaSpectra} \\
 &&\\
 \textbf{Diagnostics} &  & \\
 \hline
@@ -645,29 +647,9 @@ See the help files of course  \ldots
 
 # Color and Symbol Options \label{ColSym}
 
-In \texttt{ChemoSpec}, the user may use any color name/format known to \texttt{R}.  For ease of comparison, it would be nice to plan ahead and use the same color scheme for all your plots.  However, if you are just doing preliminary work, \texttt{ChemoSpec} will choose colors for you automatically.
+In \texttt{ChemoSpec}, the user may use any color name/format known to \texttt{R}.  When importing data, \texttt{ChemoSpec} will choose colors for you automatically if desired.  However, depending upon your needs, you may wish to choose colors yourself.  the current color scheme of a \texttt{Spectra} object may be determined using \texttt{sumSpectra} or changed using \texttt{conColScheme}. A fuller discussion of color issues can be found in \texttt{?colorSymbol}.
 
 In addition to colors, \texttt{"Spectra"} objects also contain a list of symbols, and alternative symbols.  These are useful for plotting in black and white, or when color-blind individuals will be viewing the plots.  The alternative symbols are simply lower-case letters, as these are needed for \texttt{plotScoresRGL}, and other \texttt{rgl}-graphics driven functions which cannot plot traditional symbols.
-
-Two good color schemes are shown in Figure \ref{colors}; these are generally visually distinct and are part of the \texttt{RColorBrewer} package.  By name, these are:
-
-\begin{quote}
-primary scheme: c("red3", "dodgerblue4", "forestgreen", "purple4", "orangered", "yellow", "orangered4", "violetred2")
-
-pastel scheme: c("seagreen", "brown2", "skyblue2", "hotpink3", "chartreuse3", "darkgoldenrod2", "lightsalmon3", "gray48")
-\end{quote}
-
-These schemes give eight distinct colors, and most people will have trouble distinguishing more than eight.  Finally, the current color scheme of a \texttt{Spectra} object may be determined using \texttt{sumSpectra} or changed using \texttt{conColScheme}.
-
-
-```{r  Chunk4,  echo = FALSE, fig.cap = "\\label{colors}Recommended color sets in \texttt{ChemoSpec}.", fig.height = 4 }
-par(mfrow = c(2,1), mar = c(3, 1, 2, 1))
-display.brewer.pal(8, "Set1")
-title(main = "ChemoSpec Primary Scheme")
-display.brewer.pal(8, "Set2")
-title(main = "ChemoSpec Pastel Scheme")
-par(mfrow = c(1,1))
-```
 
 # Related Packages
 

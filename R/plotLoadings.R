@@ -24,21 +24,13 @@
 #'
 #' @author Bryan A. Hanson, DePauw University.
 #'
-#' @seealso See \code{\link{plot2Loadings}} to plot two loadings against each
+#' @seealso \code{\link{c_pcaSpectra}} for an example.  See \code{\link{plot2Loadings}}
+#' to plot two loadings against each
 #' other, and \code{\link{sPlotSpectra}} for an alternative approach.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#'
 #' @keywords multivariate hplot
 #'
-#' @examples
-#' 
-#' data(SrE.IR)
-#' pca <- c_pcaSpectra(SrE.IR, choice = "noscale")
-#' myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
-#' plotLoadings(SrE.IR, pca, main = myt,
-#' 	 loads = 1:2, ref = 1)
-#' 
 #' @export plotLoadings
 #'
 #' @importFrom graphics plot

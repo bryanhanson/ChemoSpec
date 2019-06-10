@@ -10,7 +10,7 @@ pcaDiag(spectra, pca, pcs = 3, quantile = 0.975, plot = c("OD",
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
 
-\item{pca}{An object of class \code{\link{prcomp}} or \code{\link{prcomp}},
+\item{pca}{An object of class \code{\link{prcomp}}
 modified to include a character string (\code{$method}) describing the
 pre-processing carried out and the type of PCA performed.}
 

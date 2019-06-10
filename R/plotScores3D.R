@@ -65,6 +65,7 @@
 #' @importFrom graphics plot
 #' @importFrom grid grid.text gpar
 #' @importFrom ChemoSpecUtils sumGroups
+#' @importFrom ChemoSpecUtils .getVarExplained
 #'
 plotScores3D <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
 	cl = 0.95, frac.pts.used = 0.8,
@@ -90,8 +91,7 @@ plotScores3D <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE
 	# move the original data into a df, add a size parameter
 	df <- data.frame(x = x, y = y, z = z, sym = spectra$sym, col = spectra$colors, size = rep(0.5, length(spectra$names)))
 
-	eigensum <- sum(pca$sdev*pca$sdev) # prepare axis labels
-	variance <- 100*(pca$sdev*pca$sdev/eigensum)
+	variance <- .getVarExplained(pca)
 	x.lab <- paste("PC", pcs[1], " (", format(variance[1], digits=2), "%", ")", sep = "")
 	y.lab <- paste("PC", pcs[2], " (", format(variance[2], digits=2), "%", ")", sep = "")
 	z.lab <- paste("PC", pcs[3], " (", format(variance[3], digits=2), "%", ")", sep = "")

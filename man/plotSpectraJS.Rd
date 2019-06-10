@@ -79,7 +79,7 @@ if (interactive()) {
 }
 \seealso{
 \code{\link{plotSpectra}} for non-interactive plotting.  Details
-about \code{d3.js} are at \url{www.d3js.org}. Additional documentation at
+about \code{d3.js} are at \url{https://www.d3js.org}. Additional documentation at
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{

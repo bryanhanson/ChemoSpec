@@ -31,9 +31,8 @@ replicates to perform.}
 \item{\dots}{Parameters to be passed to the plotting routines.}
 }
 \value{
-A list as described in \code{\link[chemometrics]{pcaCV}}, so the
-result must be assigned or it will appear at the console.  Side effect is a
-plot.
+Invisibly, a list as described in \code{\link[chemometrics]{pcaCV}}.
+Side effect is a plot.
 }
 \description{
 This function carries out classical PCA on the data in a

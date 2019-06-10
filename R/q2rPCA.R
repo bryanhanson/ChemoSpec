@@ -5,32 +5,22 @@
 #' objects of S3 class \code{princomp} (R-mode PCA) or \emph{vice-versa}.  An
 #' internal function, not generally called by the user.
 #' 
-#' In the conversion, the necessary list elements are added; the old elements
-#' are not deleted (and user added list elements are not affected).  To
-#' indicate this, the class attribute is updated to include class
-#' \code{conPCA}.  The new object can then be used by functions expecting
-#' either class prcomp or princomp.  For details of the structure of
+#' In the conversion, the required list elements are renamed; the old elements
+#' are removed to save space. Other list elements, including user added elements
+#' are not changed.  The result can fully pass as the new class.  However, the order
+#' of elements is not the same, so access the elements via name not position.
+#' The class attribute is updated.
+#' For details of the structure of
 #' \code{\link{prcomp}} or \code{\link{princomp}}, see their respective help
 #' pages.
 #' 
 #' @aliases .q2rPCA .r2qPCA
 #'
 #' @param x An object of either class \code{prcomp} or class
-#' \code{princomp}.  It will be converted to a form that can be used by
-#' functions expecting either class.
+#' \code{princomp}.
 #'
-#' @return A list of class \code{conPCA}.  Note that the order of the
-#' elements will vary depending upon the direction of conversion.
-#' \item{loadings}{ The loadings from \code{princomp}, or a copy of the
-#' rotations from \code{prcomp}.} \item{scores}{ The scores from
-#' \code{princomp}, or a copy of the x values from \code{prcomp}.}
-#' \item{call}{ The call.  Objects of class \code{prcomp} do not store the
-#' original call, so a place holder is used. Otherwise the unchanged call from
-#' \code{princomp}.} \item{n.obs}{ The number of observations from
-#' \code{princomp}, or computed from the 1st dimension of x in
-#' \code{prcomp}.} \item{class}{ \code{conPCA} is pre-pended to the
-#' existing class.} \item{sdev}{ Unchanged from original.} \item{center}{
-#' Unchanged from original.} \item{scale}{ Unchanged from original.}
+#' @return A list with either classes \code{converted_from_princomp} and
+#' \code{prcomp} or classes \code{converted_from_prcomp} and \code{princomp}.  
 #'
 #' @author Bryan A. Hanson, DePauw University.
 #'
@@ -47,12 +37,16 @@
 	if (!"prcomp" %in% class(x)) stop("The PCA object was not of class prcomp")
 
 	# sdev, center and scale for both classes are the same; no change necessary
+	# Other list elements carried along unchanged
+	# Can fully pass as class princomp
 	
 	x$loadings <- x$rotation
-	x$scores <- x$x
-	x$call <- "No call available (data converted from class prcomp)"
+	x$rotation <- NULL
 	x$n.obs <- dim(x$x)[1]	
-	class(x) <- c("conPCA", class(x))
+	x$scores <- x$x
+	x$x <- NULL
+	x$call <- "No call available (data converted from class prcomp)"
+	class(x) <- c("converted_from_prcomp", "princomp")
 	x
 	}
 

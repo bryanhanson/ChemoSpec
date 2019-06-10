@@ -16,20 +16,22 @@
 #' 
 #' @param choice A character string indicating the choice of scaling.  One of
 #' \code{c("noscale"}, \code{"autoscale"}, \code{"Pareto")}. \code{"autoscale"}
-#' is called "standard normal variate" in some literature.
+#' is called "standard normal variate" or "correlation matrix PCA" in some literature.
 #' 
 #' @param cent Logical: whether or not to center the data.  Always center the
 #' data unless you know it to be already centered.
 #' 
 #' @return An object of class \code{\link{prcomp}}, modified to include a list
 #' element called \code{$method}, a character string describing the
-#' pre-processing carried out and the type of PCA performed (it appears on
-#' plots which you might make).
+#' pre-processing carried out and the type of PCA performed (used to annotate
+#' plots).
 #' 
 #' @author Bryan A. Hanson, DePauw University.
 #' 
 #' @seealso \code{\link{prcomp}} for the underlying function,
-#' \code{\link{r_pcaSpectra}} for analogous robust PCA calculations.
+#' \code{\link{s_pcaSpectra}} for sparse PCA calculations,
+#' \code{\link{r_pcaSpectra}} for robust PCA calculations,
+#' \code{\link{irlba_pcaSpectra}} for PCA via the IRLBA algorithm.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #' 
 #' For displaying the results, \code{\link{plotScree}},
@@ -46,8 +48,11 @@
 #' 
 #' data(metMUD1)
 #' pca <- c_pcaSpectra(metMUD1)
+#' plotScree(pca)
 #' plotScores(metMUD1, pca, main = "metMUD1 NMR Data",
 #' 	 pcs = c(1,2), ellipse = "cls", tol = 0.05)
+#' plotLoadings(metMUD1, pca, main = "metMUD1 NMR Data",
+#' 	 loads = 1:2, ref = 1)
 #' 
 #' @export c_pcaSpectra
 #' 
@@ -66,14 +71,14 @@ c_pcaSpectra <- function(spectra, choice = "noscale", cent = TRUE) {
 
 	if (identical(choice, "noscale")) {centscaled <- scale(spectra$data, center = cent, scale = FALSE)}
 	
+	if (identical(choice, "Pareto")) {
+		col.sd <- apply(spectra$data, 2, sd)
+		centscaled <- scale(spectra$data, center = cent, scale = col.sd^0.5)}
+
 	if (identical(choice, "autoscale")) {
 		col.sd <- apply(spectra$data, 2, sd)
 		centscaled <- scale(spectra$data, center = cent, scale = col.sd)}
 
-	if (identical(choice, "Pareto")) {
-		col.sd <- apply(spectra$data, 2, sd)
-		centscaled <- scale(spectra$data, center = cent, scale = col.sd^0.5)}
-	
 	# Now the PCA!
 	
 	pca <- prcomp(centscaled, retx = TRUE, center = FALSE, scale. = FALSE)

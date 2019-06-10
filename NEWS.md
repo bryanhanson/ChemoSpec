@@ -1,4 +1,20 @@
 
+# ChemoSpec 5.1.9 2019-06-09
+## New Features
+* Function `s_pcaSpectra` which performs sparse PCA added.
+* Function `irlba_pcaSpectra` which performs IRLBA PCA added.
+
+## Improvements
+* Numerous internal changes to the handling of PCA results were made to accommodate the introduction of sparse PCA features, and allow for easier future introduction of other PCA methods.
+
+## Bug Fixes
+* An issue with the setting of x and y limits in `plotScores` was fixed.  This was a long standing bug that somehow escaped notice from the early days of this package. Note that `plotScores` is actually in `ChemoSpecUtils` but is called from `ChemoSpec`, affecting the results here.
+
+## Misc.
+* Function `conColScheme` moved to package `ChemoSpecUtils`.
+* Documentation `colorSymbol` was moved to package `ChemoSpecUtils`.
+* Vignette updated regarding color issues.
+
 # ChemoSpec 5.0.229 2019-02-28
 ## Misc.
 * Unit tests added for `.cleanArgs`.
@@ -26,4 +42,4 @@
 
 ## Notices
 * Older news may be found via `news(package = "ChemoSpec")`.
-* The changelog/NEWS file has moved to [https://bryanhanson.github.io/ChemoSpec/](bryanhanson.github.io/ChemoSpec/), but you must know that since you are viewing it!
+* The changelog/NEWS file has moved to [https://bryanhanson.github.io/ChemoSpec/](https://bryanhanson.github.io/ChemoSpec/), but you must know that since you are viewing it!

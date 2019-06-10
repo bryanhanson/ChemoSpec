@@ -27,9 +27,8 @@
 #' 
 #' @param \dots Parameters to be passed to the plotting routines.
 #' 
-#' @return A list as described in \code{\link[chemometrics]{pcaCV}}, so the
-#' result must be assigned or it will appear at the console.  Side effect is a
-#' plot.
+#' @return Invisibly, a list as described in \code{\link[chemometrics]{pcaCV}}.
+#' Side effect is a plot.
 #' 
 #' @author Bryan A. Hanson, DePauw University. Derived from \code{\link[chemometrics]{pcaCV}}.
 #' 
@@ -150,6 +149,6 @@ cv_pcaSpectra <- function (spectra, pcs, choice = "noscale", repl = 50, segments
     leg.txt <- paste(spectra$desc, note, sep = " ")
 	legend("bottomright", leg.txt, bty = "n", cex = 0.75)
     
-    list(ExplVar = Fit, MSEP = MSEP)
+    invisible(list(ExplVar = Fit, MSEP = MSEP))
 }
 
