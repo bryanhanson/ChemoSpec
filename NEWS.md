@@ -1,5 +1,11 @@
+# ChemoSpec 5.x.x 2019-xx-xx
+## Note
+* This is the basis for the next release.
+* I mangled the repo badly, rebuilt from CRAN version + a few files recovered locally.  Bummer.
 
-# ChemoSpec 5.1.8 2019-06-09
+# ChemoSpec 5.1.9 2019-06-09
+## New Features
+
 ## New Features
 * Function `s_pcaSpectra` which performs sparse PCA added.
 * Function `irlba_pcaSpectra` which performs IRLBA PCA added.

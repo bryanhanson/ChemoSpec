@@ -1,7 +1,7 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 5.1.9
+Version: 5.1.10
 Date: 2019-06-09
 Authors@R: c(
     person("Bryan A.", "Hanson",
