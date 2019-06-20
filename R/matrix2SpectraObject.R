@@ -1,4 +1,6 @@
 #'
+#' Create a Spectra Object from a Matrix
+#'
 #' @describeIn files2SpectraObject Import a matrix of data
 #'
 matrix2SpectraObject <-

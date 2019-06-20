@@ -51,7 +51,8 @@ hcaSpectra <- function(spectra,
 	chkSpectra(spectra)	
 	
 	if (use.sym) spectra$names <- paste(spectra$alt.sym, spectra$names, sep = " ")
-	distance <- rowDist(as.data.frame(spectra$data, row.names = spectra$names), method = d.method)
+	row.names(spectra$data) <- spectra$names # needed to create labels later
+	distance <- rowDist(spectra$data, method = d.method)
 
 	sub.title <- paste("clustering method: ", c.method, "      distance method: ", d.method, sep = "")
 

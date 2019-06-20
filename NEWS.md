@@ -1,11 +1,13 @@
-# ChemoSpec 5.x.x 2019-xx-xx
-## Note
-* This is the basis for the next release.
-* I mangled the repo badly, rebuilt from CRAN version + a few files recovered locally.  Bummer.
+# ChemoSpec 5.1.20 2019-06-20
+## Bug Fixes
+* Fixed a buglet in `hcaSpectra` that involved an undesirable cast to data frame, which upset the cosine calculation.
+* `evalClusters` was not returning the result in the case of `pkg = "NbClust"`.
+
+## Misc.
+* Unit test framework shifted to `tinytest`.
+* Additional unit tests added.
 
 # ChemoSpec 5.1.9 2019-06-09
-## New Features
-
 ## New Features
 * Function `s_pcaSpectra` which performs sparse PCA added.
 * Function `irlba_pcaSpectra` which performs IRLBA PCA added.

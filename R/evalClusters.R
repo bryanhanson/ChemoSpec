@@ -89,6 +89,7 @@ evalClusters <- function(spectra, pkg = "NbClust", hclst = NULL,
 			stop("You need install package NbClust to use this function/option")
 			}
 		res <- NbClust::NbClust(spectra$data, ...)
+		return(res)
 		}
 
 	if (pkg == "clusterCrit") {
@@ -100,4 +101,4 @@ evalClusters <- function(spectra, pkg = "NbClust", hclst = NULL,
 		res <- clusterCrit::intCriteria(spectra$data, ct, crit, ...)
 		return(res)
 		}
-	}
+}
