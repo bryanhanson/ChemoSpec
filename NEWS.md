@@ -1,4 +1,7 @@
-# ChemoSpec 5.1.20 2019-06-20
+# ChemoSpec 5.1.34 2019-06-23
+## Improvements
+* `matrix2SpectraObject` can now handle multiple input matrices (i.e. argument `in.file` can be a vector of file names). The function now includes a progress bar, similar to `files2SpectraObject`.
+
 ## Bug Fixes
 * Fixed a buglet in `hcaSpectra` that involved an undesirable cast to data frame, which upset the cosine calculation.
 * `evalClusters` was not returning the result in the case of `pkg = "NbClust"`.

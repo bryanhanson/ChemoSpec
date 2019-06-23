@@ -71,7 +71,7 @@ with your file structure, unless they are the same as the defaults for
 \code{\link[utils]{read.table}}}.}
 
 \item{in.file}{Character.  Applies to \code{matrix2SpectraObject} only.
-Input file name, including extension.}
+Input file name, including extension.  Can be a vector of file names.}
 
 \item{chk}{Logical. Applies to \code{matrix2SpectraObject} only.
 Should the \code{Spectra} object be checked for
@@ -116,11 +116,11 @@ known limitations.
 
 \section{matrix2SpectraObject}{
 
-This function takes a csv-like file, containing frequencies in the first
+This function takes one or more csv-like files, containing frequencies in the first
 column, and samples in additional columns, and processes it into a
 \code{\link{Spectra}} object.  The file MUST have a header row which includes
 the sample names.  There need not be a header for the first (frequency)
-column.
+column.  If more than one file given, they must all have the same frequency entries.
 }
 
 \section{gr.crit and Sample Name Gotchas}{
