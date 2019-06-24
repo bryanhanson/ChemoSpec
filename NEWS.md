@@ -1,3 +1,7 @@
+# ChemoSpec 5.1.xx 2019-xx-xx
+## Improvements
+* `plotScoresRGL` gains an argument `axes` which allows one to control the drawing of the reference axes.
+
 # ChemoSpec 5.1.34 2019-06-23
 ## Improvements
 * `matrix2SpectraObject` can now handle multiple input matrices (i.e. argument `in.file` can be a vector of file names). The function now includes a progress bar, similar to `files2SpectraObject`.
