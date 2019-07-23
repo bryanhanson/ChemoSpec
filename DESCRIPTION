@@ -1,7 +1,7 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 5.1.39
+Version: 5.1.46
 Date: 2019-06-09
 Authors@R: c(
     person("Bryan A.", "Hanson",
@@ -63,7 +63,9 @@ Suggests:
   irlba,
   amap,
   rmarkdown,
-  pinp
+  pinp,
+  chemometrics,
+  kableExtra
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE

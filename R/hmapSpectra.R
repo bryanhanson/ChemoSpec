@@ -54,6 +54,6 @@ hmapSpectra <- function(spectra, ...) {
 		
 	DF1 <- data.frame(freq = spectra$freq, rank = res$colInd)
 	DF2 <- data.frame(sample = spectra$names, rank = res$rowInd)
-	return(list(Freq = DF1, Sample = DF2))
+	return(list(Freq = DF1, Sample = DF2, Carpet = res$carpet))
 	}
 	
