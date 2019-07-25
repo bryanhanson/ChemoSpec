@@ -7,10 +7,8 @@
 #' different from the others in that it simply returns the standard error of x,
 #' hence \code{.seX}.  Haven't we always needed a function for \code{.seX}?
 #' 
-#' These functions include \code{na.omit}.
+#' These functions employ \code{na.omit}.
 #' 
-#' @aliases .seXy .seX .seXyIqr .seXyMad .seXy95
-#'
 #' @param x A vector of numeric values whose measure of central tendency and
 #' spread are to be computed.
 #'
@@ -24,6 +22,8 @@
 #' @keywords utilities
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#'
+#' @aliases .seXy .seX .seXyIqr .seXyMad .seXy95
 #'
 #' @examples
 #' 
@@ -39,6 +39,8 @@
 #' @importFrom stats na.omit sd fivenum median
 #'
 #' @describeIn .seXy standard error of x
+#' @noRd
+#'
 
 .seX <- function(x) sd(x, na.rm = TRUE)/sqrt(length(na.omit(x)))
 

@@ -1,5 +1,24 @@
+# ChemoSpec 5.1.48 2019-07-25
+## Improvements
+* `plotScoresRGL` gains an argument `axes` which allows one to control the drawing of the reference axes.
+* `hmapSpectra` now returns the carpet matrix in addition to the sample and frequency rankings.
 
-# ChemoSpec 5.1.8 2019-06-09
+## New Features
+* A new vignette, Introduction to PCA, was added.
+
+# ChemoSpec 5.1.34 2019-06-23
+## Improvements
+* `matrix2SpectraObject` can now handle multiple input matrices (i.e. argument `in.file` can be a vector of file names). The function now includes a progress bar, similar to `files2SpectraObject`.
+
+## Bug Fixes
+* Fixed a buglet in `hcaSpectra` that involved an undesirable cast to data frame, which upset the cosine calculation.
+* `evalClusters` was not returning the result in the case of `pkg = "NbClust"`.
+
+## Misc.
+* Unit test framework shifted to `tinytest`.
+* Additional unit tests added.
+
+# ChemoSpec 5.1.9 2019-06-09
 ## New Features
 * Function `s_pcaSpectra` which performs sparse PCA added.
 * Function `irlba_pcaSpectra` which performs IRLBA PCA added.

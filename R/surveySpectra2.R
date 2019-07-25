@@ -1,4 +1,6 @@
-
+#'
+#' Plot Measures of Central Tendency and Spread for a Spectra Object
+#' 
 #'
 #' @describeIn surveySpectra Spectral survey emphasizing variation among spectra.
 #' 

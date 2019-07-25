@@ -7,7 +7,7 @@
 plotScoresRGL(spectra, pca, pcs = c(1:3), ellipse = TRUE,
   rob = FALSE, cl = 0.95, frac.pts.used = 0.8, title = NULL,
   t.pos = NULL, leg.pos = NULL, lab.opts = FALSE, tol = 0.01,
-  use.sym = FALSE, ...)
+  use.sym = FALSE, axes = "fixed", ...)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
@@ -44,6 +44,13 @@ of a cube surrounding the data.}
 
 \item{use.sym}{logical; if true, the color scheme is changed to black and
 symbols are used for plotting.}
+
+\item{axes}{character; One of \code{"fixed"} or \code{"float"}.  For \code{"fixed"}, reference axes
+are drawn along the positive x, y and z axes.  The length of the axes is the maximum of the
+the data values, so that all data points are inside the reference axes if positive.  For
+\code{"float"} the reference axes are drawn along the positive x, y and z axes, but the
+length of each axis corresponds to maximum for each dimension separately.  This option
+may make better use of the drawing space.}
 
 \item{\dots}{Additional parameters to pass downstream, generally to the
 plotting routines.}

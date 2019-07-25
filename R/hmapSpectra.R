@@ -14,8 +14,9 @@
 #' control is available - check \code{\link[seriation]{hmap}} for details.  Most of the control
 #' actually derives from the \code{heatmap2} function in package \pkg{gplots}.
 #' 
-#' @return A list composed of two data frames. One is the frequencies and their
-#' rankings, the other is samples and their rankings.  Side effect is a plot.
+#' @return A list composed of two data frames, and a matrix. The first data frame is the frequencies and their
+#' rankings, the second is samples and their rankings.  The matrix is the "carpet" of correlation values.
+#' Side effect is a plot.
 #' 
 #' @author Bryan A. Hanson, DePauw University.
 #' 
@@ -54,6 +55,6 @@ hmapSpectra <- function(spectra, ...) {
 		
 	DF1 <- data.frame(freq = spectra$freq, rank = res$colInd)
 	DF2 <- data.frame(sample = spectra$names, rank = res$rowInd)
-	return(list(Freq = DF1, Sample = DF2))
+	return(list(Freq = DF1, Sample = DF2, Carpet = res$carpet))
 	}
 	

@@ -49,6 +49,13 @@
 #' @param use.sym logical; if true, the color scheme is changed to black and
 #' symbols are used for plotting.
 #'
+#' @param axes character; One of \code{"fixed"} or \code{"float"}.  For \code{"fixed"}, reference axes
+#'        are drawn along the positive x, y and z axes.  The length of the axes is the maximum of the
+#'        the data values, so that all data points are inside the reference axes if positive.  For
+#'        \code{"float"} the reference axes are drawn along the positive x, y and z axes, but the
+#'        length of each axis corresponds to maximum for each dimension separately.  This option
+#'        may make better use of the drawing space.
+#'
 #' @param \dots Additional parameters to pass downstream, generally to the
 #' plotting routines.
 #'
@@ -80,7 +87,7 @@
 plotScoresRGL <- function(spectra, pca, pcs = c(1:3), 
 	ellipse = TRUE, rob = FALSE, cl = 0.95, frac.pts.used = 0.8,
 	title = NULL, t.pos = NULL, leg.pos = NULL, lab.opts = FALSE,
-	tol = 0.01, use.sym = FALSE,...) {
+	tol = 0.01, use.sym = FALSE, axes = "fixed", ...) {
 
 	.chkArgs(mode = 12L)
 	chkSpectra(spectra)
@@ -97,14 +104,25 @@ plotScoresRGL <- function(spectra, pca, pcs = c(1:3),
 	x.lab <- paste("PC", pcs[1], " (", format(variance[1], digits=2), "%", ")", sep = "")
 	y.lab <- paste("PC", pcs[2], " (", format(variance[2], digits=2), "%", ")", sep = "")
 	z.lab <- paste("PC", pcs[3], " (", format(variance[3], digits=2), "%", ")", sep = "")
-		
-	a <- range(x, y, z) # scale the axis to the data
+	
+	# The following info is used to position legend and title, and maybe to set axis lengths
+	a <- range(x, y, z)
 	b <- abs(a[1])
 	d <- abs(a[2])
 	ax.len <- max(a, b)
-	x.cor <- c(0, ax.len, 0, 0) 
-	y.cor <- c(0, 0, ax.len, 0)
-	z.cor <- c(0, 0, 0, ax.len)
+
+	if (axes == "fixed") {
+		x.cor <- c(0, ax.len, 0, 0) 
+		y.cor <- c(0, 0, ax.len, 0)
+		z.cor <- c(0, 0, 0, ax.len)
+	}
+	
+	if (axes == "float") {
+		x.cor <- c(0, abs(max(x)), 0, 0) 
+		y.cor <- c(0, 0, abs(max(y)), 0)
+		z.cor <- c(0, 0, 0, abs(max(x)))
+	}
+
 	i <- c(1, 2, 1, 3, 1, 4)
 		
 	rgl::open3d() # draw axes and label them
@@ -137,7 +155,7 @@ plotScoresRGL <- function(spectra, pca, pcs = c(1:3),
 					}
 			}
 		}
-
+	
 	pos <- matrix(NA, 8, 3) # matrix of label positions
 	pos[1:4,1] <- ax.len # x values
 	pos[5:8,1] <- -ax.len
