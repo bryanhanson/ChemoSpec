@@ -1,4 +1,4 @@
-# ChemoSpec 5.1.46 2019-07-23
+# ChemoSpec 5.1.48 2019-07-25
 ## Improvements
 * `plotScoresRGL` gains an argument `axes` which allows one to control the drawing of the reference axes.
 * `hmapSpectra` now returns the carpet matrix in addition to the sample and frequency rankings.

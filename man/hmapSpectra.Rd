@@ -14,8 +14,9 @@ control is available - check \code{\link[seriation]{hmap}} for details.  Most of
 actually derives from the \code{heatmap2} function in package \pkg{gplots}.}
 }
 \value{
-A list composed of two data frames. One is the frequencies and their
-rankings, the other is samples and their rankings.  Side effect is a plot.
+A list composed of two data frames, and a matrix. The first data frame is the frequencies and their
+rankings, the second is samples and their rankings.  The matrix is the "carpet" of correlation values.
+Side effect is a plot.
 }
 \description{
 Creates a heat map with marginal dendrograms using seriation procedures.
