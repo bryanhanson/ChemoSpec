@@ -2,9 +2,9 @@
 title: An Introduction to PCA
 
 # Force pkgdown to use the pdf vignette and not override format/output
-#pkgdown:
-#  as_is: true
-#  extension: pdf
+pkgdown:
+  as_is: true
+  extension: pdf
 
 # Produce a pinp document
 output: pinp::pinp

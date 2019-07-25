@@ -1,0 +1,76 @@
+template:
+  params:
+    bootswatch: cerulean
+    
+reference:
+- title: "Importing Data"
+  contents:
+  - '`files2SpectraObject`'
+  - '`matrix2SpectraObject`'
+
+- title: "Data Summaries"
+  contents:
+  - '`sumGroups`'
+  - '`sumSpectra`'
+  - '`surveySpectra`'
+
+- title: "Pre-Processing Data"
+  desc: "Modifying/editing data"
+  contents:
+  - '`removeFreq`'
+  - '`removeGroup`'
+  - '`removeSample`'
+  - '`baselineSpectra`'
+  - '`normSpectra`'
+  - '`binSpectra`'
+  - '`sgfSpectra`'
+  - '`splitSpectraGroups`'
+  - '`clupaSpectra`'
+
+- title: "Plots"
+  contents:
+  - '`plotSpectra`'
+  - '`plotSpectraJS`'
+  - '`loopThruSpectra`'
+  - '`surveySpectra`'
+  - '`plotScores`'
+  - '`plotScores3D`'
+  - '`plotScoresRGL`'
+  - '`plotScree`'
+  - '`plotLoadings`'
+  - '`plot2Loadings`'
+  - '`sPlotSpectra`'
+  - '`pcaDiag`'
+  - '`hcaScores`'
+  - '`hcaSpectra`'
+  - '`plotSpectraDist`'
+  - '`aovPCAloadings`'
+  - '`aovPCAscores`'
+  - '`hmapSpectra`'
+  - '`sampleDistSpectra`'
+  - '`mclust3dSpectra`'
+
+- title: "Exploratory Data Analysis"
+  contents:
+  - '`aov_pcaSpectra`'
+  - '`c_pcaSpectra`'
+  - '`r_pcaSpectra`'
+  - '`cv_pcaSpectra`'
+  - '`hcaScores`'
+  - '`hcaSpectra`'
+  - '`evalClusters`'
+  - '`hypTestScores`'
+  - '`mclustSpectra`'
+
+- title: "Data Sets"
+  contents:
+  - '`Spectra`'
+  - '`SrE.IR`'
+  - '`metMUD1`'
+
+- title: "Utilities & Reference"
+  contents:
+  - '`chkSpectra`'
+  - '`check4Gaps`'
+  - '`colorSymbol`'
+  - '`conColScheme`'
