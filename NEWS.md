@@ -1,3 +1,7 @@
+# ChemoSpec 5.1.50 2019-07-29
+## Bug Fixes
+* Fixed a bug in `plotScores3D` and `plotScoresRGL` in which the wrong percent variance was plotted in the axes labels.  Reported by Owen Horsfall.
+
 # ChemoSpec 5.1.48 2019-07-25
 ## Improvements
 * `plotScoresRGL` gains an argument `axes` which allows one to control the drawing of the reference axes.

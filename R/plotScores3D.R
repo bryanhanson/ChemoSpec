@@ -92,9 +92,9 @@ plotScores3D <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE
 	df <- data.frame(x = x, y = y, z = z, sym = spectra$sym, col = spectra$colors, size = rep(0.5, length(spectra$names)))
 
 	variance <- .getVarExplained(pca)
-	x.lab <- paste("PC", pcs[1], " (", format(variance[1], digits=2), "%", ")", sep = "")
-	y.lab <- paste("PC", pcs[2], " (", format(variance[2], digits=2), "%", ")", sep = "")
-	z.lab <- paste("PC", pcs[3], " (", format(variance[3], digits=2), "%", ")", sep = "")
+	x.lab <- paste("PC", pcs[1], " (", format(variance[ pcs[1] ], digits=2), "%", ")", sep = "")
+	y.lab <- paste("PC", pcs[2], " (", format(variance[ pcs[2] ], digits=2), "%", ")", sep = "")
+	z.lab <- paste("PC", pcs[3], " (", format(variance[ pcs[3] ], digits=2), "%", ")", sep = "")
 	
 	for (n in 1:length(gr$group)) { # work through the groups, add ellipses if n > 3
 		# note that .makeEllipsoid has further checks for the number of data points

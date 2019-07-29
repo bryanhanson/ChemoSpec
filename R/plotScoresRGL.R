@@ -101,9 +101,9 @@ plotScoresRGL <- function(spectra, pca, pcs = c(1:3),
 	gr <- sumGroups(spectra)
 	
 	variance <- .getVarExplained(pca)
-	x.lab <- paste("PC", pcs[1], " (", format(variance[1], digits=2), "%", ")", sep = "")
-	y.lab <- paste("PC", pcs[2], " (", format(variance[2], digits=2), "%", ")", sep = "")
-	z.lab <- paste("PC", pcs[3], " (", format(variance[3], digits=2), "%", ")", sep = "")
+	x.lab <- paste("PC", pcs[1], " (", format(variance[ pcs[1] ], digits=2), "%", ")", sep = "")
+	y.lab <- paste("PC", pcs[2], " (", format(variance[ pcs[2] ], digits=2), "%", ")", sep = "")
+	z.lab <- paste("PC", pcs[3], " (", format(variance[ pcs[3] ], digits=2), "%", ")", sep = "")
 	
 	# The following info is used to position legend and title, and maybe to set axis lengths
 	a <- range(x, y, z)

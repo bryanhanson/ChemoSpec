@@ -68,8 +68,8 @@ plot2Loadings <- function(spectra, pca, loads = c(1,2), tol = 0.05, ...) {
 	loadings2 = pca$rotation[,loads[2]]
 	
 	variance <- .getVarExplained(pca)
-	txt1 <- paste("PC", loads[1], " (", format(variance[loads[1]], digits=2), "%", ") loadings", sep = "")
-	txt2 <- paste("PC", loads[2], " (", format(variance[loads[2]], digits=2), "%", ") loadings", sep = "")
+	txt1 <- paste("PC", loads[1], " (", format(variance[ loads[1] ], digits=2), "%", ") loadings", sep = "")
+	txt2 <- paste("PC", loads[2], " (", format(variance[ loads[2] ], digits=2), "%", ") loadings", sep = "")
 	
 	xrange <- range(loadings1)*c(1.0, 1.05) # makes room for labels
 	yrange <- range(loadings2)*c(1.0, 1.05)
