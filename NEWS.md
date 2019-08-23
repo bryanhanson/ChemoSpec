@@ -1,4 +1,7 @@
-# ChemoSpec 5.1.50 2019-07-29
+# ChemoSpec 5.1.64 2019-08-23
+## Bug Fixes
+* In `hmapSpectra` the return values (updated in version 5.1.48) were labeled incorrectly. Noticed by Gabriele Beltrame.  The function now returns everything returned by `seriation::hmap` making it easier for the user to extract the information they desire. Documentation was improved, and additional examples were added illustrating how to pass arguments downstream to customize the plot.
+
 ## Bug Fixes
 * Fixed a bug in `plotScores3D` and `plotScoresRGL` in which the wrong percent variance was plotted in the axes labels.  Reported by Owen Horsfall.
 
