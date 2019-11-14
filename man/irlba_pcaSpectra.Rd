@@ -4,8 +4,7 @@
 \alias{irlba_pcaSpectra}
 \title{IRLBA PCA of Spectra Objects}
 \usage{
-irlba_pcaSpectra(spectra, choice = "noscale", n = 3, center = TRUE,
-  ...)
+irlba_pcaSpectra(spectra, choice = "noscale", n = 3, center = TRUE, ...)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}

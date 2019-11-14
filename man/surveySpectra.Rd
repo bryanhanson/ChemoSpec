@@ -5,11 +5,19 @@
 \alias{surveySpectra2}
 \title{Plot Measures of Central Tendency and Spread for a Spectra Object}
 \usage{
-surveySpectra(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"),
-  by.gr = TRUE, ...)
+surveySpectra(
+  spectra,
+  method = c("sd", "sem", "sem95", "mad", "iqr"),
+  by.gr = TRUE,
+  ...
+)
 
-surveySpectra2(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"),
-  lab.pos = 0.9 * max(spectra$freq), ...)
+surveySpectra2(
+  spectra,
+  method = c("sd", "sem", "sem95", "mad", "iqr"),
+  lab.pos = 0.9 * max(spectra$freq),
+  ...
+)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}} to be analyzed.}

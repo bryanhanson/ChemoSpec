@@ -4,9 +4,19 @@
 \alias{plotScores3D}
 \title{3D PCA Score Plot for a Spectra Object}
 \usage{
-plotScores3D(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
-  cl = 0.95, frac.pts.used = 0.8, view = list(y = 34, x = 10, z = 0),
-  tol = 0.01, use.sym = FALSE, ...)
+plotScores3D(
+  spectra,
+  pca,
+  pcs = c(1:3),
+  ellipse = TRUE,
+  rob = FALSE,
+  cl = 0.95,
+  frac.pts.used = 0.8,
+  view = list(y = 34, x = 10, z = 0),
+  tol = 0.01,
+  use.sym = FALSE,
+  ...
+)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}

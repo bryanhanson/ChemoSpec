@@ -1,4 +1,7 @@
-# ChemoSpec 5.1.64 2019-08-23
+# ChemoSpec 5.1.xx 2019-08-23
+## Improvements
+* Documentation for `hypTestScores` now shows several ways to look at the results.
+
 ## Bug Fixes
 * In `hmapSpectra` the return values (updated in version 5.1.48) were labeled incorrectly. Noticed by Gabriele Beltrame.  The function now returns everything returned by `seriation::hmap` making it easier for the user to extract the information they desire. Documentation was improved, and additional examples were added illustrating how to pass arguments downstream to customize the plot.
 

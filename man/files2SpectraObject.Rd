@@ -5,17 +5,29 @@
 \alias{matrix2SpectraObject}
 \title{Import Data into a Spectra Object}
 \usage{
-files2SpectraObject(gr.crit = NULL, gr.cols = c("auto"),
+files2SpectraObject(
+  gr.crit = NULL,
+  gr.cols = c("auto"),
   freq.unit = "no frequency unit provided",
   int.unit = "no intensity unit provided",
-  descrip = "no description provided", fileExt = "\\\\.(csv|CSV)$",
-  out.file = "mydata", debug = FALSE, ...)
+  descrip = "no description provided",
+  fileExt = "\\\\.(csv|CSV)$",
+  out.file = "mydata",
+  debug = FALSE,
+  ...
+)
 
-matrix2SpectraObject(gr.crit = NULL, gr.cols = c("auto"),
+matrix2SpectraObject(
+  gr.crit = NULL,
+  gr.cols = c("auto"),
   freq.unit = "no frequency unit provided",
   int.unit = "no intensity unit provided",
-  descrip = "no description provided", in.file = NULL,
-  out.file = "mydata", chk = TRUE, ...)
+  descrip = "no description provided",
+  in.file = NULL,
+  out.file = "mydata",
+  chk = TRUE,
+  ...
+)
 }
 \arguments{
 \item{gr.crit}{Group Criteria.  A vector of character strings which will be
@@ -194,7 +206,7 @@ chk <- file.copy(from = file.path(ed, tf), to = file.path(getwd(), tf),
 
 # Now read in the file, and plot
 spec <- files2SpectraObject(gr.crit = "PCRF", freq.unit = "ppm", int.unit = "intensity",
-  descrip = "test import", fileExt = "\\\\.jdx")
+  descrip = "test import", fileExt = "\\.jdx")
 sumSpectra(spec)
 plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
 }

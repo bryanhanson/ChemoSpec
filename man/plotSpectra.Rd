@@ -4,9 +4,17 @@
 \alias{plotSpectra}
 \title{Plot Spectra Object}
 \usage{
-plotSpectra(spectra, which = c(1), yrange = range(spectra$data),
-  offset = 0, amplify = 1, lab.pos = mean(spectra$freq),
-  showGrid = TRUE, leg.loc = "none", ...)
+plotSpectra(
+  spectra,
+  which = c(1),
+  yrange = range(spectra$data),
+  offset = 0,
+  amplify = 1,
+  lab.pos = mean(spectra$freq),
+  showGrid = TRUE,
+  leg.loc = "none",
+  ...
+)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}

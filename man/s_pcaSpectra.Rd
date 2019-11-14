@@ -4,8 +4,7 @@
 \alias{s_pcaSpectra}
 \title{Sparse PCA of Spectra Objects}
 \usage{
-s_pcaSpectra(spectra, choice = "noscale", K = 3, para = rep(0.5, K),
-  ...)
+s_pcaSpectra(spectra, choice = "noscale", K = 3, para = rep(0.5, K), ...)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}

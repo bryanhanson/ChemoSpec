@@ -4,8 +4,14 @@
 \alias{hcaSpectra}
 \title{Plot HCA Results of a Spectra Object}
 \usage{
-hcaSpectra(spectra, c.method = "complete", d.method = "euclidean",
-  use.sym = FALSE, leg.loc = "topright", ...)
+hcaSpectra(
+  spectra,
+  c.method = "complete",
+  d.method = "euclidean",
+  use.sym = FALSE,
+  leg.loc = "topright",
+  ...
+)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
