@@ -121,8 +121,8 @@ necessary).  The frequency column is assumed to be the same in all files.
 
 If \code{fileExt} contains any of \code{"dx"}, \code{"DX"}, \code{"jdx"} or
 \code{"JDX"}, then the files will be processed by \code{\link[readJDX]{readJDX}}.
-Consider setting \code{debug = TRUE} for this format, as there are many
-options for JCAMP, and many are untested. See \code{\link[readJDX]{readJDX}} for
+Consider setting \code{debug = TRUE}, or \code{debug = 1} etc for this format, as there are many
+options for JCAMP, and many are untested. See \code{\link[readJDX]{readJDX}} for options and
 known limitations.
 }
 
@@ -190,8 +190,9 @@ it will eventually cause problems.  The intent of this feature is to allow one t
 a directory tree containing the data, and/or to specify a starting point other than the current
 working directory.  So for instance if the current working directory is not the directory containing
 the data files, you can use \code{path = "my_path"} to point to the desired top-level
-directory, and \code{recursive = TRUE} to work your way through a set of subdirectories
-Also, while argument \code{fileExt} appears to be a file extension (from its
+directory, and \code{recursive = TRUE} to work your way through a set of subdirectories.  In addition,
+if you are reading in JCAMP-DX files, you can pass arguments to \code{readJDX} via ..., e.g. \code{SOFC = FALSE}.
+Finally, while argument \code{fileExt} appears to be a file extension (from its
 name and the description elsewhere), it's actually just a grep pattern that you can apply
 to any part of the file name if you know how to contruct the proper pattern.
 }

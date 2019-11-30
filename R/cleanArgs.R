@@ -15,8 +15,8 @@
 
   if (is.null(func)) stop("You must supply a reference function")
   
-  form <- names(formals(files2SpectraObject))
-  refForm <- names(formals(func))
+  f2SOformals <- names(formals(files2SpectraObject))
+  funcFormals <- names(formals(func))
 
   # Basic procedure is to
   #   1. Remove the files2SpectraObject arguments
@@ -27,11 +27,11 @@
   #      manually in files2SpectraObject)
 
   # Step 1
-  args[form] <- NULL
+  args[f2SOformals] <- NULL
   
   # Step 2
-  keep <- names(args) %in% refForm
-  args[!keep] <- NULL
+  keep <- names(args) %in% funcFormals
+  args[!keep] <- NULL # remove any remaining arguments
   
   # Step 3 
   
@@ -39,6 +39,10 @@
   	if ("file" %in% names(args)) args$file <- NULL
   }
   
+  if (func == "readJDX") {
+   	if ("file" %in% names(args)) args$file <- NULL
+  }
+
   if (func == "list.files") {
   	if ("pattern" %in% names(args)) args$pattern <- NULL
   	if ("full.names" %in% names(args)) args$full.names <- NULL

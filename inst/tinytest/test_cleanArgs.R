@@ -33,3 +33,16 @@ expect_true("recursive" %in% names(args))
 expect_true("path" %in% names(args))
 expect_false("header" %in% names(args))
 expect_false("gr.crit" %in% names(args))
+
+# Test 3. Verify that cleanArgs strips args intended for files2SpectraObject and list.files
+# when called with readJDX as an argument
+
+if (requireNamespace("readJDX", quietly = TRUE)) {
+  args <- tf(x = 1:20, y = LETTERS[1:5], z = 0.78, func = "readJDX",
+    gr.crit = ".", out.file = "myfile",
+    recursive = TRUE, path = ".", pattern = "xyz", full.names = TRUE,
+    SOFC = FALSE)
+
+  expect_true(length(args) == 1L)
+  expect_true("SOFC" %in% names(args))
+}

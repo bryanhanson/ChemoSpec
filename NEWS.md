@@ -1,11 +1,10 @@
-# ChemoSpec 5.1.xx 2019-08-23
+# ChemoSpec 5.1.88 2019-11-14
 ## Improvements
 * Documentation for `hypTestScores` now shows several ways to look at the results.
+* `files2SpectraObject` now will pass the argument `SOFC` to `readJDX` if JCAMP-DX files are being processed.
 
 ## Bug Fixes
 * In `hmapSpectra` the return values (updated in version 5.1.48) were labeled incorrectly. Noticed by Gabriele Beltrame.  The function now returns everything returned by `seriation::hmap` making it easier for the user to extract the information they desire. Documentation was improved, and additional examples were added illustrating how to pass arguments downstream to customize the plot.
-
-## Bug Fixes
 * Fixed a bug in `plotScores3D` and `plotScoresRGL` in which the wrong percent variance was plotted in the axes labels.  Reported by Owen Horsfall.
 
 # ChemoSpec 5.1.48 2019-07-25

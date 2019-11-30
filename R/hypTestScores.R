@@ -56,6 +56,9 @@
 #' res
 #' summary(res)
 #' summary.aov(res)
+#'
+#' # You can also call this function on the existing groups:
+#' res <- hypTestScores(metMUD2, pca, fac = "groups")
 #' 
 #' @export hypTestScores
 #' 
@@ -73,9 +76,11 @@ hypTestScores <- function(spectra, pca, pcs = 1:3, fac = NULL, ...) {
 	scores <- pca$x[,pcs] # response vector
 	
 	# create formula
-	
+	print(fac)
+	tmp <- paste(fac, collapse = "*")
+	print(tmp)
 	form <- with(spectra, as.formula(paste("scores", "~", paste(fac, collapse = "*"))))
-
+	
 	# Do the hyp test; R knows if scores is multivariate or not,
 	# but the summary format differs between aov and manova
 
