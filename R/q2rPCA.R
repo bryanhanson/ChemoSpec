@@ -34,7 +34,7 @@
 #'
 .q2rPCA <- function(x) {
 	
-	if (!"prcomp" %in% class(x)) stop("The PCA object was not of class prcomp")
+	if (!inherits(x, "prcomp")) stop("The PCA object was not of class prcomp")
 
 	# sdev, center and scale for both classes are the same; no change necessary
 	# Other list elements carried along unchanged

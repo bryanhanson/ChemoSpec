@@ -55,7 +55,7 @@ sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05, ...) {
 ##  DePauw University, July 2011
 
 	msg <- "This function cannot be used with data from sparse pca"
-	if ("converted_from_arrayspc" %in% class(pca)) stop(msg)
+	if (inherits(pca, "converted_from_arrayspc")) stop(msg)
 	.chkArgs(mode = 12L)
 	chkSpectra(spectra)
 	if (length(pc) != 1) stop("You must choose exactly 1 pc to plot.")

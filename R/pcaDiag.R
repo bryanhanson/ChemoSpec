@@ -67,9 +67,9 @@ function (spectra, pca, pcs = 3, quantile = 0.975,
 plot = c("OD", "SD"), use.sym = FALSE, ...) {
 
 	msg <- "This function cannot be used with data from sparse pca"
-	if ("converted_from_arrayspc" %in% class(pca)) stop(msg)
+	if (inherits(pca, "converted_from_arrayspc")) stop(msg)
 	.chkArgs(mode = 12L)
-	if ("prcomp" %in% class(pca)) pca <- .q2rPCA(pca)
+	if (inherits(pca, "prcomp")) pca <- .q2rPCA(pca)
 	
 	X <- spectra$data
 	X.pca <- pca

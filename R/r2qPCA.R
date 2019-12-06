@@ -2,7 +2,7 @@
 
 # Modifies objects of class princomp (R-mode PCA) to more closely resemble class prcomp (Q-mode PCA)
 
-	if (!"princomp" %in% class(x)) stop("The PCA object was not of class princomp")
+	if (!inherits(x, "princomp")) stop("The PCA object was not of class princomp")
 	
 	# sdev, center and scale for both classes are the same; no change necessary
 	# Other list elements carried along unchanged

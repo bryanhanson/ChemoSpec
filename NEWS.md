@@ -1,3 +1,7 @@
+# ChemoSpec 5.1.xx 2019-xx-xx
+## Misc.
+* Fixed class-checking issues due to changes coming in R 4.x coming soon.
+
 # ChemoSpec 5.1.88 2019-11-14
 ## Improvements
 * Documentation for `hypTestScores` now shows several ways to look at the results.

@@ -238,7 +238,7 @@ files2SpectraObject <- function(gr.crit = NULL,
 		spectra$freq <- temp[[4]]$x
 		}
 		
-	if (class(spectra$freq) == "integer") {
+	if (inherits(spectra$freq, "integer")) {
 		if (debug) message("\nConverting integer frequency values to numeric")
 		spectra$freq <- as.numeric(spectra$freq)
 		}
