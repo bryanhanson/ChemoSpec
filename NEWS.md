@@ -1,6 +1,7 @@
 # ChemoSpec 5.1.xx 2019-xx-xx
 ## Misc.
 * Fixed class-checking issues due to changes coming in R 4.x coming soon.
+* Improved documentation in various places.
 
 # ChemoSpec 5.1.88 2019-11-14
 ## Improvements

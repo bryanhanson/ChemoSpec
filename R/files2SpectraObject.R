@@ -1,82 +1,79 @@
 #'
 #' Import Data into a Spectra Object
 #'
-#' These functions import data into a \code{\link{Spectra}} object.  They use
-#' \code{\link[utils]{read.table}} to read files so they are
-#' very flexible in regard to file formatting.  \pkg{Be sure to see the \ldots
-#' argument below for important details you need to provide.}
+#' These functions import data into a \code{\link{Spectra}} object.  For "csv-like" files they use
+#' \code{\link[utils]{read.table}}, so they are very flexible in regard to file formatting.
+#' \pkg{Be sure to see the \ldots argument below for important details you need to provide.}
+#' \code{files2SpectraObject} can also read JCAMP-DX files and will do so if \code{fileExt} is
+#' any of \code{"dx"}, \code{"DX"}, \code{"jdx"} or \code{"JDX"}.
 #'
 #' @param gr.crit Group Criteria.  A vector of character strings which will be
-#' searched for among the file/sample names in order to assign an individual
-#' spectrum to group membership. This is done using grep, so characters
-#' like "." (period/dot) do not have their literal meaning (see below).
-#' Warnings are issued if there are file/sample
-#' names that don't match entries in \code{gr.crit} or there are entries in
-#' \code{gr.crit} that don't match any file names.  A maximum of 8 groups
-#' can automatically be assigned colors and symbols.  If you have more than 8
-#' groups, you will need to provide a vector of colors (see below) and 
-#' manually fix the symbols after the \code{Spectra} object is created.
+#'        searched for among the file/sample names in order to assign an individual
+#'        spectrum to group membership. This is done using grep, so characters
+#'        like "." (period/dot) do not have their literal meaning (see below).
+#'        Warnings are issued if there are file/sample names that don't match entries in
+#'        \code{gr.crit} or there are entries in \code{gr.crit} that don't match any file names.
 #' 
-#' @param gr.cols Group Colors.  Either the word "auto", in which case colors
-#' will be automatically assigned, or a vector of acceptable color names with
-#' the same length as \code{gr.crit}. In the latter case, colors will be
-#' assigned one for one, so the first element of \code{gr.crit} is assigned the
-#' first element of \code{gr.col} and so forth. A maximum of 8 colors can be
-#' assigned automatically, after that, you must give a vector of colors.
-#' See details below for some other issues to consider.
+#' @param gr.cols Group Colors.  See \code{\link{colorSymbol}} for some options. One of the following:
+#'   \itemize{
+#'     \item Legacy behavior and the default: The word \code{"auto"}, in which case up to 8 colors will
+#'           be automatically assigned from package \code{RColorBrewer Set1}.
+#'     \item \code{"Col8"}. A unique set of up to 8 colors is used.  
+#'     \item \code{"Col12"}. A mostly paired set of up to 12 colors is used.
+#'     \item A vector of acceptable color designations with the same length as \code{gr.crit}. 
+#'   }
+#'       Colors will be assigned one for one, so the first element of
+#'       \code{gr.crit} is assigned the first element of \code{gr.col} and so forth.  For \code{Col12}
+#'       you should pay careful attention to the order of \code{gr.crit} in order to match up colors.
 #' 
 #' @param freq.unit A character string giving the units of the x-axis
-#' (frequency or wavelength).
+#'        (frequency or wavelength).
 #' 
 #' @param int.unit A character string giving the units of the y-axis (some sort
-#' of intensity).
+#'        of intensity).
 #' 
-#' @param descrip A character string describing the data set that will be
-#' stored.  This string is used in some plots so it is recommended that its
-#' length be less than about 40 characters.
+#' @param descrip A character string describing the data set that will be stored.  This string is used
+#'        in some plots so it is recommended that its length be less than about 40 characters.
 #' 
 #' @param fileExt A character string giving the extension of the files to be
-#' processed. \code{regex} strings can be used.  For instance, the default
-#' finds files with either \code{".csv"} or \code{".CSV"} as the extension.
-#' Matching is done via a grep process, which is greedy.  See also the 
-#' "Advanced Tricks" section.
+#'        processed. \code{regex} strings can be used.  For instance, the default
+#'        finds files with either \code{".csv"} or \code{".CSV"} as the extension.
+#'        Matching is done via a grep process, which is greedy.  See also the 
+#'        "Advanced Tricks" section.
 #' 
-#' @param out.file A file name.  The
-#' completed object of S3 class \code{\link{Spectra}} will be written to this
-#' file.
+#' @param out.file A file name.  The completed object of S3 class \code{\link{Spectra}} will be written
+#'        to this file.
 #' 
 #' @param debug Logical. Applies to \code{files2SpectraObject} only.
-#' Set to \code{TRUE} for troubleshooting when an error
-#' is thrown during import.  In addition, values of 1-5 will work
-#' when importing a JCAMP-DX file via \code{fileExt = ".jdx"} etc.  These
-#' will be passed through to the \code{\link[readJDX]{readJDX}} function.
-#' See there for much more info on importing JCAMP-DX files.
+#'        Set to \code{TRUE} for troubleshooting when an error
+#'        is thrown during import.  In addition, values of 1-5 will work
+#'        when importing a JCAMP-DX file via \code{fileExt = "\\.jdx"} etc.  These
+#'        will be passed through to the \code{\link[readJDX]{readJDX}} function.
+#'        See there for much more info on importing JCAMP-DX files.
 #' 
 #' @param in.file Character.  Applies to \code{matrix2SpectraObject} only.
-#' Input file name, including extension.  Can be a vector of file names.
+#'        Input file name, including extension.  Can be a vector of file names.
 #'  
 #' @param chk Logical. Applies to \code{matrix2SpectraObject} only.
-#' Should the \code{Spectra} object be checked for
-#' integrity?  If you are having trouble importing your data, set this to
-#' \code{FALSE} and do \code{str(your object)} to troubleshoot.
+#'        Should the \code{Spectra} object be checked for integrity?  If you are having trouble
+#'        importing your data, set this to \code{FALSE} and do \code{str(your object)} to troubleshoot.
 #'
-#' @param ...  Arguments to be passed to \code{\link[utils]{read.table}} (and
-#' \code{\link{list.files}}; see the "Advanced Tricks" section.  \pkg{You
-#' MUST supply values for \code{sep}, \code{dec} and \code{header} consistent
-#' with your file structure, unless they are the same as the defaults for
-#' \code{\link[utils]{read.table}}}.
+#' @param ...  Arguments to be passed to \code{\link[utils]{read.table}},
+#'        \code{\link{list.files}} or \code{readJDX}; see the "Advanced Tricks" section.
+#'        For \code{read.table}, \pkg{You MUST supply values for \code{sep}, \code{dec} and \code{header} consistent
+#'        with your file structure, unless they are the same as the defaults for \code{\link[utils]{read.table}}}.
 #' 
 #' @return A object of class \code{\link{Spectra}}.  An \emph{unnamed} object
-#' of S3 class \code{\link{Spectra}} is also written to \code{out.file}.  To
-#' read it back into the workspace, use \code{new.name <- loadObject(out.file)}
-#' (\code{loadObject} is package \pkg{R.utils}).
+#'         of S3 class \code{\link{Spectra}} is also written to \code{out.file}.  To
+#'         read it back into the workspace, use \code{new.name <- loadObject(out.file)}
+#'         (\code{loadObject} is package \pkg{R.utils}).
 #' 
 #' @section files2SpectraObject:
+#'
 #' \code{files2SpectraObject} acts on all files in the current working
 #' directory with the specified \code{fileExt} so there should be no
 #' extra files of that type hanging around (except see next paragraph).
-#' The first column should
-#' contain the frequency values and the second column the intensity values. The
+#' The first column should contain the frequency values and the second column the intensity values. The
 #' files may have a header or not (supply \code{header = TRUE/FALSE} as
 #' necessary).  The frequency column is assumed to be the same in all files.
 #' 
@@ -87,6 +84,7 @@
 #' known limitations.
 #' 
 #' @section matrix2SpectraObject:
+#'
 #' This function takes one or more csv-like files, containing frequencies in the first
 #' column, and samples in additional columns, and processes it into a
 #' \code{\link{Spectra}} object.  The file MUST have a header row which includes
@@ -102,8 +100,7 @@
 #' to some "gotchas" in certain cases, noted below.  
 #'
 #' Your file system may allow file/sample names which \code{R} will not like, and will
-#' cause confusing behavior.  File/sample names become variables in \code{ChemoSpec},
-#' and \code{R}
+#' cause confusing behavior.  File/sample names become variables in \code{ChemoSpec}, and \code{R}
 #' does not like things like "-" (minus sign or hyphen) in file/sample names.  A hyphen
 #' is converted to a period (".") if found, which is fine for a variable name.
 #' However, a period in \code{gr.crit} is interpreted from the grep point of view,
@@ -138,6 +135,7 @@
 #' once the data is imported.
 #'
 #' @section Advanced Tricks:
+#'
 #' The ... argument can be used to pass any argument to \code{read.table} or \code{list.files}.
 #' This includes the possibility of passing arguments that will cause trouble later, for instance
 #' \code{na.strings} in \code{read.table}.  While one might successfully read in data with \code{NA},
@@ -149,12 +147,12 @@
 #' if you are reading in JCAMP-DX files, you can pass arguments to \code{readJDX} via ..., e.g. \code{SOFC = FALSE}.
 #' Finally, while argument \code{fileExt} appears to be a file extension (from its
 #' name and the description elsewhere), it's actually just a grep pattern that you can apply
-#' to any part of the file name if you know how to contruct the proper pattern.
+#' to any part of the file name if you know how to construct the proper pattern.
 #'
 #' @author Bryan A. Hanson, DePauw University.
 #' 
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}, 
-#' especially \code{\link{updateGroups}}.
+#'          as well as \code{\link{updateGroups}}.
 #'
 #' @keywords file
 #' @keywords import
@@ -184,7 +182,7 @@
 #'
 
 files2SpectraObject <- function(gr.crit = NULL,
-	gr.cols = c("auto"),
+	gr.cols = "auto",
 	freq.unit = "no frequency unit provided",
 	int.unit = "no intensity unit provided",
 	descrip = "no description provided",
@@ -300,7 +298,7 @@ files2SpectraObject <- function(gr.crit = NULL,
 	},
 	
 	error = function(cond) {
-		errmess <- "There was a problem importing your files!\n\nAre you importing csv or similar files?\nDid you get a message such as 'undefined columns selected'?\nYou probably need to specify sep, header and dec values\nPlease read ?files2SpectraObject for details\n\nFor any trouble importing files set debug = TRUE\n"
+		errmess <- "There was a problem importing your files!\n\nAre you importing csv or similar files?\nIf you got a message such as 'undefined columns selected'?\nyou probably need to specify sep, header and dec values\nPlease read ?files2SpectraObject for details\n\nFor any trouble importing files set debug = TRUE\n"
 		message("\nError message from R: ", cond$message, "\n")
 		message(errmess)
 		return(NA)
