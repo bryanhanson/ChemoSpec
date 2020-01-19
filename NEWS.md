@@ -2,6 +2,10 @@
 ## Misc.
 * Fixed class-checking issues due to changes coming in R 4.x coming soon.
 * Improved documentation in various places.
+* Added documentation for `updateGroups` which has been in `ChemoSpecUtils` for a while but effectively hidden from users of `ChemoSpec`.
+
+## Changes in ChemoSpecUtils that affect ChemoSpec
+* New color and symbol schemes are now provided for using during the import process.
 
 # ChemoSpec 5.1.88 2019-11-14
 ## Improvements
