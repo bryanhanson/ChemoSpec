@@ -6,5 +6,5 @@
 #' full documentation via \code{\link[ChemoSpecUtils]{sampleDist}}.
 #'
 #' @name sampleDist
-#'
+#' @keywords hplot multivariate
 NULL

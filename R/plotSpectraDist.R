@@ -1,5 +1,5 @@
 #'
-#' Plot the Distance Between Spectra in a Spectra Object
+#' Plot the Distance Between Spectra and a Reference Spectrum in a Spectra Object
 #'
 #' This function plots the distance between a reference spectrum and all other
 #' spectra in a \code{\link{Spectra}} object.  Distance can be defined in a number of
@@ -18,7 +18,9 @@
 #' @return A data frame containing the data plotted (sample names, sample
 #' colors, distances).
 #'
-#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#' @seealso To compare all spectra simultaneously in a heatmap, see
+#' \code{\link[ChemoSpecUtils]{sampleDist}}.  Additional documentation
+#' at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @author Bryan A. Hanson, DePauw University.
 #'
