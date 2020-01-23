@@ -59,10 +59,11 @@ res <- hmapSpectra(IR, col = heat.colors(5))
 
 # Label samples and frequencies by passing arguments to heatmap.2
 # Also make a few other nice plot adjustments
-res <- hmapSpectra(IR, col = heat.colors(5),
+res <- hmapSpectra(IR,
+  col = heat.colors(5),
   labRow = IR$names, labCol = as.character(round(IR$freq)),
-  margins = c(4, 6), key.title = "")
-
+  margins = c(4, 6), key.title = ""
+)
 }
 \seealso{
 \code{\link[seriation]{hmap}} which will get you to the package

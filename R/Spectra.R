@@ -1,15 +1,15 @@
 #'
 #' Spectra Objects
-#' 
+#'
 #' In \code{ChemoSpec}, spectral data sets are stored in an S3 class called
 #' \code{Spectra}, which contains a variety of information in addition to the
 #' spectra themselves.  \code{Spectra} objects are created by
 #' \code{\link{files2SpectraObject}} or \code{\link{matrix2SpectraObject}}.
-#' 
-#' 
+#'
+#'
 #' @section Structure: The structure of a \code{Spectra} object is a list of 9
 #' elements and an attribute as follows:
-#' 
+#'
 #' \tabular{lll}{ \emph{element} \tab \emph{type} \tab \emph{description}\cr
 #' $freq \tab num \tab A common frequency (or wavelength) axis for all the
 #' spectra.\cr $data \tab num \tab The intensities for the spectra.  A matrix

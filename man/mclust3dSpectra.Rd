@@ -84,8 +84,10 @@ in 2D plots from \code{Mclust}.
 require(mclust)
 data(metMUD1)
 class <- c_pcaSpectra(metMUD1)
-mclust3dSpectra(metMUD1, class, title = "mclust3dSpectra demo",
-	 lab.opts = FALSE, t.pos = "A")
+mclust3dSpectra(metMUD1, class,
+  title = "mclust3dSpectra demo",
+  lab.opts = FALSE, t.pos = "A"
+)
 }
 
 }

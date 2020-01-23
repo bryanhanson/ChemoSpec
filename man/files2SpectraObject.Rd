@@ -41,9 +41,9 @@ Warnings are issued if there are file/sample names that don't match entries in
 \itemize{
   \item Legacy behavior and the default: The word \code{"auto"}, in which case up to 8 colors will
         be automatically assigned from package \code{RColorBrewer Set1}.
-  \item \code{"Col8"}. A unique set of up to 8 colors is used.  
+  \item \code{"Col8"}. A unique set of up to 8 colors is used.
   \item \code{"Col12"}. A mostly paired set of up to 12 colors is used.
-  \item A vector of acceptable color designations with the same length as \code{gr.crit}. 
+  \item A vector of acceptable color designations with the same length as \code{gr.crit}.
 }
     Colors will be assigned one for one, so the first element of
     \code{gr.crit} is assigned the first element of \code{gr.col} and so forth.  For \code{Col12}
@@ -61,7 +61,7 @@ in some plots so it is recommended that its length be less than about 40 charact
 \item{fileExt}{A character string giving the extension of the files to be
 processed. \code{regex} strings can be used.  For instance, the default
 finds files with either \code{".csv"} or \code{".CSV"} as the extension.
-Matching is done via a grep process, which is greedy.  See also the 
+Matching is done via a grep process, which is greedy.  See also the
 "Advanced Tricks" section.}
 
 \item{out.file}{A file name.  The completed object of S3 class \code{\link{Spectra}} will be written
@@ -140,7 +140,7 @@ The matching of \code{gr.crit} against the sample file names
 (in \code{files2SpectraObject}) or column headers/sample names
 (in code{matrix2SpectraObject}) is done one at
 a time, in order, using grep.  While powerful, this has the potential to lead
-to some "gotchas" in certain cases, noted below.  
+to some "gotchas" in certain cases, noted below.
 
 Your file system may allow file/sample names which \code{R} will not like, and will
 cause confusing behavior.  File/sample names become variables in \code{ChemoSpec}, and \code{R}
@@ -200,19 +200,23 @@ to any part of the file name if you know how to construct the proper pattern.
 # Grab an included file
 ed <- system.file("extdata", package = "ChemoSpec")
 tf <- "PCRF.jdx"
-chk <- file.copy(from = file.path(ed, tf), to = file.path(getwd(), tf),
-	overwrite = TRUE)
+chk <- file.copy(
+  from = file.path(ed, tf), to = file.path(getwd(), tf),
+  overwrite = TRUE
+)
 
 # Now read in the file, and plot
-spec <- files2SpectraObject(gr.crit = "PCRF", freq.unit = "ppm", int.unit = "intensity",
-  descrip = "test import", fileExt = "\\\\.jdx")
+spec <- files2SpectraObject(
+  gr.crit = "PCRF", freq.unit = "ppm", int.unit = "intensity",
+  descrip = "test import", fileExt = "\\\\.jdx"
+)
 sumSpectra(spec)
 plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
 }
 
 }
 \seealso{
-Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}, 
+Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/},
          as well as \code{\link{updateGroups}}.
 }
 \author{

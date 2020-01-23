@@ -6,5 +6,5 @@
 #' full documentation via \code{\link[ChemoSpecUtils]{removeFreq}}.
 #'
 #' @name removeFreq
-#' 
+#'
 NULL

@@ -52,7 +52,6 @@ with some small plotting changes.
 
 data(SrE.IR)
 pca <- cv_pcaSpectra(SrE.IR, pcs = 5)
-
 }
 \references{
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate

@@ -1,6 +1,6 @@
 #'
 #' Exploratory Chemometrics for Spectroscopy
-#' 
+#'
 #' A collection of functions for top-down exploratory data analysis of spectral
 #' data obtained via nuclear magnetic resonance (NMR), infrared (IR) or Raman
 #' spectroscopy.  Includes functions for plotting and inspecting spectra, peak
@@ -12,17 +12,17 @@
 #' publication quality plots.  ChemoSpec is intended to be very user friendly
 #' and help you get usable results quickly.  A vignette covering typical
 #' operations is available.
-#' 
+#'
 #' @name ChemoSpec-package
-#' 
+#'
 #' @aliases ChemoSpec-package ChemoSpec
-#' 
+#'
 #' @docType package
-#' 
+#'
 #' @author Bryan A. Hanson and Matthew J. Keinsley.
-#' 
+#'
 #' Maintainer: Bryan A. Hanson \email{hanson@@depauw.edu}
-#' 
+#'
 #' @keywords package multivariate
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
@@ -40,7 +40,5 @@
 #'
 #' @importFrom ChemoSpecUtils .labelExtremes .addEllipseInfo .computeEllipses .addLegend .groupNcolor
 #' @export .labelExtremes .addEllipseInfo .computeEllipses .addLegend .groupNcolor
-#' 
+#'
 NULL
-
-

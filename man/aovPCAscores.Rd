@@ -31,7 +31,7 @@ Returns the PCA results, and creates the requested plot.
 }
 \description{
 Uses the results from \code{\link{aov_pcaSpectra}} to conduct PCA and plot
-the scores. 
+the scores.
 Argument \code{plot} is used to select a matrix from those in \code{LM}.
 The residual error matrix is then added to the selected matrix before
 performing PCA.  Use \code{names(LM)} to see which factor is stored in which

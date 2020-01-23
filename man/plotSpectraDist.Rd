@@ -32,9 +32,10 @@ data(SrE.NMR)
 txt1 <- paste("Distance from", SrE.NMR$names[1]) # capture before padding
 txt2 <- paste("Rank Distance from", SrE.NMR$names[1])
 SrE.NMR$names <- paste("  ", SrE.NMR$names, sep = "") # pad the names for better appearance
-temp <- plotSpectraDist(SrE.NMR, xlab = txt2, ylab = txt1, main = txt1,
-  xlim = c(1,16), ylim = c(0, 0.3), srt = 90)
-
+temp <- plotSpectraDist(SrE.NMR,
+  xlab = txt2, ylab = txt1, main = txt1,
+  ylim = c(0, 1.1), xlim = c(0, 16), srt = 45
+)
 }
 \seealso{
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}

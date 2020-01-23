@@ -1,11 +1,15 @@
-# ChemoSpec 5.1.xx 2019-xx-xx
+# ChemoSpec 5.2.5 2020-01-23
 ## Misc.
-* Fixed class-checking issues due to changes coming in R 4.x coming soon.
+* Fixed class-checking issues due to changes coming in R 4.0 coming soon.
 * Improved documentation in various places.
 * Added documentation for `updateGroups` which has been in `ChemoSpecUtils` for a while but effectively hidden from users of `ChemoSpec`.
+* Fixed the example in `plotSpectraDist` which had strange limits.
+* `sampleDistSpectra` was renamed `sampleDist` and moved to `ChemoSpecUtils`.  The internal workings and plot details have changed.
 
 ## Changes in ChemoSpecUtils that affect ChemoSpec
 * New color and symbol schemes are now provided for using during the import process.
+* `removeFreq` now accepts a formula for `rem.freq`.  The old syntax remains valid.  See the documentation for `ChemoSpec2D` for examples of how to construct formulas.
+* New functions `sampleDist`, `sampleDist.Spectra` and `sampleDist.Spectra2D`.
 
 # ChemoSpec 5.1.88 2019-11-14
 ## Improvements

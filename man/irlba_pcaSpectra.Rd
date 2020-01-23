@@ -43,11 +43,14 @@ deviation.
 data(SrE.NMR)
 pca <- irlba_pcaSpectra(SrE.NMR)
 plotScree(pca)
-plotScores(SrE.NMR, pca, main = "SrE NMR Data",
-	 pcs = c(1,2), ellipse = "cls", tol = 0.05)
-plotLoadings(SrE.NMR, pca, main = "SrE NMR Data",
-	 loads = 1:2, ref = 1)
-
+plotScores(SrE.NMR, pca,
+  main = "SrE NMR Data",
+  pcs = c(1, 2), ellipse = "cls", tol = 0.05
+)
+plotLoadings(SrE.NMR, pca,
+  main = "SrE NMR Data",
+  loads = 1:2, ref = 1
+)
 }
 \references{
 J. Baglama and L. Reichel, "Augmented Implicitly Restarted Lanczos

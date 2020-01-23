@@ -91,8 +91,10 @@ rgl.snapshot("file_name.png")} to create the hardcopy.
 \dontrun{
 data(metMUD1)
 pca <- c_pcaSpectra(metMUD1, choice = "autoscale")
-plotScoresRGL(metMUD1, pca, title = "metMUD1 NMR Spectra",
-  leg.pos = "A", t.pos = "B")
+plotScoresRGL(metMUD1, pca,
+  title = "metMUD1 NMR Spectra",
+  leg.pos = "A", t.pos = "B"
+)
 }
 
 }

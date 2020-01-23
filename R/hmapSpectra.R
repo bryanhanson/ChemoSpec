@@ -1,27 +1,27 @@
 #'
 #' Seriated Heat Map for a Spectra Object
-#' 
+#'
 #' Creates a heat map with marginal dendrograms using seriation procedures.
 #' Heirchical cluster analysis is followed by re-ordering the clusters in a coordinated way
 #' across each dimension (controlled by argument \code{method}, see \code{\link[seriation]{hmap}}).
 #' The vignette for package \pkg{seriation} has more details.
 #'
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
-#' 
+#'
 #' @param \dots Additional arguments to be passed downstream.  A great deal of
 #' control is available - check \code{\link[seriation]{hmap}} for details.  Most of the control
 #' actually derives from the \code{heatmap.2} function in package \pkg{gplots}.
 #' See the examples.
-#' 
+#'
 #' @return A list as described in \code{\link[seriation]{hmap}}. Side effect is a plot.
-#' 
+#'
 #' @author Bryan A. Hanson, DePauw University.
-#' 
+#'
 #' @seealso \code{\link[seriation]{hmap}} which will get you to the package
 #' (there is no package index page); the vignette is a good place to begin
 #' (\code{browseVignettes("seriation")}).  Additional documentation at
 #' \url{https://bryanhanson.github.io/ChemoSpec/}
-#' 
+#'
 #' @section Note:
 #' The underlying \code{heatmap.2} function does certain things automatically for the user.
 #' For instance, if you pass a vector of names to argument \code{labRow} it is automatically
@@ -40,11 +40,11 @@
 #' In fact, the first two samples (NP_adSrE and NR_pSrE) are the two samples with the smallest ester
 #' peaks (see first plot in the examples).  This suggests that NP_adSrE was diluted only a little with added
 #' olive oil.
-#' 
+#'
 #' @keywords multivariate
-#' 
+#'
 #' @examples
-#' 
+#'
 #' data(SrE.IR)
 #'
 #' # Let's look just at the carbonyl region
@@ -56,23 +56,22 @@
 #'
 #' # Label samples and frequencies by passing arguments to heatmap.2
 #' # Also make a few other nice plot adjustments
-#' res <- hmapSpectra(IR, col = heat.colors(5),
+#' res <- hmapSpectra(IR,
+#'   col = heat.colors(5),
 #'   labRow = IR$names, labCol = as.character(round(IR$freq)),
-#'   margins = c(4, 6), key.title = "")
-#' 
+#'   margins = c(4, 6), key.title = ""
+#' )
 #' @export hmapSpectra
-#' 
-#' 
+#'
+#'
 hmapSpectra <- function(spectra, ...) {
-	
-	.chkArgs(mode = 11L)
-	chkSpectra(spectra)
+  .chkArgs(mode = 11L)
+  chkSpectra(spectra)
 
-	if (!requireNamespace("seriation", quietly = TRUE)) {
-		stop("You need to install package seriation to use this function")
-		}
-		
-	res <- seriation::hmap(spectra$data, ...)
-	res
-	}
-	
+  if (!requireNamespace("seriation", quietly = TRUE)) {
+    stop("You need to install package seriation to use this function")
+  }
+
+  res <- seriation::hmap(spectra$data, ...)
+  res
+}

@@ -2,7 +2,7 @@
 #'
 #' IR and NMR Spectra of Serenoa repens (Saw Palmetto) Oil Extracts and
 #' Reference Oils
-#' 
+#'
 #' A collection of 14 IR and NMR spectra of essential oil extracted from the
 #' palm \emph{Serenoa repens} or Saw Palmetto, which is commonly used to treat
 #' BPH in men.  The 14 spectra are of different retail samples, and are divided
@@ -14,7 +14,7 @@
 #' oils are mixtures of triglycerides for the most part, while the SrE samples
 #' are largely fatty acids.  As a result, the spectra of these two groups are
 #' subtly different.
-#' 
+#'
 #' @name SrE.IR
 #'
 #' @aliases SrE.IR SrE.NMR
@@ -32,13 +32,9 @@
 #' @keywords datasets
 #'
 #' @examples
-#' 
+#'
 #' data(SrE.IR)
 #' sumSpectra(SrE.IR)
 #' data(SrE.NMR)
 #' sumSpectra(SrE.NMR)
-#' 
 NULL
-
-
-

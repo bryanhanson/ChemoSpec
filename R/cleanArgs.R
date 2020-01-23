@@ -12,9 +12,8 @@
 #' @noRd
 #'
 .cleanArgs <- function(args, func = NULL) {
-
   if (is.null(func)) stop("You must supply a reference function")
-  
+
   f2SOformals <- names(formals(files2SpectraObject))
   funcFormals <- names(formals(func))
 
@@ -28,25 +27,25 @@
 
   # Step 1
   args[f2SOformals] <- NULL
-  
+
   # Step 2
   keep <- names(args) %in% funcFormals
   args[!keep] <- NULL # remove any remaining arguments
-  
-  # Step 3 
-  
+
+  # Step 3
+
   if (func == "read.table") {
-  	if ("file" %in% names(args)) args$file <- NULL
+    if ("file" %in% names(args)) args$file <- NULL
   }
-  
+
   if (func == "readJDX") {
-   	if ("file" %in% names(args)) args$file <- NULL
+    if ("file" %in% names(args)) args$file <- NULL
   }
 
   if (func == "list.files") {
-  	if ("pattern" %in% names(args)) args$pattern <- NULL
-  	if ("full.names" %in% names(args)) args$full.names <- NULL
+    if ("pattern" %in% names(args)) args$pattern <- NULL
+    if ("full.names" %in% names(args)) args$full.names <- NULL
   }
-  
+
   return(args)
-}	
+}

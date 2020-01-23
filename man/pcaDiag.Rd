@@ -61,7 +61,6 @@ data(SrE.IR)
 res <- c_pcaSpectra(SrE.IR, choice = "noscale")
 temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "OD")
 temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "SD")
-
 }
 \references{
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate

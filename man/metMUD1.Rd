@@ -39,9 +39,9 @@ independent. This data set is normalized.
 \examples{
 data(metMUD1)
 sumSpectra(metMUD1)
+#
 data(metMUD2)
 sumSpectra(metMUD2)
-
 }
 \seealso{
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}

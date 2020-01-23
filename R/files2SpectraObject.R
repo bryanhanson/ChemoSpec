@@ -13,47 +13,47 @@
 #'        like "." (period/dot) do not have their literal meaning (see below).
 #'        Warnings are issued if there are file/sample names that don't match entries in
 #'        \code{gr.crit} or there are entries in \code{gr.crit} that don't match any file names.
-#' 
+#'
 #' @param gr.cols Group Colors.  See \code{\link{colorSymbol}} for some options. One of the following:
 #'   \itemize{
 #'     \item Legacy behavior and the default: The word \code{"auto"}, in which case up to 8 colors will
 #'           be automatically assigned from package \code{RColorBrewer Set1}.
-#'     \item \code{"Col8"}. A unique set of up to 8 colors is used.  
+#'     \item \code{"Col8"}. A unique set of up to 8 colors is used.
 #'     \item \code{"Col12"}. A mostly paired set of up to 12 colors is used.
-#'     \item A vector of acceptable color designations with the same length as \code{gr.crit}. 
+#'     \item A vector of acceptable color designations with the same length as \code{gr.crit}.
 #'   }
 #'       Colors will be assigned one for one, so the first element of
 #'       \code{gr.crit} is assigned the first element of \code{gr.col} and so forth.  For \code{Col12}
 #'       you should pay careful attention to the order of \code{gr.crit} in order to match up colors.
-#' 
+#'
 #' @param freq.unit A character string giving the units of the x-axis
 #'        (frequency or wavelength).
-#' 
+#'
 #' @param int.unit A character string giving the units of the y-axis (some sort
 #'        of intensity).
-#' 
+#'
 #' @param descrip A character string describing the data set that will be stored.  This string is used
 #'        in some plots so it is recommended that its length be less than about 40 characters.
-#' 
+#'
 #' @param fileExt A character string giving the extension of the files to be
 #'        processed. \code{regex} strings can be used.  For instance, the default
 #'        finds files with either \code{".csv"} or \code{".CSV"} as the extension.
-#'        Matching is done via a grep process, which is greedy.  See also the 
+#'        Matching is done via a grep process, which is greedy.  See also the
 #'        "Advanced Tricks" section.
-#' 
+#'
 #' @param out.file A file name.  The completed object of S3 class \code{\link{Spectra}} will be written
 #'        to this file.
-#' 
+#'
 #' @param debug Logical. Applies to \code{files2SpectraObject} only.
 #'        Set to \code{TRUE} for troubleshooting when an error
 #'        is thrown during import.  In addition, values of 1-5 will work
 #'        when importing a JCAMP-DX file via \code{fileExt = "\\.jdx"} etc.  These
 #'        will be passed through to the \code{\link[readJDX]{readJDX}} function.
 #'        See there for much more info on importing JCAMP-DX files.
-#' 
+#'
 #' @param in.file Character.  Applies to \code{matrix2SpectraObject} only.
 #'        Input file name, including extension.  Can be a vector of file names.
-#'  
+#'
 #' @param chk Logical. Applies to \code{matrix2SpectraObject} only.
 #'        Should the \code{Spectra} object be checked for integrity?  If you are having trouble
 #'        importing your data, set this to \code{FALSE} and do \code{str(your object)} to troubleshoot.
@@ -62,12 +62,12 @@
 #'        \code{\link{list.files}} or \code{readJDX}; see the "Advanced Tricks" section.
 #'        For \code{read.table}, \pkg{You MUST supply values for \code{sep}, \code{dec} and \code{header} consistent
 #'        with your file structure, unless they are the same as the defaults for \code{\link[utils]{read.table}}}.
-#' 
+#'
 #' @return A object of class \code{\link{Spectra}}.  An \emph{unnamed} object
 #'         of S3 class \code{\link{Spectra}} is also written to \code{out.file}.  To
 #'         read it back into the workspace, use \code{new.name <- loadObject(out.file)}
 #'         (\code{loadObject} is package \pkg{R.utils}).
-#' 
+#'
 #' @section files2SpectraObject:
 #'
 #' \code{files2SpectraObject} acts on all files in the current working
@@ -76,13 +76,13 @@
 #' The first column should contain the frequency values and the second column the intensity values. The
 #' files may have a header or not (supply \code{header = TRUE/FALSE} as
 #' necessary).  The frequency column is assumed to be the same in all files.
-#' 
+#'
 #' If \code{fileExt} contains any of \code{"dx"}, \code{"DX"}, \code{"jdx"} or
 #' \code{"JDX"}, then the files will be processed by \code{\link[readJDX]{readJDX}}.
 #' Consider setting \code{debug = TRUE}, or \code{debug = 1} etc for this format, as there are many
 #' options for JCAMP, and many are untested. See \code{\link[readJDX]{readJDX}} for options and
 #' known limitations.
-#' 
+#'
 #' @section matrix2SpectraObject:
 #'
 #' This function takes one or more csv-like files, containing frequencies in the first
@@ -97,7 +97,7 @@
 #' (in \code{files2SpectraObject}) or column headers/sample names
 #' (in code{matrix2SpectraObject}) is done one at
 #' a time, in order, using grep.  While powerful, this has the potential to lead
-#' to some "gotchas" in certain cases, noted below.  
+#' to some "gotchas" in certain cases, noted below.
 #'
 #' Your file system may allow file/sample names which \code{R} will not like, and will
 #' cause confusing behavior.  File/sample names become variables in \code{ChemoSpec}, and \code{R}
@@ -150,17 +150,17 @@
 #' to any part of the file name if you know how to construct the proper pattern.
 #'
 #' @author Bryan A. Hanson, DePauw University.
-#' 
-#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}, 
+#'
+#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/},
 #'          as well as \code{\link{updateGroups}}.
 #'
 #' @keywords file
 #' @keywords import
-#' 
+#'
 #' @export files2SpectraObject matrix2SpectraObject
 #'
 #' @describeIn files2SpectraObject Import data from separate csv files
-#' 
+#'
 #' @importFrom utils read.table setTxtProgressBar txtProgressBar
 #' @importFrom tools file_path_sans_ext
 #' @importFrom readJDX readJDX
@@ -170,142 +170,141 @@
 #' # Grab an included file
 #' ed <- system.file("extdata", package = "ChemoSpec")
 #' tf <- "PCRF.jdx"
-#' chk <- file.copy(from = file.path(ed, tf), to = file.path(getwd(), tf),
-#' 	overwrite = TRUE)
+#' chk <- file.copy(
+#'   from = file.path(ed, tf), to = file.path(getwd(), tf),
+#'   overwrite = TRUE
+#' )
 #'
 #' # Now read in the file, and plot
-#' spec <- files2SpectraObject(gr.crit = "PCRF", freq.unit = "ppm", int.unit = "intensity",
-#'   descrip = "test import", fileExt = "\\.jdx")
+#' spec <- files2SpectraObject(
+#'   gr.crit = "PCRF", freq.unit = "ppm", int.unit = "intensity",
+#'   descrip = "test import", fileExt = "\\.jdx"
+#' )
 #' sumSpectra(spec)
 #' plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
 #' }
 #'
-
 files2SpectraObject <- function(gr.crit = NULL,
-	gr.cols = "auto",
-	freq.unit = "no frequency unit provided",
-	int.unit = "no intensity unit provided",
-	descrip = "no description provided",
-	fileExt = "\\.(csv|CSV)$",
-	out.file = "mydata", debug = FALSE, ...) {
-		
-	out <- tryCatch(
-	{
+                                gr.cols = "auto",
+                                freq.unit = "no frequency unit provided",
+                                int.unit = "no intensity unit provided",
+                                descrip = "no description provided",
+                                fileExt = "\\.(csv|CSV)$",
+                                out.file = "mydata", debug = FALSE, ...) {
+  out <- tryCatch(
+    {
 
-# This function acts on all files in the working directory with the specified extension
+      # This function acts on all files in the working directory with the specified extension
 
-# Files should have freq in column 1, absorbance/intensity in column 2.
-# There may or may not be a header (default is FALSE for read.table)
+      # Files should have freq in column 1, absorbance/intensity in column 2.
+      # There may or may not be a header (default is FALSE for read.table)
 
-# DX files can be parsed, but are handled via readJDX
+      # DX files can be parsed, but are handled via readJDX
 
-	if (!requireNamespace("R.utils", quietly = TRUE)) {
-		stop("You need to install package R.utils to use this function")
-		}
-	
-	if (is.null(gr.crit)) stop("No group criteria provided to encode data")
-	
-	DX <- FALSE
-	if (grepl("(dx|DX|jdx|JDX)", fileExt)) {
-		DX <- TRUE
-		if (!requireNamespace("readJDX", quietly = TRUE)) {
-			stop("You need to install package readJDX to import JCAMP-DX files")
-			}
-		}
+      if (!requireNamespace("R.utils", quietly = TRUE)) {
+        stop("You need to install package R.utils to use this function")
+      }
 
-	# Clean up args found in ... for further use
-	argsLF <- argsRT <- argsDX <- as.list(match.call())[-1] # THREE copies to be used momentarily
-	argsRT <- .cleanArgs(argsRT, "read.table") # further update below
-	argsLF <- .cleanArgs(argsLF, "list.files")
-	argsLF <- c(argsLF, list(pattern = fileExt, full.names = TRUE))
-	if (DX) argsDX <- .cleanArgs(argsDX, "readJDX")
-	
-	files <- do.call(list.files, argsLF)
-	files.noext <- tools::file_path_sans_ext(basename(files))
+      if (is.null(gr.crit)) stop("No group criteria provided to encode data")
 
-	spectra <- list()
-	spectra$names <- files.noext
-		
-	if (debug) message("\nfiles2SpectraObject is checking the first file")
-	if (!DX) {
-		temp <- do.call(utils::read.table, args = c(argsRT, list(file = files[1])))
-		spectra$freq <- temp[,1]
-		}
-	if (DX) {
-		temp <- do.call(readJDX::readJDX, args = c(argsDX, list(file = files[1], debug = debug)))
-		spectra$freq <- temp[[4]]$x
-		}
-		
-	if (inherits(spectra$freq, "integer")) {
-		if (debug) message("\nConverting integer frequency values to numeric")
-		spectra$freq <- as.numeric(spectra$freq)
-		}
-	
-	spectra$data <- matrix(data = NA_real_, nrow = length(files), ncol = length(spectra$freq))
+      DX <- FALSE
+      if (grepl("(dx|DX|jdx|JDX)", fileExt)) {
+        DX <- TRUE
+        if (!requireNamespace("readJDX", quietly = TRUE)) {
+          stop("You need to install package readJDX to import JCAMP-DX files")
+        }
+      }
 
-	# Loop over all files (you have to read the whole file then grab
-	# just the part you want, i.e. the 2nd column)
+      # Clean up args found in ... for further use
+      argsLF <- argsRT <- argsDX <- as.list(match.call())[-1] # THREE copies to be used momentarily
+      argsRT <- .cleanArgs(argsRT, "read.table") # further update below
+      argsLF <- .cleanArgs(argsLF, "list.files")
+      argsLF <- c(argsLF, list(pattern = fileExt, full.names = TRUE))
+      if (DX) argsDX <- .cleanArgs(argsDX, "readJDX")
 
-	if (debug) message("\nfiles2SpectraObject will now import your files")
-	
-	if (!debug) {
-		# Code for progress bar contributed by Reinhard Kerschner
-		env <- environment() # NEW set environment for progress bar
-		pb_Max <- length(files)
-		counter <- 0
-		message("\nReading ", pb_Max, " files...\n")
-		pb <- txtProgressBar(min = 0, max = pb_Max, style = 3)
-	}
-	
-	for (i in 1:length(files)) {
-		if (debug) cat("Importing file: ", files[i], "\n")
-		if (!DX) {
-			temp <- do.call(utils::read.table, args = c(argsRT, list(file = files[i])))
-			spectra$data[i,] <- temp[,2]
-			}
-		if (DX) {
-		    temp <- do.call(readJDX::readJDX, args = c(argsDX, list(file = files[i], debug = debug)))
-			spectra$data[i,] <- temp[[4]]$y
-			}
-	  
-	  	if (!debug){
-	  		curVal <- get("counter", envir=env)
-	  		assign("counter", curVal +1, envir=env)
-	  		setTxtProgressBar(get("pb", envir=env), curVal +1)
-	  	}
-	} # end of looping over files
+      files <- do.call(list.files, argsLF)
+      files.noext <- tools::file_path_sans_ext(basename(files))
 
-	if (!debug) {
-		close(pb)
-		message("\nAssigning ", pb_Max, " spectra to ", length(gr.crit), " groups...\n")
-	}
-	
-	# Go get group assignments & colors, to complete assembly of spectra
+      spectra <- list()
+      spectra$names <- files.noext
 
-	spectra <- .groupNcolor(spectra, gr.crit, gr.cols, mode = "1D")
-	spectra$unit[1] <- freq.unit
-	spectra$unit[2] <- int.unit
-	spectra$desc <- descrip
-	chkSpectra(spectra)
-	
-	if (!debug) message("Success!\n")
-	
-	datafile <- paste(out.file, ".RData", sep = "")
+      if (debug) message("\nfiles2SpectraObject is checking the first file")
+      if (!DX) {
+        temp <- do.call(utils::read.table, args = c(argsRT, list(file = files[1])))
+        spectra$freq <- temp[, 1]
+      }
+      if (DX) {
+        temp <- do.call(readJDX::readJDX, args = c(argsDX, list(file = files[1], debug = debug)))
+        spectra$freq <- temp[[4]]$x
+      }
 
-	R.utils::saveObject(spectra, file = datafile)
-	
-	return(spectra)
-	},
-	
-	error = function(cond) {
-		errmess <- "There was a problem importing your files!\n\nAre you importing csv or similar files?\nIf you got a message such as 'undefined columns selected'?\nyou probably need to specify sep, header and dec values\nPlease read ?files2SpectraObject for details\n\nFor any trouble importing files set debug = TRUE\n"
-		message("\nError message from R: ", cond$message, "\n")
-		message(errmess)
-		return(NA)
-		}
-	
-	) # end of tryCatch
-	
-	return(out)
-	}
+      if (inherits(spectra$freq, "integer")) {
+        if (debug) message("\nConverting integer frequency values to numeric")
+        spectra$freq <- as.numeric(spectra$freq)
+      }
 
+      spectra$data <- matrix(data = NA_real_, nrow = length(files), ncol = length(spectra$freq))
+
+      # Loop over all files (you have to read the whole file then grab
+      # just the part you want, i.e. the 2nd column)
+
+      if (debug) message("\nfiles2SpectraObject will now import your files")
+
+      if (!debug) {
+        # Code for progress bar contributed by Reinhard Kerschner
+        env <- environment() # NEW set environment for progress bar
+        pb_Max <- length(files)
+        counter <- 0
+        message("\nReading ", pb_Max, " files...\n")
+        pb <- txtProgressBar(min = 0, max = pb_Max, style = 3)
+      }
+
+      for (i in 1:length(files)) {
+        if (debug) cat("Importing file: ", files[i], "\n")
+        if (!DX) {
+          temp <- do.call(utils::read.table, args = c(argsRT, list(file = files[i])))
+          spectra$data[i, ] <- temp[, 2]
+        }
+        if (DX) {
+          temp <- do.call(readJDX::readJDX, args = c(argsDX, list(file = files[i], debug = debug)))
+          spectra$data[i, ] <- temp[[4]]$y
+        }
+
+        if (!debug) {
+          curVal <- get("counter", envir = env)
+          assign("counter", curVal + 1, envir = env)
+          setTxtProgressBar(get("pb", envir = env), curVal + 1)
+        }
+      } # end of looping over files
+
+      if (!debug) {
+        close(pb)
+        message("\nAssigning ", pb_Max, " spectra to ", length(gr.crit), " groups...\n")
+      }
+
+      # Go get group assignments & colors, to complete assembly of spectra
+
+      spectra <- .groupNcolor(spectra, gr.crit, gr.cols, mode = "1D")
+      spectra$unit[1] <- freq.unit
+      spectra$unit[2] <- int.unit
+      spectra$desc <- descrip
+      chkSpectra(spectra)
+
+      if (!debug) message("Success!\n")
+
+      datafile <- paste(out.file, ".RData", sep = "")
+
+      R.utils::saveObject(spectra, file = datafile)
+
+      return(spectra)
+    },
+    error = function(cond) {
+      errmess <- "There was a problem importing your files!\n\nAre you importing csv or similar files?\nIf you got a message such as 'undefined columns selected'?\nyou probably need to specify sep, header and dec values\nPlease read ?files2SpectraObject for details\n\nFor any trouble importing files set debug = TRUE\n"
+      message("\nError message from R: ", cond$message, "\n")
+      message(errmess)
+      return(NA)
+    }
+  ) # end of tryCatch
+
+  return(out)
+}

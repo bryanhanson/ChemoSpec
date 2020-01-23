@@ -20,7 +20,7 @@ is called "standard normal variate" or "correlation matrix PCA" in some literatu
 \item{...}{Other parameters to be passed to \code{\link[elasticnet]{arrayspc}}.}
 }
 \value{
-An object of class \code{prcomp} and \code{converted_from_arrayspc}, 
+An object of class \code{prcomp} and \code{converted_from_arrayspc},
 which includes a list
 element called \code{$method}, a character string describing the
 pre-processing carried out and the type of PCA performed (used to annotate
@@ -43,11 +43,14 @@ deviation.
 data(SrE.NMR)
 pca <- s_pcaSpectra(SrE.NMR)
 plotScree(pca)
-plotScores(SrE.NMR, pca, main = "SrE NMR Data",
-	 pcs = c(1,2), ellipse = "cls", tol = 0.05)
-plotLoadings(SrE.NMR, pca, main = "SrE NMR Data",
-	 loads = 1:2, ref = 1)
-
+plotScores(SrE.NMR, pca,
+  main = "SrE NMR Data",
+  pcs = c(1, 2), ellipse = "cls", tol = 0.05
+)
+plotLoadings(SrE.NMR, pca,
+  main = "SrE NMR Data",
+  loads = 1:2, ref = 1
+)
 }
 \references{
 H. Zou, T. Hastie and R. Tibshirani "Sparse Principal Components Analysis"

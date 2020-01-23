@@ -75,7 +75,6 @@ if (interactive()) {
   data(metMUD2)
   plotSpectraJS(metMUD2)
 }
-
 }
 \seealso{
 \code{\link{plotSpectra}} for non-interactive plotting.  Details

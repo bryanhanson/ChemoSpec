@@ -45,9 +45,10 @@ data(SrE.IR)
 class <- c_pcaSpectra(SrE.IR, choice = "autoscale")
 mclustSpectra(SrE.IR, class, main = "Cuticle IR", plot = "BIC")
 mclustSpectra(SrE.IR, class, main = "Cuticle IR", plot = "proj")
-mclustSpectra(SrE.IR, class, main = "Cuticle IR", plot = "error",
-	 truth = metMUD1$groups)
-
+mclustSpectra(SrE.IR, class,
+  main = "Cuticle IR", plot = "error",
+  truth = metMUD1$groups
+)
 }
 \seealso{
 \code{\link[mclust]{Mclust}} for background on the method.
