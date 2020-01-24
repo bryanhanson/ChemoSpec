@@ -45,9 +45,9 @@
 # @importFrom mclust Mclust
 #'
 mclustSpectra <- function(spectra, pca, pcs = c(1:3), dims = c(1, 2),
-                          plot = c("BIC", "proj", "error"), use.sym = FALSE, ...) {
+                          plot = c("BIC", "proj", "errors"), use.sym = FALSE, ...) {
   .chkArgs(mode = 12L)
-  choices <- c("BIC", "proj", "error")
+  choices <- c("BIC", "proj", "errors")
   check <- plot %in% choices
   if (!check) stop("The choice of plot was invalid")
 

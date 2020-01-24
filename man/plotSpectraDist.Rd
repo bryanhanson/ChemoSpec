@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotSpectraDist.R
 \name{plotSpectraDist}
 \alias{plotSpectraDist}
-\title{Plot the Distance Between Spectra in a Spectra Object}
+\title{Plot the Distance Between Spectra and a Reference Spectrum in a Spectra Object}
 \usage{
 plotSpectraDist(spectra, method = "pearson", ref = 1, labels = TRUE, ...)
 }
@@ -38,7 +38,9 @@ temp <- plotSpectraDist(SrE.NMR,
 )
 }
 \seealso{
-Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+To compare all spectra simultaneously in a heatmap, see
+\code{\link[ChemoSpecUtils]{sampleDist}}.  Additional documentation
+at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University.
