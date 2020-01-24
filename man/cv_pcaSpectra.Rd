@@ -4,9 +4,17 @@
 \alias{cv_pcaSpectra}
 \title{Cross-Validation of Classical PCA Results for a Spectra Object}
 \usage{
-cv_pcaSpectra(spectra, pcs, choice = "noscale", repl = 50,
-  segments = 4, segment.type = c("random", "consecutive",
-  "interleaved"), length.seg, trace = FALSE, ...)
+cv_pcaSpectra(
+  spectra,
+  pcs,
+  choice = "noscale",
+  repl = 50,
+  segments = 4,
+  segment.type = c("random", "consecutive", "interleaved"),
+  length.seg,
+  trace = FALSE,
+  ...
+)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
@@ -44,7 +52,6 @@ with some small plotting changes.
 
 data(SrE.IR)
 pca <- cv_pcaSpectra(SrE.IR, pcs = 5)
-
 }
 \references{
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate

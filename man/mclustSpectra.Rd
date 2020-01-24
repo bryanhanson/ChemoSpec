@@ -4,8 +4,15 @@
 \alias{mclustSpectra}
 \title{mclust Analysis of a Spectra Object PCA Results}
 \usage{
-mclustSpectra(spectra, pca, pcs = c(1:3), dims = c(1, 2),
-  plot = c("BIC", "proj", "error"), use.sym = FALSE, ...)
+mclustSpectra(
+  spectra,
+  pca,
+  pcs = c(1:3),
+  dims = c(1, 2),
+  plot = c("BIC", "proj", "errors"),
+  use.sym = FALSE,
+  ...
+)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
@@ -34,13 +41,12 @@ plotting functions.
 \examples{
 
 require("mclust")
-data(SrE.IR)
-class <- c_pcaSpectra(SrE.IR, choice = "autoscale")
-mclustSpectra(SrE.IR, class, main = "Cuticle IR", plot = "BIC")
-mclustSpectra(SrE.IR, class, main = "Cuticle IR", plot = "proj")
-mclustSpectra(SrE.IR, class, main = "Cuticle IR", plot = "error",
-	 truth = metMUD1$groups)
-
+data(metMUD1)
+cls <- c_pcaSpectra(metMUD1, choice = "autoscale")
+plotScores(metMUD1, cls)
+mclustSpectra(metMUD1, cls, plot = "BIC")
+mclustSpectra(metMUD1, cls, plot = "proj")
+mclustSpectra(metMUD1, cls, plot = "errors", truth = metMUD1$groups)
 }
 \seealso{
 \code{\link[mclust]{Mclust}} for background on the method.

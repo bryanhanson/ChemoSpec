@@ -35,10 +35,11 @@ a useful adjunct to traditional loading plots.
 
 data(SrE.IR)
 IR.pca <- c_pcaSpectra(SrE.IR)
-myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
-splot <- sPlotSpectra(spectra = SrE.IR, pca = IR.pca, pc = 1, tol = 0.001,
-  main = myt)
-
+myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
+splot <- sPlotSpectra(
+  spectra = SrE.IR, pca = IR.pca, pc = 1, tol = 0.001,
+  main = myt
+)
 }
 \references{
 Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor,

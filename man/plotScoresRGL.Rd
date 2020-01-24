@@ -4,10 +4,23 @@
 \alias{plotScoresRGL}
 \title{Interactive 3D Score Plot of a Spectra Object}
 \usage{
-plotScoresRGL(spectra, pca, pcs = c(1:3), ellipse = TRUE,
-  rob = FALSE, cl = 0.95, frac.pts.used = 0.8, title = NULL,
-  t.pos = NULL, leg.pos = NULL, lab.opts = FALSE, tol = 0.01,
-  use.sym = FALSE, axes = "fixed", ...)
+plotScoresRGL(
+  spectra,
+  pca,
+  pcs = c(1:3),
+  ellipse = TRUE,
+  rob = FALSE,
+  cl = 0.95,
+  frac.pts.used = 0.8,
+  title = NULL,
+  t.pos = NULL,
+  leg.pos = NULL,
+  lab.opts = FALSE,
+  tol = 0.01,
+  use.sym = FALSE,
+  axes = "fixed",
+  ...
+)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
@@ -78,8 +91,10 @@ rgl.snapshot("file_name.png")} to create the hardcopy.
 \dontrun{
 data(metMUD1)
 pca <- c_pcaSpectra(metMUD1, choice = "autoscale")
-plotScoresRGL(metMUD1, pca, title = "metMUD1 NMR Spectra",
-  leg.pos = "A", t.pos = "B")
+plotScoresRGL(metMUD1, pca,
+  title = "metMUD1 NMR Spectra",
+  leg.pos = "A", t.pos = "B"
+)
 }
 
 }

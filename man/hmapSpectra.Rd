@@ -11,28 +11,59 @@ hmapSpectra(spectra, ...)
 
 \item{\dots}{Additional arguments to be passed downstream.  A great deal of
 control is available - check \code{\link[seriation]{hmap}} for details.  Most of the control
-actually derives from the \code{heatmap2} function in package \pkg{gplots}.}
+actually derives from the \code{heatmap.2} function in package \pkg{gplots}.
+See the examples.}
 }
 \value{
-A list composed of two data frames, and a matrix. The first data frame is the frequencies and their
-rankings, the second is samples and their rankings.  The matrix is the "carpet" of correlation values.
-Side effect is a plot.
+A list as described in \code{\link[seriation]{hmap}}. Side effect is a plot.
 }
 \description{
 Creates a heat map with marginal dendrograms using seriation procedures.
-Very briefly, the samples that are most like each other occur in one corner,
-and the frequencies that are most informative with respect to the samples
-are in that corner as well. This is achieved by using heirchical cluster
-analysis and then re-ordering the clusters in a coordinated way across each
-dimension.  See the vignette for package \pkg{seriation}.
+Heirchical cluster analysis is followed by re-ordering the clusters in a coordinated way
+across each dimension (controlled by argument \code{method}, see \code{\link[seriation]{hmap}}).
+The vignette for package \pkg{seriation} has more details.
 }
+\section{Note}{
+
+The underlying \code{heatmap.2} function does certain things automatically for the user.
+For instance, if you pass a vector of names to argument \code{labRow} it is automatically
+reordered using the \code{rowInd} vector that is computed.  The user does not need to
+do the reordering.  Another example is the labeling of the columns.  The labels are
+automatically turned 90 degrees, and not every column is labeled to keep things readible.
+}
+
+\section{Interpretation}{
+
+Looking at the 2nd \code{hmapSpectra} example, and keeping in mind the nature of the sample
+(see \code{\link{SrE.IR}}), the most similar samples based on the ester peaks (~1740),  are in
+the lower right corner of the heatmap.  These are the two outlier samples, composed of triglycerides
+which contain the ester functional group (and no detectable carboxylic acid).  The most similar
+samples based on the carboxylic acid peaks (~1710) are in the upper left corner.  These samples are
+mostly from the "pure" extract group, according to the manufacturer's label.  These samples have a modest
+to low amount of the ester functional group, which indicates dilution (or adulteration if you like).
+In fact, the first two samples (NP_adSrE and NR_pSrE) are the two samples with the smallest ester
+peaks (see first plot in the examples).  This suggests that NP_adSrE was diluted only a little with added
+olive oil.
+}
+
 \examples{
 
 data(SrE.IR)
-# Let's look just at the carbonyl region
-IR <- removeFreq(SrE.IR, rem.freq = SrE.IR$freq > 1850 | SrE.IR$freq < 1650)
-res <- hmapSpectra(IR, col = heat.colors(5), labCol = FALSE)
 
+# Let's look just at the carbonyl region
+IR <- removeFreq(SrE.IR, rem.freq = SrE.IR$freq > 1775 | SrE.IR$freq < 1660)
+plotSpectra(IR, which = 1:16, lab.pos = 1800)
+
+# Defaults, except for color scheme:
+res <- hmapSpectra(IR, col = heat.colors(5))
+
+# Label samples and frequencies by passing arguments to heatmap.2
+# Also make a few other nice plot adjustments
+res <- hmapSpectra(IR,
+  col = heat.colors(5),
+  labRow = IR$names, labCol = as.character(round(IR$freq)),
+  margins = c(4, 6), key.title = ""
+)
 }
 \seealso{
 \code{\link[seriation]{hmap}} which will get you to the package

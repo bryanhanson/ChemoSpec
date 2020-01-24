@@ -28,11 +28,14 @@ various options for scaling.
 data(metMUD1)
 pca <- r_pcaSpectra(metMUD1)
 plotScree(pca)
-plotScores(metMUD1, pca, main = "metMUD1 NMR Data",
-  pcs = c(1,2), ellipse = "cls", tol = 0.05)
-plotLoadings(metMUD1, pca, main = "metMUD1 NMR Data",
-	 loads = 1:2, ref = 1)
-
+plotScores(metMUD1, pca,
+  main = "metMUD1 NMR Data",
+  pcs = c(1, 2), ellipse = "cls", tol = 0.05
+)
+plotLoadings(metMUD1, pca,
+  main = "metMUD1 NMR Data",
+  loads = 1:2, ref = 1
+)
 }
 \references{
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
@@ -45,7 +48,7 @@ Statistical Analysis in Chemometrics}, CRC Press, 2009.
 \code{\link{irlba_pcaSpectra}} for PCA via the IRLBA algorithm.
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 
-For displaying the results, \code{\link{plotScree}}, 
+For displaying the results, \code{\link{plotScree}},
 \code{\link{plotScores}}, \code{\link{plotLoadings}},
 \code{\link{plot2Loadings}}, \code{\link{sPlotSpectra}},
 \code{\link{plotScores3D}}, \code{\link{plotScoresRGL}}.

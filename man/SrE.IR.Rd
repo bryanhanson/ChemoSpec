@@ -31,7 +31,6 @@ data(SrE.IR)
 sumSpectra(SrE.IR)
 data(SrE.NMR)
 sumSpectra(SrE.NMR)
-
 }
 \seealso{
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}

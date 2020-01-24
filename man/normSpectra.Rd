@@ -55,8 +55,7 @@ res2 <- normSpectra(SrE.IR, method = "Range", RangeExpress = RE)
 plotSpectra(res2) # compare to plotSpectra(SrE.IR)
 
 # Check numerically
-rowSums(res2$data[,RE]) # compare to rowSums(SrE.IR$data[,RE])
- 
+rowSums(res2$data[, RE]) # compare to rowSums(SrE.IR$data[,RE])
 }
 \references{
 Probabalistic Quotient Normalization is reported in F. Dieterle

@@ -4,8 +4,7 @@
 \alias{aovPCAscores}
 \title{Plot ANOVA-PCA Scores from a Spectra Object}
 \usage{
-aovPCAscores(spectra, LM, plot = 1, type = "class", choice = NULL,
-  ...)
+aovPCAscores(spectra, LM, plot = 1, type = "class", choice = NULL, ...)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
@@ -32,7 +31,7 @@ Returns the PCA results, and creates the requested plot.
 }
 \description{
 Uses the results from \code{\link{aov_pcaSpectra}} to conduct PCA and plot
-the scores. 
+the scores.
 Argument \code{plot} is used to select a matrix from those in \code{LM}.
 The residual error matrix is then added to the selected matrix before
 performing PCA.  Use \code{names(LM)} to see which factor is stored in which

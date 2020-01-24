@@ -4,8 +4,14 @@
 \alias{hcaSpectra}
 \title{Plot HCA Results of a Spectra Object}
 \usage{
-hcaSpectra(spectra, c.method = "complete", d.method = "euclidean",
-  use.sym = FALSE, leg.loc = "topright", ...)
+hcaSpectra(
+  spectra,
+  c.method = "complete",
+  d.method = "euclidean",
+  use.sym = FALSE,
+  leg.loc = "topright",
+  ...
+)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
@@ -36,9 +42,8 @@ the clusters and distances are available.
 \examples{
 
 data(SrE.IR)
-myt <- expression(bolditalic(Serenoa)~bolditalic(repens)~bold(IR~Spectra))
+myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
 res <- hcaSpectra(SrE.IR, main = myt)
-
 }
 \seealso{
 \code{\link{hclust}} for the underlying function.

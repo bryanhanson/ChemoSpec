@@ -19,8 +19,8 @@ library("ChemoSpec")
 ### Installing ChemoSpec from Github:
 
 ````r
-install.packages("devtools")
-library("devtools")
+install.packages("remotes")
+library("remotes")
 install_github(repo = "bryanhanson/ChemoSpec@master")
 library("ChemoSpec")
 ````

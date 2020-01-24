@@ -12,7 +12,7 @@
 #   unsetenv ESTOY_EN_CASA # csh
 #   export ESTOY_EN_CASA=TRUE # bash
 #   export -n ESTOY_EN_CASA # bash
-#   or set in the makefile
+#   or set in the makefile (my current use)
 
 if (identical(Sys.getenv("ESTOY_EN_CASA"), "TRUE")) {
 
@@ -26,5 +26,6 @@ if (identical(Sys.getenv("ESTOY_EN_CASA"), "TRUE")) {
     sumSpectra(spec)
     plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
   })
+
 }
 

@@ -1,3 +1,26 @@
+# ChemoSpec 5.2.12 2020-01-23
+## Misc.
+* Fixed class-checking issues due to changes coming in R 4.0 coming soon.
+* Improved documentation in various places.
+* Added documentation for `updateGroups` which has been in `ChemoSpecUtils` for a while but effectively hidden from users of `ChemoSpec`.
+* Fixed the example in `plotSpectraDist` which had strange limits.
+* Fixed the example in `mclustSpectra` which had an error and used data that was not a good illustration.
+* `sampleDistSpectra` was renamed `sampleDist` and moved to `ChemoSpecUtils`.  The internal workings and plot details have changed.
+
+## Changes in ChemoSpecUtils that affect ChemoSpec
+* New color and symbol schemes are now provided for using during the import process.
+* `removeFreq` now accepts a formula for `rem.freq`.  The old syntax remains valid.  See the documentation for `ChemoSpec2D` for examples of how to construct formulas.
+* New functions `sampleDist`, `sampleDist.Spectra` and `sampleDist.Spectra2D`.
+
+# ChemoSpec 5.1.88 2019-11-14
+## Improvements
+* Documentation for `hypTestScores` now shows several ways to look at the results.
+* `files2SpectraObject` now will pass the argument `SOFC` to `readJDX` if JCAMP-DX files are being processed.
+
+## Bug Fixes
+* In `hmapSpectra` the return values (updated in version 5.1.48) were labeled incorrectly. Noticed by Gabriele Beltrame.  The function now returns everything returned by `seriation::hmap` making it easier for the user to extract the information they desire. Documentation was improved, and additional examples were added illustrating how to pass arguments downstream to customize the plot.
+* Fixed a bug in `plotScores3D` and `plotScoresRGL` in which the wrong percent variance was plotted in the axes labels.  Reported by Owen Horsfall.
+
 # ChemoSpec 5.1.48 2019-07-25
 ## Improvements
 * `plotScoresRGL` gains an argument `axes` which allows one to control the drawing of the reference axes.

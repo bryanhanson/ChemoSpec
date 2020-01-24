@@ -4,10 +4,21 @@
 \alias{mclust3dSpectra}
 \title{mclust Analysis of a Spectra Object in 3D}
 \usage{
-mclust3dSpectra(spectra, pca, pcs = c(1:3), ellipse = TRUE,
-  rob = FALSE, cl = 0.95, frac.pts.used = 0.8, truth = NULL,
-  title = "no title provided", t.pos = NULL, lab.opts = FALSE,
-  use.sym = FALSE, ...)
+mclust3dSpectra(
+  spectra,
+  pca,
+  pcs = c(1:3),
+  ellipse = TRUE,
+  rob = FALSE,
+  cl = 0.95,
+  frac.pts.used = 0.8,
+  truth = NULL,
+  title = "no title provided",
+  t.pos = NULL,
+  lab.opts = FALSE,
+  use.sym = FALSE,
+  ...
+)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
@@ -73,8 +84,10 @@ in 2D plots from \code{Mclust}.
 require(mclust)
 data(metMUD1)
 class <- c_pcaSpectra(metMUD1)
-mclust3dSpectra(metMUD1, class, title = "mclust3dSpectra demo",
-	 lab.opts = FALSE, t.pos = "A")
+mclust3dSpectra(metMUD1, class,
+  title = "mclust3dSpectra demo",
+  lab.opts = FALSE, t.pos = "A"
+)
 }
 
 }

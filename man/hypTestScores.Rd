@@ -50,11 +50,15 @@ levels(metMUD2$groups)
 new.grps <- list(geneBb = c("B", "b"), geneCc = c("C", "c"))
 mM3 <- splitSpectraGroups(metMUD2, new.grps)
 
-# Now do the PCA and anova
+# Now do the PCA and anova, with 3 ways to see the results
 pca <- c_pcaSpectra(mM3)
-hypTestScores(mM3, pca, fac = c("geneBb", "geneCc"))
+res <- hypTestScores(mM3, pca, fac = c("geneBb", "geneCc"))
+res
+summary(res)
+summary.aov(res)
 
-
+# You can also call this function on the existing groups:
+res <- hypTestScores(metMUD2, pca, fac = "groups")
 }
 \seealso{
 \code{\link{splitSpectraGroups}} which can be used to create

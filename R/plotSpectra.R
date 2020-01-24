@@ -1,11 +1,11 @@
 #'
 #' Plot Spectra Object
-#' 
+#'
 #' Plots the spectra stored in a \code{\link{Spectra}} object.  One may choose
 #' which spectra to plot, and the x range to plot.  Spectra may be plotted
 #' offset or stacked.  The vertical scale is controlled by a combination of
 #' several parameters.
-#' 
+#'
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
 #' @param which An integer vector specifying which spectra to plot, and the
@@ -48,57 +48,59 @@
 #' @keywords hplot
 #'
 #' @examples
-#' 
-#' data(metMUD1)
-#' plotSpectra(metMUD1, main = "metMUD1 NMR Data",
-#' 	 which = c(10, 11), yrange = c(0,1.5),
-#' 	 offset = 0.06, amplify = 10, lab.pos = 0.5)
-#' 
-#' # Add a legend at x, y coords
-#' plotSpectra(metMUD1, main = "metMUD1 NMR Data",
-#' 	 which = c(10, 11), yrange = c(0,1.5),
-#' 	 offset = 0.06, amplify = 10, lab.pos = 0.5,
-#'   leg.loc = list(x = 3.2, y = 1.45))
 #'
+#' data(metMUD1)
+#' plotSpectra(metMUD1,
+#'   main = "metMUD1 NMR Data",
+#'   which = c(10, 11), yrange = c(0, 1.5),
+#'   offset = 0.06, amplify = 10, lab.pos = 0.5
+#' )
+#'
+#' # Add a legend at x, y coords
+#' plotSpectra(metMUD1,
+#'   main = "metMUD1 NMR Data",
+#'   which = c(10, 11), yrange = c(0, 1.5),
+#'   offset = 0.06, amplify = 10, lab.pos = 0.5,
+#'   leg.loc = list(x = 3.2, y = 1.45)
+#' )
 #' @export plotSpectra
 #'
 #' @importFrom graphics grid lines text points plot
 #'
 plotSpectra <- function(spectra, which = c(1),
-	yrange = range(spectra$data),
-	offset = 0.0, amplify = 1.0,
-	lab.pos = mean(spectra$freq),
-	showGrid = TRUE, leg.loc = "none", ...) {
-	
-	.chkArgs(mode = 11L)
-	chkSpectra(spectra)
-	
-	# set up and plot the first spectrum
-	
-	spectrum <- spectra$data[which[1],]*amplify
+                        yrange = range(spectra$data),
+                        offset = 0.0, amplify = 1.0,
+                        lab.pos = mean(spectra$freq),
+                        showGrid = TRUE, leg.loc = "none", ...) {
+  .chkArgs(mode = 11L)
+  chkSpectra(spectra)
 
-	plot(spectra$freq, spectrum, type = "n",
-		xlab = spectra$unit[1], ylab = spectra$unit[2],
-		ylim = yrange,
-		frame.plot = FALSE, ...)
-	if (showGrid) grid(ny = NA, lty = 1) # grid will be underneath all spectra
-	lines(spectra$freq, spectrum, col = spectra$colors[which[1]], ...)
-	lab.x <- lab.pos
-	spec.index <- findInterval(lab.x, sort(spectra$freq))
-	lab.y <- spectrum[spec.index]
-	text(lab.x, lab.y, labels = spectra$names[which[1]], pos = 3, cex = 0.75)
-	
-	which <- which[-1] # first spectrum already plotted so remove it from the list
-	count <- 0 # get the other spectra and plot them as well
-	for(n in which) {
-		count <- count + 1
-		spectrum <- (spectra$data[n,]+(offset*count))*amplify
-		points(spectra$freq, spectrum, type = "l", col = spectra$colors[n], ...)
-		lab.y <- spectrum[spec.index]
-		text(lab.x, lab.y, labels = spectra$names[n], pos = 3, cex = 0.75)
-		}
+  # set up and plot the first spectrum
 
-	if (all(leg.loc != "none")) .addLegend(spectra, leg.loc, use.sym = FALSE, bty = "n")
+  spectrum <- spectra$data[which[1], ] * amplify
 
-	}
+  plot(spectra$freq, spectrum,
+    type = "n",
+    xlab = spectra$unit[1], ylab = spectra$unit[2],
+    ylim = yrange,
+    frame.plot = FALSE, ...
+  )
+  if (showGrid) grid(ny = NA, lty = 1) # grid will be underneath all spectra
+  lines(spectra$freq, spectrum, col = spectra$colors[which[1]], ...)
+  lab.x <- lab.pos
+  spec.index <- findInterval(lab.x, sort(spectra$freq))
+  lab.y <- spectrum[spec.index]
+  text(lab.x, lab.y, labels = spectra$names[which[1]], pos = 3, cex = 0.75)
 
+  which <- which[-1] # first spectrum already plotted so remove it from the list
+  count <- 0 # get the other spectra and plot them as well
+  for (n in which) {
+    count <- count + 1
+    spectrum <- (spectra$data[n, ] + (offset * count)) * amplify
+    points(spectra$freq, spectrum, type = "l", col = spectra$colors[n], ...)
+    lab.y <- spectrum[spec.index]
+    text(lab.x, lab.y, labels = spectra$names[n], pos = 3, cex = 0.75)
+  }
+
+  if (all(leg.loc != "none")) .addLegend(spectra, leg.loc, use.sym = FALSE, bty = "n")
+}

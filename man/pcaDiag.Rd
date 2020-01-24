@@ -4,8 +4,15 @@
 \alias{pcaDiag}
 \title{Outlier Diagnostic Plots for PCA of a Spectra Object}
 \usage{
-pcaDiag(spectra, pca, pcs = 3, quantile = 0.975, plot = c("OD",
-  "SD"), use.sym = FALSE, ...)
+pcaDiag(
+  spectra,
+  pca,
+  pcs = 3,
+  quantile = 0.975,
+  plot = c("OD", "SD"),
+  use.sym = FALSE,
+  ...
+)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
@@ -54,7 +61,6 @@ data(SrE.IR)
 res <- c_pcaSpectra(SrE.IR, choice = "noscale")
 temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "OD")
 temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "SD")
-
 }
 \references{
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
