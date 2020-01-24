@@ -1,7 +1,7 @@
 template:
   params:
     bootswatch: cerulean
-    
+
 reference:
 - title: "Importing Data"
   contents:
@@ -47,7 +47,7 @@ reference:
   - '`aovPCAloadings`'
   - '`aovPCAscores`'
   - '`hmapSpectra`'
-  - '`sampleDistSpectra`'
+  - '`sampleDist`'
   - '`mclust3dSpectra`'
 
 - title: "Exploratory Data Analysis"
