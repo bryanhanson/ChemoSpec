@@ -223,6 +223,7 @@ files2SpectraObject <- function(gr.crit = NULL,
       if (DX) argsDX <- .cleanArgs(argsDX, "readJDX")
 
       files <- do.call(list.files, argsLF)
+      if (length(files) == 0L) stop("No files found. Is the extension wrong, or are we in the wrong directory?")
       files.noext <- tools::file_path_sans_ext(basename(files))
 
       spectra <- list()
