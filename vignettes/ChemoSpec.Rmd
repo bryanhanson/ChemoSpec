@@ -1,61 +1,28 @@
 ---
-title: An Introduction to ChemoSpec
-
-# Force pkgdown to use the pdf vignette and not override format/output
+title:  "An Introduction to ChemoSpec"
+author:
+  - name: Bryan A. Hanson^1^
+    email: hanson@depauw.edu
+    affiliation: |
+        1. Professor Emeritus of Chemistry & Biochemistry, DePauw University, Greencastle IN USA.
+date:  "`r Sys.Date()`"
+output:
+    bookdown::html_document2:
+      toc: yes
+      toc_depth: 2
+      fig_caption: yes
+      number_sections: false
+vignette: >
+    %\VignetteIndexEntry{An R Package for Chemometric Analysis of Spectra (NMR, IR etc}
+    %\VignetteKeywords{chemometrics, spectroscopy, nmr, ir, raman, cd, xrf}
+    %\VignettePackage{ChemoSpec}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+link-citations: yes
+bibliography: chemometrics.bib
+#biblio-style: plain
 pkgdown:
   as_is: true
-  extension: pdf
-
-# Use letters for affiliations
-author:
-  - name: Bryan A. Hanson
-    affiliation: a
-
-address:
-  - code: a
-    address: Prof. Emeritus, Dept. of Chemistry \& Biochemistry, DePauw University; \url{hanson@depauw.edu}
-
-doi: "github.com/bryanhanson/ChemoSpec"
-
-abstract: \texttt{ChemoSpec} is a collection of functions for top-down exploratory data analysis of spectral data including nuclear magnetic resonance (NMR), infrared (IR), Raman, X-ray fluorescence (XRF) and other similar types of spectroscopy. Includes functions for plotting and inspecting spectra, peak alignment, hierarchical cluster analysis (HCA), principal components analysis (PCA) and model-based clustering. Robust methods appropriate for this type of high-dimensional data are available. \texttt{ChemoSpec} is designed for structured experiments, such as metabolomics investigations, where the samples fall into treatment and control groups. Graphical output is formatted consistently for publication quality plots. \texttt{ChemoSpec} is intended to be very user friendly and to help you get usable results quickly. A vignette covering typical operations is available.
-
-
-acknowledgements: The development of \texttt{ChemoSpec} began while I was on sabbatical in 2007-2008, and was aided greatly by an award of a Fisher Fellowship.  These programs are coordinated by the Faculty Development Committee at DePauw, and I am very grateful to them as well as the individuals who originally created these programs.  One of my student researchers, Kelly Summers, took the data included in \texttt{CuticleIR} in the summer of 2009 as part of a preliminary study.  I am also grateful to Prof. Peter Filzmoser who answered a number of my questions related to the algorithms in his \texttt{chemometrics} package.  Finally, many people have brought bugs to my attention, suggested new features and provided fixes.  I am grateful to all of them.  Each is listed in either the code, the NEWS file or the Github issues tracker.
-
-# Font size of the document, values of 9pt (default), 10pt, 11pt and 12pt
-fontsize: 10pt
-
-# Optional: Force one-column layout, default is two-column
-#one_column: true
-
-# Optional: Enable one-sided layout, default is two-sided
-#one_sided: true
-
-# Optional: Enable section numbering, default is unnumbered
-numbersections: true
-
-# Optional: Specify the depth of section number, default is 5
-#secnumdepth: 5
-
-# Optional: Bibliography
-bibliography: chemometrics.bib
-
-# Optional: Enable a 'Draft' watermark on the document
-watermark: false
-
-# Customize footer, eg by referencing the vignette
-footer_contents: "ChemoSpec"
-
-# Produce a pinp document
-output: pinp::pinp
-
-# Required: Vignette metadata for inclusion in a package.
-vignette: >
-  %\VignetteIndexEntry{An R Package for Chemometric Analysis of Spectra (NMR, IR etc}
-  %\VignetteKeywords{chemometrics, spectroscopy, nmr, ir, raman, cd, xrf}
-  %\VignettePackage{ChemoSpec}
-  %\VignetteEngine{knitr::rmarkdown}
-
 ---
 
 <!-- Run a few things in the background for use later -->
@@ -80,6 +47,9 @@ desc <- packageDescription("ChemoSpec")
 ```
 
 This vignette is based upon \texttt{ChemoSpec} version `r desc$Version`.
+
+> \texttt{ChemoSpec} is a collection of functions for top-down exploratory data analysis of spectral data including nuclear magnetic resonance (NMR), infrared (IR), Raman, X-ray fluorescence (XRF) and other similar types of spectroscopy. Includes functions for plotting and inspecting spectra, peak alignment, hierarchical cluster analysis (HCA), principal components analysis (PCA) and model-based clustering. Robust methods appropriate for this type of high-dimensional data are available. \texttt{ChemoSpec} is designed for structured experiments, such as metabolomics investigations, where the samples fall into treatment and control groups. Graphical output is formatted consistently for publication quality plots. \texttt{ChemoSpec} is intended to be very user friendly and to help you get usable results quickly. A vignette covering typical operations is available.
+
 
 # Introduction
 
@@ -654,3 +624,7 @@ In addition to colors, \texttt{"Spectra"} objects also contain a list of symbols
 # Related Packages
 
 Several other packages exist which do some of the same tasks as \texttt{ChemoSpec}, and do other things as well.  The package closest in functionality to \texttt{ChemoSpec} is  \texttt{hyperSpec} written by my friend and collaborator Claudia Belietes (these packages were developed independently around the same time).\citep{Beleites2018}  There is also a package designed to interconvert \texttt{Spectra} objects and \texttt{hyperSpec} objects, which allows one to move data between the packages more easily \citep{HansonMcManus2018}.  There is a lot development going in the \texttt{R} ecosystem, and new packages appear steadily (and sometimes they disappear!). A good place to check these things out is the \href{http://cran.at.r-project.org/web/views/ChemPhys.html}{Chemometrics and Computational Physics Task View}.
+
+## Acknowledgements
+
+The development of \texttt{ChemoSpec} began while I was on sabbatical in 2007-2008, and was aided greatly by an award of a Fisher Fellowship.  These programs are coordinated by the Faculty Development Committee at DePauw, and I am very grateful to them as well as the individuals who originally created these programs.  One of my student researchers, Kelly Summers, took the data included in \texttt{CuticleIR} in the summer of 2009 as part of a preliminary study.  I am also grateful to Prof. Peter Filzmoser who answered a number of my questions related to the algorithms in his \texttt{chemometrics} package.  Finally, many people have brought bugs to my attention, suggested new features and provided fixes.  I am grateful to all of them.  Each is listed in either the code, the NEWS file or the Github issues tracker.
