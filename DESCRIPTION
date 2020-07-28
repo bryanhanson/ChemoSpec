@@ -63,6 +63,7 @@ Suggests:
   irlba,
   amap,
   rmarkdown,
+  bookdown,
   chemometrics
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
