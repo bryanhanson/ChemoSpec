@@ -20,7 +20,9 @@ vignette: >
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
 link-citations: yes
-bibliography: chemometrics.bib
+bibliography:
+  - chemometrics.bib
+  - manuals.bib
 #biblio-style: plain
 pkgdown:
   as_is: true
@@ -42,9 +44,10 @@ desc <- packageDescription("ChemoSpec")
 
 # Stuff specifically for knitr:
 
-knitr::opts_chunk$set(fig.width = 5, fig.align = "center")
+# Create a temp bib file w/citations of installed pkgs, on the fly
+knitr::write_bib(c("knitr", "mclust", "hyperChemoBridge", "baseline", "hyperSpec"), file = "manuals.bib")
 
-
+# Hook for figure size control
 knitr::opts_hooks$set(sq.fig = function(options) {
 
   if (isFALSE(options$sq.fig)) {
@@ -52,8 +55,8 @@ knitr::opts_hooks$set(sq.fig = function(options) {
     if ((!is.null(options$fig.width)) & (!is.null(options$fig.height))) return(options)
     # otherwise set the default wide aspect ratio
     if ((is.null(options$fig.width)) & (is.null(options$fig.height))) {
-      options$fig.width = 5
-      options$fig.height = 2.75
+      options$fig.width = 6
+      options$fig.height = 3.5
     }
   }
 
@@ -63,6 +66,10 @@ knitr::opts_hooks$set(sq.fig = function(options) {
   }
   options
 })
+
+# choices here are designed to work with the hook
+knitr::opts_chunk$set(fig.align = "center", sq.fig = FALSE,
+  fig.width = NULL, fig.height = NULL)
 
 ```
 
@@ -80,13 +87,13 @@ Chemometrics, as defined by Varmuza and Filzmoser [@Filzmoser2009], is
 
 This is an appropriately broad definition, considering the wealth of questions and tasks that can be treated by chemometric approaches.  In our case, the focus is on spectral data sets, which typically have many variables (frequencies) and relatively few samples.  Such multivariate, _high p, low n_ data sets present some algorithmic challenges, but these have been addressed by knowledgeable folks.  In particular, for both the practical and theoretical background to multivariate chemometric analysis, I strongly recommend the Varmuza/Filzmoser book [@Filzmoser2009].  Some of the functions described here are not much more than wrappers for the functions they and others have made available to the `R` community in their packages.  Another excellent text is the one by Ron Wehrens [@Wehrens2011].
 
-`ChemoSpec` was developed for the chemometric analysis of spectroscopic data, such as XRF [@Panchuk2018], UV-Vis, NMR or IR data, including MIR and NIR.  `ChemoSpec` also works with chromatographic data (see below) and less commonly encountered techniques such as circular dichroism).\footnote{`ChemoSpec` was not developed for and has not been tested with mass spectral data sets (MS), as there are other dedicated packages for this purpose.  See the [Chemometrics and Computational Physics Task View](http://cran.at.r-project.org/web/views/ChemPhys.html) for an overview.  The purpose of `ChemoSpec` is to make chemometric tools readily available to a wide range of researchers who might be new to `R`.  The approach is entirely exploratory and unsupervised, in other words, "top-down" [@Wishart2007]. `ChemoSpec` is designed to accommodate samples that have different histories, i.e., they fall into different classes, categories or groups.  Examples would be treatment and control groups, or simply different specimens (red flowers vs. blue flowers).  `ChemoSpec` is designed to be as user friendly as possible, with plenty of error checking, helpful warnings and a consistent interface.  It also produces graphics that are consistent in style and annotation, and are suitable for use in publications and posters.  Careful attention was given to writing the documentation for the functions, but this vignette serves as the best starting point for learning data analysis with `ChemoSpec`. `ChemoSpec` is not intended to duplicate the work that is typically done on the spectrometer.
+`ChemoSpec` was developed for the chemometric analysis of spectroscopic data, such as XRF [@Panchuk2018], UV-Vis, NMR or IR data, including MIR and NIR.  `ChemoSpec` also works with chromatographic data (see below) and less commonly encountered techniques such as circular dichroism).[^1] The purpose of `ChemoSpec` is to make chemometric tools readily available to a wide range of researchers who might be new to `R`.  The approach is entirely exploratory and unsupervised, in other words, "top-down" [@Wishart2007]. `ChemoSpec` is designed to accommodate samples that have different histories, i.e., they fall into different classes, categories or groups.  Examples would be treatment and control groups, or simply different specimens (red flowers vs. blue flowers).  `ChemoSpec` is designed to be as user friendly as possible, with plenty of error checking, helpful warnings and a consistent interface.  It also produces graphics that are consistent in style and annotation, and are suitable for use in publications and posters.  Careful attention was given to writing the documentation for the functions, but this vignette serves as the best starting point for learning data analysis with `ChemoSpec`. `ChemoSpec` is not intended to duplicate the work that is typically done on the spectrometer.
 
 The centerpiece of `ChemoSpec` is the `Spectra` object.  This is the place where your data is stored and made available to `R`.  Once your data in stored this way and checked, all analyses are easily carried out.  `ChemoSpec` currently ships with several built-in data sets; we'll use one called `SrE.IR` for our demonstrations.  You will see in just a moment how to access it and inspect it.
 
 I assume you have at least a bare-bones knowledge of `R` as you begin to learn `ChemoSpec`, and have a good workflow set up.  For detailed help on any function discussed here, type `?function_name` at the console.  If you type `?ChemoSpec` and click the index link at the bottom, you will see all the available functions, which is also convenient when you can't quite remember the name of a particular function.
 
-Finally, some conventions for this document:  names of `R` "objects" such as packages, functions, function arguments, and data sets are in `typewriter` font.  File names are in regular font, but blue.  The commands you issue at the console and the output are shown with a light grey background, and are colored according to use and purpose, courtesy of the excellent `knitr` package [@Xie2018].
+Finally, some conventions for this document:  names of `R` "objects" such as packages, functions, function arguments, and data sets are in `typewriter` font as are `file names`.  The commands you issue at the console and the output are shown with a light grey background, and are colored according to use and purpose, courtesy of the excellent `knitr` package [@R-knitr].
 
 By the way, if you try `ChemoSpec` and find it useful, have questions, have opinions, or have suggestions, please do let me know.  The version you are using already incorporates a great deal of user input, why not add yours?  Possible bugs and feature requests should be documented using the Github [issues](http://github.com/bryanhanson/ChemoSpec/issues) system.
 
@@ -107,9 +114,9 @@ A typical chemometrics workflow is illustrated in Figure \@ref(fig:workflow).  D
 knitr::include_graphics("MetabPreProcess.png")
 ```
 
-# Getting Data into `ChemoSpec`
+# Getting Data into ChemoSpec
 
-There are two means of importing raw data sets into `ChemoSpec`.  One is the function `files2SpectraObject`, which assumes that your raw data exist as separate files in a single directory, each file containing a frequency column and an intensity column.  A header row may or may not be present, and the data can be separated by any separation mark you like (typically comma, tab, semi-colon or space).  You may also use comma or period as the decimal mark.  These options permit data to be imported from files written by a wide variety of instruments using various conventions.\footnote{My experience is that csv files don't always have comma as the separator, and of course conventions about decimal marks vary a bit around the world.  And an instrument installed in a certain country doesn't always follow local conventions.}  It is also possible to import files in the JCAMP-DX format.
+There are two means of importing raw data sets into `ChemoSpec`.  One is the function `files2SpectraObject`, which assumes that your raw data exist as separate files in a single directory, each file containing a frequency column and an intensity column.  A header row may or may not be present, and the data can be separated by any separation mark you like (typically comma, tab, semi-colon or space).  You may also use comma or period as the decimal mark.  These options permit data to be imported from files written by a wide variety of instruments using various conventions.[^2]  It is also possible to import files in the JCAMP-DX format.
 
 The second function is `matrix2SpectraObject`, which assumes you have a single file containing a matrix of the data.  This matrix should have frequencies in the first column, and individual sample intensities in the remaining columns.  There must be a header row in the file, and it must contain the sample names (except the first entry, which marks the frequencies, is ignored).  Other than this requirement, you have all the flexibility described above.
 
@@ -119,7 +126,7 @@ It's a very good practice to name your data files using a system that encodes an
 
 The output of `files2SpectraObject` or `matrix2SpectraObject` is a `Spectra` object, which is `R`-speak for an object that contains not only your data, but other information about the data, as provided by you via the arguments to the function.
 
-Here's a typical situation.  Let's say you had a folder containing 30 NMR files of flower essential oils.  Imagine that 18 of these were from one proposed subspecies, and 12 from another.  Further, let's pretend that the question under investigation has something to do with the taxonomy of these two supposed subspecies, in other words, an investigation into whether or not they should be considered subspecies at all.  If the files were named like `sspA1.csv`}` ... `sspA18.csv` and `sspB1.csv` ... `sspB12.csv` then the following command should process the files and create the desired `Spectra` object:
+Here's a typical situation.  Let's say you had a folder containing 30 NMR files of flower essential oils.  Imagine that 18 of these were from one proposed subspecies, and 12 from another.  Further, let's pretend that the question under investigation has something to do with the taxonomy of these two supposed subspecies, in other words, an investigation into whether or not they should be considered subspecies at all.  If the files were named like `sspA1.csv` ... `sspA18.csv` and `sspB1.csv` ... `sspB12.csv` then the following command should process the files and create the desired `Spectra` object:
 
 ```{r results = "hide", eval = FALSE}
 ssp <- files2SpectraObject(
@@ -164,7 +171,7 @@ sumSpectra(SrE.IR)
 
 `sumSpectra` provides several pieces of information, and we'll discuss some of them as we go along.
 
-# Plotting the Spectra
+# Plotting Spectra
 
 Assuming that everything looks good so far, it's time to plot the spectra and inspect them.  A good practice would be to check every spectrum for artifacts and other potential problems.  There are three functions that can do this for you:
 
@@ -221,7 +228,7 @@ There are a number of data pre-processing options available for your considerati
 
 ## Correcting Baseline Drift
 
-`ChemoSpec` uses the functions in the package `baseline` to correct wandering baselines.  The function, `baselineSpectra`, can show you the original and corrected baselines if desired, which is useful for choosing a method.  Figure \@ref(fig:baseline) shows a typical usage.  Method `rfbaseline` works well for IR spectra; `retC = TRUE` puts the corrected spectra into the new `Spectra` object so we can use it going forward (and we will).
+`ChemoSpec` uses the functions in the package `baseline` to correct wandering baselines[@R-baseline].  The function, `baselineSpectra`, can show you the original and corrected baselines if desired, which is useful for choosing a method.  Figure \@ref(fig:baseline) shows a typical usage.  Method `rfbaseline` works well for IR spectra; `retC = TRUE` puts the corrected spectra into the new `Spectra` object so we can use it going forward (and we will).
 
 ```{r baseline, fig.cap = "Correcting baseline drift.", sq.fig = TRUE}
 SrE2.IR <- baselineSpectra(SrE.IR,
@@ -232,7 +239,7 @@ SrE2.IR <- baselineSpectra(SrE.IR,
 
 ## Alignment
 
-For ^1^H NMR data, it is sometimes desirable to align the spectra. This compensates in part for changes in dilution, ionic strength, or pH that can cause significant shifts for some types of protons. Spectra with broad, rolling peaks won't have this problem (UV-Vis or IR for example). `ChemoSpec` provides the `clupaSpectra` for this purpose. You can see an example [here](http://www.validnmr.com/w/index.php?title=Chemometrics).
+For ^1^H NMR data, it is sometimes desirable to align the spectra. This compensates in part for changes in dilution, ionic strength, or pH that can cause significant shifts for some types of protons. Spectra with broad, rolling peaks won't have this problem (UV-Vis or IR for example). `ChemoSpec` provides the `clupaSpectra` function for this purpose. You can see an example [here](http://www.validnmr.com/w/index.php?title=File:Wine_Alignment.png).
 
 ## Bucketing or Binning
 
@@ -280,13 +287,13 @@ SrE # gives the corresponding indices
 
 This is what is meant by "grep is greedy".  In this situation, you have three choices:
 
-* You could manually remove the problem samples (`str(SrE2.IR)`) would give you an idea of how to do that; see also below under Hierarchical Cluster Analysis).
+* You could manually remove the problem samples (`str(SrE2.IR)` would give you an idea of how to do that; see also below under Hierarchical Cluster Analysis).
 * `removeSample` also accepts indices of samples, so you could grep as above, note the index of the sample you actually want to remove, and use that in `rem.sam`.
 * If you know a bit about grep and regular expressions, you can pass a more sophisticated search pattern to `rem.sam`.
 
 ## Removing Groups
 
-`removeSample` uses the names of the samples (in `Spectra\$names`) to identify and remove individual samples from the `Spectra` object.  There is also a function `removeGroup` which will remove samples belonging to a particular group in `Spectra\$groups`.
+`removeSample` uses the names of the samples (in `Spectra$names`) to identify and remove individual samples from the `Spectra` object.  There is also a function `removeGroup` which will remove samples belonging to a particular group in `Spectra$groups`.
 
 ## Identifying \& Removing Frequencies of No Interest
 
@@ -308,7 +315,7 @@ surveySpectra2(SrE2.IR,
   main = myt)
 ```
 
-In Figure \@ref(fig:survey-1) we kept all the groups together by using argument `by.gr = FALSE`.  We also looked at the entire spectral range.  In Figure \@ref(fig:survey-3) we can look just at the carbonyl region.  The black line is the median value of intensity across the entire set of spectra.  The red lines are the upper and lower interquartile ranges which makes it pretty clear that the carbonyl region of this data set varies a lot.\footnote{A few plots in this vignette use smaller fonts; this is an artifact of using a two-column format and does not occur when creating full size plots.}
+In Figure \@ref(fig:survey-1) we kept all the groups together by using argument `by.gr = FALSE`.  We also looked at the entire spectral range.  In Figure \@ref(fig:survey-3) we can look just at the carbonyl region.  The black line is the median value of intensity across the entire set of spectra.  The red lines are the upper and lower interquartile ranges which makes it pretty clear that the carbonyl region of this data set varies a lot.
 
 
 ```{r survey-3, fig.cap = "Detail of carbonyl region."}
@@ -341,7 +348,7 @@ surveySpectra(SrE2.IR,
   ylim = c(0.0, 0.05))
 ```
 
-From a theoretical perspective, we expect this region to be devoid of interesting peaks.  In fact, even when pooling the groups the signal in this region is very weak, and the only peak present is due to atmospheric CO~2~.  We can remove this region, since it is primarily noise and artifact, with the function `removeFreq` as follows. Note that there are fewer frequency points now.
+From a theoretical perspective, we expect this region to be devoid of interesting peaks.  In fact, even when pooling the groups the signal in this region is very weak, and the only peak present is due to atmospheric CO~2~.  We can remove this region, since it is primarily noise and artifact, with the function `removeFreq` as follows. Note that there are fewer frequency points now.[^3]
 
 ```{r}
 SrE3.IR <- removeFreq(SrE2.IR,
@@ -361,7 +368,7 @@ check4Gaps(SrE3.IR$freq, SrE3.IR$data[1,])
 
 ## Hierarchical Cluster Analysis {#sec:hca}
 
- Hierarchical cluster analysis (HCA from  now on) is a clustering method (no surprise!) in which "distances" between samples are calculated and displayed in a dendrogram (a tree-like structure; these are also used in evolution and systematics where they are called cladograms).  The details behind HCA can be readily found elsewhere (Chapter 6 of \@Filzmoser2009 is a good choice).  With `ChemoSpec` you have access to any of the methods available for computing distances between samples and any of the methods for identifying clusters.  A typical example is shown in Figure \@ref(fig:hca-1).
+ Hierarchical cluster analysis (HCA from  now on) is a clustering method (no surprise!) in which "distances" between samples are calculated and displayed in a dendrogram (a tree-like structure; these are also used in evolution and systematics where they are called cladograms).  The details behind HCA can be readily found elsewhere (Chapter 6 of @Filzmoser2009 is a good choice).  With `ChemoSpec` you have access to any of the methods available for computing distances between samples and any of the methods for identifying clusters.  A typical example is shown in Figure \@ref(fig:hca-1).
 
 
 ```{r hca-1, fig.cap = "Hierarchical cluster analysis.", sq.fig = TRUE}
@@ -457,7 +464,7 @@ diagnostics <- pcaDiag(SrE3.IR, c_res,
   plot = "SD")
 ```
 
-Depending upon your data, and your interpretation of the results, you may decide that some samples should be discarded, in which case you can use `removeSample` as previously described, then repeat the PCA analysis.  The next step for most people is to determine the number of PCs needed to describe the data.  This is usually done with a scree plot as shown in Figure \@ref(fig:scree-1).  `ChemoSpec` has an alternate style scree plot which I actually think is much more informative (Figure \@ref(fig:scree-2)).
+Depending upon your data, and your interpretation of the results, you may decide that some samples should be discarded, in which case you can use `removeSample` as previously described, then repeat the PCA analysis.  The next step for most people is to determine the number of PCs needed to describe the data.  This is usually done with a scree plot as shown in Figure \@ref(fig:scree-1).  `ChemoSpec` defaults to an alternate style scree plot which I actually think is much more informative (Figure \@ref(fig:scree-2) shows a more traditional scree plot).
 
 If you are using classical PCA, you can also get a sense of the number of PCs needed via a bootstrap method, as shown in Figure \@ref(fig:boot). Note that this method is iterative and takes a bit of time.  Comparing these results to the scree plots, you'll see that the bootstrap method suggests that 4 or 5 PCs would not always be enough to reach the 95\% level, while the scree plots suggest that 2 PC are sufficient.
 
@@ -466,8 +473,8 @@ If you are using classical PCA, you can also get a sense of the number of PCs ne
 plotScree(c_res, main = myt)
 ```
 
-```{r scree-2, fig.cap = "Alternate style scree plot."}
-plotScree(c_res, style = "alt", main = myt)
+```{r scree-2, fig.cap = "Traditional style scree plot."}
+plotScree(c_res, style = "trad", main = myt)
 ```
 
 ```{r boot, fig.cap = "Bootstrap analysis for no. of principal components.", sq.fig = TRUE}
@@ -496,7 +503,7 @@ plotScores3D(SrE3.IR, c_res,
 In addition to the scores, PCA also produces loadings which tell you how each variable (frequencies in spectral applications) affect the scores.  Examining these loadings can be critical to interpreting your results.  Figure \@ref(fig:load1) gives an example.  You can see that the different carbonyl peaks have a large and opposing effect on PC 1.  PC 2 on the other hand is driven by a number of peaks, with some interesting opposing peaks in the hydrocarbon region.  While the actual analysis of the data is not our goal here, it would appear that PC 1 is sensitive to the ester vs. acid carbonyl group, and PC 2 is detecting the saturated vs. unsaturated fatty acid chains (the latter having C~sp2~-H}$ peaks).
 
 
-```{r load1, fig.cap = "Loading plot."}
+```{r load1, fig.cap = "Loading plot.", sq.fig = TRUE}
 plotLoadings(SrE3.IR, c_res,
   main = myt,
   loads = c(1, 2),
@@ -513,7 +520,7 @@ res <- plot2Loadings(SrE3.IR, c_res,
   tol = 0.002)
 ```
 
-However, a potentially more useful approach is to use an s-plot to determine which variables have the greatest influence.  A standard loadings plot (`plotLoadings`) shows you which frequency ranges contribute to which principal components, but the plot allows the vertical axis to be free.  Unless you look at the y axis scale, you get the impression that the loadings for principal component 1 etc. all contribute equally.  The function `sPlotSpectra` plots the correlation of each frequency variable with a particular score against the covariance of that frequency variable with the same score.  The result is an s-shaped plot with the most influential frequency variables in the upper right hand and lower left quadrants.  An example is shown in Figure \@ref(fig:splot-1) with a detail view in Figure \@ref(fig:splot_2).  In the latter figure you can clearly see the influence of the carbonyl peaks.  This method was reported in @Wiklund2008.
+However, a potentially more useful approach is to use an s-plot to determine which variables have the greatest influence.  A standard loadings plot (`plotLoadings`) shows you which frequency ranges contribute to which principal components, but the plot allows the vertical axis to be free.  Unless you look at the y axis scale, you get the impression that the loadings for principal component 1 etc. all contribute equally.  The function `sPlotSpectra` plots the correlation of each frequency variable with a particular score against the covariance of that frequency variable with the same score.  The result is an s-shaped plot with the most influential frequency variables in the upper right hand and lower left quadrants.  An example is shown in Figure \@ref(fig:splot-1) with a detail view in Figure \@ref(fig:splot-2).  In the latter figure you can clearly see the influence of the carbonyl peaks.  This method was reported in @Wiklund2008.
 
 
 ```{r splot-1,  fig.cap = "s-Plot to identify influential frequencies.", sq.fig = TRUE}
@@ -542,7 +549,7 @@ hcaScores(SrE3.IR,  c_res,
 
 ## ANOVA-PCA
 
-Harrington _et al._}[@Harrington2005] (and a few others -- @Pinto2008) have demonstrated a method which combines traditional ANOVA with PCA.  Standard PCA is blind to class membership, though one generally colors the points in a score plot using the known class membership.  ANOVA-PCA uses the class membership to divide the original centered data matrix into submatrices.  Each submatrix corresponds to a particular factor, and the rows of the submatrix have been replaced by the average spectrum of each level of the factor.  The original data set is thought of as a sum of these submatrices plus residual error.  The residual error is added back to each submatrix and then PCA is performed.  This is conceptually illustrated in Figures \@ref(fig:aovPCA2) and \@ref(fig:aovPCA1).
+Harrington _et al._[@Harrington2005] (and a few others -- @Pinto2008) have demonstrated a method which combines traditional ANOVA with PCA.  Standard PCA is blind to class membership, though one generally colors the points in a score plot using the known class membership.  ANOVA-PCA uses the class membership to divide the original centered data matrix into submatrices.  Each submatrix corresponds to a particular factor, and the rows of the submatrix have been replaced by the average spectrum of each level of the factor.  The original data set is thought of as a sum of these submatrices plus residual error.  The residual error is added back to each submatrix and then PCA is performed.  This is conceptually illustrated in Figures \@ref(fig:aovPCA2) and \@ref(fig:aovPCA1).
 
 ```{r aovPCA2, out.width = "80%", echo = FALSE, fig.cap = "aovPCA breaks the data into a series of submatrices."}
 knitr::include_graphics("aovPCA2.png")
@@ -552,13 +559,13 @@ knitr::include_graphics("aovPCA2.png")
 knitr::include_graphics("aovPCA1.png")
 ```
 
-ANOVA-PCA has been implemented in `ChemoSpec` via the functions `aov_pcaSpectra`, `aovPCAscores` and `aovPCAloadings`.\footnote{These functions were authored by Matt J. Keinsley.}   The idea here is that if a factor is significant, there will be separation along PC1 in a plot of PC1 vs PC2.  There are not enough groups and levels within the `SrE.IR` data set to carry out ANOVA-PCA.  However, the help page for `aov_pcaSpectra` contains an example using the `CuticleIR` data set which illustrates how to carry out the analysis.  It also demonstrates another useful function, `splitSpectraGroups` which allows you to take an existing group designation and split it into new designations.  See `?aov_pcaSpectra`.
+ANOVA-PCA has been implemented in `ChemoSpec` via the functions `aov_pcaSpectra`, `aovPCAscores` and `aovPCAloadings`.  The idea here is that if a factor is significant, there will be separation along PC1 in a plot of PC1 vs PC2.  There are not enough groups and levels within the `SrE.IR` data set to carry out ANOVA-PCA.  However, the help page for `aov_pcaSpectra` contains an example using the `CuticleIR` data set which illustrates how to carry out the analysis.  It also demonstrates another useful function, `splitSpectraGroups` which allows you to take an existing group designation and split it into new designations.  See `?aov_pcaSpectra`.
 
 ## Model-Based Clustering Using mclust
 
 PCA and HCA are techniques which are unsupervised and assume no underlying model.  HCA computes distances between pairs of spectra and groups these in an iterative fashion until the dendrogram is complete.  PCA seeks out components that maximize the variance.  While in PCA one often (and `ChemoSpec` does) displays the samples coded by their group membership, this information is not actually used in PCA; any apparent correspondence between the sample group classification and the clusters found is accidental in terms of the computation, but of course, this is what one hopes to find!
 
-`mclust` is a model-based clustering package that takes a different approach.  `mclust` assumes that there are groups within your data set, and that those groups are multivariate normally distributed.  Using an iterative approach, `mclust` samples various possible groupings within your data set, and uses a Bayesian Information Criterion (BIC) to determine which of the various groupings it finds best fits the data distribution. `mclust` looks for groups that follow certain constraints, for instance, one constraint is that all the groups found must have a spherical distribution of data points, while another allows for ellipsoidal distributions.  See the paper by Scrucca and Raftery [@Scrucca2017] for more details.  The basic idea however is that `mclust` goes looking for groups in your data set, and then you can compare the groupings it finds with the groupings you know to be true.
+`mclust` is a model-based clustering package that takes a different approach[@R-mclust].  `mclust` assumes that there are groups within your data set, and that those groups are multivariate normally distributed.  Using an iterative approach, `mclust` samples various possible groupings within your data set, and uses a Bayesian Information Criterion (BIC) to determine which of the various groupings it finds best fits the data distribution. `mclust` looks for groups that follow certain constraints, for instance, one constraint is that all the groups found must have a spherical distribution of data points, while another allows for ellipsoidal distributions.  See the paper by Scrucca and Raftery [@Scrucca2017] for more details.  The basic idea however is that `mclust` goes looking for groups in your data set, and then you can compare the groupings it finds with the groupings you know to be true.
 
 `ChemoSpec` contains several functions that interface with and extend `mclust` functions.  `mclust` first uses the BIC to determine which model best fits your data; these results are shown in Figure \@ref(fig:mclust-1).  Next, Figure \@ref(fig:mclust-2) shows the groups that `mclust` finds in the data.  It's of some interest to visually compare the score plot in Figure \@ref(fig:classPCA) with the `mclust` results in Figure \@ref(fig:mclust-2).  It looks like `mclust` groups the two outliers with some of the rest of the data.  Next, `mclust` will map the true groups onto the groups it has found.  Points in error are X-ed out.  These results can be seen in Figure \@ref(fig:mclust-3).  From this plot, you can see that `mclust` hasn't done too well with this data set.  In general, you have to be very careful about using `mclust`'s notion of an error:  it is very hard to map the found groups onto the "truth" in an algorithmic way.  I lean toward not using the "truth" option in `mclust` more and more.
 
@@ -610,14 +617,67 @@ See the help files for more detail.
 
 In `ChemoSpec`, the user may use any color name/format known to `R`.  When importing data, `ChemoSpec` will choose colors for you automatically if desired.  However, depending upon your needs, you may wish to choose colors yourself.  the current color scheme of a `Spectra` object may be determined using `sumSpectra` or changed using `conColScheme`. A fuller discussion of color issues can be found in `?colorSymbol`.
 
-In addition to colors, `Spectra` objects also contain a list of symbols, and alternative symbols.  These are useful for plotting in black and white, or when color-blind individuals will be viewing the plots.  The alternative symbols are simply lower-case letters, as these are needed for `plotScoresRGL`, and other rgl-graphics driven functions which cannot plot traditional symbols.
+In addition to colors, `Spectra` objects also contain a list of symbols, and alternative symbols.  These are useful for plotting in black and white, or when color-blind individuals will be viewing the plots.  The alternative symbols are simply lower-case letters, as these are needed for `plotScoresRGL`, and other rgl-graphics driven functions which cannot plot traditional symbols.  Figure \@ref(fig:colsym) shows some of the built in options, but as stated above, you can choose whatever you like.
+
+```{r colsym, echo = FALSE, fig.cap = "Color and symbol suggestions.", fig.width = 6, fig.height = 6}
+data(Col12)
+data(Sym12)
+data(Col8)
+data(Sym8)
+auto <- RColorBrewer::brewer.pal(8, "Set1")
+
+sp <- 0.75 # space between major plot elements
+tsp <- 0.1 # additional space between points and color swatches/descriptive text
+h <- 0.25 # height of the swatch
+y <- 0.0 # bottom of the plot, the reference point
+
+# empty plot
+plot(1:12, rep(0.0, 12),
+  type = "n", yaxt = "n", xaxt = "n", bty = "n",
+  xlab = "", ylab = "", ylim = c(0, 2.5)
+)
+text(6.5, y + h + tsp * 4 + sp * 2,
+  labels = "Color & Symbol Options", cex = 1.25, font = 2
+)
+
+# Col12
+for (i in 1:12) {
+  rect(i - 0.5, y, i + 0.5, y + h, border = NA, col = Col12[i])
+}
+points(1:12, rep(y + h + tsp, 12), pch = Sym12)
+text(6.5, y + h + tsp * 2,
+  labels = "gr.cols = 'Col12'     12 mostly paired distinct colors/symbols"
+)
+
+# Col8
+for (i in 1:8) {
+  rect(i - 0.5, y + sp, i + 0.5, y + sp + h, border = NA, col = Col8[i])
+}
+points(1:8, rep(y + h + tsp + sp, 8), pch = Sym8)
+text(4.5, y + h + tsp * 2 + sp,
+  labels = "gr.cols = 'Col8'     8 distinct colors/symbols"
+)
+
+# auto (original)
+for (i in 1:8) {
+  rect(i - 0.5, y + sp * 2, i + 0.5, y + sp * 2 + h, border = NA, col = auto[i])
+}
+points(1:8, rep(y + h + tsp + sp * 2, 8), pch = Sym8)
+text(4.5, y + h + tsp * 2 + sp * 2,
+  labels = "gr.cols = 'auto'     8 distinct colors/symbols"
+)
+```
 
 ## Related Packages
 
-Several other packages exist which do some of the same tasks as `ChemoSpec`, and do other things as well.  The package closest in functionality to `ChemoSpec` is  `hyperSpec` written by my friend and collaborator Claudia Belietes (these packages were developed independently around the same time) [@Beleites2018].  There is also a package designed to interconvert `Spectra` objects and `hyperSpec` objects, which allows one to move data between the packages more easily [@HansonMcManus2018].  There is a lot development going in the `R` ecosystem, and new packages appear steadily (and sometimes they disappear!). A good place to check these things out is the [Chemometrics and Computational Physics Task View](http://cran.at.r-project.org/web/views/ChemPhys.html).
+Several other packages exist which do some of the same tasks as `ChemoSpec`, and do other things as well.  The package closest in functionality to `ChemoSpec` is  `hyperSpec` written by my friend and collaborator Claudia Belietes (these packages were developed independently around the same time, and recently I have contributed to the development of `hyperSpec`) [@R-hyperSpec].  There is also a package designed to interconvert `Spectra` objects and `hyperSpec` objects, which allows one to move data between the packages more easily [@R-hyperChemoBridge].  There is a lot development going in the `R` ecosystem, and new packages appear steadily (and sometimes they disappear!). A good place to check these things out is the [FOSS4Spectroscopy](https://bryanhanson.github.io/FOSS4Spectroscopy/) web site which gathers information about many open source spectroscopy projects.
 
 ## Acknowledgements
 
 The development of `ChemoSpec` began while I was on sabbatical in 2007-2008, and was aided greatly by an award of a Fisher Fellowship.  These programs are coordinated by the Faculty Development Committee at DePauw, and I am very grateful to them as well as the individuals who originally created these programs.  One of my student researchers, Kelly Summers, took the data included in `CuticleIR` in the summer of 2009 as part of a preliminary study.  I am also grateful to Prof. Peter Filzmoser who answered a number of my questions related to the algorithms in his `chemometrics` package.  Finally, many people have brought bugs to my attention, suggested new features and provided fixes.  I am grateful to all of them.  Each is listed in either the code, the NEWS file or the Github issues tracker.
+
+[^1]: `ChemoSpec` was not developed for and has not been tested with mass spectral data sets (MS), as there are other dedicated packages for this purpose.  See the [Chemometrics and Computational Physics Task View](http://cran.at.r-project.org/web/views/ChemPhys.html) for an overview.
+[^2]: My experience is that csv files don't always have comma as the separator, and of course conventions about decimal marks vary a bit around the world.  And an instrument installed in a certain country doesn't always follow local conventions.
+[^3]: `removeFreq` also accepts a formula to describe the frequencies to be removed, for instance `res <- removeFreq(SrE.IR, rem.freq = low ~ 800)` will remove all frequencies from the minimum through 800.  See `?removeFreq` for further details.
 
 # References
