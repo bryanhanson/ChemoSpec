@@ -70,11 +70,12 @@ jobs:
           if (!requireNamespace("BiocManager", quietly = TRUE))
             install.packages("BiocManager")
           BiocManager::install("MassSpecWavelet")
+          install.packages("impute")
           install.packages("speaq")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("roxygen2")
-          print(installed.packages())
+          #print(installed.packages())
         shell: Rscript {0}
 
       - name: Roxygenize
