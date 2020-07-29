@@ -1,7 +1,0 @@
-pandoc: 2.9.1.1
-pkgdown: 1.4.1
-pkgdown_sha: ~
-articles:
-  ChemoSpec: ChemoSpec.html
-  IntroPCA: IntroPCA.html
-
