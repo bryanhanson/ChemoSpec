@@ -75,7 +75,7 @@ jobs:
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("roxygen2")
-          #print(installed.packages())
+          print(installed.packages())
         shell: Rscript {0}
 
       - name: Roxygenize
