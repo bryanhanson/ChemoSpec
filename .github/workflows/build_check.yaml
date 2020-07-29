@@ -71,7 +71,6 @@ jobs:
             install.packages("BiocManager")
           BiocManager::install("MassSpecWavelet")
           BiocManager::install("impute")
-          #install.packages("speaq")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("roxygen2")
