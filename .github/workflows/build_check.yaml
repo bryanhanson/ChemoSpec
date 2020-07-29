@@ -70,7 +70,7 @@ jobs:
           if (!requireNamespace("BiocManager", quietly = TRUE))
             install.packages("BiocManager")
           BiocManager::install("MassSpecWavelet")
-          install.packages("impute")
+          BiocManager::install("impute")
           install.packages("speaq")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
