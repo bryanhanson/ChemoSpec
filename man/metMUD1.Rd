@@ -6,7 +6,9 @@
 \alias{alignMUD}
 \alias{metMUD2}
 \title{Made Up NMR Data Sets}
-\format{The data is stored as a \code{\link{Spectra}} object.}
+\format{
+The data is stored as a \code{\link{Spectra}} object.
+}
 \source{
 Created using various tools.  Contact the author for a script if
 interested.

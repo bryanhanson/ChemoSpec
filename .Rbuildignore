@@ -6,3 +6,4 @@ gitignore.txt
 .Rhistory
 docs
 banner.png
+\.github

@@ -6,7 +6,9 @@
 \alias{SrE.NMR}
 \title{IR and NMR Spectra of Serenoa repens (Saw Palmetto) Oil Extracts and
 Reference Oils}
-\format{The data are stored as a \code{\link{Spectra}} object.}
+\format{
+The data are stored as a \code{\link{Spectra}} object.
+}
 \source{
 IR data collected in the author's laboratory.  NMR data collected at
 Purdue University with the generosity and assistance of Prof. Dan Raftery
