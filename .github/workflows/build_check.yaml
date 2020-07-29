@@ -24,7 +24,7 @@ jobs:
         config:
         - {os: windows-latest, r: 'release'}
         - {os: macOS-latest, r: 'release'}
-        - {os: macOS-latest, r: 'devel'}
+        #- {os: macOS-latest, r: 'devel'} # not working 28 Jul
         - {os: ubuntu-16.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
 
     env:
@@ -71,7 +71,7 @@ jobs:
             install.packages("BiocManager")
           BiocManager::install("MassSpecWavelet")
           BiocManager::install("impute")
-          install.packages("speaq")
+          #install.packages("speaq")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("roxygen2")
