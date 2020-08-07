@@ -4,6 +4,5 @@ README.md
 Rbuildignore.txt
 gitignore.txt
 .Rhistory
-docs
 banner.png
 \.github
