@@ -46,7 +46,7 @@ plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
   # Stack the requested data into a data frame for plotting
 
   names <- paste("PC", loads, "Loadings", sep = " ")
-  names <- c("Reference Spectrum", names)
+  names <- c("Ref. Spectrum", names)
   x <- rep(spectra$freq, length(loads) + 1)
 
   z <- rep(names[1], length(spectra$freq))
@@ -58,7 +58,7 @@ plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
   }
 
   z <- as.factor(z)
-  z <- relevel(z, "Reference Spectrum")
+  z <- relevel(z, "Ref. Spectrum")
   df <- data.frame(y, x, z)
 
   # Do the plot

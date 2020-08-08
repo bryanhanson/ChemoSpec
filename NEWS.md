@@ -1,6 +1,8 @@
 # ChemoSpec 5.3.xx 2020-01-23
 ## Misc.
 * Vignettes updated, and moved to html format.
+* Continuous integration for building and checking, as well as automated building of the `pkgdown` site.
+* The "Reference Spectrum" panel label in `plotLoadings` shortened to "Ref. Spectrum" in order to fit the allotted space better.
 
 # ChemoSpec 5.2.12 2020-01-23
 ## Misc.
