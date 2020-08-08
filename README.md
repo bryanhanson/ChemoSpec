@@ -1,6 +1,8 @@
 <img src="man/figures/Banner.png"/>
 
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Downloads](https://cranlogs.r-pkg.org/badges/ChemoSpec)](https://cran.r-project.org/package=ChemoSpec) [![status](https://tinyverse.netlify.com/badge/ChemoSpec)](https://CRAN.R-project.org/package=ChemoSpec)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) ![Docs Current](https://github.com/actions/ChemoSpec/workflows/Update-Pkgdown-Site/badge.svg?branch=gh-pages)
+
+[![Downloads](https://cranlogs.r-pkg.org/badges/ChemoSpec)](https://cran.r-project.org/package=ChemoSpec) [![status](https://tinyverse.netlify.com/badge/ChemoSpec)](https://CRAN.R-project.org/package=ChemoSpec)
 
 ## What is ChemoSpec?
 

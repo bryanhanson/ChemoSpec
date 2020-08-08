@@ -4,7 +4,7 @@ on:
       - master
       - devel
 
-name: Update Pkgdown Site
+name: Update-Pkgdown-Site
 
 jobs:
   pkgdown:
