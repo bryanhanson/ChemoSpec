@@ -8,11 +8,12 @@ author:
 date:  "`r Sys.Date()`"
 output:
     bookdown::html_document2:
-      base_format: rmarkdown::html_vignette
       toc: yes
       toc_depth: 2
       fig_caption: yes
-      number_sections: true # must be true for proper figure numbering
+  #    number_sections: true # must be true for proper figure numbering
+      css:
+        - vignette.css
 vignette: >
     %\VignetteIndexEntry{An R Package for Chemometric Analysis of Spectra (NMR, IR etc}
     %\VignetteKeywords{chemometrics, spectroscopy, nmr, ir, raman, cd, xrf}
@@ -24,8 +25,8 @@ bibliography:
   - chemometrics.bib
   - manuals.bib
 #biblio-style: plain
-pkgdown:
-  as_is: true
+#pkgdown:
+#  as_is: true
 ---
 
 <!-- Run a few things in the background for use later -->
