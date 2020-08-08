@@ -1,3 +1,14 @@
+<style>
+img {
+  background-color: #FFFFFF;
+  padding: 2px;
+  border: 1px solid #DDDDDD;
+  border-radius: 3px;
+  border: 1px solid #CCCCCC;
+  margin: 0 5px;
+}
+</style>
+
 <img src="man/figures/Banner.png"/>
 
 ![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg) ![Build & Check](https://github.com/bryanhanson/ChemoSpec/workflows/R-CMD-build-check/badge.svg) ![Docs Current](https://github.com/bryanhanson/ChemoSpec/workflows/Update-Pkgdown-Site/badge.svg)
