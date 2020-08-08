@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - master
-      - feature/GA
+      - devel
 
 name: Update Pkgdown Site
 
