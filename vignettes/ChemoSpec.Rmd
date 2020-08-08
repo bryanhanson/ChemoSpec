@@ -70,8 +70,7 @@ knitr::opts_hooks$set(sq.fig = function(options) {
 
 # choices here are designed to work with the hook
 knitr::opts_chunk$set(fig.align = "center", sq.fig = FALSE,
-  fig.width = NULL, fig.height = NULL, out.width = "80%",
-  fig.path = "man/figures/")
+  fig.width = NULL, fig.height = NULL, out.width = "80%")
 ```
 
 This vignette is based upon `ChemoSpec` version `r desc$Version`.
