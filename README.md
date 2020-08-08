@@ -1,7 +1,7 @@
 <style>
 img {
   background-color: #FFFFFF;
-  padding: 2px;
+  padding: 10px;
   border: 1px solid #DDDDDD;
   border-radius: 3px;
   border: 1px solid #CCCCCC;
