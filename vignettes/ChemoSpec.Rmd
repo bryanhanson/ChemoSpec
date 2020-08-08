@@ -46,7 +46,7 @@ desc <- packageDescription("ChemoSpec")
 # Stuff specifically for knitr:
 
 # Create a temp bib file w/citations of installed pkgs, on the fly
-knitr::write_bib(c("knitr", "mclust", "hyperChemoBridge", "baseline", "hyperSpec"), file = "manuals.bib")
+knitr::write_bib(c("knitr", "mclust", "baseline", "hyperSpec"), file = "manuals.bib")
 
 # Hook for figure size control
 knitr::opts_hooks$set(sq.fig = function(options) {
@@ -62,8 +62,8 @@ knitr::opts_hooks$set(sq.fig = function(options) {
   }
 
   if (isTRUE(options$sq.fig)) {
-    options$fig.width = 5
-    options$fig.height = 5
+    options$fig.width = 4
+    options$fig.height = 4
   }
   options
 })

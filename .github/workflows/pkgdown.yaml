@@ -39,12 +39,16 @@ jobs:
 
       - name: Install dependencies
         run: |
-          # need to install MassSpecWavelet from Bioconductor
+          # Install package dependencies
+          # Need to install MassSpecWavelet from Bioconductor
           if (!requireNamespace("BiocManager", quietly = TRUE))
             install.packages("BiocManager")
           BiocManager::install("MassSpecWavelet")
           BiocManager::install("impute")
           remotes::install_deps(dependencies = TRUE)
+          remotes::install_cran("hyperSpec")
+
+          # Install pkgs needed for this script
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("roxygen2")
           remotes::install_cran("pkgdown")
