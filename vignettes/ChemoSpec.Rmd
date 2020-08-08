@@ -12,8 +12,8 @@ output:
       toc_depth: 2
       fig_caption: yes
       number_sections: false
-#      css:
-#        - vignette.css
+      css:
+        - vignette.css
 vignette: >
     %\VignetteIndexEntry{An R Package for Chemometric Analysis of Spectra (NMR, IR etc}
     %\VignetteKeywords{chemometrics, spectroscopy, nmr, ir, raman, cd, xrf}
@@ -139,7 +139,7 @@ ssp <- files2SpectraObject(
   out.file = "subsp")
 ```
 
-This causes `files2SpectraObject` to inspect the file names for the strings `"sspA"` and `"sspB"` and use these to assign the samples into groups.  Samples in `sspA*.csv` files will be assigned the color red and `sspB*.csv` will be assigned blue (see Section \@ref(sec:colsym) for some suggestions about planning ahead on color choices, as well as `?colorSymbol`).   After running this command, a new file called `subsp.RData` will be in your directory, and and a `Spectra` object called `ssp` will be in your workspace read for exploration.  At a later date, you don't have to re-import your data, you can use the saved version and give it whatever name you like as follows (function `loadObject` is from package `R.utils`):
+This causes `files2SpectraObject` to inspect the file names for the strings `"sspA"` and `"sspB"` and use these to assign the samples into groups.  Samples in `sspA*.csv` files will be assigned the color red and `sspB*.csv` will be assigned blue (see Section \@ref(sec:colsymsec) for some suggestions about planning ahead on color choices, as well as `?colorSymbol`).   After running this command, a new file called `subsp.RData` will be in your directory, and and a `Spectra` object called `ssp` will be in your workspace read for exploration.  At a later date, you don't have to re-import your data, you can use the saved version and give it whatever name you like as follows (function `loadObject` is from package `R.utils`):
 
 ```{r results = "hide", eval = FALSE}
 SubspeciesNMR <- loadObject("subsp.RData")
@@ -614,7 +614,7 @@ See the help files for more detail.
 * `sgfSpectra`: Apply Savitzky-Golay filters.
 * `plotSpectraDist`: Plot the distance between each spectrum and a reference spectrum.
 
-## Color and Symbol Options {#sec:colsym}
+## Color and Symbol Options {#sec:colsymsec}
 
 In `ChemoSpec`, the user may use any color name/format known to `R`.  When importing data, `ChemoSpec` will choose colors for you automatically if desired.  However, depending upon your needs, you may wish to choose colors yourself.  the current color scheme of a `Spectra` object may be determined using `sumSpectra` or changed using `conColScheme`. A fuller discussion of color issues can be found in `?colorSymbol`.
 
