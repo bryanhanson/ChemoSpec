@@ -3,14 +3,13 @@ on:
     branches:
       - master
       - devel
-      - feature/GA
 
   pull_request:
     branches:
       - master
       - devel
 
-name: R-CMD-build-check
+name: R-CMD-Build-Check
 
 jobs:
   R-CMD-check:
