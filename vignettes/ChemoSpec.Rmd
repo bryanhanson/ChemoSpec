@@ -11,7 +11,7 @@ output:
       toc: yes
       toc_depth: 2
       fig_caption: yes
-  #    number_sections: true # must be true for proper figure numbering
+      number_sections: false
       css:
         - vignette.css
 vignette: >
