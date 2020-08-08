@@ -1,4 +1,6 @@
-# ChemoSpec 5.3.1 2020-xx-xx
+# ChemoSpec 5.3.xx 2020-01-23
+## Misc.
+* Vignettes updated, and moved to html format.
 
 # ChemoSpec 5.2.12 2020-01-23
 ## Misc.
