@@ -1,6 +1,6 @@
 template:
   params:
-    bootswatch: cerulean
+    bootswatch: united
 
 reference:
 - title: "Importing Data"
