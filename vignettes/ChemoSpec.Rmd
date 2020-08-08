@@ -11,7 +11,7 @@ output:
       toc: yes
       toc_depth: 2
       fig_caption: yes
-      number_sections: false
+      number_sections: true
       css:
         - vignette.css
 vignette: >
