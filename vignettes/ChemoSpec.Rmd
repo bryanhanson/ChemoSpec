@@ -11,7 +11,7 @@ output:
       toc: yes
       toc_depth: 2
       fig_caption: yes
-      number_sections: true
+      number_sections: true # needed for section cross-refs to work
       css:
         - vignette.css
 vignette: >
@@ -26,7 +26,7 @@ bibliography:
   - manuals.bib
 #biblio-style: plain
 pkgdown:
-  as_is: true
+  as_is: true # needed for fig cross refs to work
 ---
 
 <!-- Run a few things in the background for use later -->
@@ -62,15 +62,15 @@ knitr::opts_hooks$set(sq.fig = function(options) {
   }
 
   if (isTRUE(options$sq.fig)) {
-    options$fig.width = 4
-    options$fig.height = 4
+    options$fig.width = 5
+    options$fig.height = 5
   }
   options
 })
 
 # choices here are designed to work with the hook
 knitr::opts_chunk$set(fig.align = "center", sq.fig = FALSE,
-  fig.width = NULL, fig.height = NULL)
+  fig.width = NULL, fig.height = NULL, out.width = "80%")
 
 ```
 
