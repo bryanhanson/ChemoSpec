@@ -12,8 +12,8 @@ output:
       toc_depth: 2
       fig_caption: yes
       number_sections: true # needed for section cross-refs to work
-      css:
-        - vignette.css
+#      css:
+#        - vignette.css
 vignette: >
     %\VignetteIndexEntry{An R Package for Chemometric Analysis of Spectra (NMR, IR etc}
     %\VignetteKeywords{chemometrics, spectroscopy, nmr, ir, raman, cd, xrf}
