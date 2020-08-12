@@ -4,5 +4,6 @@ README.md
 Rbuildignore.txt
 gitignore.txt
 .Rhistory
-banner.png
+man/figures/banner.png
 \.github
+\\.DS_Store
