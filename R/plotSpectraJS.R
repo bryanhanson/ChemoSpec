@@ -23,7 +23,7 @@
 #' @param minify Logical.  Shall the JavaScript be minified?  This improves
 #' performance.  However, it requires package \code{js} which in turn requires
 #' package \code{V8}.  The latter is not available on all platforms.  Details
-#' may be available at \url{https://github.com/jeroenooms/v8}
+#' may be available at \url{https://github.com/jeroen/V8}
 #'
 #' @return None; side effect is an interactive web page.  The temporary
 #' directory containing the files that drive the web page is written to the

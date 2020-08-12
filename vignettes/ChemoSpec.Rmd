@@ -7,7 +7,8 @@ author:
         1. Professor Emeritus of Chemistry & Biochemistry, DePauw University, Greencastle IN USA.
 date:  "`r Sys.Date()`"
 output:
-    bookdown::html_document2:
+#    bookdown::html_document2: # use for pkgdown site
+    bookdown::pdf_document2: # use for CRAN to keep size down
       toc: yes
       toc_depth: 2
       fig_caption: yes
@@ -23,8 +24,8 @@ bibliography:
   - chemometrics.bib
   - manuals.bib
 #biblio-style: plain
-pkgdown:
-  as_is: true # needed for fig cross refs to work
+#pkgdown:
+#  as_is: true # needed for fig cross refs to work
 ---
 
 <!-- Run a few things in the background for use later -->
@@ -69,6 +70,7 @@ knitr::opts_hooks$set(sq.fig = function(options) {
 # choices here are designed to work with the hook
 knitr::opts_chunk$set(fig.align = "center", sq.fig = FALSE,
   fig.width = NULL, fig.height = NULL, out.width = "80%")
+
 ```
 
 This vignette is based upon `ChemoSpec` version `r desc$Version`.
