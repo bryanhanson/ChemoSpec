@@ -45,7 +45,7 @@ desc <- packageDescription("ChemoSpec")
 # Stuff specifically for knitr:
 
 # Create a temp bib file w/citations of installed pkgs, on the fly
-knitr::write_bib(c("knitr", "mclust", "baseline", "hyperSpec"), file = "manuals.bib")
+knitr::write_bib(c("knitr", "mclust", "baseline", "hyperSpec"), file = "manuals.bib", prefix = "R_")
 
 # Hook for figure size control
 knitr::opts_hooks$set(sq.fig = function(options) {
@@ -93,7 +93,7 @@ The centerpiece of `ChemoSpec` is the `Spectra` object.  This is the place where
 
 I assume you have at least a bare-bones knowledge of `R` as you begin to learn `ChemoSpec`, and have a good workflow set up.  For detailed help on any function discussed here, type `?function_name` at the console.  If you type `?ChemoSpec` and click the index link at the bottom, you will see all the available functions, which is also convenient when you can't quite remember the name of a particular function.
 
-Finally, some conventions for this document:  names of `R` "objects" such as packages, functions, function arguments, and data sets are in `typewriter` font as are `file names`.  The commands you issue at the console and the output are shown with a light grey background, and are colored according to use and purpose, courtesy of the excellent `knitr` package [@R-knitr].
+Finally, some conventions for this document:  names of `R` "objects" such as packages, functions, function arguments, and data sets are in `typewriter` font as are `file names`.  The commands you issue at the console and the output are shown with a light grey background, and are colored according to use and purpose, courtesy of the excellent `knitr` package [@R_knitr].
 
 By the way, if you try `ChemoSpec` and find it useful, have questions, have opinions, or have suggestions, please do let me know.  The version you are using already incorporates a great deal of user input, why not add yours?  Possible bugs and feature requests should be documented using the Github [issues](http://github.com/bryanhanson/ChemoSpec/issues) system.
 
@@ -228,7 +228,7 @@ There are a number of data pre-processing options available for your considerati
 
 ## Correcting Baseline Drift
 
-`ChemoSpec` uses the functions in the package `baseline` to correct wandering baselines[@R-baseline].  The function, `baselineSpectra`, can show you the original and corrected baselines if desired, which is useful for choosing a method.  Figure \@ref(fig:baseline) shows a typical usage.  Method `rfbaseline` works well for IR spectra; `retC = TRUE` puts the corrected spectra into the new `Spectra` object so we can use it going forward (and we will).
+`ChemoSpec` uses the functions in the package `baseline` to correct wandering baselines[@R_baseline].  The function, `baselineSpectra`, can show you the original and corrected baselines if desired, which is useful for choosing a method.  Figure \@ref(fig:baseline) shows a typical usage.  Method `rfbaseline` works well for IR spectra; `retC = TRUE` puts the corrected spectra into the new `Spectra` object so we can use it going forward (and we will).
 
 ```{r baseline, fig.cap = "Correcting baseline drift.", sq.fig = TRUE}
 SrE2.IR <- baselineSpectra(SrE.IR,
@@ -565,7 +565,7 @@ ANOVA-PCA has been implemented in `ChemoSpec` via the functions `aov_pcaSpectra`
 
 PCA and HCA are techniques which are unsupervised and assume no underlying model.  HCA computes distances between pairs of spectra and groups these in an iterative fashion until the dendrogram is complete.  PCA seeks out components that maximize the variance.  While in PCA one often (and `ChemoSpec` does) displays the samples coded by their group membership, this information is not actually used in PCA; any apparent correspondence between the sample group classification and the clusters found is accidental in terms of the computation, but of course, this is what one hopes to find!
 
-`mclust` is a model-based clustering package that takes a different approach[@R-mclust].  `mclust` assumes that there are groups within your data set, and that those groups are multivariate normally distributed.  Using an iterative approach, `mclust` samples various possible groupings within your data set, and uses a Bayesian Information Criterion (BIC) to determine which of the various groupings it finds best fits the data distribution. `mclust` looks for groups that follow certain constraints, for instance, one constraint is that all the groups found must have a spherical distribution of data points, while another allows for ellipsoidal distributions.  See the paper by Scrucca and Raftery [@Scrucca2017] for more details.  The basic idea however is that `mclust` goes looking for groups in your data set, and then you can compare the groupings it finds with the groupings you know to be true.
+`mclust` is a model-based clustering package that takes a different approach[@R_mclust].  `mclust` assumes that there are groups within your data set, and that those groups are multivariate normally distributed.  Using an iterative approach, `mclust` samples various possible groupings within your data set, and uses a Bayesian Information Criterion (BIC) to determine which of the various groupings it finds best fits the data distribution. `mclust` looks for groups that follow certain constraints, for instance, one constraint is that all the groups found must have a spherical distribution of data points, while another allows for ellipsoidal distributions.  See the paper by Scrucca and Raftery [@Scrucca2017] for more details.  The basic idea however is that `mclust` goes looking for groups in your data set, and then you can compare the groupings it finds with the groupings you know to be true.
 
 `ChemoSpec` contains several functions that interface with and extend `mclust` functions.  `mclust` first uses the BIC to determine which model best fits your data; these results are shown in Figure \@ref(fig:mclust-1).  Next, Figure \@ref(fig:mclust-2) shows the groups that `mclust` finds in the data.  It's of some interest to visually compare the score plot in Figure \@ref(fig:classPCA) with the `mclust` results in Figure \@ref(fig:mclust-2).  It looks like `mclust` groups the two outliers with some of the rest of the data.  Next, `mclust` will map the true groups onto the groups it has found.  Points in error are X-ed out.  These results can be seen in Figure \@ref(fig:mclust-3).  From this plot, you can see that `mclust` hasn't done too well with this data set.  In general, you have to be very careful about using `mclust`'s notion of an error:  it is very hard to map the found groups onto the "truth" in an algorithmic way.  I lean toward not using the "truth" option in `mclust` more and more.
 
@@ -670,7 +670,7 @@ text(4.5, y + h + tsp * 2 + sp * 2,
 
 ## Related Packages
 
-Several other packages exist which do some of the same tasks as `ChemoSpec`, and do other things as well.  The package closest in functionality to `ChemoSpec` is  `hyperSpec` written by my friend and collaborator Claudia Belietes (these packages were developed independently around the same time, and recently I have contributed to the development of `hyperSpec`) [@R-hyperSpec].  There is also a package designed to interconvert `Spectra` objects and `hyperSpec` objects, which allows one to move data between the packages more easily [@hyperChemoBridge].  There is a lot development going in the `R` ecosystem, and new packages appear steadily (and sometimes they disappear!). A good place to check these things out is the [FOSS4Spectroscopy](https://bryanhanson.github.io/FOSS4Spectroscopy/) web site which gathers information about many open source spectroscopy projects.
+Several other packages exist which do some of the same tasks as `ChemoSpec`, and do other things as well.  The package closest in functionality to `ChemoSpec` is  `hyperSpec` written by my friend and collaborator Claudia Belietes (these packages were developed independently around the same time, and recently I have contributed to the development of `hyperSpec`) [@R_hyperSpec].  There is also a package designed to interconvert `Spectra` objects and `hyperSpec` objects, which allows one to move data between the packages more easily [@hyperChemoBridge].  There is a lot development going in the `R` ecosystem, and new packages appear steadily (and sometimes they disappear!). A good place to check these things out is the [FOSS4Spectroscopy](https://bryanhanson.github.io/FOSS4Spectroscopy/) web site which gathers information about many open source spectroscopy projects.
 
 ## Acknowledgements
 
