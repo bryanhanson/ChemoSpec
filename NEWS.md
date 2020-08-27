@@ -1,4 +1,4 @@
-# ChemoSpec 5.3.xx 2020-08-09
+# ChemoSpec 5.3.2 2020-08-09
 ## Misc.
 * Vignettes updated, and moved to html format.
 * Continuous integration for building and checking, as well as automated building of the `pkgdown` documentation site.
