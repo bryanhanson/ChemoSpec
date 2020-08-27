@@ -64,7 +64,8 @@ Suggests:
   amap,
   rmarkdown,
   bookdown,
-  chemometrics
+  chemometrics,
+  hyperSpec
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE

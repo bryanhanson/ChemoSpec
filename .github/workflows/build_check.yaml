@@ -2,12 +2,6 @@ on:
   push:
     branches:
       - master
-      - devel
-
-  pull_request:
-    branches:
-      - master
-      - devel
 
 name: R-CMD-Build-Check
 
@@ -70,6 +64,7 @@ jobs:
             install.packages("BiocManager")
           BiocManager::install("MassSpecWavelet")
           BiocManager::install("impute")
+          remotes::install_cran("hyperSpec")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("roxygen2")
