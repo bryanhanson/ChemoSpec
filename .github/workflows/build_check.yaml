@@ -3,7 +3,7 @@ on:
     branches:
       - master
 
-name: R-CMD-Build-Check
+name: Build-Check
 
 jobs:
   R-CMD-check:

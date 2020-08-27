@@ -3,7 +3,7 @@ on:
     branches:
       - master
 
-name: Update-Pkgdown-Site
+name: Update-Docs
 
 jobs:
   pkgdown:
