@@ -7,8 +7,8 @@ author:
         1. Professor Emeritus of Chemistry & Biochemistry, DePauw University, Greencastle IN USA.
 date:  "`r Sys.Date()`"
 output:
-    bookdown::html_document2: # use for pkgdown site
-#    bookdown::pdf_document2: # use for CRAN to keep size down
+#    bookdown::html_document2: # use for pkgdown site
+    bookdown::pdf_document2: # use for CRAN to keep size down
       toc: yes
       toc_depth: 2
       fig_caption: yes
@@ -94,7 +94,7 @@ I assume you have at least a bare-bones knowledge of `R` as you begin to learn `
 
 Finally, some conventions for this document:  names of `R` "objects" such as packages, functions, function arguments, and data sets are in `typewriter` font as are `file names`.  The commands you issue at the console and the output are shown with a light grey background, and are colored according to use and purpose, courtesy of the excellent `knitr` package [@R_knitr].
 
-By the way, if you try `ChemoSpec` and find it useful, have questions, have opinions, or have suggestions, please do let me know.  The version you are using already incorporates a great deal of user input, why not add yours?  Possible bugs and feature requests should be documented using the Github [issues](http://github.com/bryanhanson/ChemoSpec/issues) system.
+By the way, if you try `ChemoSpec` and find it useful, have questions, have opinions, or have suggestions, please do let me know.  The version you are using already incorporates a great deal of user input, why not add yours?  Possible bugs and feature requests should be documented using the Github [issues](https://github.com/bryanhanson/ChemoSpec/issues) system.
 
 # A Sample Workflow
 
@@ -675,7 +675,7 @@ Several other packages exist which do some of the same tasks as `ChemoSpec`, and
 
 The development of `ChemoSpec` began while I was on sabbatical in 2007-2008, and was aided greatly by an award of a Fisher Fellowship.  These programs are coordinated by the Faculty Development Committee at DePauw, and I am very grateful to them as well as the individuals who originally created these programs.  One of my student researchers, Kelly Summers, took the data included in `CuticleIR` in the summer of 2009 as part of a preliminary study.  I am also grateful to Prof. Peter Filzmoser who answered a number of my questions related to the algorithms in his `chemometrics` package.  Finally, many people have brought bugs to my attention, suggested new features and provided fixes.  I am grateful to all of them.  Each is listed in either the code, the NEWS file or the Github issues tracker.
 
-[^1]: `ChemoSpec` was not developed for and has not been tested with mass spectral data sets (MS), as there are other dedicated packages for this purpose.  See the [Chemometrics and Computational Physics Task View](http://cran.at.r-project.org/web/views/ChemPhys.html) for an overview.
+[^1]: `ChemoSpec` was not developed for and has not been tested with mass spectral data sets (MS), as there are other dedicated packages for this purpose.  See the [Chemometrics and Computational Physics Task View](https://cran.r-project.org/view=ChemPhys) for an overview.
 [^2]: My experience is that csv files don't always have comma as the separator, and of course conventions about decimal marks vary a bit around the world.  And an instrument installed in a certain country doesn't always follow local conventions.
 [^3]: `removeFreq` also accepts a formula to describe the frequencies to be removed, for instance `res <- removeFreq(SrE.IR, rem.freq = low ~ 800)` will remove all frequencies from the minimum through 800.  See `?removeFreq` for further details.
 

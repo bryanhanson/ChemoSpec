@@ -1,3 +1,11 @@
+# ChemoSpec 5.3.xxxxxx
+## Changes in ChemoSpecUtils that affect ChemoSpec
+* Documentation of `...` in `sumSpectra` corrected to show how to pass `tol` to `check4Gaps`.
+* Option to use `Col7` a palette of 7 colorblind-friendly colors added to `files2SpectraObject` documentation.
+
+## Misc.
+* Checked against `R` 4.04 RC
+
 # ChemoSpec 5.3.2 2020-08-09
 ## Misc.
 * Vignettes updated, and moved to html format.
