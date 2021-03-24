@@ -619,6 +619,7 @@ In `ChemoSpec`, the user may use any color name/format known to `R`.  When impor
 In addition to colors, `Spectra` objects also contain a list of symbols, and alternative symbols.  These are useful for plotting in black and white, or when color-blind individuals will be viewing the plots.  The alternative symbols are simply lower-case letters, as these are needed for `plotScoresRGL`, and other rgl-graphics driven functions which cannot plot traditional symbols.  Figure \@ref(fig:colsym) shows some of the built in options, but as stated above, you can choose whatever you like.
 
 ```{r colsym, echo = FALSE, fig.cap = "Color and symbol suggestions.", fig.width = 6, fig.height = 6}
+data(Col7)
 data(Col12)
 data(Sym12)
 data(Col8)
@@ -626,45 +627,55 @@ data(Sym8)
 auto <- RColorBrewer::brewer.pal(8, "Set1")
 
 sp <- 0.75 # space between major plot elements
-tsp <- 0.1 # additional space between points and color swatches/descriptive text
+tsp <- 0.15 # additional space between points and color swatches/descriptive text
 h <- 0.25 # height of the swatch
 y <- 0.0 # bottom of the plot, the reference point
 
 # empty plot
 plot(1:12, rep(0.0, 12),
   type = "n", yaxt = "n", xaxt = "n", bty = "n",
-  xlab = "", ylab = "", ylim = c(0, 2.5)
-)
-text(6.5, y + h + tsp * 4 + sp * 2,
-  labels = "Color & Symbol Options", cex = 1.25, font = 2
-)
+   xlab = "", ylab = "", ylim = c(0, 3.5)
+ )
+ text(6.5, y + h + tsp * 4 + sp * 3.5,
+   labels = "Automatic Color & Symbol Options", cex = 1.25, font = 2
+ )
 
 # Col12
-for (i in 1:12) {
-  rect(i - 0.5, y, i + 0.5, y + h, border = NA, col = Col12[i])
-}
-points(1:12, rep(y + h + tsp, 12), pch = Sym12)
-text(6.5, y + h + tsp * 2,
-  labels = "gr.cols = 'Col12'     12 mostly paired distinct colors/symbols"
-)
+ for (i in 1:12) {
+   rect(i - 0.5, y, i + 0.5, y + h, border = NA, col = Col12[i])
+ }
+ points(1:12, rep(y + h + tsp, 12), pch = Sym12)
+ text(0.6, y + h + tsp * 2, adj = 0,
+   labels = "gr.cols = 'Col12'     12 mostly paired distinct colors/symbols"
+ )
 
 # Col8
-for (i in 1:8) {
-  rect(i - 0.5, y + sp, i + 0.5, y + sp + h, border = NA, col = Col8[i])
-}
-points(1:8, rep(y + h + tsp + sp, 8), pch = Sym8)
-text(4.5, y + h + tsp * 2 + sp,
-  labels = "gr.cols = 'Col8'     8 distinct colors/symbols"
-)
+ for (i in 1:8) {
+   rect(i - 0.5, y + sp, i + 0.5, y + sp + h, border = NA, col = Col8[i])
+ }
+ points(1:8, rep(y + h + tsp + sp, 8), pch = Sym8)
+ text(0.6, y + h + tsp * 2 + sp, adj = 0,
+   labels = "gr.cols = 'Col8'     8 distinct colors/symbols"
+ )
 
 # auto (original)
-for (i in 1:8) {
-  rect(i - 0.5, y + sp * 2, i + 0.5, y + sp * 2 + h, border = NA, col = auto[i])
-}
-points(1:8, rep(y + h + tsp + sp * 2, 8), pch = Sym8)
-text(4.5, y + h + tsp * 2 + sp * 2,
-  labels = "gr.cols = 'auto'     8 distinct colors/symbols"
-)
+ for (i in 1:8) {
+   rect(i - 0.5, y + sp * 2, i + 0.5, y + sp * 2 + h, border = NA, col = auto[i])
+ }
+ points(1:8, rep(y + h + tsp + sp * 2, 8), pch = Sym8)
+ text(0.6, y + h + tsp * 2 + sp * 2, adj = 0,
+   labels = "gr.cols = 'auto'     8 distinct colors/symbols"
+ )
+
+# colorblind-friendly
+ for (i in 1:7) {
+   rect(i - 0.5, y + sp * 3, i + 0.5, y + sp * 3 + h, border = NA, col = Col7[i])
+ }
+ points(1:7, rep(y + h + tsp + sp * 3, 7), pch = Sym8[1:7])
+ text(0.6, y + h + tsp * 2 + sp * 3, adj = 0,
+   labels = "gr.cols = 'Col7'     7 colorblind-friendly colors"
+ )
+
 ```
 
 ## Related Packages

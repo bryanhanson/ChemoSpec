@@ -1,4 +1,4 @@
-# ChemoSpec 5.3.xxxxxx Date
+# ChemoSpec 5.3.11 2021-03-24
 ## Changes in ChemoSpecUtils that affect ChemoSpec
 * Documentation of `...` in `sumSpectra` corrected to show how to pass `tol` to `check4Gaps`.
 * Option to use `Col7` a palette of 7 colorblind-friendly colors added to `files2SpectraObject` documentation.
