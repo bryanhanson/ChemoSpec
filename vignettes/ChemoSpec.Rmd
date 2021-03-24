@@ -7,8 +7,8 @@ author:
         1. Professor Emeritus of Chemistry & Biochemistry, DePauw University, Greencastle IN USA.
 date:  "`r Sys.Date()`"
 output:
-    bookdown::html_document2: # use for pkgdown site
-#    bookdown::pdf_document2: # use for CRAN to keep size down
+#    bookdown::html_document2: # use for pkgdown site
+    bookdown::pdf_document2: # use for CRAN to keep size down; breaks GHA
       toc: yes
       toc_depth: 2
       fig_caption: yes
