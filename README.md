@@ -6,7 +6,7 @@
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)]() [![Build & Check](https://github.com/bryanhanson/ChemoSpec/workflows/Build-Check/badge.svg)]() [![Docs Current](https://github.com/bryanhanson/ChemoSpec/workflows/Update-Docs/badge.svg)]()
 
-[![CRAN status](https://www.r-pkg.org/badges/version-last-release/ChemoSpec)]() [![metacran downloads](https://cranlogs.r-pkg.org/badges/grand-total/ChemoSpec)]() [![Downloads](https://cranlogs.r-pkg.org/badges/ChemoSpec)]() [![status](https://tinyverse.netlify.com/badge/ChemoSpec)]() [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md) 
+[![CRAN status](https://www.r-pkg.org/badges/version-last-release/ChemoSpec)]() [![metacran downloads](https://cranlogs.r-pkg.org/badges/grand-total/ChemoSpec)]() [![Downloads](https://cranlogs.r-pkg.org/badges/ChemoSpec)]() [![status](https://tinyverse.netlify.com/badge/ChemoSpec)]() [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 ## What is ChemoSpec?
 
@@ -44,6 +44,9 @@ To see a pdf version of the vignette, use the following.  For the html version, 
 ````r
 browseVignettes("ChemoSpec")
 ````
+### Contributing
+
+If you are interested in contributing to `ChemoSpec`, first, thank you!  Please take a look at the code of conduct and the contributing documents.
 
 ### License Information
 
