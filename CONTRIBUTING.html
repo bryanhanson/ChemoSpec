@@ -132,6 +132,49 @@
 <li>Github Actions are used to automate certain tasks. Pushing the <code>master</code> or <code>devel</code> branches will cause a build and check to occur. Pushing the <code>master</code> branch will cause the documentation to be updated. The scripts controlling these actions are in <code>.github/workflows</code>.</li>
 </ul>
 </div>
+<div id="bugs--feature-requests" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bugs--feature-requests" class="anchor"></a>Bugs &amp; Feature Requests</h3>
+<p>If you think you have found a bug, or at least undesirable behavior, please file an <a href="https://github.com/bryanhanson/ChemoSpec/issues">issue</a> (after checking the list of active issues). Be sure that your version of <code>R</code> and all packages are up-to-date. Then include a reproducible example demonstrating the problem, preferably using one of the built-in data sets. Feature requests may be made in the same manner.</p>
+</div>
+<div id="at-a-larger-scale" class="section level3">
+<h3 class="hasAnchor">
+<a href="#at-a-larger-scale" class="anchor"></a>At a Larger Scale</h3>
+<div id="set-up-your-work-environment" class="section level4">
+<h4 class="hasAnchor">
+<a href="#set-up-your-work-environment" class="anchor"></a>Set Up Your Work Environment</h4>
+<ul>
+<li>Make sure your version of <code>R</code> is up-to-date (the current release or the release candidate).</li>
+<li>Make sure all needed packages are installed and up-to-date. You can find them in <code>DESCRIPTION</code>. Some packages rely on packages from Bioconductor, so be sure to run the standard updates from there as well.</li>
+<li>Read the Infrastructure section above.</li>
+<li>You will need to know how to use Git and how to build and check <code>R</code> packages. If you are using RStudio there are some handy menu actions provided. There are also varous <code>R</code> packages that will do some of the work. Or you can go old school. You’ll need to be familiar with <code>roxygen2</code> style documentation.</li>
+</ul>
+</div>
+<div id="making-changes" class="section level4">
+<h4 class="hasAnchor">
+<a href="#making-changes" class="anchor"></a>Making Changes</h4>
+<ul>
+<li>Fork the package and clone to your computer. Keep your local copy sync’ed with upstream changes.</li>
+<li>Create a branch for your upcoming contribution (usually this will be named …)</li>
+<li>Before any changes, build and check using the <code>--as-cran</code> setting, and fix any issues (which hopefully don’t involve code problems, but rather additional tweaks to your local build environment).</li>
+<li>Make the changes you have in mind.
+<ul>
+<li>Please use frequent git commit messages that clearly state what you are doing.</li>
+<li>Does your work require changes to <code>.Rbuildignore</code>, <code>.gitignore</code>?</li>
+<li>Update the documentation as needed. We use <code>roxgyen2</code>
+</li>
+<li>Style your code using <code>styler</code> with the default settings. Style only the file you are working on.</li>
+<li>Write any unit tests if needed. Unit tests go into the function file using the <code>roxygen2</code> style tags provided by <code>roxut</code>. Unit tests use the <code>tinytest</code> framework.</li>
+<li>If your changes are user-facing, add a bullet to the <code>NEWS.md</code> file.</li>
+</ul>
+</li>
+<li>Once again, build and check locally using the <code>--as-cran</code> setting. Fix any problems. Do not skip this step.</li>
+<li>If your code (may possibly) introduce platform-dependent behavior, check the package using win-builder.</li>
+<li>Create a pull request. The body of your pull request should include language along the lines of “fixes issue #xyz”.</li>
+<li>Wait for feedback.</li>
+</ul>
+</div>
+</div>
 </div>
 
   </div>
