@@ -45,9 +45,14 @@ To see a pdf version of the vignette, use the following.  For the html version, 
 ````r
 browseVignettes("ChemoSpec")
 ````
+
+### Code of Conduct
+
+This project is released with a [Contributor Code of Conduct](https://bryanhanson.github.io/ChemoSpec/CODE_OF_CONDUCT.html).  By contributing, you agree to abide by its terms.
+
 ### Contributing
 
-If you are interested in contributing to `ChemoSpec`, first, thank you!  Please take a look at the code of conduct and the contributing documents.
+Coming soon.
 
 ### License Information
 
