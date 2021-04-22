@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Guidelines for Contributors DRAFT / WIP • ChemoSpec</title>
+<title>Guidelines for Contributors • ChemoSpec</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Guidelines for Contributors DRAFT / WIP" />
+<meta property="og:title" content="Guidelines for Contributors" />
 
 
 
@@ -113,64 +113,87 @@
 <div class="row">
   <div class="contents col-md-9">
     <div class="page-header">
-      <h1>Guidelines for Contributors DRAFT / WIP</h1>
+      <h1>Guidelines for Contributors</h1>
     </div>
 
-<div id="guidelines-for-contributors-draft--wip" class="section level1">
+<div id="guidelines-for-contributors" class="section level1">
 
 <p>This document explains how one can contribute to <code>ChemoSpec</code>.</p>
+<div id="ground-rules" class="section level2">
+<h2 class="hasAnchor">
+<a href="#ground-rules" class="anchor"></a>Ground Rules</h2>
 <div id="code-of-conduct" class="section level3">
 <h3 class="hasAnchor">
 <a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h3>
 <p>This project is released with a <a href="https://bryanhanson.github.io/ChemoSpec/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing, you agree to abide by its terms.</p>
 </div>
-<div id="infrastructure" class="section level3">
+<div id="license" class="section level3">
 <h3 class="hasAnchor">
-<a href="#infrastructure" class="anchor"></a>Infrastructure</h3>
-<ul>
-<li>The <code>master</code> branch is basically a release branch and the code is always updated and tagged for a CRAN release. Documentation is based on the <code>master</code> branch. Between CRAN releases, the version on the <code>master</code> branch may advance in small ways (and hence the documented version may be ahead of the CRAN version). The <code>devel</code> branch is used as a pre-release branch and ideally always works, and will be the basis for the next CRAN release. Additional branches will be created as needed; see below.</li>
-<li>Github Actions are used to automate certain tasks. Pushing the <code>master</code> or <code>devel</code> branches will cause a build and check to occur. Pushing the <code>master</code> branch will cause the documentation to be updated. The scripts controlling these actions are in <code>.github/workflows</code>.</li>
-</ul>
+<a href="#license" class="anchor"></a>License</h3>
+<p><code>ChemoSpec</code> is distributed under the GPL-3 license, as stated in the DESCRIPTION file. For more info, see the <a href="https://gnu.org/licenses/gpl.html">GPL site.</a> By contributing, you agree that your contributions will be licensed in the same way.</p>
 </div>
-<div id="bugs--feature-requests" class="section level3">
-<h3 class="hasAnchor">
-<a href="#bugs--feature-requests" class="anchor"></a>Bugs &amp; Feature Requests</h3>
-<p>If you think you have found a bug, or at least undesirable behavior, please file an <a href="https://github.com/bryanhanson/ChemoSpec/issues">issue</a> (after checking the list of active issues). Be sure that your version of <code>R</code> and all packages are up-to-date. Then include a reproducible example demonstrating the problem, preferably using one of the built-in data sets. Feature requests may be made in the same manner.</p>
 </div>
-<div id="at-a-larger-scale" class="section level3">
+<div id="simple-contributions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#simple-contributions" class="anchor"></a>Simple Contributions</h2>
+<div id="reporting-bugs--suggesting-features" class="section level3">
 <h3 class="hasAnchor">
-<a href="#at-a-larger-scale" class="anchor"></a>At a Larger Scale</h3>
-<div id="set-up-your-work-environment" class="section level4">
-<h4 class="hasAnchor">
-<a href="#set-up-your-work-environment" class="anchor"></a>Set Up Your Work Environment</h4>
+<a href="#reporting-bugs--suggesting-features" class="anchor"></a>Reporting Bugs &amp; Suggesting Features</h3>
+<p>One of the easiest ways to contribute is to let us know when you think you have found a bug, or if you think a new feature would be desirable. Both can be submitted using <a href="https://github.com/bryanhanson/ChemoSpec/issues">issues</a>. Be sure that your version of <code>R</code> and all packages are up-to-date. Then include a reproducible example demonstrating the problem, preferably using one of the built-in data sets.</p>
+</div>
+</div>
+<div id="infrastructure" class="section level2">
+<h2 class="hasAnchor">
+<a href="#infrastructure" class="anchor"></a>Infrastructure</h2>
+<div id="branches" class="section level3">
+<h3 class="hasAnchor">
+<a href="#branches" class="anchor"></a>Branches</h3>
+<p>The <code>master</code> branch is basically a release branch and the code is always updated and tagged for a CRAN release. Documentation is based on the <code>master</code> branch. Between CRAN releases, the version on the <code>master</code> branch may advance in small ways (and hence the documented version may be ahead of the CRAN version). The <code>devel</code> branch is used as a pre-release branch and ideally always works, and will be the basis for the next CRAN release. Additional branches will be created as needed; see below.</p>
+</div>
+<div id="continuous-integration" class="section level3">
+<h3 class="hasAnchor">
+<a href="#continuous-integration" class="anchor"></a>Continuous Integration</h3>
+<p>Github Actions are used to automate certain tasks. Pushing the <code>master</code> or <code>devel</code> branches will cause a build and check to occur. Pushing the <code>master</code> branch will cause the documentation to be updated. The scripts controlling these actions are in <code>.github/workflows</code>.</p>
+</div>
+<div id="versioning" class="section level3">
+<h3 class="hasAnchor">
+<a href="#versioning" class="anchor"></a>Versioning</h3>
+<p>We following <a href="https:semver.org">semantic versioning practices</a>. We liberally increment the patch version (z in x.y.z), but if you are contributing let the maintainers worry about this aspect.</p>
+</div>
+</div>
+<div id="larger-scale-contributions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#larger-scale-contributions" class="anchor"></a>Larger-Scale Contributions</h2>
+<div id="set-up-your-work-environment" class="section level3">
+<h3 class="hasAnchor">
+<a href="#set-up-your-work-environment" class="anchor"></a>Set Up Your Work Environment</h3>
 <ul>
 <li>Make sure your version of <code>R</code> is up-to-date (the current release or the release candidate).</li>
 <li>Make sure all needed packages are installed and up-to-date. You can find them in <code>DESCRIPTION</code>. Some packages rely on packages from Bioconductor, so be sure to run the standard updates from there as well.</li>
-<li>Read the Infrastructure section above.</li>
 <li>You will need to know how to use Git and how to build and check <code>R</code> packages. If you are using RStudio there are some handy menu actions provided. There are also varous <code>R</code> packages that will do some of the work. Or you can go old school. You’ll need to be familiar with <code>roxygen2</code> style documentation.</li>
 </ul>
 </div>
-<div id="making-changes" class="section level4">
-<h4 class="hasAnchor">
-<a href="#making-changes" class="anchor"></a>Making Changes</h4>
+<div id="making-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#making-changes" class="anchor"></a>Making Changes</h3>
 <ul>
 <li>Fork the package and clone to your computer. Keep your local copy sync’ed with upstream changes.</li>
-<li>Create a branch for your upcoming contribution (usually this will be named …)</li>
-<li>Before any changes, build and check using the <code>--as-cran</code> setting, and fix any issues (which hopefully don’t involve code problems, but rather additional tweaks to your local build environment).</li>
+<li>Starting from the <code>devel</code> branch, create a new branch for your upcoming contribution (usually this will be named something like <code>issue/#27</code> if you are fixing an issue, for example, or <code>feature/feature_name</code> if you are contributing a new feature). Generally if you have a feature you’d like to add, file an issue describing the proposed feature so it can be discussed and tracked.</li>
+<li>Before making any changes, build and check using the <code>--as-cran</code> setting, and fix any issues (Which shouldn’t involve code problems, but rather additional tweaks to your local build environment. If you see any errors or warnings at this point, contact the maintainers before proceeding.).</li>
 <li>Make the changes you have in mind.
 <ul>
-<li>Please use frequent git commit messages that clearly state what you are doing.</li>
+<li>Please use super-frequent git commit messages that clearly state what you are doing.</li>
 <li>Does your work require changes to <code>.Rbuildignore</code>, <code>.gitignore</code>?</li>
-<li>Update the documentation as needed. We use <code>roxgyen2</code>
-</li>
+<li>Update the documentation as needed. We use <code>roxgyen2</code>.</li>
 <li>Style your code using <code>styler</code> with the default settings. Style only the file you are working on.</li>
-<li>Write any unit tests if needed. Unit tests go into the function file using the <code>roxygen2</code> style tags provided by <code>roxut</code>. Unit tests use the <code>tinytest</code> framework.</li>
-<li>If your changes are user-facing, add a bullet to the <code>NEWS.md</code> file.</li>
+<li>Write any unit tests if needed. <em>Unit tests go into the function file</em> using the <code>roxygen2</code> style tags provided by <code>roxut</code>. Unit tests use the <code>tinytest</code> framework.</li>
+<li>If your changes are user-facing, fix a bug, change behavior or add a new feature, add a bullet to the <code>NEWS.md</code> file. This file helps us keep track over time. Only trivial changes do not go to <code>NEWS.md</code>.</li>
+<li>If your contribution is significant, add yourself to <code>DESCRIPTION</code>.</li>
 </ul>
 </li>
 <li>Once again, build and check locally using the <code>--as-cran</code> setting. Fix any problems. Do not skip this step.</li>
 <li>If your code (may possibly) introduce platform-dependent behavior, check the package using win-builder.</li>
-<li>Create a pull request. The body of your pull request should include language along the lines of “fixes issue #xyz”.</li>
+<li>Create a pull request. The body of your pull request should include language along the lines of “fixes issue #xyz”. See other special words that cause the associated issue to automatically be closed on successful pul can be seen <a href="https://docs.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword">here</a>.</li>
 <li>Wait for feedback.</li>
 </ul>
 </div>
