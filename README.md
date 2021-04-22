@@ -52,7 +52,7 @@ This project is released with a [Contributor Code of Conduct](https://bryanhanso
 
 ### Contributing
 
-Coming soon.
+If you would like to contribute to the project, please see [Contributing Guide](https://bryanhanson.github.io/ChemoSpec/CONTRIBUTING.html).
 
 ### License Information
 
