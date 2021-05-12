@@ -44,7 +44,16 @@ We following [semantic versioning practices](https:semver.org).  We liberally in
 
 * Fork the package and clone to your computer.  Keep your local copy sync'ed with upstream changes.
 * Starting from the `devel` branch, create a new branch for your upcoming contribution (usually this will be named something like `issue/#27` if you are fixing an issue, for example, or `feature/feature_name` if you are contributing a new feature).  Generally if you have a feature you'd like to add, file an issue describing the proposed feature so it can be discussed and tracked.
-* Before making any changes, build and check using the `--as-cran` setting, and fix any issues (Which shouldn't involve code problems, but rather additional tweaks to your local build environment.  If you see any errors or warnings at this point, contact the maintainers before proceeding.).
+* Before making any changes, build using the following flags:
+  + `--as-cran`
+  + `--no-init-file`
+  + `--resave-data`
+  + `--compact-vignettes="both"`
+Fix any problems that arise (Which shouldn't involve code problems, but rather additional tweaks to your local build environment.  If you see any errors or warnings at this point, contact the maintainers before proceeding.).
+* Check using the following flags:
+  + `--as-cran`
+  + `--no-init-file`
+Fix any problems that arise (Which shouldn't involve code problems, but rather additional tweaks to your local build environment.  If you see any errors or warnings at this point, contact the maintainers before proceeding.).
 * Make the changes you have in mind.
   + Please use super-frequent git commit messages that clearly state what you are doing.
   + Does your work require changes to `.Rbuildignore`, `.gitignore`?
@@ -53,7 +62,7 @@ We following [semantic versioning practices](https:semver.org).  We liberally in
   + Write any unit tests if needed.  *Unit tests go into the function file* using the `roxygen2` style tags provided by `roxut`.  Unit tests use the `tinytest` framework.
   + If your changes are user-facing, fix a bug, change behavior or add a new feature, add a bullet to the `NEWS.md` file.  This file helps us keep track over time.  Only trivial changes do not go to `NEWS.md`.
   + If your contribution is significant, add yourself to `DESCRIPTION`.
-* Once again, build and check locally using the `--as-cran` setting.  Fix any problems.  Do not skip this step.
+* Once again, build and check locally with the flags listed earlier.  Fix any problems.  Do not skip this step.
 * If your code (may possibly) introduce platform-dependent behavior, check the package using win-builder.
 * Create a pull request. The body of your pull request should include language along the lines of "fixes issue #xyz".  See other special words that cause the associated issue to automatically be closed on successful pul can be seen [here](https://docs.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword).
 * Wait for feedback.
