@@ -3,6 +3,7 @@ on:
     branches:
       - master
       - devel
+      - gsoc1
 
 name: Build-Check
 
