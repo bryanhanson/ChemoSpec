@@ -1,4 +1,4 @@
-chkGrafOpt <- function(silent = TRUE) {
+chkGraphicsOpt <- function(silent = TRUE) {
   go <- getOption("ChemoSpecGraphics")
   valid <- c("base", "ggplot2", "plotly", "shiny")
 
@@ -29,3 +29,4 @@ chkGrafOpt <- function(silent = TRUE) {
   }
   return(go)
 }
+
