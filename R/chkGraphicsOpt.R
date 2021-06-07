@@ -1,4 +1,12 @@
-chkGrafOpt <- function(silent = TRUE) {
+#' Checks the Graphic mode of the plots
+#'  
+#' @name chkGraphicsOpt
+#' @param silent Silents the messages on change of graphics mode
+#'
+#' @export
+#'
+#' @examples
+chkGraphicsOpt <- function(silent = TRUE) {
   go <- getOption("ChemoSpecGraphics")
   valid <- c("base", "ggplot2", "plotly", "shiny")
 
@@ -29,3 +37,4 @@ chkGrafOpt <- function(silent = TRUE) {
   }
   return(go)
 }
+
