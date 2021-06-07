@@ -1,5 +1,5 @@
 
-### Unit tests for chkGrafOpt in ChemoSpec
+### Unit tests for chkGraphicsOpt in ChemoSpec
 
 options(ChemoSpecGraphics = 'base')
 expect_equal(chkGraphicsOpt() ,"base")
