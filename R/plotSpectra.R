@@ -76,6 +76,7 @@ plotSpectra <- function(spectra, which = c(1),
   chkSpectra(spectra)
   
   mode<-chkGraphicsOpt()
+  print(mode)
   if(mode =='base')
   {
   # set up and plot the first spectrum
@@ -107,8 +108,117 @@ plotSpectra <- function(spectra, which = c(1),
 
   if (all(leg.loc != "none")) .addLegend(spectra, leg.loc, use.sym = FALSE, bty = "n")
   }
+  
   if(mode =="ggplot2")
   {
     
+  
+    #Created an empty vector df
+    df <- 0
+    
+    #Added the frequency in the dataframe
+    df <- data.frame(spectra$freq)
+    
+    #Added the data for the specified plots 
+    for (i in which) {
+      i <- (spectra$data[i, ])
+      df <- cbind(df, i)
+    }
+    #df
+    
+    #Defined the empty name vector for renaming the columns in dataframe 
+    name <- c()
+    for (i in which)
+    {
+      name <- c(name, spectra$names[i])
+    }
+    
+    #Renamed the names of the columns
+    names(df) <- c("WaveNumber", name)
+    
+    # df
+    
+    count <- 0
+    
+    spectrum <- spectra$data[which[1], ] * amplify
+    
+    #x coordinate of the label
+    lab.x <- lab.pos
+    spec.index <- findInterval(lab.x, sort(spectra$freq))
+    
+    #Empty vector for storing y coordinate of the label
+    lab.y <- c()
+    for (i in 2:ncol(df)) {
+      df[, i] <- (df[, i] + (count * offset)) * amplify
+      lab.y <- c(lab.y, df[, i][spec.index] + 0.1)
+      count <- count + 1
+    }
+    # print(lab.y)
+    
+    #Empty vector for storing the colors of the plots
+    color <- c()
+    for (i in which)
+    {
+      color <- c(color, spectra$colors[i])
+    }
+    
+    #Used this function so that I can create multiple plots
+    molten.data <- melt(df, id = c("WaveNumber"))
+    
+    
+    #prework for legend
+    #legend in ggpot2 works on the principle of percent so I had to adjust so that
+    #there is no conflict with "base" graphics
+    if (all(leg.loc !="none")) {
+      leg.loc$y
+      min.x<-0
+      max.x<-spectra$freq[length(spectra$freq)]
+      leg.loc$x<-(leg.loc$x-min.x)/(max.x-min.x)
+      min.y<-yrange[1]
+      max.y<-yrange[2]
+      leg.loc$y<-(leg.loc$y-min.y)/(max.y-min.y)
+    }
+    
+    
+    p <- ggplot(data = molten.data, aes(
+      x = WaveNumber, y = value, group = variable,
+      color = variable
+    )) +
+      geom_line() +
+      
+      #I have used it for manually specifying the color of each plot 
+      scale_color_manual(values = color) +
+      annotate("text",
+               x = lab.pos,
+               y = lab.y,
+               label = name
+      ) +
+      
+      #labels for x and y axis
+      labs(x = spectra$unit[1], y = spectra$unit[2]) +
+      
+      #theme selection
+      theme(plot.title = element_text(size = 12, color = "red", hjust = 0.5)) +
+      theme_bw() +
+      
+      #y range
+      ylim(yrange) +
+      theme(legend.position = "none") +
+      theme(panel.border = element_blank(), axis.line = element_line(colour = "black"))
+    
+    #legend location
+    if (all(leg.loc !="none")) {
+      p <- p + theme(
+        legend.position = c(leg.loc$x,leg.loc$y),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.margin = margin(6, 6, 6, 6)
+      )
+    }
+    #condition for grid
+    if (!showGrid) {
+      p <- p + theme(panel.grid.minor = element_blank(), panel.grid.major = element_blank())
+    }
+    p
   }
 }
