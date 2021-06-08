@@ -111,11 +111,7 @@ plotSpectra <- function(spectra, which = c(1),
   
   if(go =="ggplot2")
   {
-    
-  
-    #Created an empty vector df
-    df <- 0
-    
+   
     #Added the frequency in the dataframe
     df <- data.frame(spectra$freq)
     
@@ -126,17 +122,8 @@ plotSpectra <- function(spectra, which = c(1),
     }
     #df
     
-    #Defined the empty name vector for renaming the columns in dataframe 
-    name <- c()
-    for (i in which)
-    {
-      name <- c(name, spectra$names[i])
-    }
-    
-    #Renamed the names of the columns
-    names(df) <- c("WaveNumber", name)
-    
-    # df
+    names(df) <- c("WaveNumber", spectra$names[which])
+    print(df)
     
     count <- 0
     
@@ -154,13 +141,6 @@ plotSpectra <- function(spectra, which = c(1),
       count <- count + 1
     }
     # print(lab.y)
-    
-    #Empty vector for storing the colors of the plots
-    color <- c()
-    for (i in which)
-    {
-      color <- c(color, spectra$colors[i])
-    }
     
     #Used this function so that I can create multiple plots
     molten.data <- melt(df, id = c("WaveNumber"))
@@ -187,11 +167,11 @@ plotSpectra <- function(spectra, which = c(1),
       geom_line() +
       
       #I have used it for manually specifying the color of each plot 
-      scale_color_manual(values = color) +
+      scale_color_manual(values = spectra$colors[which]) +
       annotate("text",
                x = lab.pos,
                y = lab.y,
-               label = name
+               label = spectra$names[which]
       ) +
       
       #labels for x and y axis
