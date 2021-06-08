@@ -75,9 +75,9 @@ plotSpectra <- function(spectra, which = c(1),
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
   
-  mode<-chkGraphicsOpt()
-  print(mode)
-  if(mode =='base')
+  go<-chkGraphicsOpt()
+  print(go)
+  if(go =='base')
   {
   # set up and plot the first spectrum
 
@@ -109,7 +109,7 @@ plotSpectra <- function(spectra, which = c(1),
   if (all(leg.loc != "none")) .addLegend(spectra, leg.loc, use.sym = FALSE, bty = "n")
   }
   
-  if(mode =="ggplot2")
+  if(go =="ggplot2")
   {
     
   
