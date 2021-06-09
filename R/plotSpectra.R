@@ -76,7 +76,6 @@ plotSpectra <- function(spectra, which = c(1),
   chkSpectra(spectra)
   
   go<-chkGraphicsOpt()
-  print(go)
   if(go =='base')
   {
   # set up and plot the first spectrum
@@ -115,19 +114,7 @@ plotSpectra <- function(spectra, which = c(1),
     #Added the frequency in the dataframe
     df <- data.frame(spectra$freq)
     
-    #Added the data for the specified plots 
-    for (i in which) {
-      i <- (spectra$data[i, ])
-      df <- cbind(df, i)
-    }
-    #df
-    
-    names(df) <- c("WaveNumber", spectra$names[which])
-    print(df)
-    
     count <- 0
-    
-    spectrum <- spectra$data[which[1], ] * amplify
     
     #x coordinate of the label
     lab.x <- lab.pos
@@ -135,10 +122,18 @@ plotSpectra <- function(spectra, which = c(1),
     
     #Empty vector for storing y coordinate of the label
     lab.y <- c()
+    
+    #Added the data for the specified plots 
+    for (i in which) {
+      i <- ((spectra$data[i, ])+(count*offset))*amplify
+      df <- cbind(df, i)
+      count<-count+1
+    }
+    
+    names(df) <- c("WaveNumber", spectra$names[which])
+
     for (i in 2:ncol(df)) {
-      df[, i] <- (df[, i] + (count * offset)) * amplify
       lab.y <- c(lab.y, df[, i][spec.index] + 0.1)
-      count <- count + 1
     }
     # print(lab.y)
     
@@ -199,6 +194,6 @@ plotSpectra <- function(spectra, which = c(1),
     if (!showGrid) {
       p <- p + theme(panel.grid.minor = element_blank(), panel.grid.major = element_blank())
     }
-    p
+    return (p)
   }
 }
