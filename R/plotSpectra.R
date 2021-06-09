@@ -37,8 +37,15 @@
 #'
 #' @param \dots Additional parameters to be passed to plotting functions.
 #'
-#' @return None.  Side effect is a plot.
-#'
+#' @return
+#' Graphics mode
+#' \itemize{
+#'  \item{base:}{    None.  Side effect is a plot.}
+#'  \item{ggplot2:}{    Returns a ggplot2 plot. Theme of the plot can be changed by adding the ggplot2 theme
+#'  to the function call }
+#' } 
+#' 
+#' 
 #' @author Bryan A. Hanson, DePauw University.
 #'
 #' @seealso \code{\link{plotSpectraJS}} for the interactive version.
@@ -63,6 +70,13 @@
 #'   offset = 0.06, amplify = 10, lab.pos = 0.5,
 #'   leg.loc = list(x = 3.2, y = 1.45)
 #' )
+#' 
+#' # Updating the theme of the plot in ggplot2 graphics mode
+#' plotSpectra(metMUD1,
+#' which  = c(10, 11), yrange = c(0,1.5),
+#' offset = 0.06, amplify = 10, lab.pos = 0.5 
+#' ) + theme_grey()
+#' 
 #' @export plotSpectra
 #'
 #' @importFrom graphics grid lines text points plot
@@ -74,126 +88,104 @@ plotSpectra <- function(spectra, which = c(1),
                         showGrid = TRUE, leg.loc = "none", ...) {
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
-  
-  go<-chkGraphicsOpt()
-  if(go =='base')
-  {
-  # set up and plot the first spectrum
 
-  spectrum <- spectra$data[which[1], ] * amplify
+  go <- chkGraphicsOpt()
+  if (go == "base") {
+    # set up and plot the first spectrum
 
-  plot(spectra$freq, spectrum,
-    type = "n",
-    xlab = spectra$unit[1], ylab = spectra$unit[2],
-    ylim = yrange,
-    frame.plot = FALSE, ...
-  )
-  if (showGrid) grid(ny = NA, lty = 1) # grid will be underneath all spectra
-  lines(spectra$freq, spectrum, col = spectra$colors[which[1]], ...)
-  lab.x <- lab.pos
-  spec.index <- findInterval(lab.x, sort(spectra$freq))
-  lab.y <- spectrum[spec.index]
-  text(lab.x, lab.y, labels = spectra$names[which[1]], pos = 3, cex = 0.75)
+    spectrum <- spectra$data[which[1], ] * amplify
 
-  which <- which[-1] # first spectrum already plotted so remove it from the list
-  count <- 0 # get the other spectra and plot them as well
-  for (n in which) {
-    count <- count + 1
-    spectrum <- (spectra$data[n, ] + (offset * count)) * amplify
-    points(spectra$freq, spectrum, type = "l", col = spectra$colors[n], ...)
-    lab.y <- spectrum[spec.index]
-    text(lab.x, lab.y, labels = spectra$names[n], pos = 3, cex = 0.75)
-  }
-
-  if (all(leg.loc != "none")) .addLegend(spectra, leg.loc, use.sym = FALSE, bty = "n")
-  }
-  
-  if(go =="ggplot2")
-  {
-   
-    #Added the frequency in the dataframe
-    df <- data.frame(spectra$freq)
-    
-    count <- 0
-    
-    #x coordinate of the label
+    plot(spectra$freq, spectrum,
+      type = "n",
+      xlab = spectra$unit[1], ylab = spectra$unit[2],
+      ylim = yrange,
+      frame.plot = FALSE, ...
+    )
+    if (showGrid) grid(ny = NA, lty = 1) # grid will be underneath all spectra
+    lines(spectra$freq, spectrum, col = spectra$colors[which[1]], ...)
     lab.x <- lab.pos
     spec.index <- findInterval(lab.x, sort(spectra$freq))
-    
-    #Empty vector for storing y coordinate of the label
-    lab.y <- c()
-    
-    #Added the data for the specified plots 
-    for (i in which) {
-      i <- ((spectra$data[i, ])+(count*offset))*amplify
-      df <- cbind(df, i)
-      count<-count+1
+    lab.y <- spectrum[spec.index]
+    text(lab.x, lab.y, labels = spectra$names[which[1]], pos = 3, cex = 0.75)
+
+    which <- which[-1] # first spectrum already plotted so remove it from the list
+    count <- 0 # get the other spectra and plot them as well
+    for (n in which) {
+      count <- count + 1
+      spectrum <- (spectra$data[n, ] + (offset * count)) * amplify
+      points(spectra$freq, spectrum, type = "l", col = spectra$colors[n], ...)
+      lab.y <- spectrum[spec.index]
+      text(lab.x, lab.y, labels = spectra$names[n], pos = 3, cex = 0.75)
     }
-    
-    names(df) <- c("WaveNumber", spectra$names[which])
+
+    if (all(leg.loc != "none")) .addLegend(spectra, leg.loc, use.sym = FALSE, bty = "n")
+  }
+
+  if (go == "ggplot2") {
+
+    # Set up data frame for plotting
+    df <- data.frame(spectra$freq)
+    count <- 0
+
+    for (i in which) {
+      i <- ((spectra$data[i, ]) + (count * offset)) * amplify
+      df <- cbind(df, i)
+      count <- count + 1
+    }
+    names(df) <- c("Frequency", spectra$names[which])
+
+    lab.x <- lab.pos
+    lab.y <- c(NA_real_)
+    spec.index <- findInterval(lab.x, sort(spectra$freq))
 
     for (i in 2:ncol(df)) {
       lab.y <- c(lab.y, df[, i][spec.index] + 0.1)
     }
-    # print(lab.y)
-    
-    #Used this function so that I can create multiple plots
-    molten.data <- melt(df, id = c("WaveNumber"))
-    
-    
-    #prework for legend
-    #legend in ggpot2 works on the principle of percent so I had to adjust so that
-    #there is no conflict with "base" graphics
-    if (all(leg.loc !="none")) {
+
+    lab.y <- lab.y[-1] # Removing the first value as it is NA_real_
+
+    molten.data <- melt(df, id = c("Frequency"))
+
+    if (all(leg.loc != "none")) {
       leg.loc$y
-      min.x<-0
-      max.x<-spectra$freq[length(spectra$freq)]
-      leg.loc$x<-(leg.loc$x-min.x)/(max.x-min.x)
-      min.y<-yrange[1]
-      max.y<-yrange[2]
-      leg.loc$y<-(leg.loc$y-min.y)/(max.y-min.y)
+      min.x <- 0
+      max.x <- max(spectra$freq)
+      leg.loc$x <- (leg.loc$x - min.x) / (max.x - min.x)
+      min.y <- yrange[1]
+      max.y <- yrange[2]
+      leg.loc$y <- (leg.loc$y - min.y) / (max.y - min.y)
     }
-    
-    
+
     p <- ggplot(data = molten.data, aes(
-      x = WaveNumber, y = value, group = variable,
+      x = Frequency, y = value, group = variable,
       color = variable
     )) +
       geom_line() +
-      
-      #I have used it for manually specifying the color of each plot 
-      scale_color_manual(values = spectra$colors[which]) +
+      scale_color_manual(name ="Keys",values = spectra$colors[which]) +
       annotate("text",
-               x = lab.pos,
-               y = lab.y,
-               label = spectra$names[which]
-      ) +
-      
-      #labels for x and y axis
+        x = lab.x,
+        y = lab.y,
+        label = spectra$names[which])+
       labs(x = spectra$unit[1], y = spectra$unit[2]) +
-      
-      #theme selection
-      theme(plot.title = element_text(size = 12, color = "red", hjust = 0.5)) +
+      theme_classic()+
       theme_bw() +
-      
-      #y range
       ylim(yrange) +
       theme(legend.position = "none") +
-      theme(panel.border = element_blank(), axis.line = element_line(colour = "black"))
-    
-    #legend location
-    if (all(leg.loc !="none")) {
+      theme(panel.border = element_blank(), axis.line = element_line(colour = "black"))+
+      theme(                                
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank()
+      )                                      #Removing the horizontal lines from the grid
+    if (all(leg.loc != "none")) {
       p <- p + theme(
-        legend.position = c(leg.loc$x,leg.loc$y),
+        legend.position = c(leg.loc$x, leg.loc$y),
         legend.justification = c("right", "top"),
-        legend.box.just = "right",
-        legend.margin = margin(6, 6, 6, 6)
+        legend.box.just = "right"
       )
     }
-    #condition for grid
     if (!showGrid) {
       p <- p + theme(panel.grid.minor = element_blank(), panel.grid.major = element_blank())
     }
-    return (p)
+    return(p)
   }
 }
