@@ -43,9 +43,9 @@
 #'  \item{base:}{    None.  Side effect is a plot.}
 #'  \item{ggplot2:}{    Returns a ggplot2 plot. Theme of the plot can be changed by adding the ggplot2 theme
 #'  to the function call }
-#' } 
-#' 
-#' 
+#' }
+#'
+#'
 #' @author Bryan A. Hanson, DePauw University.
 #'
 #' @seealso \code{\link{plotSpectraJS}} for the interactive version.
@@ -70,13 +70,12 @@
 #'   offset = 0.06, amplify = 10, lab.pos = 0.5,
 #'   leg.loc = list(x = 3.2, y = 1.45)
 #' )
-#' 
+#'
 #' # Updating the theme of the plot in ggplot2 graphics mode
 #' plotSpectra(metMUD1,
-#' which  = c(10, 11), yrange = c(0,1.5),
-#' offset = 0.06, amplify = 10, lab.pos = 0.5 
+#'   which = c(10, 11), yrange = c(0, 1.5),
+#'   offset = 0.06, amplify = 10, lab.pos = 0.5
 #' ) + theme_grey()
-#' 
 #' @export plotSpectra
 #'
 #' @importFrom graphics grid lines text points plot
@@ -128,18 +127,20 @@ plotSpectra <- function(spectra, which = c(1),
     count <- 0
 
     for (i in which) {
-      i <- ((spectra$data[i, ]) + (count * offset)) * amplify
-      df <- cbind(df, i)
+      spec <- ((spectra$data[i, ]) + (count * offset)) * amplify
+      df <- cbind(df, spec)
       count <- count + 1
     }
     names(df) <- c("Frequency", spectra$names[which])
 
     lab.x <- lab.pos
     lab.y <- c(NA_real_)
-    freq.index <- findInterval(lab.x, sort(spectra$freq))
 
     for (i in 2:ncol(df)) {
-      lab.y <- c(lab.y, df[, i][freq.index] + 0.1)
+      spec.max <- max(df[, i])
+      spec.min <- min(df[, i])
+      pos.y <- spec.min + (40 * (spec.max - spec.min)) / 100 # keeping the position at 40 % of the total height for each spectrum
+      lab.y <- c(lab.y, pos.y)
     }
 
     lab.y <- lab.y[-1] # Removing the first value as it is NA_real_
@@ -147,7 +148,6 @@ plotSpectra <- function(spectra, which = c(1),
     molten.data <- melt(df, id = c("Frequency"))
 
     if (all(leg.loc != "none")) {
-      leg.loc$y
       min.x <- 0
       max.x <- max(spectra$freq)
       leg.loc$x <- (leg.loc$x - min.x) / (max.x - min.x)
@@ -161,21 +161,22 @@ plotSpectra <- function(spectra, which = c(1),
       color = variable
     )) +
       geom_line() +
-      scale_color_manual(name ="Keys",values = spectra$colors[which]) +
+      scale_color_manual(name = "Keys", values = spectra$colors[which]) +
       annotate("text",
         x = lab.x,
         y = lab.y,
-        label = spectra$names[which])+
+        label = spectra$names[which]
+      ) +
       labs(x = spectra$unit[1], y = spectra$unit[2]) +
-      theme_classic()+
+      theme_classic() +
       theme_bw() +
       ylim(yrange) +
       theme(legend.position = "none") +
-      theme(panel.border = element_blank(), axis.line = element_line(colour = "black"))+
-      theme(                                
+      theme(panel.border = element_blank(), axis.line = element_line(colour = "black")) +
+      theme(
         panel.grid.major.y = element_blank(),
         panel.grid.minor.y = element_blank()
-      )                                      #Removing the horizontal lines from the grid
+      ) # Removing the horizontal lines from the grid
     if (all(leg.loc != "none")) {
       p <- p + theme(
         legend.position = c(leg.loc$x, leg.loc$y),
