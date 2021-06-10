@@ -104,8 +104,8 @@ plotSpectra <- function(spectra, which = c(1),
     if (showGrid) grid(ny = NA, lty = 1) # grid will be underneath all spectra
     lines(spectra$freq, spectrum, col = spectra$colors[which[1]], ...)
     lab.x <- lab.pos
-    spec.index <- findInterval(lab.x, sort(spectra$freq))
-    lab.y <- spectrum[spec.index]
+    freq.index <- findInterval(lab.x, sort(spectra$freq))
+    lab.y <- spectrum[freq.index]
     text(lab.x, lab.y, labels = spectra$names[which[1]], pos = 3, cex = 0.75)
 
     which <- which[-1] # first spectrum already plotted so remove it from the list
@@ -114,7 +114,7 @@ plotSpectra <- function(spectra, which = c(1),
       count <- count + 1
       spectrum <- (spectra$data[n, ] + (offset * count)) * amplify
       points(spectra$freq, spectrum, type = "l", col = spectra$colors[n], ...)
-      lab.y <- spectrum[spec.index]
+      lab.y <- spectrum[freq.index]
       text(lab.x, lab.y, labels = spectra$names[n], pos = 3, cex = 0.75)
     }
 
@@ -136,10 +136,10 @@ plotSpectra <- function(spectra, which = c(1),
 
     lab.x <- lab.pos
     lab.y <- c(NA_real_)
-    spec.index <- findInterval(lab.x, sort(spectra$freq))
+    freq.index <- findInterval(lab.x, sort(spectra$freq))
 
     for (i in 2:ncol(df)) {
-      lab.y <- c(lab.y, df[, i][spec.index] + 0.1)
+      lab.y <- c(lab.y, df[, i][freq.index] + 0.1)
     }
 
     lab.y <- lab.y[-1] # Removing the first value as it is NA_real_
