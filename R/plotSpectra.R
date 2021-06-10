@@ -147,15 +147,6 @@ plotSpectra <- function(spectra, which = c(1),
 
     molten.data <- melt(df, id = c("Frequency"))
 
-    if (all(leg.loc != "none")) {
-      min.x <- 0
-      max.x <- max(spectra$freq)
-      leg.loc$x <- (leg.loc$x - min.x) / (max.x - min.x)
-      min.y <- yrange[1]
-      max.y <- yrange[2]
-      leg.loc$y <- (leg.loc$y - min.y) / (max.y - min.y)
-    }
-
     p <- ggplot(data = molten.data, aes(
       x = Frequency, y = value, group = variable,
       color = variable
@@ -177,15 +168,37 @@ plotSpectra <- function(spectra, which = c(1),
         panel.grid.major.y = element_blank(),
         panel.grid.minor.y = element_blank()
       ) # Removing the horizontal lines from the grid
-    if (all(leg.loc != "none")) {
-      p <- p + theme(
-        legend.position = c(leg.loc$x, leg.loc$y),
-        legend.justification = c("right", "top"),
-        legend.box.just = "right"
-      )
-    }
+
     if (!showGrid) {
       p <- p + theme(panel.grid.minor = element_blank(), panel.grid.major = element_blank())
+    }
+
+    if (all(leg.loc != "none")) {
+      group <- c(NA_real_)
+      color <- c(NA_real_)
+      for (i in spectra$groups)
+      {
+        if (!(i %in% group)) {
+          group <- c(group, i)
+        }
+      }
+      for (i in spectra$colors)
+      {
+        if (!(i %in% color)) {
+          color <- c(color, i)
+        }
+      }
+      group <- group[-1]
+      color <- color[-1]
+      for (i in 1:length(group))
+      {
+        grob <- grobTree(textGrob(group[i],
+          x = leg.loc$x, y = leg.loc$y, hjust = 0,
+          gp = gpar(col = color[i], fontsize = 12, fontface = "italic")
+        ))
+        leg.loc$y <- leg.loc$y - 0.025
+        p <- p + annotation_custom(grob)
+      }
     }
     return(p)
   }
