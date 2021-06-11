@@ -44,7 +44,9 @@ is desired, give \code{lab.pos} outside the plotted x range.}
 if \code{TRUE}.}
 
 \item{leg.loc}{Character; if \code{"none"} no legend will be drawn.
-Otherwise, any string acceptable to \code{\link{legend}}.}
+Otherwise, any string acceptable to \code{\link{legend}}.Legend is plotted according to
+ NPC or "Normalized Parent Coordinates".This means the plot has origin at (0,0) and 
+ top right corner is at coordinate (1,1), so if we want the legend in the middle of the plot we will use (0.5,0.5).}
 
 \item{\dots}{Additional parameters to be passed to plotting functions.}
 }
@@ -76,14 +78,21 @@ plotSpectra(metMUD1,
   main = "metMUD1 NMR Data",
   which = c(10, 11), yrange = c(0, 1.5),
   offset = 0.06, amplify = 10, lab.pos = 0.5,
-  leg.loc = list(x = 3.2, y = 1.45)
+  leg.loc = list(x = 0.8, y = 0.8)
 )
 
 # Updating the theme of the plot in ggplot2 graphics mode
 plotSpectra(metMUD1,
-which  = c(10, 11), yrange = c(0,1.5),
-offset = 0.06, amplify = 10, lab.pos = 0.5 
-) + theme_grey()
+  which = c(10, 11), yrange = c(0, 1.5),
+  offset = 0.06, amplify = 10, lab.pos = 0.5,
+  leg.loc = list(x=0.8,y=0.8) ) + theme_grey()
+
+# Sometimes additional legend could be created with the new theme.
+This can be removed by simply adding 'theme(legend.position="none")'
+plotSpectra(metMUD1,
+  which = c(10, 11), yrange = c(0, 1.5),
+  offset = 0.06, amplify = 10, lab.pos = 0.5,
+  leg.loc = list(x=0.8,y=0.8) ) + theme_grey() + theme(legend.position="none")
 
 }
 \seealso{
