@@ -33,7 +33,9 @@
 #' if \code{TRUE}.
 #'
 #' @param leg.loc Character; if \code{"none"} no legend will be drawn.
-#' Otherwise, any string acceptable to \code{\link{legend}}.
+#' Otherwise, any string acceptable to \code{\link{legend}}.Legend is plotted according to
+#'  NPC or "Normalized Parent Coordinates".This means the plot has origin at (0,0) and 
+#'  top right corner is at coordinate (1,1), so if we want the legend in the middle of the plot we will use (0.5,0.5).
 #'
 #' @param \dots Additional parameters to be passed to plotting functions.
 #'
@@ -68,14 +70,22 @@
 #'   main = "metMUD1 NMR Data",
 #'   which = c(10, 11), yrange = c(0, 1.5),
 #'   offset = 0.06, amplify = 10, lab.pos = 0.5,
-#'   leg.loc = list(x = 3.2, y = 1.45)
+#'   leg.loc = list(x = 0.8, y = 0.8)
 #' )
 #'
 #' # Updating the theme of the plot in ggplot2 graphics mode
 #' plotSpectra(metMUD1,
 #'   which = c(10, 11), yrange = c(0, 1.5),
-#'   offset = 0.06, amplify = 10, lab.pos = 0.5
-#' ) + theme_grey()
+#'   offset = 0.06, amplify = 10, lab.pos = 0.5,
+#'   leg.loc = list(x=0.8,y=0.8) ) + theme_grey()
+#' 
+#' # Sometimes additional legend could be created with the new theme.
+#' This can be removed by simply adding 'theme(legend.position="none")'
+#' plotSpectra(metMUD1,
+#'   which = c(10, 11), yrange = c(0, 1.5),
+#'   offset = 0.06, amplify = 10, lab.pos = 0.5,
+#'   leg.loc = list(x=0.8,y=0.8) ) + theme_grey() + theme(legend.position="none")
+#'
 #' @export plotSpectra
 #'
 #' @importFrom graphics grid lines text points plot
@@ -116,7 +126,16 @@ plotSpectra <- function(spectra, which = c(1),
       lab.y <- spectrum[freq.index]
       text(lab.x, lab.y, labels = spectra$names[n], pos = 3, cex = 0.75)
     }
-
+    
+    y.min<-yrange[1]
+    y.max<-yrange[2]
+    
+    x.min<-min(spectra$freq)
+    x.max<-max(spectra$freq)
+    
+    leg.loc$x<-(leg.loc$x)*(x.max-x.min) +x.min
+    leg.loc$y<-(leg.loc$y)*(y.max-y.min) +y.min
+    
     if (all(leg.loc != "none")) .addLegend(spectra, leg.loc, use.sym = FALSE, bty = "n")
   }
 
@@ -152,7 +171,7 @@ plotSpectra <- function(spectra, which = c(1),
       color = variable
     )) +
       geom_line() +
-      scale_color_manual(name = "Keys", values = spectra$colors[which]) +
+      scale_color_manual(name = "Key", values = spectra$colors[which]) +
       annotate("text",
         x = lab.x,
         y = lab.y,
@@ -190,16 +209,23 @@ plotSpectra <- function(spectra, which = c(1),
       }
       group <- group[-1]
       color <- color[-1]
+      
+      #0.025 is the fudge factor for better display of legend
+      
+      keys<-grobTree(textGrob("Key",x=leg.loc$x,y=leg.loc$y+0.025,hjust = 0,
+                     gp = gpar(col = "black", fontsize = 12,fontface="italic")))
+      
       for (i in 1:length(group))
       {
         grob <- grobTree(textGrob(group[i],
           x = leg.loc$x, y = leg.loc$y, hjust = 0,
-          gp = gpar(col = color[i], fontsize = 12, fontface = "italic")
+          gp = gpar(col = color[i], fontsize = 12,fontface="italic")
         ))
         leg.loc$y <- leg.loc$y - 0.025
-        p <- p + annotation_custom(grob)
+        p <- p + annotation_custom(grob) +annotation_custom(keys)
       }
     }
     return(p)
   }
 }
+
