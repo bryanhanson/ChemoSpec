@@ -126,7 +126,8 @@ plotSpectra <- function(spectra, which = c(1),
       lab.y <- spectrum[freq.index]
       text(lab.x, lab.y, labels = spectra$names[n], pos = 3, cex = 0.75)
     }
-    
+    if (all(leg.loc != "none"))
+    {
     y.min<-yrange[1]
     y.max<-yrange[2]
     
@@ -136,7 +137,8 @@ plotSpectra <- function(spectra, which = c(1),
     leg.loc$x<-(leg.loc$x)*(x.max-x.min) +x.min
     leg.loc$y<-(leg.loc$y)*(y.max-y.min) +y.min
     
-    if (all(leg.loc != "none")) .addLegend(spectra, leg.loc, use.sym = FALSE, bty = "n")
+     .addLegend(spectra, leg.loc, use.sym = FALSE, bty = "n")
+    }
   }
 
   if (go == "ggplot2") {
