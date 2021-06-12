@@ -77,14 +77,19 @@
 #' plotSpectra(metMUD1,
 #'   which = c(10, 11), yrange = c(0, 1.5),
 #'   offset = 0.06, amplify = 10, lab.pos = 0.5,
-#'   leg.loc = list(x=0.8,y=0.8) ) + theme_grey()
+#'   leg.loc = list(x=0.8,y=0.8) 
+#' ) + theme_grey()
 #' 
 #' # Sometimes additional legend could be created with the new theme.
-#' This can be removed by simply adding 'theme(legend.position="none")'
+#' This can be removed by simply adding 'theme(legend.position="none")'.
+#' As ggplot2 plot would be returned in ggplot2() mode all the ggplot2 functions
+#' can be used with it.
 #' plotSpectra(metMUD1,
+#'   main = "metMUD1 NMR Data",
 #'   which = c(10, 11), yrange = c(0, 1.5),
 #'   offset = 0.06, amplify = 10, lab.pos = 0.5,
-#'   leg.loc = list(x=0.8,y=0.8) ) + theme_grey() + theme(legend.position="none")
+#'   leg.loc = list(x=0.9,y=0.9) 
+#' ) + theme_grey() + theme(legend.position="none")
 #'
 #' @export plotSpectra
 #'
@@ -97,9 +102,12 @@ plotSpectra <- function(spectra, which = c(1),
                         showGrid = TRUE, leg.loc = "none", ...) {
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
-
+  
   go <- chkGraphicsOpt()
+
+
   if (go == "base") {
+    
     # set up and plot the first spectrum
 
     spectrum <- spectra$data[which[1], ] * amplify
@@ -128,16 +136,22 @@ plotSpectra <- function(spectra, which = c(1),
     }
     if (all(leg.loc != "none"))
     {
-    y.min<-yrange[1]
-    y.max<-yrange[2]
+      args <- as.list(match.call())[-1]  #Capturing the xlim
+      if ("xlim" %in% names(args))
+     {
+      xl <- eval(args$xlim)              #Converting 'args$xlim' to a usable form
+      
+      y.min<-yrange[1]
+      y.max<-yrange[2]
     
-    x.min<-min(spectra$freq)
-    x.max<-max(spectra$freq)
-    
-    leg.loc$x<-(leg.loc$x)*(x.max-x.min) +x.min
+      x.min<-xl[1]
+      x.max<-xl[2]
+    }
+    leg.loc$x<-(leg.loc$x)*(x.max-x.min) +x.min   
     leg.loc$y<-(leg.loc$y)*(y.max-y.min) +y.min
     
      .addLegend(spectra, leg.loc, use.sym = FALSE, bty = "n")
+     
     }
   }
 
@@ -160,7 +174,7 @@ plotSpectra <- function(spectra, which = c(1),
     for (i in 2:ncol(df)) {
       spec.max <- max(df[, i])
       spec.min <- min(df[, i])
-      pos.y <- spec.min + (40 * (spec.max - spec.min)) / 100 # keeping the position at 40 % of the total height for each spectrum
+      pos.y <- spec.min + (30 * (spec.max - spec.min)) / 100 # keeping the position at 30 % of the total height for each spectrum
       lab.y <- c(lab.y, pos.y)
     }
 
@@ -195,6 +209,7 @@ plotSpectra <- function(spectra, which = c(1),
     }
 
     if (all(leg.loc != "none")) {
+      
       group <- c(NA_real_)
       color <- c(NA_real_)
       for (i in spectra$groups)
@@ -227,6 +242,21 @@ plotSpectra <- function(spectra, which = c(1),
         p <- p + annotation_custom(grob) +annotation_custom(keys)
       }
     }
+    args <- as.list(match.call())[-1] #Capturing the xlim
+    
+    if ("xlim" %in% names(args))
+    {
+      xl <- eval(args$xlim)
+      p <- p + coord_cartesian(xlim=c(xl[1],xl[2]))     #Zooming in the plot according to xlim range
+    }
+    
+    if("main" %in% names(args)) #Capturing main 
+    {
+      yl <- eval(args$main)
+      p<-p+ggtitle(yl[1])  #Title of the plot                       
+      p<- p+theme(plot.title = element_text(hjust = 0.5))  #Aligning the title to center
+    }
+
     return(p)
   }
 }
