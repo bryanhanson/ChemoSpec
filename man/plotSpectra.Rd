@@ -85,14 +85,19 @@ plotSpectra(metMUD1,
 plotSpectra(metMUD1,
   which = c(10, 11), yrange = c(0, 1.5),
   offset = 0.06, amplify = 10, lab.pos = 0.5,
-  leg.loc = list(x=0.8,y=0.8) ) + theme_grey()
+  leg.loc = list(x=0.8,y=0.8) 
+) + theme_grey()
 
 # Sometimes additional legend could be created with the new theme.
-This can be removed by simply adding 'theme(legend.position="none")'
+This can be removed by simply adding 'theme(legend.position="none")'.
+As ggplot2 plot would be returned in ggplot2() mode all the ggplot2 functions
+can be used with it.
 plotSpectra(metMUD1,
+  main = "metMUD1 NMR Data",
   which = c(10, 11), yrange = c(0, 1.5),
   offset = 0.06, amplify = 10, lab.pos = 0.5,
-  leg.loc = list(x=0.8,y=0.8) ) + theme_grey() + theme(legend.position="none")
+  leg.loc = list(x=0.9,y=0.9) 
+) + theme_grey() + theme(legend.position="none")
 
 }
 \seealso{
