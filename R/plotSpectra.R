@@ -138,13 +138,13 @@ plotSpectra <- function(spectra, which = c(1),
     {
       x.min<-min(spectra$freq)
       x.max<-max(spectra$freq)
+      
+      y.min<-yrange[1]
+      y.max<-yrange[2]
       args <- as.list(match.call())[-1]  #Capturing the xlim
       if ("xlim" %in% names(args))
      {
       xl <- eval(args$xlim)              #Converting 'args$xlim' to a usable form
-      
-      y.min<-yrange[1]
-      y.max<-yrange[2]
     
       x.min<-xl[1]
       x.max<-xl[2]
