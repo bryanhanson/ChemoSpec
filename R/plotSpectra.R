@@ -33,11 +33,20 @@
 #' if \code{TRUE}.
 #'
 #' @param leg.loc Character; if \code{"none"} no legend will be drawn.
-#' Otherwise, any string acceptable to \code{\link{legend}}.
+#' Otherwise, any string acceptable to \code{\link{legend}}.Legend is plotted according to
+#'  NPC or "Normalized Parent Coordinates".This means the plot has origin at (0,0) and 
+#'  top right corner is at coordinate (1,1), so if we want the legend in the middle of the plot we will use (0.5,0.5).
 #'
 #' @param \dots Additional parameters to be passed to plotting functions.
 #'
-#' @return None.  Side effect is a plot.
+#' @return
+#' Graphics mode
+#' \itemize{
+#'  \item{base:}{    None.  Side effect is a plot.}
+#'  \item{ggplot2:}{    Returns a ggplot2 plot. Theme of the plot can be changed by adding the ggplot2 theme
+#'  to the function call }
+#' }
+#'
 #'
 #' @author Bryan A. Hanson, DePauw University.
 #'
@@ -61,8 +70,27 @@
 #'   main = "metMUD1 NMR Data",
 #'   which = c(10, 11), yrange = c(0, 1.5),
 #'   offset = 0.06, amplify = 10, lab.pos = 0.5,
-#'   leg.loc = list(x = 3.2, y = 1.45)
+#'   leg.loc = list(x = 0.8, y = 0.8)
 #' )
+#'
+#' # Updating the theme of the plot in ggplot2 graphics mode
+#' plotSpectra(metMUD1,
+#'   which = c(10, 11), yrange = c(0, 1.5),
+#'   offset = 0.06, amplify = 10, lab.pos = 0.5,
+#'   leg.loc = list(x=0.8,y=0.8) 
+#' ) + theme_grey()
+#' 
+#' # Sometimes additional legend could be created with the new theme.
+#' This can be removed by simply adding 'theme(legend.position="none")'.
+#' As ggplot2 plot would be returned in ggplot2() mode all the ggplot2 functions
+#' can be used with it.
+#' plotSpectra(metMUD1,
+#'   main = "metMUD1 NMR Data",
+#'   which = c(10, 11), yrange = c(0, 1.5),
+#'   offset = 0.06, amplify = 10, lab.pos = 0.5,
+#'   leg.loc = list(x=0.9,y=0.9) 
+#' ) + theme_grey() + theme(legend.position="none")
+#'
 #' @export plotSpectra
 #'
 #' @importFrom graphics grid lines text points plot
@@ -74,33 +102,164 @@ plotSpectra <- function(spectra, which = c(1),
                         showGrid = TRUE, leg.loc = "none", ...) {
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
+  
+  go <- chkGraphicsOpt()
 
-  # set up and plot the first spectrum
 
-  spectrum <- spectra$data[which[1], ] * amplify
+  if (go == "base") {
+    
+    # set up and plot the first spectrum
 
-  plot(spectra$freq, spectrum,
-    type = "n",
-    xlab = spectra$unit[1], ylab = spectra$unit[2],
-    ylim = yrange,
-    frame.plot = FALSE, ...
-  )
-  if (showGrid) grid(ny = NA, lty = 1) # grid will be underneath all spectra
-  lines(spectra$freq, spectrum, col = spectra$colors[which[1]], ...)
-  lab.x <- lab.pos
-  spec.index <- findInterval(lab.x, sort(spectra$freq))
-  lab.y <- spectrum[spec.index]
-  text(lab.x, lab.y, labels = spectra$names[which[1]], pos = 3, cex = 0.75)
+    spectrum <- spectra$data[which[1], ] * amplify
 
-  which <- which[-1] # first spectrum already plotted so remove it from the list
-  count <- 0 # get the other spectra and plot them as well
-  for (n in which) {
-    count <- count + 1
-    spectrum <- (spectra$data[n, ] + (offset * count)) * amplify
-    points(spectra$freq, spectrum, type = "l", col = spectra$colors[n], ...)
-    lab.y <- spectrum[spec.index]
-    text(lab.x, lab.y, labels = spectra$names[n], pos = 3, cex = 0.75)
+    plot(spectra$freq, spectrum,
+      type = "n",
+      xlab = spectra$unit[1], ylab = spectra$unit[2],
+      ylim = yrange,
+      frame.plot = FALSE, ...
+    )
+    if (showGrid) grid(ny = NA, lty = 1) # grid will be underneath all spectra
+    lines(spectra$freq, spectrum, col = spectra$colors[which[1]], ...)
+    lab.x <- lab.pos
+    freq.index <- findInterval(lab.x, sort(spectra$freq))
+    lab.y <- spectrum[freq.index]
+    text(lab.x, lab.y, labels = spectra$names[which[1]], pos = 3, cex = 0.75)
+
+    which <- which[-1] # first spectrum already plotted so remove it from the list
+    count <- 0 # get the other spectra and plot them as well
+    for (n in which) {
+      count <- count + 1
+      spectrum <- (spectra$data[n, ] + (offset * count)) * amplify
+      points(spectra$freq, spectrum, type = "l", col = spectra$colors[n], ...)
+      lab.y <- spectrum[freq.index]
+      text(lab.x, lab.y, labels = spectra$names[n], pos = 3, cex = 0.75)
+    }
+    if (all(leg.loc != "none"))
+    {
+      x.min<-min(spectra$freq)
+      x.max<-max(spectra$freq)
+      
+      y.min<-yrange[1]
+      y.max<-yrange[2]
+      args <- as.list(match.call())[-1]  #Capturing the xlim
+      if ("xlim" %in% names(args))
+     {
+      xl <- eval(args$xlim)              #Converting 'args$xlim' to a usable form
+    
+      x.min<-xl[1]
+      x.max<-xl[2]
+    }
+    leg.loc$x<-(leg.loc$x)*(x.max-x.min) +x.min   
+    leg.loc$y<-(leg.loc$y)*(y.max-y.min) +y.min
+    
+     .addLegend(spectra, leg.loc, use.sym = FALSE, bty = "n")
+     
+    }
   }
 
-  if (all(leg.loc != "none")) .addLegend(spectra, leg.loc, use.sym = FALSE, bty = "n")
+  if (go == "ggplot2") {
+
+    # Set up data frame for plotting
+    df <- data.frame(spectra$freq)
+    count <- 0
+
+    for (i in which) {
+      spec <- ((spectra$data[i, ]) + (count * offset)) * amplify
+      df <- cbind(df, spec)
+      count <- count + 1
+    }
+    names(df) <- c("Frequency", spectra$names[which])
+
+    lab.x <- lab.pos
+    lab.y <- c(NA_real_)
+
+    for (i in 2:ncol(df)) {
+      spec.max <- max(df[, i])
+      spec.min <- min(df[, i])
+      pos.y <- spec.min + (30 * (spec.max - spec.min)) / 100 # keeping the position at 30 % of the total height for each spectrum
+      lab.y <- c(lab.y, pos.y)
+    }
+
+    lab.y <- lab.y[-1] # Removing the first value as it is NA_real_
+
+    molten.data <- melt(df, id = c("Frequency"))
+
+    p <- ggplot(data = molten.data, aes(
+      x = Frequency, y = value, group = variable,
+      color = variable
+    )) +
+      geom_line() +
+      scale_color_manual(name = "Key", values = spectra$colors[which]) +
+      annotate("text",
+        x = lab.x,
+        y = lab.y,
+        label = spectra$names[which]
+      ) +
+      labs(x = spectra$unit[1], y = spectra$unit[2]) +
+      theme_classic() +
+      theme_bw() +
+      ylim(yrange) +
+      theme(legend.position = "none") +
+      theme(panel.border = element_blank(), axis.line = element_line(colour = "black")) +
+      theme(
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank()
+      ) # Removing the horizontal lines from the grid
+
+    if (!showGrid) {
+      p <- p + theme(panel.grid.minor = element_blank(), panel.grid.major = element_blank())
+    }
+
+    if (all(leg.loc != "none")) {
+      
+      group <- c(NA_real_)
+      color <- c(NA_real_)
+      for (i in spectra$groups)
+      {
+        if (!(i %in% group)) {
+          group <- c(group, i)
+        }
+      }
+      for (i in spectra$colors)
+      {
+        if (!(i %in% color)) {
+          color <- c(color, i)
+        }
+      }
+      group <- group[-1]
+      color <- color[-1]
+      
+      #0.025 is the fudge factor for better display of legend
+      
+      keys<-grobTree(textGrob("Key",x=leg.loc$x,y=leg.loc$y+0.025,hjust = 0,
+                     gp = gpar(col = "black", fontsize = 12,fontface="italic")))
+      
+      for (i in 1:length(group))
+      {
+        grob <- grobTree(textGrob(group[i],
+          x = leg.loc$x, y = leg.loc$y, hjust = 0,
+          gp = gpar(col = color[i], fontsize = 12,fontface="italic")
+        ))
+        leg.loc$y <- leg.loc$y - 0.025
+        p <- p + annotation_custom(grob) +annotation_custom(keys)
+      }
+    }
+    args <- as.list(match.call())[-1] #Capturing the xlim
+    
+    if ("xlim" %in% names(args))
+    {
+      xl <- eval(args$xlim)
+      p <- p + coord_cartesian(xlim=c(xl[1],xl[2]))     #Zooming in the plot according to xlim range
+    }
+    
+    if("main" %in% names(args)) #Capturing main 
+    {
+      yl <- eval(args$main)
+      p<-p+ggtitle(yl[1])  #Title of the plot                       
+      p<- p+theme(plot.title = element_text(hjust = 0.5))  #Aligning the title to center
+    }
+
+    return(p)
+  }
 }
+

@@ -65,7 +65,9 @@ Suggests:
   rmarkdown,
   bookdown,
   chemometrics,
-  hyperSpec
+  hyperSpec,
+  ggplot2,
+  reshape2
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE
