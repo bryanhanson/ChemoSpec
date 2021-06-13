@@ -136,6 +136,8 @@ plotSpectra <- function(spectra, which = c(1),
     }
     if (all(leg.loc != "none"))
     {
+      x.min<-min(spectra$freq)
+      x.max<-max(spectra$freq)
       args <- as.list(match.call())[-1]  #Capturing the xlim
       if ("xlim" %in% names(args))
      {
