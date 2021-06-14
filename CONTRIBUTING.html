@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.3.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.3.13</span>
       </span>
     </div>
 
@@ -179,19 +179,35 @@
 <ul>
 <li>Fork the package and clone to your computer. Keep your local copy sync’ed with upstream changes.</li>
 <li>Starting from the <code>devel</code> branch, create a new branch for your upcoming contribution (usually this will be named something like <code>issue/#27</code> if you are fixing an issue, for example, or <code>feature/feature_name</code> if you are contributing a new feature). Generally if you have a feature you’d like to add, file an issue describing the proposed feature so it can be discussed and tracked.</li>
-<li>Before making any changes, build and check using the <code>--as-cran</code> setting, and fix any issues (Which shouldn’t involve code problems, but rather additional tweaks to your local build environment. If you see any errors or warnings at this point, contact the maintainers before proceeding.).</li>
+<li>Before making any changes, build using the following flags:
+<ul>
+<li><code>--as-cran</code></li>
+<li><code>--no-init-file</code></li>
+<li><code>--resave-data</code></li>
+<li>
+<code>--compact-vignettes="both"</code> Fix any problems that arise (Which shouldn’t involve code problems, but rather additional tweaks to your local build environment. If you see any errors or warnings at this point, contact the maintainers before proceeding.).</li>
+</ul>
+</li>
+<li>Check using the following flags:
+<ul>
+<li><code>--as-cran</code></li>
+<li>
+<code>--no-init-file</code> Fix any problems that arise (Which shouldn’t involve code problems, but rather additional tweaks to your local build environment. If you see any errors or warnings at this point, contact the maintainers before proceeding.).</li>
+</ul>
+</li>
 <li>Make the changes you have in mind.
 <ul>
 <li>Please use super-frequent git commit messages that clearly state what you are doing.</li>
 <li>Does your work require changes to <code>.Rbuildignore</code>, <code>.gitignore</code>?</li>
 <li>Update the documentation as needed. We use <code>roxgyen2</code>.</li>
 <li>Style your code using <code>styler</code> with the default settings. Style only the file you are working on.</li>
-<li>Write any unit tests if needed. <em>Unit tests go into the function file</em> using the <code>roxygen2</code> style tags provided by <code>roxut</code>. Unit tests use the <code>tinytest</code> framework.</li>
+<li>Write any unit tests if needed. Unit tests use the <code>tinytest</code> framework.</li>
+<li>Run <code>roxygen2::document()</code> to update the help files and <code>NAMESPACE</code> if your changes alter the help entries or add additional <code>@importFrom</code> entries.</li>
 <li>If your changes are user-facing, fix a bug, change behavior or add a new feature, add a bullet to the <code>NEWS.md</code> file. This file helps us keep track over time. Only trivial changes do not go to <code>NEWS.md</code>.</li>
 <li>If your contribution is significant, add yourself to <code>DESCRIPTION</code>.</li>
 </ul>
 </li>
-<li>Once again, build and check locally using the <code>--as-cran</code> setting. Fix any problems. Do not skip this step.</li>
+<li>Once again, build and check locally with the flags listed earlier. Fix any problems. Do not skip this step.</li>
 <li>If your code (may possibly) introduce platform-dependent behavior, check the package using win-builder.</li>
 <li>Create a pull request. The body of your pull request should include language along the lines of “fixes issue #xyz”. See other special words that cause the associated issue to automatically be closed on successful pul can be seen <a href="https://docs.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword">here</a>.</li>
 <li>Wait for feedback.</li>
