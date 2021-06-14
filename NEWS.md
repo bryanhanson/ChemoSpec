@@ -1,3 +1,8 @@
+# ChemoSpec 6.0.0 2021-06-13
+## Misc.
+* Courtesy GSOC and Tejasvi Gupta, the following plotting functions gain the ability to produce either `base` graphics or `ggplot2` graphics: `plotSpectra`.
+* The graphics output options can be chosen by `options(ChemoSpecGraphics = "option")` where `option` is one of `c("base", "ggplot2")`.
+
 # ChemoSpec 5.3.11 2021-03-24
 ## Changes in ChemoSpecUtils that affect ChemoSpec
 * Documentation of `...` in `sumSpectra` corrected to show how to pass `tol` to `check4Gaps`.
