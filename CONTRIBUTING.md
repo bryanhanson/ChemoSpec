@@ -59,7 +59,8 @@ Fix any problems that arise (Which shouldn't involve code problems, but rather a
   + Does your work require changes to `.Rbuildignore`, `.gitignore`?
   + Update the documentation as needed.  We use `roxgyen2`.
   + Style your code using `styler` with the default settings.  Style only the file you are working on.
-  + Write any unit tests if needed.  *Unit tests go into the function file* using the `roxygen2` style tags provided by `roxut`.  Unit tests use the `tinytest` framework.
+  + Write any unit tests if needed. Unit tests use the `tinytest` framework.
+  + Run `roxygen2::document()` to update the help files and `NAMESPACE` if your changes alter the help entries or add additional `@importFrom` entries.
   + If your changes are user-facing, fix a bug, change behavior or add a new feature, add a bullet to the `NEWS.md` file.  This file helps us keep track over time.  Only trivial changes do not go to `NEWS.md`.
   + If your contribution is significant, add yourself to `DESCRIPTION`.
 * Once again, build and check locally with the flags listed earlier.  Fix any problems.  Do not skip this step.
