@@ -5,7 +5,7 @@
 #'
 #' @export
 #'
-#' @examples
+#' #@examples
 chkGraphicsOpt <- function(silent = TRUE) {
   go <- getOption("ChemoSpecGraphics")
   valid <- c("base", "ggplot2", "plotly", "shiny")
