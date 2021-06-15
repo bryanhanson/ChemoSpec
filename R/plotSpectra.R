@@ -170,35 +170,27 @@ plotSpectra <- function(spectra, which = c(1),
     for (i in 2:ncol(df)) {
       spec.max <- max(df[, i])
       spec.min <- min(df[, i])
-      pos.y <- spec.min + (30 * (spec.max - spec.min)) / 100 # keeping the position at 30 % of the total height for each spectrum
+      # put the label at 30 % of the total height for each spectrum
+      pos.y <- spec.min + (30 * (spec.max - spec.min)) / 100
       lab.y <- c(lab.y, pos.y)
     }
 
-    lab.y <- lab.y[-1] # Removing the first value as it is NA_real_
+    lab.y <- lab.y[-1] # remove the first value as it is NA_real_
 
     molten.data <- reshape2::melt(df, id = c("Frequency"))
 
-    p <- ggplot(data = molten.data, aes(
-      x = Frequency, y = value, group = variable,
-      color = variable
-    )) +
+    p <- ggplot(data = molten.data,
+      aes(x = Frequency, y = value, group = variable, color = variable)) +
       geom_line() +
       scale_color_manual(name = "Key", values = spectra$colors[which]) +
-      annotate("text",
-        x = lab.x,
-        y = lab.y,
-        label = spectra$names[which]
-      ) +
+      annotate("text", x = lab.x, y = lab.y, label = spectra$names[which]) +
       labs(x = spectra$unit[1], y = spectra$unit[2]) +
+      ylim(yrange) +
       theme_classic() +
       theme_bw() +
-      ylim(yrange) +
       theme(legend.position = "none") +
       theme(panel.border = element_blank(), axis.line = element_line(colour = "black")) +
-      theme(
-        panel.grid.major.y = element_blank(),
-        panel.grid.minor.y = element_blank()
-      ) # Removing the horizontal lines from the grid
+      theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank())
 
     if (!showGrid) {
       p <- p + theme(panel.grid.minor = element_blank(), panel.grid.major = element_blank())
