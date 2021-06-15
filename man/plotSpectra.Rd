@@ -43,12 +43,12 @@ is desired, give \code{lab.pos} outside the plotted x range.}
 \item{showGrid}{Logical.  Places light gray vertical lines at each tick mark
 if \code{TRUE}.}
 
-\item{leg.loc}{Character; if \code{"none"} no legend will be drawn.
-Otherwise, any string acceptable to \code{\link{legend}}.Legend is plotted according to
- NPC or "Normalized Parent Coordinates".This means the plot has origin at (0,0) and
- top right corner is at coordinate (1,1), so if we want the legend in the middle of the plot we will use (0.5,0.5).}
+\item{leg.loc}{A list giving x and y coordinates; if \code{"none"} no legend will be drawn.
+The plotting of the legend is based on the origin of the plot as [0,0] and the top right
+corner is [1,1]. If one wants the plot dead center use \code{leg.loc = list(x = 0.5, y = 0.5)}.}
 
-\item{\dots}{Additional parameters to be passed to plotting functions.}
+\item{\dots}{Additional parameters to be passed to plotting functions.  Names will depend
+upon the choice of graphics options.}
 }
 \value{
 The returned value depends on the graphics option selected (see \code{\link{GraphicsOutput}}).
@@ -66,6 +66,8 @@ several parameters.
 \examples{
 
 data(metMUD1)
+
+# Using base graphics (the default)
 plotSpectra(metMUD1,
   main = "metMUD1 NMR Data",
   which = c(10, 11), yrange = c(0, 1.5),
@@ -80,11 +82,27 @@ plotSpectra(metMUD1,
   leg.loc = list(x = 0.8, y = 0.8)
 )
 
+# Using ggplot2 graphics
+options(ChemoSpecGraphics = "ggplot2")
+plotSpectra(metMUD1,
+  main = "metMUD1 NMR Data",
+  which = c(10, 11), yrange = c(0, 1.5),
+  offset = 0.06, amplify = 10, lab.pos = 0.5
+)
+
+# Add a legend at x, y coords
+plotSpectra(metMUD1,
+  main = "metMUD1 NMR Data",
+  which = c(10, 11), yrange = c(0, 1.5),
+  offset = 0.06, amplify = 10, lab.pos = 0.5,
+  leg.loc = list(x = 0.8, y = 0.8)
+)
 
 # Sometimes additional legend could be created with the new theme.
 # This can be removed by simply adding 'theme(legend.position="none")'.
 # As ggplot2 plot would be returned in ggplot2() mode all the ggplot2 functions
 # can be used with it.
+
 }
 \seealso{
 \code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOutput}}
