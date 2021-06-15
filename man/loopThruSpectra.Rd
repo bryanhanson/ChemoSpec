@@ -12,15 +12,22 @@ loopThruSpectra(spectra, ...)
 \item{\dots}{Parameters to be passed downstream.}
 }
 \value{
-None. Side effect is a plot.
+Graphics mode
+\itemize{
+ \item{base:}{    None.  Side effect is a plot.}
+ \item{ggplot2:}{    Returns a ggplot2 plot. Theme of the plot can be changed by adding the ggplot2 theme
+ to the function call }
+}
 }
 \description{
 Plots each spectrum in a \code{\link{Spectra}} object one at a time, and
 waits for a return in the console before plotting the next spectrum.  Use
 \code{ESC} to get out of the loop.
 }
+\details{
+The ggplot2 mode plots all the \code{\link{Spectra}} objects in the dataset on a single column.
+}
 \examples{
-
 \dontrun{
 data(metMUD1)
 loopThruSpectra(metMUD1)
