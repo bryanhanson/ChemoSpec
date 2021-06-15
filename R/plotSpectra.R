@@ -39,19 +39,18 @@
 #' @param \dots Additional parameters to be passed to plotting functions.
 #'
 #' @return
-#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOutput}}).
 #' \itemize{
 #'  \item{base:}{    None.  Side effect is a plot.}
 #'  \item{ggplot2:}{    Returns a \code{ggplot2} plot object. The plot can be modified in the usual
-#'                      \code{ggplot2} manner.
+#'                      \code{ggplot2} manner.}
 #' }
-#'
 #'
 #' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 #'
-#' @seealso \code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOptions}}
-#'          for more information about the graphics options.
-#' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#' @seealso \code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOutput}}
+#'          for more information about the graphics options. Additional documentation at
+#'          \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #'
 #' @keywords hplot
