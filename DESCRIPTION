@@ -1,7 +1,7 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 6.0.0
+Version: 6.0.5
 Date: 2021-06-13
 Authors@R: c(
     person("Bryan A.", "Hanson",
@@ -38,6 +38,8 @@ Imports:
   stats,
   utils,
   grDevices,
+  reshape2,
+  ggplot2,
   readJDX (>= 0.4)
 Suggests:
   IDPmisc,
@@ -68,9 +70,7 @@ Suggests:
   rmarkdown,
   bookdown,
   chemometrics,
-  hyperSpec,
-  ggplot2,
-  reshape2
+  hyperSpec
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE

@@ -48,7 +48,7 @@
 #' }
 #'
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 #'
 #' @seealso \code{\link{plotSpectraJS}} for the interactive version.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
@@ -81,6 +81,12 @@
 #' @export plotSpectra
 #'
 #' @importFrom graphics grid lines text points plot
+#' @importFrom ggplot2 aes annotate annotation_custom coord_cartesian element_blank
+#' @importFrom ggplot2 element_line element_text geom_line ggplot ggtitle labs
+#' @importFrom ggplot2 scale_color_manual theme theme_bw theme_classic ylim
+#' @importFrom grid grobTree textGrob
+#' @importFrom reshape2 melt
+#' 
 
 plotSpectra <- function(spectra, which = c(1),
                         yrange = range(spectra$data),
@@ -142,9 +148,8 @@ plotSpectra <- function(spectra, which = c(1),
   }
 
   if (go == "ggplot2") {
-    value <- NULL
-    variable <- NULL
-    frequency <- NULL
+    value <- variable <- Frequency <- NULL # satisfy CRAN check engine
+
     # Set up data frame for plotting
     df <- data.frame(spectra$freq)
     count <- 0
@@ -168,7 +173,7 @@ plotSpectra <- function(spectra, which = c(1),
 
     lab.y <- lab.y[-1] # Removing the first value as it is NA_real_
 
-    molten.data <- melt(df, id = c("Frequency"))
+    molten.data <- reshape2::melt(df, id = c("Frequency"))
 
     p <- ggplot(data = molten.data, aes(
       x = Frequency, y = value, group = variable,
