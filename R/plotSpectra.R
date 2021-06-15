@@ -203,7 +203,7 @@ plotSpectra <- function(spectra, which = c(1),
       annotate("text", x = lab.x, y = lab.y, label = spectra$names[which]) +
       labs(x = spectra$unit[1], y = spectra$unit[2]) +
       ylim(yrange) +
-      theme_classic() +
+      # theme_classic() +
       theme_bw() +
       theme(legend.position = "none") +
       theme(panel.border = element_blank(), axis.line = element_line(colour = "black")) +
