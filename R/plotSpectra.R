@@ -101,16 +101,16 @@ plotSpectra <- function(spectra, which = c(1),
 
   if (go == "base") {
 
-    # set up and plot the first spectrum
+    # set up and plot the first spectrum (type = "n")
 
     spectrum <- spectra$data[which[1], ] * amplify
-
     plot(spectra$freq, spectrum,
       type = "n",
       xlab = spectra$unit[1], ylab = spectra$unit[2],
       ylim = yrange,
       frame.plot = FALSE, ...
     )
+
     if (showGrid) grid(ny = NA, lty = 1) # grid will be underneath all spectra
     lines(spectra$freq, spectrum, col = spectra$colors[which[1]], ...)
     lab.x <- lab.pos
@@ -127,19 +127,22 @@ plotSpectra <- function(spectra, which = c(1),
       lab.y <- spectrum[freq.index]
       text(lab.x, lab.y, labels = spectra$names[n], pos = 3, cex = 0.75)
     }
+
     if (all(leg.loc != "none")) {
       x.min <- min(spectra$freq)
       x.max <- max(spectra$freq)
 
       y.min <- yrange[1]
       y.max <- yrange[2]
-      args <- as.list(match.call())[-1] # Capturing the xlim
+      args <- as.list(match.call())[-1] # capture xlim if user passes it
       if ("xlim" %in% names(args)) {
         xl <- eval(args$xlim) # Converting 'args$xlim' to a usable form
-
         x.min <- xl[1]
         x.max <- xl[2]
       }
+      # base graphics normally uses data native coordinates
+      # convert to percent to be consistent with how ggplot2 will plot the legend
+      # also eliminates guessing about the y coord for the legend when spectra are offset
       leg.loc$x <- (leg.loc$x) * (x.max - x.min) + x.min
       leg.loc$y <- (leg.loc$y) * (y.max - y.min) + y.min
 
