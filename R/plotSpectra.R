@@ -31,10 +31,9 @@
 #' @param showGrid Logical.  Places light gray vertical lines at each tick mark
 #' if \code{TRUE}.
 #'
-#' @param leg.loc Character; if \code{"none"} no legend will be drawn.
-#' Otherwise, any string acceptable to \code{\link{legend}}.Legend is plotted according to
-#'  NPC or "Normalized Parent Coordinates".This means the plot has origin at (0,0) and
-#'  top right corner is at coordinate (1,1), so if we want the legend in the middle of the plot we will use (0.5,0.5).
+#' @param leg.loc A list giving x and y coordinates; if \code{"none"} no legend will be drawn.
+#' The plotting of the legend is based on the origin of the plot as [0,0] and the top right
+#' corner is [1,1]. If one wants the plot dead center use \code{leg.loc = list(x = 0.5, y = 0.5)}.
 #'
 #' @param \dots Additional parameters to be passed to plotting functions.  Names will depend
 #'        upon the choice of graphics options.
