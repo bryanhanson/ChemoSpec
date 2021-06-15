@@ -1,8 +1,7 @@
 #'
 #' Plot Spectra Object
 #'
-#' Plots the spectra stored in a \code{\link{Spectra}} object.  One may choose
-#' which spectra to plot, and the x range to plot.  Spectra may be plotted
+#' Plots the spectra stored in a \code{\link{Spectra}} object. Spectra may be plotted
 #' offset or stacked.  The vertical scale is controlled by a combination of
 #' several parameters.
 #'
@@ -19,13 +18,13 @@
 #' adjust all these arguments to produce the desired plot.
 #'
 #' @param offset A number specifying the vertical offset between spectra if
-#' more than one is plotted.  Set to 0.0 for a stacked plot.
+#' more than one is plotted.  Set to 0.0 to overlay the spectra.
 #'
 #' @param amplify A number specifying an amplification factor to be applied to
 #' all spectra.  Useful for magnifying spectra so small features show up
 #' (though large peaks will then be clipped, unless you zoom on the x axis).
 #'
-#' @param lab.pos A number giving the location for the identifying label.
+#' @param lab.pos A number (in frequency units) giving the location of a label for each spectrum.
 #' Generally, pick an area that is clear in all spectra plotted.  If no label
 #' is desired, give \code{lab.pos} outside the plotted x range.
 #'
@@ -40,17 +39,18 @@
 #' @param \dots Additional parameters to be passed to plotting functions.
 #'
 #' @return
-#' Graphics mode
+#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
 #' \itemize{
 #'  \item{base:}{    None.  Side effect is a plot.}
-#'  \item{ggplot2:}{    Returns a ggplot2 plot. Theme of the plot can be changed by adding the ggplot2 theme
-#'  to the function call }
+#'  \item{ggplot2:}{    Returns a \code{ggplot2} plot object. The plot can be modified in the usual
+#'                      \code{ggplot2} manner.
 #' }
 #'
 #'
 #' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 #'
-#' @seealso \code{\link{plotSpectraJS}} for the interactive version.
+#' @seealso \code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOptions}}
+#'          for more information about the graphics options.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #'
