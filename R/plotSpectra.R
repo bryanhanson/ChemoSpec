@@ -231,19 +231,19 @@ plotSpectra <- function(spectra, which = c(1),
         p <- p + annotation_custom(grob) + annotation_custom(keys)
       }
     }
-    args <- as.list(match.call())[-1] # Capturing the xlim
+    # args <- as.list(match.call())[-1] # Capturing the xlim
 
-    if ("xlim" %in% names(args)) {
-      xl <- eval(args$xlim)
-      p <- p + coord_cartesian(xlim = c(xl[1], xl[2])) # Zooming in the plot according to xlim range
-    }
+    # if ("xlim" %in% names(args)) {
+      # xl <- eval(args$xlim)
+      # p <- p + coord_cartesian(xlim = c(xl[1], xl[2])) # Zooming in the plot according to xlim range
+    # }
 
-    if ("main" %in% names(args)) # Capturing main
-      {
-        yl <- eval(args$main)
-        p <- p + ggtitle(yl[1]) # Title of the plot
-        p <- p + theme(plot.title = element_text(hjust = 0.5)) # Aligning the title to center
-      }
+    # if ("main" %in% names(args)) # Capturing main
+      # {
+        # yl <- eval(args$main)
+        # p <- p + ggtitle(yl[1]) # Title of the plot
+        # p <- p + theme(plot.title = element_text(hjust = 0.5)) # Aligning the title to center
+      # }
 
     return(p)
   }
