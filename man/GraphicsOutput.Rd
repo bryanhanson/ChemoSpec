@@ -3,10 +3,29 @@
 \docType{data}
 \name{GraphicsOutput}
 \alias{GraphicsOutput}
-\title{Graphic options in ChemoSpec}
+\title{Graphic Output Options in ChemoSpec}
 \description{
-In \code{ChemoSpec}, the user may use any graphic mode from 'base' and 'ggplot2' for plotting.
-The graphic mode can be found using \code{chkGrafOpt()}.
-Initially the graphic option is set to 'base'.
-The graphic options can be changed by doing \code{options(ChemoSpecGraphics = 'option')}, where 'option' is one of 'base' or 'ggplot2'
+In \code{ChemoSpec}, the user may chose from the following graphics options:
+\itemize{
+  \item \code{base} graphics, the default (and the style from the early days).
+  \item \code{ggplot2} graphics.  These may be modifed by the usual \code{ggplot2}
+         methods.
 }
+Here's how it works:
+\itemize{
+  \item Upon starting \code{ChemoSpec} the graphics output mode is set to \code{base}.
+  \item To see the current value, do \code{chkGrafOpt()}.
+  \item To change the graphics output mode, do \code{options(ChemoSpecGraphics = 'option')},
+        where 'option' is one of the options listed above.
+}
+}
+\section{Details}{
+
+\itemize{
+  \item Base graphics are the original graphics output in \code{R}.  They cannot be modified.
+  \item For \code{ggplot2} graphics, \code{ChemoSpec} employs \code{theme_bw} with only a
+        very few modifications.  You can add things to your plot, or override the theme
+        used here via the usual \code{ggplot2} methods.
+}
+}
+
