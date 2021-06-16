@@ -1,11 +1,13 @@
 #'
 #' Review All the Spectra in a Spectra Object
 #'
-#' Plots each spectrum in a \code{\link{Spectra}} object one at a time, and
-#' waits for a return in the console before plotting the next spectrum.  Use
-#' \code{ESC} to get out of the loop.
-#'
-#' The ggplot2 mode plots all the \code{\link{Spectra}} objects in the dataset on a single column.
+#' Utility to review all spectra in a \code{Spectra} object.  Output depends upon the graphics
+#' output choice.
+#' \describe{
+#'   \item{base:}{Plots each spectrum one at a time, and waits for a return in the console before
+#'     plotting the next spectrum.  Use \code{ESC} to get out of the loop.}
+#'   \item{ggplot2:}{All the spectra are plotted in a single column.}
+#'  }
 #'
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
@@ -14,9 +16,9 @@
 #'
 #' @return
 #' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
-#' \itemize{
-#'  \item{base:}{    None.  Side effect is a plot.}
-#'  \item{ggplot2:}{    Returns a \code{ggplot2} plot object. The plot can be modified in the usual
+#' \describe{
+#'  \item{base:}{None.  Side effect is a plot.}
+#'  \item{ggplot2:}{Returns a \code{ggplot2} plot object. The plot can be modified in the usual
 #'                      \code{ggplot2} manner.}
 #'  }
 #'

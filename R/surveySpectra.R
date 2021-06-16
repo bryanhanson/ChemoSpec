@@ -36,9 +36,9 @@
 #'
 #' @return
 #' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
-#' \itemize{
-#'  \item{base:}{    None.  Side effect is a plot.}
-#'  \item{ggplot2:}{    Returns a \code{ggplot2} plot object. The plot can be modified in the usual
+#' \describe{
+#'  \item{base:}{None.  Side effect is a plot.}
+#'  \item{ggplot2:}{Returns a \code{ggplot2} plot object. The plot can be modified in the usual
 #'                      \code{ggplot2} manner.}
 #' }
 #'
