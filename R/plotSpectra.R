@@ -1,4 +1,4 @@
-#'
+p#'
 #' Plot Spectra Object
 #'
 #' Plots the spectra stored in a \code{\link{Spectra}} object. Spectra may be plotted
@@ -39,7 +39,7 @@
 #'        upon the choice of graphics options.
 #'
 #' @return
-#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOutput}}).
+#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
 #' \itemize{
 #'  \item{base:}{    None.  Side effect is a plot.}
 #'  \item{ggplot2:}{    Returns a \code{ggplot2} plot object. The plot can be modified in the usual
@@ -48,7 +48,7 @@
 #'
 #' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 #'
-#' @seealso \code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOutput}}
+#' @seealso \code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOptions}}
 #'          for more information about the graphics options. Additional documentation at
 #'          \url{https://bryanhanson.github.io/ChemoSpec/}
 #'

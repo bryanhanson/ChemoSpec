@@ -1,16 +1,17 @@
 #'
 #' Graphic Output Options in ChemoSpec
 #'
-#' In \code{ChemoSpec}, the user may chose from the following graphics options:
+#' In \code{ChemoSpec}, the user may chose from the following graphics output options:
 #' \itemize{
-#'   \item \code{base} graphics, the default (and the style from the early days).
+#'   \item \code{base} graphics, the default (also the style from the early days of \code{ChemoSpec}).
 #'   \item \code{ggplot2} graphics.
 #' }
 #'
 #' Here's how it works:
 #' \itemize{
 #'   \item Upon starting \code{ChemoSpec} the graphics output mode is set to \code{base}.
-#'   \item To see the current value, do \code{\link{chkGraphicsOpt()}}.
+#'   \item To see the current value, do \code{\link{chkGraphicsOpt()}}.  If by some chance the
+#'         value is corrupted it will be set to \code{base}.
 #'   \item To change the graphics output mode, do \code{options(ChemoSpecGraphics = 'option')},
 #'         where 'option' is one of the options listed above.
 #' }
