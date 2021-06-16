@@ -1,8 +1,7 @@
 #'
 #' Plot Spectra Object
 #'
-#' Plots the spectra stored in a \code{\link{Spectra}} object.  One may choose
-#' which spectra to plot, and the x range to plot.  Spectra may be plotted
+#' Plots the spectra stored in a \code{\link{Spectra}} object. Spectra may be plotted
 #' offset or stacked.  The vertical scale is controlled by a combination of
 #' several parameters.
 #'
@@ -19,39 +18,39 @@
 #' adjust all these arguments to produce the desired plot.
 #'
 #' @param offset A number specifying the vertical offset between spectra if
-#' more than one is plotted.  Set to 0.0 for a stacked plot.
+#' more than one is plotted.  Set to 0.0 to overlay the spectra.
 #'
 #' @param amplify A number specifying an amplification factor to be applied to
 #' all spectra.  Useful for magnifying spectra so small features show up
 #' (though large peaks will then be clipped, unless you zoom on the x axis).
 #'
-#' @param lab.pos A number giving the location for the identifying label.
+#' @param lab.pos A number (in frequency units) giving the location of a label for each spectrum.
 #' Generally, pick an area that is clear in all spectra plotted.  If no label
 #' is desired, give \code{lab.pos} outside the plotted x range.
 #'
 #' @param showGrid Logical.  Places light gray vertical lines at each tick mark
 #' if \code{TRUE}.
 #'
-#' @param leg.loc Character; if \code{"none"} no legend will be drawn.
-#' Otherwise, any string acceptable to \code{\link{legend}}.Legend is plotted according to
-#'  NPC or "Normalized Parent Coordinates".This means the plot has origin at (0,0) and
-#'  top right corner is at coordinate (1,1), so if we want the legend in the middle of the plot we will use (0.5,0.5).
+#' @param leg.loc A list giving x and y coordinates; if \code{"none"} no legend will be drawn.
+#' The plotting of the legend is based on the origin of the plot as [0,0] and the top right
+#' corner is [1,1]. If one wants the plot dead center use \code{leg.loc = list(x = 0.5, y = 0.5)}.
 #'
-#' @param \dots Additional parameters to be passed to plotting functions.
+#' @param \dots Additional parameters to be passed to plotting functions.  Names will depend
+#'        upon the choice of graphics options.
 #'
 #' @return
-#' Graphics mode
+#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
 #' \itemize{
 #'  \item{base:}{    None.  Side effect is a plot.}
-#'  \item{ggplot2:}{    Returns a ggplot2 plot. Theme of the plot can be changed by adding the ggplot2 theme
-#'  to the function call }
+#'  \item{ggplot2:}{    Returns a \code{ggplot2} plot object. The plot can be modified in the usual
+#'                      \code{ggplot2} manner.}
 #' }
-#'
 #'
 #' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 #'
-#' @seealso \code{\link{plotSpectraJS}} for the interactive version.
-#' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#' @seealso \code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOptions}}
+#'          for more information about the graphics options. Additional documentation at
+#'          \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #'
 #' @keywords hplot
@@ -59,6 +58,8 @@
 #' @examples
 #'
 #' data(metMUD1)
+#'
+#' # Using base graphics (the default)
 #' plotSpectra(metMUD1,
 #'   main = "metMUD1 NMR Data",
 #'   which = c(10, 11), yrange = c(0, 1.5),
@@ -73,11 +74,24 @@
 #'   leg.loc = list(x = 0.8, y = 0.8)
 #' )
 #'
+#' # Using ggplot2 graphics
+#' options(ChemoSpecGraphics = "ggplot2")
+#' p <- plotSpectra(metMUD1,
+#'   main = "metMUD1 NMR Data",
+#'   which = c(10, 11), yrange = c(0, 1.5),
+#'   offset = 0.06, amplify = 10, lab.pos = 0.5
+#' )
+#' p
 #'
-#' # Sometimes additional legend could be created with the new theme.
-#' # This can be removed by simply adding 'theme(legend.position="none")'.
-#' # As ggplot2 plot would be returned in ggplot2() mode all the ggplot2 functions
-#' # can be used with it.
+#' # Add a legend at x, y coords
+#' p <- plotSpectra(metMUD1,
+#'   main = "metMUD1 NMR Data",
+#'   which = c(10, 11), yrange = c(0, 1.5),
+#'   offset = 0.06, amplify = 10, lab.pos = 0.5,
+#'   leg.loc = list(x = 0.8, y = 0.8)
+#' )
+#' p
+#'
 #' @export plotSpectra
 #'
 #' @importFrom graphics grid lines text points plot
@@ -86,7 +100,7 @@
 #' @importFrom ggplot2 scale_color_manual theme theme_bw theme_classic ylim
 #' @importFrom grid grobTree textGrob
 #' @importFrom reshape2 melt
-#' 
+#'
 
 plotSpectra <- function(spectra, which = c(1),
                         yrange = range(spectra$data),
@@ -101,16 +115,16 @@ plotSpectra <- function(spectra, which = c(1),
 
   if (go == "base") {
 
-    # set up and plot the first spectrum
+    # set up and plot the first spectrum (type = "n")
 
     spectrum <- spectra$data[which[1], ] * amplify
-
     plot(spectra$freq, spectrum,
       type = "n",
       xlab = spectra$unit[1], ylab = spectra$unit[2],
       ylim = yrange,
       frame.plot = FALSE, ...
     )
+
     if (showGrid) grid(ny = NA, lty = 1) # grid will be underneath all spectra
     lines(spectra$freq, spectrum, col = spectra$colors[which[1]], ...)
     lab.x <- lab.pos
@@ -127,19 +141,22 @@ plotSpectra <- function(spectra, which = c(1),
       lab.y <- spectrum[freq.index]
       text(lab.x, lab.y, labels = spectra$names[n], pos = 3, cex = 0.75)
     }
+
     if (all(leg.loc != "none")) {
       x.min <- min(spectra$freq)
       x.max <- max(spectra$freq)
 
       y.min <- yrange[1]
       y.max <- yrange[2]
-      args <- as.list(match.call())[-1] # Capturing the xlim
+      args <- as.list(match.call())[-1] # capture xlim if user passes it
       if ("xlim" %in% names(args)) {
         xl <- eval(args$xlim) # Converting 'args$xlim' to a usable form
-
         x.min <- xl[1]
         x.max <- xl[2]
       }
+      # base graphics normally uses data native coordinates
+      # convert to percent to be consistent with how ggplot2 will plot the legend
+      # also eliminates guessing about the y coord for the legend when spectra are offset
       leg.loc$x <- (leg.loc$x) * (x.max - x.min) + x.min
       leg.loc$y <- (leg.loc$y) * (y.max - y.min) + y.min
 
@@ -167,35 +184,27 @@ plotSpectra <- function(spectra, which = c(1),
     for (i in 2:ncol(df)) {
       spec.max <- max(df[, i])
       spec.min <- min(df[, i])
-      pos.y <- spec.min + (30 * (spec.max - spec.min)) / 100 # keeping the position at 30 % of the total height for each spectrum
+      # put the label at 30 % of the total height for each spectrum
+      pos.y <- spec.min + (30 * (spec.max - spec.min)) / 100
       lab.y <- c(lab.y, pos.y)
     }
 
-    lab.y <- lab.y[-1] # Removing the first value as it is NA_real_
+    lab.y <- lab.y[-1] # remove the first value as it is NA_real_
 
     molten.data <- reshape2::melt(df, id = c("Frequency"))
 
-    p <- ggplot(data = molten.data, aes(
-      x = Frequency, y = value, group = variable,
-      color = variable
-    )) +
+    p <- ggplot(data = molten.data,
+      aes(x = Frequency, y = value, group = variable, color = variable)) +
       geom_line() +
       scale_color_manual(name = "Key", values = spectra$colors[which]) +
-      annotate("text",
-        x = lab.x,
-        y = lab.y,
-        label = spectra$names[which]
-      ) +
+      annotate("text", x = lab.x, y = lab.y, label = spectra$names[which]) +
       labs(x = spectra$unit[1], y = spectra$unit[2]) +
-      theme_classic() +
-      theme_bw() +
       ylim(yrange) +
+      # theme_classic() +
+      theme_bw() +
       theme(legend.position = "none") +
       theme(panel.border = element_blank(), axis.line = element_line(colour = "black")) +
-      theme(
-        panel.grid.major.y = element_blank(),
-        panel.grid.minor.y = element_blank()
-      ) # Removing the horizontal lines from the grid
+      theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank())
 
     if (!showGrid) {
       p <- p + theme(panel.grid.minor = element_blank(), panel.grid.major = element_blank())
@@ -236,19 +245,19 @@ plotSpectra <- function(spectra, which = c(1),
         p <- p + annotation_custom(grob) + annotation_custom(keys)
       }
     }
-    args <- as.list(match.call())[-1] # Capturing the xlim
+    # args <- as.list(match.call())[-1] # Capturing the xlim
 
-    if ("xlim" %in% names(args)) {
-      xl <- eval(args$xlim)
-      p <- p + coord_cartesian(xlim = c(xl[1], xl[2])) # Zooming in the plot according to xlim range
-    }
+    # if ("xlim" %in% names(args)) {
+      # xl <- eval(args$xlim)
+      # p <- p + coord_cartesian(xlim = c(xl[1], xl[2])) # Zooming in the plot according to xlim range
+    # }
 
-    if ("main" %in% names(args)) # Capturing main
-      {
-        yl <- eval(args$main)
-        p <- p + ggtitle(yl[1]) # Title of the plot
-        p <- p + theme(plot.title = element_text(hjust = 0.5)) # Aligning the title to center
-      }
+    # if ("main" %in% names(args)) # Capturing main
+      # {
+        # yl <- eval(args$main)
+        # p <- p + ggtitle(yl[1]) # Title of the plot
+        # p <- p + theme(plot.title = element_text(hjust = 0.5)) # Aligning the title to center
+      # }
 
     return(p)
   }
