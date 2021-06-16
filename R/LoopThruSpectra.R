@@ -12,19 +12,21 @@
 #' @param \dots Parameters to be passed downstream.
 #'
 #' @return
-#' Graphics mode
+#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
 #' \itemize{
 #'  \item{base:}{    None.  Side effect is a plot.}
-#'  \item{ggplot2:}{    Returns a ggplot2 plot. Theme of the plot can be changed by adding the ggplot2 theme
-#'  to the function call }
-#' }
+#'  \item{ggplot2:}{    Returns a \code{ggplot2} plot object. The plot can be modified in the usual
+#'                      \code{ggplot2} manner.}
+#'  }
 #'
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 #'
 #' @keywords hplot
 #'
-#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#' @seealso See \code{\link{GraphicsOptions}}
+#'          for more information about the graphics options. Additional documentation at
+#'          \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @export loopThruSpectra
 #'
@@ -54,12 +56,12 @@ loopThruSpectra <- function(spectra, ...) {
   if (go == "ggplot2") {
     x <- spectra$freq
     l.x <- length(x)
-    df1 <- data.frame(x = NA_real_, y = NA_real_, z = NA_real_)
+    df1 <- data.frame(x = NA_real_, y = NA_real_, spectra.name = NA_real_)
     for (i in 1:length(spectra$names))
     {
       y <- spectra$data[i, ]
-      z <- rep(spectra$names[i], l.x)
-      df2 <- data.frame(x = x, y = y, z = z)
+      spectra.name <- rep(spectra$names[i], l.x)
+      df2 <- data.frame(x = x, y = y, spectra.name = spectra.name)
       df1 <- rbind(df1, df2)
     }
     df1 <- df1[-1, ]
@@ -68,7 +70,7 @@ loopThruSpectra <- function(spectra, ...) {
       theme_bw() +
       xlab(spectra$unit[1]) +
       ylab(spectra$unit[2]) +
-      facet_grid(z ~ ., switch = "both") + # faceting
+      facet_grid(spectra.name ~ ., switch = "both") + # faceting
       theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
     return(p)

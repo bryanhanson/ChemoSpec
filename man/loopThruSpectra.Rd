@@ -12,12 +12,12 @@ loopThruSpectra(spectra, ...)
 \item{\dots}{Parameters to be passed downstream.}
 }
 \value{
-Graphics mode
+The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
 \itemize{
  \item{base:}{    None.  Side effect is a plot.}
- \item{ggplot2:}{    Returns a ggplot2 plot. Theme of the plot can be changed by adding the ggplot2 theme
- to the function call }
-}
+ \item{ggplot2:}{    Returns a \code{ggplot2} plot object. The plot can be modified in the usual
+                     \code{ggplot2} manner.}
+ }
 }
 \description{
 Plots each spectrum in a \code{\link{Spectra}} object one at a time, and
@@ -35,9 +35,11 @@ loopThruSpectra(metMUD1)
 
 }
 \seealso{
-Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+See \code{\link{GraphicsOptions}}
+         for more information about the graphics options. Additional documentation at
+         \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 }
 \keyword{hplot}
