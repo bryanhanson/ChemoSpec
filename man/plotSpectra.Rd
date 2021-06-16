@@ -51,7 +51,7 @@ corner is [1,1]. If one wants the plot dead center use \code{leg.loc = list(x = 
 upon the choice of graphics options.}
 }
 \value{
-The returned value depends on the graphics option selected (see \code{\link{GraphicsOutput}}).
+The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
 \itemize{
  \item{base:}{    None.  Side effect is a plot.}
  \item{ggplot2:}{    Returns a \code{ggplot2} plot object. The plot can be modified in the usual
@@ -102,7 +102,7 @@ p
 
 }
 \seealso{
-\code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOutput}}
+\code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOptions}}
          for more information about the graphics options. Additional documentation at
          \url{https://bryanhanson.github.io/ChemoSpec/}
 }
