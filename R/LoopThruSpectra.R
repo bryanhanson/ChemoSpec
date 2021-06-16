@@ -54,14 +54,12 @@ loopThruSpectra <- function(spectra, ...) {
   if (go == "ggplot2") {
     x <- spectra$freq
     l.x <- length(x)
-    args <- as.list(match.call())[-1]
-    df1 <- data.frame(x = NA, y = NA, z = NA, col = NA)
+    df1 <- data.frame(x = NA_real_, y = NA_real_, z = NA_real_)
     for (i in 1:length(spectra$names))
     {
       y <- spectra$data[i, ]
       z <- rep(spectra$names[i], l.x)
-      col <- rep(spectra$colors[i], l.x)
-      df2 <- data.frame(x = x, y = y, z = z, col = col)
+      df2 <- data.frame(x = x, y = y, z = z)
       df1 <- rbind(df1, df2)
     }
     df1 <- df1[-1, ]
@@ -69,21 +67,10 @@ loopThruSpectra <- function(spectra, ...) {
       geom_line(aes(y = y)) +
       theme_bw() +
       xlab(spectra$unit[1]) +
-      ylab("absorbance")
-    p <- p + facet_grid(z ~ ., switch = "both") + # faceting
-      theme(strip.background = element_rect(fill = "#ffe4cc")) +
+      ylab(spectra$unit[2]) +
+      facet_grid(z ~ ., switch = "both") + # faceting
       theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-    if ("xlim" %in% names(args)) {
-      xl <- eval(args$xlim)
-      p <- p + coord_cartesian(xlim = c(xl[1], xl[2])) # Zooming in the plot according to xlim range
-    }
 
-    if ("main" %in% names(args)) # Capturing main
-      {
-        yl <- eval(args$main)
-        p <- p + ggtitle(yl[1]) # Title of the plot
-        p <- p + theme(plot.title = element_text(hjust = 0.5)) # Aligning the title to center
-      }
     return(p)
   }
 }
