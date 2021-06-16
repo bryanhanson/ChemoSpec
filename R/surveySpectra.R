@@ -33,9 +33,15 @@
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @return None; side effect is a plot
+#' @return
+#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+#' \itemize{
+#'  \item{base:}{    None.  Side effect is a plot.}
+#'  \item{ggplot2:}{    Returns a \code{ggplot2} plot object. The plot can be modified in the usual
+#'                      \code{ggplot2} manner.}
+#' }
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 #'
 #' @keywords hplot
 #'
@@ -51,217 +57,425 @@
 #' @importFrom graphics plot lines text
 #' @importFrom plyr aaply
 #' @importFrom ChemoSpecUtils sumGroups
+#' @importFrom ggplot2 xlab ylab facet_grid element_rect
 #'
 #' @describeIn surveySpectra Spectral survey emphasizing mean or median spectrum, optionally by group.
 #'
-surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"),
-                          by.gr = TRUE, ...) {
+surveySpectra<-function(spectra, method = c("sd","sem","sem95","mad","iqr"),
+                        by.gr = TRUE, ...)
+{
+  
   if (!requireNamespace("lattice", quietly = TRUE)) {
     stop("You need to install package lattice to use this function")
   }
-
+  
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
-
-  # Organize and compute the requested data
-
-  if (!by.gr) {
-    x <- spectra$freq
-    if (method == "iqr") {
-      y <- aaply(spectra$data, 2, .seXyIqr)
-      df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
-      p <- lattice::xyplot(y1 + y2 + y3 ~ x,
-        data = df,
-        col = c("black", "red", "red"), xlab = spectra$unit[1],
-        ylab = "Full Data Set, median +/- iqr", type = "l", ...
-      )
-      plot(p)
-    }
-    if (method == "sd") {
-      y1 <- aaply(spectra$data, 2, mean)
-      s <- aaply(spectra$data, 2, sd)
-      y2 <- y1 + s
-      y3 <- y1 - s
-      df <- data.frame(x, y1, y2, y3)
-      p <- lattice::xyplot(y1 + y2 + y3 ~ x,
-        data = df,
-        col = c("black", "red", "red"), xlab = spectra$unit[1],
-        ylab = "Full Data Set, mean +/- sd", type = "l", ...
-      )
-      plot(p)
-    }
-
-    if (method == "sem") {
-      y <- aaply(spectra$data, 2, .seXy)
-      df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
-      p <- lattice::xyplot(y1 + y2 + y3 ~ x,
-        data = df,
-        col = c("black", "red", "red"), xlab = spectra$unit[1],
-        ylab = "Full Data Set, mean +/- sem", type = "l", ...
-      )
-      plot(p)
-    }
-
-    if (method == "mad") {
-      y <- aaply(spectra$data, 2, .seXyMad)
-      df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
-      p <- lattice::xyplot(y1 + y2 + y3 ~ x,
-        data = df,
-        col = c("black", "red", "red"), xlab = spectra$unit[1],
-        ylab = "Full Data Set, median +/- mad", type = "l", ...
-      )
-      plot(p)
-    }
-
-    if (method == "sem95") {
-      y <- aaply(spectra$data, 2, .seXy95)
-      df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
-      p <- lattice::xyplot(y1 + y2 + y3 ~ x,
-        data = df,
-        col = c("black", "red", "red"), xlab = spectra$unit[1],
-        ylab = "Full Data Set, mean +/- 95% ci sem", type = "l", ...
-      )
-      plot(p)
-    }
-  }
-
-  if (by.gr) {
-    gr <- sumGroups(spectra)
-
-    # See if any groups should be dropped due to too few members
-    rem <- c()
-    dropGroups <- FALSE
-    for (n in 1:length(gr$group)) {
-      if (gr$no.[n] <= 3) {
-        message(
-          "\nGroup ", gr$group[n],
-          " has 3 or fewer members\n so your stats are not very useful...\n This group has been dropped for display purposes!"
+  
+  go<-chkGraphicsOpt()
+  
+  if( go =="base")
+  {
+    if (!by.gr) {
+      x <- spectra$freq
+      if (method == "iqr") {
+        y <- aaply(spectra$data, 2, .seXyIqr)
+        df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
+        p <- lattice::xyplot(y1 + y2 + y3 ~ x,
+                             data = df,
+                             col = c("black", "red", "red"), xlab = spectra$unit[1],
+                             ylab = "Full Data Set, median +/- iqr", type = "l", ...
         )
-        rem <- c(rem, gr$group[n])
-        dropGroups <- TRUE
+        plot(p)
       }
-    }
-
-    if (dropGroups) {
-      spectra <- removeGroup(spectra, rem.group = rem)
-      gr <- sumGroups(spectra) # update now that groups have been removed
-    }
-
-    # Now set up and plot
-    x <- spectra$freq
-    l.x <- length(x)
-
-    if (method == "iqr") {
-      df1 <- data.frame(x = NA, y1 = NA, y2 = NA, y3 = NA, z = NA)
-      for (n in 1:length(gr$group)) {
-        which <- as.character(spectra$groups) == gr$group[n]
-        y <- aaply(spectra$data[which, ], 2, .seXyIqr)
-        z <- rep(gr$group[n], l.x)
-        df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], z = z)
-        df1 <- rbind(df1, df2)
-      }
-
-      df1 <- df1[-1, ]
-      p <- lattice::xyplot(y1 + y2 + y3 ~ x | z,
-        data = df1,
-        col = c("black", "red", "red"), xlab = spectra$unit[1],
-        ylab = "median +/- iqr", type = "l",
-        strip.left = TRUE, strip = FALSE,
-        scales = list(x = "same", y1 = "same", y2 = "same", y3 = "same"),
-        layout = c(1, length(gr$group)), ...
-      )
-      plot(p)
-    }
-
-    if (method == "sd") {
-      df1 <- data.frame(x = NA, y1 = NA, y2 = NA, y3 = NA, z = NA)
-      for (n in 1:length(gr$group)) {
-        which <- as.character(spectra$groups) == gr$group[n]
-        y1 <- aaply(spectra$data[which, ], 2, mean)
-        s <- apply(spectra$data[which, ], 2, sd)
+      if (method == "sd") {
+        y1 <- aaply(spectra$data, 2, mean)
+        s <- aaply(spectra$data, 2, sd)
         y2 <- y1 + s
         y3 <- y1 - s
-        z <- rep(gr$group[n], l.x)
-        df2 <- data.frame(x = x, y1 = y1, y2 = y2, y3 = y3, z = z)
-        df1 <- rbind(df1, df2)
+        df <- data.frame(x, y1, y2, y3)
+        p <- lattice::xyplot(y1 + y2 + y3 ~ x,
+                             data = df,
+                             col = c("black", "red", "red"), xlab = spectra$unit[1],
+                             ylab = "Full Data Set, mean +/- sd", type = "l", ...
+        )
+        plot(p)
       }
-
-      df1 <- df1[-1, ]
-      p <- lattice::xyplot(y1 + y2 + y3 ~ x | z,
-        data = df1,
-        col = c("black", "red", "red"), xlab = spectra$unit[1],
-        ylab = "mean +/- sd", type = "l",
-        strip.left = TRUE, strip = FALSE,
-        scales = list(x = "same", y1 = "same", y2 = "same", y3 = "same"),
-        layout = c(1, length(gr$group)), ...
-      )
-      plot(p)
+      
+      if (method == "sem") {
+        y <- aaply(spectra$data, 2, .seXy)
+        df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
+        p <- lattice::xyplot(y1 + y2 + y3 ~ x,
+                             data = df,
+                             col = c("black", "red", "red"), xlab = spectra$unit[1],
+                             ylab = "Full Data Set, mean +/- sem", type = "l", ...
+        )
+        plot(p)
+      }
+      
+      if (method == "mad") {
+        y <- aaply(spectra$data, 2, .seXyMad)
+        df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
+        p <- lattice::xyplot(y1 + y2 + y3 ~ x,
+                             data = df,
+                             col = c("black", "red", "red"), xlab = spectra$unit[1],
+                             ylab = "Full Data Set, median +/- mad", type = "l", ...
+        )
+        plot(p)
+      }
+      
+      if (method == "sem95") {
+        y <- aaply(spectra$data, 2, .seXy95)
+        df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
+        p <- lattice::xyplot(y1 + y2 + y3 ~ x,
+                             data = df,
+                             col = c("black", "red", "red"), xlab = spectra$unit[1],
+                             ylab = "Full Data Set, mean +/- 95% ci sem", type = "l", ...
+        )
+        plot(p)
+      }
     }
-
-    if (method == "sem") {
-      df1 <- data.frame(x = NA, y1 = NA, y2 = NA, y3 = NA, z = NA)
+    
+    if (by.gr) {
+      gr <- sumGroups(spectra)
+      
+      # See if any groups should be dropped due to too few members
+      rem <- c()
+      dropGroups <- FALSE
       for (n in 1:length(gr$group)) {
-        which <- as.character(spectra$groups) == gr$group[n]
-        y <- aaply(spectra$data[which, ], 2, .seXy)
-        z <- rep(gr$group[n], l.x)
-        df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], z = z)
-        df1 <- rbind(df1, df2)
+        if (gr$no.[n] <= 3) {
+          message(
+            "\nGroup ", gr$group[n],
+            " has 3 or fewer members\n so your stats are not very useful...\n This group has been dropped for display purposes!"
+          )
+          rem <- c(rem, gr$group[n])
+          dropGroups <- TRUE
+        }
       }
-
-      df1 <- df1[-1, ]
-      p <- lattice::xyplot(y1 + y2 + y3 ~ x | z,
-        data = df1,
-        col = c("black", "red", "red"), xlab = spectra$unit[1],
-        ylab = "mean +/- sem", type = "l",
-        strip.left = TRUE, strip = FALSE,
-        scales = list(x = "same", y1 = "same", y2 = "same", y3 = "same"),
-        layout = c(1, length(gr$group)), ...
-      )
-      plot(p)
+      
+      if (dropGroups) {
+        spectra <- removeGroup(spectra, rem.group = rem)
+        gr <- sumGroups(spectra) # update now that groups have been removed
+      }
+      
+      # Now set up and plot
+      x <- spectra$freq
+      l.x <- length(x)
+      
+      if (method == "iqr") {
+        df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
+        for (n in 1:length(gr$group)) {
+          which <- as.character(spectra$groups) == gr$group[n]
+          y <- aaply(spectra$data[which, ], 2, .seXyIqr)
+          spectra.group <- rep(gr$group[n], l.x)
+          df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
+          df1 <- rbind(df1, df2)
+        }
+        
+        df1 <- df1[-1, ]
+        p <- lattice::xyplot(y1 + y2 + y3 ~ x | spectra.group,
+                             data = df1,
+                             col = c("black", "red", "red"), xlab = spectra$unit[1],
+                             ylab = "median +/- iqr", type = "l",
+                             strip.left = TRUE, strip = FALSE,
+                             scales = list(x = "same", y1 = "same", y2 = "same", y3 = "same"),
+                             layout = c(1, length(gr$group)), ...
+        )
+        plot(p)
+      }
+      
+      if (method == "sd") {
+        df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
+        for (n in 1:length(gr$group)) {
+          which <- as.character(spectra$groups) == gr$group[n]
+          y1 <- aaply(spectra$data[which, ], 2, mean)
+          s <- apply(spectra$data[which, ], 2, sd)
+          y2 <- y1 + s
+          y3 <- y1 - s
+          spectra.group <- rep(gr$group[n], l.x)
+          df2 <- data.frame(x = x, y1 = y1, y2 = y2, y3 = y3, spectra.group = spectra.group)
+          df1 <- rbind(df1, df2)
+        }
+        
+        df1 <- df1[-1, ]
+        p <- lattice::xyplot(y1 + y2 + y3 ~ x | spectra.group,
+                             data = df1,
+                             col = c("black", "red", "red"), xlab = spectra$unit[1],
+                             ylab = "mean +/- sd", type = "l",
+                             strip.left = TRUE, strip = FALSE,
+                             scales = list(x = "same", y1 = "same", y2 = "same", y3 = "same"),
+                             layout = c(1, length(gr$group)), ...
+        )
+        plot(p)
+      }
+      
+      if (method == "sem") {
+        df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
+        for (n in 1:length(gr$group)) {
+          which <- as.character(spectra$groups) == gr$group[n]
+          y <- aaply(spectra$data[which, ], 2, .seXy)
+          spectra.group <- rep(gr$group[n], l.x)
+          df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
+          df1 <- rbind(df1, df2)
+        }
+        
+        df1 <- df1[-1, ]
+        p <- lattice::xyplot(y1 + y2 + y3 ~ x | spectra.group,
+                             data = df1,
+                             col = c("black", "red", "red"), xlab = spectra$unit[1],
+                             ylab = "mean +/- sem", type = "l",
+                             strip.left = TRUE, strip = FALSE,
+                             scales = list(x = "same", y1 = "same", y2 = "same", y3 = "same"),
+                             layout = c(1, length(gr$group)), ...
+        )
+        plot(p)
+      }
+      
+      if (method == "mad") {
+        df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
+        for (n in 1:length(gr$group)) {
+          which <- as.character(spectra$groups) == gr$group[n]
+          y <- aaply(spectra$data[which, ], 2, .seXyMad)
+          spectra.group <- rep(gr$group[n], l.x)
+          df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
+          df1 <- rbind(df1, df2)
+        }
+        
+        df1 <- df1[-1, ]
+        p <- lattice::xyplot(y1 + y2 + y3 ~ x | spectra.group,
+                             data = df1,
+                             col = c("black", "red", "red"), xlab = spectra$unit[1],
+                             ylab = "median +/- mad", type = "l",
+                             strip.left = TRUE, strip = FALSE,
+                             scales = list(x = "same", y1 = "same", y2 = "same", y3 = "same"),
+                             layout = c(1, length(gr$group)), ...
+        )
+        plot(p)
+      }
+      
+      if (method == "sem95") {
+        df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
+        for (n in 1:length(gr$group)) {
+          which <- as.character(spectra$groups) == gr$group[n]
+          y <- aaply(spectra$data[which, ], 2, .seXy95)
+          spectra.group <- rep(gr$group[n], l.x)
+          df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
+          df1 <- rbind(df1, df2)
+        }
+        
+        df1 <- df1[-1, ]
+        p <- lattice::xyplot(y1 + y2 + y3 ~ x | spectra.group,
+                             data = df1,
+                             col = c("black", "red", "red"), xlab = spectra$unit[1],
+                             ylab = "mean +/- 95 % ci sem", type = "l",
+                             strip.left = TRUE, strip = FALSE,
+                             scales = list(x = "same", y1 = "same", y2 = "same", y3 = "same"),
+                             layout = c(1, length(gr$group)), ...
+        )
+        plot(p)
+      }
     }
-
-    if (method == "mad") {
-      df1 <- data.frame(x = NA, y1 = NA, y2 = NA, y3 = NA, z = NA)
-      for (n in 1:length(gr$group)) {
-        which <- as.character(spectra$groups) == gr$group[n]
-        y <- aaply(spectra$data[which, ], 2, .seXyMad)
-        z <- rep(gr$group[n], l.x)
-        df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], z = z)
-        df1 <- rbind(df1, df2)
+  }
+  
+  if(go =="ggplot2")
+  {
+    if(!by.gr){
+      x<-spectra$freq
+      
+      if(method=="iqr"){
+        y<-aaply(spectra$data,2, .seXyIqr)
+        df<-data.frame(x,y1=y[,1],y2=y[,2],y3=y[,3])
+        p<-ggplot(df,aes(x=x))+
+          geom_line(aes(y=y1),color="black")+
+          geom_line(aes(y=y2),color="red")+
+          geom_line(aes(y=y3),color="red")+
+          xlab(spectra$unit[1])+
+          ylab("Full Data Set, median +/- iqr")+
+          theme_bw()+
+          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+        return(p)
       }
-
-      df1 <- df1[-1, ]
-      p <- lattice::xyplot(y1 + y2 + y3 ~ x | z,
-        data = df1,
-        col = c("black", "red", "red"), xlab = spectra$unit[1],
-        ylab = "median +/- mad", type = "l",
-        strip.left = TRUE, strip = FALSE,
-        scales = list(x = "same", y1 = "same", y2 = "same", y3 = "same"),
-        layout = c(1, length(gr$group)), ...
-      )
-      plot(p)
+      
+      if (method == "sd") {
+        y1 <- aaply(spectra$data, 2, mean)
+        s <- aaply(spectra$data, 2, sd)
+        y2 <- y1 + s
+        y3 <- y1 - s
+        df <- data.frame(x, y1, y2, y3)
+        p<-ggplot(df,aes(x=x))+
+          geom_line(aes(y=y1),color="black")+
+          geom_line(aes(y=y2),color="red")+
+          geom_line(aes(y=y3),color="red")+
+          xlab(spectra$unit[1])+
+          ylab("Full Data Set, mean +/- sd")+
+          theme_bw()+
+          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+        return(p)
+      }
+      
+      if (method == "sem") {
+        y <- aaply(spectra$data, 2, .seXy)
+        df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
+        p<-ggplot(df,aes(x=x))+
+          geom_line(aes(y=y1),color="black")+
+          geom_line(aes(y=y2),color="red")+
+          geom_line(aes(y=y3),color="red")+
+          xlab(spectra$unit[1])+
+          ylab("Full Data Set, mean +/- sem")+
+          theme_bw()+
+          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+        return(p)
+      }
+      
+      if (method == "mad") {
+        y <- aaply(spectra$data, 2, .seXyMad)
+        df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
+        p<-ggplot(df,aes(x=x))+
+          geom_line(aes(y=y1),color="black")+
+          geom_line(aes(y=y2),color="red")+
+          geom_line(aes(y=y3),color="red")+
+          xlab(spectra$unit[1])+
+          ylab("Full Data Set, median +/- mad")+
+          theme_bw()+
+          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+        return(p)
+      }
+      
+      if (method == "sem95") {
+        y <- aaply(spectra$data, 2, .seXy95)
+        df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
+        p<-ggplot(df,aes(x=x))+
+          geom_line(aes(y=y1),color="black")+
+          geom_line(aes(y=y2),color="red")+
+          geom_line(aes(y=y3),color="red")+
+          xlab(spectra$unit[1])+
+          ylab("Full Data Set, mean +/- 95% ci sem")+
+          theme_bw()+
+          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+        return(p)
+      }
     }
-
-    if (method == "sem95") {
-      df1 <- data.frame(x = NA, y1 = NA, y2 = NA, y3 = NA, z = NA)
+    if(by.gr){
+      gr <- sumGroups(spectra)
+      
+      # See if any groups should be dropped due to too few members
+      rem <- c()
+      dropGroups <- FALSE
       for (n in 1:length(gr$group)) {
-        which <- as.character(spectra$groups) == gr$group[n]
-        y <- aaply(spectra$data[which, ], 2, .seXy95)
-        z <- rep(gr$group[n], l.x)
-        df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], z = z)
-        df1 <- rbind(df1, df2)
+        if (gr$no.[n] <= 3) {
+          message(
+            "\nGroup ", gr$group[n],
+            " has 3 or fewer members\n so your stats are not very useful...\n This group has been dropped for display purposes!"
+          )
+          rem <- c(rem, gr$group[n])
+          dropGroups <- TRUE
+        }
       }
-
-      df1 <- df1[-1, ]
-      p <- lattice::xyplot(y1 + y2 + y3 ~ x | z,
-        data = df1,
-        col = c("black", "red", "red"), xlab = spectra$unit[1],
-        ylab = "mean +/- 95 % ci sem", type = "l",
-        strip.left = TRUE, strip = FALSE,
-        scales = list(x = "same", y1 = "same", y2 = "same", y3 = "same"),
-        layout = c(1, length(gr$group)), ...
-      )
-      plot(p)
+      
+      if (dropGroups) {
+        spectra <- removeGroup(spectra, rem.group = rem)
+        gr <- sumGroups(spectra) # update now that groups have been removed
+      }
+      
+      # Now set up and plot
+      x <- spectra$freq
+      l.x <- length(x)
+      
+      if (method == "iqr") {
+        df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
+        for (n in 1:length(gr$group)) {
+          which <- as.character(spectra$groups) == gr$group[n]
+          y <- aaply(spectra$data[which, ], 2, .seXyIqr)
+          spectra.group <- rep(gr$group[n], l.x)
+          df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
+          df1 <- rbind(df1, df2)
+        }
+        df1 <- df1[-1, ]
+        p<-ggplot(df1,aes(x=x))+
+          geom_line(aes(y=y1),color="black")+
+          geom_line(aes(y=y2),color="red")+
+          geom_line(aes(y=y3),color="red")+
+          xlab(spectra$unit[1])+
+          ylab("median+/- iqr")+
+          theme_bw()+
+          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+        p<- p + facet_grid(spectra.group ~.,switch ="both")+
+          theme(strip.background =element_rect(fill="#ffe4cc"))+
+          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+        return(p)
+      }
+      
+      if (method == "sem") {
+        df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
+        for (n in 1:length(gr$group)) {
+          which <- as.character(spectra$groups) == gr$group[n]
+          y <- aaply(spectra$data[which, ], 2, .seXy)
+          spectra.group <- rep(gr$group[n], l.x)
+          df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
+          df1 <- rbind(df1, df2)
+        }
+        
+        df1 <- df1[-1, ]
+        p<-ggplot(df1,aes(x=x))+
+          geom_line(aes(y=y1),color="black")+
+          geom_line(aes(y=y2),color="red")+
+          geom_line(aes(y=y3),color="red")+
+          xlab(spectra$unit[1])+
+          ylab("mean +/- sem")+
+          theme_bw()
+        p<- p + facet_grid(spectra.group ~.,switch ="both")+
+          theme(strip.background =element_rect(fill="#ffe4cc"))+
+          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+        return(p)
+      }
+      
+      if (method == "mad") {
+        df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
+        for (n in 1:length(gr$group)) {
+          which <- as.character(spectra$groups) == gr$group[n]
+          y <- aaply(spectra$data[which, ], 2, .seXyMad)
+          spectra.group <- rep(gr$group[n], l.x)
+          df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
+          df1 <- rbind(df1, df2)
+        }
+        
+        df1 <- df1[-1, ]
+        p<-ggplot(df1,aes(x=x))+
+          geom_line(aes(y=y1),color="black")+
+          geom_line(aes(y=y2),color="red")+
+          geom_line(aes(y=y3),color="red")+
+          xlab(spectra$unit[1])+
+          ylab("median +/- mad")+
+          theme_bw()
+        p<- p + facet_grid(spectra.group ~.,switch ="both")+
+          theme(strip.background =element_rect(fill="#ffe4cc"))+
+          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+        return(p)
+      }
+      
+      if (method == "sem95") {
+        df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
+        for (n in 1:length(gr$group)) {
+          which <- as.character(spectra$groups) == gr$group[n]
+          y <- aaply(spectra$data[which, ], 2, .seXy95)
+          spectra.group <- rep(gr$group[n], l.x)
+          df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
+          df1 <- rbind(df1, df2)
+        }
+        
+        df1 <- df1[-1, ]
+        p<-ggplot(df1,aes(x=x))+
+          geom_line(aes(y=y1),color="black")+
+          geom_line(aes(y=y2),color="red")+
+          geom_line(aes(y=y3),color="red")+
+          xlab(spectra$unit[1])+
+          ylab("mean +/- 95 % ci sem")+
+          theme_bw()
+        p<- p + facet_grid(spectra.group ~.,switch ="both")+
+          theme(strip.background =element_rect(fill="#ffe4cc"))+
+          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+        return(p)
+      }
     }
   }
 }

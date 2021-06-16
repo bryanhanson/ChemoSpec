@@ -34,7 +34,12 @@ not. Applies to \code{surveySpectra} only.}
 Applies to \code{surveySpectra2} only.}
 }
 \value{
-None; side effect is a plot
+The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+\itemize{
+ \item{base:}{    None.  Side effect is a plot.}
+ \item{ggplot2:}{    Returns a \code{ggplot2} plot object. The plot can be modified in the usual
+                     \code{ggplot2} manner.}
+}
 }
 \description{
 Compute and plot various measures of central tendency and
@@ -73,6 +78,6 @@ surveySpectra2(SrE.IR, method = "iqr", main = myt)
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 }
 \keyword{hplot}
