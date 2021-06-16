@@ -26,7 +26,8 @@
 #' @param by.gr Logical, indicating if the analysis is to be done by group or
 #' not. Applies to \code{surveySpectra} only.
 #'
-#' @param \dots Additional parameters to be passed to the plotting routines.
+#' @param \dots Parameters to be passed to the plotting routines. Arguments must be consistent with the 
+#'        choice of graphics option. See \code{\link{GraphicsOptions}}.
 #'
 #' @param lab.pos Numeric, giving the frequency where the label should be drawn.
 #' Applies to \code{surveySpectra2} only.

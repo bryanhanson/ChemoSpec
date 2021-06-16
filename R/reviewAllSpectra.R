@@ -9,7 +9,7 @@
 #'
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
-#' @param \dots Parameters to be passed downstream. Arguments must be consistent with the 
+#' @param \dots Parameters to be passed to the plotting routines. Arguments must be consistent with the 
 #'        choice of graphics option. See \code{\link{GraphicsOptions}}.
 #'
 #' @return
