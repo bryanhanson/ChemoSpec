@@ -1,4 +1,4 @@
-p#'
+#'
 #' Plot Spectra Object
 #'
 #' Plots the spectra stored in a \code{\link{Spectra}} object. Spectra may be plotted
@@ -100,7 +100,7 @@ p#'
 #' @importFrom ggplot2 scale_color_manual theme theme_bw theme_classic ylim
 #' @importFrom grid grobTree textGrob
 #' @importFrom reshape2 melt
-#' 
+#'
 
 plotSpectra <- function(spectra, which = c(1),
                         yrange = range(spectra$data),
