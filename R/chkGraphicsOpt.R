@@ -5,7 +5,7 @@
 #'
 #' @export
 #'
-#' @examples
+#'
 chkGraphicsOpt <- function(silent = TRUE) {
   go <- getOption("ChemoSpecGraphics")
   valid <- c("base", "ggplot2", "plotly", "shiny")
@@ -16,6 +16,16 @@ chkGraphicsOpt <- function(silent = TRUE) {
     flag <- 1
     options(ChemoSpecGraphics = "base")
     message("An invalid option is found! \nThe ChemoSpec graphics option has been set to 'base' ")
+  }
+
+  # Make sure required packages are installed for the requested graphics option
+  if (go == "ggplot2") {
+    if (!requireNamespace("ggplot2", quietly = TRUE)) {
+      stop("You need to install package ggplot2 to use this function")
+    }
+    if (!requireNamespace("reshape2", quietly = TRUE)) {
+      stop("You need to install package reshape2 to use this function")
+    }
   }
 
   if (!silent) {

@@ -1,8 +1,8 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 5.3.15
-Date: 2021-03-24
+Version: 6.0.18
+Date: 2021-06-13
 Authors@R: c(
     person("Bryan A.", "Hanson",
       role = c("aut", "cre"), email =
@@ -13,7 +13,10 @@ Authors@R: c(
       comment = "author of the d3.js library used by plotSpectraJS, http://d3js.org"),
     person("Matt", "Keinsley",
       role = "ctb",
-      comment = "author of initial AOV-PCA code"))
+      comment = "author of initial AOV-PCA code"),
+    person("Tejasvi", "Gupta",
+      role = "ctb",
+      comment = "author of ggplot2 graphics"))
 Description: A collection of functions for top-down exploratory data analysis
     of spectral data including nuclear magnetic resonance (NMR), infrared (IR),
     Raman, X-ray fluorescence (XRF) and other similar types of spectroscopy.
@@ -35,6 +38,8 @@ Imports:
   stats,
   utils,
   grDevices,
+  reshape2,
+  ggplot2,
   readJDX (>= 0.4)
 Suggests:
   IDPmisc,
@@ -65,9 +70,7 @@ Suggests:
   rmarkdown,
   bookdown,
   chemometrics,
-  hyperSpec,
-  ggplot2,
-  reshape2
+  hyperSpec
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE

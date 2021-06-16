@@ -30,43 +30,44 @@ spectra to be plotted as given in \code{which}.  Trial and error is used to
 adjust all these arguments to produce the desired plot.}
 
 \item{offset}{A number specifying the vertical offset between spectra if
-more than one is plotted.  Set to 0.0 for a stacked plot.}
+more than one is plotted.  Set to 0.0 to overlay the spectra.}
 
 \item{amplify}{A number specifying an amplification factor to be applied to
 all spectra.  Useful for magnifying spectra so small features show up
 (though large peaks will then be clipped, unless you zoom on the x axis).}
 
-\item{lab.pos}{A number giving the location for the identifying label.
+\item{lab.pos}{A number (in frequency units) giving the location of a label for each spectrum.
 Generally, pick an area that is clear in all spectra plotted.  If no label
 is desired, give \code{lab.pos} outside the plotted x range.}
 
 \item{showGrid}{Logical.  Places light gray vertical lines at each tick mark
 if \code{TRUE}.}
 
-\item{leg.loc}{Character; if \code{"none"} no legend will be drawn.
-Otherwise, any string acceptable to \code{\link{legend}}.Legend is plotted according to
- NPC or "Normalized Parent Coordinates".This means the plot has origin at (0,0) and 
- top right corner is at coordinate (1,1), so if we want the legend in the middle of the plot we will use (0.5,0.5).}
+\item{leg.loc}{A list giving x and y coordinates; if \code{"none"} no legend will be drawn.
+The plotting of the legend is based on the origin of the plot as [0,0] and the top right
+corner is [1,1]. If one wants the plot dead center use \code{leg.loc = list(x = 0.5, y = 0.5)}.}
 
-\item{\dots}{Additional parameters to be passed to plotting functions.}
+\item{\dots}{Additional parameters to be passed to plotting functions.  Names will depend
+upon the choice of graphics options.}
 }
 \value{
-Graphics mode
+The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
 \itemize{
  \item{base:}{    None.  Side effect is a plot.}
- \item{ggplot2:}{    Returns a ggplot2 plot. Theme of the plot can be changed by adding the ggplot2 theme
- to the function call }
+ \item{ggplot2:}{    Returns a \code{ggplot2} plot object. The plot can be modified in the usual
+                     \code{ggplot2} manner.}
 }
 }
 \description{
-Plots the spectra stored in a \code{\link{Spectra}} object.  One may choose
-which spectra to plot, and the x range to plot.  Spectra may be plotted
+Plots the spectra stored in a \code{\link{Spectra}} object. Spectra may be plotted
 offset or stacked.  The vertical scale is controlled by a combination of
 several parameters.
 }
 \examples{
 
 data(metMUD1)
+
+# Using base graphics (the default)
 plotSpectra(metMUD1,
   main = "metMUD1 NMR Data",
   which = c(10, 11), yrange = c(0, 1.5),
@@ -81,30 +82,31 @@ plotSpectra(metMUD1,
   leg.loc = list(x = 0.8, y = 0.8)
 )
 
-# Updating the theme of the plot in ggplot2 graphics mode
-plotSpectra(metMUD1,
+# Using ggplot2 graphics
+options(ChemoSpecGraphics = "ggplot2")
+p <- plotSpectra(metMUD1,
+  main = "metMUD1 NMR Data",
   which = c(10, 11), yrange = c(0, 1.5),
-  offset = 0.06, amplify = 10, lab.pos = 0.5,
-  leg.loc = list(x=0.8,y=0.8) 
-) + theme_grey()
+  offset = 0.06, amplify = 10, lab.pos = 0.5
+)
+p
 
-# Sometimes additional legend could be created with the new theme.
-This can be removed by simply adding 'theme(legend.position="none")'.
-As ggplot2 plot would be returned in ggplot2() mode all the ggplot2 functions
-can be used with it.
-plotSpectra(metMUD1,
+# Add a legend at x, y coords
+p <- plotSpectra(metMUD1,
   main = "metMUD1 NMR Data",
   which = c(10, 11), yrange = c(0, 1.5),
   offset = 0.06, amplify = 10, lab.pos = 0.5,
-  leg.loc = list(x=0.9,y=0.9) 
-) + theme_grey() + theme(legend.position="none")
+  leg.loc = list(x = 0.8, y = 0.8)
+)
+p
 
 }
 \seealso{
-\code{\link{plotSpectraJS}} for the interactive version.
-Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+\code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOptions}}
+         for more information about the graphics options. Additional documentation at
+         \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 }
 \keyword{hplot}
