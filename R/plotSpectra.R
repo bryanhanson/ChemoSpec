@@ -59,38 +59,22 @@
 #'
 #' data(metMUD1)
 #'
-#' # Using base graphics (the default)
-#' plotSpectra(metMUD1,
-#'   main = "metMUD1 NMR Data",
-#'   which = c(10, 11), yrange = c(0, 1.5),
-#'   offset = 0.06, amplify = 10, lab.pos = 0.5
-#' )
-#'
-#' # Add a legend at x, y coords
-#' plotSpectra(metMUD1,
-#'   main = "metMUD1 NMR Data",
-#'   which = c(10, 11), yrange = c(0, 1.5),
-#'   offset = 0.06, amplify = 10, lab.pos = 0.5,
-#'   leg.loc = list(x = 0.8, y = 0.8)
-#' )
-#'
-#' # Using ggplot2 graphics
+#' # Using base graphics (the default, but need to set here
+#' # in case someone changed it!)
 #' options(ChemoSpecGraphics = "ggplot2")
-#' p <- plotSpectra(metMUD1,
+#' plotSpectra(metMUD1,
 #'   main = "metMUD1 NMR Data",
 #'   which = c(10, 11), yrange = c(0, 1.5),
 #'   offset = 0.06, amplify = 10, lab.pos = 0.5
 #' )
-#' p
 #'
 #' # Add a legend at x, y coords
-#' p <- plotSpectra(metMUD1,
+#' plotSpectra(metMUD1,
 #'   main = "metMUD1 NMR Data",
 #'   which = c(10, 11), yrange = c(0, 1.5),
 #'   offset = 0.06, amplify = 10, lab.pos = 0.5,
 #'   leg.loc = list(x = 0.8, y = 0.8)
 #' )
-#' p
 #'
 #' @export plotSpectra
 #'

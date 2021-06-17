@@ -2,7 +2,7 @@
 % Please edit documentation in R/LoopThruSpectra.R
 \name{loopThruSpectra}
 \alias{loopThruSpectra}
-\title{Display the Spectra in a Spectra Object One at a Time}
+\title{Display the Spectra in a Spectra Object One at a Time DEPRECATED}
 \usage{
 loopThruSpectra(spectra, ...)
 }
