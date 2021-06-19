@@ -94,38 +94,52 @@ plotSpectra <- function(spectra, which = c(1),
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 
-  go <- chkGraphicsOpt()
+  # Helper Function to calculate the label y position
+  # spec: spectra data matrix with *samples in rows* (previously subsetted by which,
+  #       & modified by offset & amplify)
+  # pct: label position in % of y range
+  pct = 10.0
+  calcYpos <- function(spec, pct) {
+    ymin <- apply(spec, 1, min)
+    ymax <- apply(spec, 1, max)
+    ypos <- ymin + (pct * (ymax - ymin))/100
+  }
 
+  go <- chkGraphicsOpt()
 
   if (go == "base") {
 
-    # set up and plot the first spectrum (type = "n")
+    # Prepare the data needed for plotting, apply amplify & offset
+    M <- spectra$data[which,, drop = FALSE]
+    Mcols <- spectra$colors[which]
+    Mnames <- spectra$names[which]
+    freq <- spectra$freq
+    count <- 0L
+    for (i in 1:nrow(M)) {
+      M[i, ] <- (M[i,] + (offset * count)) * amplify
+      count <- count + 1
+    }
 
-    spectrum <- spectra$data[which[1], ] * amplify
-    plot(spectra$freq, spectrum,
+    # Set up and plot the first spectrum (type = "n")
+    plot(freq, M[1,],
       type = "n",
       xlab = spectra$unit[1], ylab = spectra$unit[2],
       ylim = yrange,
       frame.plot = FALSE, ...
     )
 
-    if (showGrid) grid(ny = NA, lty = 1) # grid will be underneath all spectra
-    lines(spectra$freq, spectrum, col = spectra$colors[which[1]], ...)
+    # Place grid under all spectra
+    if (showGrid) grid(ny = NA, lty = 1)
+
+    # Add the spectra
+    for (i in 1:nrow(M)) lines(freq, M[i, ], col = Mcols[i], ...)
+
+    # Add sample names
     lab.x <- lab.pos
-    freq.index <- findInterval(lab.x, sort(spectra$freq))
-    lab.y <- spectrum[freq.index]
-    text(lab.x, lab.y, labels = spectra$names[which[1]], pos = 3, cex = 0.75)
+    lab.y <- calcYpos(M, pct)
+    text(lab.x, lab.y, labels = Mnames, pos = 3, cex = 0.75)
 
-    which <- which[-1] # first spectrum already plotted so remove it from the list
-    count <- 0 # get the other spectra and plot them as well
-    for (n in which) {
-      count <- count + 1
-      spectrum <- (spectra$data[n, ] + (offset * count)) * amplify
-      points(spectra$freq, spectrum, type = "l", col = spectra$colors[n], ...)
-      lab.y <- spectrum[freq.index]
-      text(lab.x, lab.y, labels = spectra$names[n], pos = 3, cex = 0.75)
-    }
-
+    # Prep legend location if legend requested
     if (all(leg.loc != "none")) {
       x.min <- min(spectra$freq)
       x.max <- max(spectra$freq)
@@ -151,10 +165,9 @@ plotSpectra <- function(spectra, which = c(1),
   if (go == "ggplot2") {
     value <- variable <- Frequency <- NULL # satisfy CRAN check engine
 
-    # Set up data frame for plotting
+    # Set up data frame to hold data to be plotted ready for melting
     df <- data.frame(spectra$freq)
     count <- 0
-
     for (i in which) {
       spec <- ((spectra$data[i, ]) + (count * offset)) * amplify
       df <- cbind(df, spec)
@@ -162,18 +175,8 @@ plotSpectra <- function(spectra, which = c(1),
     }
     names(df) <- c("Frequency", spectra$names[which])
 
-    lab.x <- lab.pos
-    lab.y <- c(NA_real_)
-
-    for (i in 2:ncol(df)) {
-      spec.max <- max(df[, i])
-      spec.min <- min(df[, i])
-      # put the label at 30 % of the total height for each spectrum
-      pos.y <- spec.min + (30 * (spec.max - spec.min)) / 100
-      lab.y <- c(lab.y, pos.y)
-    }
-
-    lab.y <- lab.y[-1] # remove the first value as it is NA_real_
+    lab.x <- lab.pos # values in native data space
+    lab.y <- calcYpos(t(as.matrix(df[,-1])), pct)
 
     molten.data <- reshape2::melt(df, id = c("Frequency"))
 
@@ -184,7 +187,6 @@ plotSpectra <- function(spectra, which = c(1),
       annotate("text", x = lab.x, y = lab.y, label = spectra$names[which]) +
       labs(x = spectra$unit[1], y = spectra$unit[2]) +
       ylim(yrange) +
-      # theme_classic() +
       theme_bw() +
       theme(legend.position = "none") +
       theme(panel.border = element_blank(), axis.line = element_line(colour = "black")) +
@@ -216,32 +218,19 @@ plotSpectra <- function(spectra, which = c(1),
 
       keys <- grobTree(textGrob("Key",
         x = leg.loc$x, y = leg.loc$y + 0.025, hjust = 0,
-        gp = gpar(col = "black", fontsize = 12, fontface = "italic")
+        gp = gpar(col = "black", fontsize = 12)
       ))
 
       for (i in 1:length(group))
       {
         grob <- grid::grobTree(textGrob(group[i],
           x = leg.loc$x, y = leg.loc$y, hjust = 0,
-          gp = gpar(col = color[i], fontsize = 12, fontface = "italic")
+          gp = gpar(col = color[i], fontsize = 12)
         ))
         leg.loc$y <- leg.loc$y - 0.025
         p <- p + annotation_custom(grob) + annotation_custom(keys)
       }
     }
-    # args <- as.list(match.call())[-1] # Capturing the xlim
-
-    # if ("xlim" %in% names(args)) {
-      # xl <- eval(args$xlim)
-      # p <- p + coord_cartesian(xlim = c(xl[1], xl[2])) # Zooming in the plot according to xlim range
-    # }
-
-    # if ("main" %in% names(args)) # Capturing main
-      # {
-        # yl <- eval(args$main)
-        # p <- p + ggtitle(yl[1]) # Title of the plot
-        # p <- p + theme(plot.title = element_text(hjust = 0.5)) # Aligning the title to center
-      # }
 
     return(p)
   }
