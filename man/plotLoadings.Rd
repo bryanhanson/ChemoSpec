@@ -25,7 +25,12 @@ appears at the bottom of the plot.}
 \item{\dots}{Additional parameters to be passed to plotting functions.}
 }
 \value{
-None.  Side effect is a plot.
+The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+\describe{
+ \item{base:}{    None.  Side effect is a plot.}
+ \item{ggplot2:}{    Returns a \code{ggplot2} plot object. The plot can be modified in the usual
+                     \code{ggplot2} manner.}
+}
 }
 \description{
 Creates a multi-panel plot of loadings along with a reference spectrum.
@@ -37,7 +42,7 @@ other, and \code{\link{sPlotSpectra}} for an alternative approach.
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 }
 \keyword{hplot}
 \keyword{multivariate}
