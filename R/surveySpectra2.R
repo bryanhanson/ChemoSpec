@@ -8,41 +8,42 @@ surveySpectra2 <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr
                            lab.pos = 0.9 * max(spectra$freq), ...) {
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
+
+  x <- spectra$freq
+  M <- scale(spectra$data, scale = FALSE) # Center by column means
+
+  # Compute the requested data
+
+  if (method == "iqr") {
+    y <- aaply(spectra$data, 2, .seXyIqr)
+    y <- y[, 3] - y[, 2]
+    lab <- "iqr"
+  }
+
+  if (method == "sd") {
+    y <- aaply(spectra$data, 2, sd)
+    lab <- "sd"
+  }
+
+  if (method == "sem") {
+    y <- aaply(spectra$data, 2, .seXy)
+    y <- y[, 3] - y[, 2]
+    lab <- "sem"
+  }
+
+  if (method == "mad") {
+    y <- aaply(spectra$data, 2, .seXyMad)
+    y <- y[, 3] - y[, 2]
+    lab <- "mad"
+  }
+
+  if (method == "sem95") {
+    y <- aaply(spectra$data, 2, .seXy95)
+    y <- y[, 3] - y[, 2]
+    lab <- "sem95"
+  }
   go <- chkGraphicsOpt()
   if (go == "base") {
-    x <- spectra$freq
-    M <- scale(spectra$data, scale = FALSE) # Center by column means
-
-    # Compute the requested data
-
-    if (method == "iqr") {
-      y <- aaply(spectra$data, 2, .seXyIqr)
-      y <- y[, 3] - y[, 2]
-      lab <- "iqr"
-    }
-
-    if (method == "sd") {
-      y <- aaply(spectra$data, 2, sd)
-      lab <- "sd"
-    }
-
-    if (method == "sem") {
-      y <- aaply(spectra$data, 2, .seXy)
-      y <- y[, 3] - y[, 2]
-      lab <- "sem"
-    }
-
-    if (method == "mad") {
-      y <- aaply(spectra$data, 2, .seXyMad)
-      y <- y[, 3] - y[, 2]
-      lab <- "mad"
-    }
-
-    if (method == "sem95") {
-      y <- aaply(spectra$data, 2, .seXy95)
-      y <- y[, 3] - y[, 2]
-      lab <- "sem95"
-    }
 
     # Now set up the plot and plot it!
 
@@ -67,44 +68,12 @@ surveySpectra2 <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr
   if (go == "ggplot2") {
     value <- variable <- Frequency <- NULL # satisfy CRAN check engine
 
-    x <- spectra$freq
-    M <- scale(spectra$data, scale = FALSE) # Center by column means
 
-    # Compute the requested data
-
-    if (method == "iqr") {
-      y <- aaply(spectra$data, 2, .seXyIqr)
-      y <- y[, 3] - y[, 2]
-      lab <- "iqr"
-    }
-
-    if (method == "sd") {
-      y <- aaply(spectra$data, 2, sd)
-      lab <- "sd"
-    }
-
-    if (method == "sem") {
-      y <- aaply(spectra$data, 2, .seXy)
-      y <- y[, 3] - y[, 2]
-      lab <- "sem"
-    }
-
-    if (method == "mad") {
-      y <- aaply(spectra$data, 2, .seXyMad)
-      y <- y[, 3] - y[, 2]
-      lab <- "mad"
-    }
-
-    if (method == "sem95") {
-      y <- aaply(spectra$data, 2, .seXy95)
-      y <- y[, 3] - y[, 2]
-      lab <- "sem95"
-    }
 
     # M <- rbind(M, y)
     ymax <- max(M)
-    
-    #New small dataframe for plotting the different geom_line()
+
+    # New small dataframe for plotting the different geom_line()
     df1 <- data.frame(x, y)
 
 
