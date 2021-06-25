@@ -55,6 +55,14 @@
 #'
 #' @keywords hplot
 #'
+#' @export plotSpectra
+#'
+#' @importFrom graphics grid lines text points plot
+#' @importFrom ggplot2 aes annotate annotation_custom coord_cartesian element_blank
+#' @importFrom ggplot2 element_line element_text geom_line ggplot ggtitle labs
+#' @importFrom ggplot2 scale_color_manual theme theme_bw theme_classic ylim
+#' @importFrom grid grobTree textGrob
+#' @importFrom reshape2 melt
 #' @examples
 #'
 #' data(metMUD1)
@@ -76,14 +84,8 @@
 #'   leg.loc = list(x = 0.8, y = 0.8)
 #' )
 #'
-#' @export plotSpectra
+#' options(ChemoSpecGraphics = "base") # turn off for later examples/tests
 #'
-#' @importFrom graphics grid lines text points plot
-#' @importFrom ggplot2 aes annotate annotation_custom coord_cartesian element_blank
-#' @importFrom ggplot2 element_line element_text geom_line ggplot ggtitle labs
-#' @importFrom ggplot2 scale_color_manual theme theme_bw theme_classic ylim
-#' @importFrom grid grobTree textGrob
-#' @importFrom reshape2 melt
 #'
 
 plotSpectra <- function(spectra, which = c(1),

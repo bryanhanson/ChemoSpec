@@ -51,6 +51,8 @@ p
 p <- p + coord_cartesian(xlim = c(1.5, 2.0))
 p
 
+options(ChemoSpecGraphics = "base") # turn off for later examples/tests
+
 }
 \author{
 Bryan A. Hanson, DePauw University.
