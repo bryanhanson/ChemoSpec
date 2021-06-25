@@ -1,10 +1,19 @@
-#' Checks the Graphic mode of the plots
+#'
+#' Checks the Graphic Output Option/Mode
 #'  
-#' @name chkGraphicsOpt
-#' @param silent Silents the messages on change of graphics mode
+#' @param silent Logical.  Silences most messages if \code{TRUE}.
+#'
+#' @value Character.  The value of the current graphics output option/mode.
+#'
+#' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
+#'
+#' @seealso See \code{\link{GraphicsOptions}}
+#'          for more information about the graphics options. Additional documentation at
+#'          \url{https://bryanhanson.github.io/ChemoSpec/}
+#'
+#' @keywords utilities
 #'
 #' @export
-#'
 #'
 chkGraphicsOpt <- function(silent = TRUE) {
   go <- getOption("ChemoSpecGraphics")
