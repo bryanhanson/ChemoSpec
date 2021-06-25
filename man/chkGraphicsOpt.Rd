@@ -2,13 +2,22 @@
 % Please edit documentation in R/chkGraphicsOpt.R
 \name{chkGraphicsOpt}
 \alias{chkGraphicsOpt}
-\title{Checks the Graphic mode of the plots}
+\title{Checks the Graphic Output Option/Mode}
 \usage{
 chkGraphicsOpt(silent = TRUE)
 }
 \arguments{
-\item{silent}{Silents the messages on change of graphics mode}
+\item{silent}{Logical.  Silences most messages if \code{TRUE}.}
 }
 \description{
-Checks the Graphic mode of the plots
+Checks the Graphic Output Option/Mode
 }
+\seealso{
+See \code{\link{GraphicsOptions}}
+         for more information about the graphics options. Additional documentation at
+         \url{https://bryanhanson.github.io/ChemoSpec/}
+}
+\author{
+Bryan A. Hanson, DePauw University, Tejasvi Gupta.
+}
+\keyword{utilities}
