@@ -38,8 +38,8 @@
 #' @importFrom ChemoSpecUtils removeFreq removeGroup removeSample plotScores plotScree
 #' @export removeFreq removeGroup removeSample plotScores plotScree
 #'
-#' @importFrom ChemoSpecUtils .labelExtremes .addEllipseInfo .computeEllipses .addLegend .groupNcolor
-#' @export .labelExtremes .addEllipseInfo .computeEllipses .addLegend .groupNcolor
+#' @importFrom ChemoSpecUtils .labelExtremes .addEllipseInfo .computeEllipses .addLegend .groupNcolor .getExtremeCoords
+#' @export .labelExtremes .addEllipseInfo .computeEllipses .addLegend .groupNcolor .getExtremeCoords
 #'
 #' @importFrom ChemoSpecUtils sampleDist
 #' @export sampleDist
