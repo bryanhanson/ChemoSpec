@@ -55,30 +55,31 @@ sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05, ...) {
   ##  as in Wiklund.  Part of ChemoSpec
   ##  Matthew J. Keinsley
   ##  DePauw University, July 2011
+  msg <- "This function cannot be used with data from sparse pca"
+  if (inherits(pca, "converted_from_arrayspc")) stop(msg)
+  .chkArgs(mode = 12L)
+  chkSpectra(spectra)
+  if (length(pc) != 1) stop("You must choose exactly 1 pc to plot.")
+  
+  centspec <- scale(spectra$data, scale = FALSE)
+  
+  cv <- sdv <- c()
+  
+  # Loop over each variable
+  
+  for (i in 1:ncol(centspec)) {
+    tmp <- (pca$x[, pc] %*% centspec[, i])
+    cv <- c(cv, tmp)
+    dv <- sd(as.vector(centspec[, i])) # sd(matrix) deprecated for 2.14
+    sdv <- c(sdv, dv)
+  }
+  
+  cv <- cv / (nrow(centspec) - 1)
+  crr <- cv / (sdv * pca$sdev[pc])
+  ans <- data.frame(freq = spectra$freq, cov = cv, corr = crr)
   go <- chkGraphicsOpt()
   if (go == "base") {
-    msg <- "This function cannot be used with data from sparse pca"
-    if (inherits(pca, "converted_from_arrayspc")) stop(msg)
-    .chkArgs(mode = 12L)
-    chkSpectra(spectra)
-    if (length(pc) != 1) stop("You must choose exactly 1 pc to plot.")
-
-    centspec <- scale(spectra$data, scale = FALSE)
-
-    cv <- sdv <- c()
-
-    # Loop over each variable
-
-    for (i in 1:ncol(centspec)) {
-      tmp <- (pca$x[, pc] %*% centspec[, i])
-      cv <- c(cv, tmp)
-      dv <- sd(as.vector(centspec[, i])) # sd(matrix) deprecated for 2.14
-      sdv <- c(sdv, dv)
-    }
-
-    cv <- cv / (nrow(centspec) - 1)
-    crr <- cv / (sdv * pca$sdev[pc])
-    ans <- data.frame(freq = spectra$freq, cov = cv, corr = crr)
+    
     # print(ans)
     plot(cv, crr,
       xlab = "covariance", ylab = "correlation",
@@ -95,28 +96,6 @@ sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05, ...) {
     ans
   }
   if (go == "ggplot2") {
-    msg <- "This function cannot be used with data from sparse pca"
-    if (inherits(pca, "converted_from_arrayspc")) stop(msg)
-    .chkArgs(mode = 12L)
-    chkSpectra(spectra)
-    if (length(pc) != 1) stop("You must choose exactly 1 pc to plot.")
-
-    centspec <- scale(spectra$data, scale = FALSE)
-
-    cv <- sdv <- c()
-
-    # Loop over each variable
-
-    for (i in 1:ncol(centspec)) {
-      tmp <- (pca$x[, pc] %*% centspec[, i])
-      cv <- c(cv, tmp)
-      dv <- sd(as.vector(centspec[, i])) # sd(matrix) deprecated for 2.14
-      sdv <- c(sdv, dv)
-    }
-
-    cv <- cv / (nrow(centspec) - 1)
-    crr <- cv / (sdv * pca$sdev[pc])
-    ans <- data.frame(freq = spectra$freq, cov = cv, corr = crr)
 
     p <- ggplot(ans, aes(x = cv, y = crr)) +
       theme_bw() +
