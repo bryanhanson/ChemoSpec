@@ -73,6 +73,6 @@ Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 \code{chemometrics} for the underlying function.
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson, DePauw University,Tejasvi Gupta.
 }
 \keyword{multivariate}
