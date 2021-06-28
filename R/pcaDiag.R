@@ -65,24 +65,27 @@
 pcaDiag <-
   function(spectra, pca, pcs = 3, quantile = 0.975,
            plot = c("OD", "SD"), use.sym = FALSE, ...) {
+    
+    msg <- "This function cannot be used with data from sparse pca"
+    if (inherits(pca, "converted_from_arrayspc")) stop(msg)
+    .chkArgs(mode = 12L)
+    if (inherits(pca, "prcomp")) pca <- .q2rPCA(pca)
+    
+    X <- spectra$data
+    X.pca <- pca
+    a <- pcs
+    if (is.null(a)) a <- 3
+    
+    SDist <- sqrt(apply(t(t(X.pca$sco[, 1:a]^2) / X.pca$sdev[1:a]^2), 1, sum))
+    ODist <- sqrt(apply((X - X.pca$sco[, 1:a] %*% t(X.pca$loa[, 1:a]))^2, 1, sum))
+    critSD <- sqrt(qchisq(quantile, a))
+    critOD <- (median(ODist^(2 / 3)) + mad(ODist^(2 / 3)) * qnorm(quantile))^(3 / 2)
+    
+    sub <- paste(pca$method, a, "PCs", sep = " ")
+    
     go <- chkGraphicsOpt()
     if (go == "base") {
-      msg <- "This function cannot be used with data from sparse pca"
-      if (inherits(pca, "converted_from_arrayspc")) stop(msg)
-      .chkArgs(mode = 12L)
-      if (inherits(pca, "prcomp")) pca <- .q2rPCA(pca)
 
-      X <- spectra$data
-      X.pca <- pca
-      a <- pcs
-      if (is.null(a)) a <- 3
-
-      SDist <- sqrt(apply(t(t(X.pca$sco[, 1:a]^2) / X.pca$sdev[1:a]^2), 1, sum))
-      ODist <- sqrt(apply((X - X.pca$sco[, 1:a] %*% t(X.pca$loa[, 1:a]))^2, 1, sum))
-      critSD <- sqrt(qchisq(quantile, a))
-      critOD <- (median(ODist^(2 / 3)) + mad(ODist^(2 / 3)) * qnorm(quantile))^(3 / 2)
-
-      sub <- paste(pca$method, a, "PCs", sep = " ")
       if ("SD" %in% plot) {
         if (!use.sym) {
           plot(SDist,
@@ -132,22 +135,6 @@ pcaDiag <-
       list(SDist = SDist, ODist = ODist, critSD = critSD, critOD = critOD)
     }
     if (go == "ggplot2") {
-      msg <- "This function cannot be used with data from sparse pca"
-      if (inherits(pca, "converted_from_arrayspc")) stop(msg)
-      .chkArgs(mode = 12L)
-      if (inherits(pca, "prcomp")) pca <- .q2rPCA(pca)
-
-      X <- spectra$data
-      X.pca <- pca
-      a <- pcs
-      if (is.null(a)) a <- 3
-
-      SDist <- sqrt(apply(t(t(X.pca$sco[, 1:a]^2) / X.pca$sdev[1:a]^2), 1, sum))
-      ODist <- sqrt(apply((X - X.pca$sco[, 1:a] %*% t(X.pca$loa[, 1:a]))^2, 1, sum))
-      critSD <- sqrt(qchisq(quantile, a))
-      critOD <- (median(ODist^(2 / 3)) + mad(ODist^(2 / 3)) * qnorm(quantile))^(3 / 2)
-
-      sub <- paste(pca$method, a, "PCs", sep = " ")
       if ("SD" %in% plot) {
         if (!use.sym) {
           xcoordinates <- c(NA_real_)
