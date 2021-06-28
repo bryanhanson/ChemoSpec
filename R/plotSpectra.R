@@ -100,7 +100,7 @@ plotSpectra <- function(spectra, which = c(1),
   # spec: spectra data matrix with *samples in rows* (previously subsetted by which,
   #       & modified by offset & amplify)
   # pct: label position in % of y range
-  pct = 10.0
+  pct = 20.0
   calcYpos <- function(spec, pct) {
     ymin <- apply(spec, 1, min)
     ymax <- apply(spec, 1, max)
@@ -139,7 +139,7 @@ plotSpectra <- function(spectra, which = c(1),
     # Add sample names
     lab.x <- lab.pos
     lab.y <- calcYpos(M, pct)
-    text(lab.x, lab.y, labels = Mnames, pos = 3, cex = 0.75)
+    text(lab.x, lab.y, labels = Mnames, adj = c(0.5, 0.5), cex = 0.75)
 
     # Prep legend location if legend requested
     if (all(leg.loc != "none")) {
