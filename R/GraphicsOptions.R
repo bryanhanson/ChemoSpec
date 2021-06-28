@@ -10,7 +10,7 @@
 #' Here's how it works:
 #' \itemize{
 #'   \item Upon starting \code{ChemoSpec} the graphics output mode is set to \code{base}.
-#'   \item To see the current value, do \code{\link[ChemoSpecUtils]chkGraphicsOpt()}.  If by some chance the
+#'   \item To see the current value, do \code{\link[ChemoSpecUtils]{chkGraphicsOpt}}.  If by some chance the
 #'         value is corrupted it will be set to \code{base}.
 #'   \item To change the graphics output mode, do \code{options(ChemoSpecGraphics = 'option')},
 #'         where 'option' is one of the options listed above.
