@@ -41,7 +41,7 @@
 #' @importFrom ChemoSpecUtils .labelExtremes .addEllipseInfo .computeEllipses .addLegend .groupNcolor .getExtremeCoords
 #' @export .labelExtremes .addEllipseInfo .computeEllipses .addLegend .groupNcolor .getExtremeCoords
 #'
-#' @importFrom ChemoSpecUtils sampleDist
-#' @export sampleDist
+#' @importFrom ChemoSpecUtils sampleDist chkGraphicsOpt
+#' @export sampleDist chkGraphicsOpt
 #'
 NULL
