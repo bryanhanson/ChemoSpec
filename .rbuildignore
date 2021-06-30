@@ -1,8 +1,6 @@
 ^docs$
 ^_pkgdown\.yml$
 README.md
-Rbuildignore.txt
-gitignore.txt
 .Rhistory
 man/figures/banner.png
 \.github

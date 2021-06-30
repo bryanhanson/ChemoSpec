@@ -4,6 +4,13 @@ on:
       - master
       - devel
       - gsoc1
+      - gsoc2
+      - gsoc3
+  pull_request:
+    branches:
+      - gsoc1
+      - gsoc2
+      - gsoc3
 
 name: Build-Check
 

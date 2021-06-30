@@ -43,7 +43,7 @@ To compare all spectra simultaneously in a heatmap, see
 at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson, DePauw University,Tejasvi Gupta.
 }
 \keyword{hplot}
 \keyword{multivariate}

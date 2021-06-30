@@ -40,7 +40,7 @@
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @author Bryan A. Hanson, DePauw University,Tejasvi Gupta.
 #'
 #' @seealso \code{\link[chemometrics]{pcaDiagplot}} in package
 #' \code{chemometrics} for the underlying function.
@@ -60,71 +60,191 @@
 #'
 #' @importFrom stats qchisq median mad qnorm
 #' @importFrom graphics plot abline
+#' @importFrom ggplot2 geom_line geom_hline geom_point
 #'
 pcaDiag <-
   function(spectra, pca, pcs = 3, quantile = 0.975,
            plot = c("OD", "SD"), use.sym = FALSE, ...) {
+    
     msg <- "This function cannot be used with data from sparse pca"
     if (inherits(pca, "converted_from_arrayspc")) stop(msg)
     .chkArgs(mode = 12L)
     if (inherits(pca, "prcomp")) pca <- .q2rPCA(pca)
-
+    
     X <- spectra$data
     X.pca <- pca
     a <- pcs
     if (is.null(a)) a <- 3
-
+    
     SDist <- sqrt(apply(t(t(X.pca$sco[, 1:a]^2) / X.pca$sdev[1:a]^2), 1, sum))
     ODist <- sqrt(apply((X - X.pca$sco[, 1:a] %*% t(X.pca$loa[, 1:a]))^2, 1, sum))
     critSD <- sqrt(qchisq(quantile, a))
     critOD <- (median(ODist^(2 / 3)) + mad(ODist^(2 / 3)) * qnorm(quantile))^(3 / 2)
-
+    
     sub <- paste(pca$method, a, "PCs", sep = " ")
-    if ("SD" %in% plot) {
-      if (!use.sym) {
-        plot(SDist,
-          ylim = c(0, max(SDist)), ylab = "score distance",
-          xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Score Distance",
-          col = spectra$colors, pch = 20, ...
-        )
-      }
-      if (use.sym) {
-        plot(SDist,
-          ylim = c(0, max(SDist)), ylab = "score distance",
-          xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Score Distance",
-          pch = spectra$sym, ...
-        )
-      }
-      abline(h = critSD, lty = 2)
+    
+    go <- chkGraphicsOpt()
+    if (go == "base") {
 
-      y.data <- subset(SDist, SDist > critSD)
-      x.data <- which(SDist %in% y.data, arr.ind = TRUE)
-      data <- cbind(x.data, y.data)
-      if (!length(x.data) == 0) .labelExtremes(data, names = spectra$names[x.data], tol = 1.0)
+      if ("SD" %in% plot) {
+        if (!use.sym) {
+          plot(SDist,
+            ylim = c(0, max(SDist)), ylab = "score distance",
+            xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Score Distance",
+            col = spectra$colors, pch = 20, ...
+          )
+        }
+        if (use.sym) {
+          plot(SDist,
+            ylim = c(0, max(SDist)), ylab = "score distance",
+            xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Score Distance",
+            pch = spectra$sym, ...
+          )
+        }
+        abline(h = critSD, lty = 2)
+
+        y.data <- subset(SDist, SDist > critSD)
+        x.data <- which(SDist %in% y.data, arr.ind = TRUE)
+        data <- cbind(x.data, y.data)
+        if (!length(x.data) == 0) .labelExtremes(data, names = spectra$names[x.data], tol = 1.0)
+      }
+
+      if ("OD" %in% plot) {
+        if (!use.sym) {
+          plot(ODist,
+            ylim = c(0, max(ODist)), ylab = "orthogonal distance",
+            xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Orthogonal Distance",
+            col = spectra$colors, pch = 20, ...
+          )
+        }
+        if (use.sym) {
+          plot(ODist,
+            ylim = c(0, max(ODist)), ylab = "orthogonal distance",
+            xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Orthogonal Distance",
+            pch = spectra$sym, ...
+          )
+        }
+        abline(h = critOD, lty = 2)
+
+        y.data <- subset(ODist, ODist > critOD)
+        x.data <- which(ODist %in% y.data, arr.ind = TRUE)
+        data <- cbind(x.data, y.data)
+        if (!length(x.data) == 0) .labelExtremes(data, names = spectra$names[x.data], tol = 1.0)
+      }
+
+      list(SDist = SDist, ODist = ODist, critSD = critSD, critOD = critOD)
     }
-
-    if ("OD" %in% plot) {
-      if (!use.sym) {
-        plot(ODist,
-          ylim = c(0, max(ODist)), ylab = "orthogonal distance",
-          xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Orthogonal Distance",
-          col = spectra$colors, pch = 20, ...
-        )
+    if (go == "ggplot2") {
+      if ("SD" %in% plot) {
+        if (!use.sym) {
+          xcoordinates <- c(NA_real_)
+          for (i in 1:length(SDist))
+          {
+            xcoordinates <- c(xcoordinates, i)
+          }
+          xcoordinates <- xcoordinates[-1]
+          df <- data.frame(xcoordinates, SDist)
+          p <- ggplot(df, aes(x = xcoordinates, y = SDist)) +
+            theme_bw() +
+            geom_point(color = spectra$colors) +
+            theme(
+              panel.grid.major = element_blank(),
+              panel.grid.minor = element_blank()
+            )
+          p <- p + ylim(0, max(SDist)) +
+            geom_hline(yintercept = critSD, linetype = "longdash") +
+            xlab(paste0(spectra$desc, " \n centered/noscale/classical 2PCs")) +
+            ylab("score distance")
+        }
+        if (use.sym) {
+          xcoordinates <- c(NA_real_)
+          for (i in 1:length(SDist))
+          {
+            xcoordinates <- c(xcoordinates, i)
+          }
+          xcoordinates <- xcoordinates[-1]
+          df <- data.frame(xcoordinates, SDist)
+          p <- ggplot(df, aes(x = xcoordinates, y = SDist)) +
+            theme_bw() +
+            geom_point(color = "black", shape = spectra$sym) +
+            theme(
+              panel.grid.major = element_blank(),
+              panel.grid.minor = element_blank()
+            )
+          p <- p + ylim(0, max(SDist)) +
+            geom_hline(yintercept = critSD, linetype = "longdash") +
+            xlab(paste0(spectra$desc, " \n centered/noscale/classical 2PCs")) +
+            ylab("score distance")
+        }
+        y.data <- subset(SDist, SDist > critSD)
+        x.data <- which(SDist %in% y.data, arr.ind = TRUE)
+        data <- cbind(x.data, y.data)
+        if (!length(x.data) == 0) {
+          newList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
+          xcoord <- newList$x
+          ycoord <- newList$y - 0.06
+          l <- newList$l
+          p <- p + annotate("text", x = xcoord, y = ycoord, label = l, size = 3)
+        }
+        print(p)
       }
-      if (use.sym) {
-        plot(ODist,
-          ylim = c(0, max(ODist)), ylab = "orthogonal distance",
-          xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Orthogonal Distance",
-          pch = spectra$sym, ...
-        )
-      }
-      abline(h = critOD, lty = 2)
 
-      y.data <- subset(ODist, ODist > critOD)
-      x.data <- which(ODist %in% y.data, arr.ind = TRUE)
-      data <- cbind(x.data, y.data)
-      if (!length(x.data) == 0) .labelExtremes(data, names = spectra$names[x.data], tol = 1.0)
+      if ("OD" %in% plot) {
+        if (!use.sym) {
+          xcoordinates <- c(NA_real_)
+          for (i in 1:length(ODist))
+          {
+            xcoordinates <- c(xcoordinates, i)
+          }
+          xcoordinates <- xcoordinates[-1]
+          df <- data.frame(xcoordinates, ODist)
+          p <- ggplot(df, aes(x = xcoordinates, y = ODist)) +
+            theme_bw() +
+            geom_point(color = spectra$colors) +
+            theme(
+              panel.grid.major = element_blank(),
+              panel.grid.minor = element_blank()
+            )
+          p <- p + ylim(0, max(max(ODist), critOD)) +
+            geom_hline(yintercept = critOD, linetype = "longdash") +
+            xlab(paste0(spectra$desc, " \n centered/noscale/classical 2PCs")) +
+            ylab("score distance")
+        }
+        if (use.sym) {
+          xcoordinates <- c(NA_real_)
+          for (i in 1:length(ODist))
+          {
+            xcoordinates <- c(xcoordinates, i)
+          }
+          xcoordinates <- xcoordinates[-1]
+          df <- data.frame(xcoordinates, ODist)
+          p <- ggplot(df, aes(x = xcoordinates, y = ODist)) +
+            theme_bw() +
+            geom_point(color = "black", shape = spectra$sym) +
+            theme(
+              panel.grid.major = element_blank(),
+              panel.grid.minor = element_blank()
+            )
+          p <- p + ylim(0, max(max(ODist), critOD)) +
+            geom_hline(yintercept = critOD, linetype = "longdash") +
+            xlab(paste0(spectra$desc, " \n centered/noscale/classical 2PCs")) +
+            ylab("score distance")
+        }
+
+
+        y.data <- subset(ODist, ODist > critOD)
+        x.data <- which(ODist %in% y.data, arr.ind = TRUE)
+        data <- cbind(x.data, y.data)
+        if (!length(x.data) == 0) {
+          newList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
+          xcoord <- newList$x
+          ycoord <- newList$y - 0.06
+          l <- newList$l
+          p <- p + annotate("text", x = xcoord, y = ycoord, label = l, size = 3)
+        }
+        print(p)
+      }
+
+      list(SDist = SDist, ODist = ODist, critSD = critSD, critOD = critOD)
     }
-
-    list(SDist = SDist, ODist = ODist, critSD = critSD, critOD = critOD)
   }
