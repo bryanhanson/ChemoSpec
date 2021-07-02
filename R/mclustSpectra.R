@@ -31,7 +31,7 @@
 #' @keywords multivariate cluster
 #'
 #' @examples
-#'
+#' \dontrun{
 #' require("mclust")
 #' data(metMUD1)
 #' cls <- c_pcaSpectra(metMUD1, choice = "autoscale")
@@ -39,6 +39,7 @@
 #' mclustSpectra(metMUD1, cls, plot = "BIC")
 #' mclustSpectra(metMUD1, cls, plot = "proj")
 #' mclustSpectra(metMUD1, cls, plot = "errors", truth = metMUD1$groups)
+#' }
 #' @export mclustSpectra
 #'
 #' @importFrom graphics title mtext
