@@ -84,6 +84,9 @@ plotSpectra(metMUD1,
   leg.loc = list(x = 0.8, y = 0.8)
 )
 
+options(ChemoSpecGraphics = "base") # turn off for later examples/tests
+
+
 }
 \seealso{
 \code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOptions}}

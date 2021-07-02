@@ -38,7 +38,7 @@
 #' @examples
 #' \dontrun{
 #' data(metMUD1)
-#' loopThruSpectra(metMUD1)
+#' reviewAllSpectra(metMUD1)
 #' }
 #'
 reviewAllSpectra <- function(spectra, ...) {
