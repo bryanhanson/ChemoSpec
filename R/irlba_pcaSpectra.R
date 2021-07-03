@@ -47,7 +47,7 @@
 #' @keywords multivariate
 #'
 #' @examples
-#'
+#'\dontrun{
 #' data(SrE.NMR)
 #' pca <- irlba_pcaSpectra(SrE.NMR)
 #' plotScree(pca)
@@ -59,6 +59,7 @@
 #'   main = "SrE NMR Data",
 #'   loads = 1:2, ref = 1
 #' )
+#' }
 #' @export irlba_pcaSpectra
 #'
 #' @importFrom stats sd

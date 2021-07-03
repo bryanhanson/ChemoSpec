@@ -40,7 +40,8 @@ Imports:
   grDevices,
   reshape2,
   ggplot2,
-  readJDX (>= 0.4)
+  readJDX (>= 0.4),
+  patchwork
 Suggests:
   IDPmisc,
   knitr,

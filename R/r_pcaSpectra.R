@@ -36,7 +36,8 @@
 #' @keywords multivariate robust
 #'
 #' @examples
-#'
+#' 
+#' \dontrun{
 #' data(metMUD1)
 #' pca <- r_pcaSpectra(metMUD1)
 #' plotScree(pca)
@@ -48,6 +49,7 @@
 #'   main = "metMUD1 NMR Data",
 #'   loads = 1:2, ref = 1
 #' )
+#' }
 #' @export r_pcaSpectra
 #'
 #'

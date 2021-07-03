@@ -30,6 +30,7 @@ is the same as standard PCA and gives no additional separation.
 }
 \examples{
 
+\dontrun{
 data(metMUD2)
 
 # Original factor encoding:
@@ -48,6 +49,7 @@ apca4 <- aovPCAloadings(
   spectra = mM3, LM = mats, pca = apca1,
   main = "aov_pcaSpectra: Bb Loadings"
 )
+}
 }
 \references{
 Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for

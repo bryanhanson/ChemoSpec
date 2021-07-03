@@ -41,7 +41,9 @@
 #'
 #' @importFrom graphics plot
 #' @importFrom stats relevel
-#' @importFrom ggplot2 geom_segment
+#' @importFrom ggplot2 geom_segment aes_string
+#' @importFrom utils combn
+#' @importFrom patchwork plot_layout
 #'
 plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
   if (!requireNamespace("lattice", quietly = TRUE)) {
@@ -101,39 +103,93 @@ plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
   }
   if(go == "ggplot2")
   {
+    Frequency <- NULL # satisfy CRAN check engine 
+    
+    #DO NOT DELETE
     
     # Stack the requested data into a data frame for plotting
     
-    names <- paste("PC", loads, "Loadings", sep = " ")
-    names <- c("Ref. Spectrum", names)
+    #names <- paste("PC", loads, "Loadings", sep = " ")
+    #names <- c("Ref. Spectrum", names)
 
-    x <- rep(spectra$freq, length(loads) + 1)
+    #x <- rep(spectra$freq, length(loads) + 1)
     
-    z <- rep(names[1], length(spectra$freq))
-    y <- spectra$data[ref, ] # load in the reference spectrum
+    #z <- rep(names[1], length(spectra$freq))
+    #y <- spectra$data[ref, ] # load in the reference spectrum
     
+    #for (n in 1:length(loads)) {
+    #  spec <- c(y, pca$rotation[, loads[n]]) # add in each loading
+    #  z <- c(z, rep(names[n + 1], length(spectra$freq)))
+    # }
     
-    for (n in 1:length(loads)) {
-      y <- c(y, pca$rotation[, loads[n]]) # add in each loading
-      z <- c(z, rep(names[n + 1], length(spectra$freq)))
-    }
-    
-    z <- as.factor(z)
-    z <- relevel(z, "Ref. Spectrum")
-    df <- data.frame(y, x, z)
-
+    #z <- as.factor(z)
+    #z <- relevel(z, "Ref. Spectrum")
+    #df <- data.frame(y, x, z)
+    #print(df)
     # Do the plot
     # Note: no way exists to plot the x axis reversed for multiple panels
     
-    p<- ggplot(df,aes(x=x))+
-         geom_segment(aes(y=y,xend=x,yend=0),color="black")+
-         xlab(paste0(spectra$unit[1]," \n centered/noscale/classical"))
-    p<-p+facet_grid(z ~.,switch = "both")+
+   #p<- ggplot(df,aes(x=x))+
+   #       geom_segment(aes(y=y,xend=x,yend=0),color="black")+
+   #      xlab(paste0(spectra$unit[1]," \n centered/noscale/classical"))
+   #p<-p+facet_grid(z ~.,switch = "both")+
+   #   theme_bw()+
+   #    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+   #    theme(axis.title.y = element_blank())
+   # return(p)
+    names <- paste("PC", loads, "Loadings", sep = "")
+    names <- c("RefSpectrum", names)
+    x<-spectra$freq
+    y<-spectra$data[ref, ]
+    
+    df<-data.frame(x,y)
+    for (n in 1:length(loads)){
+      spec <- pca$rotation[, loads[n]]
+      df<-cbind(df,spec)
+    }
+
+    names(df) <- c("Frequency",names)
+    
+    var_list  =combn(names(df)[1:ncol(df)],2,simplify = FALSE)
+    
+    plots<-ncol(df)-1
+    plot_list = list()
+    for (i in 1:plots)
+    {
+      p <- ggplot(df,aes_string(x=var_list[[i]][1]))+
+         geom_segment(aes_string(y=var_list[[i]][2],xend=x,yend=0),color="black")+
+        theme_bw()+
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+        theme(
+          axis.title.x = element_blank(),
+          axis.text.x = element_blank(),
+          axis.ticks.x = element_blank())
+      plot_list[[i]]<- p
+    }
+    
+    ref_plot<-ggplot(df,aes(x=Frequency,y=df[,2]))+
+      geom_line()+
       theme_bw()+
       theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-      theme(axis.title.y = element_blank())
-    return(p)
+      ylab("Ref. spectrum")+
+      xlab(paste0(spectra$unit[1]," \n centered/noscale/classical"))
+     
+    #plot_list[[2]]+plot_list[[3]]+ref_plot+plot_layout(ncol=1)
+    patchworks<-NULL
+    for (i in length(plot_list):2)
+    {
+      if( i == length(plot_list))
+      {
+        patchworks<-plot_list[[i]]
+      }
+      else
+      {
+        patchworks=patchworks+plot_list[[i]]
+      }
+    }
     
+    patchworks+ref_plot+plot_layout(ncol=1)
+
   }
 }
  
