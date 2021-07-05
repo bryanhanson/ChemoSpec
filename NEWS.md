@@ -1,4 +1,4 @@
-# ChemoSpec 5.3.20 2021-07-05
+# ChemoSpec 5.3.21 2021-07-05
 ## Misc.
 * Update `hmapSpectra` as the wrapped function in `seriation` has changed.
 
