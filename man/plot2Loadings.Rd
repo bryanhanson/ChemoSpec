@@ -26,7 +26,7 @@ extreme 5 percent.}
 \item{\dots}{Other parameters to be passed to the plotting routines.}
 }
 \value{
-None.  Side effect is a plot.
+Dataframe with the values of the specified loadings along with the frequency.
 }
 \description{
 Plots two PCA loadings specified by the user, and labels selected (extreme)
@@ -53,7 +53,7 @@ a different approach.  Additional documentation at
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson, DePauw University,Tejasvi Gupta.
 }
 \keyword{hplot}
 \keyword{multivariate}
