@@ -1,3 +1,7 @@
+# ChemoSpec 5.3.21 2021-07-05
+## Misc.
+* Update `hmapSpectra` as the wrapped function in `seriation` has changed.
+
 # ChemoSpec 5.3.11 2021-03-24
 ## Changes in ChemoSpecUtils that affect ChemoSpec
 * Documentation of `...` in `sumSpectra` corrected to show how to pass `tol` to `check4Gaps`.

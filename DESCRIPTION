@@ -1,8 +1,8 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 5.3.13
-Date: 2021-03-24
+Version: 5.3.21
+Date: 2021-07-05
 Authors@R: c(
     person("Bryan A.", "Hanson",
       role = c("aut", "cre"), email =
