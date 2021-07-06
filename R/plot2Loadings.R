@@ -27,9 +27,9 @@
 #'
 #' @param \dots Other parameters to be passed to the plotting routines.
 #'
-#' @return None.  Side effect is a plot.
+#' @return Dataframe with the values of the specified loadings along with the frequency.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @author Bryan A. Hanson, DePauw University,Tejasvi Gupta.
 #'
 #' @seealso See \code{\link{plotLoadings}} to plot one loading against the
 #' original variable (frequency) axis.  See \code{\link{sPlotSpectra}} for
@@ -52,6 +52,7 @@
 #'
 #' @importFrom graphics plot abline legend
 #' @importFrom ChemoSpecUtils .getVarExplained
+#' @importFrom ggplot2 geom_text
 #'
 plot2Loadings <- function(spectra, pca, loads = c(1, 2), tol = 0.05, ...) {
 
@@ -69,21 +70,57 @@ plot2Loadings <- function(spectra, pca, loads = c(1, 2), tol = 0.05, ...) {
   loadings2 <- pca$rotation[, loads[2]]
 
   variance <- .getVarExplained(pca)
-  txt1 <- paste("PC", loads[1], " (", format(variance[ loads[1] ], digits = 2), "%", ") loadings", sep = "")
-  txt2 <- paste("PC", loads[2], " (", format(variance[ loads[2] ], digits = 2), "%", ") loadings", sep = "")
+  txt1 <- paste("PC", loads[1], " (", format(variance[loads[1]], digits = 2), "%", ") loadings", sep = "")
+  txt2 <- paste("PC", loads[2], " (", format(variance[loads[2]], digits = 2), "%", ") loadings", sep = "")
 
   xrange <- range(loadings1) * c(1.0, 1.05) # makes room for labels
   yrange <- range(loadings2) * c(1.0, 1.05)
 
-  plot(loadings1, loadings2, xlab = txt1, ylab = txt2, pch = 20, xlim = xrange, ylim = yrange, ...)
-  abline(v = 0.0, col = "red")
-  abline(h = 0.0, col = "red")
-  legend("bottomleft", y = NULL, pca$method, bty = "n", cex = 0.75)
+  go <- chkGraphicsOpt()
 
-  # Next, if requested, we will label the extreme points on both dimensions
+  if (go == "base") {
+    plot(loadings1, loadings2, xlab = txt1, ylab = txt2, pch = 20, xlim = xrange, ylim = yrange, ...)
+    abline(v = 0.0, col = "red")
+    abline(h = 0.0, col = "red")
+    legend("bottomleft", y = NULL, pca$method, bty = "n", cex = 0.75)
 
-  if (is.numeric(tol)) .labelExtremes(pca$rotation[, loads], spectra$freq, tol)
+    # Next, if requested, we will label the extreme points on both dimensions
 
-  res <- data.frame(freq = spectra$freq, load1 = loadings1, load2 = loadings2)
-  return(res)
+    if (is.numeric(tol)) .labelExtremes(pca$rotation[, loads], spectra$freq, tol)
+
+    res <- data.frame(freq = spectra$freq, load1 = loadings1, load2 = loadings2)
+    return(res)
+  }
+
+  if (go == "ggplot2") {
+    
+    load1 <- load2 <- NULL
+    
+    res <- data.frame(freq = spectra$freq, load1 = loadings1, load2 = loadings2)
+    p <- ggplot(res, aes(x = load1, y = load2)) +
+      theme_bw() +
+      xlab(txt1) +
+      ylab(txt2)
+    p <- p + geom_point() +
+      geom_hline(yintercept = 0, color = "red") +
+      geom_vline(xintercept = 0, color = "red")
+
+    p <- p + theme(
+      # Remove panel grid lines
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank()
+    )
+    x.min <- min(loadings1) + 0.1
+    y.min <- min(loadings2)
+    p <- p + annotate("text", x = x.min, y = y.min, label = "centered/noscale/classical", size = 4)
+
+    if (is.numeric(tol)) newList <- .getExtremeCoords(pca$rotation[, loads], spectra$freq, tol)
+    xcoord <- newList$x
+    ycoord <- newList$y
+    l <- newList$l
+    p <- p + annotate("text", x = xcoord, y = ycoord, label = l, size = 3)
+    print(p)
+
+    return(res)
+  }
 }
