@@ -66,6 +66,7 @@ plotSpectraDist <- function(spectra, method = "pearson", ref = 1, labels = TRUE,
   }
 
   if (go == "ggplot2") {
+    name <- NULL # quiet check complaints
     p <- ggplot(DF, aes(x = 1:nrow(DF), y = dist)) +
       theme_bw() +
       geom_point(color = DF$col) +
