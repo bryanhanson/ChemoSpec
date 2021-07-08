@@ -406,6 +406,33 @@ surveySpectra<-function(spectra, method = c("sd","sem","sem95","mad","iqr"),
         return(p)
       }
       
+      if (method == "sd") {
+        df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
+        for (n in 1:length(gr$group)) {
+          which <- as.character(spectra$groups) == gr$group[n]
+          y1 <- aaply(spectra$data[which, ], 2, mean)
+          s <- apply(spectra$data[which, ], 2, sd)
+          y2 <- y1 + s
+          y3 <- y1 - s
+          spectra.group <- rep(gr$group[n], l.x)
+          df2 <- data.frame(x = x, y1 = y1, y2 = y2, y3 = y3, spectra.group = spectra.group)
+          df1 <- rbind(df1, df2)
+        }
+        df1 <- df1[-1, ]
+        p<-ggplot(df1,aes(x=x))+
+          geom_line(aes(y=y1),color="black")+
+          geom_line(aes(y=y2),color="red")+
+          geom_line(aes(y=y3),color="red")+
+          xlab(spectra$unit[1])+
+          ylab("mean +/- sd")+
+          theme_bw()+
+          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+        p<- p + facet_grid(spectra.group ~.,switch ="both")+
+          theme(strip.background =element_rect(fill="#ffe4cc"))+
+          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+        return(p)
+      }
+      
       if (method == "sem") {
         df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
         for (n in 1:length(gr$group)) {
