@@ -18,8 +18,6 @@ plotSpectraDist(spectra, method = "pearson", ref = 1, labels = TRUE, ...)
 \item{\dots}{Plot parameters to be passed to the plotting routines.}
 }
 \value{
-A data frame containing .
-
 The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
 \describe{
  \item{base:}{A data frame containing the data plotted (sample names, sample
