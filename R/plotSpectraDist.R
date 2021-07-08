@@ -15,8 +15,6 @@
 #'
 #' @param \dots Plot parameters to be passed to the plotting routines.
 #'
-#' @return A data frame containing .
-#'
 #' @return
 #' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
 #' \describe{
@@ -93,6 +91,7 @@ plotSpectraDist <- function(spectra, method = "pearson", ref = 1, labels = TRUE,
     # if (!labels) {
       # print(p)
     # }
-  } # end of go = "ggplot2"
   return(p)
+
+  } # end of go = "ggplot2"
 }
