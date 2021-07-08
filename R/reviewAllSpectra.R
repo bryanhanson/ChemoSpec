@@ -31,7 +31,7 @@
 #'          for more information about the graphics options. Additional documentation at
 #'          \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @export loopThruSpectra
+#' @export reviewAllSpectra
 #'
 #' @importFrom grDevices devAskNewPage
 #' @importFrom ggplot2 xlab ylab facet_grid element_rect
