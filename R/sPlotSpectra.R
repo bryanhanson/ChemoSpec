@@ -124,6 +124,7 @@ sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05, ...) {
     ycoord <- newList$y - 0.06
     l <- newList$l
     p <- p + annotate("text", x = xcoord, y = ycoord, label = l, size = 3)
+    return(p)
   }
 }
 
