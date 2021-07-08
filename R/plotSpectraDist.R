@@ -22,7 +22,7 @@
 #' \code{\link[ChemoSpecUtils]{sampleDist}}.  Additional documentation
 #' at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @author Bryan A. Hanson, DePauw University,Tejasvi Gupta.
 #'
 #' @keywords hplot multivariate
 #'
@@ -54,13 +54,35 @@ plotSpectraDist <- function(spectra, method = "pearson", ref = 1, labels = TRUE,
   newnames <- spectra$names[-ref]
   DF <- data.frame(name = newnames, col = newcols, dist = d, stringsAsFactors = FALSE)
   DF <- arrange(DF, dist)
+  go <- chkGraphicsOpt()
 
-  if (labels) {
-    plot(x = 1:nrow(DF), y = DF$dist, type = "p", col = DF$col, pch = 20, ...)
-    text(x = 1:nrow(DF), y = DF$dist, labels = DF$name, cex = 0.5, adj = c(0, 0), ...)
+  if (go == "base") {
+    if (labels) {
+      plot(x = 1:nrow(DF), y = DF$dist, type = "p", col = DF$col, pch = 20, ...)
+      text(x = 1:nrow(DF), y = DF$dist, labels = DF$name, cex = 0.5, adj = c(0, 0), ...)
+    }
+
+    if (!labels) plot(x = 1:nrow(DF), y = DF$dist, type = "p", col = DF$col, pch = 20, ...)
   }
 
-  if (!labels) plot(x = 1:nrow(DF), y = DF$dist, type = "p", col = DF$col, pch = 20, ...)
+  if (go == "ggplot2") {
+    name <- NULL # quiet check complaints
+    p <- ggplot(DF, aes(x = 1:nrow(DF), y = dist)) +
+      theme_bw() +
+      geom_point(color = DF$col) +
+      theme(
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+      ) +
+      theme(axis.title = element_blank())
 
+    if (labels) {
+      p <- p + geom_text(aes(label = name, angle = 45), nudge_y = 0.01, size = 3)
+      print(p)
+    }
+    if (!labels) {
+      print(p)
+    }
+  }
   return(DF)
 }

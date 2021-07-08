@@ -28,16 +28,17 @@ surveySpectra2(
 \item{by.gr}{Logical, indicating if the analysis is to be done by group or
 not. Applies to \code{surveySpectra} only.}
 
-\item{\dots}{Additional parameters to be passed to the plotting routines.}
+\item{\dots}{Parameters to be passed to the plotting routines. Arguments must be consistent with the 
+choice of graphics option. See \code{\link{GraphicsOptions}}.}
 
 \item{lab.pos}{Numeric, giving the frequency where the label should be drawn.
 Applies to \code{surveySpectra2} only.}
 }
 \value{
 The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
-\itemize{
- \item{base:}{    None.  Side effect is a plot.}
- \item{ggplot2:}{    Returns a \code{ggplot2} plot object. The plot can be modified in the usual
+\describe{
+ \item{base:}{None.  Side effect is a plot.}
+ \item{ggplot2:}{Returns a \code{ggplot2} plot object. The plot can be modified in the usual
                      \code{ggplot2} manner.}
 }
 }

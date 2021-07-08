@@ -25,6 +25,7 @@ various options for scaling.
 }
 \examples{
 
+\dontrun{
 data(metMUD1)
 pca <- r_pcaSpectra(metMUD1)
 plotScree(pca)
@@ -36,6 +37,7 @@ plotLoadings(metMUD1, pca,
   main = "metMUD1 NMR Data",
   loads = 1:2, ref = 1
 )
+}
 }
 \references{
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate

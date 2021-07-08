@@ -45,7 +45,7 @@
 #' @keywords multivariate
 #'
 #' @examples
-#'
+#' \dontrun{
 #' data(metMUD1)
 #' pca <- c_pcaSpectra(metMUD1)
 #' plotScree(pca)
@@ -57,6 +57,7 @@
 #'   main = "metMUD1 NMR Data",
 #'   loads = 1:2, ref = 1
 #' )
+#' }
 #' @export c_pcaSpectra
 #'
 #' @importFrom stats sd prcomp

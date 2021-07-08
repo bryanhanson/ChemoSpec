@@ -10,7 +10,7 @@
 #'
 #' @param \dots Additional arguments to be passed downstream.  A great deal of
 #' control is available - check \code{\link[seriation]{hmap}} for details.  Most of the control
-#' actually derives from the \code{heatmap.2} function in package \pkg{gplots}.
+#' actually derives from the \code{heatmap} function in package \pkg{stats}.
 #' See the examples.
 #'
 #' @return A list as described in \code{\link[seriation]{hmap}}. Side effect is a plot.
@@ -23,8 +23,8 @@
 #' \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @section Note:
-#' The underlying \code{heatmap.2} function does certain things automatically for the user.
-#' For instance, if you pass a vector of names to argument \code{labRow} it is automatically
+#' The underlying \code{stats::heatmap} function does certain things automatically for the user.
+#' For instance, if you pass a vector of names to argument \code{row_labels} it is automatically
 #' reordered using the \code{rowInd} vector that is computed.  The user does not need to
 #' do the reordering.  Another example is the labeling of the columns.  The labels are
 #' automatically turned 90 degrees, and not every column is labeled to keep things readible.
@@ -54,12 +54,12 @@
 #' # Defaults, except for color scheme:
 #' res <- hmapSpectra(IR, col = heat.colors(5))
 #'
-#' # Label samples and frequencies by passing arguments to heatmap.2
+#' # Label samples and frequencies by passing arguments to stats:heatmap
 #' # Also make a few other nice plot adjustments
 #' res <- hmapSpectra(IR,
 #'   col = heat.colors(5),
-#'   labRow = IR$names, labCol = as.character(round(IR$freq)),
-#'   margins = c(4, 6), key.title = ""
+#'   row_labels = IR$names, col_labels = as.character(round(IR$freq)),
+#'   margins = c(4, 6)
 #' )
 #' @export hmapSpectra
 #'

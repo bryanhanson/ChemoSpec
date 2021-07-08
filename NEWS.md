@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 # ChemoSpec 6.0.0 2021-06-13
 ## Misc.
-* Courtesy GSOC and Tejasvi Gupta, the following plotting functions gain the ability to produce either `base` graphics or `ggplot2` graphics: `plotSpectra`.
-* The graphics output options can be chosen by `options(ChemoSpecGraphics = "option")` where `option` is one of `c("base", "ggplot2")`.
+* Courtesy GSOC and Tejasvi Gupta, the following plotting functions gain the ability to produce either `base` graphics or `ggplot2` graphics: `plotSpectra`, `surveySpectra`, `loopThruSpectra` (which has been renamed to `reviewAllSpectra`), `plotLoadings`.
+* The graphics output options can be chosen by `options(ChemoSpecGraphics = "option")`; details in new help file `?GraphicsOptions`.
+* `loopThruSpectra` has been renamed `reviewAllSpectra` to better reflect what it does under the new graphics options.
+* `plotSpectra`, when using `base` graphics, now positions the sample names by a different mechanism.
+=======
+# ChemoSpec 5.3.21 2021-07-05
+## Misc.
+* Update `hmapSpectra` as the wrapped function in `seriation` has changed.
+>>>>>>> devel
 
 # ChemoSpec 5.3.11 2021-03-24
 ## Changes in ChemoSpecUtils that affect ChemoSpec

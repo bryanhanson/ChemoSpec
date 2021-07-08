@@ -17,6 +17,7 @@
 if (identical(Sys.getenv("ESTOY_EN_CASA"), "TRUE")) {
 
   expect_silent( {
+    options(ChemoSpecGraphics = "base")
     ed <- system.file("extdata", package = "ChemoSpec")
     tf <- "PCRF.jdx"
     chk <- file.copy(from = file.path(ed, tf), to = file.path(getwd(), tf),
