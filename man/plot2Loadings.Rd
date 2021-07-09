@@ -26,7 +26,15 @@ extreme 5 percent.}
 \item{\dots}{Other parameters to be passed to the plotting routines.}
 }
 \value{
-Dataframe with the values of the specified loadings along with the frequency.
+The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+\describe{
+ \item{base:}{A data frame with the values of the selected loadings, indexed
+              by the frequency.  Side effect is a plot.}
+ \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned.
+                 The plot can be modified in the usual \code{ggplot2} manner.
+                 If you want the values of the loadings, they can be had via
+                 the base plot option.}
+}
 }
 \description{
 Plots two PCA loadings specified by the user, and labels selected (extreme)

@@ -27,7 +27,16 @@
 #'
 #' @param \dots Other parameters to be passed to the plotting routines.
 #'
-#' @return Dataframe with the values of the specified loadings along with the frequency.
+#' @return
+#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+#' \describe{
+#'  \item{base:}{A data frame with the values of the selected loadings, indexed
+#'               by the frequency.  Side effect is a plot.}
+#'  \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned.
+#'                  The plot can be modified in the usual \code{ggplot2} manner.
+#'                  If you want the values of the loadings, they can be had via
+#'                  the base plot option.}
+#' }
 #'
 #' @author Bryan A. Hanson, DePauw University,Tejasvi Gupta.
 #'
@@ -119,8 +128,6 @@ plot2Loadings <- function(spectra, pca, loads = c(1, 2), tol = 0.05, ...) {
     ycoord <- newList$y
     l <- newList$l
     p <- p + annotate("text", x = xcoord, y = ycoord, label = l, size = 3)
-    print(p)
-
-    return(res)
+    return(p)
   }
 }

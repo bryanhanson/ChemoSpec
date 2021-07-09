@@ -21,9 +21,16 @@ extreme 5 percent.}
 \item{\dots}{Additional parameters to be passed to plotting functions.}
 }
 \value{
-A data frame containing the frequency, covariance and correlation of
-the selected pc for the \code{\link{Spectra}} object.  A plot of the
-correlation vs. covariance is created.
+The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+\describe{
+ \item{base:}{A data frame containing the frequency, covariance and correlation of
+              the selected pc for the \code{\link{Spectra}} object.  A plot of the
+              correlation vs. covariance is created.}
+ \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned.
+                 The plot can be modified in the usual \code{ggplot2} manner.
+                 If you want the values of the covariance and correlation, they can be
+                 had via the base plot option.}
+}
 }
 \description{
 Produces a scatter plot of the correlation of the

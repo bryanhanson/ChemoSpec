@@ -19,10 +19,17 @@
 #'
 #' @param \dots Additional parameters to be passed to plotting functions.
 #'
-#' @return A data frame containing the frequency, covariance and correlation of
-#' the selected pc for the \code{\link{Spectra}} object.  A plot of the
-#' correlation vs. covariance is created.
-#'
+#' @return
+#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+#' \describe{
+#'  \item{base:}{A data frame containing the frequency, covariance and correlation of
+#'               the selected pc for the \code{\link{Spectra}} object.  A plot of the
+#'               correlation vs. covariance is created.}
+#'  \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned.
+#'                  The plot can be modified in the usual \code{ggplot2} manner.
+#'                  If you want the values of the covariance and correlation, they can be
+#'                  had via the base plot option.}
+#' }
 #' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University,Tejasvi Gupta.
 #'
 #' @references Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor,
@@ -117,7 +124,7 @@ sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05, ...) {
     ycoord <- newList$y - 0.06
     l <- newList$l
     p <- p + annotate("text", x = xcoord, y = ycoord, label = l, size = 3)
-    print(p)
+    return(p)
   }
 }
 
