@@ -38,6 +38,17 @@
 #' \code{\link[chemometrics]{pcaDiagplot}}, so the result must be assigned or
 #' it will appear at the console.  Side effect is a plot.
 #'
+#' @return
+#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+#' \describe{
+#'  \item{base:}{A list is returned as described in \code{\link[chemometrics]{pcaDiagplot}},
+#'               so the result must be assigned or it will appear at the console.  Side effect is a plot.}
+#'  \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned.
+#'                  The plot can be modified in the usual \code{ggplot2} manner.
+#'                  If you want the values used to make the plot, they can be
+#'                  had via the base plot option.}
+#' }
+#'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @author Bryan A. Hanson, DePauw University,Tejasvi Gupta.
@@ -186,8 +197,8 @@ pcaDiag <-
           l <- newList$l
           p <- p + annotate("text", x = xcoord, y = ycoord, label = l, size = 3)
         }
-        print(p)
-      }
+        #print(p)
+      } # ed of SD plot
 
       if ("OD" %in% plot) {
         if (!use.sym) {
@@ -242,9 +253,10 @@ pcaDiag <-
           l <- newList$l
           p <- p + annotate("text", x = xcoord, y = ycoord, label = l, size = 3)
         }
-        print(p)
-      }
+        #print(p)
+      } # end of OD plot
 
-      list(SDist = SDist, ODist = ODist, critSD = critSD, critOD = critOD)
-    }
+      #list(SDist = SDist, ODist = ODist, critSD = critSD, critOD = critOD)
+      return(p)
+    } # end of go = "ggplot2"
   }

@@ -15,8 +15,16 @@
 #'
 #' @param \dots Plot parameters to be passed to the plotting routines.
 #'
-#' @return A data frame containing the data plotted (sample names, sample
-#' colors, distances).
+#' @return
+#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+#' \describe{
+#'  \item{base:}{A data frame containing the data plotted (sample names, sample
+#'               colors, distances).  A plot of the distances is created.}
+#'  \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned.
+#'                  The plot can be modified in the usual \code{ggplot2} manner.
+#'                  If you want the values of the distances, they can be
+#'                  had via the base plot option.}
+#' }
 #'
 #' @seealso To compare all spectra simultaneously in a heatmap, see
 #' \code{\link[ChemoSpecUtils]{sampleDist}}.  Additional documentation
@@ -63,6 +71,7 @@ plotSpectraDist <- function(spectra, method = "pearson", ref = 1, labels = TRUE,
     }
 
     if (!labels) plot(x = 1:nrow(DF), y = DF$dist, type = "p", col = DF$col, pch = 20, ...)
+    return(DF)
   }
 
   if (go == "ggplot2") {
@@ -78,11 +87,11 @@ plotSpectraDist <- function(spectra, method = "pearson", ref = 1, labels = TRUE,
 
     if (labels) {
       p <- p + geom_text(aes(label = name, angle = 45), nudge_y = 0.01, size = 3)
-      print(p)
     }
-    if (!labels) {
-      print(p)
-    }
-  }
-  return(DF)
+    # if (!labels) {
+      # print(p)
+    # }
+  return(p)
+
+  } # end of go = "ggplot2"
 }

@@ -16,9 +16,9 @@ choice of graphics option. See \code{\link{GraphicsOptions}}.}
 The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
 \describe{
  \item{base:}{None.  Side effect is a plot.}
- \item{ggplot2:}{Returns a \code{ggplot2} plot object. The plot can be modified in the usual
-                     \code{ggplot2} manner.}
- }
+ \item{ggplot2:}{    The plot is displayed, and a \code{ggplot2} plot object is returned.
+                     The plot can be modified in the usual \code{ggplot2} manner.}
+}
 }
 \description{
 Utility to review all spectra in a \code{Spectra} object.  Output depends upon the graphics

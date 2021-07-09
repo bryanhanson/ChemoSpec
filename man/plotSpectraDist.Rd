@@ -18,8 +18,15 @@ plotSpectraDist(spectra, method = "pearson", ref = 1, labels = TRUE, ...)
 \item{\dots}{Plot parameters to be passed to the plotting routines.}
 }
 \value{
-A data frame containing the data plotted (sample names, sample
-colors, distances).
+The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+\describe{
+ \item{base:}{A data frame containing the data plotted (sample names, sample
+              colors, distances).  A plot of the distances is created.}
+ \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned.
+                 The plot can be modified in the usual \code{ggplot2} manner.
+                 If you want the values of the distances, they can be
+                 had via the base plot option.}
+}
 }
 \description{
 This function plots the distance between a reference spectrum and all other
