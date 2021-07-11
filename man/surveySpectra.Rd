@@ -28,7 +28,7 @@ surveySpectra2(
 \item{by.gr}{Logical, indicating if the analysis is to be done by group or
 not. Applies to \code{surveySpectra} only.}
 
-\item{\dots}{Parameters to be passed to the plotting routines. Arguments must be consistent with the 
+\item{\dots}{Parameters to be passed to the plotting routines. Arguments must be consistent with the
 choice of graphics option. See \code{\link{GraphicsOptions}}.}
 
 \item{lab.pos}{Numeric, giving the frequency where the label should be drawn.
