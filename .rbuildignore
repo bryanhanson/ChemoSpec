@@ -6,3 +6,4 @@ man/figures/banner.png
 \.github
 \\.DS_Store
 code_of_conduct.md
+^man-roxygen
