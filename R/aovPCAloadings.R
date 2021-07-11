@@ -19,9 +19,9 @@
 #' @param ref An integer specifying the reference spectrum to plot, which
 #' appears at the bottom of the plot.
 #'
-#' @param \dots Additional parameters to be passed to plotting functions.
+#' @template graphics-dots-arg
 #'
-#' @return None. Side effect is a plot.
+#' @template graphics-return-arg
 #'
 #' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
 #'

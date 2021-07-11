@@ -34,21 +34,16 @@ distances or orthogonal distances, or both.  Options are \code{c("OD",
 \item{use.sym}{logical; if true, the color scheme is change to black and
 symbols are used for plotting.}
 
-\item{\dots}{Additional parameters to be passed to the plotting functions.}
+\item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
 \value{
-A list is returned as described in
-\code{\link[chemometrics]{pcaDiagplot}}, so the result must be assigned or
-it will appear at the console.  Side effect is a plot.
-
 The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
 \describe{
- \item{base:}{A list is returned as described in \code{\link[chemometrics]{pcaDiagplot}},
-              so the result must be assigned or it will appear at the console.  Side effect is a plot.}
- \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned.
-                 The plot can be modified in the usual \code{ggplot2} manner.
-                 If you want the values used to make the plot, they can be
-                 had via the base plot option.}
+ \item{base:}{A data frame or list containing the data plotted.  Assign the value and run \code{str()}
+              or \code{names()} on it to see what it contains. Side effect is a plot.}
+ \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned if the
+                 value is assigned. The plot can be modified in the usual \code{ggplot2} manner.
+                 If you want the plotted values, you can access them via the base graphics mode.}
 }
 }
 \description{

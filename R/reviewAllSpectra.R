@@ -11,17 +11,8 @@
 #'
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
-#' @param \dots Parameters to be passed to the plotting routines. Arguments must be consistent with the 
-#'        choice of graphics option. See \code{\link{GraphicsOptions}}.
-#'
-#' @return
-#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
-#' \describe{
-#'  \item{base:}{None.  Side effect is a plot.}
-#'  \item{ggplot2:}{    The plot is displayed, and a \code{ggplot2} plot object is returned.
-#'                      The plot can be modified in the usual \code{ggplot2} manner.}
-#' }
-#'
+#' @template graphics-dots-arg
+#' @template graphics-return-arg
 #'
 #' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 #'

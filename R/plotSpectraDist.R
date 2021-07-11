@@ -13,18 +13,9 @@
 #'
 #' @param labels Logical.  Shall the points be labeled?
 #'
-#' @param \dots Plot parameters to be passed to the plotting routines.
+#' @template graphics-dots-arg
 #'
-#' @return
-#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
-#' \describe{
-#'  \item{base:}{A data frame containing the data plotted (sample names, sample
-#'               colors, distances).  A plot of the distances is created.}
-#'  \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned.
-#'                  The plot can be modified in the usual \code{ggplot2} manner.
-#'                  If you want the values of the distances, they can be
-#'                  had via the base plot option.}
-#' }
+#' @template graphics-return2-arg
 #'
 #' @seealso To compare all spectra simultaneously in a heatmap, see
 #' \code{\link[ChemoSpecUtils]{sampleDist}}.  Additional documentation

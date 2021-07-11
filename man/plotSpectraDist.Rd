@@ -15,17 +15,16 @@ plotSpectraDist(spectra, method = "pearson", ref = 1, labels = TRUE, ...)
 
 \item{labels}{Logical.  Shall the points be labeled?}
 
-\item{\dots}{Plot parameters to be passed to the plotting routines.}
+\item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
 \value{
 The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
 \describe{
- \item{base:}{A data frame containing the data plotted (sample names, sample
-              colors, distances).  A plot of the distances is created.}
- \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned.
-                 The plot can be modified in the usual \code{ggplot2} manner.
-                 If you want the values of the distances, they can be
-                 had via the base plot option.}
+ \item{base:}{A data frame or list containing the data plotted.  Assign the value and run \code{str()}
+              or \code{names()} on it to see what it contains. Side effect is a plot.}
+ \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned if the
+                 value is assigned. The plot can be modified in the usual \code{ggplot2} manner.
+                 If you want the plotted values, you can access them via the base graphics mode.}
 }
 }
 \description{

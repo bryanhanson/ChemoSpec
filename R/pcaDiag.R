@@ -32,22 +32,9 @@
 #' @param use.sym logical; if true, the color scheme is change to black and
 #' symbols are used for plotting.
 #'
-#' @param \dots Additional parameters to be passed to the plotting functions.
+#' @template graphics-dots-arg
 #'
-#' @return A list is returned as described in
-#' \code{\link[chemometrics]{pcaDiagplot}}, so the result must be assigned or
-#' it will appear at the console.  Side effect is a plot.
-#'
-#' @return
-#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
-#' \describe{
-#'  \item{base:}{A list is returned as described in \code{\link[chemometrics]{pcaDiagplot}},
-#'               so the result must be assigned or it will appear at the console.  Side effect is a plot.}
-#'  \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned.
-#'                  The plot can be modified in the usual \code{ggplot2} manner.
-#'                  If you want the values used to make the plot, they can be
-#'                  had via the base plot option.}
-#' }
+#' @template graphics-return2-arg
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'

@@ -26,22 +26,14 @@
 #' @param by.gr Logical, indicating if the analysis is to be done by group or
 #' not. Applies to \code{surveySpectra} only.
 #'
-#' @param \dots Parameters to be passed to the plotting routines. Arguments must be consistent with the
-#'        choice of graphics option. See \code{\link{GraphicsOptions}}.
-#'
 #' @param lab.pos Numeric, giving the frequency where the label should be drawn.
 #' Applies to \code{surveySpectra2} only.
 #'
+#' @template graphics-dots-arg
+#' @template graphics-return-arg
+#'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @return
-#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
-#' \describe{
-#'  \item{base:}{None.  Side effect is a plot.}
-#'  \item{ggplot2:}{    The plot is displayed, and a \code{ggplot2} plot object is returned.
-#'                      The plot can be modified in the usual \code{ggplot2} manner.}
-#' }
-##'
 #' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 #'
 #' @keywords hplot

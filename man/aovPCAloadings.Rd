@@ -22,10 +22,15 @@ loadings creates a useless plot using the default graphics window.}
 \item{ref}{An integer specifying the reference spectrum to plot, which
 appears at the bottom of the plot.}
 
-\item{\dots}{Additional parameters to be passed to plotting functions.}
+\item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
 \value{
-None. Side effect is a plot.
+The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+\describe{
+ \item{base:}{None. Side effect is a plot.}
+ \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned if the
+                 value is assigned. The plot can be modified in the usual \code{ggplot2} manner.}
+}
 }
 \description{
 Uses the results from \code{\link{aovPCAscores}} to plot the corresponding

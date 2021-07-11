@@ -18,15 +18,8 @@
 #' @param ref An integer specifying the reference spectrum to plot, which
 #' appears at the bottom of the plot.
 #'
-#' @param \dots Additional parameters to be passed to plotting functions.
-#'
-#' @return
-#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
-#' \describe{
-#'  \item{base:}{    None.  Side effect is a plot.}
-#'  \item{ggplot2:}{    The plot is displayed, and a \code{ggplot2} plot object is returned.
-#'                      The plot can be modified in the usual \code{ggplot2} manner.}
-#' }
+#' @template graphics-dots-arg
+#' @template graphics-return-arg
 #'
 #' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 #'

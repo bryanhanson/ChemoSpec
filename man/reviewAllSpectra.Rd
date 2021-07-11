@@ -9,15 +9,14 @@ reviewAllSpectra(spectra, ...)
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
 
-\item{\dots}{Parameters to be passed to the plotting routines. Arguments must be consistent with the 
-choice of graphics option. See \code{\link{GraphicsOptions}}.}
+\item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
 \value{
 The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
 \describe{
- \item{base:}{None.  Side effect is a plot.}
- \item{ggplot2:}{    The plot is displayed, and a \code{ggplot2} plot object is returned.
-                     The plot can be modified in the usual \code{ggplot2} manner.}
+ \item{base:}{None. Side effect is a plot.}
+ \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned if the
+                 value is assigned. The plot can be modified in the usual \code{ggplot2} manner.}
 }
 }
 \description{
