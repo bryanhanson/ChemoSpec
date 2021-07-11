@@ -47,8 +47,7 @@ if \code{TRUE}.}
 The plotting of the legend is based on the origin of the plot as [0,0] and the top right
 corner is [1,1]. If one wants the plot dead center use \code{leg.loc = list(x = 0.5, y = 0.5)}.}
 
-\item{\dots}{Parameters to be passed to the plotting routines. Arguments must be consistent with the 
-choice of graphics option. See \code{\link{GraphicsOptions}}.}
+\item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
 \value{
 The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).

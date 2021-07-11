@@ -35,10 +35,8 @@
 #' The plotting of the legend is based on the origin of the plot as [0,0] and the top right
 #' corner is [1,1]. If one wants the plot dead center use \code{leg.loc = list(x = 0.5, y = 0.5)}.
 #'
-#' @param \dots Parameters to be passed to the plotting routines. Arguments must be consistent with the 
-#'        choice of graphics option. See \code{\link{GraphicsOptions}}.
-#'
-#' @template return-arg
+#' @template graphics-dots-arg
+#' @template graphics-return-arg
 #'
 #' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 #'
