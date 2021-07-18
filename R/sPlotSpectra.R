@@ -18,8 +18,8 @@
 #' extreme 5 percent.
 #'
 #' @template graphics-dots-arg
-#'
 #' @template graphics-return-arg
+#'
 #' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University,Tejasvi Gupta.
 #'
 #' @references Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor,
@@ -32,6 +32,11 @@
 #'
 #' @keywords hplot
 #'
+#' @export sPlotSpectra
+#'
+#' @importFrom graphics plot abline legend
+#' @importFrom ggplot2 geom_vline
+#'
 #' @examples
 #'
 #' data(SrE.IR)
@@ -41,43 +46,43 @@
 #'   spectra = SrE.IR, pca = IR.pca, pc = 1, tol = 0.001,
 #'   main = myt
 #' )
-#' @export sPlotSpectra
 #'
-#' @importFrom graphics plot abline legend
-#' @importFrom ggplot2 geom_vline
-#'
-sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05, ...) {
+sPlotSpectra <- function(spectra,
+                         pca,
+                         pc = 1,
+                         tol = 0.05,
+                         ...) {
 
   ##  Code to produce s-plots from Spectra objects
   ##  as in Wiklund.  Part of ChemoSpec
   ##  Matthew J. Keinsley
   ##  DePauw University, July 2011
+
   msg <- "This function cannot be used with data from sparse pca"
   if (inherits(pca, "converted_from_arrayspc")) stop(msg)
   .chkArgs(mode = 12L)
   chkSpectra(spectra)
   if (length(pc) != 1) stop("You must choose exactly 1 pc to plot.")
   
+  # Prep the data
   centspec <- scale(spectra$data, scale = FALSE)
-  
   cv <- sdv <- c()
-  
-  # Loop over each variable
-  
+
   for (i in 1:ncol(centspec)) {
     tmp <- (pca$x[, pc] %*% centspec[, i])
     cv <- c(cv, tmp)
-    dv <- sd(as.vector(centspec[, i])) # sd(matrix) deprecated for 2.14
+    dv <- sd(as.vector(centspec[, i]))
     sdv <- c(sdv, dv)
   }
   
   cv <- cv / (nrow(centspec) - 1)
   crr <- cv / (sdv * pca$sdev[pc])
   ans <- data.frame(freq = spectra$freq, cov = cv, corr = crr)
+
   go <- chkGraphicsOpt()
+
   if (go == "base") {
     
-    # print(ans)
     plot(cv, crr,
       xlab = "covariance", ylab = "correlation",
       pch = 20, ...
@@ -92,28 +97,32 @@ sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05, ...) {
 
     ans
   }
+
   if (go == "ggplot2") {
 
     p <- ggplot(ans, aes(x = cv, y = crr)) +
       theme_bw() +
       xlab("covariance") +
       ylab("correlation")
+
     p <- p + geom_point() +
       geom_hline(yintercept = 0, color = "red") +
       geom_vline(xintercept = 0, color = "red")
+
     p <- p + theme(
       # Remove panel grid lines
       panel.grid.major = element_blank(),
       panel.grid.minor = element_blank()
     )
+
     x.max <- max(cv) - 0.007
     y.min <- min(crr)
     p <- p + annotate("text", x = x.max, y = y.min, label = "centered/noscale/classical", size = 4)
-    if (is.numeric(tol)) newList <- .getExtremeCoords(ans[, 2:3], spectra$freq, tol)
-    xcoord <- newList$x
-    ycoord <- newList$y - 0.06
-    l <- newList$l
-    p <- p + annotate("text", x = xcoord, y = ycoord, label = l, size = 3)
+
+    if (is.numeric(tol)) CoordList <- .getExtremeCoords(ans[, 2:3], spectra$freq, tol) {
+      p <- p + annotate("text", x = CoordList$x, y = CoordList$y, label = CoordList$l, size = 3)
+    }
+    
     return(p)
   }
 }
