@@ -38,12 +38,6 @@
 #'
 #' @keywords hplot
 #'
-#' @examples
-#'
-#' data(SrE.IR)
-#' myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(Extract ~ IR ~ Spectra))
-#' surveySpectra(SrE.IR, method = "iqr", main = myt)
-#' surveySpectra2(SrE.IR, method = "iqr", main = myt)
 #' @export surveySpectra surveySpectra2
 #'
 #' @importFrom stats sd
@@ -54,8 +48,17 @@
 #'
 #' @describeIn surveySpectra Spectral survey emphasizing mean or median spectrum, optionally by group.
 #'
-surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"),
+#' @examples
+#'
+#' data(SrE.IR)
+#' myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(Extract ~ IR ~ Spectra))
+#' surveySpectra(SrE.IR, method = "iqr", main = myt)
+#' surveySpectra2(SrE.IR, method = "iqr", main = myt)
+#'
+surveySpectra <- function(spectra,
+                          method = c("sd", "sem", "sem95", "mad", "iqr"),
                           by.gr = TRUE, ...) {
+
   if (!requireNamespace("lattice", quietly = TRUE)) {
     stop("You need to install package lattice to use this function")
   }
@@ -268,6 +271,7 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
   }
 
   if (go == "ggplot2") {
+
     if (!by.gr) {
       x <- spectra$freq
 
@@ -343,7 +347,8 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
         return(p)
       }
-    }
+    } # end of if (!by.gr)
+
     if (by.gr) {
       gr <- sumGroups(spectra)
 
@@ -380,6 +385,7 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
           df1 <- rbind(df1, df2)
         }
         df1 <- df1[-1, ]
+
         p <- ggplot(df1, aes(x = x)) +
           geom_line(aes(y = y1), color = "black") +
           geom_line(aes(y = y2), color = "red") +
@@ -407,6 +413,7 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
           df1 <- rbind(df1, df2)
         }
         df1 <- df1[-1, ]
+
         p <- ggplot(df1, aes(x = x)) +
           geom_line(aes(y = y1), color = "black") +
           geom_line(aes(y = y2), color = "red") +
@@ -430,8 +437,8 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
           df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
           df1 <- rbind(df1, df2)
         }
-
         df1 <- df1[-1, ]
+
         p <- ggplot(df1, aes(x = x)) +
           geom_line(aes(y = y1), color = "black") +
           geom_line(aes(y = y2), color = "red") +
@@ -454,8 +461,8 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
           df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
           df1 <- rbind(df1, df2)
         }
-
         df1 <- df1[-1, ]
+
         p <- ggplot(df1, aes(x = x)) +
           geom_line(aes(y = y1), color = "black") +
           geom_line(aes(y = y2), color = "red") +
@@ -478,8 +485,8 @@ surveySpectra <- function(spectra, method = c("sd", "sem", "sem95", "mad", "iqr"
           df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
           df1 <- rbind(df1, df2)
         }
-
         df1 <- df1[-1, ]
+
         p <- ggplot(df1, aes(x = x)) +
           geom_line(aes(y = y1), color = "black") +
           geom_line(aes(y = y2), color = "red") +
