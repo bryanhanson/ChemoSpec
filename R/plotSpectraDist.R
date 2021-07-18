@@ -14,16 +14,21 @@
 #' @param labels Logical.  Shall the points be labeled?
 #'
 #' @template graphics-dots-arg
-#'
 #' @template graphics-return2-arg
 #'
 #' @seealso To compare all spectra simultaneously in a heatmap, see
 #' \code{\link[ChemoSpecUtils]{sampleDist}}.  Additional documentation
 #' at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @author Bryan A. Hanson, DePauw University,Tejasvi Gupta.
+#' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 #'
 #' @keywords hplot multivariate
+#'
+#' @export plotSpectraDist
+#'
+#' @importFrom graphics plot text
+#' @importFrom stats dist
+#' @importFrom plyr arrange
 #'
 #' @examples
 #'
@@ -33,15 +38,13 @@
 #' SrE.NMR$names <- paste("  ", SrE.NMR$names, sep = "") # pad the names for better appearance
 #' temp <- plotSpectraDist(SrE.NMR,
 #'   xlab = txt2, ylab = txt1, main = txt1,
-#'   ylim = c(0, 1.1), xlim = c(0, 16), srt = 45
-#' )
-#' @export plotSpectraDist
+#'   ylim = c(0, 1.1), xlim = c(0, 16), srt = 45)
 #'
-#' @importFrom graphics plot text
-#' @importFrom stats dist
-#' @importFrom plyr arrange
-#'
-plotSpectraDist <- function(spectra, method = "pearson", ref = 1, labels = TRUE, ...) {
+plotSpectraDist <- function(spectra,
+                            method = "pearson",
+                            ref = 1,
+                            labels = TRUE,
+                            ...) {
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 
@@ -66,7 +69,7 @@ plotSpectraDist <- function(spectra, method = "pearson", ref = 1, labels = TRUE,
   }
 
   if (go == "ggplot2") {
-    name <- NULL # quiet check complaints
+    name <- NULL # satisfy CRAN check complaints
     p <- ggplot(DF, aes(x = 1:nrow(DF), y = dist)) +
       theme_bw() +
       geom_point(color = DF$col) +
@@ -79,9 +82,6 @@ plotSpectraDist <- function(spectra, method = "pearson", ref = 1, labels = TRUE,
     if (labels) {
       p <- p + geom_text(aes(label = name, angle = 45), nudge_y = 0.01, size = 3)
     }
-    # if (!labels) {
-      # print(p)
-    # }
   return(p)
 
   } # end of go = "ggplot2"
