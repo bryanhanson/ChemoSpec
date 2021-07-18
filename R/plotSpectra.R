@@ -55,6 +55,7 @@
 #' @importFrom ggplot2 scale_color_manual theme theme_bw theme_classic ylim
 #' @importFrom grid grobTree textGrob
 #' @importFrom reshape2 melt
+#'
 #' @examples
 #'
 #' data(metMUD1)
@@ -73,6 +74,7 @@
 #'   which = c(10, 11), yrange = c(0, 1.5),
 #'   offset = 0.06, amplify = 10, lab.pos = 0.5,
 #'   leg.loc = list(x = 0.8, y = 0.8))
+#'
 plotSpectra <- function(spectra, which = c(1),
                         yrange = range(spectra$data),
                         offset = 0.0, amplify = 1.0,
