@@ -26,7 +26,9 @@
 #'
 #' @importFrom grDevices devAskNewPage
 #' @importFrom ggplot2 xlab ylab facet_grid element_rect
+#'
 #' @examples
+#'
 #' \dontrun{
 #' data(metMUD1)
 #' reviewAllSpectra(metMUD1)
@@ -51,8 +53,7 @@ reviewAllSpectra <- function(spectra, ...) {
     x <- spectra$freq
     l.x <- length(x)
     df1 <- data.frame(x = NA_real_, y = NA_real_, spectra.name = NA_character_)
-    for (i in 1:length(spectra$names))
-    {
+    for (i in 1:length(spectra$names)) {
       y <- spectra$data[i, ]
       spectra.name <- rep(spectra$names[i], l.x)
       df2 <- data.frame(x = x, y = y, spectra.name = spectra.name)
