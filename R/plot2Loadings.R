@@ -36,8 +36,13 @@
 #' a different approach.  Additional documentation at
 #' \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#'
 #' @keywords multivariate hplot
+#'
+#' @export plot2Loadings
+#'
+#' @importFrom graphics plot abline legend
+#' @importFrom ChemoSpecUtils .getVarExplained
+#' @importFrom ggplot2 geom_text
 #'
 #' @examples
 #'
@@ -46,15 +51,12 @@
 #' myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
 #' res <- plot2Loadings(SrE.IR, pca,
 #'   main = myt,
-#'   loads = c(1, 2), tol = 0.001
-#' )
-#' @export plot2Loadings
-#'
-#' @importFrom graphics plot abline legend
-#' @importFrom ChemoSpecUtils .getVarExplained
-#' @importFrom ggplot2 geom_text
-#'
-plot2Loadings <- function(spectra, pca, loads = c(1, 2), tol = 0.05, ...) {
+#'   loads = c(1, 2), tol = 0.001)
+plot2Loadings <- function(spectra,
+                          pca,
+                          loads = c(1, 2),
+                          tol = 0.05,
+                          ...) {
 
   # Function to plot loadings against each other
   # Part of the ChemoSpec package
@@ -93,14 +95,16 @@ plot2Loadings <- function(spectra, pca, loads = c(1, 2), tol = 0.05, ...) {
   }
 
   if (go == "ggplot2") {
-    
+
     load1 <- load2 <- NULL
-    
+
     res <- data.frame(freq = spectra$freq, load1 = loadings1, load2 = loadings2)
+
     p <- ggplot(res, aes(x = load1, y = load2)) +
       theme_bw() +
       xlab(txt1) +
       ylab(txt2)
+
     p <- p + geom_point() +
       geom_hline(yintercept = 0, color = "red") +
       geom_vline(xintercept = 0, color = "red")
@@ -108,17 +112,15 @@ plot2Loadings <- function(spectra, pca, loads = c(1, 2), tol = 0.05, ...) {
     p <- p + theme(
       # Remove panel grid lines
       panel.grid.major = element_blank(),
-      panel.grid.minor = element_blank()
-    )
+      panel.grid.minor = element_blank())
+
     x.min <- min(loadings1) + 0.1
     y.min <- min(loadings2)
-    p <- p + annotate("text", x = x.min, y = y.min, label = "centered/noscale/classical", size = 4)
+    p <- p + annotate("text", x = x.min, y = y.min, label = pca$method, size = 4)
 
-    if (is.numeric(tol)) newList <- .getExtremeCoords(pca$rotation[, loads], spectra$freq, tol)
-    xcoord <- newList$x
-    ycoord <- newList$y
-    l <- newList$l
-    p <- p + annotate("text", x = xcoord, y = ycoord, label = l, size = 3)
+    if (is.numeric(tol)) CoordList <- .getExtremeCoords(pca$rotation[, loads], spectra$freq, tol) {
+      p <- p + annotate("text", x = CoordList$x, y = CoordList$y, label = CoordList$l, size = 3)
+    }
     return(p)
   }
 }
