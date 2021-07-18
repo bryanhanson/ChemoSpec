@@ -73,8 +73,6 @@
 #'   which = c(10, 11), yrange = c(0, 1.5),
 #'   offset = 0.06, amplify = 10, lab.pos = 0.5,
 #'   leg.loc = list(x = 0.8, y = 0.8))
-#'
-#'
 plotSpectra <- function(spectra, which = c(1),
                         yrange = range(spectra$data),
                         offset = 0.0, amplify = 1.0,
@@ -91,7 +89,7 @@ plotSpectra <- function(spectra, which = c(1),
   calcYpos <- function(spec, pct) {
     ymin <- apply(spec, 1, min)
     ymax <- apply(spec, 1, max)
-    ypos <- ymin + (pct * (ymax - ymin))/100
+    ypos <- ymin + (pct * (ymax - ymin)) / 100
   }
 
   go <- chkGraphicsOpt()
@@ -99,18 +97,18 @@ plotSpectra <- function(spectra, which = c(1),
   if (go == "base") {
 
     # Prepare the data needed for plotting, apply amplify & offset
-    M <- spectra$data[which,, drop = FALSE]
+    M <- spectra$data[which, , drop = FALSE]
     Mcols <- spectra$colors[which]
     Mnames <- spectra$names[which]
     freq <- spectra$freq
     count <- 0L
     for (i in 1:nrow(M)) {
-      M[i, ] <- (M[i,] + (offset * count)) * amplify
+      M[i, ] <- (M[i, ] + (offset * count)) * amplify
       count <- count + 1
     }
 
     # Set up and plot the first spectrum (type = "n")
-    plot(freq, M[1,],
+    plot(freq, M[1, ],
       type = "n",
       xlab = spectra$unit[1], ylab = spectra$unit[2],
       ylim = yrange,
@@ -165,7 +163,7 @@ plotSpectra <- function(spectra, which = c(1),
     names(df) <- c("Frequency", spectra$names[which])
 
     lab.x <- lab.pos # values in native data space
-    lab.y <- calcYpos(t(as.matrix(df[,-1])), pct)
+    lab.y <- calcYpos(t(as.matrix(df[, -1])), pct)
 
     molten.data <- reshape2::melt(df, id = c("Frequency"))
 
