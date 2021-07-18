@@ -188,14 +188,12 @@ plotSpectra <- function(spectra, which = c(1),
     if (all(leg.loc != "none")) {
       group <- c(NA_real_)
       color <- c(NA_real_)
-      for (i in spectra$groups)
-      {
+      for (i in spectra$groups) {
         if (!(i %in% group)) {
           group <- c(group, i)
         }
       }
-      for (i in spectra$colors)
-      {
+      for (i in spectra$colors) {
         if (!(i %in% color)) {
           color <- c(color, i)
         }
@@ -210,8 +208,7 @@ plotSpectra <- function(spectra, which = c(1),
         gp = gpar(col = "black", fontsize = 12)
       ))
 
-      for (i in 1:length(group))
-      {
+      for (i in 1:length(group)) {
         grob <- grid::grobTree(textGrob(group[i],
           x = leg.loc$x, y = leg.loc$y, hjust = 0,
           gp = gpar(col = color[i], fontsize = 12)
