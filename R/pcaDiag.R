@@ -33,20 +33,24 @@
 #' symbols are used for plotting.
 #'
 #' @template graphics-dots-arg
-#'
 #' @template graphics-return2-arg
-#'
-#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @author Bryan A. Hanson, DePauw University,Tejasvi Gupta.
 #'
 #' @seealso \code{\link[chemometrics]{pcaDiagplot}} in package
-#' \code{chemometrics} for the underlying function.
+#' \code{chemometrics} for the underlying function. Additional documentation at
+#' \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @references K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
 #' Statistical Analysis in Chemometrics}, CRC Press, 2009.
 #'
 #' @keywords multivariate
+#'
+#' @export pcaDiag
+#'
+#' @importFrom stats qchisq median mad qnorm
+#' @importFrom graphics plot abline
+#' @importFrom ggplot2 geom_line geom_hline geom_point
 #'
 #' @examples
 #'
@@ -54,15 +58,14 @@
 #' res <- c_pcaSpectra(SrE.IR, choice = "noscale")
 #' temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "OD")
 #' temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "SD")
-#' @export pcaDiag
 #'
-#' @importFrom stats qchisq median mad qnorm
-#' @importFrom graphics plot abline
-#' @importFrom ggplot2 geom_line geom_hline geom_point
-#'
-pcaDiag <-
-  function(spectra, pca, pcs = 3, quantile = 0.975,
-           plot = c("OD", "SD"), use.sym = FALSE, ...) {
+pcaDiag <- function(spectra,
+                    pca,
+                    pcs = 3,
+                    quantile = 0.975,
+                    plot = c("OD", "SD"),
+                    use.sym = FALSE,
+                    ...) {
     
     msg <- "This function cannot be used with data from sparse pca"
     if (inherits(pca, "converted_from_arrayspc")) stop(msg)
@@ -82,6 +85,7 @@ pcaDiag <-
     sub <- paste(pca$method, a, "PCs", sep = " ")
     
     go <- chkGraphicsOpt()
+
     if (go == "base") {
 
       if ("SD" %in% plot) {
@@ -130,102 +134,92 @@ pcaDiag <-
         if (!length(x.data) == 0) .labelExtremes(data, names = spectra$names[x.data], tol = 1.0)
       }
 
-      list(SDist = SDist, ODist = ODist, critSD = critSD, critOD = critOD)
+      return(list(SDist = SDist, ODist = ODist, critSD = critSD, critOD = critOD))
     }
+
     if (go == "ggplot2") {
+
       if ("SD" %in% plot) {
         if (!use.sym) {
-          xcoordinates <- c(NA_real_)
-          for (i in 1:length(SDist))
-          {
-            xcoordinates <- c(xcoordinates, i)
-          }
-          xcoordinates <- xcoordinates[-1]
-          df <- data.frame(xcoordinates, SDist)
-          p <- ggplot(df, aes(x = xcoordinates, y = SDist)) +
+          x_index <- 1:length(SDist)
+          df <- data.frame(x_index, SDist)
+
+          p <- ggplot(df, aes(x = x_index, y = SDist)) +
             theme_bw() +
             geom_point(color = spectra$colors) +
             theme(
               panel.grid.major = element_blank(),
               panel.grid.minor = element_blank()
             )
+
           p <- p + ylim(0, max(SDist)) +
             geom_hline(yintercept = critSD, linetype = "longdash") +
-            xlab(paste0(spectra$desc, " \n centered/noscale/classical 2PCs")) +
+            xlab(pca$method) +
             ylab("score distance")
         }
+
         if (use.sym) {
-          xcoordinates <- c(NA_real_)
-          for (i in 1:length(SDist))
-          {
-            xcoordinates <- c(xcoordinates, i)
-          }
-          xcoordinates <- xcoordinates[-1]
-          df <- data.frame(xcoordinates, SDist)
-          p <- ggplot(df, aes(x = xcoordinates, y = SDist)) +
+          x_index <- 1:length(SDist)
+          df <- data.frame(x_index, SDist)
+
+          p <- ggplot(df, aes(x = x_index, y = SDist)) +
             theme_bw() +
             geom_point(color = "black", shape = spectra$sym) +
             theme(
               panel.grid.major = element_blank(),
               panel.grid.minor = element_blank()
             )
+
           p <- p + ylim(0, max(SDist)) +
             geom_hline(yintercept = critSD, linetype = "longdash") +
-            xlab(paste0(spectra$desc, " \n centered/noscale/classical 2PCs")) +
+            xlab(paste0(spectra$desc, "\n", pca$method, " 2 PCs")) +
             ylab("score distance")
         }
+
         y.data <- subset(SDist, SDist > critSD)
         x.data <- which(SDist %in% y.data, arr.ind = TRUE)
         data <- cbind(x.data, y.data)
         if (!length(x.data) == 0) {
-          newList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
-          xcoord <- newList$x
-          ycoord <- newList$y - 0.06
-          l <- newList$l
-          p <- p + annotate("text", x = xcoord, y = ycoord, label = l, size = 3)
+          CoordList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
+          p <- p + annotate("text", x = CoordList$x, y = CoordList$y, label = CoordList$l, size = 3)
         }
-        #print(p)
-      } # ed of SD plot
+      } # end of SD plot
 
       if ("OD" %in% plot) {
+
         if (!use.sym) {
-          xcoordinates <- c(NA_real_)
-          for (i in 1:length(ODist))
-          {
-            xcoordinates <- c(xcoordinates, i)
-          }
-          xcoordinates <- xcoordinates[-1]
-          df <- data.frame(xcoordinates, ODist)
-          p <- ggplot(df, aes(x = xcoordinates, y = ODist)) +
+          x_index <- 1:length(ODist)
+          df <- data.frame(x_index, ODist)
+
+          p <- ggplot(df, aes(x = x_index, y = ODist)) +
             theme_bw() +
             geom_point(color = spectra$colors) +
             theme(
               panel.grid.major = element_blank(),
               panel.grid.minor = element_blank()
             )
+
           p <- p + ylim(0, max(max(ODist), critOD)) +
             geom_hline(yintercept = critOD, linetype = "longdash") +
-            xlab(paste0(spectra$desc, " \n centered/noscale/classical 2PCs")) +
+            xlab(paste0(spectra$desc, "\n", pca$method, " 2 PCs")) +
             ylab("score distance")
         }
+
         if (use.sym) {
-          xcoordinates <- c(NA_real_)
-          for (i in 1:length(ODist))
-          {
-            xcoordinates <- c(xcoordinates, i)
-          }
-          xcoordinates <- xcoordinates[-1]
-          df <- data.frame(xcoordinates, ODist)
-          p <- ggplot(df, aes(x = xcoordinates, y = ODist)) +
+          x_index <- 1:length(ODist)
+          df <- data.frame(x_index, ODist)
+
+          p <- ggplot(df, aes(x = x_index, y = ODist)) +
             theme_bw() +
             geom_point(color = "black", shape = spectra$sym) +
             theme(
               panel.grid.major = element_blank(),
               panel.grid.minor = element_blank()
             )
+
           p <- p + ylim(0, max(max(ODist), critOD)) +
             geom_hline(yintercept = critOD, linetype = "longdash") +
-            xlab(paste0(spectra$desc, " \n centered/noscale/classical 2PCs")) +
+            xlab(paste0(spectra$desc, "\n", pca$method, " 2 PCs")) +
             ylab("score distance")
         }
 
@@ -234,16 +228,10 @@ pcaDiag <-
         x.data <- which(ODist %in% y.data, arr.ind = TRUE)
         data <- cbind(x.data, y.data)
         if (!length(x.data) == 0) {
-          newList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
-          xcoord <- newList$x
-          ycoord <- newList$y - 0.06
-          l <- newList$l
-          p <- p + annotate("text", x = xcoord, y = ycoord, label = l, size = 3)
+          CoordList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
+          p <- p + annotate("text", x = CoordList$x, y = CoordList$y, label = CoordList$l, size = 3)
         }
-        #print(p)
       } # end of OD plot
-
-      #list(SDist = SDist, ODist = ODist, critSD = critSD, critOD = critOD)
       return(p)
     } # end of go = "ggplot2"
   }
