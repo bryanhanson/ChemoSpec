@@ -29,6 +29,7 @@ output choice.
  }
 }
 \examples{
+
 \dontrun{
 data(metMUD1)
 reviewAllSpectra(metMUD1)

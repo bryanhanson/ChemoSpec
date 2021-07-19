@@ -66,25 +66,20 @@ several parameters.
 
 data(metMUD1)
 
-# Using base graphics (the default, but need to set here
-# in case someone changed it!)
+# Using base graphics (the default)
 options(ChemoSpecGraphics = "ggplot2")
+
 plotSpectra(metMUD1,
   main = "metMUD1 NMR Data",
   which = c(10, 11), yrange = c(0, 1.5),
-  offset = 0.06, amplify = 10, lab.pos = 0.5
-)
+  offset = 0.06, amplify = 10, lab.pos = 0.5)
 
 # Add a legend at x, y coords
 plotSpectra(metMUD1,
   main = "metMUD1 NMR Data",
   which = c(10, 11), yrange = c(0, 1.5),
   offset = 0.06, amplify = 10, lab.pos = 0.5,
-  leg.loc = list(x = 0.8, y = 0.8)
-)
-
-options(ChemoSpecGraphics = "base") # turn off for later examples/tests
-
+  leg.loc = list(x = 0.8, y = 0.8))
 
 }
 \seealso{

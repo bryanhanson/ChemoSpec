@@ -66,16 +66,16 @@ data(SrE.IR)
 res <- c_pcaSpectra(SrE.IR, choice = "noscale")
 temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "OD")
 temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "SD")
+
 }
 \references{
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
 Statistical Analysis in Chemometrics}, CRC Press, 2009.
 }
 \seealso{
-Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
-
 \code{\link[chemometrics]{pcaDiagplot}} in package
-\code{chemometrics} for the underlying function.
+\code{chemometrics} for the underlying function. Additional documentation at
+\url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 Bryan A. Hanson, DePauw University,Tejasvi Gupta.

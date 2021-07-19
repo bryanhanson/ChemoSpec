@@ -118,7 +118,8 @@ plot2Loadings <- function(spectra,
     y.min <- min(loadings2)
     p <- p + annotate("text", x = x.min, y = y.min, label = pca$method, size = 4)
 
-    if (is.numeric(tol)) CoordList <- .getExtremeCoords(pca$rotation[, loads], spectra$freq, tol) {
+    if (is.numeric(tol)) {
+      CoordList <- .getExtremeCoords(pca$rotation[, loads], spectra$freq, tol)
       p <- p + annotate("text", x = CoordList$x, y = CoordList$y, label = CoordList$l, size = 3)
     }
     return(p)

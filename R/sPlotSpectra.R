@@ -119,7 +119,8 @@ sPlotSpectra <- function(spectra,
     y.min <- min(crr)
     p <- p + annotate("text", x = x.max, y = y.min, label = "centered/noscale/classical", size = 4)
 
-    if (is.numeric(tol)) CoordList <- .getExtremeCoords(ans[, 2:3], spectra$freq, tol) {
+    if (is.numeric(tol)) {
+      CoordList <- .getExtremeCoords(ans[, 2:3], spectra$freq, tol)
       p <- p + annotate("text", x = CoordList$x, y = CoordList$y, label = CoordList$l, size = 3)
     }
     
