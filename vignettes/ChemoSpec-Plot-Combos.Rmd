@@ -15,9 +15,7 @@ output:
       fig_caption: yes
       number_sections: true # needed for section cross-refs to work
 vignette: >
-    %\VignetteIndexEntry{An R Package for Chemometric Analysis of Spectra (NMR, IR etc}
-    %\VignetteKeywords{chemometrics, spectroscopy, nmr, ir, raman, cd, xrf}
-    %\VignettePackage{ChemoSpec}
+    %\VignettePackage{ChemoSpec-Plot-Combos}
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
 link-citations: yes
