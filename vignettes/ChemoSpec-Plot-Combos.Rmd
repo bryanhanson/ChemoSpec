@@ -16,6 +16,7 @@ output:
       number_sections: true # needed for section cross-refs to work
 vignette: >
     %\VignettePackage{ChemoSpec-Plot-Combos}
+    %\VignetteIndexEntry{Testing Plot Combinations (for developers)}
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
 link-citations: yes
