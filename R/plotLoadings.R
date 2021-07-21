@@ -94,7 +94,7 @@ plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
 
   if (go == "ggplot2") {
 
-    # Frequency <- NULL # satisfy CRAN check engine
+    Frequency <- NULL # satisfy CRAN check engine
 
     names <- paste("PC", loads, "Loadings", sep = "")
     names <- c("RefSpectrum", names)
