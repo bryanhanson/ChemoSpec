@@ -80,12 +80,9 @@ surveySpectra2 <- function(spectra,
     off3 <- abs(min(M)) + abs(max(y)) + abs(0.05 * diff(range(M)))
     off4 <- min(DF_spread$y) - off3 + 0.5 * diff(range(y)) # offset for label
 
-    DF_centered <- data.frame(x)
-    for (i in 1:length(spectra$names)) {
-      spec <- M[i, ]
-      DF_centered <- cbind(DF_centered, spec)
-    }
+    DF_centered <- as.data.frame(cbind(spectra$freq, t(M)))
     names(DF_centered) <- c("Frequency", spectra$names)
+
     molten <- reshape2::melt(DF_centered, id = c("Frequency"))
 
     p <- ggplot() +
@@ -97,7 +94,7 @@ surveySpectra2 <- function(spectra,
       theme_bw() +
       theme(legend.position = "none") +
       theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-      labs(x = spectra$unit[1], y = "centered Spectra")
+      labs(x = spectra$unit[1], y = "Centered Spectra")
     p <- p + geom_line(data = DF_spread, aes(x = x, y = y - off3))
 
     p <- p + annotate(
