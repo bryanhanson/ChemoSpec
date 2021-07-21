@@ -54,11 +54,9 @@
 #' myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(Extract ~ IR ~ Spectra))
 #' surveySpectra(SrE.IR, method = "iqr", main = myt)
 #' surveySpectra2(SrE.IR, method = "iqr", main = myt)
-#'
 surveySpectra <- function(spectra,
                           method = c("sd", "sem", "sem95", "mad", "iqr"),
                           by.gr = TRUE, ...) {
-
   if (!requireNamespace("lattice", quietly = TRUE)) {
     stop("You need to install package lattice to use this function")
   }
@@ -66,8 +64,13 @@ surveySpectra <- function(spectra,
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 
-  go <- chkGraphicsOpt()
+  choices <- c("sd", "sem", "sem95", "mad", "iqr")
 
+  if (!(method %in% choices)) {
+    stop("The selected method is invalid.")
+  }
+
+  go <- chkGraphicsOpt()
   if (go == "base") {
     if (!by.gr) {
       x <- spectra$freq
@@ -272,20 +275,35 @@ surveySpectra <- function(spectra,
 
   if (go == "ggplot2") {
 
+    # Helper Function to plot in ggplot2 mode
+    # df data frame with computed y values
+    # x: x coordinates of the plot
+    # y1: computed y coordinates first column
+    # y2: computed y coordinates second column
+    # y3: computed y coordinates third column
+    # ylabel: label of the y coordinate
+
+    # Note: xlabel is 'spectra$unit[1]' same for all plots so used directly
+
+    .ssplot <- function(df, x, y1, y2, y3, ylabel) {
+      ggplot(df, aes(x = x)) +
+        geom_line(aes(y = y1), color = "black") +
+        geom_line(aes(y = y2), color = "red") +
+        geom_line(aes(y = y3), color = "red") +
+        xlab(spectra$unit[1]) +
+        ylab(ylabel) +
+        theme_bw() +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+    }
+
     if (!by.gr) {
       x <- spectra$freq
 
       if (method == "iqr") {
         y <- aaply(spectra$data, 2, .seXyIqr)
         df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
-        p <- ggplot(df, aes(x = x)) +
-          geom_line(aes(y = y1), color = "black") +
-          geom_line(aes(y = y2), color = "red") +
-          geom_line(aes(y = y3), color = "red") +
-          xlab(spectra$unit[1]) +
-          ylab("Full Data Set, median +/- iqr") +
-          theme_bw() +
-          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+        p <- .ssplot(df, x, y1, y2, y3, ylabel = "Full Data Set, median +/- iqr")
         return(p)
       }
 
@@ -295,56 +313,32 @@ surveySpectra <- function(spectra,
         y2 <- y1 + s
         y3 <- y1 - s
         df <- data.frame(x, y1, y2, y3)
-        p <- ggplot(df, aes(x = x)) +
-          geom_line(aes(y = y1), color = "black") +
-          geom_line(aes(y = y2), color = "red") +
-          geom_line(aes(y = y3), color = "red") +
-          xlab(spectra$unit[1]) +
-          ylab("Full Data Set, mean +/- sd") +
-          theme_bw() +
-          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+        p <- .ssplot(df, x, y1, y2, y3, ylabel = "Full Data Set, mean +/- sd")
         return(p)
       }
 
       if (method == "sem") {
         y <- aaply(spectra$data, 2, .seXy)
         df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
-        p <- ggplot(df, aes(x = x)) +
-          geom_line(aes(y = y1), color = "black") +
-          geom_line(aes(y = y2), color = "red") +
-          geom_line(aes(y = y3), color = "red") +
-          xlab(spectra$unit[1]) +
-          ylab("Full Data Set, mean +/- sem") +
-          theme_bw() +
-          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+        p <- .ssplot(df, x, y1, y2, y3, ylabel = "Full Data Set, mean +/- sem")
         return(p)
       }
 
       if (method == "mad") {
         y <- aaply(spectra$data, 2, .seXyMad)
         df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
-        p <- ggplot(df, aes(x = x)) +
-          geom_line(aes(y = y1), color = "black") +
-          geom_line(aes(y = y2), color = "red") +
-          geom_line(aes(y = y3), color = "red") +
-          xlab(spectra$unit[1]) +
-          ylab("Full Data Set, median +/- mad") +
-          theme_bw() +
-          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+        p <- .ssplot(df, x, y1, y2, y3, ylabel = "Full Data Set, median +/- mad")
         return(p)
       }
 
       if (method == "sem95") {
         y <- aaply(spectra$data, 2, .seXy95)
         df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
-        p <- ggplot(df, aes(x = x)) +
-          geom_line(aes(y = y1), color = "black") +
-          geom_line(aes(y = y2), color = "red") +
-          geom_line(aes(y = y3), color = "red") +
-          xlab(spectra$unit[1]) +
-          ylab("Full Data Set, mean +/- 95% ci sem") +
-          theme_bw() +
-          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+        p <- .ssplot(df, x, y1, y2, y3, ylabel = "Full Data Set, mean +/- 95% ci sem")
         return(p)
       }
     } # end of if (!by.gr)
@@ -386,14 +380,8 @@ surveySpectra <- function(spectra,
         }
         df1 <- df1[-1, ]
 
-        p <- ggplot(df1, aes(x = x)) +
-          geom_line(aes(y = y1), color = "black") +
-          geom_line(aes(y = y2), color = "red") +
-          geom_line(aes(y = y3), color = "red") +
-          xlab(spectra$unit[1]) +
-          ylab("median+/- iqr") +
-          theme_bw() +
-          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+        p <- .ssplot(df1, x, y1, y2, y3, ylabel = "median +/- iqr")
+
         p <- p + facet_grid(spectra.group ~ ., switch = "both") +
           theme(strip.background = element_rect(fill = "#ffe4cc")) +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
@@ -414,14 +402,8 @@ surveySpectra <- function(spectra,
         }
         df1 <- df1[-1, ]
 
-        p <- ggplot(df1, aes(x = x)) +
-          geom_line(aes(y = y1), color = "black") +
-          geom_line(aes(y = y2), color = "red") +
-          geom_line(aes(y = y3), color = "red") +
-          xlab(spectra$unit[1]) +
-          ylab("mean +/- sd") +
-          theme_bw() +
-          theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+        p <- .ssplot(df1, x, y1, y2, y3, ylabel = "mean +/- sd")
+
         p <- p + facet_grid(spectra.group ~ ., switch = "both") +
           theme(strip.background = element_rect(fill = "#ffe4cc")) +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
@@ -439,13 +421,8 @@ surveySpectra <- function(spectra,
         }
         df1 <- df1[-1, ]
 
-        p <- ggplot(df1, aes(x = x)) +
-          geom_line(aes(y = y1), color = "black") +
-          geom_line(aes(y = y2), color = "red") +
-          geom_line(aes(y = y3), color = "red") +
-          xlab(spectra$unit[1]) +
-          ylab("mean +/- sem") +
-          theme_bw()
+        p <- .ssplot(df1, x, y1, y2, y3, ylabel = "mean +/- sem")
+
         p <- p + facet_grid(spectra.group ~ ., switch = "both") +
           theme(strip.background = element_rect(fill = "#ffe4cc")) +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
@@ -463,13 +440,8 @@ surveySpectra <- function(spectra,
         }
         df1 <- df1[-1, ]
 
-        p <- ggplot(df1, aes(x = x)) +
-          geom_line(aes(y = y1), color = "black") +
-          geom_line(aes(y = y2), color = "red") +
-          geom_line(aes(y = y3), color = "red") +
-          xlab(spectra$unit[1]) +
-          ylab("median +/- mad") +
-          theme_bw()
+        p <- .ssplot(df1, x, y1, y2, y3, ylabel = "median +/- mad")
+
         p <- p + facet_grid(spectra.group ~ ., switch = "both") +
           theme(strip.background = element_rect(fill = "#ffe4cc")) +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
@@ -487,13 +459,7 @@ surveySpectra <- function(spectra,
         }
         df1 <- df1[-1, ]
 
-        p <- ggplot(df1, aes(x = x)) +
-          geom_line(aes(y = y1), color = "black") +
-          geom_line(aes(y = y2), color = "red") +
-          geom_line(aes(y = y3), color = "red") +
-          xlab(spectra$unit[1]) +
-          ylab("mean +/- 95 % ci sem") +
-          theme_bw()
+        p <- .ssplot(df1, x, y1, y2, y3, ylabel = "mean +/- 95 % ci sem")
         p <- p + facet_grid(spectra.group ~ ., switch = "both") +
           theme(strip.background = element_rect(fill = "#ffe4cc")) +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
