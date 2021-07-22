@@ -43,6 +43,7 @@
 #' @importFrom graphics plot abline legend
 #' @importFrom ChemoSpecUtils .getVarExplained
 #' @importFrom ggplot2 geom_text
+#' @importFrom ggrepel geom_text_repel
 #'
 #' @examples
 #'
@@ -96,14 +97,14 @@ plot2Loadings <- function(spectra,
 
   if (go == "ggplot2") {
 
-    load1 <- load2 <- NULL
+    load1 <- load2 <- x <- y <- label <- NULL
 
     res <- data.frame(freq = spectra$freq, load1 = loadings1, load2 = loadings2)
 
     p <- ggplot(res, aes(x = load1, y = load2)) +
       theme_bw() +
       xlab(txt1) +
-      ylab(txt2)
+      ylab(txt2) 
 
     p <- p + geom_point() +
       geom_hline(yintercept = 0, color = "red") +
@@ -114,13 +115,16 @@ plot2Loadings <- function(spectra,
       panel.grid.major = element_blank(),
       panel.grid.minor = element_blank())
 
-    x.min <- min(loadings1) + 0.1
+    x.min <- min(loadings1)
     y.min <- min(loadings2)
+    x.max <- max(loadings1)
+    x.min = x.min + (x.max-x.min)/10
     p <- p + annotate("text", x = x.min, y = y.min, label = pca$method, size = 4)
 
     if (is.numeric(tol)) {
       CoordList <- .getExtremeCoords(pca$rotation[, loads], spectra$freq, tol)
-      p <- p + annotate("text", x = CoordList$x, y = CoordList$y, label = CoordList$l, size = 3)
+      df <-data.frame(x=CoordList$x,y=CoordList$y,label=CoordList$l)
+      p<- p+ geom_text_repel(data=df,aes(x=x,y=y,label=label),box.padding = 0.5, max.overlaps = Inf)
     }
     return(p)
   }
