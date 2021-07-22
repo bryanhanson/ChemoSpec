@@ -178,7 +178,6 @@ plotSpectra <- function(spectra, which = c(1),
       ylim(yrange) +
       theme_bw() +
       theme(legend.position = "none") +
-      theme(panel.border = element_blank(), axis.line = element_line(colour = "black")) +
       theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank())
 
     if (!showGrid) {
