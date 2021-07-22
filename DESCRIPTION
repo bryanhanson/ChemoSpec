@@ -41,7 +41,8 @@ Imports:
   reshape2,
   ggplot2,
   readJDX (>= 0.4),
-  patchwork
+  patchwork,
+  ggrepel
 Suggests:
   IDPmisc,
   knitr,
