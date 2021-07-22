@@ -73,7 +73,7 @@ Suggests:
   bookdown,
   chemometrics,
   hyperSpec
-Additional_repositories: https://github.com/bryanhanson/ChemoSpecUtils
+Remotes: bryanhanson/ChemoSpecUtils
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE
