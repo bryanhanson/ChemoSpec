@@ -43,7 +43,6 @@ splot <- sPlotSpectra(
   spectra = SrE.IR, pca = IR.pca, pc = 1, tol = 0.001,
   main = myt
 )
-
 }
 \references{
 Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor,
