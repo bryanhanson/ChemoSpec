@@ -143,6 +143,8 @@ pcaDiag <- function(spectra,
   }
   
   if (go == "ggplot2") {
+    x <- y <- label <- NULL
+    
     if ("SD" %in% plot) {
       if (!use.sym) {
         x_index <- 1:length(SDist)
