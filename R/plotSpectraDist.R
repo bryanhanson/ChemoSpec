@@ -29,6 +29,7 @@
 #' @importFrom graphics plot text
 #' @importFrom stats dist
 #' @importFrom plyr arrange
+#' @importFrom ggrepel geom_text_repel
 #'
 #' @examples
 #'
@@ -80,7 +81,7 @@ plotSpectraDist <- function(spectra,
       theme(axis.title = element_blank())
 
     if (labels) {
-      p <- p + geom_text(aes(label = name, angle = 45), nudge_y = 0.01, size = 3)
+      p <- p + geom_text_repel(aes(label = name), size = 3)
     }
   return(p)
 
