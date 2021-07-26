@@ -410,6 +410,7 @@ The arguments of `plot2Loadings` are ``r formalArgs(plot2Loadings)``. We are tes
 loads <- list(c(1, 2), c(2, 4))
 # combine options
 opts <- expand.grid(loads, go, stringsAsFactors = FALSE)
+tol <- c("none", "0.02")
 names(opts) <- c("loads", "GO")
 
 # do the plots
@@ -446,6 +447,7 @@ The arguments of `sPlotSpectra` are ``r formalArgs(sPlotSpectra)``. We are testi
 pc <- c(1, 3)
 # combine options
 opts <- expand.grid(pc, go, stringsAsFactors = FALSE)
+tol <- c("none", "0.02")
 names(opts) <- c("PC", "GO")
 
 # do the plots
@@ -482,6 +484,7 @@ usesym <- c(FALSE, TRUE)
 plt <- c("OD", "SD")
 # combine options
 opts <- expand.grid(pcs, usesym, plt, go, stringsAsFactors = FALSE)
+tol <- c("none", "0.02")
 names(opts) <- c("PCs", "use.sym", "plot", "GO")
 
 # do the plots

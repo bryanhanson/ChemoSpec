@@ -200,19 +200,18 @@ plotSpectra <- function(spectra, which = c(1),
       group <- group[-1]
       color <- color[-1]
 
-      # 0.025 is the fudge factor for better display of legend
-
+      gap<-0.04
       keys <- grobTree(textGrob("Key",
-        x = leg.loc$x, y = leg.loc$y + 0.025, hjust = 0,
-        gp = gpar(col = "black", fontsize = 12)
+        x = leg.loc$x, y = leg.loc$y + gap, hjust = 0,
+        gp = gpar(col = "black", fontsize = 10)
       ))
 
       for (i in 1:length(group)) {
         grob <- grid::grobTree(textGrob(group[i],
           x = leg.loc$x, y = leg.loc$y, hjust = 0,
-          gp = gpar(col = color[i], fontsize = 12)
+          gp = gpar(col = color[i], fontsize = 10)
         ))
-        leg.loc$y <- leg.loc$y - 0.025
+        leg.loc$y <- leg.loc$y - gap
         p <- p + annotation_custom(grob) + annotation_custom(keys)
       }
     }

@@ -117,7 +117,7 @@ sPlotSpectra <- function(spectra,
 
     x.max <- max(cv)
     x.min <- min(cv)
-    x.max <- x.max - (x.max - x.min) / 10
+    x.max <- x.max - (x.max - x.min) / 5
     y.min <- min(crr)
     p <- p + annotate("text", x = x.max, y = y.min, label = "centered/noscale/classical", size = 4)
 

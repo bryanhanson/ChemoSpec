@@ -118,7 +118,7 @@ plot2Loadings <- function(spectra,
     x.min <- min(loadings1)
     y.min <- min(loadings2)
     x.max <- max(loadings1)
-    x.min = x.min + (x.max-x.min)/10
+    x.min = x.min + (x.max-x.min)/5
     p <- p + annotate("text", x = x.min, y = y.min, label = pca$method, size = 4)
 
     if (is.numeric(tol)) {
