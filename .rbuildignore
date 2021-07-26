@@ -1,10 +1,9 @@
 ^docs$
 ^_pkgdown\.yml$
 README.md
-Rbuildignore.txt
-gitignore.txt
 .Rhistory
 man/figures/banner.png
 \.github
 \\.DS_Store
 code_of_conduct.md
+^man-roxygen

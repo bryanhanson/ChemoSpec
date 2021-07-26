@@ -39,7 +39,7 @@ deviation.  \code{Pareto} scales by the square root of the standard
 deviation.
 }
 \examples{
-
+\dontrun{
 data(SrE.NMR)
 pca <- irlba_pcaSpectra(SrE.NMR)
 plotScree(pca)
@@ -51,6 +51,7 @@ plotLoadings(SrE.NMR, pca,
   main = "SrE NMR Data",
   loads = 1:2, ref = 1
 )
+}
 }
 \references{
 J. Baglama and L. Reichel, "Augmented Implicitly Restarted Lanczos

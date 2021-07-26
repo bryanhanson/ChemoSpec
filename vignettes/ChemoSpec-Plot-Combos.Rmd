@@ -1,0 +1,544 @@
+---
+title:  "ChemoSpec Plots"
+author:
+  - name: Bryan A. Hanson^1^, Tejasvi Gupta^2^
+    email: hanson@depauw.edu
+    affiliation: |
+        1. Professor Emeritus of Chemistry & Biochemistry, DePauw University, Greencastle IN USA.
+        2. GSOC, live from Hyderabad, India!
+date:  "`r Sys.Date()`"
+output:
+    bookdown::html_document2: # use for pkgdown site
+#    bookdown::pdf_document2: # use for CRAN to keep size down; breaks GHA
+      toc: yes
+      toc_depth: 2
+      fig_caption: yes
+      number_sections: true # needed for section cross-refs to work
+vignette: >
+    %\VignettePackage{ChemoSpec-Plot-Combos}
+    %\VignetteIndexEntry{Testing Plot Combinations (for developers)}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+link-citations: yes
+pkgdown:
+  as_is: true # needed for proper figure referencing
+---
+
+```{r SetUp, echo = FALSE, eval = TRUE, results = "hide"}
+
+# R options & configuration:
+set.seed(9)
+rm(list = ls())
+suppressMessages(library("ChemoSpec"))
+suppressMessages(library("ggplot2"))
+suppressMessages(library("patchwork"))
+
+# ChemoSpec stuff
+data(SrE.IR)
+data(metMUD1)
+data(metMUD2)
+desc <- packageDescription("ChemoSpec")
+
+# Misc
+# graphics modes (set once here, used multiple places below)
+go <- c("base", "ggplot2")
+# plot counter: will show when a plot doesn't appear, as ggplot2
+# sometimes fails w/o an error or warning
+plot_no <- 0L
+
+# Stuff for knitr:
+# Hook for figure size control
+knitr::opts_hooks$set(sq.fig = function(options) {
+
+  if (isFALSE(options$sq.fig)) {
+    # custom fig dimensions given, use w/o further delay
+    if ((!is.null(options$fig.width)) & (!is.null(options$fig.height))) return(options)
+    # otherwise set the default wide aspect ratio
+    if ((is.null(options$fig.width)) & (is.null(options$fig.height))) {
+      options$fig.width = 8
+      options$fig.height = 4.5
+    }
+  }
+
+  if (isTRUE(options$sq.fig)) {
+    options$fig.width = 5
+    options$fig.height = 5
+  }
+  options
+})
+
+# choices here are designed to work with the hook
+knitr::opts_chunk$set(fig.align = "center", sq.fig = FALSE,
+  out.width = "95%", echo = FALSE)
+
+```
+**This vignette is intended for the developers**
+
+This vignette demonstrates various plots:
+
+* with selected arguments.
+* each type of plot is rendered in both `base` and `ggplot2` graphics.
+* The approach used also tests the `...` argument in `base`, the `+` operator in `ggplot2` and the `&` operator in `patchwork`.
+* In addition, plots are numbered so that if one fails, it should be clear.
+
+The purpose is primarily for troubleshooting and to identify undesirable changes over time (regressions).  The options used in each plot are shown in the title (in most cases).  The `base` graphics can be distinguished from `ggplot2` graphics by the position of the title.
+
+This vignette is processed using `ChemoSpec` version `r desc$Version`.
+
+To check the results shown here:
+
+* Do a general inspection of each plot for undesirable "features"
+* Check for missing plots (they will be numbered but not appear).  Figure out the cause.
+* Compare the `base` version to the `ggplot2` version.  We are not seeking to make them identical, but they should be similar.  Pay special attention to the placement of annotations, `xlab` and `ylab`, proportions of various elements and text sizes.  Are the annotations in `base` all present in `ggplot2`? Keep a list for discussion.  Remember for `ggplot2` graphics we are trying to keep to a pretty simple theme since users can modify them more or less at will.
+* Are there plot options we need to add to the tests, or changes to the existing tests?
+* Do the emitted messages make sense / are expected, or do they indicate a problem?
+
+**Still to do: test `ggplot2` theme behavior**
+
+# plotSpectra
+
+The arguments of `plotSpectra` are ``r formalArgs(plotSpectra)``. We are testing combinations of ``r formalArgs(plotSpectra)[c(2, 8)]``.
+
+<!-- This first code chunk contains more documentation than later code chunks so that the general method is clear. -->
+
+```{r plotSpectra}
+# arguments to be combined in all possible combos
+specs <- list(c(1), c(1, 2, 14, 16), c(1, 3, 4, 7, 8, 10, 11, 12, 13, 15))
+# ^ one spec, one spec from each group, all spec from one group
+# legend options
+leg <- list("none", list(x = 0.725, y = 0.9))
+# combine options
+opts <- expand.grid(specs, leg, go, stringsAsFactors = FALSE)
+names(opts) <- c("which", "legend", "GO")
+# fixed arguments
+# not necessarily visually ideal but will work for all argument combos
+off <- 0.1
+yr <- c(0.0, 1.5)
+
+# do the plots
+for (i in 1:nrow(opts)) {
+  options(ChemoSpecGraphics = opts$GO[i])
+  plot_no <- plot_no + 1
+  cat("Plot Number", plot_no, "\n")
+  cat("options tested:\n")
+  print(opts[i,])
+
+  Title <- paste("Samples(s) ",
+    paste(opts$which[[i]], collapse = ", "),
+    "\n",
+    "Legend: ",
+    paste(opts$legend[[i]], collapse = ","),
+    sep = ""
+  )
+
+  if (opts$GO[i] == "base") {
+    plotSpectra(SrE.IR,
+      which = opts$which[[i]], leg.loc = opts$legend[[i]],
+      offset = off, yrange = yr, main = Title
+    )
+  }
+
+  if (opts$GO[i] == "ggplot2") {
+    p <- plotSpectra(SrE.IR,
+      which = opts$which[[i]], leg.loc = opts$legend[[i]],
+      offset = off, yrange = yr
+    )
+    p <- p + labs(title = Title)
+    print(p)
+    # explictly removing p because errors could leave a previous
+    # p hanging around to be plotting instead of the new p
+    rm(p)
+  }
+}
+```
+
+# reviewAllSpectra
+
+The arguments of `reviewAllSpectra` are ``r formalArgs(reviewAllSpectra)``. Only the `ggplot2` graphics mode is tested here, as `base` graphics mode requires interactivity.
+
+```{r reviewAllSpectra, fig.height = 16, fig.width = 5}
+plot_no <- plot_no + 1
+cat("Plot Number", plot_no, "\n")
+cat("Default plot\n")
+
+options(ChemoSpecGraphics = "ggplot2")
+p <- reviewAllSpectra(SrE.IR)
+print(p)
+rm(p)
+```
+
+```{r reviewAllSpectra2, fig.height = 16, fig.width = 5}
+plot_no <- plot_no + 1
+cat("Plot Number", plot_no, "\n")
+cat("Plot zoomed with coord_cartesian\n")
+
+options(ChemoSpecGraphics = "ggplot2")
+p <- reviewAllSpectra(SrE.IR)
+p <- p + coord_cartesian(xlim = c(1800, 1600))
+print(p)
+rm(p)
+```
+
+# surveySpectra
+
+The arguments of `surveySpectra` are ``r formalArgs(surveySpectra)``. We are testing combinations of ``r formalArgs(surveySpectra)[c(2, 3)]``.
+
+```{r surveySpectra}
+# arguments to be combined in all possible combos
+bg <- c(FALSE, TRUE)
+met = c("sd", "sem", "sem95", "mad", "iqr")
+opts <- expand.grid(met, bg, go, stringsAsFactors = FALSE)
+names(opts) <- c("method", "by.gr", "GO")
+
+for (i in 1:nrow(opts)) {
+  plot_no <- plot_no + 1
+  cat("Plot Number", plot_no, "\n")
+  cat("options tested:\n")
+  print(opts[i,])
+
+  options(ChemoSpecGraphics = opts$GO[i])
+
+  Title <- paste("Method = ", opts$method[i], "    by.gr = ", opts$by.gr[i], sep = "")
+
+  if (opts$GO[i] == "base") {
+    surveySpectra(SrE.IR, method = opts$method[i], by.gr = opts$by.gr[i], main = Title)
+  }
+
+  if (opts$GO[i] == "ggplot2") {
+    p <- surveySpectra(SrE.IR, method = opts$method[i], by.gr = opts$by.gr[i])
+    p <- p + labs(title = Title)
+    print(p)
+    rm(p)
+  }
+}
+```
+
+# surveySpectra2
+
+The arguments of `surveySpectra2` are ``r formalArgs(surveySpectra2)``.  We are testing combinations of ``r formalArgs(surveySpectra2)[2]``.
+
+```{r surveySpectra2}
+# same options as for surveySpectra
+for (i in 1:nrow(opts)) {
+  options(ChemoSpecGraphics = opts$GO[i])
+  plot_no <- plot_no + 1
+  cat("Plot Number", plot_no, "\n")
+  cat("options tested:\n")
+  print(opts[i,])
+
+  Title <- paste("Method =", opts$method[i], sep = " ")
+
+  if (opts$GO[i] == "base") {
+    surveySpectra2(SrE.IR, method = opts$method[i], main = Title)
+  }
+
+  if (opts$GO[i] == "ggplot2") {
+    p <- surveySpectra2(SrE.IR, method = opts$method[i]) + labs(title = Title)
+    print(p)
+    rm(p)
+  }
+}
+```
+
+# plotSpectraDist
+
+The arguments of `plotSpectraDist` are ``r formalArgs(plotSpectraDist)``. We are testing combinations of ``r formalArgs(plotSpectraDist)[c(2, 4)]``.
+
+```{r plotSpectraDist}
+# arguments to be combined in all possible combos
+lab <- c(FALSE, TRUE)
+met = c("cosine", "euclidean", "maximum", "manhattan", "canberra", "binary", "pearson", "correlation", "spearman", "kendall", "abspearson", "abscorrelation")
+opts <- expand.grid(met, lab, go, stringsAsFactors = FALSE)
+names(opts) <- c("method", "labels", "GO")
+
+for (i in 1:nrow(opts)) {
+  plot_no <- plot_no + 1
+  cat("Plot Number", plot_no, "\n")
+  cat("options tested:\n")
+  print(opts[i,])
+
+  options(ChemoSpecGraphics = opts$GO[i])
+
+  Title <- paste("Distance = ", opts$method[i], "    labels = ", opts$labels[i], sep = "")
+
+  if (opts$GO[i] == "base") {
+    plotSpectraDist(SrE.IR, method = opts$method[i], labels = opts$labels[i], main = Title)
+  }
+
+  if (opts$GO[i] == "ggplot2") {
+    p <- plotSpectraDist(SrE.IR, method = opts$method[i], labels = opts$labels[i])
+    p <- p + labs(title = Title)
+    print(p)
+    rm(p)
+  }
+}
+```
+
+# PCA Related Functions
+
+```{r runPCA}
+pca <- c_pcaSpectra(metMUD1)
+```
+## plotScree
+
+The arguments of `plotScree` are ``r formalArgs(plotScree)``. We are testing combinations of ``r formalArgs(plotScree)[2]``.
+
+```{r plotScree}
+# arguments to be combined in all possible combos
+style = c("trad", "alt")
+opts <- expand.grid(style, go, stringsAsFactors = FALSE)
+names(opts) <- c("style", "GO")
+
+for (i in 1:nrow(opts)) {
+  plot_no <- plot_no + 1
+  cat("Plot Number", plot_no, "\n")
+  cat("options tested:\n")
+  print(opts[i,])
+
+  options(ChemoSpecGraphics = opts$GO[i])
+
+  Title <- paste("Style = ", opts$style[i], sep = "")
+
+  if (opts$GO[i] == "base") {
+    plotScree(pca, style = opts$style[i], main = Title)
+  }
+
+  if (opts$GO[i] == "ggplot2") {
+    p <- plotScree(pca, style = opts$style[i])
+    p <- p + labs(title = Title)
+    print(p)
+    rm(p)
+  }
+}
+```
+
+## plotScores
+
+The arguments of `plotScores` are ``r formalArgs(plotScores)``.  TODO: need more thorough argument combos.
+
+```{r plotScores, sq.fig = TRUE}
+# arguments to be combined in all possible combos
+pcs <- list(c(1, 2), c(2, 3), c(1, 3))
+ellipse <- c("cls", "rob", "both", "none")
+# combine options
+opts <- expand.grid(pcs, ellipse, go, stringsAsFactors = FALSE)
+names(opts) <- c("pcs", "ellipse", "GO")
+
+# do the plots
+for (i in 1:nrow(opts)) {
+  options(ChemoSpecGraphics = opts$GO[i])
+  plot_no <- plot_no + 1
+  cat("Plot Number", plot_no, "\n")
+  cat("options tested:\n")
+  print(opts[i,])
+
+  Title <- paste("pcs = ",
+    paste(opts$pcs[[i]], collapse = ", "),
+    "    ellipse = ", opts$ellipse[i], sep = "")
+
+  if (opts$GO[i] == "base") {
+    plotScores(metMUD1, pca,
+      pcs = opts$pcs[[i]], ellipse = opts$ellipse[i],
+      main = Title)
+  }
+
+  if (opts$GO[i] == "ggplot2") {
+    p <- plotScores(metMUD1, pca,
+      pcs = opts$pcs[[i]], ellipse = opts$ellipse[i])
+    p <- p + plot_annotation(title = Title)
+    print(p)
+    rm(p)
+  }
+}
+```
+
+## plotLoadings
+
+The arguments of `plotLoadings` are ``r formalArgs(plotLoadings)``. We are testing combinations of ``r formalArgs(plotLoadings)[c(3, 4)]`` along with `xlim`.
+
+```{r plotLoadings}
+# arguments to be combined in all possible combos
+loads <- list(c(1), c(1, 2), c(1, 2, 3))
+refs <- c(1, 5)
+xl <- c(FALSE, TRUE)
+# combine options
+opts <- expand.grid(loads, refs, xl, go, stringsAsFactors = FALSE)
+names(opts) <- c("loads", "refs", "xl", "GO")
+
+# do the plots
+for (i in 1:nrow(opts)) {
+  options(ChemoSpecGraphics = opts$GO[i])
+  plot_no <- plot_no + 1
+  cat("Plot Number", plot_no, "\n")
+  cat("options tested:\n")
+  print(opts[i,])
+
+  Title <- paste("Loads(s) = ",
+    paste(opts$loads[[i]], collapse = ", "),
+    "    Ref = ", opts$ref[i], "    Use xlim = ", opts$xl[i], sep = "")
+
+  if (opts$GO[i] == "base") {
+    if (opts$xl[i]) {
+      plotLoadings(metMUD1, pca,
+        loads = opts$loads[[i]], ref = opts$ref[i],
+        xlim = c(0.75, 2.1), main = Title)
+    }
+    if (!opts$xl[i]) {
+      plotLoadings(metMUD1, pca,
+        loads = opts$loads[[i]], ref = opts$ref[i],
+        main = Title)
+    }
+  }
+
+  if (opts$GO[i] == "ggplot2") {
+    p <- plotLoadings(metMUD1, pca,
+      loads = opts$loads[[i]], ref = opts$ref[i])
+    p <- p + plot_annotation(title = Title)
+    if (opts$xl[i]) p <- p & coord_cartesian(xlim = c(0.75, 2.1))
+    print(p)
+    rm(p)
+  }
+}
+```
+
+## plot2Loadings
+
+The arguments of `plot2Loadings` are ``r formalArgs(plot2Loadings)``. We are testing combinations of ``r formalArgs(plot2Loadings)[3]``.
+
+```{r plot2Loadings}
+# arguments to be combined in all possible combos
+loads <- list(c(1, 2), c(2, 4))
+tol = c("none", 0.02)
+# combine options
+opts <- expand.grid(loads, go, stringsAsFactors = FALSE,tol)
+
+names(opts) <- c("loads", "GO")
+
+# do the plots
+for (i in 1:nrow(opts)) {
+  options(ChemoSpecGraphics = opts$GO[i])
+  plot_no <- plot_no + 1
+  cat("Plot Number", plot_no, "\n")
+  cat("options tested:\n")
+  print(opts[i,])
+
+  Title <- paste("Loads(s) = ", paste(opts$loads[[i]], collapse = ", "), opts$tol[i])
+
+  if (opts$GO[i] == "base") {
+      plot2Loadings(metMUD1, pca,
+        loads = opts$loads[[i]], main = Title)
+  }
+
+  if (opts$GO[i] == "ggplot2") {
+    p <- plot2Loadings(metMUD1, pca,
+      loads = opts$loads[[i]])
+    p <- p + labs(title = Title)
+    print(p)
+    rm(p)
+  }
+}
+```
+
+## sPlotSpectra
+
+The arguments of `sPlotSpectra` are ``r formalArgs(sPlotSpectra)``. We are testing combinations of ``r formalArgs(sPlotSpectra)[3]``.
+
+```{r sPlotSpectra}
+# arguments to be combined in all possible combos
+pc <- c(1, 3)
+tol = c("none", 0.02)
+# combine options
+opts <- expand.grid(pc, go, stringsAsFactors = FALSE,tol)
+
+names(opts) <- c("PC", "GO")
+
+# do the plots
+for (i in 1:nrow(opts)) {
+  options(ChemoSpecGraphics = opts$GO[i])
+  plot_no <- plot_no + 1
+  cat("Plot Number", plot_no, "\n")
+  cat("options tested:\n")
+  print(opts[i,])
+
+  Title <- paste("PC = ", opts$PC[i], sep = "")
+
+  if (opts$GO[i] == "base") {
+      sPlotSpectra(metMUD1, pca, pc = opts$PC[i], main = Title)
+  }
+
+  if (opts$GO[i] == "ggplot2") {
+    p <- sPlotSpectra(metMUD1, pca, pc = opts$PC[i])
+    p <- p + labs(title = Title)
+    print(p)
+    rm(p)
+  }
+}
+```
+
+## pcaDiag
+
+The arguments of `pcaDiag` are ``r formalArgs(pcaDiag)``. We are testing combinations of ``r formalArgs(pcaDiag)[c(3, 5, 6)]``.
+
+```{r pcaDiag, sq.fig = TRUE}
+# arguments to be combined in all possible combos
+pcs <- c(1, 3)
+usesym <- c(FALSE, TRUE)
+plt <- c("OD", "SD")
+tol = c("none", 0.02)
+# combine options
+opts <- expand.grid(pcs, usesym, plt, go, stringsAsFactors = FALSE,tol)
+
+names(opts) <- c("PCs", "use.sym", "plot", "GO")
+
+# do the plots
+for (i in 1:nrow(opts)) {
+  options(ChemoSpecGraphics = opts$GO[i])
+  plot_no <- plot_no + 1
+  cat("Plot Number", plot_no, "\n")
+  cat("options tested:\n")
+  print(opts[i,])
+
+  Title <- paste("PCs = ", paste(opts$PCs[i], collapse = ", "),
+           "    use.sym = ", opts$use.sym[i], "    plot = ", opts$plot[i], sep = "")
+
+  if (opts$GO[i] == "base") {
+      pcaDiag(metMUD1, pca,
+        pcs = opts$PCs[i], use.sym = opts$use.sym[i], plot = opts$plot[i])
+      mtext(Title, side = 4)
+  }
+
+  if (opts$GO[i] == "ggplot2") {
+    p <- pcaDiag(metMUD1, pca,
+      pcs = opts$PCs[i], use.sym = opts$use.sym[i], plot = opts$plot[i])
+    p <- p + labs(title = Title)
+    print(p)
+    rm(p)
+  }
+}
+```
+
+# aovPCA Related Functions
+
+These functions call the same underlying functions as `plotScores`, `plotLoadings` etc, so if the above functions work these should too.
+
+```{r aovPCA, eval = FALSE}
+new.grps <- list(geneBb = c("B", "b"), geneCc = c("C", "c"))
+mM3 <- splitSpectraGroups(metMUD2, new.grps)
+mats <- aov_pcaSpectra(mM3, fac = c("geneBb", "geneCc"))
+apca1 <- aovPCAscores(mM3, mats, plot = 1, main = "aovPCA: B vs b", ellipse = "cls")
+apca2 <- aovPCAscores(mM3, mats, plot = 2, main = "aovPCA: C vs c")
+apca3 <- aovPCAscores(mM3, mats, plot = 3, main = "aovPCA: Interaction Term")
+apca4 <- aovPCAloadings(
+  spectra = mM3, LM = mats, pca = apca1,
+  main = "aov_pcaSpectra: Bb Loadings"
+)
+
+```
+
+## aovPCAscores
+
+The arguments of `aovPCAscores` are ``r formalArgs(aovPCAscores)``.
+
+## aovPCAloadings
+
+The arguments of `aovPCAloadings` are ``r formalArgs(aovPCAloadings)``.

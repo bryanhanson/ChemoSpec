@@ -23,10 +23,15 @@ plot.}
 \code{tol = 1.0} labels all the points; \code{tol = 0.05} labels the most
 extreme 5 percent.}
 
-\item{\dots}{Other parameters to be passed to the plotting routines.}
+\item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
 \value{
-None.  Side effect is a plot.
+The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+\describe{
+ \item{base:}{None. Side effect is a plot.}
+ \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned if the
+                 value is assigned. The plot can be modified in the usual \code{ggplot2} manner.}
+}
 }
 \description{
 Plots two PCA loadings specified by the user, and labels selected (extreme)
@@ -43,8 +48,7 @@ pca <- c_pcaSpectra(SrE.IR)
 myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
 res <- plot2Loadings(SrE.IR, pca,
   main = myt,
-  loads = c(1, 2), tol = 0.001
-)
+  loads = c(1, 2), tol = 0.001)
 }
 \seealso{
 See \code{\link{plotLoadings}} to plot one loading against the
@@ -53,7 +57,7 @@ a different approach.  Additional documentation at
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson, DePauw University,Tejasvi Gupta.
 }
 \keyword{hplot}
 \keyword{multivariate}

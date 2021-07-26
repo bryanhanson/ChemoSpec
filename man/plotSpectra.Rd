@@ -30,55 +30,64 @@ spectra to be plotted as given in \code{which}.  Trial and error is used to
 adjust all these arguments to produce the desired plot.}
 
 \item{offset}{A number specifying the vertical offset between spectra if
-more than one is plotted.  Set to 0.0 for a stacked plot.}
+more than one is plotted.  Set to 0.0 to overlay the spectra.}
 
 \item{amplify}{A number specifying an amplification factor to be applied to
 all spectra.  Useful for magnifying spectra so small features show up
 (though large peaks will then be clipped, unless you zoom on the x axis).}
 
-\item{lab.pos}{A number giving the location for the identifying label.
+\item{lab.pos}{A number (in frequency units) giving the location of a label for each spectrum.
 Generally, pick an area that is clear in all spectra plotted.  If no label
 is desired, give \code{lab.pos} outside the plotted x range.}
 
 \item{showGrid}{Logical.  Places light gray vertical lines at each tick mark
 if \code{TRUE}.}
 
-\item{leg.loc}{Character; if \code{"none"} no legend will be drawn.
-Otherwise, any string acceptable to \code{\link{legend}}.}
+\item{leg.loc}{A list giving x and y coordinates; if \code{"none"} no legend will be drawn.
+The plotting of the legend is based on the origin of the plot as [0,0] and the top right
+corner is [1,1]. If one wants the plot dead center use \code{leg.loc = list(x = 0.5, y = 0.5)}.}
 
-\item{\dots}{Additional parameters to be passed to plotting functions.}
+\item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
 \value{
-None.  Side effect is a plot.
+The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+\describe{
+ \item{base:}{None. Side effect is a plot.}
+ \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned if the
+                 value is assigned. The plot can be modified in the usual \code{ggplot2} manner.}
+}
 }
 \description{
-Plots the spectra stored in a \code{\link{Spectra}} object.  One may choose
-which spectra to plot, and the x range to plot.  Spectra may be plotted
+Plots the spectra stored in a \code{\link{Spectra}} object. Spectra may be plotted
 offset or stacked.  The vertical scale is controlled by a combination of
 several parameters.
 }
 \examples{
 
 data(metMUD1)
+
+# Using base graphics (the default)
+options(ChemoSpecGraphics = "ggplot2")
+
 plotSpectra(metMUD1,
   main = "metMUD1 NMR Data",
   which = c(10, 11), yrange = c(0, 1.5),
-  offset = 0.06, amplify = 10, lab.pos = 0.5
-)
+  offset = 0.06, amplify = 10, lab.pos = 0.5)
 
 # Add a legend at x, y coords
 plotSpectra(metMUD1,
   main = "metMUD1 NMR Data",
   which = c(10, 11), yrange = c(0, 1.5),
   offset = 0.06, amplify = 10, lab.pos = 0.5,
-  leg.loc = list(x = 3.2, y = 1.45)
-)
+  leg.loc = list(x = 0.8, y = 0.8))
+
 }
 \seealso{
-\code{\link{plotSpectraJS}} for the interactive version.
-Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+\code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOptions}}
+         for more information about the graphics options. Additional documentation at
+         \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 }
 \keyword{hplot}

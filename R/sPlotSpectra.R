@@ -17,13 +17,10 @@
 #' \code{tol = 1.0} labels all the points; \code{tol = 0.05} labels the most
 #' extreme 5 percent.
 #'
-#' @param \dots Additional parameters to be passed to plotting functions.
+#' @template graphics-dots-arg
+#' @template graphics-return-arg
 #'
-#' @return A data frame containing the frequency, covariance and correlation of
-#' the selected pc for the \code{\link{Spectra}} object.  A plot of the
-#' correlation vs. covariance is created.
-#'
-#' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+#' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University,Tejasvi Gupta.
 #'
 #' @references Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor,
 #' Gottfries, Moritz, and Trygg. "Visualization of GC/TOF-MS-Based
@@ -35,6 +32,12 @@
 #'
 #' @keywords hplot
 #'
+#' @export sPlotSpectra
+#'
+#' @importFrom graphics plot abline legend
+#' @importFrom ggplot2 geom_vline
+#' @importFrom ggrepel geom_text_repel
+#'
 #' @examples
 #'
 #' data(SrE.IR)
@@ -44,11 +47,11 @@
 #'   spectra = SrE.IR, pca = IR.pca, pc = 1, tol = 0.001,
 #'   main = myt
 #' )
-#' @export sPlotSpectra
-#'
-#' @importFrom graphics plot abline legend
-#'
-sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05, ...) {
+sPlotSpectra <- function(spectra,
+                         pca,
+                         pc = 1,
+                         tol = 0.05,
+                         ...) {
 
   ##  Code to produce s-plots from Spectra objects
   ##  as in Wiklund.  Part of ChemoSpec
@@ -61,16 +64,14 @@ sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05, ...) {
   chkSpectra(spectra)
   if (length(pc) != 1) stop("You must choose exactly 1 pc to plot.")
 
+  # Prep the data
   centspec <- scale(spectra$data, scale = FALSE)
-
   cv <- sdv <- c()
-
-  # Loop over each variable
 
   for (i in 1:ncol(centspec)) {
     tmp <- (pca$x[, pc] %*% centspec[, i])
     cv <- c(cv, tmp)
-    dv <- sd(as.vector(centspec[, i])) # sd(matrix) deprecated for 2.14
+    dv <- sd(as.vector(centspec[, i]))
     sdv <- c(sdv, dv)
   }
 
@@ -78,17 +79,54 @@ sPlotSpectra <- function(spectra, pca, pc = 1, tol = 0.05, ...) {
   crr <- cv / (sdv * pca$sdev[pc])
   ans <- data.frame(freq = spectra$freq, cov = cv, corr = crr)
 
-  plot(cv, crr,
-    xlab = "covariance", ylab = "correlation",
-    pch = 20, ...
-  )
-  abline(v = 0.0, col = "red")
-  abline(h = 0.0, col = "red")
-  legend("bottomright", y = NULL, pca$method, bty = "n", cex = 0.75)
+  go <- chkGraphicsOpt()
 
-  # Next, if requested, we will label the extreme points on both dimensions
+  if (go == "base") {
+    plot(cv, crr,
+      xlab = "covariance", ylab = "correlation",
+      pch = 20, ...
+    )
+    abline(v = 0.0, col = "red")
+    abline(h = 0.0, col = "red")
+    legend("bottomright", y = NULL, pca$method, bty = "n", cex = 0.75)
 
-  if (is.numeric(tol)) .labelExtremes(ans[, 2:3], spectra$freq, tol)
+    # Next, if requested, we will label the extreme points on both dimensions
 
-  ans
+    if (is.numeric(tol)) .labelExtremes(ans[, 2:3], spectra$freq, tol)
+
+    ans
+  }
+
+  if (go == "ggplot2") {
+    x <- y <- label <- NULL
+    
+    p <- ggplot(ans, aes(x = cv, y = crr)) +
+      theme_bw() +
+      xlab("covariance") +
+      ylab("correlation")
+
+    p <- p + geom_point() +
+      geom_hline(yintercept = 0, color = "red") +
+      geom_vline(xintercept = 0, color = "red")
+
+    p <- p + theme(
+      # Remove panel grid lines
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank()
+    )
+
+    x.max <- max(cv)
+    x.min <- min(cv)
+    x.max <- x.max - (x.max - x.min) / 5
+    y.min <- min(crr)
+    p <- p + annotate("text", x = x.max, y = y.min, label = "centered/noscale/classical", size = 4)
+
+    if (is.numeric(tol)) {
+      CoordList <- .getExtremeCoords(ans[, 2:3], spectra$freq, tol)
+      df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
+      p <- p + geom_text_repel(data = df, aes(x = x, y = y, label = label), box.padding = 0.5, max.overlaps = Inf)
+    }
+
+    return(p)
+  }
 }

@@ -36,8 +36,10 @@
 #'
 #' @keywords multivariate htest
 #'
+#' 
 #' @examples
-#'
+#' 
+#' \dontrun{
 #' data(metMUD2)
 #'
 #' # Original factor encoding:
@@ -56,6 +58,7 @@
 #'   spectra = mM3, LM = mats, pca = apca1,
 #'   main = "aov_pcaSpectra: Bb Loadings"
 #' )
+#' }
 #' @export
 #'
 aov_pcaSpectra <- function(spectra, fac) {

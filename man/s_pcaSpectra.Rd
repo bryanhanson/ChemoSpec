@@ -39,6 +39,7 @@ deviation.  \code{Pareto} scales by the square root of the standard
 deviation.
 }
 \examples{
+\dontrun{
 
 data(SrE.NMR)
 pca <- s_pcaSpectra(SrE.NMR)
@@ -51,6 +52,7 @@ plotLoadings(SrE.NMR, pca,
   main = "SrE NMR Data",
   loads = 1:2, ref = 1
 )
+}
 }
 \references{
 H. Zou, T. Hastie and R. Tibshirani "Sparse Principal Components Analysis"
