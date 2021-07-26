@@ -408,9 +408,10 @@ The arguments of `plot2Loadings` are ``r formalArgs(plot2Loadings)``. We are tes
 ```{r plot2Loadings}
 # arguments to be combined in all possible combos
 loads <- list(c(1, 2), c(2, 4))
+tol = c("none", 0.02)
 # combine options
-opts <- expand.grid(loads, go, stringsAsFactors = FALSE)
-tol <- c("none", "0.02")
+opts <- expand.grid(loads, go, stringsAsFactors = FALSE,tol)
+
 names(opts) <- c("loads", "GO")
 
 # do the plots
@@ -421,7 +422,7 @@ for (i in 1:nrow(opts)) {
   cat("options tested:\n")
   print(opts[i,])
 
-  Title <- paste("Loads(s) = ", paste(opts$loads[[i]], collapse = ", "))
+  Title <- paste("Loads(s) = ", paste(opts$loads[[i]], collapse = ", "), opts$tol[i])
 
   if (opts$GO[i] == "base") {
       plot2Loadings(metMUD1, pca,
@@ -445,9 +446,10 @@ The arguments of `sPlotSpectra` are ``r formalArgs(sPlotSpectra)``. We are testi
 ```{r sPlotSpectra}
 # arguments to be combined in all possible combos
 pc <- c(1, 3)
+tol = c("none", 0.02)
 # combine options
-opts <- expand.grid(pc, go, stringsAsFactors = FALSE)
-tol <- c("none", "0.02")
+opts <- expand.grid(pc, go, stringsAsFactors = FALSE,tol)
+
 names(opts) <- c("PC", "GO")
 
 # do the plots
@@ -482,9 +484,10 @@ The arguments of `pcaDiag` are ``r formalArgs(pcaDiag)``. We are testing combina
 pcs <- c(1, 3)
 usesym <- c(FALSE, TRUE)
 plt <- c("OD", "SD")
+tol = c("none", 0.02)
 # combine options
-opts <- expand.grid(pcs, usesym, plt, go, stringsAsFactors = FALSE)
-tol <- c("none", "0.02")
+opts <- expand.grid(pcs, usesym, plt, go, stringsAsFactors = FALSE,tol)
+
 names(opts) <- c("PCs", "use.sym", "plot", "GO")
 
 # do the plots
