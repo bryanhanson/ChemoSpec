@@ -4,20 +4,18 @@
 \alias{aovPCAloadings}
 \title{Plot aovPCAscores Loadings of a Spectra Object}
 \usage{
-aovPCAloadings(spectra, LM, pca, plot = 1, loads = 1, ref = 1, ...)
+aovPCAloadings(spectra, PCA, submat = 1, loads = 1, ref = 1, ...)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
 
-\item{LM}{List of matrices created by \code{\link{aovPCAscores}}.}
+\item{PCA}{List of pca results created by \code{\link{aov_pcaSpectra}}.}
 
-\item{pca}{PCA output from \code{\link{aovPCAscores}}.}
+\item{submat}{Integer.  Selects list element \code{submat} from \code{PCA}
+which is a list of PCA results, each corresponding to the computation
+in \code{\link{aov_pcaSpectra}}.}
 
-\item{plot}{An integer specifying the desired plot. \code{names(LM)} will
-show which matrix has which data in it.}
-
-\item{loads}{An integer vector giving the loadings to plot.  More than 3
-loadings creates a useless plot using the default graphics window.}
+\item{loads}{An integer vector giving the loadings to plot.}
 
 \item{ref}{An integer specifying the reference spectrum to plot, which
 appears at the bottom of the plot.}

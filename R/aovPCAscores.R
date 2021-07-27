@@ -53,7 +53,7 @@ aovPCAscores <- function(spectra, PCA, submat = 1, ...) {
 
   if (go == "base") {
     plotScores(spectra, PCA[[submat]], ...)
-    return(so)
+    return(NULL)
   }
 
   if (go == "ggplot2") {

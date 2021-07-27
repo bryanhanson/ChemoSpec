@@ -4,21 +4,16 @@
 \alias{aovPCAscores}
 \title{Plot ANOVA-PCA Scores from a Spectra Object}
 \usage{
-aovPCAscores(spectra, LM, plot = 1, type = "class", choice = NULL, ...)
+aovPCAscores(spectra, PCA, submat = 1, ...)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
 
-\item{LM}{List of matrices created by \code{\link{aov_pcaSpectra}}.}
+\item{PCA}{List of pca results created by \code{\link{aov_pcaSpectra}}.}
 
-\item{plot}{An integer specifying which scores to plot.}
-
-\item{type}{Either classical ("cls") or robust ("rob"); Results in either
-\code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}} being called on the
-\code{\link{Spectra}} object.}
-
-\item{choice}{The type of scaling to be performed.  See
-\code{\link{c_pcaSpectra}} and \code{\link{r_pcaSpectra}} for details.}
+\item{submat}{Integer.  Selects list element \code{submat} from \code{PCA}
+which is a list of PCA results, each corresponding to the computation
+in \code{\link{aov_pcaSpectra}}.}
 
 \item{\dots}{Additional parameters to be passed to \code{\link{plotScores}}.
 For example, you can plot confidence ellipses this way.  Note that ellipses
@@ -37,12 +32,9 @@ The returned value depends on the graphics option selected (see \code{\link{Grap
 }
 }
 \description{
-Uses the results from \code{\link{aov_pcaSpectra}} to conduct PCA and plot
-the scores.
-Argument \code{plot} is used to select a matrix from those in \code{LM}.
-The residual error matrix is then added to the selected matrix before
-performing PCA.  Use \code{names(LM)} to see which factor is stored in which
-matrix.
+Uses the results from \code{\link{aov_pcaSpectra}} to plot the scores.
+Argument \code{submat} is used to select PCA results from among those
+stored in argument \code{PCA}.
 }
 \references{
 Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for
