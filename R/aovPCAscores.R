@@ -1,17 +1,17 @@
 #'
-#'
 #' Plot ANOVA-PCA Scores from a Spectra Object
 #'
-#' Uses the results from \code{\link{aov_pcaSpectra}} to conduct PCA and plot
-#' the scores.
-#' Argument \code{plot} is used to select a matrix from those in \code{LM}.
-#' The residual error matrix is then added to the selected matrix before
-#' performing PCA.  Use \code{names(LM)} to see which factor is stored in which
-#' matrix.
+#' Uses the results from \code{\link{aov_pcaSpectra}} to plot the scores.
+#' Argument \code{submat} is used to select PCA results from among those
+#' stored in argument \code{PCA}.
 #'
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
-#' @param LM List of matrices created by \code{\link{aov_pcaSpectra}}.
+#' @param PCA List of pca results created by \code{\link{aov_pcaSpectra}}.
+#'
+#' @param submat Integer.  Selects list element \code{submat} from \code{PCA}
+#'        which is a list of PCA results, each corresponding to the computation
+#'        in \code{\link{aov_pcaSpectra}}.
 #'
 #' @param \dots Additional parameters to be passed to \code{\link{plotScores}}.
 #' For example, you can plot confidence ellipses this way.  Note that ellipses
@@ -38,18 +38,13 @@
 #'
 #' @export aovPCAscores
 #'
-aovPCAscores <- function(spectra, LM, ...) {
-
-  # Function to plot Scores of ANOVA-PCA
-  # Bryan Hanson and Matt Keinsley
-  # DePauw University, June 2011
-
-  # LM is the list of matrices from aov_pcaSpectra
+aovPCAscores <- function(spectra, PCA, submat = 1, ...) {
 
   .chkArgs(mode = 11L)
+  if (!is.list(PCA)) stop("PCA should be a list of PCA results from aov_pcaSpectra")
 
-  if ( (plot > (length(LM) - 1)) | (plot == length(LM)) ) {
-    stop("Error, matrix to be plotted does not exist. Please choose a different plot!")
+  if (submat > length(PCA) ) {
+    stop("Error, results to be plotted does not exist. Please choose a different submatrix!")
   }
 
   chkSpectra(spectra)
@@ -57,12 +52,12 @@ aovPCAscores <- function(spectra, LM, ...) {
   go <- chkGraphicsOpt()
 
   if (go == "base") {
-    plotScores(spectra, so, ...)
+    plotScores(spectra, PCA[[submat]], ...)
     return(so)
   }
 
   if (go == "ggplot2") {
-    p <- plotScores(spectra, so)
+    p <- plotScores(spectra, PCA[[submat]])
     return(p)
   }
 

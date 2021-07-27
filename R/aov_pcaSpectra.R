@@ -24,7 +24,9 @@
 #' @param choice The type of scaling to be performed.  See
 #' \code{\link{c_pcaSpectra}} and \code{\link{r_pcaSpectra}} for details.
 #'
-#' @return A list of PCA results, one for each computed matrix
+#' @param showNames  Logical.  Show the names of the submatrices in the console.
+#'
+#' @return A list of PCA results, one for each computed submatrix.
 #'
 #' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
 #'
@@ -55,10 +57,10 @@
 #' mM3 <- splitSpectraGroups(metMUD2, new.grps)
 #'
 #' # run aov_pcaSpectra
-#' mats <- aov_pcaSpectra(mM3, fac = c("geneBb", "geneCc"))
-#' apca1 <- aovPCAscores(mM3, mats, plot = 1, main = "aovPCA: B vs b", ellipse = "cls")
-#' apca2 <- aovPCAscores(mM3, mats, plot = 2, main = "aovPCA: C vs c")
-#' apca3 <- aovPCAscores(mM3, mats, plot = 3, main = "aovPCA: Interaction Term")
+#' pcas <- aov_pcaSpectra(mM3, fac = c("geneBb", "geneCc"))
+#' apca1 <- aovPCAscores(mM3, pcas, plot = 1, main = "aovPCA: B vs b", ellipse = "cls")
+#' apca2 <- aovPCAscores(mM3, pcas, plot = 2, main = "aovPCA: C vs c")
+#' apca3 <- aovPCAscores(mM3, pcas, plot = 3, main = "aovPCA: Interaction Term")
 #' apca4 <- aovPCAloadings(
 #'   spectra = mM3, LM = mats, pca = apca1,
 #'   main = "aov_pcaSpectra: Bb Loadings"
@@ -66,7 +68,7 @@
 #' }
 #' @export
 #'
-aov_pcaSpectra <- function(spectra, fac, submat = 1, type = "class", choice = NULL) {
+aov_pcaSpectra <- function(spectra, fac, type = "class", choice = NULL, showNames = TRUE) {
 
   #  Function to conduct ANOVA-PCA per Harrington
   #  as explained by Pinto
@@ -180,19 +182,18 @@ aov_pcaSpectra <- function(spectra, fac, submat = 1, type = "class", choice = NU
     )
   }
 
-  # Now carryout the PCA (do so for each matrix)
+  if (showNames) print(names(LM))
 
-  n_pca <- length(LM)
+  # Now carryout the PCA (do so for each submatrix)
+
+  n_pca <- length(LM) - 2 # leave off Res.Error, MC Data
   PCA <- vector("list", n_pca)
   for (i in 1:n_pca) {
-
+    spectra$data <- LM[[i]] + LM$Res.Error
+    if (is.null(choice)) choice <- "noscale"
+    if (type == "class") PCA[[i]] <- c_pcaSpectra(spectra, choice = choice, cent = FALSE)
+    if (type == "rob") PCA[[i]] <- r_pcaSpectra(spectra, choice = choice)
   }
-  spectra$data <- LM[[mat]] + LM$Res.Error
-
-  if (is.null(choice)) choice <- "noscale"
-  if (type == "class") so <- c_pcaSpectra(spectra, choice = choice, cent = FALSE)
-  if (type == "rob") so <- r_pcaSpectra(spectra, choice = choice)
-
 
   return(PCA)
 }
