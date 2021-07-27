@@ -4,12 +4,12 @@
 \alias{aovPCAscores}
 \title{Plot ANOVA-PCA Scores from a Spectra Object}
 \usage{
-aovPCAscores(spectra, PCA, submat = 1, ...)
+aovPCAscores(spectra, so, submat = 1, ...)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
 
-\item{PCA}{List of pca results created by \code{\link{aov_pcaSpectra}}.}
+\item{so}{\emph{List} of pca results created by \code{\link{aov_pcaSpectra}}.}
 
 \item{submat}{Integer.  Selects list element \code{submat} from \code{PCA}
 which is a list of PCA results, each corresponding to the computation

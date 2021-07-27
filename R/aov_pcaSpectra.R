@@ -181,12 +181,13 @@ aov_pcaSpectra <- function(spectra, fac, type = "class", choice = NULL, showName
     )
   }
 
-  if (showNames) print(names(LM))
+  if (showNames) cat("The submatrices are:", paste(names(LM), collapse = ", "), "\n")
 
   # Now carryout the PCA (do so for each submatrix)
 
   n_pca <- length(LM) - 2 # leave off Res.Error, MC Data
   PCA <- vector("list", n_pca)
+  names(PCA) <- names(LM)[1:n_pca]
   for (i in 1:n_pca) {
     spectra$data <- LM[[i]] + LM$Res.Error
     if (is.null(choice)) choice <- "noscale"

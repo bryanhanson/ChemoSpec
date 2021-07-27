@@ -49,13 +49,12 @@ new.grps <- list(geneBb = c("B", "b"), geneCc = c("C", "c"))
 mM3 <- splitSpectraGroups(metMUD2, new.grps)
 
 # run aov_pcaSpectra
-pcas <- aov_pcaSpectra(mM3, fac = c("geneBb", "geneCc"))
-apca1 <- aovPCAscores(mM3, pcas, plot = 1, main = "aovPCA: B vs b", ellipse = "cls")
-apca2 <- aovPCAscores(mM3, pcas, plot = 2, main = "aovPCA: C vs c")
-apca3 <- aovPCAscores(mM3, pcas, plot = 3, main = "aovPCA: Interaction Term")
+PCAs <- aov_pcaSpectra(mM3, fac = c("geneBb", "geneCc"))
+apca1 <- aovPCAscores(mM3, PCAs, submat = 1, main = "aovPCA: B vs b", ellipse = "cls")
+apca2 <- aovPCAscores(mM3, PCAs, submat = 2, main = "aovPCA: C vs c")
+apca3 <- aovPCAscores(mM3, PCAs, submat = 3, main = "aovPCA: Interaction Term")
 apca4 <- aovPCAloadings(
-  spectra = mM3, LM = mats, pca = apca1,
-  main = "aov_pcaSpectra: Bb Loadings"
+  spectra = mM3, PCA = PCAs, main = "aov_pcaSpectra: Bb Loadings"
 )
 }
 }

@@ -7,7 +7,7 @@
 #'
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
-#' @param PCA List of pca results created by \code{\link{aov_pcaSpectra}}.
+#' @param so \emph{List} of pca results created by \code{\link{aov_pcaSpectra}}.
 #'
 #' @param submat Integer.  Selects list element \code{submat} from \code{PCA}
 #'        which is a list of PCA results, each corresponding to the computation
@@ -38,13 +38,13 @@
 #'
 #' @export aovPCAscores
 #'
-aovPCAscores <- function(spectra, PCA, submat = 1, ...) {
+aovPCAscores <- function(spectra, so, submat = 1, ...) {
 
   .chkArgs(mode = 11L)
-  if (!is.list(PCA)) stop("PCA should be a list of PCA results from aov_pcaSpectra")
+  if (!is.list(so)) stop("Argument 'so' should be a list of PCA results from aov_pcaSpectra")
 
-  if (submat > length(PCA) ) {
-    stop("Error, results to be plotted does not exist. Please choose a different submatrix!")
+  if (submat > length(so) ) {
+    stop("Error, results to be plotted do not exist. Please choose a different submatrix!")
   }
 
   chkSpectra(spectra)
@@ -52,12 +52,14 @@ aovPCAscores <- function(spectra, PCA, submat = 1, ...) {
   go <- chkGraphicsOpt()
 
   if (go == "base") {
-    plotScores(spectra, PCA[[submat]], ...)
+    so <- so[[submat]] # need to force evaluation for some reason (do.call is downstream)
+    plotScores(spectra, so, ...)
     return(NULL)
   }
 
   if (go == "ggplot2") {
-    p <- plotScores(spectra, PCA[[submat]])
+    so <- so[[submat]] # need to force evaluation for some reason (do.call is downstream)
+    p <- plotScores(spectra, so)
     return(p)
   }
 
