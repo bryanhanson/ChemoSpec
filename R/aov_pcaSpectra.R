@@ -1,5 +1,4 @@
 #'
-#'
 #' ANOVA-PCA Analysis of Spectra Data
 #'
 #' ANOVA-PCA is a combination of both methods developed by Harrington.  The
@@ -18,8 +17,14 @@
 #' there should be 2 or more factors, because ANOVA-PCA on one factor is the
 #' same as standard PCA.  See the example.
 #'
-#' @return A list of matrices for each factor and their interactions, along
-#' with the residual error and mean centered data matrix.
+#' @param type Either classical ("cls") or robust ("rob"); Results in either
+#' \code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}} being called on the
+#' \code{\link{Spectra}} object.
+#'
+#' @param choice The type of scaling to be performed.  See
+#' \code{\link{c_pcaSpectra}} and \code{\link{r_pcaSpectra}} for details.
+#'
+#' @return A list of PCA results, one for each computed matrix
 #'
 #' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
 #'
@@ -61,7 +66,7 @@
 #' }
 #' @export
 #'
-aov_pcaSpectra <- function(spectra, fac) {
+aov_pcaSpectra <- function(spectra, fac, submat = 1, type = "class", choice = NULL) {
 
   #  Function to conduct ANOVA-PCA per Harrington
   #  as explained by Pinto
@@ -70,13 +75,21 @@ aov_pcaSpectra <- function(spectra, fac) {
 
   .chkArgs(mode = 11L)
 
+  types <- c("class", "rob")
+  check <- type %in% types
+  if (!check) {
+    stop("PCA option invalid")
+  }
+
   if (length(fac) > 3) {
     stop("Cannot process more than 3 factors!")
   }
+
   chkSpectra(spectra)
 
   nf <- length(fac)
 
+  # Compute needed matrices
   # Naming of matrices follows Harrington 2005, at least some of the time
   # Hardwire all possible matrices for each factor
 
@@ -167,5 +180,19 @@ aov_pcaSpectra <- function(spectra, fac) {
     )
   }
 
-  return(LM)
+  # Now carryout the PCA (do so for each matrix)
+
+  n_pca <- length(LM)
+  PCA <- vector("list", n_pca)
+  for (i in 1:n_pca) {
+
+  }
+  spectra$data <- LM[[mat]] + LM$Res.Error
+
+  if (is.null(choice)) choice <- "noscale"
+  if (type == "class") so <- c_pcaSpectra(spectra, choice = choice, cent = FALSE)
+  if (type == "rob") so <- r_pcaSpectra(spectra, choice = choice)
+
+
+  return(PCA)
 }

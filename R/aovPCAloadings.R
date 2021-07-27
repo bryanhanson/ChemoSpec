@@ -82,6 +82,8 @@ aovPCAloadings <- function(spectra, LM, pca, plot = 1, loads = 1, ref = 1, ...) 
     if (plot == 8) title <- names(LM)[8]
   }
 
+  go <- chkGraphicsOpt()
+
   if (go == "base") {
     plotLoadings(spectra = spectra, pca = pca, title = title, loads = loads, ref = ref, ...)
     invisible(NULL)

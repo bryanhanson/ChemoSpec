@@ -59,8 +59,8 @@
 #' p4
 #'
 #' # plotLoadings uses patchwork so to modify, use & and not +
-#' pca <- c_pcaSpectra(SrE.IR)
-#' p5 <- plotLoadings(SrE.IR, pca, loads = c(1, 2))
+#' pca <- c_pcaSpectra(metMUD1)
+#' p5 <- plotLoadings(metMUD1, pca, loads = c(1, 2))
 #' p5
 #' p6 <- p5 & ggtitle("metMUD1 NMR Data") & theme_gray()
 #' p6

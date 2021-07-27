@@ -13,15 +13,6 @@
 #'
 #' @param LM List of matrices created by \code{\link{aov_pcaSpectra}}.
 #'
-#' @param plot An integer specifying which scores to plot.
-#'
-#' @param type Either classical ("cls") or robust ("rob"); Results in either
-#' \code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}} being called on the
-#' \code{\link{Spectra}} object.
-#'
-#' @param choice The type of scaling to be performed.  See
-#' \code{\link{c_pcaSpectra}} and \code{\link{r_pcaSpectra}} for details.
-#'
 #' @param \dots Additional parameters to be passed to \code{\link{plotScores}}.
 #' For example, you can plot confidence ellipses this way.  Note that ellipses
 #' are drawn based on the groups in \code{spectra$groups}, but the separation
@@ -47,7 +38,7 @@
 #'
 #' @export aovPCAscores
 #'
-aovPCAscores <- function(spectra, LM, plot = 1, type = "class", choice = NULL, ...) {
+aovPCAscores <- function(spectra, LM, ...) {
 
   # Function to plot Scores of ANOVA-PCA
   # Bryan Hanson and Matt Keinsley
@@ -57,28 +48,16 @@ aovPCAscores <- function(spectra, LM, plot = 1, type = "class", choice = NULL, .
 
   .chkArgs(mode = 11L)
 
-  if (plot > length(LM)) {
+  if ( (plot > (length(LM) - 1)) | (plot == length(LM)) ) {
     stop("Error, matrix to be plotted does not exist. Please choose a different plot!")
   }
 
   chkSpectra(spectra)
 
-  types <- c("class", "rob")
-  check <- type %in% types
-  if (!check) {
-    stop("PCA option invalid")
-  }
-
-  spectra$data <- LM[[plot]] + LM$Res.Error
-
-  if (is.null(choice)) choice <- "noscale"
-  if (type == "class") so <- c_pcaSpectra(spectra, choice = choice, cent = FALSE)
-  if (type == "rob") so <- r_pcaSpectra(spectra, choice = choice)
-
   go <- chkGraphicsOpt()
 
   if (go == "base") {
-    plotScores(spectra, so, ...) # at this point, just a typical score plot
+    plotScores(spectra, so, ...)
     return(so)
   }
 
