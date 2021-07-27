@@ -13,10 +13,7 @@
 #'
 #' @param pc An integer specifying the desired pc plot.
 #'
-#' @param tol A number describing the fraction of points to be labeled.
-#' \code{tol = 1.0} labels all the points; \code{tol = 0.05} labels the most
-#' extreme 5 percent.
-#'
+#' @template tol-arg
 #' @template graphics-dots-arg
 #' @template graphics-return-arg
 #'
