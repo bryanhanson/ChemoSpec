@@ -28,7 +28,7 @@
 #' done by \code{aov_pcaSpectra} is based on argument \code{fac}.  These may
 #' not correspond, but you can edit \code{spectra$groups} to match if necessary.
 #'
-#' @return Returns the PCA results, and creates the requested plot.
+#' @template graphics-return2-arg
 #'
 #' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
 #'
@@ -75,6 +75,16 @@ aovPCAscores <- function(spectra, LM, plot = 1, type = "class", choice = NULL, .
   if (type == "class") so <- c_pcaSpectra(spectra, choice = choice, cent = FALSE)
   if (type == "rob") so <- r_pcaSpectra(spectra, choice = choice)
 
-  plotScores(spectra, so, ...) # at this point, just a typical score plot
-  return(so)
+  go <- chkGraphicsOpt()
+
+  if (go == "base") {
+    plotScores(spectra, so, ...) # at this point, just a typical score plot
+    return(so)
+  }
+
+  if (go == "ggplot2") {
+    p <- plotScores(spectra, so)
+    return(p)
+  }
+
 }

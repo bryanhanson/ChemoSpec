@@ -20,7 +20,6 @@
 #' appears at the bottom of the plot.
 #'
 #' @template graphics-dots-arg
-#'
 #' @template graphics-return-arg
 #'
 #' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
@@ -83,6 +82,14 @@ aovPCAloadings <- function(spectra, LM, pca, plot = 1, loads = 1, ref = 1, ...) 
     if (plot == 8) title <- names(LM)[8]
   }
 
+  if (go == "base") {
+    plotLoadings(spectra = spectra, pca = pca, title = title, loads = loads, ref = ref, ...)
+    invisible(NULL)
+  }
 
-  plotLoadings(spectra = spectra, pca = pca, title = title, loads = loads, ref = ref, ...)
+  if (go == "ggplot2") {
+    p <- plotLoadings(spectra = spectra, pca = pca, loads = loads, ref = ref)
+    return(p)
+  }
+
 }
