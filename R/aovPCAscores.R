@@ -59,7 +59,7 @@ aovPCAscores <- function(spectra, so, submat = 1, ...) {
 
   if (go == "ggplot2") {
     so <- so[[submat]] # need to force evaluation for some reason (do.call is downstream)
-    p <- plotScores(spectra, so)
+    p <- plotScores(spectra, so, ...)
     return(p)
   }
 
