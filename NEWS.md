@@ -13,7 +13,10 @@
   - `sPlotSpectra`
   - `pcaDiag`
   - `sampleDist`
-The `ggplot2` graphics output are generally similar in layout and spirit to the `base` graphcis output, but significant improvements have been made in labeling data points using the `ggrepel` package.  And of course the `ggplot2` graphics can be modified after creation through the usual mechanisms.
+  - `aovPCAscores`
+  - `aovPCAloadings`
+
+The `ggplot2` graphics output are generally similar in layout and spirit to the `base` graphics output, but significant improvements have been made in labeling data points using the `ggrepel` package.  And of course the `ggplot2` graphics can be modified after creation through the usual mechanisms.
 * The graphics output options can be chosen by `options(ChemoSpecGraphics = "option")`.
 * See the details in new help file `?GraphicsOptions`.
 * `loopThruSpectra` has been renamed `reviewAllSpectra` to better reflect what it does under the new graphics options.
