@@ -55,6 +55,7 @@
 #' @importFrom ggplot2 scale_color_manual theme theme_bw theme_classic ylim
 #' @importFrom grid grobTree textGrob
 #' @importFrom reshape2 melt
+#' @importFrom plotly ggplotly
 #'
 #' @examples
 #'
@@ -216,5 +217,43 @@ plotSpectra <- function(spectra, which = c(1),
       }
     }
     return(p)
+  }
+  
+  if (go == "plotly") {
+    value <- variable <- Frequency <- NULL # satisfy CRAN check engine
+    
+    # Set up data frame to hold data to be plotted ready for melting
+    df <- data.frame(spectra$freq)
+    count <- 0
+    for (i in which) {
+      spec <- ((spectra$data[i, ]) + (count * offset)) * amplify
+      df <- cbind(df, spec)
+      count <- count + 1
+    }
+    names(df) <- c("Frequency", spectra$names[which])
+    
+    lab.x <- lab.pos # values in native data space
+    lab.y <- calcYpos(t(as.matrix(df[, -1])), pct)
+    
+    molten.data <- reshape2::melt(df, id = c("Frequency"))
+    
+    p <- ggplot(data = molten.data,
+                aes(x = Frequency, y = value, group = variable, color = variable)) +
+      geom_line() +
+      scale_color_manual(name = "Key", values = spectra$colors[which]) +
+      annotate("text", x = lab.x, y = lab.y, label = spectra$names[which]) +
+      labs(x = spectra$unit[1], y = spectra$unit[2]) +
+      ylim(yrange) +
+      theme_bw() +
+      theme(legend.position = "none") +
+      theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank())
+    
+    if (!showGrid) {
+      p <- p + theme(panel.grid.minor = element_blank(), panel.grid.major = element_blank())
+    }
+    p<-ggplotly(p,tooltip = c("Frequency"))
+
+    return(p)
+    
   }
 }
