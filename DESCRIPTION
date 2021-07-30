@@ -42,7 +42,8 @@ Imports:
   ggplot2,
   readJDX (>= 0.4),
   patchwork,
-  ggrepel
+  ggrepel,
+  plotly
 Suggests:
   IDPmisc,
   knitr,
