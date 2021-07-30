@@ -55,6 +55,7 @@
 #' @importFrom ggplot2 scale_color_manual theme theme_bw theme_classic ylim
 #' @importFrom grid grobTree textGrob
 #' @importFrom reshape2 melt
+#' @importFrom plotly ggplotly
 #'
 #' @examples
 #'
@@ -151,7 +152,7 @@ plotSpectra <- function(spectra, which = c(1),
     }
   }
 
-  if (go == "ggplot2") {
+  if ((go == "ggplot2") || (go == "plotly")) {
     value <- variable <- Frequency <- NULL # satisfy CRAN check engine
 
     # Set up data frame to hold data to be plotted ready for melting
@@ -184,6 +185,8 @@ plotSpectra <- function(spectra, which = c(1),
       p <- p + theme(panel.grid.minor = element_blank(), panel.grid.major = element_blank())
     }
 
+    if( go == "ggplot2")
+    {
     if (all(leg.loc != "none")) {
       group <- c(NA_real_)
       color <- c(NA_real_)
@@ -216,5 +219,11 @@ plotSpectra <- function(spectra, which = c(1),
       }
     }
     return(p)
+    }
+    else
+    {
+      p<-ggplotly(p,tooltip = c("Frequency"))
+      return(p)
+    }
   }
 }
