@@ -68,7 +68,7 @@ surveySpectra2 <- function(spectra,
     text(x = lab.pos, y = off4, labels = lab, cex = 1.2, adj = c(0.5, 1))
   }
 
-  if (go == "ggplot2") {
+  if ((go == "ggplot2")|| (go == "plotly")) {
     value <- variable <- Frequency <- NULL # satisfy CRAN check engine
     ymax <- max(M)
 
@@ -101,7 +101,14 @@ surveySpectra2 <- function(spectra,
       geom = "text", x = lab.pos, y = off4, label = method,
       color = "black"
     )
-
+    if( go == "ggplot2")
+    {
     return(p)
+    }
+    else
+    {
+      p<-ggplotly(p,tooltip = "Frequency")
+      return(p)
+    }
   }
 }
