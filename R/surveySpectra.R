@@ -45,6 +45,7 @@
 #' @importFrom plyr aaply
 #' @importFrom ChemoSpecUtils sumGroups
 #' @importFrom ggplot2 xlab ylab facet_grid element_rect
+#' @importFrom plotly ggplotly
 #'
 #' @describeIn surveySpectra Spectral survey emphasizing mean or median spectrum, optionally by group.
 #'
@@ -273,7 +274,7 @@ surveySpectra <- function(spectra,
     }
   }
 
-  if (go == "ggplot2") {
+  if ((go == "ggplot2")|| (go =="plotly")) {
 
     # Helper Function to plot in ggplot2 mode
     # df data frame with computed y values
@@ -285,8 +286,8 @@ surveySpectra <- function(spectra,
 
     # Note: xlabel is 'spectra$unit[1]' same for all plots so used directly
 
-    .ssplot <- function(df, x, y1, y2, y3, ylabel) {
-      ggplot(df, aes(x = x)) +
+    .ssplot <- function(df, Frequency, y1, y2, y3, ylabel) {
+      ggplot(df, aes(x = Frequency)) +
         geom_line(aes(y = y1), color = "black") +
         geom_line(aes(y = y2), color = "red") +
         geom_line(aes(y = y3), color = "red") +
@@ -297,14 +298,13 @@ surveySpectra <- function(spectra,
     }
 
     if (!by.gr) {
-      x <- spectra$freq
-
+      Frequency<- spectra$freq
+      p <-NULL
       if (method == "iqr") {
         y <- aaply(spectra$data, 2, .seXyIqr)
-        df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
-
-        p <- .ssplot(df, x, y1, y2, y3, ylabel = "Full Data Set, median +/- iqr")
-        return(p)
+        df <- data.frame(Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
+        p <- .ssplot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, median +/- iqr")
+        
       }
 
       if (method == "sd") {
@@ -312,40 +312,49 @@ surveySpectra <- function(spectra,
         s <- aaply(spectra$data, 2, sd)
         y2 <- y1 + s
         y3 <- y1 - s
-        df <- data.frame(x, y1, y2, y3)
+        df <- data.frame(Frequency, y1, y2, y3)
 
-        p <- .ssplot(df, x, y1, y2, y3, ylabel = "Full Data Set, mean +/- sd")
-        return(p)
+        p <- .ssplot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, mean +/- sd")
+        
       }
 
       if (method == "sem") {
         y <- aaply(spectra$data, 2, .seXy)
-        df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
+        df <- data.frame(Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
 
-        p <- .ssplot(df, x, y1, y2, y3, ylabel = "Full Data Set, mean +/- sem")
-        return(p)
+        p <- .ssplot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, mean +/- sem")
+        
       }
 
       if (method == "mad") {
         y <- aaply(spectra$data, 2, .seXyMad)
-        df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
+        df <- data.frame(Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
 
-        p <- .ssplot(df, x, y1, y2, y3, ylabel = "Full Data Set, median +/- mad")
-        return(p)
+        p <- .ssplot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, median +/- mad")
+        
       }
 
       if (method == "sem95") {
         y <- aaply(spectra$data, 2, .seXy95)
-        df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
+        df <- data.frame(Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
 
-        p <- .ssplot(df, x, y1, y2, y3, ylabel = "Full Data Set, mean +/- 95% ci sem")
+        p <- .ssplot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, mean +/- 95% ci sem")
+        
+      }
+      if( go == "ggplot2")
+      {
+      return(p)
+      }
+      else
+      {
+        p<-ggplotly(p,tooltip="Frequency")
         return(p)
       }
     } # end of if (!by.gr)
 
     if (by.gr) {
       gr <- sumGroups(spectra)
-
+      p<-NULL
       # See if any groups should be dropped due to too few members
       rem <- c()
       dropGroups <- FALSE
@@ -366,30 +375,28 @@ surveySpectra <- function(spectra,
       }
 
       # Now set up and plot
-      x <- spectra$freq
-      l.x <- length(x)
+      Frequency <- spectra$freq
+      l.x <- length(Frequency)
 
       if (method == "iqr") {
-        df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
+        df1 <- data.frame(Frequency = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
           y <- aaply(spectra$data[which, ], 2, .seXyIqr)
           spectra.group <- rep(gr$group[n], l.x)
-          df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
+          df2 <- data.frame(Frequency = Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
           df1 <- rbind(df1, df2)
         }
         df1 <- df1[-1, ]
 
-        p <- .ssplot(df1, x, y1, y2, y3, ylabel = "median +/- iqr")
+        p <- .ssplot(df1, Frequency, y1, y2, y3, ylabel = "median +/- iqr")
 
         p <- p + facet_grid(spectra.group ~ ., switch = "both") +
-          theme(strip.background = element_rect(fill = "#ffe4cc")) +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-        return(p)
       }
 
       if (method == "sd") {
-        df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
+        df1 <- data.frame(Frequency = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
           y1 <- aaply(spectra$data[which, ], 2, mean)
@@ -397,74 +404,76 @@ surveySpectra <- function(spectra,
           y2 <- y1 + s
           y3 <- y1 - s
           spectra.group <- rep(gr$group[n], l.x)
-          df2 <- data.frame(x = x, y1 = y1, y2 = y2, y3 = y3, spectra.group = spectra.group)
+          df2 <- data.frame(Frequency = Frequency, y1 = y1, y2 = y2, y3 = y3, spectra.group = spectra.group)
           df1 <- rbind(df1, df2)
         }
         df1 <- df1[-1, ]
 
-        p <- .ssplot(df1, x, y1, y2, y3, ylabel = "mean +/- sd")
+        p <- .ssplot(df1, Frequency, y1, y2, y3, ylabel = "mean +/- sd")
 
         p <- p + facet_grid(spectra.group ~ ., switch = "both") +
-          theme(strip.background = element_rect(fill = "#ffe4cc")) +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-        return(p)
       }
 
       if (method == "sem") {
-        df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
+        df1 <- data.frame(Frequency = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
           y <- aaply(spectra$data[which, ], 2, .seXy)
           spectra.group <- rep(gr$group[n], l.x)
-          df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
+          df2 <- data.frame(Frequency = Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
           df1 <- rbind(df1, df2)
         }
         df1 <- df1[-1, ]
 
-        p <- .ssplot(df1, x, y1, y2, y3, ylabel = "mean +/- sem")
+        p <- .ssplot(df1, Frequency, y1, y2, y3, ylabel = "mean +/- sem")
 
         p <- p + facet_grid(spectra.group ~ ., switch = "both") +
-          theme(strip.background = element_rect(fill = "#ffe4cc")) +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-        return(p)
       }
 
       if (method == "mad") {
-        df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
+        df1 <- data.frame(Frequency = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
           y <- aaply(spectra$data[which, ], 2, .seXyMad)
           spectra.group <- rep(gr$group[n], l.x)
-          df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
+          df2 <- data.frame(Frequency = Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
           df1 <- rbind(df1, df2)
         }
         df1 <- df1[-1, ]
 
-        p <- .ssplot(df1, x, y1, y2, y3, ylabel = "median +/- mad")
+        p <- .ssplot(df1, Frequency, y1, y2, y3, ylabel = "median +/- mad")
 
         p <- p + facet_grid(spectra.group ~ ., switch = "both") +
-          theme(strip.background = element_rect(fill = "#ffe4cc")) +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-        return(p)
       }
 
       if (method == "sem95") {
-        df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
+        df1 <- data.frame(Frequency = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
           y <- aaply(spectra$data[which, ], 2, .seXy95)
           spectra.group <- rep(gr$group[n], l.x)
-          df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
+          df2 <- data.frame(Frequency = Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
           df1 <- rbind(df1, df2)
         }
         df1 <- df1[-1, ]
 
-        p <- .ssplot(df1, x, y1, y2, y3, ylabel = "mean +/- 95 % ci sem")
+        p <- .ssplot(df1, Frequency, y1, y2, y3, ylabel = "mean +/- 95 % ci sem")
         p <- p + facet_grid(spectra.group ~ ., switch = "both") +
-          theme(strip.background = element_rect(fill = "#ffe4cc")) +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+      }
+      if (go == "ggplot2")
+      {
+        return(p)
+      }
+      else
+      {
+        p<-ggplotly(p,tooltip = c("Frequency"))
         return(p)
       }
     }
   }
+
 }
