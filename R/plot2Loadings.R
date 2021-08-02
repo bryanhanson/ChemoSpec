@@ -40,6 +40,8 @@
 #' @importFrom ChemoSpecUtils .getVarExplained
 #' @importFrom ggplot2 geom_text
 #' @importFrom ggrepel geom_text_repel
+#' @importFrom magrittr %>%
+#' @importFrom plotly add_annotations
 #'
 #' @examples
 #'
@@ -48,7 +50,8 @@
 #' myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
 #' res <- plot2Loadings(SrE.IR, pca,
 #'   main = myt,
-#'   loads = c(1, 2), tol = 0.001)
+#'   loads = c(1, 2), tol = 0.001
+#' )
 plot2Loadings <- function(spectra,
                           pca,
                           loads = c(1, 2),
@@ -91,8 +94,7 @@ plot2Loadings <- function(spectra,
     return(res)
   }
 
-  if (go == "ggplot2") {
-
+  if ((go == "ggplot2") || (go == "plotly")) {
     load1 <- load2 <- x <- y <- label <- NULL
 
     res <- data.frame(freq = spectra$freq, load1 = loadings1, load2 = loadings2)
@@ -100,7 +102,7 @@ plot2Loadings <- function(spectra,
     p <- ggplot(res, aes(x = load1, y = load2)) +
       theme_bw() +
       xlab(txt1) +
-      ylab(txt2) 
+      ylab(txt2)
 
     p <- p + geom_point() +
       geom_hline(yintercept = 0, color = "red") +
@@ -109,19 +111,41 @@ plot2Loadings <- function(spectra,
     p <- p + theme(
       # Remove panel grid lines
       panel.grid.major = element_blank(),
-      panel.grid.minor = element_blank())
+      panel.grid.minor = element_blank()
+    )
 
     x.min <- min(loadings1)
     y.min <- min(loadings2)
     x.max <- max(loadings1)
-    x.min = x.min + (x.max-x.min)/5
+    x.min <- x.min + (x.max - x.min) / 5
     p <- p + annotate("text", x = x.min, y = y.min, label = pca$method, size = 4)
 
-    if (is.numeric(tol)) {
-      CoordList <- .getExtremeCoords(pca$rotation[, loads], spectra$freq, tol)
-      df <-data.frame(x=CoordList$x,y=CoordList$y,label=CoordList$l)
-      p<- p+ geom_text_repel(data=df,aes(x=x,y=y,label=label),box.padding = 0.5, max.overlaps = Inf)
+    if (go == "ggplot2") {
+      if (is.numeric(tol)) {
+        CoordList <- .getExtremeCoords(pca$rotation[, loads], spectra$freq, tol)
+        df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
+        p <- p + geom_text_repel(data = df, aes(x = x, y = y, label = label), box.padding = 0.5, max.overlaps = Inf)
+      }
+      return(p)
+    } else {
+      p <- ggplotly(p)
+      if (is.numeric(tol)) {
+        CoordList <- .getExtremeCoords(pca$rotation[, loads], spectra$freq, tol)
+        df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
+        p <- p %>% add_annotations(
+          x = df$x, y = df$y, text = df$label, xref = "x",
+          yref = "y",
+          showarrow = TRUE,
+          arrowhead = 4,
+          arrowsize = .5,
+          ax = 10,
+          ay = -20,
+          font = list(
+            size = 12
+          )
+        )
+      }
+      return(p)
     }
-    return(p)
   }
 }
