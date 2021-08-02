@@ -43,7 +43,8 @@ Imports:
   readJDX (>= 0.4),
   patchwork,
   ggrepel,
-  plotly
+  plotly,
+  magrittr
 Suggests:
   IDPmisc,
   knitr,
