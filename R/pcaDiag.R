@@ -67,13 +67,6 @@ pcaDiag <- function(spectra,
                     ...) {
   msg <- "This function cannot be used with data from sparse pca"
   
-  #Helper Function
-  .pd<-function()
-  {
-    
-  }
-  
-  
   if (inherits(pca, "converted_from_arrayspc")) stop(msg)
   .chkArgs(mode = 12L)
   if (inherits(pca, "prcomp")) pca <- .q2rPCA(pca)
@@ -142,7 +135,7 @@ pcaDiag <- function(spectra,
     return(list(SDist = SDist, ODist = ODist, critSD = critSD, critOD = critOD))
   }
   
-  if (go == "ggplot2") {
+  if ((go == "ggplot2")|| (go == "plotly")) {
     x <- y <- label <- NULL
     
     if ("SD" %in% plot) {
@@ -183,10 +176,33 @@ pcaDiag <- function(spectra,
       y.data <- subset(SDist, SDist > critSD)
       x.data <- which(SDist %in% y.data, arr.ind = TRUE)
       data <- cbind(x.data, y.data)
+      if( go == "ggplot2")
+      {
       if (!length(x.data) == 0) {
         CoordList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
         df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
         p <- p + geom_text_repel(data = df, aes(x = x, y = y, label = label), box.padding = 0.5, max.overlaps = Inf)
+      }
+      return(p)
+      }
+      else
+      {
+        p<-ggplotly(p)
+        CoordList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
+        df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
+        p <- p %>% add_annotations(
+          x = df$x, y = df$y, text = df$label, xref = "x",
+          yref = "y",
+          showarrow = TRUE,
+          arrowhead = 4,
+          arrowsize = .5,
+          ax = 10,
+          ay = -15,
+          font = list(
+            size = 12
+          )
+        )
+        return (p)
       }
     } # end of SD plot
     
@@ -229,12 +245,35 @@ pcaDiag <- function(spectra,
       y.data <- subset(ODist, ODist > critOD)
       x.data <- which(ODist %in% y.data, arr.ind = TRUE)
       data <- cbind(x.data, y.data)
+      if (go == "ggplot2")
+      {
       if (!length(x.data) == 0) {
         CoordList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
         df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
         p <- p + geom_text_repel(data = df, aes(x = x, y = y, label = label), box.padding = 0.5, max.overlaps = Inf)
       }
+      return(p)
+      }
+      else
+      {
+        p<- ggplotly(p)
+        CoordList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
+        df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
+        p <- p %>% add_annotations(
+          x = df$x, y = df$y, text = df$label, xref = "x",
+          yref = "y",
+          showarrow = TRUE,
+          arrowhead = 4,
+          arrowsize = .5,
+          ax = 10,
+          ay = -15,
+          font = list(
+            size = 12
+          )
+        )
+        return(p)
+      }
     } # end of OD plot
-    return(p)
+    
   } # end of go = "ggplot2"
 }

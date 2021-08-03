@@ -94,7 +94,7 @@ sPlotSpectra <- function(spectra,
     ans
   }
 
-  if (go == "ggplot2") {
+  if ((go == "ggplot2")|| ( go == "plotly")) {
     x <- y <- label <- NULL
     
     p <- ggplot(ans, aes(x = cv, y = crr)) +
@@ -117,13 +117,36 @@ sPlotSpectra <- function(spectra,
     x.max <- x.max - (x.max - x.min) / 5
     y.min <- min(crr)
     p <- p + annotate("text", x = x.max, y = y.min, label = "centered/noscale/classical", size = 4)
-
+    
+    if (go == "ggplot2")
+    {
     if (is.numeric(tol)) {
       CoordList <- .getExtremeCoords(ans[, 2:3], spectra$freq, tol)
       df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
       p <- p + geom_text_repel(data = df, aes(x = x, y = y, label = label), box.padding = 0.5, max.overlaps = Inf)
     }
-
     return(p)
+    }
+    else
+    {
+      p <- ggplotly(p)
+      if (is.numeric(tol)) {
+        CoordList <- .getExtremeCoords(ans[, 2:3], spectra$freq, tol)
+        df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
+        p <- p %>% add_annotations(
+          x = df$x, y = df$y, text = df$label, xref = "x",
+          yref = "y",
+          showarrow = TRUE,
+          arrowhead = 4,
+          arrowsize = .5,
+          ax = 0,
+          ay = -15,
+          font = list(
+            size = 11
+          )
+        )
+      }
+      return(p)
+    }
   }
 }

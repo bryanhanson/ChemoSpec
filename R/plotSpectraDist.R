@@ -69,7 +69,7 @@ plotSpectraDist <- function(spectra,
     return(DF)
   }
 
-  if (go == "ggplot2") {
+  if ((go == "ggplot2")||(go == "plotly")) {
     name <- NULL # satisfy CRAN check complaints
     p <- ggplot(DF, aes(x = 1:nrow(DF), y = dist)) +
       theme_bw() +
@@ -80,10 +80,31 @@ plotSpectraDist <- function(spectra,
       ) +
       theme(axis.title = element_blank())
 
+    if (go == "ggplot2")
+    {
     if (labels) {
       p <- p + geom_text_repel(aes(label = name), size = 3)
     }
   return(p)
+    }
+    else
+    {
+      p<-ggplotly(p,tooltip = "name")
+      p <- p %>% add_annotations(
+        x = 1:nrow(DF), y = DF$dist, text = DF$name, xref = "x",
+        yref = "y",
+        showarrow = TRUE,
+        arrowhead = 4,
+        arrowsize = .5,
+        ax = 0,
+        ay = -15,
+        font = list(
+          size = 10
+        )
+      )
+      
+      return(p)
+    }
 
   } # end of go = "ggplot2"
 }
