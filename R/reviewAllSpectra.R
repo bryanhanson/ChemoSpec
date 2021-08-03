@@ -49,25 +49,32 @@ reviewAllSpectra <- function(spectra, ...) {
     devAskNewPage(ask = FALSE)
   }
 
-  if (go == "ggplot2") {
-    x <- spectra$freq
-    l.x <- length(x)
-    df1 <- data.frame(x = NA_real_, y = NA_real_, spectra.name = NA_character_)
+  if ((go == "ggplot2")|| ( go == "plotly")) {
+    Frequency <- spectra$freq
+    l.x <- length(Frequency)
+    df1 <- data.frame(Frequency = NA_real_, y = NA_real_, spectra.name = NA_character_)
     for (i in 1:length(spectra$names)) {
       y <- spectra$data[i, ]
       spectra.name <- rep(spectra$names[i], l.x)
-      df2 <- data.frame(x = x, y = y, spectra.name = spectra.name)
+      df2 <- data.frame(Frequency =  Frequency, y = y, spectra.name = spectra.name)
       df1 <- rbind(df1, df2)
     }
     df1 <- df1[-1, ]
-    p <- ggplot(df1, aes(x = x)) +
+    p <- ggplot(df1, aes(x = Frequency)) +
       geom_line(aes(y = y)) +
       xlab(spectra$unit[1]) +
       ylab(spectra$unit[2]) +
       facet_grid(spectra.name ~ ., switch = "both") + # faceting
       theme_bw() +
       theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-
+    if ( go == "ggplot2")
+    {
+      return(p)
+    }
+    else
+    {
+    p<- ggplotly(p,tooltip = "Frequency")
     return(p)
+    }
   }
 }
