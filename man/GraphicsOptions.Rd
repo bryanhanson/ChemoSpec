@@ -9,6 +9,7 @@ In \code{ChemoSpec}, the user may chose from the following graphics output optio
 \itemize{
   \item \code{base} graphics, the default (also the only style from the early days of \code{ChemoSpec} through version 5).
   \item \code{ggplot2} graphics.
+  \item \code{plotly} graphics.
 }
 }
 \details{
@@ -29,6 +30,8 @@ What you can do with your plots:
         used here via the usual \code{ggplot2} methods.  A few simple examples are given below
         but this is not the place for a \code{ggplot2} tutorial.  See \url{https://ggplot2.tidyverse.org/}
         for all things \code{ggplot2}.
+  \item \code{plotly} graphics is an interative graphics option where the user can interact with the plot and
+        use the tools provided by plotly package.
 }
 }
 \examples{
