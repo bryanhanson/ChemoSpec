@@ -133,7 +133,7 @@ plotSpectra <- function(spectra, which = c(1),
     if (all(leg.loc != "none")) {
       x.min <- min(spectra$freq)
       x.max <- max(spectra$freq)
-
+      
       y.min <- yrange[1]
       y.max <- yrange[2]
       args <- as.list(match.call())[-1] # capture xlim if user passes it
@@ -142,12 +142,7 @@ plotSpectra <- function(spectra, which = c(1),
         x.min <- xl[1]
         x.max <- xl[2]
       }
-      # base graphics normally uses data native coordinates
-      # convert to percent to be consistent with how ggplot2 will plot the legend
-      # also eliminates guessing about the y coord for the legend when spectra are offset
-      leg.loc$x <- (leg.loc$x) * (x.max - x.min) + x.min
-      leg.loc$y <- (leg.loc$y) * (y.max - y.min) + y.min
-
+      leg.loc <- .prepLegendCoords(go, leg.loc, x.min, x.max, y.min, y.max)
       .addLegend(spectra, leg.loc, use.sym = FALSE, bty = "n")
     }
   }
@@ -187,37 +182,7 @@ plotSpectra <- function(spectra, which = c(1),
 
     if( go == "ggplot2")
     {
-    if (all(leg.loc != "none")) {
-      group <- c(NA_real_)
-      color <- c(NA_real_)
-      for (i in spectra$groups) {
-        if (!(i %in% group)) {
-          group <- c(group, i)
-        }
-      }
-      for (i in spectra$colors) {
-        if (!(i %in% color)) {
-          color <- c(color, i)
-        }
-      }
-      group <- group[-1]
-      color <- color[-1]
-
-      gap<-0.04
-      keys <- grobTree(textGrob("Key",
-        x = leg.loc$x, y = leg.loc$y + gap, hjust = 0,
-        gp = gpar(col = "black", fontsize = 10)
-      ))
-
-      for (i in 1:length(group)) {
-        grob <- grid::grobTree(textGrob(group[i],
-          x = leg.loc$x, y = leg.loc$y, hjust = 0,
-          gp = gpar(col = color[i], fontsize = 10)
-        ))
-        leg.loc$y <- leg.loc$y - gap
-        p <- p + annotation_custom(grob) + annotation_custom(keys)
-      }
-    }
+    p<-.ggAddLegend(go,spectra,use.sym=FALSE,leg.loc,p)
     return(p)
     }
     else
