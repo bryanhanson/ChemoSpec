@@ -1,26 +1,29 @@
 
 # ChemoSpec 6.0.0 2021-07-26
 ## Significant Changes
-* Courtesy GSOC and Tejasvi Gupta, the following plotting functions gain the ability to produce either `base` graphics or `ggplot2` graphics:
+* Courtesy GSOC and Tejasvi Gupta, the following plotting functions gain the ability to produce either `base` graphics or `ggplot2` or `plotly` graphics:
   - `plotSpectra`
   - `surveySpectra`
   - `surveySpectra2`
   - `loopThruSpectra` (which has been renamed to `reviewAllSpectra`)
   - `plotScores`
   - `plotScree` (actually in `ChemoSpecUtils`)
-  - `plotLoadings`
+  - `plotLoadings` (not implemented in `plotly` graphics)
   - `plot2Loadings`
   - `sPlotSpectra`
   - `pcaDiag`
   - `sampleDist`
   - `aovPCAscores`
-  - `aovPCAloadings`
+  - `aovPCAloadings`(not implemented in `plotly` graphics)
 
 The `ggplot2` graphics output are generally similar in layout and spirit to the `base` graphics output, but significant improvements have been made in labeling data points using the `ggrepel` package.  And of course the `ggplot2` graphics can be modified after creation through the usual mechanisms.
 * The graphics output options can be chosen by `options(ChemoSpecGraphics = "option")`.
 * See the details in new help file `?GraphicsOptions`.
 * `loopThruSpectra` has been renamed `reviewAllSpectra` to better reflect what it does under the new graphics options.
 * `plotSpectra`, when using `base` graphics, now positions the sample names by a different mechanism, but gives a similar result.
+
+The `plotly` graphics output are interactive plots which can be used for better understanding the data. `plotly` provides tools such as zoom, interactive labels and custom positioning which are very useful. 
+* `plotLoadings` and `aovPCAscores` are yet to be implemented in `plotly`.
 
 # ChemoSpec 5.3.21 2021-07-05
 ## Misc.

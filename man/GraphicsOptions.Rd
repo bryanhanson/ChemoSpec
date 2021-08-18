@@ -7,15 +7,15 @@
 \description{
 In \code{ChemoSpec}, the user may chose from the following graphics output options:
 \itemize{
-  \item \code{base} graphics, the default (also the only style from the early days of \code{ChemoSpec} through version 5).
-  \item \code{ggplot2} graphics.
+  \item \code{base} graphics (also the only style from the early days of \code{ChemoSpec} through version 5).
+  \item \code{ggplot2} graphics ,the default.
   \item \code{plotly} graphics.
 }
 }
 \details{
 Here's how it works:
 \itemize{
-  \item Upon starting \code{ChemoSpec} the graphics output mode is set to \code{base}.
+  \item Upon starting \code{ChemoSpec} the graphics output mode is set to \code{ggplot2}.
   \item To see the current value, do \code{\link[ChemoSpecUtils]{chkGraphicsOpt}}.  If by some chance the
         value is corrupted it will be set to \code{base}.
   \item To change the graphics output mode, do \code{options(ChemoSpecGraphics = 'option')},
@@ -30,8 +30,8 @@ What you can do with your plots:
         used here via the usual \code{ggplot2} methods.  A few simple examples are given below
         but this is not the place for a \code{ggplot2} tutorial.  See \url{https://ggplot2.tidyverse.org/}
         for all things \code{ggplot2}.
-  \item \code{plotly} graphics is an interative graphics option where the user can interact with the plot and
-        use the tools provided by plotly package.
+  \item \code{plotly} graphics is an interactive graphics option where the user can
+        use the tools provided by \code{plotly} package and interact with the plot.
 }
 }
 \examples{
@@ -69,6 +69,6 @@ options(ChemoSpecGraphics = "base") # turn off for later examples/tests
 
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson, DePauw University, Tejasvi Gupta.
 }
 \keyword{utilities}

@@ -53,7 +53,8 @@ pca <- c_pcaSpectra(SrE.IR)
 myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
 res <- plot2Loadings(SrE.IR, pca,
   main = myt,
-  loads = c(1, 2), tol = 0.001)
+  loads = c(1, 2), tol = 0.001
+)
 }
 \seealso{
 See \code{\link{plotLoadings}} to plot one loading against the
