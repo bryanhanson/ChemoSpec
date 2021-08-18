@@ -7,5 +7,5 @@
   packageStartupMessage("\nAs of version 6, ChemoSpec offers new graphics output options")
   packageStartupMessage("For details, please see ?GraphicsOptions")
   packageStartupMessage("\nThe ChemoSpec graphics option is set to 'ggplot2'")
-  packageStartupMessage("To change it, do\n\toptions(ChemoSpecGraphics = 'option'),\n\twhere 'option' is one of 'base' or 'ggplot2' or'plotly' ")
+  packageStartupMessage("To change it, do\n\toptions(ChemoSpecGraphics = 'option'),\n\twhere 'option' is one of 'base' or 'ggplot2' or'plotly'.")
 }
