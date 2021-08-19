@@ -69,7 +69,10 @@ surveySpectra2 <- function(spectra,
   }
 
   if ((go == "ggplot2")|| (go == "plotly")) {
+
     value <- variable <- Frequency <- NULL # satisfy CRAN check engine
+    chkReqGraphicsPkg("ggplot2")
+
     ymax <- max(M)
 
     DF_spread <- data.frame(x, y) # holds measure of spread, e.g sd, seX etc
@@ -107,6 +110,7 @@ surveySpectra2 <- function(spectra,
     }
     else
     {
+      chkReqGraphicsPkgs("plotly")
       p<-ggplotly(p,tooltip = "Frequency")
       return(p)
     }

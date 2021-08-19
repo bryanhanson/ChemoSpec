@@ -40,26 +40,11 @@
 #'
 plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
 
-  if (chkGraphicsOpt() == "base") {
-    if (!requireNamespace("lattice", quietly = TRUE)) {
-      stop("You need to install package lattice to use this function")
-    }
-  }
-
-  if (chkGraphicsOpt() == "ggplot2") {
-    if (!requireNamespace("ggplot2", quietly = TRUE)) {
-      stop("You need to install package ggplot2 to use this function")
-    }
-    if (!requireNamespace("patchwork", quietly = TRUE)) {
-      stop("You need to install package patchwork to use this function")
-    }
-  }
-
   .chkArgs(mode = 12L)
 
   go <- chkGraphicsOpt()
   if (go == "base") {
-
+    chkReqGraphicsPkgs("lattice")
     # Stack the requested data into a data frame for plotting
 
     names <- paste("PC", loads, "Loadings", sep = " ")
@@ -107,6 +92,7 @@ plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
   if (go == "ggplot2") {
 
     Frequency <- NULL # satisfy CRAN check engine
+    chkReqGraphicsPkgs(c("ggplot2", "patchwork"))
 
     names <- paste("PC", loads, "Loadings", sep = "")
     names <- c("RefSpectrum", names)

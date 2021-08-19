@@ -83,21 +83,6 @@ plotSpectra <- function(spectra, which = c(1),
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 
-  if (chkGraphicsOpt() == "ggplot2") {
-    if (!requireNamespace("ggplot2", quietly = TRUE)) {
-      stop("You need to install package ggplot2 to use this function")
-    }
-  }
-
-  if (chkGraphicsOpt() == "plotly") {
-    if (!requireNamespace("ggplot2", quietly = TRUE)) {
-      stop("You need to install package ggplot2 to use this function")
-    }
-    if (!requireNamespace("plotly", quietly = TRUE)) {
-      stop("You need to install package plotly to use this function")
-    }
-  }
-
   # Helper Function to calculate the label y position
   # spec: spectra data matrix with *samples in rows* (previously subsetted by which,
   #       & modified by offset & amplify)
@@ -162,7 +147,9 @@ plotSpectra <- function(spectra, which = c(1),
   }
 
   if ((go == "ggplot2") || (go == "plotly")) {
+
     value <- variable <- Frequency <- NULL # satisfy CRAN check engine
+    chkReqGraphicsPkg("ggplot2")
 
     # Set up data frame to hold data to be plotted ready for melting
     df <- data.frame(spectra$freq)
@@ -201,6 +188,7 @@ plotSpectra <- function(spectra, which = c(1),
     }
     else
     {
+      chkReqGraphisPkg("plotly")
       p<-ggplotly(p,tooltip = c("Frequency"))
       return(p)
     }

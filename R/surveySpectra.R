@@ -55,16 +55,14 @@
 #' myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(Extract ~ IR ~ Spectra))
 #' surveySpectra(SrE.IR, method = "iqr", main = myt)
 #' surveySpectra2(SrE.IR, method = "iqr", main = myt)
+#'
 surveySpectra <- function(spectra,
                           method = c("sd", "sem", "sem95", "mad", "iqr"),
                           by.gr = TRUE, ...) {
-  if (!requireNamespace("lattice", quietly = TRUE)) {
-    stop("You need to install package lattice to use this function")
-  }
 
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
-
+  
   choices <- c("sd", "sem", "sem95", "mad", "iqr")
 
   if (!(method %in% choices)) {
@@ -72,7 +70,11 @@ surveySpectra <- function(spectra,
   }
 
   go <- chkGraphicsOpt()
+
   if (go == "base") {
+
+    chkReqGraphicsPkgs("lattice")
+
     if (!by.gr) {
       x <- spectra$freq
       if (method == "iqr") {
@@ -286,6 +288,8 @@ surveySpectra <- function(spectra,
 
     # Note: xlabel is 'spectra$unit[1]' same for all plots so used directly
 
+     chkReqGraphicsPkgs("ggplot2")
+
     .ssplot <- function(df, Frequency, y1, y2, y3, ylabel) {
       ggplot(df, aes(x = Frequency)) +
         geom_line(aes(y = y1), color = "black") +
@@ -470,6 +474,7 @@ surveySpectra <- function(spectra,
       }
       else
       {
+        chkReqGraphicsPkgs("plotly")
         p<-ggplotly(p,tooltip = c("Frequency"))
         return(p)
       }

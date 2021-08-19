@@ -95,7 +95,9 @@ plot2Loadings <- function(spectra,
   }
 
   if ((go == "ggplot2") || (go == "plotly")) {
+
     load1 <- load2 <- x <- y <- label <- NULL
+    chkReqGraphicsPkgs("ggplot2")
 
     res <- data.frame(freq = spectra$freq, load1 = loadings1, load2 = loadings2)
 
@@ -128,6 +130,7 @@ plot2Loadings <- function(spectra,
       }
       return(p)
     } else {
+      chkReqGraphicsPkgs("plotly")
       p <- ggplotly(p)
       if (is.numeric(tol)) {
         CoordList <- .getExtremeCoords(pca$rotation[, loads], spectra$freq, tol)

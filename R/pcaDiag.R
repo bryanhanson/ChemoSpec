@@ -136,7 +136,9 @@ pcaDiag <- function(spectra,
   }
   
   if ((go == "ggplot2")|| (go == "plotly")) {
+
     x <- y <- label <- NULL
+    chkReqGraphicsPkgs("ggplot2")
     
     if ("SD" %in% plot) {
       if (!use.sym) {
@@ -187,6 +189,7 @@ pcaDiag <- function(spectra,
       }
       else
       {
+        chkReqGraphicsPkgs("plotly")
         p<-ggplotly(p)
         CoordList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
         df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
