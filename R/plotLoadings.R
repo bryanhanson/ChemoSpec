@@ -39,8 +39,20 @@
 #' @importFrom patchwork plot_layout
 #'
 plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
-  if (!requireNamespace("lattice", quietly = TRUE)) {
-    stop("You need to install package lattice to use this function")
+
+  if (chkGraphicsOpt() == "base") {
+    if (!requireNamespace("lattice", quietly = TRUE)) {
+      stop("You need to install package lattice to use this function")
+    }
+  }
+
+  if (chkGraphicsOpt() == "ggplot2") {
+    if (!requireNamespace("ggplot2", quietly = TRUE)) {
+      stop("You need to install package ggplot2 to use this function")
+    }
+    if (!requireNamespace("patchwork", quietly = TRUE)) {
+      stop("You need to install package patchwork to use this function")
+    }
   }
 
   .chkArgs(mode = 12L)
