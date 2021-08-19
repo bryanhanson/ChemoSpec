@@ -44,7 +44,6 @@
 #'          for more information about the graphics options. Additional documentation at
 #'          \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#'
 #' @keywords hplot
 #'
 #' @export plotSpectra
@@ -83,6 +82,21 @@ plotSpectra <- function(spectra, which = c(1),
                         showGrid = TRUE, leg.loc = "none", ...) {
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
+
+  if (chkGraphicsOpt() == "ggplot2") {
+    if (!requireNamespace("ggplot2", quietly = TRUE)) {
+      stop("You need to install package ggplot2 to use this function")
+    }
+  }
+
+  if (chkGraphicsOpt() == "plotly") {
+    if (!requireNamespace("ggplot2", quietly = TRUE)) {
+      stop("You need to install package ggplot2 to use this function")
+    }
+    if (!requireNamespace("plotly", quietly = TRUE)) {
+      stop("You need to install package plotly to use this function")
+    }
+  }
 
   # Helper Function to calculate the label y position
   # spec: spectra data matrix with *samples in rows* (previously subsetted by which,
