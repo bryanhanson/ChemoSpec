@@ -73,6 +73,7 @@ data(SrE.IR)
 myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(Extract ~ IR ~ Spectra))
 surveySpectra(SrE.IR, method = "iqr", main = myt)
 surveySpectra2(SrE.IR, method = "iqr", main = myt)
+
 }
 \seealso{
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}

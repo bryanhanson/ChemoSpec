@@ -41,8 +41,8 @@
 #' @importFrom ChemoSpecUtils .labelExtremes .addEllipseInfo .computeEllipses .addLegend .groupNcolor .getExtremeCoords
 #' @export .labelExtremes .addEllipseInfo .computeEllipses .addLegend .groupNcolor .getExtremeCoords
 #'
-#' @importFrom ChemoSpecUtils sampleDist chkGraphicsOpt
-#' @export sampleDist chkGraphicsOpt
+#' @importFrom ChemoSpecUtils sampleDist chkGraphicsOpt chkReqGraphicsPkgs
+#' @export sampleDist chkGraphicsOpt chkReqGraphicsPkgs
 #' 
 #' @importFrom ChemoSpecUtils .prepLegendCoords .ggAddLegend 
 #' @export .prepLegendCoords .ggAddLegend
