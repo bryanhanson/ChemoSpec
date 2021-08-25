@@ -31,10 +31,7 @@
 #' @param showGrid Logical.  Places light gray vertical lines at each tick mark
 #' if \code{TRUE}.
 #'
-#' @param leg.loc A list giving x and y coordinates; if \code{"none"} no legend will be drawn.
-#' The plotting of the legend is based on the origin of the plot as [0,0] and the top right
-#' corner is [1,1]. If one wants the plot dead center use \code{leg.loc = list(x = 0.5, y = 0.5)}.
-#'
+#' @template legloc-arg
 #' @template graphics-dots-arg
 #' @template graphics-return-arg
 #'
