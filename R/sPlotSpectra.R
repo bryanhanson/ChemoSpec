@@ -34,6 +34,7 @@
 #' @importFrom graphics plot abline legend
 #' @importFrom ggplot2 geom_vline
 #' @importFrom ggrepel geom_text_repel
+#' @importFrom magrittr %>%
 #'
 #' @examples
 #'

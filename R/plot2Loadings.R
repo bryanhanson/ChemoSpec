@@ -1,5 +1,4 @@
 #'
-#'
 #' Plot PCA Loadings from a Spectra Object Against Each Other
 #'
 #' Plots two PCA loadings specified by the user, and labels selected (extreme)
@@ -86,8 +85,6 @@ plot2Loadings <- function(spectra,
     abline(h = 0.0, col = "red")
     legend("bottomleft", y = NULL, pca$method, bty = "n", cex = 0.75)
 
-    # Next, if requested, we will label the extreme points on both dimensions
-
     if (is.numeric(tol)) .labelExtremes(pca$rotation[, loads], spectra$freq, tol)
 
     res <- data.frame(freq = spectra$freq, load1 = loadings1, load2 = loadings2)
@@ -95,7 +92,6 @@ plot2Loadings <- function(spectra,
   }
 
   if ((go == "ggplot2") || (go == "plotly")) {
-
     load1 <- load2 <- x <- y <- label <- NULL
     chkReqGraphicsPkgs("ggplot2")
 
