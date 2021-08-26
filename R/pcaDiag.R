@@ -66,85 +66,83 @@ pcaDiag <- function(spectra,
                     use.sym = FALSE,
                     ...) {
   msg <- "This function cannot be used with data from sparse pca"
-  
   if (inherits(pca, "converted_from_arrayspc")) stop(msg)
   .chkArgs(mode = 12L)
   if (inherits(pca, "prcomp")) pca <- .q2rPCA(pca)
-  
+
   X <- spectra$data
   X.pca <- pca
   a <- pcs
   if (is.null(a)) a <- 3
-  
+
   SDist <- sqrt(apply(t(t(X.pca$sco[, 1:a]^2) / X.pca$sdev[1:a]^2), 1, sum))
   ODist <- sqrt(apply((X - X.pca$sco[, 1:a] %*% t(X.pca$loa[, 1:a]))^2, 1, sum))
   critSD <- sqrt(qchisq(quantile, a))
   critOD <- (median(ODist^(2 / 3)) + mad(ODist^(2 / 3)) * qnorm(quantile))^(3 / 2)
-  
+
   sub <- paste(pca$method, a, "PCs", sep = " ")
-  
+
   go <- chkGraphicsOpt()
-  
+
   if (go == "base") {
     if ("SD" %in% plot) {
       if (!use.sym) {
         plot(SDist,
-             ylim = c(0, max(SDist)), ylab = "score distance",
-             xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Score Distance",
-             col = spectra$colors, pch = 20, ...
+          ylim = c(0, max(SDist)), ylab = "score distance",
+          xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Score Distance",
+          col = spectra$colors, pch = 20, ...
         )
       }
       if (use.sym) {
         plot(SDist,
-             ylim = c(0, max(SDist)), ylab = "score distance",
-             xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Score Distance",
-             pch = spectra$sym, ...
+          ylim = c(0, max(SDist)), ylab = "score distance",
+          xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Score Distance",
+          pch = spectra$sym, ...
         )
       }
       abline(h = critSD, lty = 2)
-      
+
       y.data <- subset(SDist, SDist > critSD)
       x.data <- which(SDist %in% y.data, arr.ind = TRUE)
       data <- cbind(x.data, y.data)
       if (!length(x.data) == 0) .labelExtremes(data, names = spectra$names[x.data], tol = 1.0)
     }
-    
+
     if ("OD" %in% plot) {
       if (!use.sym) {
         plot(ODist,
-             ylim = c(0, max(ODist)), ylab = "orthogonal distance",
-             xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Orthogonal Distance",
-             col = spectra$colors, pch = 20, ...
+          ylim = c(0, max(ODist)), ylab = "orthogonal distance",
+          xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Orthogonal Distance",
+          col = spectra$colors, pch = 20, ...
         )
       }
       if (use.sym) {
         plot(ODist,
-             ylim = c(0, max(ODist)), ylab = "orthogonal distance",
-             xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Orthogonal Distance",
-             pch = spectra$sym, ...
+          ylim = c(0, max(ODist)), ylab = "orthogonal distance",
+          xlab = spectra$desc, sub = sub, main = "Possible PCA Outliers\nbased on Orthogonal Distance",
+          pch = spectra$sym, ...
         )
       }
       abline(h = critOD, lty = 2)
-      
+
       y.data <- subset(ODist, ODist > critOD)
       x.data <- which(ODist %in% y.data, arr.ind = TRUE)
       data <- cbind(x.data, y.data)
       if (!length(x.data) == 0) .labelExtremes(data, names = spectra$names[x.data], tol = 1.0)
     }
-    
+
     return(list(SDist = SDist, ODist = ODist, critSD = critSD, critOD = critOD))
   }
-  
-  if ((go == "ggplot2")|| (go == "plotly")) {
 
+  if ((go == "ggplot2") || (go == "plotly")) {
     x <- y <- label <- NULL
     chkReqGraphicsPkgs("ggplot2")
-    
+
     if ("SD" %in% plot) {
       if (!use.sym) {
         x_index <- 1:length(SDist)
         df <- data.frame(x_index, SDist)
-        
+
         p <- ggplot(df, aes(x = x_index, y = SDist)) +
           theme_bw() +
           geom_point(color = spectra$colors) +
@@ -157,11 +155,11 @@ pcaDiag <- function(spectra,
           xlab(pca$method) +
           ylab("score distance")
       }
-      
+
       if (use.sym) {
         x_index <- 1:length(SDist)
         df <- data.frame(x_index, SDist)
-        
+
         p <- ggplot(df, aes(x = x_index, y = SDist)) +
           theme_bw() +
           geom_point(color = "black", shape = spectra$sym) +
@@ -174,23 +172,20 @@ pcaDiag <- function(spectra,
           xlab(paste0(spectra$desc, "\n", pca$method, " 2 PCs")) +
           ylab("score distance")
       }
-      
+
       y.data <- subset(SDist, SDist > critSD)
       x.data <- which(SDist %in% y.data, arr.ind = TRUE)
       data <- cbind(x.data, y.data)
-      if( go == "ggplot2")
-      {
-      if (!length(x.data) == 0) {
-        CoordList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
-        df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
-        p <- p + geom_text_repel(data = df, aes(x = x, y = y, label = label), box.padding = 0.5, max.overlaps = Inf)
-      }
-      return(p)
-      }
-      else
-      {
+      if (go == "ggplot2") {
+        if (!length(x.data) == 0) {
+          CoordList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
+          df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
+          p <- p + geom_text_repel(data = df, aes(x = x, y = y, label = label), box.padding = 0.5, max.overlaps = Inf)
+        }
+        return(p)
+      } else {
         chkReqGraphicsPkgs("plotly")
-        p<-ggplotly(p)
+        p <- ggplotly(p)
         CoordList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
         df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
         p <- p %>% add_annotations(
@@ -205,15 +200,15 @@ pcaDiag <- function(spectra,
             size = 12
           )
         )
-        return (p)
+        return(p)
       }
     } # end of SD plot
-    
+
     if ("OD" %in% plot) {
       if (!use.sym) {
         x_index <- 1:length(ODist)
         df <- data.frame(x_index, ODist)
-        
+
         p <- ggplot(df, aes(x = x_index, y = ODist)) +
           theme_bw() +
           geom_point(color = spectra$colors) +
@@ -226,11 +221,11 @@ pcaDiag <- function(spectra,
           xlab(paste0(spectra$desc, "\n", pca$method, " 2 PCs")) +
           ylab("score distance")
       }
-      
+
       if (use.sym) {
         x_index <- 1:length(ODist)
         df <- data.frame(x_index, ODist)
-        
+
         p <- ggplot(df, aes(x = x_index, y = ODist)) +
           theme_bw() +
           geom_point(color = "black", shape = spectra$sym) +
@@ -243,23 +238,21 @@ pcaDiag <- function(spectra,
           xlab(paste0(spectra$desc, "\n", pca$method, " 2 PCs")) +
           ylab("score distance")
       }
-      
-      
+
+
       y.data <- subset(ODist, ODist > critOD)
       x.data <- which(ODist %in% y.data, arr.ind = TRUE)
       data <- cbind(x.data, y.data)
-      if (go == "ggplot2")
-      {
-      if (!length(x.data) == 0) {
-        CoordList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
-        df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
-        p <- p + geom_text_repel(data = df, aes(x = x, y = y, label = label), box.padding = 0.5, max.overlaps = Inf)
-      }
-      return(p)
-      }
-      else
-      {
-        p<- ggplotly(p)
+      if (go == "ggplot2") {
+        if (!length(x.data) == 0) {
+          CoordList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
+          df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
+          p <- p + geom_text_repel(data = df, aes(x = x, y = y, label = label), box.padding = 0.5, max.overlaps = Inf)
+        }
+        return(p)
+      } else {
+        chkReqGraphicsPkgs("plotly")
+        p <- ggplotly(p)
         CoordList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
         df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
         p <- p %>% add_annotations(
@@ -277,6 +270,5 @@ pcaDiag <- function(spectra,
         return(p)
       }
     } # end of OD plot
-    
   } # end of go = "ggplot2"
 }
