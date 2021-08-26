@@ -43,9 +43,10 @@ is desired, give \code{lab.pos} outside the plotted x range.}
 \item{showGrid}{Logical.  Places light gray vertical lines at each tick mark
 if \code{TRUE}.}
 
-\item{leg.loc}{A list giving x and y coordinates; if \code{"none"} no legend will be drawn.
-The plotting of the legend is based on the origin of the plot as [0,0] and the top right
-corner is [1,1]. If one wants the plot dead center use \code{leg.loc = list(x = 0.5, y = 0.5)}.}
+\item{leg.loc}{Either a list with elements \code{x} and \code{y}, or a string like
+\code{"topright"}.  Values in a list should be on \code{[0,1]}, i.e. the lower left of the plot
+area is \code{0,0} and the upper right is \code{1,1}.  String values are those described in 
+\code{\link[graphics]{legend}} under "Details". A value of \code{"none"} is acceptable as well.}
 
 \item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
