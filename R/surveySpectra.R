@@ -55,14 +55,12 @@
 #' myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(Extract ~ IR ~ Spectra))
 #' surveySpectra(SrE.IR, method = "iqr", main = myt)
 #' surveySpectra2(SrE.IR, method = "iqr", main = myt)
-#'
 surveySpectra <- function(spectra,
                           method = c("sd", "sem", "sem95", "mad", "iqr"),
                           by.gr = TRUE, ...) {
-
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
-  
+
   choices <- c("sd", "sem", "sem95", "mad", "iqr")
 
   if (!(method %in% choices)) {
@@ -72,11 +70,11 @@ surveySpectra <- function(spectra,
   go <- chkGraphicsOpt()
 
   if (go == "base") {
-
     chkReqGraphicsPkgs("lattice")
 
     if (!by.gr) {
       x <- spectra$freq
+
       if (method == "iqr") {
         y <- aaply(spectra$data, 2, .seXyIqr)
         df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
@@ -87,6 +85,7 @@ surveySpectra <- function(spectra,
         )
         plot(p)
       }
+
       if (method == "sd") {
         y1 <- aaply(spectra$data, 2, mean)
         s <- aaply(spectra$data, 2, sd)
@@ -276,7 +275,8 @@ surveySpectra <- function(spectra,
     }
   }
 
-  if ((go == "ggplot2")|| (go =="plotly")) {
+  if ((go == "ggplot2") || (go == "plotly")) {
+    chkReqGraphicsPkgs("ggplot2")
 
     # Helper Function to plot in ggplot2 mode
     # df data frame with computed y values
@@ -286,11 +286,7 @@ surveySpectra <- function(spectra,
     # y3: computed y coordinates third column
     # ylabel: label of the y coordinate
 
-    # Note: xlabel is 'spectra$unit[1]' same for all plots so used directly
-
-     chkReqGraphicsPkgs("ggplot2")
-
-    .ssplot <- function(df, Frequency, y1, y2, y3, ylabel) {
+    .ssPlot <- function(df, Frequency, y1, y2, y3, ylabel) {
       ggplot(df, aes(x = Frequency)) +
         geom_line(aes(y = y1), color = "black") +
         geom_line(aes(y = y2), color = "red") +
@@ -302,13 +298,13 @@ surveySpectra <- function(spectra,
     }
 
     if (!by.gr) {
-      Frequency<- spectra$freq
-      p <-NULL
+      Frequency <- spectra$freq
+      p <- NULL
+
       if (method == "iqr") {
         y <- aaply(spectra$data, 2, .seXyIqr)
         df <- data.frame(Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
-        p <- .ssplot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, median +/- iqr")
-        
+        p <- .ssPlot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, median +/- iqr")
       }
 
       if (method == "sd") {
@@ -318,47 +314,41 @@ surveySpectra <- function(spectra,
         y3 <- y1 - s
         df <- data.frame(Frequency, y1, y2, y3)
 
-        p <- .ssplot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, mean +/- sd")
-        
+        p <- .ssPlot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, mean +/- sd")
       }
 
       if (method == "sem") {
         y <- aaply(spectra$data, 2, .seXy)
         df <- data.frame(Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
 
-        p <- .ssplot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, mean +/- sem")
-        
+        p <- .ssPlot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, mean +/- sem")
       }
 
       if (method == "mad") {
         y <- aaply(spectra$data, 2, .seXyMad)
         df <- data.frame(Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
 
-        p <- .ssplot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, median +/- mad")
-        
+        p <- .ssPlot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, median +/- mad")
       }
 
       if (method == "sem95") {
         y <- aaply(spectra$data, 2, .seXy95)
         df <- data.frame(Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
 
-        p <- .ssplot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, mean +/- 95% ci sem")
-        
+        p <- .ssPlot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, mean +/- 95% ci sem")
       }
-      if( go == "ggplot2")
-      {
-      return(p)
-      }
-      else
-      {
-        p<-ggplotly(p,tooltip="Frequency")
+      if (go == "ggplot2") {
+        return(p)
+      } else {
+        chkReqGraphicsPkgs("plotly")
+        p <- ggplotly(p, tooltip = "Frequency")
         return(p)
       }
     } # end of if (!by.gr)
 
     if (by.gr) {
       gr <- sumGroups(spectra)
-      p<-NULL
+      p <- NULL
       # See if any groups should be dropped due to too few members
       rem <- c()
       dropGroups <- FALSE
@@ -393,7 +383,7 @@ surveySpectra <- function(spectra,
         }
         df1 <- df1[-1, ]
 
-        p <- .ssplot(df1, Frequency, y1, y2, y3, ylabel = "median +/- iqr")
+        p <- .ssPlot(df1, Frequency, y1, y2, y3, ylabel = "median +/- iqr")
 
         p <- p + facet_grid(spectra.group ~ ., switch = "both") +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
@@ -413,7 +403,7 @@ surveySpectra <- function(spectra,
         }
         df1 <- df1[-1, ]
 
-        p <- .ssplot(df1, Frequency, y1, y2, y3, ylabel = "mean +/- sd")
+        p <- .ssPlot(df1, Frequency, y1, y2, y3, ylabel = "mean +/- sd")
 
         p <- p + facet_grid(spectra.group ~ ., switch = "both") +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
@@ -430,7 +420,7 @@ surveySpectra <- function(spectra,
         }
         df1 <- df1[-1, ]
 
-        p <- .ssplot(df1, Frequency, y1, y2, y3, ylabel = "mean +/- sem")
+        p <- .ssPlot(df1, Frequency, y1, y2, y3, ylabel = "mean +/- sem")
 
         p <- p + facet_grid(spectra.group ~ ., switch = "both") +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
@@ -447,7 +437,7 @@ surveySpectra <- function(spectra,
         }
         df1 <- df1[-1, ]
 
-        p <- .ssplot(df1, Frequency, y1, y2, y3, ylabel = "median +/- mad")
+        p <- .ssPlot(df1, Frequency, y1, y2, y3, ylabel = "median +/- mad")
 
         p <- p + facet_grid(spectra.group ~ ., switch = "both") +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
@@ -464,21 +454,17 @@ surveySpectra <- function(spectra,
         }
         df1 <- df1[-1, ]
 
-        p <- .ssplot(df1, Frequency, y1, y2, y3, ylabel = "mean +/- 95 % ci sem")
+        p <- .ssPlot(df1, Frequency, y1, y2, y3, ylabel = "mean +/- 95 % ci sem")
         p <- p + facet_grid(spectra.group ~ ., switch = "both") +
           theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
       }
-      if (go == "ggplot2")
-      {
+      if (go == "ggplot2") {
         return(p)
-      }
-      else
-      {
+      } else {
         chkReqGraphicsPkgs("plotly")
-        p<-ggplotly(p,tooltip = c("Frequency"))
+        p <- ggplotly(p, tooltip = c("Frequency"))
         return(p)
       }
     }
   }
-
 }
