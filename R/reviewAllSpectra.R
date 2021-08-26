@@ -28,7 +28,6 @@
 #' @importFrom ggplot2 xlab ylab facet_grid element_rect
 #'
 #' @examples
-#'
 #' \dontrun{
 #' data(metMUD1)
 #' reviewAllSpectra(metMUD1)
@@ -38,6 +37,7 @@ reviewAllSpectra <- function(spectra, ...) {
   .chkArgs(mode = 11L)
 
   go <- chkGraphicsOpt()
+
   if (go == "base") {
     cat("Press ESC to stop looping through the spectra\n\n")
     ns <- length(spectra$names)
@@ -49,18 +49,20 @@ reviewAllSpectra <- function(spectra, ...) {
     devAskNewPage(ask = FALSE)
   }
 
-  if ((go == "ggplot2")|| ( go == "plotly")) {
+  if ((go == "ggplot2") || (go == "plotly")) {
     chkReqGraphicsPkgs("ggplot2")
     Frequency <- spectra$freq
     l.x <- length(Frequency)
+
     df1 <- data.frame(Frequency = NA_real_, y = NA_real_, spectra.name = NA_character_)
     for (i in 1:length(spectra$names)) {
       y <- spectra$data[i, ]
       spectra.name <- rep(spectra$names[i], l.x)
-      df2 <- data.frame(Frequency =  Frequency, y = y, spectra.name = spectra.name)
+      df2 <- data.frame(Frequency = Frequency, y = y, spectra.name = spectra.name)
       df1 <- rbind(df1, df2)
     }
     df1 <- df1[-1, ]
+
     p <- ggplot(df1, aes(x = Frequency)) +
       geom_line(aes(y = y)) +
       xlab(spectra$unit[1]) +
@@ -68,15 +70,13 @@ reviewAllSpectra <- function(spectra, ...) {
       facet_grid(spectra.name ~ ., switch = "both") + # faceting
       theme_bw() +
       theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-    if ( go == "ggplot2")
-    {
+
+    if (go == "ggplot2") {
       return(p)
-    }
-    else
-    {
-    chkReqGraphicsPkgs("plotly")
-    p<- ggplotly(p,tooltip = "Frequency")
-    return(p)
+    } else {
+      chkReqGraphicsPkgs("plotly")
+      p <- ggplotly(p, tooltip = "Frequency")
+      return(p)
     }
   }
 }
