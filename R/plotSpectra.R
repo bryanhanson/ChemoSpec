@@ -63,15 +63,16 @@
 #' plotSpectra(metMUD1,
 #'   main = "metMUD1 NMR Data",
 #'   which = c(10, 11), yrange = c(0, 1.5),
-#'   offset = 0.06, amplify = 10, lab.pos = 0.5)
+#'   offset = 0.06, amplify = 10, lab.pos = 0.5
+#' )
 #'
 #' # Add a legend at x, y coords
 #' plotSpectra(metMUD1,
 #'   main = "metMUD1 NMR Data",
 #'   which = c(10, 11), yrange = c(0, 1.5),
 #'   offset = 0.06, amplify = 10, lab.pos = 0.5,
-#'   leg.loc = list(x = 0.8, y = 0.8))
-#'
+#'   leg.loc = list(x = 0.8, y = 0.8)
+#' )
 plotSpectra <- function(spectra, which = c(1),
                         yrange = range(spectra$data),
                         offset = 0.0, amplify = 1.0,
@@ -84,8 +85,8 @@ plotSpectra <- function(spectra, which = c(1),
   # spec: spectra data matrix with *samples in rows* (previously subsetted by which,
   #       & modified by offset & amplify)
   # pct: label position in % of y range
-  pct = 20.0
-  calcYpos <- function(spec, pct) {
+  pct <- 20.0
+  .calcLabelYpos <- function(spec, pct) {
     ymin <- apply(spec, 1, min)
     ymax <- apply(spec, 1, max)
     ypos <- ymin + (pct * (ymax - ymin)) / 100
@@ -122,14 +123,14 @@ plotSpectra <- function(spectra, which = c(1),
 
     # Add sample names
     lab.x <- lab.pos
-    lab.y <- calcYpos(M, pct)
+    lab.y <- .calcLabelYpos(M, pct)
     text(lab.x, lab.y, labels = Mnames, adj = c(0.5, 0.5), cex = 0.75)
 
     # Prep legend location if legend requested
     if (all(leg.loc != "none")) {
       x.min <- min(spectra$freq)
       x.max <- max(spectra$freq)
-      
+
       y.min <- yrange[1]
       y.max <- yrange[2]
       args <- as.list(match.call())[-1] # capture xlim if user passes it
@@ -144,7 +145,6 @@ plotSpectra <- function(spectra, which = c(1),
   }
 
   if ((go == "ggplot2") || (go == "plotly")) {
-
     value <- variable <- Frequency <- NULL # satisfy CRAN check engine
     chkReqGraphicsPkgs("ggplot2")
 
@@ -159,11 +159,12 @@ plotSpectra <- function(spectra, which = c(1),
     names(df) <- c("Frequency", spectra$names[which])
 
     lab.x <- lab.pos # values in native data space
-    lab.y <- calcYpos(t(as.matrix(df[, -1])), pct)
+    lab.y <- .calcLabelYpos(t(as.matrix(df[, -1])), pct)
 
     molten.data <- reshape2::melt(df, id = c("Frequency"))
 
-    p <- ggplot(data = molten.data,
+    p <- ggplot(
+      data = molten.data,
       aes(x = Frequency, y = value, group = variable, color = variable)) +
       geom_line() +
       scale_color_manual(name = "Key", values = spectra$colors[which]) +
@@ -178,15 +179,12 @@ plotSpectra <- function(spectra, which = c(1),
       p <- p + theme(panel.grid.minor = element_blank(), panel.grid.major = element_blank())
     }
 
-    if( go == "ggplot2")
-    {
-    p<-.ggAddLegend(go,spectra,use.sym=FALSE,leg.loc,p)
-    return(p)
-    }
-    else
-    {
+    if (go == "ggplot2") {
+      p <- .ggAddLegend(go, spectra, use.sym = FALSE, leg.loc, p)
+      return(p)
+    } else {
       chkReqGraphicsPkgs("plotly")
-      p<-ggplotly(p,tooltip = c("Frequency"))
+      p <- ggplotly(p, tooltip = c("Frequency"))
       return(p)
     }
   }
