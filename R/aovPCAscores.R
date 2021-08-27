@@ -66,14 +66,14 @@ aovPCAscores <- function(spectra, so, submat = 1, ellipse = "none", tol = "none"
   go <- chkGraphicsOpt()
 
   if (go == "base") {
-    so <- so[[submat]] # need to force evaluation for some reason (do.call is downstream)
+    so <- so[[submat]] # need to force evaluation here for some reason (do.call is downstream)
     plotScores(spectra, so, ellipse = ellipse, tol = tol, use.sym = use.sym, leg.loc = leg.loc, ...)
     return(NULL)
   }
 
   if (go == "ggplot2") {
     chkReqGraphicsPkgs("ggplot2")
-    so <- so[[submat]] # need to force evaluation for some reason (do.call is downstream)
+    so <- so[[submat]] # need to force evaluation here for some reason (do.call is downstream)
     p <- plotScores(spectra, so, ellipse = ellipse, tol = tol, use.sym = use.sym, leg.loc = leg.loc, ...)
     return(p)
   }
@@ -81,7 +81,7 @@ aovPCAscores <- function(spectra, so, submat = 1, ellipse = "none", tol = "none"
   if (go == "plotly") {
     chkReqGraphicsPkgs("ggplot2")
     chkReqGraphicsPkgs("plotly")
-    so <- so[[submat]] # need to force evaluation for some reason (do.call is downstream)
+    so <- so[[submat]] # need to force evaluation here for some reason (do.call is downstream)
     p <- plotScores(spectra, so, ellipse = ellipse, tol = tol, use.sym = use.sym, leg.loc = leg.loc, ...)
     return(p)
   }

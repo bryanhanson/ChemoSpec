@@ -15,6 +15,9 @@
 #'         value is corrupted it will be set to \code{base}.
 #'   \item To change the graphics output mode, do \code{options(ChemoSpecGraphics = 'option')},
 #'         where 'option' is one of the options listed above.
+#'   \item \code{ggplo2} graphics are not available for all plots.  If \code{ggplot2} graphics are not available,
+#'         \code{base} graphics will be automatically used, regardless of the setting in
+#'         \code{options(ChemoSpecGraphics)}.
 #' }
 #'
 #' What you can do with your plots:

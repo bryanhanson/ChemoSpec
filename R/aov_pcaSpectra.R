@@ -130,13 +130,14 @@ aov_pcaSpectra <- function(spectra, fac, type = "class", choice = NULL, showName
     msg <- paste("There are too many levels (", lvlcnt, ") in argument fac for the number of samples.", sep = "")
     stop(msg)
   }
+
   # Subtract matrices according to Pinto/Harrington
   # Run avgFacLvls on each successive residuals matrix
   # Number of times avgFacLvls runs depends on number of factors given
 
   # 1 factor aov_pcaSpectra is the same as running regular PCA so issue a warning
   if (nf == 1) {
-    warning("aov_pcaSpectra is the same as regular PCA for 1 factor")
+    warning("aov_pcaSpectra is the same as ordinary PCA for 1 factor")
   }
 
   if (nf == 1) {
