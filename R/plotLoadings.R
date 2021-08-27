@@ -39,10 +39,9 @@
 #' @importFrom patchwork plot_layout
 #'
 plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
-
   .chkArgs(mode = 12L)
-
   go <- chkGraphicsOpt()
+
   if (go == "base") {
     chkReqGraphicsPkgs("lattice")
     # Stack the requested data into a data frame for plotting
@@ -72,8 +71,7 @@ plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
       xlab = spectra$unit[1], ylab = "",
       sub = list(
         label = pca$method,
-        fontface = "plain"
-      ),
+        fontface = "plain"),
       layout = c(1, length(loads) + 1),
       strip.left = TRUE, strip = FALSE, col = "black",
       scales = list(x = "same", y = "free"),
@@ -83,15 +81,13 @@ plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
         } else {
           lattice::panel.xyplot(..., type = type)
         }
-      }, ...
-    )
+      }, ...)
 
     plot(p)
   }
 
   if (go == "ggplot2") {
-
-    Frequency <- NULL # satisfy CRAN check engine
+    Frequency <- patch_plot <- NULL # satisfy CRAN check engine
     chkReqGraphicsPkgs(c("ggplot2", "patchwork"))
 
     names <- paste("PC", loads, "Loadings", sep = "")
@@ -126,16 +122,14 @@ plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
       ylab("Ref. spectrum") +
       xlab(pca$method)
 
-    patchworks <- NULL #Required
-
     for (i in length(plot_list):2) {
       if (i == length(plot_list)) {
-        patchworks <- plot_list[[i]]
+        patch_plot <- plot_list[[i]]
       } else {
-        patchworks <- patchworks + plot_list[[i]]
+        patch_plot <- patch_plot + plot_list[[i]]
       }
     }
 
-    patchworks + ref_plot + plot_layout(ncol = 1)
+    patch_plot + ref_plot + plot_layout(ncol = 1)
   } # end of go == "ggplot2"
 }
