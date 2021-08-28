@@ -65,6 +65,9 @@
 #' p4
 #'
 #' # plotLoadings uses patchwork so to put a title over everything, use plot_annnotation
+#' if (!requireNamespace("patchwork", quietly = TRUE)) {
+#'   stop("You need to install package patchwork for this example")
+#' }
 #' pca <- c_pcaSpectra(metMUD1)
 #' p5 <- plotLoadings(metMUD1, pca, loads = c(1, 2))
 #' p5
