@@ -22,7 +22,7 @@ operations is available.
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson and Matthew J. Keinsley.
+Bryan A. Hanson, Tejasvi Gupta and Matthew J. Keinsley.
 
 Maintainer: Bryan A. Hanson \email{hanson@depauw.edu}
 }
