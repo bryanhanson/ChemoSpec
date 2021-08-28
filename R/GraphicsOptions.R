@@ -64,14 +64,10 @@
 #' p4 <- p1 + theme_gray() + theme(legend.position = "none")
 #' p4
 #'
-#' # plotLoadings uses patchwork so to put a title over everything, use plot_annnotation
-#' if (!requireNamespace("patchwork", quietly = TRUE)) {
-#'   stop("You need to install package patchwork for this example")
-#' }
 #' pca <- c_pcaSpectra(metMUD1)
 #' p5 <- plotLoadings(metMUD1, pca, loads = c(1, 2))
 #' p5
-#' p6 <- p5 + plot_annotation("metMUD1 NMR Data")
+#' p6 <- p5 + patchwork::plot_annotation(title = "metMUD1 NMR Data")
 #' p6
 #' # but to change the theme on each subplot, use the & operator
 #' p7 <- p6 & theme_gray() # compare to p6 + theme_gray()
