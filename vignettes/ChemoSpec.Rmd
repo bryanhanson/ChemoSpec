@@ -39,6 +39,7 @@ suppressMessages(library("ChemoSpec"))
 suppressMessages(library("mclust"))
 suppressMessages(library("RColorBrewer"))
 suppressMessages(library("ggplot2"))
+suppressMessages(library("patchwork"))
 
 desc <- packageDescription("ChemoSpec")
 
