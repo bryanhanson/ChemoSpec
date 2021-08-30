@@ -61,12 +61,14 @@ p3
 p4 <- p1 + theme_gray() + theme(legend.position = "none")
 p4
 
-# plotLoadings uses patchwork so to modify, use & and not +
 pca <- c_pcaSpectra(metMUD1)
 p5 <- plotLoadings(metMUD1, pca, loads = c(1, 2))
 p5
-p6 <- p5 & ggtitle("metMUD1 NMR Data") & theme_gray()
+p6 <- p5 + patchwork::plot_annotation(title = "metMUD1 NMR Data")
 p6
+# but to change the theme on each subplot, use the & operator
+p7 <- p6 & theme_gray() # compare to p6 + theme_gray()
+p7
 
 options(ChemoSpecGraphics = "base") # turn off for later examples/tests
 
