@@ -44,7 +44,7 @@
 #' @importFrom ChemoSpecUtils sampleDist chkGraphicsOpt chkReqGraphicsPkgs
 #' @export sampleDist chkGraphicsOpt chkReqGraphicsPkgs
 #' 
-#' @importFrom ChemoSpecUtils .prepLegendCoords .ggAddLegend 
-#' @export .prepLegendCoords .ggAddLegend
+#' @importFrom ChemoSpecUtils .prepLegendCoords .ggAddLegend .ggAnnotate
+#' @export .prepLegendCoords .ggAddLegend .ggAnnotate
 #'
 NULL
