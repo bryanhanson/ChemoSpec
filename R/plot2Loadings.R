@@ -112,11 +112,7 @@ plot2Loadings <- function(spectra,
       panel.grid.minor = element_blank()
     )
 
-    x.min <- min(loadings1)
-    y.min <- min(loadings2)
-    x.max <- max(loadings1)
-    x.min <- x.min + (x.max - x.min) / 5
-    p <- p + annotate("text", x = x.min, y = y.min, label = pca$method, size = 4)
+    p <- p + .ggAnnotate(psa$method, x = 0.05, y = 0.98, just = "left", gp = gpar(fontsize = 10))
 
     if (go == "ggplot2") {
       if (is.numeric(tol)) {
