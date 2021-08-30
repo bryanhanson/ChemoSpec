@@ -113,7 +113,7 @@ sPlotSpectra <- function(spectra,
       panel.grid.minor = element_blank()
     )
 
-    p <- p + .ggAnnotate(psa$method, x = 0.05, y = 0.98, just = "left", gp = gpar(fontsize = 10))
+    p <- p + .ggAnnotate(pca$method, x = 0.05, y = 0.98, just = "left", gp = gpar(fontsize = 10))
 
     if (go == "ggplot2") {
       if (is.numeric(tol)) {
