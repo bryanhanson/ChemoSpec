@@ -113,11 +113,7 @@ sPlotSpectra <- function(spectra,
       panel.grid.minor = element_blank()
     )
 
-    x.max <- max(cv)
-    x.min <- min(cv)
-    x.max <- x.max - (x.max - x.min) / 5
-    y.min <- min(crr)
-    p <- p + annotate("text", x = x.max, y = y.min, label = "centered/noscale/classical", size = 4)
+    p <- p + .ggAnnotate(psa$method, x = 0.05, y = 0.98, just = "left", gp = gpar(fontsize = 10))
 
     if (go == "ggplot2") {
       if (is.numeric(tol)) {
