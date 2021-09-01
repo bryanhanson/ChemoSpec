@@ -180,7 +180,7 @@ pcaDiag <- function(spectra,
         if (!length(x.data) == 0) {
           CoordList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
           df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
-          p <- p + geom_text_repel(data = df, aes(x = x, y = y, label = label), box.padding = 0.5, max.overlaps = Inf)
+          p <- p + .ggRepel(df)
         }
         return(p)
       } else {
@@ -247,7 +247,7 @@ pcaDiag <- function(spectra,
         if (!length(x.data) == 0) {
           CoordList <- .getExtremeCoords(data, names = spectra$names[x.data], tol = 1.0)
           df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
-          p <- p + geom_text_repel(data = df, aes(x = x, y = y, label = label), box.padding = 0.5, max.overlaps = Inf)
+          p <- p + .ggRepel(df)
         }
         return(p)
       } else {

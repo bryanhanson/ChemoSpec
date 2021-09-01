@@ -33,7 +33,6 @@
 #'
 #' @importFrom graphics plot abline legend
 #' @importFrom ggplot2 geom_vline
-#' @importFrom ggrepel geom_text_repel
 #' @importFrom magrittr %>%
 #'
 #' @examples
@@ -119,7 +118,7 @@ sPlotSpectra <- function(spectra,
       if (is.numeric(tol)) {
         CoordList <- .getExtremeCoords(ans[, 2:3], spectra$freq, tol)
         df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
-        p <- p + geom_text_repel(data = df, aes(x = x, y = y, label = label), box.padding = 0.5, max.overlaps = Inf)
+        p <- p + .ggRepel(df)
       }
       return(p)
     } else {

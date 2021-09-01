@@ -38,7 +38,6 @@
 #' @importFrom graphics plot abline legend
 #' @importFrom ChemoSpecUtils .getVarExplained
 #' @importFrom ggplot2 geom_text
-#' @importFrom ggrepel geom_text_repel
 #' @importFrom magrittr %>%
 #' @importFrom plotly add_annotations
 #'
@@ -118,7 +117,7 @@ plot2Loadings <- function(spectra,
       if (is.numeric(tol)) {
         CoordList <- .getExtremeCoords(pca$rotation[, loads], spectra$freq, tol)
         df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
-        p <- p + geom_text_repel(data = df, aes(x = x, y = y, label = label), box.padding = 0.5, max.overlaps = Inf)
+        p <- p + .ggRepel(df)
       }
       return(p)
     } else {
