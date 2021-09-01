@@ -180,7 +180,7 @@ plotSpectra <- function(spectra, which = c(1),
     }
 
     if (go == "ggplot2") {
-      p <- .ggAddLegend(go, spectra, use.sym = FALSE, leg.loc, p)
+      p <- p + .ggAddLegend(spectra, use.sym = FALSE, leg.loc)
       return(p)
     } else {
       chkReqGraphicsPkgs("plotly")
