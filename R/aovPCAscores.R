@@ -31,10 +31,10 @@
 #' done by \code{aov_pcaSpectra} is based on argument \code{fac}.  These may
 #' not correspond, but you can edit \code{spectra$groups} to match if necessary.
 #'
-#' @template graphics-return2-arg
-#' @template tol-arg
+#' @template param-graphics-return2
+#' @template param-tol
 #'
-#' @template authorsBH-MK
+#' @template authors-BH-MK
 #'
 #' @seealso The use of this function can be seen in
 #' \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotScores}}.

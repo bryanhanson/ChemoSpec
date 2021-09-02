@@ -41,7 +41,7 @@
 #' @seealso \code{\link[mclust]{Mclust}} for background on the method.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @template authorsBH
+#' @template authors-BH
 #'
 #' @keywords multivariate cluster
 #'

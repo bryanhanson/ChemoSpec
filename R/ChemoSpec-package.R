@@ -19,7 +19,7 @@
 #'
 #' @docType package
 #'
-#' @template authorsBH-TG-MK
+#' @template authors-BH-TG-MK
 #'
 #' Maintainer: Bryan A. Hanson \email{hanson@@depauw.edu}
 #'

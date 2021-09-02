@@ -14,7 +14,7 @@
 #'
 #' @return A modifed \code{\link{Spectra}} object.
 #'
-#' @template authorsBH
+#' @template authors-BH
 #'
 #' @references
 #'

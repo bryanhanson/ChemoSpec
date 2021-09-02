@@ -32,10 +32,10 @@
 #' @param use.sym logical; if true, the color scheme is change to black and
 #' symbols are used for plotting.
 #'
-#' @template graphics-dots-arg
-#' @template graphics-return2-arg
+#' @template param-graphics-dots
+#' @template param-graphics-return2
 #'
-#' @template authorsBH-TG
+#' @template authors-BH-TG
 #'
 #' @seealso \code{\link[chemometrics]{pcaDiagplot}} in package
 #' \code{chemometrics} for the underlying function. Additional documentation at

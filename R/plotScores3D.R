@@ -45,7 +45,7 @@
 #'
 #' @return None.  Side effect is a plot.
 #'
-#' @template authorsBH
+#' @template authors-BH
 #'
 #' @seealso For a 2D plot of the scores, see \code{\link{plotScores}}.  For
 #' interactive 3D plots, use \code{\link{plotScoresRGL}}.  Additional documentation

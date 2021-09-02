@@ -17,10 +17,10 @@
 #' @param ref An integer specifying the reference spectrum to plot, which
 #'        appears at the bottom of the plot.
 #'
-#' @template graphics-dots-arg
-#' @template graphics-return-arg
+#' @template param-graphics-dots
+#' @template param-graphics-return
 #'
-#' @template authorsBH-MK
+#' @template authors-BH-MK
 #'
 #' @seealso An example using this function can be seen in
 #' \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotLoadings}}.

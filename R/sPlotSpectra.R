@@ -13,10 +13,10 @@
 #'
 #' @param pc An integer specifying the desired pc plot.
 #'
-#' @template tol-arg
-#' @template graphics-dots-arg
-#' @template graphics-return-arg
-#' @template authorsBH-TG-MK
+#' @template param-tol
+#' @template param-graphics-dots
+#' @template param-graphics-return
+#' @template authors-BH-TG-MK
 #'
 #' @references Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor,
 #' Gottfries, Moritz, and Trygg. "Visualization of GC/TOF-MS-Based

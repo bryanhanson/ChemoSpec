@@ -20,11 +20,11 @@
 #' @param loads A vector of two integers specifying which loading vectors to
 #' plot.
 #'
-#' @template graphics-dots-arg
-#' @template tol-arg
-#' @template graphics-return-arg
+#' @template param-graphics-dots
+#' @template param-tol
+#' @template param-graphics-return
 #'
-#' @template authorsBH-TG
+#' @template authors-BH-TG
 #'
 #' @seealso See \code{\link{plotLoadings}} to plot one loading against the
 #' original variable (frequency) axis.  See \code{\link{sPlotSpectra}} for

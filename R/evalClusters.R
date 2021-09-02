@@ -42,7 +42,7 @@
 #' @return A list giving the results, as described in \code{\link[clusterCrit]{intCriteria}} or
 #' \code{\link[NbClust]{NbClust}}.
 #'
-#' @template authorsBH
+#' @template authors-BH
 #'
 #' @seealso \code{\link{hclust}} for the underlying base function.
 #' \code{\link{hcaSpectra}} for HCA analysis of a \code{\link{Spectra}} object.

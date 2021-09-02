@@ -23,7 +23,7 @@
 #' @return A data frame containing the x, y and z coordinates, along with the
 #' corresponding labels.
 #'
-#' @template authorsBH
+#' @template authors-BH
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'

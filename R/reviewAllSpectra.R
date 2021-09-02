@@ -11,10 +11,10 @@
 #'
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
-#' @template graphics-dots-arg
-#' @template graphics-return-arg
+#' @template param-graphics-dots
+#' @template param-graphics-return
 #'
-#' @template authorsBH-TG
+#' @template authors-BH-TG
 #'
 #' @keywords hplot
 #'

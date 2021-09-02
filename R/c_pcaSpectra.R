@@ -26,7 +26,7 @@
 #' pre-processing carried out and the type of PCA performed (used to annotate
 #' plots).
 #'
-#' @template authorsBH
+#' @template authors-BH
 #'
 #' @seealso \code{\link{prcomp}} for the underlying function,
 #' \code{\link{s_pcaSpectra}} for sparse PCA calculations,

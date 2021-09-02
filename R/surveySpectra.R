@@ -29,12 +29,12 @@
 #' @param lab.pos Numeric, giving the frequency where the label should be drawn.
 #' Applies to \code{surveySpectra2} only.
 #'
-#' @template graphics-dots-arg
-#' @template graphics-return-arg
+#' @template param-graphics-dots
+#' @template param-graphics-return
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @template authorsBH-TG
+#' @template authors-BH-TG
 #'
 #' @keywords hplot
 #'

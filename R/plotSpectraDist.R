@@ -13,14 +13,14 @@
 #'
 #' @param labels Logical.  Shall the points be labeled?
 #'
-#' @template graphics-dots-arg
-#' @template graphics-return2-arg
+#' @template param-graphics-dots
+#' @template param-graphics-return2
 #'
 #' @seealso To compare all spectra simultaneously in a heatmap, see
 #' \code{\link[ChemoSpecUtils]{sampleDist}}.  Additional documentation
 #' at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @template authorsBH-TG
+#' @template authors-BH-TG
 #'
 #' @keywords hplot multivariate
 #'

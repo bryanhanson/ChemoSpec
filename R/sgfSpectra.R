@@ -15,7 +15,7 @@
 #'
 #' @return A object of class \code{\link{Spectra}}.
 #'
-#' @template authorsBH
+#' @template authors-BH
 #'
 #' @keywords utilities multivariate
 #'

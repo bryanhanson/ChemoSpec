@@ -18,10 +18,10 @@
 #' @param ref An integer specifying the reference spectrum to plot, which
 #' appears at the bottom of the plot.
 #'
-#' @template graphics-dots-arg
-#' @template graphics-return-arg
+#' @template param-graphics-dots
+#' @template param-graphics-return
 #'
-#' @template authorsBH-TG
+#' @template authors-BH-TG
 #'
 #' @seealso \code{\link{c_pcaSpectra}} for an example.  See \code{\link{plot2Loadings}}
 #' to plot two loadings against each

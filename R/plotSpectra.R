@@ -31,11 +31,11 @@
 #' @param showGrid Logical.  Places light gray vertical lines at each tick mark
 #' if \code{TRUE}.
 #'
-#' @template legloc-arg
-#' @template graphics-dots-arg
-#' @template graphics-return-arg
+#' @template param-legloc
+#' @template param-graphics-dots
+#' @template param-graphics-return
 #'
-#' @template authorsBH-TG
+#' @template authors-BH-TG
 #'
 #' @seealso \code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOptions}}
 #'          for more information about the graphics options. Additional documentation at

@@ -32,7 +32,7 @@
 #'         use the tools provided by \code{plotly} package and interact with the plot.
 #' }
 #'
-#' @template authorsBH-TG
+#' @template authors-BH-TG
 #'
 #' @keywords utilities
 #'

@@ -17,7 +17,7 @@
 #' the spread.
 #' For \code{.seX}, a single value giving the standard error of x.
 #'
-#' @template authorsBH
+#' @template authors-BH
 #'
 #' @keywords utilities
 #'
