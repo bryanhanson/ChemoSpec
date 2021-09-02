@@ -20,7 +20,7 @@
 #'  }
 #'
 #'
-#' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
+#' @template authorsBH
 #'
 #' @keywords hplot
 #'
@@ -30,8 +30,6 @@
 #'
 #' @export loopThruSpectra
 #'
-#' @importFrom grDevices devAskNewPage
-#' @importFrom ggplot2 xlab ylab facet_grid element_rect
 #' @examples
 #' \dontrun{
 #' data(metMUD1)

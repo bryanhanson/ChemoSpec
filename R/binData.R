@@ -34,7 +34,7 @@
 #' summed y values.  Length will be approximately length(y)/bin.ratio, with
 #' length(y) adjusted as described above if this does not give a whole number.}
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authorsBH
 #'
 #' @keywords utilities manip
 #'

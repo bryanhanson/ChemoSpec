@@ -14,7 +14,7 @@
 #'
 #' @return A modifed \code{\link{Spectra}} object.
 #'
-#' @author Bryan A. Hanson, DePauw University. \email{hanson@@depauw.edu}
+#' @template authorsBH
 #'
 #' @references
 #'

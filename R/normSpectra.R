@@ -33,7 +33,7 @@
 #'
 #' @return An object of S3 class \code{\link{Spectra}}.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authorsBH
 #'
 #' @references Probabalistic Quotient Normalization is reported in F. Dieterle
 #' et. al. Analytical Chemistry vol. 78 pages 4281-4290 (2006).  The exact same

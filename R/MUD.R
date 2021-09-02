@@ -24,7 +24,7 @@
 #' which the concentrations of some compounds co-vary, and others are
 #' independent. This data set is normalized.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authorsBH
 #'
 #' @name metMUD1
 #'

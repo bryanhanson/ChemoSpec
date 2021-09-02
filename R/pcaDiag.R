@@ -35,7 +35,7 @@
 #' @template graphics-dots-arg
 #' @template graphics-return2-arg
 #'
-#' @author Bryan A. Hanson, DePauw University,Tejasvi Gupta.
+#' @template authorsBH-TG
 #'
 #' @seealso \code{\link[chemometrics]{pcaDiagplot}} in package
 #' \code{chemometrics} for the underlying function. Additional documentation at

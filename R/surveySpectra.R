@@ -34,7 +34,7 @@
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
+#' @template authorsBH-TG
 #'
 #' @keywords hplot
 #'
@@ -43,7 +43,6 @@
 #' @importFrom stats sd
 #' @importFrom graphics plot lines text
 #' @importFrom plyr aaply
-#' @importFrom ChemoSpecUtils sumGroups
 #' @importFrom ggplot2 xlab ylab facet_grid element_rect
 #' @importFrom plotly ggplotly
 #'

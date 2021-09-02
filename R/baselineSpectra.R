@@ -39,7 +39,7 @@
 #' corrected spectra is returned.  In these latter two cases plots are also
 #' drawn.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authorsBH
 #'
 #' @keywords hplot
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}

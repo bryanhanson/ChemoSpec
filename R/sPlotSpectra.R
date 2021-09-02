@@ -16,8 +16,7 @@
 #' @template tol-arg
 #' @template graphics-dots-arg
 #' @template graphics-return-arg
-#'
-#' @author Matthew J. Keinsley, Bryan A. Hanson, Tejasvi Gupta.
+#' @template authorsBH-TG-MK
 #'
 #' @references Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor,
 #' Gottfries, Moritz, and Trygg. "Visualization of GC/TOF-MS-Based

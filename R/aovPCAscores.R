@@ -34,7 +34,7 @@
 #' @template graphics-return2-arg
 #' @template tol-arg
 #'
-#' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+#' @template authorsBH-MK
 #'
 #' @seealso The use of this function can be seen in
 #' \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotScores}}.

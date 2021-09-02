@@ -21,7 +21,7 @@
 #' @template graphics-dots-arg
 #' @template graphics-return-arg
 #'
-#' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
+#' @template authorsBH-TG
 #'
 #' @seealso \code{\link{c_pcaSpectra}} for an example.  See \code{\link{plot2Loadings}}
 #' to plot two loadings against each

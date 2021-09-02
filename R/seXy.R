@@ -17,7 +17,7 @@
 #' the spread.
 #' For \code{.seX}, a single value giving the standard error of x.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authorsBH
 #'
 #' @keywords utilities
 #'

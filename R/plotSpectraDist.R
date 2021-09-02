@@ -20,7 +20,7 @@
 #' \code{\link[ChemoSpecUtils]{sampleDist}}.  Additional documentation
 #' at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
+#' @template authorsBH-TG
 #'
 #' @keywords hplot multivariate
 #'

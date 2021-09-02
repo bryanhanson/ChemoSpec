@@ -28,7 +28,7 @@
 #' plots).  A check is carried out to see if the computation was successful
 #' and a warning issued if it failed.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authorsBH
 #'
 #' @seealso \code{\link[elasticnet]{arrayspc}} for the underlying function,
 #' \code{\link{c_pcaSpectra}} for classical PCA calculations,

@@ -15,7 +15,7 @@
 #'
 #' @return A list as described in \code{\link[seriation]{hmap}}. Side effect is a plot.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authorsBH
 #'
 #' @seealso \code{\link[seriation]{hmap}} which will get you to the package
 #' (there is no package index page); the vignette is a good place to begin

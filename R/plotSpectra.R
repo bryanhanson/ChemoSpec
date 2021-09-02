@@ -35,7 +35,7 @@
 #' @template graphics-dots-arg
 #' @template graphics-return-arg
 #'
-#' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
+#' @template authorsBH-TG
 #'
 #' @seealso \code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOptions}}
 #'          for more information about the graphics options. Additional documentation at
@@ -46,10 +46,9 @@
 #' @export plotSpectra
 #'
 #' @importFrom graphics grid lines text points plot
-#' @importFrom ggplot2 aes annotate annotation_custom coord_cartesian element_blank
-#' @importFrom ggplot2 element_line element_text geom_line ggplot ggtitle labs
+#' @importFrom ggplot2 aes annotate element_blank
+#' @importFrom ggplot2 geom_line ggplot labs
 #' @importFrom ggplot2 scale_color_manual theme theme_bw theme_classic ylim
-#' @importFrom grid grobTree textGrob
 #' @importFrom reshape2 melt
 #' @importFrom plotly ggplotly
 #'

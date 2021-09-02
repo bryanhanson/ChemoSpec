@@ -28,7 +28,7 @@
 #'
 #' @return A list of PCA results, one for each computed submatrix.
 #'
-#' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+#' @template authorsBH-MK
 #'
 #' @seealso The output of this function is used in
 #' used in \code{\link{aovPCAscores}} and \code{\link{aovPCAloadings}}.

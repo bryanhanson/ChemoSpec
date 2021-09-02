@@ -32,7 +32,7 @@
 #'         use the tools provided by \code{plotly} package and interact with the plot.
 #' }
 #'
-#' @author Bryan A. Hanson, DePauw University, Tejasvi Gupta.
+#' @template authorsBH-TG
 #'
 #' @keywords utilities
 #'

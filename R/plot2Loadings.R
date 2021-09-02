@@ -24,7 +24,7 @@
 #' @template tol-arg
 #' @template graphics-return-arg
 #'
-#' @author Bryan A. Hanson, DePauw University,Tejasvi Gupta.
+#' @template authorsBH-TG
 #'
 #' @seealso See \code{\link{plotLoadings}} to plot one loading against the
 #' original variable (frequency) axis.  See \code{\link{sPlotSpectra}} for
@@ -36,8 +36,7 @@
 #' @export plot2Loadings
 #'
 #' @importFrom graphics plot abline legend
-#' @importFrom ChemoSpecUtils .getVarExplained
-#' @importFrom ggplot2 geom_text
+#' @importFrom ggplot2 ggplot
 #' @importFrom magrittr %>%
 #' @importFrom plotly add_annotations
 #'

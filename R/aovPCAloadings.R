@@ -20,7 +20,7 @@
 #' @template graphics-dots-arg
 #' @template graphics-return-arg
 #'
-#' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+#' @template authorsBH-MK
 #'
 #' @seealso An example using this function can be seen in
 #' \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotLoadings}}.
