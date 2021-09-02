@@ -19,7 +19,7 @@
 #'
 #' @docType package
 #'
-#' @template authors-BH-TG-MK
+#' @author Bryan A. Hanson (DePauw University), Tejasvi Gupta & Matthew J. Keinsley.
 #'
 #' Maintainer: Bryan A. Hanson \email{hanson@@depauw.edu}
 #'

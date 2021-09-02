@@ -16,7 +16,7 @@
 #' @template param-tol
 #' @template param-graphics-dots
 #' @template param-graphics-return
-#' @template authors-BH-TG-MK
+#' @author Bryan A. Hanson (DePauw University), Tejasvi Gupta & Matthew J. Keinsley.
 #'
 #' @references Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor,
 #' Gottfries, Moritz, and Trygg. "Visualization of GC/TOF-MS-Based

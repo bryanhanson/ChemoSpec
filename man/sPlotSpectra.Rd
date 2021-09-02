@@ -59,4 +59,7 @@ Compounds Usings OPLS Class Models" Analytical Chemistry Vol.80 no.1 pgs.
 \seealso{
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
+\author{
+Bryan A. Hanson (DePauw University), Tejasvi Gupta & Matthew J. Keinsley.
+}
 \keyword{hplot}
