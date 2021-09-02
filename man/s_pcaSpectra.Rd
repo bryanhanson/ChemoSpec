@@ -71,6 +71,6 @@ For displaying the results, \code{\link{plotScree}},
 \code{\link{plotScores3D}}, \code{\link{plotScoresRGL}}.
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{multivariate}

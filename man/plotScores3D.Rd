@@ -77,7 +77,7 @@ interactive 3D plots, use \code{\link{plotScoresRGL}}.  Additional documentation
 at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{hplot}
 \keyword{multivariate}

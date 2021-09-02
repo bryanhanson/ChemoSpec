@@ -39,7 +39,7 @@ par(mfrow = c(1, 1))
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{multivariate}
 \keyword{utilities}

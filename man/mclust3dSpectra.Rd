@@ -96,7 +96,7 @@ mclust3dSpectra(metMUD1, class,
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{cluster}
 \keyword{multivariate}

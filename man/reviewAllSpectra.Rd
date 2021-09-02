@@ -41,6 +41,6 @@ See \code{\link{GraphicsOptions}}
          \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University, Tejasvi Gupta.
+Bryan A. Hanson (DePauw University), Tejasvi Gupta.
 }
 \keyword{hplot}

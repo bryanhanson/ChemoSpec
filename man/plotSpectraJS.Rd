@@ -82,6 +82,6 @@ about \code{d3.js} are at \url{https://d3js.org}. Additional documentation at
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{plot}

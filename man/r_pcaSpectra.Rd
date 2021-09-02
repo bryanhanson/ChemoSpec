@@ -58,7 +58,7 @@ For displaying the results, \code{\link{plotScree}},
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{multivariate}
 \keyword{robust}

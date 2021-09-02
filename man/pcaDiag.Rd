@@ -77,6 +77,6 @@ Statistical Analysis in Chemometrics}, CRC Press, 2009.
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University,Tejasvi Gupta.
+Bryan A. Hanson (DePauw University), Tejasvi Gupta.
 }
 \keyword{multivariate}

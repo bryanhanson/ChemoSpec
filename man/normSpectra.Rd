@@ -68,7 +68,7 @@ group, reported in K. A. Veselkov et. al. Analytical Chemistry vol. 83 pages
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{manip}
 \keyword{utilities}
