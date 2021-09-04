@@ -6,5 +6,5 @@
 #' full documentation via \code{\link[ChemoSpecUtils]{chkReqGraphicsPkgs}}.
 #'
 #' @name chkReqGraphicsPkgs
-#'
+#' @noRd
 NULL
