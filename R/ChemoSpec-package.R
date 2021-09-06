@@ -47,4 +47,6 @@
 #' @importFrom ChemoSpecUtils .prepLegendCoords .ggAddLegend .ggAnnotate .ggRepel
 #' @export .prepLegendCoords .ggAddLegend .ggAnnotate .ggRepel
 #'
+#' @import ggplot2
+#'
 NULL

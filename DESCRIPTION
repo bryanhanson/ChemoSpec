@@ -39,10 +39,10 @@ Imports:
   utils,
   grDevices,
   reshape2,
-  ggplot2,
   readJDX (>= 0.4),
   patchwork,
   ggrepel,
+  ggplot2,
   plotly,
   magrittr
 Suggests:
