@@ -59,8 +59,8 @@
 #' data(metMUD1)
 #' pca <- c_pcaSpectra(metMUD1, choice = "noscale")
 #' plotScores3D(metMUD1, pca, main = "metMUD1 NMR Spectra")
-#' @export plotScores3D
 #'
+#' @export plotScores3D
 #' @importFrom graphics plot
 #' @importFrom grid grid.text gpar
 #' @importFrom ChemoSpecUtils sumGroups

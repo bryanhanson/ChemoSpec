@@ -39,8 +39,8 @@
 #' SrE.NMR$names <- paste("  ", SrE.NMR$names, sep = "") # pad the names for better appearance
 #' temp <- plotSpectraDist(SrE.NMR,
 #'   xlab = txt2, ylab = txt1, main = txt1,
-#'   ylim = c(0, 1.1), xlim = c(0, 16), srt = 45
-#' )
+#'   ylim = c(0, 1.1), xlim = c(0, 16), srt = 45)
+#'
 plotSpectraDist <- function(spectra,
                             method = "pearson",
                             ref = 1,

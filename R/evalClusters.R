@@ -58,9 +58,7 @@
 #'
 #' @examples
 #'
-#' # These are a little slow for CRAN checking
 #' \dontrun{
-#'
 #' data(metMUD2)
 #'
 #' # Using clusterCrit
@@ -76,7 +74,6 @@
 #' }
 #'
 #' @export evalClusters
-#'
 #' @importFrom stats hclust cutree
 #'
 evalClusters <- function(spectra, pkg = "NbClust", hclst = NULL,

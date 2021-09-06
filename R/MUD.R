@@ -38,6 +38,7 @@
 #' interested.
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#' @keywords datasets
 #'
 #' @examples
 #' data(metMUD1)
@@ -45,5 +46,4 @@
 #' #
 #' data(metMUD2)
 #' sumSpectra(metMUD2)
-#' @keywords datasets
 NULL

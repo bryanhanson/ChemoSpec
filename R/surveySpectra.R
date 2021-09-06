@@ -52,8 +52,13 @@
 #'
 #' data(SrE.IR)
 #' myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(Extract ~ IR ~ Spectra))
-#' surveySpectra(SrE.IR, method = "iqr", main = myt)
-#' surveySpectra2(SrE.IR, method = "iqr", main = myt)
+#'
+#' p1 <- surveySpectra(SrE.IR, method = "iqr")
+#' p1 <- p1 + ggtitle(myt)
+#' 
+#' p2 <- surveySpectra2(SrE.IR, method = "iqr")
+#' p2 <- p2 + ggtitle(myt)
+#'
 surveySpectra <- function(spectra,
                           method = c("sd", "sem", "sem95", "mad", "iqr"),
                           by.gr = TRUE, ...) {

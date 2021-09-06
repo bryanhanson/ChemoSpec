@@ -36,6 +36,7 @@ data(metMUD1)
 sumSpectra(metMUD1)
 res <- binSpectra(metMUD1, bin.ratio = 4)
 sumSpectra(res)
+
 }
 \seealso{
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}

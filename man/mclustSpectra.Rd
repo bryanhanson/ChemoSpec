@@ -43,11 +43,14 @@ plotting functions.
 require("mclust")
 data(metMUD1)
 cls <- c_pcaSpectra(metMUD1, choice = "autoscale")
-plotScores(metMUD1, cls)
+
+p <- plotScores(metMUD1, cls)
+
 mclustSpectra(metMUD1, cls, plot = "BIC")
 mclustSpectra(metMUD1, cls, plot = "proj")
 mclustSpectra(metMUD1, cls, plot = "errors", truth = metMUD1$groups)
 }
+
 }
 \seealso{
 \code{\link[mclust]{Mclust}} for background on the method.

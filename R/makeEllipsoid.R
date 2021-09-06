@@ -53,6 +53,7 @@
 #' ell <- .makeEllipsoid(cbind(x, y), cl = 0.99)
 #' plot(ell[, 1], ell[, 2], col = "red", pch = 20, cex = 0.3)
 #' points(x, y)
+#'
 #' @export
 #' @noRd
 #' @importFrom stats var rnorm qf

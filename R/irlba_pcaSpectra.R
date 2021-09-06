@@ -50,18 +50,17 @@
 #'\dontrun{
 #' data(SrE.NMR)
 #' pca <- irlba_pcaSpectra(SrE.NMR)
-#' plotScree(pca)
-#' plotScores(SrE.NMR, pca,
-#'   main = "SrE NMR Data",
-#'   pcs = c(1, 2), ellipse = "cls", tol = 0.05
-#' )
-#' plotLoadings(SrE.NMR, pca,
-#'   main = "SrE NMR Data",
-#'   loads = 1:2, ref = 1
-#' )
-#' }
-#' @export irlba_pcaSpectra
 #'
+#' p1 <- plotScree(pca)
+#'
+#' p2 <- plotScores(SrE.NMR, pca, pcs = c(1, 2), ellipse = "cls", tol = 0.05)
+#' p2 <- p2 + ggtitle("Scores: SrE NMR Data")
+#'
+#' p3 <- plotLoadings(SrE.NMR, pca, loads = 1:2, ref = 1)
+#' p3 <- p3 + ggtitle("Loadings: SrE NMR Data")
+#' }
+#'
+#' @export irlba_pcaSpectra
 #' @importFrom stats sd
 #'
 irlba_pcaSpectra <- function(spectra, choice = "noscale", n = 3, center = TRUE, ...) {

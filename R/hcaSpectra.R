@@ -38,8 +38,8 @@
 #' data(SrE.IR)
 #' myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
 #' res <- hcaSpectra(SrE.IR, main = myt)
-#' @export hcaSpectra
 #'
+#' @export hcaSpectra
 #' @importFrom stats hclust
 #'
 hcaSpectra <- function(spectra,

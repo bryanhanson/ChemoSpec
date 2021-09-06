@@ -58,12 +58,18 @@
 #'
 #' # run aov_pcaSpectra
 #' PCAs <- aov_pcaSpectra(mM3, fac = c("geneBb", "geneCc"))
-#' apca1 <- aovPCAscores(mM3, PCAs, submat = 1, main = "aovPCA: B vs b", ellipse = "cls")
-#' apca2 <- aovPCAscores(mM3, PCAs, submat = 2, main = "aovPCA: C vs c")
-#' apca3 <- aovPCAscores(mM3, PCAs, submat = 3, main = "aovPCA: Interaction Term")
-#' apca4 <- aovPCAloadings(
-#'   spectra = mM3, PCA = PCAs, main = "aov_pcaSpectra: Bb Loadings"
-#' )
+#'
+#' p1 <- aovPCAscores(mM3, PCAs, submat = 1, ellipse = "cls")
+#' p1 <- p1 + ggtitle("aovPCA: B vs b")
+#'
+#' p2 <- aovPCAscores(mM3, PCAs, submat = 2)
+#' p2 <- p2 + ggtitle("aovPCA: C vs c")
+#'
+#' p3 <- aovPCAscores(mM3, PCAs, submat = 3)
+#' p3 <- p3 + ggtitle("aovPCA: Interaction Term")
+#'
+#' p4 <- aovPCAloadings(spectra = mM3, PCA = PCAs)
+#' p4 <- p4 + ggtitle("aov_pcaSpectra: Bb Loadings")
 #' }
 #' @export
 #'

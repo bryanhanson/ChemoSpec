@@ -29,6 +29,7 @@
 #' x2 <- .normVec(x1)
 #' range(x2)
 #' sd(x2) / diff(range(x2))
+#'
 #' @export
 #' @noRd
 #'

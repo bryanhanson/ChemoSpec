@@ -28,22 +28,18 @@
 #' @keywords utilities
 #'
 #' @examples
-#'
+#' \dontrun{
+#' require("ggplot2")
 #' data(alignMUD)
 #'
-#' plotSpectra(alignMUD,
-#'   which = 1:20, lab.pos = 4.5, offset = 0.1,
-#'   yrange = c(0, 1900), amp = 500, xlim = c(1.5, 1.8),
-#'   main = "Misaligned NMR Spectra (alignMUD)"
-#' )
+#' p1 <- plotSpectra(alignMUD, which = 1:20, lab.pos = 4.5, offset = 0.1, yrange = c(0, 1900), amp = 500)
+#' p1 <- p1 + ggtitle("Misaligned NMR Spectra") + coord_cartesian(xlim = c(1.5, 1.8))
 #'
 #' aMUD <- clupaSpectra(alignMUD)
-#' plotSpectra(aMUD,
-#'   which = 1:20, lab.pos = 4.5, offset = 0.1,
-#'   yrange = c(0, 1900), amp = 500, xlim = c(1.5, 1.8),
-#'   main = "Aligned NMR Spectra (alignMUD)"
-#' )
 #'
+#' p2 <- plotSpectra(aMUD, which = 1:20, lab.pos = 4.5, offset = 0.1, yrange = c(0, 1900), amp = 500)
+#' p2 <- p2 +  ggtitle("Aligned NMR Spectra") + coord_cartesian(xlim = c(1.5, 1.8))
+#' }
 #' @export clupaSpectra
 #'
 #'

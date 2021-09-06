@@ -59,6 +59,7 @@ summary.aov(res)
 
 # You can also call this function on the existing groups:
 res <- hypTestScores(metMUD2, pca, fac = "groups")
+
 }
 \seealso{
 \code{\link{splitSpectraGroups}} which can be used to create

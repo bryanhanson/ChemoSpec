@@ -49,7 +49,7 @@
 #'
 #' # Let's look just at the carbonyl region
 #' IR <- removeFreq(SrE.IR, rem.freq = SrE.IR$freq > 1775 | SrE.IR$freq < 1660)
-#' plotSpectra(IR, which = 1:16, lab.pos = 1800)
+#' p <- plotSpectra(IR, which = 1:16, lab.pos = 1800)
 #'
 #' # Defaults, except for color scheme:
 #' res <- hmapSpectra(IR, col = heat.colors(5))
@@ -61,8 +61,8 @@
 #'   row_labels = IR$names, col_labels = as.character(round(IR$freq)),
 #'   margins = c(4, 6)
 #' )
-#' @export hmapSpectra
 #'
+#' @export hmapSpectra
 #'
 hmapSpectra <- function(spectra, ...) {
   .chkArgs(mode = 11L)

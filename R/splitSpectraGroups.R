@@ -48,6 +48,7 @@
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @keywords utilities
+#' @export splitSpectraGroups
 #'
 #' @examples
 #'
@@ -64,7 +65,6 @@
 #' # plotScores and other functions to drive the color scheme
 #' # and labeling, you'll have to update the groups element:
 #' res$groups <- as.factor(paste(res$geneBb, res$geneCc, sep = ""))
-#' @export splitSpectraGroups
 #'
 splitSpectraGroups <- function(spectra, inst = NULL, rep.cols = NULL, ...) {
   .chkArgs(mode = 11L)

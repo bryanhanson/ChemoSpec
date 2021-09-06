@@ -34,7 +34,6 @@
 #'
 #' @template param-graphics-dots
 #' @template param-graphics-return2
-#'
 #' @template authors-BH-TG
 #'
 #' @seealso \code{\link[chemometrics]{pcaDiagplot}} in package
@@ -53,11 +52,12 @@
 #' @importFrom ggplot2 geom_line geom_hline geom_point
 #'
 #' @examples
-#'
+#' require("ggplot2")
 #' data(SrE.IR)
 #' res <- c_pcaSpectra(SrE.IR, choice = "noscale")
-#' temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "OD")
-#' temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "SD")
+#' p1 <- pcaDiag(SrE.IR, res, pcs = 2, plot = "OD") + ggtitle("OD Plot")
+#' p2 <- pcaDiag(SrE.IR, res, pcs = 2, plot = "SD") + ggtitle("SD Plot")
+#'
 pcaDiag <- function(spectra,
                     pca,
                     pcs = 3,

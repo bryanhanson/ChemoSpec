@@ -26,6 +26,7 @@
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @keywords utilities manip
+#' @export binSpectra
 #'
 #' @examples
 #'
@@ -33,7 +34,6 @@
 #' sumSpectra(metMUD1)
 #' res <- binSpectra(metMUD1, bin.ratio = 4)
 #' sumSpectra(res)
-#' @export binSpectra
 #'
 binSpectra <- function(spectra, bin.ratio) {
   .chkArgs(mode = 11L)

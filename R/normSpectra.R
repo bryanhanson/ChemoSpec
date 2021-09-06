@@ -46,22 +46,25 @@
 #' @keywords utilities manip
 #'
 #' @examples
-#'
+#' \dontrun{
 #' data(SrE.IR)
+#'
+#' # Reference spectrum before normalization
+#' p1 <- plotSpectra(SrE.IR) + ggtitle("Original Spectrum")
 #'
 #' # Default PQN normalization
 #' res1 <- normSpectra(SrE.IR)
-#' plotSpectra(res1) # compare to plotSpectra(SrE.IR)
+#' p2 <- plotSpectra(res1) + ggtitle("PQN Normalization")
 #'
 #' # Norm over carbonyl region
 #' RE <- SrE.IR$freq > 1650 & SrE.IR$freq < 1800
 #' res2 <- normSpectra(SrE.IR, method = "Range", RangeExpress = RE)
-#' plotSpectra(res2) # compare to plotSpectra(SrE.IR)
+#' p3 <- plotSpectra(res2) + ggtitle("Normalized to Carbonyl Peaks")
 #'
 #' # Check numerically
 #' rowSums(res2$data[, RE]) # compare to rowSums(SrE.IR$data[,RE])
+#' }
 #' @export normSpectra
-#'
 #' @importFrom stats median
 #'
 normSpectra <- function(spectra, method = "PQN", RangeExpress = NULL) {

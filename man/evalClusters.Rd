@@ -61,9 +61,7 @@ is somewhat more automated.
 }
 \examples{
 
-# These are a little slow for CRAN checking
 \dontrun{
-
 data(metMUD2)
 
 # Using clusterCrit

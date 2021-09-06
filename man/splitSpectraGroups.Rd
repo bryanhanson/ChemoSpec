@@ -66,6 +66,7 @@ sumSpectra(res) # reports on extra elements
 # plotScores and other functions to drive the color scheme
 # and labeling, you'll have to update the groups element:
 res$groups <- as.factor(paste(res$geneBb, res$geneCc, sep = ""))
+
 }
 \seealso{
 \code{\link{conColScheme}}

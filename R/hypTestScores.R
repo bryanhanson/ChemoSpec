@@ -59,8 +59,8 @@
 #'
 #' # You can also call this function on the existing groups:
 #' res <- hypTestScores(metMUD2, pca, fac = "groups")
-#' @export hypTestScores
 #'
+#' @export hypTestScores
 #' @importFrom stats aov manova
 #'
 hypTestScores <- function(spectra, pca, pcs = 1:3, fac = NULL, ...) {

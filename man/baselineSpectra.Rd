@@ -51,6 +51,7 @@ baseline rises or falls steadily, as is often seen in chromatograms.
 
 data(SrE.IR)
 temp <- baselineSpectra(SrE.IR, int = FALSE, method = "modpolyfit")
+
 }
 \seealso{
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}

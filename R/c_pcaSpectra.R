@@ -48,18 +48,17 @@
 #' \dontrun{
 #' data(metMUD1)
 #' pca <- c_pcaSpectra(metMUD1)
-#' plotScree(pca)
-#' plotScores(metMUD1, pca,
-#'   main = "metMUD1 NMR Data",
-#'   pcs = c(1, 2), ellipse = "cls", tol = 0.05
-#' )
-#' plotLoadings(metMUD1, pca,
-#'   main = "metMUD1 NMR Data",
-#'   loads = 1:2, ref = 1
-#' )
-#' }
-#' @export c_pcaSpectra
 #'
+#' p1 <- plotScree(pca)
+#'
+#' p2 <- plotScores(metMUD1, pca, pcs = c(1, 2), ellipse = "cls", tol = 0.05)
+#' p2 <- p2 + ggtitle("Scores: metMUD1 NMR Data")
+#' 
+#' p3 <- plotLoadings(metMUD1, pca, loads = 1:2, ref = 1)
+#' p3 <- p3 + ggtitle("Loadings: metMUD1 NMR Data")
+#' }
+#'
+#' @export c_pcaSpectra
 #' @importFrom stats sd prcomp
 #'
 c_pcaSpectra <- function(spectra, choice = "noscale", cent = TRUE) {

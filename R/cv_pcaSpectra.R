@@ -44,8 +44,8 @@
 #'
 #' data(SrE.IR)
 #' pca <- cv_pcaSpectra(SrE.IR, pcs = 5)
-#' @export cv_pcaSpectra
 #'
+#' @export cv_pcaSpectra
 #' @importFrom stats sd
 #' @importFrom graphics boxplot legend
 #'

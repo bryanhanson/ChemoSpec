@@ -44,6 +44,7 @@ the clusters and distances are available.
 data(SrE.IR)
 myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
 res <- hcaSpectra(SrE.IR, main = myt)
+
 }
 \seealso{
 \code{\link{hclust}} for the underlying function.

@@ -61,11 +61,12 @@ graphics window.  Alternatively, just call the function twice, once
 specifying \code{OD} and once specifying \code{SD}.
 }
 \examples{
-
+require("ggplot2")
 data(SrE.IR)
 res <- c_pcaSpectra(SrE.IR, choice = "noscale")
-temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "OD")
-temp <- pcaDiag(SrE.IR, res, pcs = 2, plot = "SD")
+p1 <- pcaDiag(SrE.IR, res, pcs = 2, plot = "OD") + ggtitle("OD Plot")
+p2 <- pcaDiag(SrE.IR, res, pcs = 2, plot = "SD") + ggtitle("SD Plot")
+
 }
 \references{
 K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate

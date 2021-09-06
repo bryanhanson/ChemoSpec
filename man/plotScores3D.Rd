@@ -70,6 +70,7 @@ the object.
 data(metMUD1)
 pca <- c_pcaSpectra(metMUD1, choice = "noscale")
 plotScores3D(metMUD1, pca, main = "metMUD1 NMR Spectra")
+
 }
 \seealso{
 For a 2D plot of the scores, see \code{\link{plotScores}}.  For

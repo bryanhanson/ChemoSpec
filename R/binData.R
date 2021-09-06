@@ -37,6 +37,8 @@
 #' @template authors-BH
 #'
 #' @keywords utilities manip
+#' @export
+#' @noRd
 #'
 #' @examples
 #'
@@ -48,8 +50,6 @@
 #' # Now try it with bin.ratio that does not divide into 3000
 #' res <- binData(x, y, bin.ratio = 7)
 #' length(res$mean.x)
-#' @export
-#' @noRd
 #'
 .binData <- function(x = NULL, y = NULL, bin.ratio = 2) {
 
