@@ -4,7 +4,7 @@
 #' In \code{ChemoSpec}, the user may chose from the following graphics output options:
 #' \itemize{
 #'   \item \code{base} graphics (also the only style from the early days of \code{ChemoSpec} through version 5).
-#'   \item \code{ggplot2} graphics ,the default.
+#'   \item \code{ggplot2} graphics, \emph{the default}.
 #'   \item \code{plotly} graphics.
 #' }
 #'
@@ -43,8 +43,7 @@
 #' @examples
 #' data(metMUD1)
 #'
-#' # Using ggplot2 graphics
-#' options(ChemoSpecGraphics = "ggplot2")
+#' # Using the default ggplot2 graphics
 #' p1 <- plotSpectra(metMUD1,
 #'   which = c(10, 11), yrange = c(0, 1.5),
 #'   offset = 0.06, amplify = 10, lab.pos = 0.5)
@@ -73,6 +72,5 @@
 #' p7 <- p6 & theme_gray() # compare to p6 + theme_gray()
 #' p7
 #'
-#' options(ChemoSpecGraphics = "base") # turn off for later examples/tests
 #'
 NULL

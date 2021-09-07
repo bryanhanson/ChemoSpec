@@ -43,10 +43,10 @@
 #'
 #' @importFrom ChemoSpecUtils sampleDist chkGraphicsOpt chkReqGraphicsPkgs
 #' @export sampleDist chkGraphicsOpt chkReqGraphicsPkgs
-#' 
+#'
 #' @importFrom ChemoSpecUtils .prepLegendCoords .ggAddLegend .ggAnnotate .ggRepel
 #' @export .prepLegendCoords .ggAddLegend .ggAnnotate .ggRepel
 #'
-#' @importFrom ggplot2 coord_cartesian ggtitle
+#' @import ggplot2
 #'
 NULL

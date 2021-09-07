@@ -3,6 +3,7 @@
 #'
 .onAttach <- function(libname, pkgname) {
   options(ChemoSpecGraphics = "ggplot2")
+  chkReqGraphicsPkgs("ggplot2")
 
   packageStartupMessage("\nAs of version 6, ChemoSpec offers new graphics output options")
   packageStartupMessage("For details, please see ?GraphicsOptions")

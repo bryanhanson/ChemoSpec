@@ -45,7 +45,7 @@ if \code{TRUE}.}
 
 \item{leg.loc}{Either a list with elements \code{x} and \code{y}, or a string like
 \code{"topright"}.  Values in a list should be on \code{[0,1]}, i.e. the lower left of the plot
-area is \code{0,0} and the upper right is \code{1,1}.  String values are those described in 
+area is \code{0,0} and the upper right is \code{1,1}.  String values are those described in
 \code{\link[graphics]{legend}} under "Details". A value of \code{"none"} is acceptable as well.}
 
 \item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
@@ -64,20 +64,17 @@ offset or stacked.  The vertical scale is controlled by a combination of
 several parameters.
 }
 \examples{
-
+library("ggplot2")
 data(metMUD1)
 
-p1 <- plotSpectra(metMUD1,
-  which = c(10, 11), yrange = c(0, 1.5),
+p1 <- plotSpectra(metMUD1, which = c(10, 11), yrange = c(0, 1.5),
   offset = 0.06, amplify = 10, lab.pos = 0.5)
 p1 <- p1 + ggtitle("metMUD1 NMR Data")
 
 # Add a legend at x, y coords
-p2 <- plotSpectra(metMUD1,
-  which = c(10, 11), yrange = c(0, 1.5),
-  offset = 0.06, amplify = 10, lab.pos = 0.5,
-  leg.loc = list(x = 0.8, y = 0.8))
-p12 <- p2 + ggtitle("metMUD1 NMR Data")
+p2 <- plotSpectra(metMUD1, which = c(10, 11), yrange = c(0, 1.5),
+  offset = 0.06, amplify = 10, lab.pos = 0.5, leg.loc = list(x = 0.8, y = 0.8))
+p2 <- p2 + ggtitle("metMUD1 NMR Data")
 
 }
 \seealso{
