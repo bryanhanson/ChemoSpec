@@ -38,6 +38,8 @@
 #' @examples
 #' 
 #' \dontrun{
+#' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+#' library("ggplot2")
 #' data(metMUD1)
 #' pca <- r_pcaSpectra(metMUD1)
 #'

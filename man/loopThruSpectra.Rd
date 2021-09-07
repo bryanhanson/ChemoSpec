@@ -27,13 +27,6 @@ waits for a return in the console before plotting the next spectrum.  Use
 \details{
 The ggplot2 mode plots all the \code{\link{Spectra}} objects in the dataset on a single column.
 }
-\examples{
-\dontrun{
-data(metMUD1)
-loopThruSpectra(metMUD1)
-}
-
-}
 \seealso{
 See \code{\link{GraphicsOptions}}
          for more information about the graphics options. Additional documentation at

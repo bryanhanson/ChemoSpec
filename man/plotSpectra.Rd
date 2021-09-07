@@ -45,7 +45,7 @@ if \code{TRUE}.}
 
 \item{leg.loc}{Either a list with elements \code{x} and \code{y}, or a string like
 \code{"topright"}.  Values in a list should be on \code{[0,1]}, i.e. the lower left of the plot
-area is \code{0,0} and the upper right is \code{1,1}.  String values are those described in
+area is \code{0,0} and the upper right is \code{1,1}.  String values are those described in 
 \code{\link[graphics]{legend}} under "Details". A value of \code{"none"} is acceptable as well.}
 
 \item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
@@ -64,6 +64,7 @@ offset or stacked.  The vertical scale is controlled by a combination of
 several parameters.
 }
 \examples{
+# This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
 library("ggplot2")
 data(metMUD1)
 

@@ -36,10 +36,12 @@
 #'
 #' @examples
 #'
+#' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+#' library("ggplot2")
 #' data(SrE.IR)
 #' pca <- c_pcaSpectra(SrE.IR)
 #' myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
-#' p <- sPlotSpectra(spectra = SrE.IR, pca = IR.pca, pc = 1, tol = 0.001)
+#' p <- sPlotSpectra(spectra = SrE.IR, pca = pca, pc = 1, tol = 0.001)
 #' p <- p + ggtitle(myt)
 #'
 sPlotSpectra <- function(spectra,

@@ -25,6 +25,8 @@ filters to a \code{\link{Spectra}} object in a convenient way.
 }
 \examples{
 
+# This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+library("ggplot2")
 data(SrE.IR)
 myt1 <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
 myt2 <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra ~ (Smoothed)))

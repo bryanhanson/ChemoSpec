@@ -30,12 +30,6 @@
 #'
 #' @export loopThruSpectra
 #'
-#' @examples
-#' \dontrun{
-#' data(metMUD1)
-#' loopThruSpectra(metMUD1)
-#' }
-#'
 loopThruSpectra <- function(spectra, ...) {
   stop("loopThruSpectra has been renamed reviewAllSpectra")
 }

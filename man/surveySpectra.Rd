@@ -69,6 +69,8 @@ scale.
 
 \examples{
 
+# This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+library("ggplot2")
 data(SrE.IR)
 myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(Extract ~ IR ~ Spectra))
 

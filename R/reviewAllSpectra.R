@@ -28,10 +28,10 @@
 #' @importFrom ggplot2 xlab ylab facet_grid element_rect
 #'
 #' @examples
-#' \dontrun{
+#' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
 #' data(metMUD1)
 #' p <- reviewAllSpectra(metMUD1)
-#' }
+#' 
 #'
 reviewAllSpectra <- function(spectra, ...) {
   .chkArgs(mode = 11L)

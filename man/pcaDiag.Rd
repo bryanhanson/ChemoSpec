@@ -61,7 +61,8 @@ graphics window.  Alternatively, just call the function twice, once
 specifying \code{OD} and once specifying \code{SD}.
 }
 \examples{
-require("ggplot2")
+# This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+library("ggplot2")
 data(SrE.IR)
 res <- c_pcaSpectra(SrE.IR, choice = "noscale")
 p1 <- pcaDiag(SrE.IR, res, pcs = 2, plot = "OD") + ggtitle("OD Plot")

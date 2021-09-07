@@ -39,6 +39,8 @@ is the same as standard PCA and gives no additional separation.
 \examples{
 
 \dontrun{
+# This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+library("ggplot2")
 data(metMUD2)
 
 # Original factor encoding:

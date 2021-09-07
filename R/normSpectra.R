@@ -46,7 +46,8 @@
 #' @keywords utilities manip
 #'
 #' @examples
-#' \dontrun{
+#' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+#' library("ggplot2")
 #' data(SrE.IR)
 #'
 #' # Reference spectrum before normalization
@@ -63,7 +64,7 @@
 #'
 #' # Check numerically
 #' rowSums(res2$data[, RE]) # compare to rowSums(SrE.IR$data[,RE])
-#' }
+#' 
 #' @export normSpectra
 #' @importFrom stats median
 #'

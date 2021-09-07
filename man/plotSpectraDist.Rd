@@ -34,13 +34,14 @@ ways (see Arguments).
 }
 \examples{
 
+# This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+library("ggplot2")
 data(SrE.NMR)
-txt1 <- paste("Distance from", SrE.NMR$names[1]) # capture before padding
+txt1 <- paste("Distance from", SrE.NMR$names[1])
 txt2 <- paste("Rank Distance from", SrE.NMR$names[1])
-SrE.NMR$names <- paste("  ", SrE.NMR$names, sep = "") # pad the names for better appearance
-temp <- plotSpectraDist(SrE.NMR,
-  xlab = txt2, ylab = txt1, main = txt1,
-  ylim = c(0, 1.1), xlim = c(0, 16), srt = 45)
+p <- plotSpectraDist(SrE.NMR)
+p <- p + labs(title = txt1, xlab = txt2, ylab = txt2) +
+         coord_cartesian(ylim = c(0, 1.1), xlim = c(0, 16))
 
 }
 \seealso{

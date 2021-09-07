@@ -42,7 +42,8 @@ This function carries out normalization of the spectra in a
 }
 }
 \examples{
-\dontrun{
+# This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+library("ggplot2")
 data(SrE.IR)
 
 # Reference spectrum before normalization
@@ -59,7 +60,7 @@ p3 <- plotSpectra(res2) + ggtitle("Normalized to Carbonyl Peaks")
 
 # Check numerically
 rowSums(res2$data[, RE]) # compare to rowSums(SrE.IR$data[,RE])
-}
+
 }
 \references{
 Probabalistic Quotient Normalization is reported in F. Dieterle

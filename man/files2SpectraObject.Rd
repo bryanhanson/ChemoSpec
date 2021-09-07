@@ -198,6 +198,8 @@ to any part of the file name if you know how to construct the proper pattern.
 
 \examples{
 \dontrun{
+# This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+library("ggplot2")
 
 wd <- getwd() # save current location
 setwd(tempdir())

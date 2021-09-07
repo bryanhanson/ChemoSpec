@@ -51,7 +51,6 @@
 #' interactive 3D plots, use \code{\link{plotScoresRGL}}.  Additional documentation
 #' at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#'
 #' @keywords multivariate hplot
 #'
 #' @examples
