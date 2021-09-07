@@ -64,6 +64,7 @@ offset or stacked.  The vertical scale is controlled by a combination of
 several parameters.
 }
 \examples{
+library("ggplot2")
 data(metMUD1)
 
 p1 <- plotSpectra(metMUD1, which = c(10, 11), yrange = c(0, 1.5),
