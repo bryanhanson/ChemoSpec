@@ -60,6 +60,7 @@ p3
 p4 <- p1 + theme_gray() + theme(legend.position = "none")
 p4
 
+# plotLoadings uses pactchwork, whose plots are modified differently
 pca <- c_pcaSpectra(metMUD1)
 p5 <- plotLoadings(metMUD1, pca, loads = c(1, 2))
 p5

@@ -43,6 +43,7 @@
 #' myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
 #' p <- sPlotSpectra(spectra = SrE.IR, pca = pca, pc = 1, tol = 0.001)
 #' p <- p + ggtitle(myt)
+#' p
 #'
 sPlotSpectra <- function(spectra,
                          pca,

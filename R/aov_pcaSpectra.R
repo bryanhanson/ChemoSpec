@@ -63,15 +63,19 @@
 #'
 #' p1 <- aovPCAscores(mM3, PCAs, submat = 1, ellipse = "cls")
 #' p1 <- p1 + ggtitle("aovPCA: B vs b")
+#' p1
 #'
 #' p2 <- aovPCAscores(mM3, PCAs, submat = 2)
 #' p2 <- p2 + ggtitle("aovPCA: C vs c")
+#' p2
 #'
 #' p3 <- aovPCAscores(mM3, PCAs, submat = 3)
 #' p3 <- p3 + ggtitle("aovPCA: Interaction Term")
+#' p3
 #'
 #' p4 <- aovPCAloadings(spectra = mM3, PCA = PCAs)
 #' p4 <- p4 + ggtitle("aov_pcaSpectra: Bb Loadings")
+#' p4
 #' }
 #' @export
 #'

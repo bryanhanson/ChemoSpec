@@ -33,12 +33,15 @@ myt2 <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra 
 
 p1 <- plotSpectra(SrE.IR, xlim = c(1900, 2100), yrange = c(0, 0.05))
 p1 <- p1 + ggtitle(myt1)
+p1
 
 sgf <- sgfSpectra(SrE.IR)
 p2 <- plotSpectra(sgf, xlim = c(1900, 2100), yrange = c(0, 0.05))
 p2 <- p2 + ggtitle(myt2)
+p2
 
 p3 <- p1/p2
+p3
 
 }
 \seealso{

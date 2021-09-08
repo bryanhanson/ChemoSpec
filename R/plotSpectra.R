@@ -59,11 +59,13 @@
 #' p1 <- plotSpectra(metMUD1, which = c(10, 11), yrange = c(0, 1.5),
 #'   offset = 0.06, amplify = 10, lab.pos = 0.5)
 #' p1 <- p1 + ggtitle("metMUD1 NMR Data")
+#' p1
 #'
 #' # Add a legend at x, y coords
 #' p2 <- plotSpectra(metMUD1, which = c(10, 11), yrange = c(0, 1.5),
 #'   offset = 0.06, amplify = 10, lab.pos = 0.5, leg.loc = list(x = 0.8, y = 0.8))
 #' p2 <- p2 + ggtitle("metMUD1 NMR Data")
+#' p2
 #'
 plotSpectra <- function(spectra, which = c(1),
                         yrange = range(spectra$data),

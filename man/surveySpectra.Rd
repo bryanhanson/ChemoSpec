@@ -76,9 +76,11 @@ myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(Extract ~ IR ~
 
 p1 <- surveySpectra(SrE.IR, method = "iqr")
 p1 <- p1 + ggtitle(myt)
+p1
 
 p2 <- surveySpectra2(SrE.IR, method = "iqr")
 p2 <- p2 + ggtitle(myt)
+p2
 
 }
 \seealso{

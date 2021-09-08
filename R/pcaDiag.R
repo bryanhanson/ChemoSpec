@@ -57,7 +57,9 @@
 #' data(SrE.IR)
 #' pca <- c_pcaSpectra(SrE.IR, choice = "noscale")
 #' p1 <- pcaDiag(SrE.IR, pca, pcs = 2, plot = "OD") + ggtitle("OD Plot")
+#' p1
 #' p2 <- pcaDiag(SrE.IR, pca, pcs = 2, plot = "SD") + ggtitle("SD Plot")
+#' p2
 #'
 pcaDiag <- function(spectra,
                     pca,

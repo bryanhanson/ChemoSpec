@@ -32,6 +32,7 @@ output choice.
 # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
 data(metMUD1)
 p <- reviewAllSpectra(metMUD1)
+p
 
 
 }

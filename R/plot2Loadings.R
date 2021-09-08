@@ -49,6 +49,7 @@
 #' myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
 #' p <- res <- plot2Loadings(SrE.IR, pca, loads = c(1, 2), tol = 0.001)
 #' p <- p + ggtitle(myt)
+#' p
 #'
 plot2Loadings <- function(spectra,
                           pca,

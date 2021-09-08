@@ -52,15 +52,18 @@
 #'
 #' # Reference spectrum before normalization
 #' p1 <- plotSpectra(SrE.IR) + ggtitle("Original Spectrum")
+#' p1
 #'
 #' # Default PQN normalization
 #' res1 <- normSpectra(SrE.IR)
 #' p2 <- plotSpectra(res1) + ggtitle("PQN Normalization")
+#' p2
 #'
 #' # Norm over carbonyl region
 #' RE <- SrE.IR$freq > 1650 & SrE.IR$freq < 1800
 #' res2 <- normSpectra(SrE.IR, method = "Range", RangeExpress = RE)
 #' p3 <- plotSpectra(res2) + ggtitle("Normalized to Carbonyl Peaks")
+#' p3
 #'
 #' # Check numerically
 #' rowSums(res2$data[, RE]) # compare to rowSums(SrE.IR$data[,RE])

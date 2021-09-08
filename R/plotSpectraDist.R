@@ -41,6 +41,7 @@
 #' p <- plotSpectraDist(SrE.NMR)
 #' p <- p + labs(title = txt1, xlab = txt2, ylab = txt2) +
 #'          coord_cartesian(ylim = c(0, 1.1), xlim = c(0, 16))
+#' p
 #'
 plotSpectraDist <- function(spectra,
                             method = "pearson",

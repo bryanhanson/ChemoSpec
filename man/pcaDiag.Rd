@@ -64,9 +64,11 @@ specifying \code{OD} and once specifying \code{SD}.
 # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
 library("ggplot2")
 data(SrE.IR)
-res <- c_pcaSpectra(SrE.IR, choice = "noscale")
-p1 <- pcaDiag(SrE.IR, res, pcs = 2, plot = "OD") + ggtitle("OD Plot")
-p2 <- pcaDiag(SrE.IR, res, pcs = 2, plot = "SD") + ggtitle("SD Plot")
+pca <- c_pcaSpectra(SrE.IR, choice = "noscale")
+p1 <- pcaDiag(SrE.IR, pca, pcs = 2, plot = "OD") + ggtitle("OD Plot")
+p1
+p2 <- pcaDiag(SrE.IR, pca, pcs = 2, plot = "SD") + ggtitle("SD Plot")
+p2
 
 }
 \references{

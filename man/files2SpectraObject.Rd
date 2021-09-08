@@ -215,6 +215,7 @@ spec <- files2SpectraObject(
 sumSpectra(spec)
 p <- plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
 p <- p + ggtitle("Reduced Fat Potato Chip")
+p
 
 setwd(wd) # restore working directory
 }

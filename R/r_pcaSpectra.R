@@ -44,12 +44,15 @@
 #' pca <- r_pcaSpectra(metMUD1)
 #'
 #' p1 <- plotScree(pca)
+#' p1
 #'
 #' p2 <- plotScores(metMUD1, pca, pcs = c(1, 2), ellipse = "cls", tol = 0.05)
 #' p2 <- p2 + ggtitle("Scores: metMUD1 NMR Data")
+#' p2
 #'
 #' p3 <- plotLoadings(metMUD1, pca, loads = 1:2, ref = 1)
 #' p3 <- p3 + ggtitle("Loadings: metMUD1 NMR Data")
+#' p3
 #' }
 #' @export r_pcaSpectra
 #'
