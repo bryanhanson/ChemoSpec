@@ -1,0 +1,83 @@
+---
+title:  "Metabolic Phenotyping Protocol"
+author:
+  - name: Bryan A. Hanson^1^
+    email: hanson@depauw.edu
+    affiliation: |
+        1. Professor Emeritus of Chemistry & Biochemistry, DePauw University, Greencastle IN USA.
+date:  "`r Sys.Date()`"
+output:
+    bookdown::html_document2: # use for pkgdown site
+#    bookdown::pdf_document2: # use for CRAN to keep size down; breaks GHA
+      toc: yes
+      toc_depth: 2
+      fig_caption: yes
+      number_sections: true # needed for section cross-refs to work
+vignette: >
+    %\VignetteIndexEntry{Metabolic Phenotyping Protocol}
+    %\VignetteKeywords{chemometrics, spectroscopy, nmr, ir, raman, cd, xrf}
+    %\VignettePackage{ChemoSpec}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+link-citations: yes
+bibliography:
+  - chemometrics.bib
+  - manuals.bib
+pkgdown:
+  as_is: true # needed for proper figure referencing
+---
+
+<!-- Run a few things in the background for use later -->
+
+```{r SetUp, echo = FALSE, eval = TRUE, results = "hide"}
+
+# R options & configuration:
+set.seed(9)
+rm(list = ls())
+suppressMessages(library("ChemoSpec"))
+suppressMessages(library("ggplot2"))
+suppressMessages(library("patchwork"))
+
+descCS <- packageDescription("ChemoSpec")
+descCSU <- packageDescription("ChemoSpecUtils")
+
+# Stuff specifically for knitr:
+
+# Create a temp bib file w/citations of installed pkgs, on the fly
+knitr::write_bib(c("knitr", "mclust", "baseline", "hyperSpec", "ggplot2", "plotly"), file = "manuals.bib", prefix = "R_")
+
+# Hook for figure size control
+knitr::opts_hooks$set(sq.fig = function(options) {
+
+  if (isFALSE(options$sq.fig)) {
+    # custom fig dimensions given, use w/o further delay
+    if ((!is.null(options$fig.width)) & (!is.null(options$fig.height))) return(options)
+    # otherwise set the default wide aspect ratio
+    if ((is.null(options$fig.width)) & (is.null(options$fig.height))) {
+      options$fig.width = 6
+      options$fig.height = 3.5
+    }
+  }
+
+  if (isTRUE(options$sq.fig)) {
+    options$fig.width = 5
+    options$fig.height = 5
+  }
+  options
+})
+
+# choices here are designed to work with the hook
+knitr::opts_chunk$set(fig.align = "center", sq.fig = FALSE,
+  fig.width = NULL, fig.height = NULL, out.width = "80%")
+
+```
+
+This vignette was created using `ChemoSpec` version `r descCS$Version` and `ChemoSpecUtils` version `r descCSU$Version`.
+
+# Introduction
+
+
+# Obtain the Data
+
+
+# References
