@@ -46,7 +46,7 @@
 #'
 #' @importFrom graphics grid lines text points plot
 #' @importFrom ggplot2 aes annotate element_blank
-#' @importFrom ggplot2 geom_line ggplot labs
+#' @importFrom ggplot2 geom_line ggplot labs coord_cartesian
 #' @importFrom ggplot2 scale_color_manual theme theme_bw theme_classic ylim
 #' @importFrom reshape2 melt
 #' @importFrom plotly ggplotly
@@ -164,7 +164,7 @@ plotSpectra <- function(spectra, which = c(1),
       scale_color_manual(name = "Key", values = spectra$colors[which]) +
       annotate("text", x = lab.x, y = lab.y, label = spectra$names[which]) +
       labs(x = spectra$unit[1], y = spectra$unit[2]) +
-      ylim(yrange) +
+      coord_cartesian(ylim = yrange) +
       theme_bw() +
       theme(legend.position = "none") +
       theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank())
