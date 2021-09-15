@@ -72,10 +72,9 @@ knitr::opts_hooks$set(sq.fig = function(options) {
 
 # choices here are designed to work with the hook
 knitr::opts_chunk$set(fig.align = "center", sq.fig = FALSE, tidy = TRUE,
-  fig.width = NULL, fig.height = NULL, out.width = "80%")
+  fig.width = NULL, fig.height = NULL, out.width = "80%",
+  cache = TRUE)
 
-# temporary setting for development
-local <- TRUE
 ```
 
 ```{r helperFunctions, echo = FALSE}
@@ -128,9 +127,9 @@ If you aren't familiar with `ChemoSpec`, you may wish to look at the introductor
 
 ## Import the Data
 
-The data set is large, over 30 Mb, so we will grab it directly from the Github repo where it is stored.  We will use a custom function to grab the data (you can see the function in the source for this document if interested).  The URLs point to the frequency scale, the raw data matrix and the variables that describe the sample classification by genotype and life stage.
+The data set is large, over 30 Mb, so we will grab it directly from the Github repo where it is stored.  We will use a custom function to grab the data (you can see the function in the source for this document if interested).  The URLs point to the frequency scale, the raw data matrix and the variables that describe the sample classification by genotype and life stage (L2 are gravid adults, L4 are larvae).
 
-```{r getData, eval = local}
+```{r getData}
 urls <- c("https://raw.githubusercontent.com/Gscorreia89/chemometrics-tutorials/master/data/ppm.csv", "https://raw.githubusercontent.com/Gscorreia89/chemometrics-tutorials/master/data/X_spectra.csv", "https://raw.githubusercontent.com/Gscorreia89/chemometrics-tutorials/master/data/worm_yvars.csv")
 raw <- get_csvs_from_github(urls, sep = ",") # a list of data sets
 names(raw)

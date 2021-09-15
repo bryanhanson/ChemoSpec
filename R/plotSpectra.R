@@ -162,7 +162,7 @@ plotSpectra <- function(spectra, which = c(1),
       aes(x = Frequency, y = value, group = variable, color = variable)) +
       geom_line() +
       scale_color_manual(name = "Key", values = spectra$colors[which]) +
-      annotate("text", x = lab.x, y = lab.y, label = spectra$names[which]) +
+      annotate("text", x = lab.x, y = lab.y, label = spectra$names[which], size = 8/.pt) +
       labs(x = spectra$unit[1], y = spectra$unit[2]) +
       coord_cartesian(ylim = yrange) +
       theme_bw() +
