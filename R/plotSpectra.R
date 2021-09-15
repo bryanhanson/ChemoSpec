@@ -46,7 +46,7 @@
 #'
 #' @importFrom graphics grid lines text points plot
 #' @importFrom ggplot2 aes annotate element_blank
-#' @importFrom ggplot2 geom_line ggplot labs
+#' @importFrom ggplot2 geom_line ggplot labs coord_cartesian
 #' @importFrom ggplot2 scale_color_manual theme theme_bw theme_classic ylim
 #' @importFrom reshape2 melt
 #' @importFrom plotly ggplotly
