@@ -164,7 +164,7 @@ plotSpectra <- function(spectra, which = c(1),
       scale_color_manual(name = "Key", values = spectra$colors[which]) +
       annotate("text", x = lab.x, y = lab.y, label = spectra$names[which]) +
       labs(x = spectra$unit[1], y = spectra$unit[2]) +
-      ylim(yrange) +
+      coord_cartesian(ylim = yrange) +
       theme_bw() +
       theme(legend.position = "none") +
       theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank())
