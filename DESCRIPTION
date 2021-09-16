@@ -74,7 +74,9 @@ Suggests:
   rmarkdown,
   bookdown,
   chemometrics,
-  hyperSpec
+  hyperSpec,
+  httr,
+  RCurl
 Remotes: bryanhanson/ChemoSpecUtils
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
