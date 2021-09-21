@@ -29,16 +29,18 @@ pkgdown:
 
 <!-- Run a few things in the background for use later -->
 
-```{r SetUp, echo = FALSE, eval = TRUE, results = "hide"}
+```{r SetUp, echo = FALSE, eval = TRUE, results = "hide", warning = FALSE, message = FALSE}
 
 # R options & configuration:
 set.seed(9)
-# rm(list = ls())
-suppressMessages(library("ChemoSpec"))
-suppressMessages(library("ggplot2"))
-suppressMessages(library("patchwork"))
-suppressMessages(library("httr"))
-suppressMessages(library("RCurl"))
+rm(list = ls())
+suppressPackageStartupMessages(library("ChemoSpec"))
+suppressPackageStartupMessages(library("ggplot2"))
+suppressPackageStartupMessages(library("patchwork"))
+suppressPackageStartupMessages(library("httr"))
+suppressPackageStartupMessages(library("RCurl"))
+suppressPackageStartupMessages(library("knitr"))
+suppressPackageStartupMessages(library("mixOmics"))
 
 descCS <- packageDescription("ChemoSpec")
 descCSU <- packageDescription("ChemoSpecUtils")
@@ -48,7 +50,7 @@ options(ChemoSpecGraphics = "ggplot2")
 # Stuff specifically for knitr:
 
 # Create a temp bib file w/citations of installed pkgs, on the fly
-#knitr::write_bib(c("knitr", "mclust", "baseline", "hyperSpec", "ggplot2", "plotly"), file = "manuals.bib", prefix = "R_")
+knitr::write_bib(c("mixOmics", "bootsPLS"), file = "manuals.bib", prefix = "R_")
 
 # Hook for figure size control
 knitr::opts_hooks$set(sq.fig = function(options) {
@@ -80,7 +82,7 @@ knitr::opts_chunk$set(fig.align = "center", sq.fig = FALSE, tidy = TRUE,
 ```{r helperFunctions, echo = FALSE}
 #'
 #' Download a Single CSV File from Github
-#'
+#' From https://stackoverflow.com/a/14441835
 #' @param url Character.  A valid url to a Github *raw* csv file.
 #' @param dots Additional arguments to be passed to `read.table`.
 #' @return A data frame, unless the url is unreachable, in which case `NA`.
@@ -121,7 +123,7 @@ If you aren't familiar with `ChemoSpec`, you may wish to look at the introductor
 
 @Blaise2021 have published a detailed protocol for metabolomic phenotyping.  This vignette will follow their analysis closely to demonstrate how to carry it out using `ChemoSpec`.  The data is composed of 139 ^1^H HR-MAS SS-NMR spectra [@Blaise2007] of the model organism *Caenorhabditis elegans*.  There are two genotypes, wild type and a mutant, and worms from two life stages.
 
-**This vignette follows the published protocol closely in order to illustrate how to implement the protocol using `ChemoSpec`. As in any chemometric analysis, there are decisions to be made about how to process the data. In this vignette we are interested in which functions to use, and how to look at the results.  We are not trying to analyze the data in any systematic way, and do not consider all possible data processing choices. **
+**This vignette follows the published protocol closely in order to illustrate how to implement the protocol using `ChemoSpec`. As in any chemometric analysis, there are decisions to be made about how to process the data. In this vignette we are interested in which functions to use, and how to look at the results.  We are not trying to analyze the data in a truly rigorous way, do not consider all possible data processing choices, and argument choices are likely not optimized. **
 
 # Preliminaries
 
@@ -251,7 +253,7 @@ c_pca <- c_pcaSpectra(Worms)
 
 ### Components to Retain
 
-A key question at this stage is how many components are needed to describe the data set.  Keep in mind that this depends on the choice of scaling.  Figures \@ref(fig:screeAlt) and \@ref(fig:screeTrad) are two different types of scree plots, which give the residual variance.  This is the R^2^~x~ value in the protocol (see protocol figure 7a).  Another approach to answering this question is to do a cross-validated PCA.  The results are shown in Figure \@ref(fig:cv-pca).  These are the Q^2^~x~ values in protocol figure 7a.  All of these ways of looking at the variance explained suggest that retaining three PCs is adequate.
+A key question at this stage is how many components are needed to describe the data set.  Keep in mind that this depends on the choice of scaling.  Figures \@ref(fig:screeAlt) and \@ref(fig:screeTrad) are two different types of scree plots, which give the residual variance.  This is the R^2^~x~ value in the protocol (see protocol figure 7a).  Another approach to answering this question is to do a cross-validated PCA.  The results are shown in Figure \@ref(fig:cv-pca).  These are the Q^2^~x~ values in protocol figure 7a.  All of these ways of looking at the variance explained suggest that retaining three or possibly four PCs is adequate.
 
 ```{r screeAlt, fig.cap = "Scree plot (recommended style)."}
 plotScree(c_pca)
@@ -261,8 +263,14 @@ plotScree(c_pca)
 plotScree(c_pca, style = "trad")
 ```
 
-```{r cv-pca, sq.fig = TRUE, fig.cap = "Cross-Validated PCA."}
+```{r cv-pca-code, eval = FALSE}
 cv_pcaSpectra(Worms, pcs = 6)
+```
+
+```{r cv-pca, echo = FALSE, fig.cap = "Cross-validated PCA."}
+# The code to make this figure is a bit slow, so including
+# a static version
+include_graphics("cv-pca.png")
 ```
 
 ### Score Plots
@@ -298,11 +306,62 @@ p <- pcaDiag(Worms, c_pca, plot = "SD")
 p
 ```
 
-Analysis of these plots suggest that samples xx, yy and zz are likely outliers.  They can be removed as follows.
+Analysis of these plots suggest that samples 1, 37, 40, 101 and 107 are likely outliers.  They can be removed as follows.[^1]
 
 ```{r removeOutliers}
-
+Worms <- removeSample(Worms,
+  rem.sam = c("1_", "37_", "40_", "101_", "107_"))
 ```
 
+At this point one should probably repeat the PCA, score plots and diagnostic plots to get a good look at how removing these samples affected things, but to save space those tasks are left to the reader.
+
+One thing the protocol does not explicitly discuss is an inspection of the loadings.  This is useful in order to see if any particular frequencies are driving the separation of the samples in the score plot. For the sake of completeness, we'll go ahead and plot the loadings. See Figure \@ref(fig:loadings). From this plot it is clear that the peaks above $\delta$ 5.0 are not contributing much to differentiating the samples.  One could consider removing these peaks from the analysis, but we'll leave them for now.
+
+```{r loadings, sq.fig = TRUE, fig.cap = "Loadings for PC1 and PC2."}
+p <- plotLoadings(Worms, c_pca, loads = 1:2)
+p
+```
+
+## Supervised Analysis with PLS-DA
+
+`ChemoSpec` carries out exploratory data analysis, which is an unsupervised process.  The next step in the protocol is PLS-DA (partial least squares - discriminant analysis). I have written about `ChemoSpec` + PLS [here](https://chemospec.org/2021/02/08/p17/) if you would like more background on plain PLS. However, PLS-DA is a technique that combines data reduction/variable selection along with classification.
+
+For the sake of speed (and with some scientific basis, see Figure \@ref(fig:loadings)), we will discard the data above $\delta = 5.0$ which roughly halves the size of the data set.
+
+```{r fremove}
+Worms <- removeFreq(Worms, rem.freq = 5.0 ~ high)
+sumSpectra(Worms)
+```
+
+Figure \@ref(fig:plsda-plotIndiv) shows a score plot; the results indicate that classification and modeling may be successful.  The `splsda` function is from the `mixOmics` package (@R_mixOmics) and carries out a single *sparse* computation. One computation should not be considered the ideal answer; a better approach is to use cross-validation, for instance `function` in the `bootsPLS` package (@R_bootsPLS which uses `splsda` under the hood).  However, that computation is too time-consuming to demonstrate here.
+
+
+```{r plsda}
+X <- Worms$data
+Y <- Worms$groups
+splsda <- splsda(X, Y, ncomp = 8)
+```
+
+```{r plsda-plotIndiv, warning = FALSE, fig.cap = "sPLS-DA plot showing classification."}
+plotIndiv(splsda, col.per.group = c("#FB0D16FF", "#FFC0CBFF", "#511CFCFF", "#2E94E9FF"), title = "sPLS-DA Score Plot", legend = TRUE, ellipse = TRUE)
+```
+
+To estimate the number of components needed, the `perf` function can be used. The results are in Figure \@ref(fig:plsda-perf) and suggest that five components are sufficient to describe the data.
+
+```{r plsda-perf-calc, eval = FALSE}
+set.seed(123)
+perf.splsda <- perf(splsda, folds = 5, nrepeat = 5)
+plot(perf.splsda)
+```
+
+```{r plsda-perf, echo = FALSE, sq.fig = TRUE, fig.cap = "Classification error rate."}
+# The code to make this figure is a bit slow, so including
+# a static version
+include_graphics("plsda-perf.png")
+```
+
+At this point, we have a quick sense of how this might go.  Going forward, one might choose to focus on accurate classification, or on determining which frequencies should be included in a predictive model.  Any model will need to refined and more details extracted.  The reader is referred to the case study from the [mixOmics](http://mixomics.org/case-studies/splsda-srbct/) folks which covers these tasks and explains the process.
 
 # References
+
+[^1]: Removing candidate outliers is an area where you need to be very careful.  If we were actually trying to reach an answer we could trust, I would recommend using `r_pcaSpectra`, the robust version of PCA, to help guide the choices.
