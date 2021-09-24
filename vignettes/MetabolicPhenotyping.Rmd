@@ -40,7 +40,6 @@ suppressPackageStartupMessages(library("patchwork"))
 suppressPackageStartupMessages(library("httr"))
 suppressPackageStartupMessages(library("RCurl"))
 suppressPackageStartupMessages(library("knitr"))
-suppressPackageStartupMessages(library("mixOmics"))
 
 descCS <- packageDescription("ChemoSpec")
 descCSU <- packageDescription("ChemoSpecUtils")
@@ -333,7 +332,13 @@ Worms <- removeFreq(Worms, rem.freq = 5.0 ~ high)
 sumSpectra(Worms)
 ```
 
-Figure \@ref(fig:plsda-plotIndiv) shows a score plot; the results indicate that classification and modeling may be successful.  The `splsda` function is from the `mixOmics` package (@R_mixOmics) and carries out a single *sparse* computation. One computation should not be considered the ideal answer; a better approach is to use cross-validation, for instance `function` in the `bootsPLS` package (@R_bootsPLS which uses `splsda` under the hood).  However, that computation is too time-consuming to demonstrate here.
+We'll need the `mixOmics` package (@R_mixOmics) package for this analysis; note that loading it replaces the `plotLoadings` function from `ChemoSpec`.
+
+```{r load-mixOmics}
+library("mixOmics")
+```
+
+Figure \@ref(fig:plsda-plotIndiv) shows a score plot; the results indicate that classification and modeling may be successful.  The `splsda` function carries out a single *sparse* computation. One computation should not be considered the ideal answer; a better approach is to use cross-validation, for instance `function` in the `bootsPLS` package (@R_bootsPLS which uses `splsda` under the hood).  However, that computation is too time-consuming to demonstrate here.
 
 
 ```{r plsda}
