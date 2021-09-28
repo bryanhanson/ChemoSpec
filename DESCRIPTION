@@ -32,14 +32,14 @@ Description: A collection of functions for top-down exploratory data analysis
 License: GPL-3
 Depends:
   R (>= 3.5),
-  ChemoSpecUtils (>= 0.3)
+  ChemoSpecUtils (>= 1.0)
 Imports:
   plyr,
   stats,
   utils,
   grDevices,
   reshape2,
-  readJDX (>= 0.4),
+  readJDX (>= 0.6),
   patchwork,
   ggrepel,
   ggplot2,
@@ -74,7 +74,6 @@ Suggests:
   rmarkdown,
   bookdown,
   chemometrics,
-  hyperSpec,
   httr,
   RCurl,
   mixOmics
