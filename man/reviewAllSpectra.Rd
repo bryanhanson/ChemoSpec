@@ -29,7 +29,10 @@ output choice.
  }
 }
 \examples{
-# This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+# Because there are 16 spectra in this data set, you probably want to
+# expand the height of the graphics device to see the spectra clearly.
+# If you do options(ChemoSpecGraphics == "plotly") you'll get the results
+# in a web page, which is particularly convenient.
 data(metMUD1)
 p <- reviewAllSpectra(metMUD1)
 p
