@@ -6,8 +6,8 @@
   - `surveySpectra`
   - `surveySpectra2`
   - `loopThruSpectra` (which has been renamed to `reviewAllSpectra`)
-  - `plotScores`
-  - `plotScree` (actually in `ChemoSpecUtils`)
+  - `plotScores` (resides in `ChemoSpecUtils`)
+  - `plotScree` (resides in `ChemoSpecUtils`)
   - `plotLoadings` (uses `patchworks` and hence `plotly` is not relevant)
   - `plot2Loadings`
   - `sPlotSpectra`
@@ -21,12 +21,11 @@
 * The graphics output options can be chosen by `options(ChemoSpecGraphics = "option")`.
 * See the details in new help file `?GraphicsOptions`.
 * `loopThruSpectra` has been renamed `reviewAllSpectra` to better reflect what it does under the new graphics options.
-* `plotSpectra`, when using `base` graphics, now positions the sample names by a different mechanism, but gives a similar result.
 
 ## Misc.
-* `plotScree2` which as been deprecated for some time now, was removed.
+* `plotScree2` which has been deprecated for some time now, was removed.
 * Functions with the `leg.loc` argument now allow much more flexibility with regard to how the legend is positioned.  See the documentation.
-
+* `plotSpectra`, when using `base` graphics, now positions the sample names by a different mechanism, but gives a similar result.
 
 # ChemoSpec 5.3.21 2021-07-05
 ## Misc.
