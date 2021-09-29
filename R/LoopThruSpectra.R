@@ -1,7 +1,8 @@
 #'
 #' Display the Spectra in a Spectra Object One at a Time DEPRECATED
 #'
-#' Plots each spectrum in a \code{\link{Spectra}} object one at a time, and
+#' DEPRECATED: Use \code{reviewAllSpectra} instead.  Plots each spectrum in a
+#' \code{\link{Spectra}} object one at a time, and
 #' waits for a return in the console before plotting the next spectrum.  Use
 #' \code{ESC} to get out of the loop.
 #'
