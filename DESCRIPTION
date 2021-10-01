@@ -41,7 +41,6 @@ Imports:
   reshape2,
   readJDX (>= 0.6),
   patchwork,
-  ggrepel,
   ggplot2,
   plotly,
   magrittr

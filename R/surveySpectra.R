@@ -78,7 +78,7 @@ surveySpectra <- function(spectra,
   go <- chkGraphicsOpt()
 
   if (go == "base") {
-    chkReqGraphicsPkgs("lattice")
+    .chkReqGraphicsPkgs("lattice")
 
     if (!by.gr) {
       x <- spectra$freq
@@ -284,7 +284,7 @@ surveySpectra <- function(spectra,
   }
 
   if ((go == "ggplot2") || (go == "plotly")) {
-    chkReqGraphicsPkgs("ggplot2")
+    .chkReqGraphicsPkgs("ggplot2")
 
     # Helper Function to plot in ggplot2 mode
     # df data frame with computed y values
@@ -348,7 +348,7 @@ surveySpectra <- function(spectra,
       if (go == "ggplot2") {
         return(p)
       } else {
-        chkReqGraphicsPkgs("plotly")
+        .chkReqGraphicsPkgs("plotly")
         p <- ggplotly(p, tooltip = "Frequency")
         return(p)
       }
@@ -469,7 +469,7 @@ surveySpectra <- function(spectra,
       if (go == "ggplot2") {
         return(p)
       } else {
-        chkReqGraphicsPkgs("plotly")
+        .chkReqGraphicsPkgs("plotly")
         p <- ggplotly(p, tooltip = c("Frequency"))
         return(p)
       }

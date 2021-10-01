@@ -20,6 +20,9 @@ operations is available.
 }
 \seealso{
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+
+
+# Internal Functions
 }
 \author{
 Bryan A. Hanson (DePauw University), Tejasvi Gupta & Matthew J. Keinsley.

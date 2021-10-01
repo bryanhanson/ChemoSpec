@@ -29,22 +29,29 @@
 #'
 #  This import/export business based on stackoverflow.com/a/35118850/633251
 #'
-#' @importFrom ChemoSpecUtils rowDist hcaScores .shrinkLeaf .colLeaf .plotHCA .chkArgs
-#' @export rowDist hcaScores .shrinkLeaf .colLeaf .plotHCA .chkArgs
+#' # Internal Functions
 #'
-#' @importFrom ChemoSpecUtils chkSpectra sumSpectra sumGroups check4Gaps
-#' @export  chkSpectra sumSpectra sumGroups check4Gaps
-#'
-#' @importFrom ChemoSpecUtils removeFreq removeGroup removeSample plotScores plotScree
-#' @export removeFreq removeGroup removeSample plotScores plotScree
-#'
-#' @importFrom ChemoSpecUtils .labelExtremes .addEllipseInfo .computeEllipses .addLegend .groupNcolor .getExtremeCoords
-#' @export .labelExtremes .addEllipseInfo .computeEllipses .addLegend .groupNcolor .getExtremeCoords
-#'
-#' @importFrom ChemoSpecUtils sampleDist chkGraphicsOpt chkReqGraphicsPkgs
-#' @export sampleDist chkGraphicsOpt chkReqGraphicsPkgs
+#' @importFrom ChemoSpecUtils .shrinkLeaf .colLeaf .plotHCA .chkArgs .chkReqGraphicsPkgs
+#' @export                    .shrinkLeaf .colLeaf .plotHCA .chkArgs .chkReqGraphicsPkgs
 #'
 #' @importFrom ChemoSpecUtils .prepLegendCoords .ggAddLegend .ggAnnotate .ggRepel
-#' @export .prepLegendCoords .ggAddLegend .ggAnnotate .ggRepel
+#' @export                    .prepLegendCoords .ggAddLegend .ggAnnotate .ggRepel
+#'
+#' @importFrom ChemoSpecUtils .labelExtremes .addEllipseInfo .computeEllipses
+#' @export                    .labelExtremes .addEllipseInfo .computeEllipses
+#'
+#' @importFrom ChemoSpecUtils .addLegend .groupNcolor .getExtremeCoords
+#' @export                    .addLegend .groupNcolor .getExtremeCoords
+#'
+#' # User-Facing Functions
+#'
+#' @importFrom ChemoSpecUtils chkSpectra sumSpectra sumGroups check4Gaps
+#' @export                    chkSpectra sumSpectra sumGroups check4Gaps
+#'
+#' @importFrom ChemoSpecUtils removeFreq removeGroup removeSample plotScores plotScree
+#' @export                    removeFreq removeGroup removeSample plotScores plotScree
+#'
+#' @importFrom ChemoSpecUtils sampleDist chkGraphicsOpt rowDist hcaScores
+#' @export                    sampleDist chkGraphicsOpt rowDist hcaScores
 #'
 NULL

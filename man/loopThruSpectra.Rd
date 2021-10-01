@@ -20,7 +20,8 @@ The returned value depends on the graphics option selected (see \code{\link{Grap
  }
 }
 \description{
-Plots each spectrum in a \code{\link{Spectra}} object one at a time, and
+DEPRECATED: Use \code{reviewAllSpectra} instead.  Plots each spectrum in a
+\code{\link{Spectra}} object one at a time, and
 waits for a return in the console before plotting the next spectrum.  Use
 \code{ESC} to get out of the loop.
 }

@@ -140,7 +140,7 @@ plotSpectra <- function(spectra, which = c(1),
 
   if ((go == "ggplot2") || (go == "plotly")) {
     value <- variable <- Frequency <- NULL # satisfy CRAN check engine
-    chkReqGraphicsPkgs("ggplot2")
+    .chkReqGraphicsPkgs("ggplot2")
 
     # Set up data frame to hold data to be plotted ready for melting
     df <- data.frame(spectra$freq)
@@ -177,7 +177,7 @@ plotSpectra <- function(spectra, which = c(1),
       p <- p + .ggAddLegend(spectra, use.sym = FALSE, leg.loc)
       return(p)
     } else {
-      chkReqGraphicsPkgs("plotly")
+      .chkReqGraphicsPkgs("plotly")
       p <- ggplotly(p, tooltip = c("Frequency"))
       return(p)
     }

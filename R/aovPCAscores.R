@@ -72,15 +72,15 @@ aovPCAscores <- function(spectra, so, submat = 1, ellipse = "none", tol = "none"
   }
 
   if (go == "ggplot2") {
-    chkReqGraphicsPkgs("ggplot2")
+    .chkReqGraphicsPkgs("ggplot2")
     so <- so[[submat]] # need to force evaluation here for some reason (do.call is downstream)
     p <- plotScores(spectra, so, ellipse = ellipse, tol = tol, use.sym = use.sym, leg.loc = leg.loc, ...)
     return(p)
   }
   
   if (go == "plotly") {
-    chkReqGraphicsPkgs("ggplot2")
-    chkReqGraphicsPkgs("plotly")
+    .chkReqGraphicsPkgs("ggplot2")
+    .chkReqGraphicsPkgs("plotly")
     so <- so[[submat]] # need to force evaluation here for some reason (do.call is downstream)
     p <- plotScores(spectra, so, ellipse = ellipse, tol = tol, use.sym = use.sym, leg.loc = leg.loc, ...)
     return(p)

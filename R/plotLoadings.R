@@ -43,7 +43,7 @@ plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
   go <- chkGraphicsOpt()
 
   if (go == "base") {
-    chkReqGraphicsPkgs("lattice")
+    .chkReqGraphicsPkgs("lattice")
     # Stack the requested data into a data frame for plotting
 
     names <- paste("PC", loads, "Loadings", sep = " ")
@@ -88,7 +88,7 @@ plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
 
   if (go == "ggplot2") {
     Frequency <- patch_plot <- NULL # satisfy CRAN check engine
-    chkReqGraphicsPkgs(c("ggplot2", "patchwork"))
+    .chkReqGraphicsPkgs(c("ggplot2", "patchwork"))
 
     names <- paste("PC", loads, "Loadings", sep = "")
     names <- c("RefSpectrum", names)

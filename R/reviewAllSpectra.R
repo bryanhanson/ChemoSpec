@@ -56,7 +56,7 @@ reviewAllSpectra <- function(spectra, ...) {
   }
 
   if ((go == "ggplot2") || (go == "plotly")) {
-    chkReqGraphicsPkgs("ggplot2")
+    .chkReqGraphicsPkgs("ggplot2")
     Frequency <- spectra$freq
     l.x <- length(Frequency)
 
@@ -80,7 +80,7 @@ reviewAllSpectra <- function(spectra, ...) {
     if (go == "ggplot2") {
       return(p)
     } else {
-      chkReqGraphicsPkgs("plotly")
+      .chkReqGraphicsPkgs("plotly")
       p <- ggplotly(p, tooltip = "Frequency")
       return(p)
     }

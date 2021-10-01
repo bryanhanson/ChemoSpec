@@ -97,7 +97,7 @@ sPlotSpectra <- function(spectra,
 
   if ((go == "ggplot2") || (go == "plotly")) {
     x <- y <- label <- NULL
-    chkReqGraphicsPkgs("ggplot2")
+    .chkReqGraphicsPkgs("ggplot2")
 
     p <- ggplot(ans, aes(x = cv, y = crr)) +
       theme_bw() +
@@ -123,7 +123,7 @@ sPlotSpectra <- function(spectra,
       }
       return(p)
     } else {
-      chkReqGraphicsPkgs("plotly")
+      .chkReqGraphicsPkgs("plotly")
       p <- ggplotly(p)
       if (is.numeric(tol)) {
         CoordList <- .getExtremeCoords(ans[, 2:3], spectra$freq, tol)

@@ -82,8 +82,8 @@ aovPCAloadings <- function(spectra, PCA, submat = 1, loads = 1, ref = 1, ...) {
   }
 
   if (go == "ggplot2") {
-    chkReqGraphicsPkgs("ggplot2")
-    chkReqGraphicsPkgs("patchwork")
+    .chkReqGraphicsPkgs("ggplot2")
+    .chkReqGraphicsPkgs("patchwork")
     p <- plotLoadings(spectra = spectra, pca = PCA[[submat]], loads = loads, ref = ref)
     return(p)
   }

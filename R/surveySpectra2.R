@@ -70,7 +70,7 @@ surveySpectra2 <- function(spectra,
 
   if ((go == "ggplot2") || (go == "plotly")) {
     value <- variable <- Frequency <- NULL # satisfy CRAN check engine
-    chkReqGraphicsPkgs("ggplot2")
+    .chkReqGraphicsPkgs("ggplot2")
 
     ymax <- max(M)
 
@@ -104,7 +104,7 @@ surveySpectra2 <- function(spectra,
     if (go == "ggplot2") {
       return(p)
     } else {
-      chkReqGraphicsPkgs("plotly")
+      .chkReqGraphicsPkgs("plotly")
       p <- ggplotly(p, tooltip = "Frequency")
       return(p)
     }

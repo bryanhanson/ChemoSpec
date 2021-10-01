@@ -75,7 +75,7 @@ plotSpectraDist <- function(spectra,
 
   if ((go == "ggplot2") || (go == "plotly")) {
     x <- y <- label <- NULL # satisfy CRAN check complaints
-    chkReqGraphicsPkgs("ggplot2")
+    .chkReqGraphicsPkgs("ggplot2")
 
     p <- ggplot(DF, aes(x = x, y = y)) +
       theme_bw() +
@@ -90,7 +90,7 @@ plotSpectraDist <- function(spectra,
       }
       return(p)
     } else {
-      chkReqGraphicsPkgs("plotly")
+      .chkReqGraphicsPkgs("plotly")
       p <- ggplotly(p, tooltip = "label")
       p <- p %>% add_annotations(
         x = DF$x, y = DF$y, text = DF$label, xref = "x",
