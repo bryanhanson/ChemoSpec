@@ -8,13 +8,13 @@
   - `loopThruSpectra` (which has been renamed to `reviewAllSpectra`)
   - `plotScores` (resides in `ChemoSpecUtils`)
   - `plotScree` (resides in `ChemoSpecUtils`)
-  - `plotLoadings` (uses `patchworks` and hence `plotly` is not relevant)
+  - `plotLoadings` (uses `patchwork` and hence `plotly` is not relevant)
   - `plot2Loadings`
   - `sPlotSpectra`
   - `pcaDiag`
-  - `sampleDist`
+  - `plotSampleDist`
   - `aovPCAscores`
-  - `aovPCAloadings` (uses `patchworks` and hence `plotly` is not relevant)
+  - `aovPCAloadings` (uses `patchwork` and hence `plotly` is not relevant)
 
 * The `ggplot2` graphics output are generally similar in layout and spirit to the `base` graphics output, but significant improvements have been made in labeling data points using the `ggrepel` package.  And of course the `ggplot2` graphics can be modified after creation through the usual mechanisms.
 * The `plotly` graphics output are interactive plots which can be used for better understanding the data. `plotly` provides tools such as zoom, interactive labels and custom positioning which are very useful.

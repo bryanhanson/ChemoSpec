@@ -77,8 +77,8 @@ surveySpectra2 <- function(spectra,
     DF_spread <- data.frame(x, y) # holds measure of spread, e.g sd, seX etc
 
     # Offset the summary stat below everything else, with a small gap for aesthetics
-    off1 <- diff(range(y))
-    off2 <- min(M) - 0.05 * diff(range(M))
+    # off1 <- diff(range(y)) # not used in ggplot2 environment
+    # off2 <- min(M) - 0.05 * diff(range(M))
     off3 <- abs(min(M)) + abs(max(y)) + abs(0.05 * diff(range(M)))
     off4 <- min(DF_spread$y) - off3 + 0.5 * diff(range(y)) # offset for label
 
@@ -90,16 +90,15 @@ surveySpectra2 <- function(spectra,
     p <- ggplot() +
       geom_line(
         data = molten,
-        aes(x = Frequency, y = value, group = variable, color = variable)
-      ) +
+        aes(x = Frequency, y = value, group = variable, color = variable)) +
       scale_color_manual(name = "Key", values = spectra$colors) +
       theme_bw() +
       theme(legend.position = "none") +
       theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
       labs(x = spectra$unit[1], y = "Centered Spectra")
-    p <- p + geom_line(data = DF_spread, aes(x = x, y = y - off3))
 
-    p <- p + .ggAnnotate(method, x = lab.pos, y = off4, gp = gpar(fontsize = 10))
+    p <- p + geom_line(data = DF_spread, aes(x = x, y = y - off3))
+    p <- p + .ggAnnotate(method, x = lab.pos, y = off4, gp = gpar(fontsize = 8))
 
     if (go == "ggplot2") {
       return(p)
