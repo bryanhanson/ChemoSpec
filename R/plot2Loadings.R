@@ -112,9 +112,9 @@ plot2Loadings <- function(spectra,
       panel.grid.minor = element_blank()
     )
 
-    p <- p + .ggAnnotate(pca$method, x = 0.05, y = 0.98, just = "left", gp = gpar(fontsize = 10))
-
     if (go == "ggplot2") {
+      # do this annotation here as plotly doesn't understand it/suppress warning from plotly
+      p <- p + .ggAnnotate(pca$method, x = 0.05, y = 0.98, just = "left", gp = gpar(fontsize = 10))
       if (is.numeric(tol)) {
         CoordList <- .getExtremeCoords(pca$rotation[, loads], spectra$freq, tol)
         df <- data.frame(x = CoordList$x, y = CoordList$y, label = CoordList$l)
