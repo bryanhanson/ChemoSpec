@@ -83,7 +83,7 @@ pcaDiag <- function(spectra,
   critSD <- sqrt(qchisq(quantile, a))
   critOD <- (median(ODist^(2 / 3)) + mad(ODist^(2 / 3)) * qnorm(quantile))^(3 / 2)
 
-  sub <- paste(pca$method, a, "PCs", sep = " ")
+  sub <- "sample index"
 
   go <- chkGraphicsOpt()
 
@@ -155,7 +155,7 @@ pcaDiag <- function(spectra,
           ) +
           ylim(0, max(SDist)) +
           geom_hline(yintercept = critSD, linetype = "longdash") +
-          xlab(pca$method) +
+          xlab(sub) +
           ylab("score distance")
       }
 
@@ -172,7 +172,7 @@ pcaDiag <- function(spectra,
           ) +
           ylim(0, max(SDist)) +
           geom_hline(yintercept = critSD, linetype = "longdash") +
-          xlab(paste0(spectra$desc, "\n", pca$method, " 2 PCs")) +
+          xlab(sub) +
           ylab("score distance")
       }
 
