@@ -221,7 +221,7 @@ pcaDiag <- function(spectra,
           ) +
           ylim(0, max(max(ODist), critOD)) +
           geom_hline(yintercept = critOD, linetype = "longdash") +
-          xlab(paste0(spectra$desc, "\n", pca$method, " 2 PCs")) +
+          xlab(sub) +
           ylab("orthogonal distance")
       }
 
@@ -238,7 +238,7 @@ pcaDiag <- function(spectra,
           ) +
           ylim(0, max(max(ODist), critOD)) +
           geom_hline(yintercept = critOD, linetype = "longdash") +
-          xlab(paste0(spectra$desc, "\n", pca$method, " 2 PCs")) +
+          xlab(sub) +
           ylab("score distance")
       }
 
