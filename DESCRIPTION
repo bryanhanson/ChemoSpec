@@ -75,7 +75,9 @@ Suggests:
   chemometrics,
   httr,
   RCurl,
-  mixOmics
+  mixOmics,
+  hyperSpec,
+  bootsPLS
 Remotes: bryanhanson/ChemoSpecUtils
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
