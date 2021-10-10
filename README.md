@@ -39,7 +39,7 @@ If you use `@some_other_branch` you can download other branches that might be av
 
 ### To view the Vignettes:
 
-To see a pdf version of the vignettes, use the following.  For the html version, see [here](https://bryanhanson.github.io/ChemoSpec/).
+To access the vignettes, use the following, or visit [here](https://bryanhanson.github.io/ChemoSpec/).
 
 ````r
 browseVignettes("ChemoSpec")
