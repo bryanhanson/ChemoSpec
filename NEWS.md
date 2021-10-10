@@ -26,7 +26,6 @@
 * `plotScree2` which has been deprecated for some time now, was removed.
 * Functions with the `leg.loc` argument now allow much more flexibility with regard to how the legend is positioned.  See the documentation.
 * `plotSpectra`, when using `base` graphics, now positions the sample names by a different mechanism, but gives a similar result.
-* A new vignette on Metabolic Phenotyping has been added.
 
 # ChemoSpec 5.3.21 2021-07-05
 ## Misc.
