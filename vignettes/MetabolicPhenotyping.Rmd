@@ -278,12 +278,12 @@ Next, examine the score plots (Figures \@ref(fig:scores12), \@ref(fig:scores23))
 
 Inspection of these plots shows that the age of the worms (L2 vs L4) has more of an effect than than the genotype (WT vs Mut). In Figure \@ref(fig:scores12) we don't really see any serious outlier candiates.  However, in Figure \@ref(fig:scores23) we do see some candiates, especially for the L2 group along PC3 (two samples in particular; in the protocol they remove five samples).
 
-```{r scores12, sq.fig = TRUE, fig.cap = "Score plot for PCs 1 & 2."}
+```{r scores12, sq.fig = TRUE, fig.cap = "Score plot for PCs 1 and 2."}
 p <- plotScores(Worms, c_pca, pcs = 1:2, ellipse = "rob")
 p
 ```
 
-```{r scores23, sq.fig = TRUE, fig.cap = "Score plot for PCS 2 & 3."}
+```{r scores23, sq.fig = TRUE, fig.cap = "Score plot for PCS 2 and 3."}
 p <- plotScores(Worms, c_pca, pcs = 2:3, ellipse = "rob", leg.loc = list(x = 0.85, y = 0.3), tol = 0.02)
 p
 ```
