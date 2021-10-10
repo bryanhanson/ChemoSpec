@@ -78,7 +78,6 @@ Suggests:
   mixOmics,
   hyperSpec,
   bootsPLS
-Remotes: bryanhanson/ChemoSpecUtils
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE
