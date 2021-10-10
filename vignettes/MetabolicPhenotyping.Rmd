@@ -49,7 +49,9 @@ options(ChemoSpecGraphics = "ggplot2")
 # Stuff specifically for knitr:
 
 # Create a temp bib file w/citations of installed pkgs, on the fly
-knitr::write_bib(c("mixOmics", "bootsPLS"), file = "manuals.bib", prefix = "R_")
+# Both of these packages have problems with authors@R formatting
+# so skip automated writing
+#knitr::write_bib(c("mixOmics", "bootsPLS"), file = "manuals.bib", prefix = "R_")
 
 # Hook for figure size control
 knitr::opts_hooks$set(sq.fig = function(options) {
