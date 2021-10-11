@@ -88,3 +88,5 @@ NeedsCompilation: no
 Packaged: 2019-06-09 18:30:21 UTC; bryanhanson
 Repository: CRAN
 Date/Publication: 2019-06-09 18:50:03 UTC
+Remotes: bryanhanson/ChemoSpecUtils
+
