@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.3.21</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">6.0.1</span>
       </span>
     </div>
 
@@ -153,13 +153,19 @@ appears at the bottom of the plot.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional parameters to be passed to plotting functions.</p></td>
+      <td><p>Parameters to be passed to the plotting routines. <em>Applies to base graphics only</em>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>None.  Side effect is a plot.</p>
+    <p>The returned value depends on the graphics option selected (see <code>GraphicsOptions</code>).</p><dl>
+ <dt>base:</dt><dd><p>None. Side effect is a plot.</p></dd>
+ <dt>ggplot2:</dt><dd><p>The plot is displayed, and a <code>ggplot2</code> plot object is returned if the
+                 value is assigned. The plot can be modified in the usual <code>ggplot2</code> manner.</p></dd>
+
+</dl>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='c_pcaSpectra.html'>c_pcaSpectra</a></code> for an example.  See <code><a href='plot2Loadings.html'>plot2Loadings</a></code>
@@ -168,7 +174,7 @@ other, and <code><a href='sPlotSpectra.html'>sPlotSpectra</a></code> for an alte
 Additional documentation at <a href='https://bryanhanson.github.io/ChemoSpec/'>https://bryanhanson.github.io/ChemoSpec/</a></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Bryan A. Hanson, DePauw University.</p>
+    <p>Bryan A. Hanson (DePauw University), Tejasvi Gupta.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -73,7 +73,7 @@ It implements the CluPA algorithm described in the reference." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.3.21</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">6.0.1</span>
       </span>
     </div>
 
@@ -160,17 +160,19 @@ Bioinformatics vol. 12 pg. 405 (2011).</p>
     <div class='dont-index'><p>Additional documentation at <a href='https://bryanhanson.github.io/ChemoSpec/'>https://bryanhanson.github.io/ChemoSpec/</a></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Bryan A. Hanson, DePauw University. <a href='mailto:hanson@depauw.edu'>hanson@depauw.edu</a></p>
+    <p>Bryan A. Hanson (DePauw University)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
+<span class='co'># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://ggplot2.tidyverse.org'>"ggplot2"</a></span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>alignMUD</span><span class='op'>)</span>
 
-<span class='fu'><a href='plotSpectra.html'>plotSpectra</a></span><span class='op'>(</span><span class='va'>alignMUD</span>,
-  which <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span>, lab.pos <span class='op'>=</span> <span class='fl'>4.5</span>, offset <span class='op'>=</span> <span class='fl'>0.1</span>,
-  yrange <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1900</span><span class='op'>)</span>, amp <span class='op'>=</span> <span class='fl'>500</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1.5</span>, <span class='fl'>1.8</span><span class='op'>)</span>,
-  main <span class='op'>=</span> <span class='st'>"Misaligned NMR Spectra (alignMUD)"</span>
-<span class='op'>)</span>
+<span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='plotSpectra.html'>plotSpectra</a></span><span class='op'>(</span><span class='va'>alignMUD</span>, which <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span>, lab.pos <span class='op'>=</span> <span class='fl'>4.5</span>, offset <span class='op'>=</span> <span class='fl'>0.1</span>,
+  yrange <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>5000</span><span class='op'>)</span>, amp <span class='op'>=</span> <span class='fl'>500</span><span class='op'>)</span>
+<span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='va'>p1</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>"Misaligned NMR Spectra"</span><span class='op'>)</span> <span class='op'>+</span>
+      <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_cartesian.html'>coord_cartesian</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1.5</span>, <span class='fl'>1.8</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1900</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='input'><span class='va'>p1</span>
 </div><div class='img'><img src='clupaSpectra-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='va'>aMUD</span> <span class='op'>&lt;-</span> <span class='fu'>clupaSpectra</span><span class='op'>(</span><span class='va'>alignMUD</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 
@@ -220,11 +222,12 @@ Bioinformatics vol. 12 pg. 405 (2011).</p>
 #&gt;  aligning spectrum  19
 #&gt;  aligning spectrum  20
 #&gt;  Median pearson correlation of aligned spectra: 0.9999948
-#&gt;  Alignment time:  0.001283333  minutes</div><div class='input'><span class='fu'><a href='plotSpectra.html'>plotSpectra</a></span><span class='op'>(</span><span class='va'>aMUD</span>,
-  which <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span>, lab.pos <span class='op'>=</span> <span class='fl'>4.5</span>, offset <span class='op'>=</span> <span class='fl'>0.1</span>,
-  yrange <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1900</span><span class='op'>)</span>, amp <span class='op'>=</span> <span class='fl'>500</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1.5</span>, <span class='fl'>1.8</span><span class='op'>)</span>,
-  main <span class='op'>=</span> <span class='st'>"Aligned NMR Spectra (alignMUD)"</span>
-<span class='op'>)</span>
+#&gt;  Alignment time:  0.001233333  minutes</div><div class='input'>
+<span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='plotSpectra.html'>plotSpectra</a></span><span class='op'>(</span><span class='va'>aMUD</span>, which <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span>, lab.pos <span class='op'>=</span> <span class='fl'>4.5</span>, offset <span class='op'>=</span> <span class='fl'>0.1</span>,
+  yrange <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>5000</span><span class='op'>)</span>, amp <span class='op'>=</span> <span class='fl'>500</span><span class='op'>)</span>
+<span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='va'>p2</span> <span class='op'>+</span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>"Aligned NMR Spectra"</span><span class='op'>)</span> <span class='op'>+</span>
+      <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_cartesian.html'>coord_cartesian</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1.5</span>, <span class='fl'>1.8</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1900</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='input'><span class='va'>p2</span>
 </div><div class='img'><img src='clupaSpectra-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>

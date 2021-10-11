@@ -40,12 +40,9 @@
 
 
 <meta property="og:title" content="Plot ANOVA-PCA Scores from a Spectra Object — aovPCAscores" />
-<meta property="og:description" content="Uses the results from aov_pcaSpectra to conduct PCA and plot
-the scores.
-Argument plot is used to select a matrix from those in LM.
-The residual error matrix is then added to the selected matrix before
-performing PCA.  Use names(LM) to see which factor is stored in which
-matrix." />
+<meta property="og:description" content="Uses the results from aov_pcaSpectra to plot the scores.
+Argument submat is used to select PCA results from among those
+stored in argument PCA." />
 
 
 
@@ -77,7 +74,7 @@ matrix." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.3.21</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">6.0.1</span>
       </span>
     </div>
 
@@ -125,15 +122,21 @@ matrix." />
     </div>
 
     <div class="ref-description">
-    <p>Uses the results from <code><a href='aov_pcaSpectra.html'>aov_pcaSpectra</a></code> to conduct PCA and plot
-the scores.
-Argument <code>plot</code> is used to select a matrix from those in <code>LM</code>.
-The residual error matrix is then added to the selected matrix before
-performing PCA.  Use <code><a href='https://rdrr.io/r/base/names.html'>names(LM)</a></code> to see which factor is stored in which
-matrix.</p>
+    <p>Uses the results from <code><a href='aov_pcaSpectra.html'>aov_pcaSpectra</a></code> to plot the scores.
+Argument <code>submat</code> is used to select PCA results from among those
+stored in argument <code>PCA</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>aovPCAscores</span><span class='op'>(</span><span class='va'>spectra</span>, <span class='va'>LM</span>, plot <span class='op'>=</span> <span class='fl'>1</span>, type <span class='op'>=</span> <span class='st'>"class"</span>, choice <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>aovPCAscores</span><span class='op'>(</span>
+  <span class='va'>spectra</span>,
+  <span class='va'>so</span>,
+  submat <span class='op'>=</span> <span class='fl'>1</span>,
+  ellipse <span class='op'>=</span> <span class='st'>"none"</span>,
+  tol <span class='op'>=</span> <span class='st'>"none"</span>,
+  use.sym <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  leg.loc <span class='op'>=</span> <span class='st'>"topright"</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,23 +146,43 @@ matrix.</p>
       <td><p>An object of S3 class <code><a href='Spectra.html'>Spectra</a></code>.</p></td>
     </tr>
     <tr>
-      <th>LM</th>
-      <td><p>List of matrices created by <code><a href='aov_pcaSpectra.html'>aov_pcaSpectra</a></code>.</p></td>
+      <th>so</th>
+      <td><p><em>List</em> of pca results created by <code><a href='aov_pcaSpectra.html'>aov_pcaSpectra</a></code>.</p></td>
     </tr>
     <tr>
-      <th>plot</th>
-      <td><p>An integer specifying which scores to plot.</p></td>
+      <th>submat</th>
+      <td><p>Integer.  Selects list element <code>submat</code> from <code>PCA</code>
+which is a list of PCA results, each corresponding to the computation
+in <code><a href='aov_pcaSpectra.html'>aov_pcaSpectra</a></code>.</p></td>
     </tr>
     <tr>
-      <th>type</th>
-      <td><p>Either classical ("cls") or robust ("rob"); Results in either
-<code><a href='c_pcaSpectra.html'>c_pcaSpectra</a></code> or <code><a href='r_pcaSpectra.html'>r_pcaSpectra</a></code> being called on the
-<code><a href='Spectra.html'>Spectra</a></code> object.</p></td>
+      <th>ellipse</th>
+      <td><p>A character vector specifying the type of ellipses to be
+plotted.  One of <code>c("both"</code>, <code>"none"</code>, <code>"cls"</code>, <code>"rob")</code>.  <code>cls</code>
+specifies classical confidence ellipses, <code>rob</code> specifies robust
+confidence ellipses.  An ellipse is drawn for each group unless there
+are three or fewer samples in the group.</p></td>
     </tr>
     <tr>
-      <th>choice</th>
-      <td><p>The type of scaling to be performed.  See
-<code><a href='c_pcaSpectra.html'>c_pcaSpectra</a></code> and <code><a href='r_pcaSpectra.html'>r_pcaSpectra</a></code> for details.</p></td>
+      <th>tol</th>
+      <td><p>A number describing the fraction of points to be labeled.
+<code>tol = 1.0</code> labels all the points; <code>tol = 0.05</code> labels
+<em>approximately</em> the most extreme 5 percent. Set to <code>"none"</code> to
+completely suppress labels. Note that a simple approach
+based upon quantiles is used, assumes that both x and y are each normally
+distributed, and treats x and y separately.  Thus, this is not a formal
+treatment of outliers, just a means of labeling points. Groups are lumped
+together.</p></td>
+    </tr>
+    <tr>
+      <th>use.sym</th>
+      <td><p>A logical; if TRUE, the color scheme is set to black and the
+points plotted with symbols.  Applies only to <code><a href='Spectra.html'>Spectra</a></code> objects.</p></td>
+    </tr>
+    <tr>
+      <th>leg.loc</th>
+      <td><p>Character; if <code>"none"</code> no legend will be drawn.
+Otherwise, any string acceptable to <code><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -173,7 +196,15 @@ not correspond, but you can edit <code>spectra$groups</code> to match if necessa
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Returns the PCA results, and creates the requested plot.</p>
+    <p>The returned value depends on the graphics option selected (see <code>GraphicsOptions</code>).</p><dl>
+ <dt>base:</dt><dd><p>A data frame or list containing the data plotted.  Assign the value and run <code><a href='https://rdrr.io/r/utils/str.html'>str()</a></code>
+              or <code><a href='https://rdrr.io/r/base/names.html'>names()</a></code> on it to see what it contains. Side effect is a plot.</p></dd>
+ <dt>ggplot2:</dt><dd><p>The plot is displayed, and a <code>ggplot2</code> plot object is returned if the
+                 value is assigned. The plot can be modified in the usual <code>ggplot2</code> manner.
+                 If you want the plotted values, you can access them via the base graphics mode.</p></dd>
+
+</dl>
+
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for
@@ -188,7 +219,7 @@ Variance--Principal Component Analysis: ..." Analytica Chimica Acta 544.1-2
 Additional documentation at <a href='https://bryanhanson.github.io/ChemoSpec/'>https://bryanhanson.github.io/ChemoSpec/</a></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Matthew J. Keinsley and Bryan A. Hanson, DePauw University.</p>
+    <p>Bryan A. Hanson (DePauw University), Matthew J. Keinsley.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

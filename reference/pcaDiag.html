@@ -77,7 +77,7 @@ with either classical or robust PCA results." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.3.21</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">6.0.1</span>
       </span>
     </div>
 
@@ -179,15 +179,21 @@ symbols are used for plotting.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional parameters to be passed to the plotting functions.</p></td>
+      <td><p>Parameters to be passed to the plotting routines. <em>Applies to base graphics only</em>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list is returned as described in
-<code><a href='https://rdrr.io/pkg/chemometrics/man/pcaDiagplot.html'>pcaDiagplot</a></code>, so the result must be assigned or
-it will appear at the console.  Side effect is a plot.</p>
+    <p>The returned value depends on the graphics option selected (see <code>GraphicsOptions</code>).</p><dl>
+ <dt>base:</dt><dd><p>A data frame or list containing the data plotted.  Assign the value and run <code><a href='https://rdrr.io/r/utils/str.html'>str()</a></code>
+              or <code><a href='https://rdrr.io/r/base/names.html'>names()</a></code> on it to see what it contains. Side effect is a plot.</p></dd>
+ <dt>ggplot2:</dt><dd><p>The plot is displayed, and a <code>ggplot2</code> plot object is returned if the
+                 value is assigned. The plot can be modified in the usual <code>ggplot2</code> manner.
+                 If you want the plotted values, you can access them via the base graphics mode.</p></dd>
+
+</dl>
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>If both plots are desired, the output should be directed to a file rather
@@ -200,20 +206,24 @@ specifying <code>OD</code> and once specifying <code>SD</code>.</p>
 Statistical Analysis in Chemometrics</em>, CRC Press, 2009.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Additional documentation at <a href='https://bryanhanson.github.io/ChemoSpec/'>https://bryanhanson.github.io/ChemoSpec/</a></p>
-<p><code><a href='https://rdrr.io/pkg/chemometrics/man/pcaDiagplot.html'>pcaDiagplot</a></code> in package
-<code>chemometrics</code> for the underlying function.</p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/chemometrics/man/pcaDiagplot.html'>pcaDiagplot</a></code> in package
+<code>chemometrics</code> for the underlying function. Additional documentation at
+<a href='https://bryanhanson.github.io/ChemoSpec/'>https://bryanhanson.github.io/ChemoSpec/</a></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Bryan A. Hanson, DePauw University.</p>
+    <p>Bryan A. Hanson (DePauw University), Tejasvi Gupta.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://ggplot2.tidyverse.org'>"ggplot2"</a></span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>SrE.IR</span><span class='op'>)</span>
-<span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='c_pcaSpectra.html'>c_pcaSpectra</a></span><span class='op'>(</span><span class='va'>SrE.IR</span>, choice <span class='op'>=</span> <span class='st'>"noscale"</span><span class='op'>)</span>
-<span class='va'>temp</span> <span class='op'>&lt;-</span> <span class='fu'>pcaDiag</span><span class='op'>(</span><span class='va'>SrE.IR</span>, <span class='va'>res</span>, pcs <span class='op'>=</span> <span class='fl'>2</span>, plot <span class='op'>=</span> <span class='st'>"OD"</span><span class='op'>)</span>
-</div><div class='img'><img src='pcaDiag-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>temp</span> <span class='op'>&lt;-</span> <span class='fu'>pcaDiag</span><span class='op'>(</span><span class='va'>SrE.IR</span>, <span class='va'>res</span>, pcs <span class='op'>=</span> <span class='fl'>2</span>, plot <span class='op'>=</span> <span class='st'>"SD"</span><span class='op'>)</span>
-</div><div class='img'><img src='pcaDiag-2.png' alt='' width='700' height='433' /></div></pre>
+<span class='va'>pca</span> <span class='op'>&lt;-</span> <span class='fu'><a href='c_pcaSpectra.html'>c_pcaSpectra</a></span><span class='op'>(</span><span class='va'>SrE.IR</span>, choice <span class='op'>=</span> <span class='st'>"noscale"</span><span class='op'>)</span>
+<span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'>pcaDiag</span><span class='op'>(</span><span class='va'>SrE.IR</span>, <span class='va'>pca</span>, pcs <span class='op'>=</span> <span class='fl'>2</span>, plot <span class='op'>=</span> <span class='st'>"OD"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>"OD Plot"</span><span class='op'>)</span>
+<span class='va'>p1</span>
+</div><div class='img'><img src='pcaDiag-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='fu'>pcaDiag</span><span class='op'>(</span><span class='va'>SrE.IR</span>, <span class='va'>pca</span>, pcs <span class='op'>=</span> <span class='fl'>2</span>, plot <span class='op'>=</span> <span class='st'>"SD"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>"SD Plot"</span><span class='op'>)</span>
+<span class='va'>p2</span>
+</div><div class='img'><img src='pcaDiag-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -73,7 +73,7 @@ loadings." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.3.21</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">6.0.1</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@ loadings." />
 loadings.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>aovPCAloadings</span><span class='op'>(</span><span class='va'>spectra</span>, <span class='va'>LM</span>, <span class='va'>pca</span>, plot <span class='op'>=</span> <span class='fl'>1</span>, loads <span class='op'>=</span> <span class='fl'>1</span>, ref <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>aovPCAloadings</span><span class='op'>(</span><span class='va'>spectra</span>, <span class='va'>PCA</span>, submat <span class='op'>=</span> <span class='fl'>1</span>, loads <span class='op'>=</span> <span class='fl'>1</span>, ref <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -135,22 +135,18 @@ loadings.</p>
       <td><p>An object of S3 class <code><a href='Spectra.html'>Spectra</a></code>.</p></td>
     </tr>
     <tr>
-      <th>LM</th>
-      <td><p>List of matrices created by <code><a href='aovPCAscores.html'>aovPCAscores</a></code>.</p></td>
+      <th>PCA</th>
+      <td><p>List of pca results created by <code><a href='aov_pcaSpectra.html'>aov_pcaSpectra</a></code>.</p></td>
     </tr>
     <tr>
-      <th>pca</th>
-      <td><p>PCA output from <code><a href='aovPCAscores.html'>aovPCAscores</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>plot</th>
-      <td><p>An integer specifying the desired plot. <code><a href='https://rdrr.io/r/base/names.html'>names(LM)</a></code> will
-show which matrix has which data in it.</p></td>
+      <th>submat</th>
+      <td><p>Integer.  Selects list element <code>submat</code> from <code>PCA</code>
+which is a list of PCA results, each corresponding to the computation
+in <code><a href='aov_pcaSpectra.html'>aov_pcaSpectra</a></code>.</p></td>
     </tr>
     <tr>
       <th>loads</th>
-      <td><p>An integer vector giving the loadings to plot.  More than 3
-loadings creates a useless plot using the default graphics window.</p></td>
+      <td><p>An integer vector giving the loadings to plot.</p></td>
     </tr>
     <tr>
       <th>ref</th>
@@ -159,13 +155,19 @@ appears at the bottom of the plot.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional parameters to be passed to plotting functions.</p></td>
+      <td><p>Parameters to be passed to the plotting routines. <em>Applies to base graphics only</em>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>None. Side effect is a plot.</p>
+    <p>The returned value depends on the graphics option selected (see <code>GraphicsOptions</code>).</p><dl>
+ <dt>base:</dt><dd><p>None. Side effect is a plot.</p></dd>
+ <dt>ggplot2:</dt><dd><p>The plot is displayed, and a <code>ggplot2</code> plot object is returned if the
+                 value is assigned. The plot can be modified in the usual <code>ggplot2</code> manner.</p></dd>
+
+</dl>
+
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for
@@ -180,7 +182,7 @@ Variance--Principal Component Analysis: ..." Analytica Chimica Acta 544.1-2
 Additional documentation at <a href='https://bryanhanson.github.io/ChemoSpec/'>https://bryanhanson.github.io/ChemoSpec/</a></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Matthew J. Keinsley and Bryan A. Hanson, DePauw University.</p>
+    <p>Bryan A. Hanson (DePauw University), Matthew J. Keinsley.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -79,7 +79,7 @@ is the same as standard PCA and gives no additional separation." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.3.21</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">6.0.1</span>
       </span>
     </div>
 
@@ -137,7 +137,7 @@ With this method, the significance of a factor can be visually determined
 is the same as standard PCA and gives no additional separation.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>aov_pcaSpectra</span><span class='op'>(</span><span class='va'>spectra</span>, <span class='va'>fac</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>aov_pcaSpectra</span><span class='op'>(</span><span class='va'>spectra</span>, <span class='va'>fac</span>, type <span class='op'>=</span> <span class='st'>"class"</span>, choice <span class='op'>=</span> <span class='cn'>NULL</span>, showNames <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,12 +153,26 @@ the analysis.  These should be elements of <code><a href='Spectra.html'>Spectra<
 there should be 2 or more factors, because ANOVA-PCA on one factor is the
 same as standard PCA.  See the example.</p></td>
     </tr>
+    <tr>
+      <th>type</th>
+      <td><p>Either classical ("cls") or robust ("rob"); Results in either
+<code><a href='c_pcaSpectra.html'>c_pcaSpectra</a></code> or <code><a href='r_pcaSpectra.html'>r_pcaSpectra</a></code> being called on the
+<code><a href='Spectra.html'>Spectra</a></code> object.</p></td>
+    </tr>
+    <tr>
+      <th>choice</th>
+      <td><p>The type of scaling to be performed.  See
+<code><a href='c_pcaSpectra.html'>c_pcaSpectra</a></code> and <code><a href='r_pcaSpectra.html'>r_pcaSpectra</a></code> for details.</p></td>
+    </tr>
+    <tr>
+      <th>showNames</th>
+      <td><p>Logical.  Show the names of the submatrices in the console.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of matrices for each factor and their interactions, along
-with the residual error and mean centered data matrix.</p>
+    <p>A list of PCA results, one for each computed submatrix.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for
@@ -173,29 +187,42 @@ used in <code><a href='aovPCAscores.html'>aovPCAscores</a></code> and <code><a h
 Additional documentation at <a href='https://bryanhanson.github.io/ChemoSpec/'>https://bryanhanson.github.io/ChemoSpec/</a></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Matthew J. Keinsley and Bryan A. Hanson, DePauw University.</p>
+    <p>Bryan A. Hanson (DePauw University), Matthew J. Keinsley.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='co'># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://ggplot2.tidyverse.org'>"ggplot2"</a></span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>metMUD2</span><span class='op'>)</span>
 
 <span class='co'># Original factor encoding:</span>
 <span class='fu'><a href='https://rdrr.io/r/base/levels.html'>levels</a></span><span class='op'>(</span><span class='va'>metMUD2</span><span class='op'>$</span><span class='va'>groups</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "AbcD" "AbCD" "ABcD" "ABCD"</div><div class='input'>
+
 <span class='co'># Split those original levels into 2 new ones (re-code them)</span>
 <span class='va'>new.grps</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>geneBb <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"B"</span>, <span class='st'>"b"</span><span class='op'>)</span>, geneCc <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"C"</span>, <span class='st'>"c"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>mM3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='splitSpectraGroups.html'>splitSpectraGroups</a></span><span class='op'>(</span><span class='va'>metMUD2</span>, <span class='va'>new.grps</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='input'>
+
 <span class='co'># run aov_pcaSpectra</span>
-<span class='va'>mats</span> <span class='op'>&lt;-</span> <span class='fu'>aov_pcaSpectra</span><span class='op'>(</span><span class='va'>mM3</span>, fac <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"geneBb"</span>, <span class='st'>"geneCc"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='input'><span class='va'>apca1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='aovPCAscores.html'>aovPCAscores</a></span><span class='op'>(</span><span class='va'>mM3</span>, <span class='va'>mats</span>, plot <span class='op'>=</span> <span class='fl'>1</span>, main <span class='op'>=</span> <span class='st'>"aovPCA: B vs b"</span>, ellipse <span class='op'>=</span> <span class='st'>"cls"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='img'><img src='aov_pcaSpectra-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>apca2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='aovPCAscores.html'>aovPCAscores</a></span><span class='op'>(</span><span class='va'>mM3</span>, <span class='va'>mats</span>, plot <span class='op'>=</span> <span class='fl'>2</span>, main <span class='op'>=</span> <span class='st'>"aovPCA: C vs c"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='img'><img src='aov_pcaSpectra-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>apca3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='aovPCAscores.html'>aovPCAscores</a></span><span class='op'>(</span><span class='va'>mM3</span>, <span class='va'>mats</span>, plot <span class='op'>=</span> <span class='fl'>3</span>, main <span class='op'>=</span> <span class='st'>"aovPCA: Interaction Term"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='img'><img src='aov_pcaSpectra-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>apca4</span> <span class='op'>&lt;-</span> <span class='fu'><a href='aovPCAloadings.html'>aovPCAloadings</a></span><span class='op'>(</span>
-  spectra <span class='op'>=</span> <span class='va'>mM3</span>, LM <span class='op'>=</span> <span class='va'>mats</span>, pca <span class='op'>=</span> <span class='va'>apca1</span>,
-  main <span class='op'>=</span> <span class='st'>"aov_pcaSpectra: Bb Loadings"</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneBb</span></div><div class='output co'>#&gt; <span class='message'>	Additional data was found: geneCc</span></div><div class='img'><img src='aov_pcaSpectra-4.png' alt='' width='700' height='433' /></div></pre>
+<span class='va'>PCAs</span> <span class='op'>&lt;-</span> <span class='fu'>aov_pcaSpectra</span><span class='op'>(</span><span class='va'>mM3</span>, fac <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"geneBb"</span>, <span class='st'>"geneCc"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='aovPCAscores.html'>aovPCAscores</a></span><span class='op'>(</span><span class='va'>mM3</span>, <span class='va'>PCAs</span>, submat <span class='op'>=</span> <span class='fl'>1</span>, ellipse <span class='op'>=</span> <span class='st'>"cls"</span><span class='op'>)</span>
+<span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='va'>p1</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>"aovPCA: B vs b"</span><span class='op'>)</span>
+<span class='va'>p1</span>
+
+<span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='aovPCAscores.html'>aovPCAscores</a></span><span class='op'>(</span><span class='va'>mM3</span>, <span class='va'>PCAs</span>, submat <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='va'>p2</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>"aovPCA: C vs c"</span><span class='op'>)</span>
+<span class='va'>p2</span>
+
+<span class='va'>p3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='aovPCAscores.html'>aovPCAscores</a></span><span class='op'>(</span><span class='va'>mM3</span>, <span class='va'>PCAs</span>, submat <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+<span class='va'>p3</span> <span class='op'>&lt;-</span> <span class='va'>p3</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>"aovPCA: Interaction Term"</span><span class='op'>)</span>
+<span class='va'>p3</span>
+
+<span class='va'>p4</span> <span class='op'>&lt;-</span> <span class='fu'><a href='aovPCAloadings.html'>aovPCAloadings</a></span><span class='op'>(</span>spectra <span class='op'>=</span> <span class='va'>mM3</span>, PCA <span class='op'>=</span> <span class='va'>PCAs</span><span class='op'>)</span>
+<span class='va'>p4</span> <span class='op'>&lt;-</span> <span class='va'>p4</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>"aov_pcaSpectra: Bb Loadings"</span><span class='op'>)</span>
+<span class='va'>p4</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

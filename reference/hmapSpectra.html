@@ -75,7 +75,7 @@ The vignette for package seriation has more details." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.3.21</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">6.0.1</span>
       </span>
     </div>
 
@@ -181,7 +181,7 @@ olive oil.</p>
 <a href='https://bryanhanson.github.io/ChemoSpec/'>https://bryanhanson.github.io/ChemoSpec/</a></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Bryan A. Hanson, DePauw University.</p>
+    <p>Bryan A. Hanson (DePauw University)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -189,11 +189,11 @@ olive oil.</p>
 
 <span class='co'># Let's look just at the carbonyl region</span>
 <span class='va'>IR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='removeFreq.html'>removeFreq</a></span><span class='op'>(</span><span class='va'>SrE.IR</span>, rem.freq <span class='op'>=</span> <span class='va'>SrE.IR</span><span class='op'>$</span><span class='va'>freq</span> <span class='op'>&gt;</span> <span class='fl'>1775</span> <span class='op'>|</span> <span class='va'>SrE.IR</span><span class='op'>$</span><span class='va'>freq</span> <span class='op'>&lt;</span> <span class='fl'>1660</span><span class='op'>)</span>
-<span class='fu'><a href='plotSpectra.html'>plotSpectra</a></span><span class='op'>(</span><span class='va'>IR</span>, which <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>16</span>, lab.pos <span class='op'>=</span> <span class='fl'>1800</span><span class='op'>)</span>
-</div><div class='img'><img src='hmapSpectra-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='plotSpectra.html'>plotSpectra</a></span><span class='op'>(</span><span class='va'>IR</span>, which <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>16</span>, lab.pos <span class='op'>=</span> <span class='fl'>1800</span><span class='op'>)</span>
+
 <span class='co'># Defaults, except for color scheme:</span>
 <span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'>hmapSpectra</span><span class='op'>(</span><span class='va'>IR</span>, col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>heat.colors</a></span><span class='op'>(</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='hmapSpectra-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='hmapSpectra-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Label samples and frequencies by passing arguments to stats:heatmap</span>
 <span class='co'># Also make a few other nice plot adjustments</span>
 <span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'>hmapSpectra</span><span class='op'>(</span><span class='va'>IR</span>,
@@ -201,7 +201,8 @@ olive oil.</p>
   row_labels <span class='op'>=</span> <span class='va'>IR</span><span class='op'>$</span><span class='va'>names</span>, col_labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>IR</span><span class='op'>$</span><span class='va'>freq</span><span class='op'>)</span><span class='op'>)</span>,
   margins <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>6</span><span class='op'>)</span>
 <span class='op'>)</span>
-</div><div class='img'><img src='hmapSpectra-3.png' alt='' width='700' height='433' /></div></pre>
+</div><div class='img'><img src='hmapSpectra-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

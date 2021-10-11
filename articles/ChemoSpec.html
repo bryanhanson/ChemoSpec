@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">5.3.21</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">6.0.1</span>
       </span>
     </div>
 
@@ -70,7 +70,7 @@
 
       
 
-      </header><script src="ChemoSpec_files/jquery-1.11.3/jquery.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1">
+      </header><script src="ChemoSpec_files/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="ChemoSpec_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
 <script src="ChemoSpec_files/bootstrap-3.3.5/js/bootstrap.min.js"></script><script src="ChemoSpec_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script><script src="ChemoSpec_files/bootstrap-3.3.5/shim/respond.min.js"></script><style>h1 {font-size: 34px;}
        h1.title {font-size: 38px;}
@@ -94,7 +94,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:hanson@depauw.edu" class="email">hanson@depauw.edu</a>
       </address>
                   
-            <h4 class="date">2021-07-06</h4>
+            <h4 class="date">2021-10-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/bryanhanson/ChemoSpec/blob/master/vignettes/ChemoSpec.Rmd"><code>vignettes/ChemoSpec.Rmd</code></a></small>
       <div class="hidden name"><code>ChemoSpec.Rmd</code></div>
@@ -104,7 +104,7 @@
     
     
 <!-- Run a few things in the background for use later -->
-<p>This vignette is based upon <code>ChemoSpec</code> version 5.3.21.</p>
+<p>This vignette is based upon <code>ChemoSpec</code> version 6.0.1 relying on <code>ChemoSpecUtils</code> version 1.0.0.</p>
 <blockquote>
 <p><code>ChemoSpec</code> is a collection of functions for top-down exploratory data analysis of spectral data including nuclear magnetic resonance (NMR), infrared (IR), Raman, X-ray fluorescence (XRF) and other similar types of spectroscopy. Includes functions for plotting and inspecting spectra, peak alignment, hierarchical cluster analysis (HCA), principal components analysis (PCA) and model-based clustering. Robust methods appropriate for this type of high-dimensional data are available. <code>ChemoSpec</code> is designed for structured experiments, such as metabolomics investigations, where the samples fall into treatment and control groups. Graphical output is formatted consistently for publication quality plots. <code>ChemoSpec</code> is intended to be very user friendly and to help you get usable results quickly. A vignette covering typical operations is available.</p>
 </blockquote>
@@ -116,30 +116,35 @@
 <p>“… the extraction of relevant information from chemical data by mathematical and statistical tools.”</p>
 </blockquote>
 <p>This is an appropriately broad definition, considering the wealth of questions and tasks that can be treated by chemometric approaches. In our case, the focus is on spectral data sets, which typically have many variables (frequencies) and relatively few samples. Such multivariate, <em>high p, low n</em> data sets present some algorithmic challenges, but these have been addressed by knowledgeable folks. In particular, for both the practical and theoretical background to multivariate chemometric analysis, I strongly recommend the Varmuza/Filzmoser book <span class="citation">(Varmuza and Filzmoser <a href="#ref-Filzmoser2009" role="doc-biblioref">2009</a>)</span>. Some of the functions described here are not much more than wrappers for the functions they and others have made available to the <code>R</code> community in their packages. Another excellent text is the one by Ron Wehrens <span class="citation">(Wehrens <a href="#ref-Wehrens2011" role="doc-biblioref">2011</a>)</span>.</p>
-<p><code>ChemoSpec</code> was developed for the chemometric analysis of spectroscopic data, such as XRF <span class="citation">(Panchuk et al. <a href="#ref-Panchuk2018" role="doc-biblioref">2018</a>)</span>, UV-Vis, NMR or IR data, including MIR and NIR. <code>ChemoSpec</code> also works with chromatographic data (see below) and less commonly encountered techniques such as circular dichroism).<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> The purpose of <code>ChemoSpec</code> is to make chemometric tools readily available to a wide range of researchers who might be new to <code>R</code>. The approach is entirely exploratory and unsupervised, in other words, “top-down” <span class="citation">(Wishart <a href="#ref-Wishart2007" role="doc-biblioref">2007</a>)</span>. <code>ChemoSpec</code> is designed to accommodate samples that have different histories, i.e., they fall into different classes, categories or groups. Examples would be treatment and control groups, or simply different specimens (red flowers vs. blue flowers). <code>ChemoSpec</code> is designed to be as user friendly as possible, with plenty of error checking, helpful warnings and a consistent interface. It also produces graphics that are consistent in style and annotation, and are suitable for use in publications and posters. Careful attention was given to writing the documentation for the functions, but this vignette serves as the best starting point for learning data analysis with <code>ChemoSpec</code>. <code>ChemoSpec</code> is not intended to duplicate the work that is typically done on the spectrometer.</p>
-<p>The centerpiece of <code>ChemoSpec</code> is the <code>Spectra</code> object. This is the place where your data is stored and made available to <code>R</code>. Once your data in stored this way and checked, all analyses are easily carried out. <code>ChemoSpec</code> currently ships with several built-in data sets; we’ll use one called <code>SrE.IR</code> for our demonstrations. You will see in just a moment how to access it and inspect it.</p>
+<p><code>ChemoSpec</code> was developed for the chemometric analysis of spectroscopic data, such as XRF <span class="citation">(Panchuk et al. <a href="#ref-Panchuk2018" role="doc-biblioref">2018</a>)</span>, UV-Vis, NMR or IR data, including MIR and NIR. <code>ChemoSpec</code> also works with chromatographic data (see below) and less commonly encountered techniques such as circular dichroism.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> The purpose of <code>ChemoSpec</code> is to make chemometric tools readily available to a wide range of researchers who might be new to <code>R</code>. The approach is entirely exploratory and unsupervised, in other words, “top-down” <span class="citation">(Wishart <a href="#ref-Wishart2007" role="doc-biblioref">2007</a>)</span>. <code>ChemoSpec</code> is designed to accommodate samples that have different histories, i.e., they fall into different classes, categories or groups. Examples would be treatment and control groups, or simply different specimens (red flowers vs. blue flowers). <code>ChemoSpec</code> is designed to be as user friendly as possible, with plenty of error checking, helpful warnings and a consistent interface. It also produces graphics that are consistent in style and annotation, and are suitable for use in publications and posters. Careful attention was given to writing the documentation for the functions, but this vignette serves as the best starting point for learning data analysis with <code>ChemoSpec</code>. <code>ChemoSpec</code> is not intended to duplicate the work that is typically done on the spectrometer.</p>
+<p>The centerpiece of <code>ChemoSpec</code> is the <code>Spectra</code> object. This is the place where your data is stored and made available to <code>R</code>. Once your data in stored this way and checked, all analyses are easily carried out. <code>ChemoSpec</code> currently ships with several built-in data sets; we’ll use one called <code>SrE.IR</code> in this vignette. You will see in just a moment how to access it and inspect it.</p>
 <p>I assume you have at least a bare-bones knowledge of <code>R</code> as you begin to learn <code>ChemoSpec</code>, and have a good workflow set up. For detailed help on any function discussed here, type <code>?function_name</code> at the console. If you type <code><a href="../reference/ChemoSpec-package.html">?ChemoSpec</a></code> and click the index link at the bottom, you will see all the available functions, which is also convenient when you can’t quite remember the name of a particular function.</p>
-<p>Finally, some conventions for this document: names of <code>R</code> “objects” such as packages, functions, function arguments, and data sets are in <code>typewriter</code> font as are <code>file names</code>. The commands you issue at the console and the output are shown with a light grey background, and are colored according to use and purpose, courtesy of the excellent <code>knitr</code> package <span class="citation">(<span class="citeproc-not-found" data-reference-id="R_knitr"><strong>???</strong></span>)</span>.</p>
+<p>Finally, some conventions for this document: names of <code>R</code> “objects” such as packages, functions, function arguments, and data sets are in <code>typewriter</code> font as are <code>file names</code>. The commands you issue at the console and the output are shown with a light grey background, and are colored according to use and purpose, courtesy of the excellent <code>knitr</code> package <span class="citation">(Xie <a href="#ref-R_knitr" role="doc-biblioref">2021</a>)</span>.</p>
 <p>By the way, if you try <code>ChemoSpec</code> and find it useful, have questions, have opinions, or have suggestions, please do let me know. The version you are using already incorporates a great deal of user input, why not add yours? Possible bugs and feature requests should be documented using the Github <a href="https://github.com/bryanhanson/ChemoSpec/issues">issues</a> system.</p>
+</div>
+<div id="graphical-output" class="section level1">
+<h1 class="hasAnchor">
+<a href="#graphical-output" class="anchor"></a><span class="header-section-number">2</span> Graphical Output</h1>
+<p>As mentioned, <code>ChemoSpec</code> tries really hard to produce top quality graphics ready for use. The format, layout and annotations are consistent. From the beginning of <code>ChemoSpec</code>, the graphics were produced using <code>R</code>s built-in <code>base</code> graphics system. However, as of version 6, <code>ggplot2</code> graphics and <code>plotly</code> graphics can be used for the most commonly used functions (and <code>base</code> is still available too) <span class="citation">(Wickham et al. <a href="#ref-R_ggplot2" role="doc-biblioref">2021</a>; Sievert et al. <a href="#ref-R_plotly" role="doc-biblioref">2021</a>)</span>. At startup, the graphics mode is set to <code>ggplot2</code>. More information can be found at <code>?GraphicsOptions</code>.</p>
 </div>
 <div id="a-sample-workflow" class="section level1">
 <h1 class="hasAnchor">
-<a href="#a-sample-workflow" class="anchor"></a><span class="header-section-number">2</span> A Sample Workflow</h1>
+<a href="#a-sample-workflow" class="anchor"></a><span class="header-section-number">3</span> A Sample Workflow</h1>
 <p>This sample exploration is designed to illustrate a typical <code>ChemoSpec</code> workflow. The point is to illustrate how to carry out the commands, what options are available and typically used, and the order in which one might do the analysis.</p>
 <p>You may wish to put your versions of these commands into a script file that you can source as you go along. This way you can easily make changes, and it will all be reproducible. To do this, open a blank <code>R</code> document, and type in your commands. Save it as something like <code>My_First_ChemoSpec.R</code>. Then you can either cut and paste portions of it to the console for execution, or you can source the entire thing:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"My_First_ChemoSpec.R"</span><span class="op">)</span></code></pre></div>
-<p>A typical chemometrics workflow is illustrated in Figure <a href="#fig:workflow">2.1</a>. Depending upon the nature of your data, some of these steps may be irrelevant or may be omitted, and the order may need to be changed. Examples are in the following sections.</p>
+<p>A typical chemometrics workflow is illustrated in Figure <a href="#fig:workflow">3.1</a>. Depending upon the nature of your data, some of these steps may be irrelevant or may be omitted, and the order may need to be changed. Examples are in the following sections.</p>
 <div class="figure" style="text-align: center">
-<span id="fig:workflow"></span>
+<span style="display:block;" id="fig:workflow"></span>
 <img src="MetabPreProcess.png" alt="A typical workflow.  For a given data set, some steps may be omitted and the order changed.  That is part of what is meant by exploratory data analysis!" width="80%"><p class="caption">
-Figure 2.1: A typical workflow. For a given data set, some steps may be omitted and the order changed. That is part of what is meant by exploratory data analysis!
+Figure 3.1: A typical workflow. For a given data set, some steps may be omitted and the order changed. That is part of what is meant by exploratory data analysis!
 </p>
 </div>
 </div>
 <div id="getting-data-into-chemospec" class="section level1">
 <h1 class="hasAnchor">
-<a href="#getting-data-into-chemospec" class="anchor"></a><span class="header-section-number">3</span> Getting Data into ChemoSpec</h1>
+<a href="#getting-data-into-chemospec" class="anchor"></a><span class="header-section-number">4</span> Getting Data into ChemoSpec</h1>
 <p>There are two means of importing raw data sets into <code>ChemoSpec</code>. One is the function <code>files2SpectraObject</code>, which assumes that your raw data exist as separate files in a single directory, each file containing a frequency column and an intensity column. A header row may or may not be present, and the data can be separated by any separation mark you like (typically comma, tab, semi-colon or space). You may also use comma or period as the decimal mark. These options permit data to be imported from files written by a wide variety of instruments using various conventions.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> It is also possible to import files in the JCAMP-DX format.</p>
 <p>The second function is <code>matrix2SpectraObject</code>, which assumes you have a single file containing a matrix of the data. This matrix should have frequencies in the first column, and individual sample intensities in the remaining columns. There must be a header row in the file, and it must contain the sample names (except the first entry, which marks the frequencies, is ignored). Other than this requirement, you have all the flexibility described above.</p>
 <p>Please be sure to read the help at <code><a href="../reference/files2SpectraObject.html">?files2SpectraObject</a></code> for the details, and be certain to pay special attention to the <code>...</code> argument, as this is how your choice of header, separator, and decimal mark are conveyed to <code>read.table</code> which does the actual reading.</p>
@@ -154,25 +159,25 @@ Figure 2.1: A typical workflow. For a given data set, some steps may be omitted 
   int.unit <span class="op">=</span> <span class="st">"peak intensity"</span>,
   descrip <span class="op">=</span> <span class="st">"Subspecies Study"</span>,
   out.file <span class="op">=</span> <span class="st">"subsp"</span><span class="op">)</span></code></pre></div>
-<p>This causes <code>files2SpectraObject</code> to inspect the file names for the strings <code>"sspA"</code> and <code>"sspB"</code> and use these to assign the samples into groups. Samples in <code>sspA*.csv</code> files will be assigned the color red and <code>sspB*.csv</code> will be assigned blue (see Section <a href="#sec:colsymsec">8.2</a> for some suggestions about planning ahead on color choices, as well as <code><a href="../reference/colorSymbol.html">?colorSymbol</a></code>). After running this command, a new file called <code>subsp.RData</code> will be in your directory, and and a <code>Spectra</code> object called <code>ssp</code> will be in your workspace read for exploration. At a later date, you don’t have to re-import your data, you can use the saved version and give it whatever name you like as follows (function <code>loadObject</code> is from package <code>R.utils</code>):</p>
+<p>This causes <code>files2SpectraObject</code> to inspect the file names for the strings <code>"sspA"</code> and <code>"sspB"</code> and use these to assign the samples into groups. Samples in <code>sspA*.csv</code> files will be assigned the color red and <code>sspB*.csv</code> will be assigned blue (see Section <a href="#sec:colsymsec">9.2</a> for some suggestions about planning ahead on color choices, as well as <code><a href="../reference/colorSymbol.html">?colorSymbol</a></code>). After running this command, a new file called <code>subsp.RData</code> will be in your directory, and and a <code>Spectra</code> object called <code>ssp</code> will be in your workspace ready for exploration. At a later date, you don’t have to re-import your data, you can use the saved version and give it whatever name you like as follows (function <code>loadObject</code> is from package <code>R.utils</code>):</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">SubspeciesNMR</span> <span class="op">&lt;-</span> <span class="fu">loadObject</span><span class="op">(</span><span class="st">"subsp.RData"</span><span class="op">)</span></code></pre></div>
 <p>Now it is ready to use.</p>
 <div id="working-with-chromatograms" class="section level2">
 <h2 class="hasAnchor">
-<a href="#working-with-chromatograms" class="anchor"></a><span class="header-section-number">3.1</span> Working with Chromatograms</h2>
+<a href="#working-with-chromatograms" class="anchor"></a><span class="header-section-number">4.1</span> Working with Chromatograms</h2>
 <p>While all the language in this vignette and in the package are geared toward analysis of spectra, <code>ChemoSpec</code> can also works quite well with chromatograms as the raw data. In this case, time replaces frequency of course, but other than that the analysis is virtually the same. So the only real difference is when you import the data, e.g. via <code>files2SpectraObject</code>, you will give the frequency unit along these lines: <code>freq.unit = "time (minutes)"</code>.</p>
 </div>
 <div id="built-in-data-sets" class="section level2">
 <h2 class="hasAnchor">
-<a href="#built-in-data-sets" class="anchor"></a><span class="header-section-number">3.2</span> Built-in Data Sets</h2>
+<a href="#built-in-data-sets" class="anchor"></a><span class="header-section-number">4.2</span> Built-in Data Sets</h2>
 <p><code>ChemoSpec</code> ships with several built-in data sets. <code>SrE.IR</code> is the set used for this vignette. It is composed of a collection of 14 IR spectra of essential oil extracted from the palm <em>Serenoa repens</em> or Saw Palmetto, which is commonly used to treat BPH in men. The 14 spectra are of different retail samples, and are divided into two categories based upon the label description: adSrE, adulterated extract, and pSrE, pure extract. The adulterated samples typically have olive oil added to them, which has no effect on BPH. There are two additional spectra included as references/outliers: evening primrose oil, labeled EPO in the data set, and olive oil, labeled OO. These latter two oils are mixtures of triglycerides for the most part, while the SrE samples are largely fatty acids. As a result, the spectra of these two groups differ: the glycerides have ester carbonyl stretches and no O–H stretch, while the fatty acids have acid carbonyl stretches and an O–H stretch consistent with a carboxylic acid OH.</p>
-<p>Also included is <code>SrE.NMR</code> which is the corresponding set of NMR spectra, and <code>CuticleIR</code>. The latter is a series of IR spectra of the cuticle (leaf surface) of the plant <em>Portulaca oleracea</em>. The data were taken by gently pinning the leaf against an ATR sampling device. The plants were grown at two different temperatures, and two different genotypes (varieties) were used (a classic G x E, genotype by environment, experiment).</p>
-<p>The <code>SrE.IR</code> data set is used as the example in this vignette as the sample spectra are fairly different and give good separation by most chemometric methods. The <code>CuticleIR</code> spectra differ in much more subtle ways and as as result are more of a challenge to analyze. For more details about these data sets, type <code>?data_set_name</code> at the console.</p>
+<p>Also included is <code>SrE.NMR</code> which is the corresponding set of NMR spectra. Finally, there are two synthetic data sets, <code>metMUD1</code> and <code>metMUD2</code> which contain NMR metabolomics data. For more detail type <code><a href="../reference/SrE.IR.html">?SrE.IR</a></code> or more generally, <code>?data_set_name</code>.</p>
+<p>The <code>SrE.IR</code> data set is used as the example in this vignette as the sample spectra are fairly different and give good separation by most chemometric methods.</p>
 </div>
 <div id="sec:prelim" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:prelim" class="anchor"></a><span class="header-section-number">3.3</span> Summarize the Data</h2>
+<a href="#sec:prelim" class="anchor"></a><span class="header-section-number">4.3</span> Summarize the Data</h2>
 <p><em>The</em> first thing you should do, and this is very important, is to make sure your data are in good shape. First, you can summarize the data set you created, and verify that the data ranges and other details look like you expect them to:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span> <span class="co"># makes the data available</span>
@@ -206,101 +211,89 @@ Figure 2.1: A typical workflow. For a given data set, some steps may be omitted 
 </div>
 <div id="plotting-spectra" class="section level1">
 <h1 class="hasAnchor">
-<a href="#plotting-spectra" class="anchor"></a><span class="header-section-number">4</span> Plotting Spectra</h1>
+<a href="#plotting-spectra" class="anchor"></a><span class="header-section-number">5</span> Plotting Spectra</h1>
 <p>Assuming that everything looks good so far, it’s time to plot the spectra and inspect them. A good practice would be to check every spectrum for artifacts and other potential problems. There are three functions that can do this for you:</p>
 <ul>
 <li>
-<code>LoopThruSpectra</code> takes the pain out of inspecting quite a few spectra. It shows you one spectrum at a time, and waits for a return to be typed in the console before proceeding. See the help page for details.</li>
+<code>reviewAllSpectra</code> takes the pain out of inspecting quite a few spectra (previously this was called <code>loopThruSpectra</code>). In <code>base</code> graphics mode, it shows you one spectrum at a time, and waits for a return to be typed in the console before proceeding. In <code>ggplot2</code> graphics mode, all the spectra are shown at once in a web page.</li>
 <li>
 <code>plotSpectra</code> is intended for general use and publication-quality graphics. You will generally have to play with the arguments a bit if plotting more than one spectrum.</li>
 <li>
 <code>plotSpectraJS</code> is the interactive version of <code>plotSpectra</code>. It shows your data in a web page with the ability to offset the spectra and zoom as desired. For really large data sets it may be slow; see the help page for ways to avoid that.</li>
 </ul>
-<p>A basic plot using <code>plotSpectra</code> is shown in Figure <a href="#fig:sample-plot">4.1</a>. In this case we have chosen to plot one spectrum from each category. Note that the carbonyl and C<sub>sp2</sub>-H regions are clearly different in these samples.</p>
+<p>A basic plot using <code>plotSpectra</code> is shown in Figure <a href="#fig:sample-plot">5.1</a>. In this case we have chosen to plot one spectrum from each category. Note that the carbonyl and C<sub>sp2</sub>-H regions are clearly different in these samples.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># We'll make a fancy title here</span>
-<span class="co"># and re-use in other plots</span>
-<span class="va">myt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">bolditalic</a></span><span class="op">(</span><span class="va">Serenoa</span><span class="op">)</span><span class="op">~</span>
-  <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">bolditalic</a></span><span class="op">(</span><span class="va">repens</span><span class="op">)</span><span class="op">~</span>
-  <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">bold</a></span><span class="op">(</span><span class="va">Extract</span><span class="op">~</span><span class="va">IR</span><span class="op">~</span><span class="va">Spectra</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span>,
-  main <span class="op">=</span> <span class="va">myt</span>,
-  which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">14</span>, <span class="fl">16</span><span class="op">)</span>,
-  yrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.6</span><span class="op">)</span>,
-  offset <span class="op">=</span> <span class="fl">0.4</span>,
-  lab.pos <span class="op">=</span> <span class="fl">2200</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="co"># We'll make a fancy title here and re-use in other plots</span>
+<span class="va">myt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">bolditalic</a></span><span class="op">(</span><span class="va">Serenoa</span><span class="op">)</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">bolditalic</a></span><span class="op">(</span><span class="va">repens</span><span class="op">)</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">bold</a></span><span class="op">(</span><span class="va">Extract</span><span class="op">~</span><span class="va">IR</span><span class="op">~</span><span class="va">Spectra</span><span class="op">)</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span>, which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">14</span>, <span class="fl">16</span><span class="op">)</span>, yrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.6</span><span class="op">)</span>,
+  offset <span class="op">=</span> <span class="fl">0.4</span>, lab.pos <span class="op">=</span> <span class="fl">2200</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">myt</span><span class="op">)</span>
+<span class="va">p</span> <span class="co"># when using ggplot2, you have to "call" the object containing the plot</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:sample-plot"></span>
+<span style="display:block;" id="fig:sample-plot"></span>
 <img src="ChemoSpec_files/figure-html/sample-plot-1.png" alt="Sample plot." width="80%"><p class="caption">
-Figure 4.1: Sample plot.
+Figure 5.1: Sample plot.
 </p>
 </div>
-<p>Depending upon the intensity range of your data set, and the number of spectra to be plotted, you have to manually adjust the arguments <code>yrange</code>, <code>offset</code> and <code>amplify</code>, but this usually only takes a few iterations. Keep in mind that <code>offset</code>, and <code>amplify</code> are multiplied in the function, so if you increase one, you may need to decrease the other. Suppose that you wanted to focus just on the carbonyl region of these spectra; you can add the argument <code>xlim</code>. To demonstrate, let’s look at fewer spectra, and at higher amplitude, so we can see details, as shown in Figure <a href="#fig:subplot">4.2</a>.</p>
+<p>Depending upon the intensity range of your data set, and the number of spectra to be plotted, you have to manually adjust the arguments <code>yrange</code>, <code>offset</code> and <code>amplify</code>, but this usually only takes a few iterations. Keep in mind that <code>offset</code>, and <code>amplify</code> are multiplied in the function, so if you increase one, you may need to decrease the other. Suppose that you wanted to focus just on the carbonyl region of these spectra; you can add the argument <code><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian(xlim = ...)</a></code>. See Figure <a href="#fig:subplot">5.2</a>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span>,
-  main <span class="op">=</span> <span class="va">myt</span>,
-  which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">14</span>, <span class="fl">16</span><span class="op">)</span>,
-  yrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.6</span><span class="op">)</span>,
-  offset <span class="op">=</span> <span class="fl">0.1</span>,
-  lab.pos <span class="op">=</span> <span class="fl">1775</span>,
-  xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1650</span>, <span class="fl">1800</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span>, which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">14</span>, <span class="fl">16</span><span class="op">)</span>, yrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.6</span><span class="op">)</span>,
+  offset <span class="op">=</span> <span class="fl">0.1</span>, lab.pos <span class="op">=</span> <span class="fl">1775</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">myt</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1650</span>, <span class="fl">1800</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:subplot"></span>
+<span style="display:block;" id="fig:subplot"></span>
 <img src="ChemoSpec_files/figure-html/subplot-1.png" alt="Detail of the carbonyl region." width="80%"><p class="caption">
-Figure 4.2: Detail of the carbonyl region.
+Figure 5.2: Detail of the carbonyl region.
 </p>
 </div>
 <p>These sample plots display the IR spectra in two ways that may be upsetting to some readers: First, the x-axis is “backwards”, because the underlying spectra were originally saved with an ascending frequency axis (which is not always the case). This is readily fixed by supplying the <code>xlim</code> argument in the desired order, e.g. <code>xlim = c(1800, 1650)</code> in the previous example. Second, the vertical scale in these examples is absorbance. When using IR for structural elucidation, the vertical axis is typically %T, with the peaks pointing downward. However, absorbance mode is the appropriate one for chemometrics. Record your original spectra that way and get used to it.</p>
 <p>The argument <code>which</code> in <code>plotSpectra</code> takes a integer vector of the spectra you wish to plot— you can think of this as the row number if you imagine each spectra to be a row in a matrix, with intensities in the columns (with each column corresponding to a particular frequency value). You may be wondering how to determine which particular sample is in each row. This is best accomplished with a grep command. For instance, if you wanted to know what row/sample the olive oil was in, either of the following methods would locate it for you:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># if there are only a few spectra</span>
-<span class="co"># show all of the names</span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># if there are only a few spectra show all of the names</span>
 <span class="va">SrE.IR</span><span class="op">$</span><span class="va">names</span></code></pre></div>
 <pre><code>##  [1] "CVS_adSrE" "ET_pSrE"   "GNC_adSrE" "LF_adSrE"  "MDB_pSrE"  "NA_pSrE"  
 ##  [7] "Nat_adSrE" "NP_adSrE"  "NR_pSrE"   "NSI_adSrE" "NW_adSrE"  "SN_adSrE" 
 ## [13] "Sol_adSrE" "SV_EPO"    "TD_adSrE"  "TJ_OO"</code></pre>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># if there are a lot of spectra,</span>
-<span class="co"># grep for the desired names</span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># if there are a lot of spectra, grep for the desired names</span>
 <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"OO"</span>, <span class="va">SrE.IR</span><span class="op">$</span><span class="va">names</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 16</code></pre>
 </div>
 <div id="data-pre-processing-options" class="section level1">
 <h1 class="hasAnchor">
-<a href="#data-pre-processing-options" class="anchor"></a><span class="header-section-number">5</span> Data Pre-Processing Options</h1>
-<p>There are a number of data pre-processing options available for your consideration. The main choices are whether to normalize the data, whether to bin the data, and whether to scale the data. Baseline correction is another typical action, and for some NMR data sets one might need to carry out aligment. Data scaling is handled by the PCA routines, see Section <a href="#sec:pca">7.2</a>. <span class="citation">Engel et al. (<a href="#ref-Engel2013" role="doc-biblioref">2013</a>)</span> has a good discussion of pre-processing. <span class="citation">Karakach, Wentzell, and Walter (<a href="#ref-Karakach2009" role="doc-biblioref">2009</a>)</span> has a good discussion of error sources in <sup>1</sup>H NMR data.</p>
+<a href="#data-pre-processing-options" class="anchor"></a><span class="header-section-number">6</span> Data Pre-Processing Options</h1>
+<p>There are a number of data pre-processing options available for your consideration. The main choices are whether to normalize the data, whether to bin the data, and whether to scale the data. Baseline correction is another typical action, and for some NMR data sets one might need to carry out aligment. Data scaling is handled by the PCA routines, see Section <a href="#sec:pca">8.2</a>. <span class="citation">Engel et al. (<a href="#ref-Engel2013" role="doc-biblioref">2013</a>)</span> has a good discussion of pre-processing. <span class="citation">Karakach, Wentzell, and Walter (<a href="#ref-Karakach2009" role="doc-biblioref">2009</a>)</span> has a good discussion of error sources in <sup>1</sup>H NMR data.</p>
 <div id="correcting-baseline-drift" class="section level2">
 <h2 class="hasAnchor">
-<a href="#correcting-baseline-drift" class="anchor"></a><span class="header-section-number">5.1</span> Correcting Baseline Drift</h2>
-<p><code>ChemoSpec</code> uses the functions in the package <code>baseline</code> to correct wandering baselines<span class="citation">(<span class="citeproc-not-found" data-reference-id="R_baseline"><strong>???</strong></span>)</span>. The function, <code>baselineSpectra</code>, can show you the original and corrected baselines if desired, which is useful for choosing a method. Figure <a href="#fig:baseline">5.1</a> shows a typical usage. Method <code>rfbaseline</code> works well for IR spectra; <code>retC = TRUE</code> puts the corrected spectra into the new <code>Spectra</code> object so we can use it going forward (and we will).</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">SrE2.IR</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/baselineSpectra.html">baselineSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span>,
-  int <span class="op">=</span> <span class="cn">FALSE</span>,
-  method <span class="op">=</span> <span class="st">"modpolyfit"</span>,
-  retC <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<a href="#correcting-baseline-drift" class="anchor"></a><span class="header-section-number">6.1</span> Correcting Baseline Drift</h2>
+<p><code>ChemoSpec</code> uses the functions in the package <code>baseline</code> to correct wandering baselines <span class="citation">(Liland and Mevik <a href="#ref-R_baseline" role="doc-biblioref">2020</a>)</span>. The function, <code>baselineSpectra</code>, can show you the original and corrected baselines if desired, which is useful for choosing a method. Figure <a href="#fig:baseline">6.1</a> shows a typical usage. Method <code>modployfit</code> works well for IR spectra, but there are several choices and you should experiment. <code>retC = TRUE</code> puts the corrected spectra into the new <code>Spectra</code> object so we can use it going forward (and we will).</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">SrE2.IR</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/baselineSpectra.html">baselineSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span>, int <span class="op">=</span> <span class="cn">FALSE</span>, method <span class="op">=</span> <span class="st">"modpolyfit"</span>, retC <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:baseline"></span>
+<span style="display:block;" id="fig:baseline"></span>
 <img src="ChemoSpec_files/figure-html/baseline-1.png" alt="Correcting baseline drift." width="80%"><p class="caption">
-Figure 5.1: Correcting baseline drift.
+Figure 6.1: Correcting baseline drift.
 </p>
 </div>
 </div>
 <div id="alignment" class="section level2">
 <h2 class="hasAnchor">
-<a href="#alignment" class="anchor"></a><span class="header-section-number">5.2</span> Alignment</h2>
+<a href="#alignment" class="anchor"></a><span class="header-section-number">6.2</span> Alignment</h2>
 <p>For <sup>1</sup>H NMR data, it is sometimes desirable to align the spectra. This compensates in part for changes in dilution, ionic strength, or pH that can cause significant shifts for some types of protons. Spectra with broad, rolling peaks won’t have this problem (UV-Vis or IR for example). <code>ChemoSpec</code> provides the <code>clupaSpectra</code> function for this purpose. You can see an example <a href="http://www.validnmr.com/w/index.php?title=File:Wine_Alignment.png">here</a>.</p>
 </div>
 <div id="bucketing-or-binning" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bucketing-or-binning" class="anchor"></a><span class="header-section-number">5.3</span> Bucketing or Binning</h2>
+<a href="#bucketing-or-binning" class="anchor"></a><span class="header-section-number">6.3</span> Bucketing or Binning</h2>
 <p>Another type of pre-processing that you may wish to consider is binning or bucketing, in which groups of frequencies are collapsed into one frequency value, and the corresponding intensities are summed. There are two reasons for doing this:</p>
 <ul>
 <li>Compacting large data sets: This is a historical issue, the algorithms in <code>R</code> are quite fast, and large data sets don’t really slow it down much.</li>
 <li>Compensating for <sup>1</sup>H NMR shifts, as described above.</li>
 </ul>
 <p>This example illustrates the process but is not necessary with IR data:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/binSpectra.html">binSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span>, bin.ratio <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
 <span class="fu"><a href="../reference/sumSpectra.html">sumSpectra</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
@@ -327,25 +320,24 @@ Figure 5.1: Correcting baseline drift.
 ## 
 ## *** Note: this is an S3 object
 ## of class 'Spectra'</code></pre>
-<p>Compare the results here with the <code>sumSpectra</code> of the full data set (Section <a href="#sec:prelim">3.3</a>). In particular note that the frequency resolution has gone down due to the binning process. <code>ChemoSpec</code> uses the simplest of binning algorithms: after perhaps dropping a few points (with a warning) to make your data set divisible by the specified <code>bin.ratio</code>, data points are replaced by the average frequency and the sum of the grouped intensities. Depending upon the fine structure in your data and the <code>bin.ratio</code> this might cause important peaks to be split between different bins. There are more sophisticated binning algorithms in the literature that try to address this, but none are currently implemented in <code>ChemoSpec</code> (<span class="citation">Anderson et al. (<a href="#ref-Anderson2008" role="doc-biblioref">2008</a>)</span>, <span class="citation">De Meyer et al. (<a href="#ref-DeMeyer2008" role="doc-biblioref">2008</a>)</span>, <span class="citation">Sousa, Magalhaes, and Castro Ferreira (<a href="#ref-Sousa2013" role="doc-biblioref">2013</a>)</span>). It’s probably better to align the spectra as described above.</p>
+<p>Compare the results here with the <code>sumSpectra</code> of the full data set (Section <a href="#sec:prelim">4.3</a>). In particular note that the frequency resolution has gone down due to the binning process. <code>ChemoSpec</code> uses the simplest of binning algorithms: after perhaps dropping a few points (with a warning) to make your data set divisible by the specified <code>bin.ratio</code>, data points are replaced by the average frequency and the sum of the grouped intensities. Depending upon the fine structure in your data and the <code>bin.ratio</code> this might cause important peaks to be split between different bins. There are more sophisticated binning algorithms in the literature that try to address this, but none are currently implemented in <code>ChemoSpec</code> (<span class="citation">Anderson et al. (<a href="#ref-Anderson2008" role="doc-biblioref">2008</a>)</span>, <span class="citation">De Meyer et al. (<a href="#ref-DeMeyer2008" role="doc-biblioref">2008</a>)</span>, <span class="citation">Sousa, Magalhaes, and Castro Ferreira (<a href="#ref-Sousa2013" role="doc-biblioref">2013</a>)</span>). It’s probably better to align the spectra as described above than risk splitting peaks by binning.</p>
 </div>
 <div id="normalization" class="section level2">
 <h2 class="hasAnchor">
-<a href="#normalization" class="anchor"></a><span class="header-section-number">5.4</span> Normalization</h2>
+<a href="#normalization" class="anchor"></a><span class="header-section-number">6.4</span> Normalization</h2>
 <p>Normalization is handled by the <code>normSpectra</code> function. Usually one normalizes data in which the sample preparation procedure may lead to differences in concentration, such as body fluids that might have been diluted during handling, or that vary due to the physiological state of the organism studied. The <code>SrE.IR</code> data set is taken by placing the oil extract directly on an ATR device and no dilution is possible, so normalization isn’t really appropriate. Please see the help page for the normalization options. The literature contains a number of useful discussions about normalization issues (<span class="citation">Craig et al. (<a href="#ref-Craig2006" role="doc-biblioref">2006</a>)</span> <span class="citation">Romano, Santini, and Indovina (<a href="#ref-Romano2000" role="doc-biblioref">2000</a>)</span> <span class="citation">Berg et al. (<a href="#ref-vandenBerg2006" role="doc-biblioref">2006</a>)</span> <span class="citation">Varmuza and Filzmoser (<a href="#ref-Filzmoser2009" role="doc-biblioref">2009</a>)</span> <span class="citation">Zhang et al. (<a href="#ref-Zhang2009" role="doc-biblioref">2009</a>)</span>).</p>
 </div>
 </div>
 <div id="editing-the-data-set-spectral-regions" class="section level1">
 <h1 class="hasAnchor">
-<a href="#editing-the-data-set-spectral-regions" class="anchor"></a><span class="header-section-number">6</span> Editing the Data Set &amp; Spectral Regions</h1>
+<a href="#editing-the-data-set-spectral-regions" class="anchor"></a><span class="header-section-number">7</span> Editing the Data Set &amp; Spectral Regions</h1>
 <p>In the process of plotting and inspecting your spectra, you may find some spectra/samples that have problems. Perhaps they have instrumental artifacts. Or maybe you have decided to eliminate one subgroup of samples from your data set to see how the results differ.</p>
 <div id="removing-individual-samples" class="section level2">
 <h2 class="hasAnchor">
-<a href="#removing-individual-samples" class="anchor"></a><span class="header-section-number">6.1</span> Removing Individual Samples</h2>
-<p>To remove a particular sample, or samples meeting a certain criteria, you use the <code>removeSample</code> function. This function uses a grepping process based on its <code>rem.sam</code> argument, so you must be careful due to the greediness of grep. Let’s imagine that sample TD_adSrE has artifacts and needs to be removed. The command would be:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">noTD</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/removeSample.html">removeSample</a></span><span class="op">(</span><span class="va">SrE2.IR</span>,
-  rem.sam <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"TD_adSrE"</span><span class="op">)</span><span class="op">)</span>
+<a href="#removing-individual-samples" class="anchor"></a><span class="header-section-number">7.1</span> Removing Individual Samples</h2>
+<p>To remove a particular sample, or samples meeting a certain criteria, use the <code>removeSample</code> function. This function uses a grepping process based on its <code>rem.sam</code> argument, so you must be careful due to the greediness of grep. Let’s imagine that sample TD_adSrE has artifacts and needs to be removed. The command would be:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">noTD</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/removeSample.html">removeSample</a></span><span class="op">(</span><span class="va">SrE2.IR</span>, rem.sam <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"TD_adSrE"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="../reference/sumSpectra.html">sumSpectra</a></span><span class="op">(</span><span class="va">noTD</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  Serenoa repens IR quality study 
@@ -371,18 +363,18 @@ Figure 5.1: Correcting baseline drift.
 ## 
 ## *** Note: this is an S3 object
 ## of class 'Spectra'</code></pre>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"TD_adSrE"</span>, <span class="va">noTD</span><span class="op">$</span><span class="va">names</span><span class="op">)</span></code></pre></div>
 <pre><code>## integer(0)</code></pre>
 <p>The <code>sumSpectra</code> command confirms that there are now one fewer spectra in the set. As shown, you could also re-grep for the sample name to verify that it is not found. The first argument in <code>grep</code> is the pattern you are searching for; if that pattern matches more than one name they will all be “caught.” For example if you used “SrE” as your pattern you would remove all the samples except the two reference samples, since “SrE” occurs in “adSrE” and “pSrE”. You can check this in advance with the grep function itself:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">SrE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"SrE"</span>, <span class="va">SrE2.IR</span><span class="op">$</span><span class="va">names</span><span class="op">)</span>
 <span class="co"># show the name(s) that contain "SrE"</span>
 <span class="va">SrE2.IR</span><span class="op">$</span><span class="va">names</span><span class="op">[</span><span class="va">SrE</span><span class="op">]</span></code></pre></div>
 <pre><code>##  [1] "CVS_adSrE" "ET_pSrE"   "GNC_adSrE" "LF_adSrE"  "MDB_pSrE"  "NA_pSrE"  
 ##  [7] "Nat_adSrE" "NP_adSrE"  "NR_pSrE"   "NSI_adSrE" "NW_adSrE"  "SN_adSrE" 
 ## [13] "Sol_adSrE" "TD_adSrE"</code></pre>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">SrE</span> <span class="co"># gives the corresponding indices</span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 15</code></pre>
 <p>This is what is meant by “grep is greedy”. In this situation, you have three choices:</p>
@@ -395,55 +387,48 @@ Figure 5.1: Correcting baseline drift.
 </div>
 <div id="removing-groups" class="section level2">
 <h2 class="hasAnchor">
-<a href="#removing-groups" class="anchor"></a><span class="header-section-number">6.2</span> Removing Groups</h2>
+<a href="#removing-groups" class="anchor"></a><span class="header-section-number">7.2</span> Removing Groups</h2>
 <p><code>removeSample</code> uses the names of the samples (in <code>Spectra$names</code>) to identify and remove individual samples from the <code>Spectra</code> object. There is also a function <code>removeGroup</code> which will remove samples belonging to a particular group in <code>Spectra$groups</code>.</p>
 </div>
 <div id="identifying-removing-frequencies-of-no-interest" class="section level2">
 <h2 class="hasAnchor">
-<a href="#identifying-removing-frequencies-of-no-interest" class="anchor"></a><span class="header-section-number">6.3</span> Identifying &amp; Removing Frequencies of No Interest</h2>
+<a href="#identifying-removing-frequencies-of-no-interest" class="anchor"></a><span class="header-section-number">7.3</span> Identifying &amp; Removing Frequencies of No Interest</h2>
 <p>Many spectra will have regions that should be removed before analysis. It may be an uninformative, interfering peak like the water peak in <sup>1</sup>H NMR, or the CO<sub>2</sub> peak in IR. Or, there may be regions of the spectra that simply don’t have much information – they contribute a noisy baseline and not much else. An example would be the region from about 1,800 or 1,900 cm<sup>-1</sup> to about 2,500 cm<sup>-1</sup> in IR, a region where there are typically no peaks except for the atmospheric CO<sub>2</sub> stretch, and rarely (be careful!) alkyne stretches.</p>
-<p>Finding these regions might be pretty simple, a matter of inspection coupled with your knowledge of spectroscopy. Another approach is to use the function <code>surveySpectra</code> to examine the entire set of spectra. This function computes a summary statistic (your choice) of the intensities at a particular frequency across the data set, as well as the mean or median. In regions with little variation, the mean/median and upper/lower summary lines will be close together. Figure <a href="#fig:survey-1">6.1</a> demonstrates the process. There is also an alternative, <code>surveySpectra2</code> which presents the data in a slightly different format. See Figure <a href="#fig:survey-2">6.2</a>.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/surveySpectra.html">surveySpectra</a></span><span class="op">(</span><span class="va">SrE2.IR</span>,
-  method <span class="op">=</span> <span class="st">"iqr"</span>,
-  main <span class="op">=</span> <span class="va">myt</span>,
-  by.gr <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span id="fig:survey-1"></span>
-<img src="ChemoSpec_files/figure-html/survey-1-1.png" alt="Checking for regions of no interest." width="80%"><p class="caption">
-Figure 6.1: Checking for regions of no interest.
-</p>
-</div>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/surveySpectra.html">surveySpectra2</a></span><span class="op">(</span><span class="va">SrE2.IR</span>,
-  method <span class="op">=</span> <span class="st">"iqr"</span>,
-  main <span class="op">=</span> <span class="va">myt</span><span class="op">)</span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span id="fig:survey-2"></span>
-<img src="ChemoSpec_files/figure-html/survey-2-1.png" alt="Checking for regions of no interest." width="80%"><p class="caption">
-Figure 6.2: Checking for regions of no interest.
-</p>
-</div>
-<p>In Figure <a href="#fig:survey-1">6.1</a> we kept all the groups together by using argument <code>by.gr = FALSE</code>. We also looked at the entire spectral range. In Figure <a href="#fig:survey-3">6.3</a> we can look just at the carbonyl region. The black line is the median value of intensity across the entire set of spectra. The red lines are the upper and lower interquartile ranges which makes it pretty clear that the carbonyl region of this data set varies a lot.</p>
+<p>Finding these regions might be pretty simple, a matter of inspection coupled with your knowledge of spectroscopy. Another approach is to use the function <code>surveySpectra</code> to examine the entire set of spectra. This function computes a summary statistic (your choice) of the intensities at a particular frequency across the data set, as well as the mean or median. In regions with little variation, the mean/median and upper/lower summary lines will be close together. Figure <a href="#fig:survey-1">7.1</a> demonstrates the process. There is also an alternative, <code>surveySpectra2</code> which presents the data in a slightly different format. See Figure <a href="#fig:survey-2">7.2</a>.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/surveySpectra.html">surveySpectra</a></span><span class="op">(</span><span class="va">SrE2.IR</span>,
-  method <span class="op">=</span> <span class="st">"iqr"</span>,
-  main <span class="op">=</span> <span class="st">"Detail of Carbonyl Region"</span>,
-  by.gr <span class="op">=</span> <span class="cn">FALSE</span>,
-  xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1650</span>, <span class="fl">1800</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/surveySpectra.html">surveySpectra</a></span><span class="op">(</span><span class="va">SrE2.IR</span>, method <span class="op">=</span> <span class="st">"iqr"</span>, by.gr <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">myt</span><span class="op">)</span>
+<span class="va">p</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:survey-3"></span>
-<img src="ChemoSpec_files/figure-html/survey-3-1.png" alt="Detail of carbonyl region." width="80%"><p class="caption">
-Figure 6.3: Detail of carbonyl region.
+<span style="display:block;" id="fig:survey-1"></span>
+<img src="ChemoSpec_files/figure-html/survey-1-1.png" alt="Checking for regions of no interest." width="80%"><p class="caption">
+Figure 7.1: Checking for regions of no interest.
 </p>
 </div>
-<p>Finally, <code>surveySpectra</code> allows us to view the data set by group, which is really more useful. Let’s look at the carbonyl region by group (Figure <a href="#fig:survey-4">6.4</a>). Note that we get warnings because two of the groups have too few members to compute the interquartile range, and these are not shown.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/surveySpectra.html">surveySpectra</a></span><span class="op">(</span><span class="va">SrE2.IR</span>,
-  method <span class="op">=</span> <span class="st">"iqr"</span>,
-  main <span class="op">=</span> <span class="st">"Detail of Carbonyl Region"</span>,
-  by.gr <span class="op">=</span> <span class="cn">TRUE</span>,
-  xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1650</span>, <span class="fl">1800</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/surveySpectra.html">surveySpectra2</a></span><span class="op">(</span><span class="va">SrE2.IR</span>, method <span class="op">=</span> <span class="st">"iqr"</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">myt</span><span class="op">)</span>
+<span class="va">p</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:survey-2"></span>
+<img src="ChemoSpec_files/figure-html/survey-2-1.png" alt="Checking for regions of no interest." width="80%"><p class="caption">
+Figure 7.2: Checking for regions of no interest.
+</p>
+</div>
+<p>In Figure <a href="#fig:survey-1">7.1</a> we kept all the groups together by using argument <code>by.gr = FALSE</code>. We also looked at the entire spectral range. In Figure <a href="#fig:survey-3">7.3</a> we can look just at the carbonyl region. The black line is the median value of intensity across the entire set of spectra. The red lines are the upper and lower interquartile ranges which makes it pretty clear that the carbonyl region of this data set varies a lot.</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/surveySpectra.html">surveySpectra</a></span><span class="op">(</span><span class="va">SrE2.IR</span>, method <span class="op">=</span> <span class="st">"iqr"</span>, by.gr <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Detail of Carbonyl Region"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1650</span>, <span class="fl">1800</span><span class="op">)</span><span class="op">)</span>
+<span class="va">p</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:survey-3"></span>
+<img src="ChemoSpec_files/figure-html/survey-3-1.png" alt="Detail of carbonyl region." width="80%"><p class="caption">
+Figure 7.3: Detail of carbonyl region.
+</p>
+</div>
+<p>Finally, <code>surveySpectra</code> allows us to view the data set by group, which is really more useful. Let’s look at the carbonyl region by group (Figure <a href="#fig:survey-4">7.4</a>). Note that we get warnings because two of the groups have too few members to compute the interquartile range, and these are not shown.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/surveySpectra.html">surveySpectra</a></span><span class="op">(</span><span class="va">SrE2.IR</span>, method <span class="op">=</span> <span class="st">"iqr"</span>, by.gr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## Group EPO has 3 or fewer members
 ##  so your stats are not very useful...
@@ -452,31 +437,30 @@ Figure 6.3: Detail of carbonyl region.
 ## Group OO has 3 or fewer members
 ##  so your stats are not very useful...
 ##  This group has been dropped for display purposes!</code></pre>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Detail of Carbonyl Region"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1650</span>, <span class="fl">1800</span><span class="op">)</span><span class="op">)</span>
+<span class="va">p</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:survey-4"></span>
+<span style="display:block;" id="fig:survey-4"></span>
 <img src="ChemoSpec_files/figure-html/survey-4-1.png" alt="Detail of carbonyl region by group." width="80%"><p class="caption">
-Figure 6.4: Detail of carbonyl region by group.
+Figure 7.4: Detail of carbonyl region by group.
 </p>
 </div>
-<p>For reasons that will become evident in a moment, let’s look at the region between 1800 and 2500 cm<sup>-1</sup> (Figure <a href="#fig:survey-5">6.5</a>).</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/surveySpectra.html">surveySpectra</a></span><span class="op">(</span><span class="va">SrE2.IR</span>,
-  method <span class="op">=</span> <span class="st">"iqr"</span>,
-  main <span class="op">=</span> <span class="st">"Detail of Empty Region"</span>,
-  by.gr <span class="op">=</span> <span class="cn">FALSE</span>,
-  xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1800</span>, <span class="fl">2500</span><span class="op">)</span>,
-  ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.0</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>For reasons that will become evident in a moment, let’s look at the region between 1800 and 2500 cm<sup>-1</sup> (Figure <a href="#fig:survey-5">7.5</a>).</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/surveySpectra.html">surveySpectra</a></span><span class="op">(</span><span class="va">SrE2.IR</span>, method <span class="op">=</span> <span class="st">"iqr"</span>, by.gr <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"An Uninteresting Region"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1800</span>, <span class="fl">2500</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.0</span>, <span class="fl">0.03</span><span class="op">)</span><span class="op">)</span>
+<span class="va">p</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:survey-5"></span>
+<span style="display:block;" id="fig:survey-5"></span>
 <img src="ChemoSpec_files/figure-html/survey-5-1.png" alt="Inspection of an uninteresting spectral region." width="80%"><p class="caption">
-Figure 6.5: Inspection of an uninteresting spectral region.
+Figure 7.5: Inspection of an uninteresting spectral region.
 </p>
 </div>
 <p>From a theoretical perspective, we expect this region to be devoid of interesting peaks. In fact, even when pooling the groups the signal in this region is very weak, and the only peak present is due to atmospheric CO<sub>2</sub>. We can remove this region, since it is primarily noise and artifact, with the function <code>removeFreq</code> as follows. Note that there are fewer frequency points now.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">SrE3.IR</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/removeFreq.html">removeFreq</a></span><span class="op">(</span><span class="va">SrE2.IR</span>,
-  rem.freq <span class="op">=</span> <span class="va">SrE2.IR</span><span class="op">$</span><span class="va">freq</span> <span class="op">&gt;</span> <span class="fl">1800</span> <span class="op">&amp;</span>
-  <span class="va">SrE2.IR</span><span class="op">$</span><span class="va">freq</span> <span class="op">&lt;</span> <span class="fl">2500</span><span class="op">)</span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">SrE3.IR</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/removeFreq.html">removeFreq</a></span><span class="op">(</span><span class="va">SrE2.IR</span>, rem.freq <span class="op">=</span> <span class="va">SrE2.IR</span><span class="op">$</span><span class="va">freq</span> <span class="op">&gt;</span> <span class="fl">1800</span> <span class="op">&amp;</span> <span class="va">SrE2.IR</span><span class="op">$</span><span class="va">freq</span> <span class="op">&lt;</span> <span class="fl">2500</span><span class="op">)</span>
 <span class="fu"><a href="../reference/sumSpectra.html">sumSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  Serenoa repens IR quality study 
@@ -509,13 +493,13 @@ Figure 6.5: Inspection of an uninteresting spectral region.
 ## 
 ## *** Note: this is an S3 object
 ## of class 'Spectra'</code></pre>
-<p>Notice that <code>sumSpectra</code> has identified a gap in the data set. You can see this gap in the data as shown in Figure <a href="#fig:gaps">6.6</a> (<code>sumSpectra</code> checks for gaps, but doesn’t produce the plot); both the numerical results and a figure are provided.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<p>Notice that <code>sumSpectra</code> has identified a gap in the data set. You can see this gap in the data as shown in Figure <a href="#fig:gaps">7.6</a> (<code>sumSpectra</code> checks for gaps, but doesn’t produce the plot); both the numerical results and a figure are provided.</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/check4Gaps.html">check4Gaps</a></span><span class="op">(</span><span class="va">SrE3.IR</span><span class="op">$</span><span class="va">freq</span>, <span class="va">SrE3.IR</span><span class="op">$</span><span class="va">data</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:gaps"></span>
+<span style="display:block;" id="fig:gaps"></span>
 <img src="ChemoSpec_files/figure-html/gaps-1.png" alt="Identifying gaps in a data set." width="80%"><p class="caption">
-Figure 6.6: Identifying gaps in a data set.
+Figure 7.6: Identifying gaps in a data set.
 </p>
 </div>
 <pre><code>##    beg.freq end.freq     size beg.indx end.indx
@@ -525,30 +509,30 @@ Figure 6.6: Identifying gaps in a data set.
 </div>
 <div id="exploratory-data-analysis" class="section level1">
 <h1 class="hasAnchor">
-<a href="#exploratory-data-analysis" class="anchor"></a><span class="header-section-number">7</span> Exploratory Data Analysis</h1>
+<a href="#exploratory-data-analysis" class="anchor"></a><span class="header-section-number">8</span> Exploratory Data Analysis</h1>
 <div id="sec:hca" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:hca" class="anchor"></a><span class="header-section-number">7.1</span> Hierarchical Cluster Analysis</h2>
-<p>Hierarchical cluster analysis (HCA from now on) is a clustering method (no surprise!) in which “distances” between samples are calculated and displayed in a dendrogram (a tree-like structure; these are also used in evolution and systematics where they are called cladograms). The details behind HCA can be readily found elsewhere (Chapter 6 of <span class="citation">Varmuza and Filzmoser (<a href="#ref-Filzmoser2009" role="doc-biblioref">2009</a>)</span> is a good choice). With <code>ChemoSpec</code> you have access to any of the methods available for computing distances between samples and any of the methods for identifying clusters. A typical example is shown in Figure <a href="#fig:hca-1">7.1</a>.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<a href="#sec:hca" class="anchor"></a><span class="header-section-number">8.1</span> Hierarchical Cluster Analysis</h2>
+<p>Hierarchical cluster analysis (HCA from now on) is a clustering method (no surprise!) in which “distances” between samples are calculated and displayed in a dendrogram (a tree-like structure; these are also used in evolution and systematics where they are called cladograms). The details behind HCA can be readily found elsewhere (Chapter 6 of <span class="citation">Varmuza and Filzmoser (<a href="#ref-Filzmoser2009" role="doc-biblioref">2009</a>)</span> is a good choice). With <code>ChemoSpec</code> you have access to any of the methods available for computing distances between samples and any of the methods for identifying clusters. A typical example is shown in Figure <a href="#fig:hca-1">8.1</a>.</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">HCA</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hcaSpectra.html">hcaSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, main <span class="op">=</span> <span class="va">myt</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:hca-1"></span>
+<span style="display:block;" id="fig:hca-1"></span>
 <img src="ChemoSpec_files/figure-html/hca-1-1.png" alt="Hierarchical cluster analysis." width="80%"><p class="caption">
-Figure 7.1: Hierarchical cluster analysis.
+Figure 8.1: Hierarchical cluster analysis.
 </p>
 </div>
 <p>The result is a dendrogram. The vertical scale represents the numerical distance between samples. Not unexpectedly, the two reference samples which are known to be chemically different cluster together separately from all other samples. Perhaps surprisingly, the various pure and adulterated oil extracts do not group together precisely. The function <code>hcaScores</code> does the same kind of analysis using the results of PCA, rather than the raw spectra. It is discussed in the next section.</p>
 </div>
 <div id="sec:pca" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:pca" class="anchor"></a><span class="header-section-number">7.2</span> Principal Components Analysis</h2>
+<a href="#sec:pca" class="anchor"></a><span class="header-section-number">8.2</span> Principal Components Analysis</h2>
 <p>Principal components analysis (PCA from now on) is the real workhorse of exploratory data analysis. It makes no assumptions about group membership, but clustering of the resulting sample scores can be very helpful in understanding your data. The theory and practice of PCA is covered well elsewhere (Chapter 3 of <span class="citation">Varmuza and Filzmoser (<a href="#ref-Filzmoser2009" role="doc-biblioref">2009</a>)</span> is an excellent choice). Here, we’ll concentrate on using the PCA methods in <code>ChemoSpec</code>. Briefly however, you can think of PCA as determining the minimum number of components necessary to describe a data set, in effect, removing noise and redundant information. Think of a typical spectrum: some regions are clearly just noise. Further, a typical spectroscopic peak spans quite a few frequency units as the peak goes up, tops out, and then returns to baseline. Any one of the points in a particular peak describe much the same thing, namely the intensity of the peak. Plus, each frequency within a given peak envelope is correlated to every other frequency in the envelope (they rise and fall in unison as the peak changes size from sample to sample). PCA can look “past” all the noise and underlying correlation in the data set, and boil the entire data set down to essentials. Unfortunately, the principal components that are uncovered in the process don’t correspond to anything concrete, usually. Again, you may wish to consult a more detailed treatment!</p>
-<p>Table <a href="#tab:opt">7.1</a> gives an overview of the options available in <code>ChemoSpec</code>, and the relevant functions.</p>
+<p>Table <a href="#tab:opt">8.1</a> gives an overview of the options available in <code>ChemoSpec</code>, and the relevant functions.</p>
 <!-- column 2 starts at 40; column 3 starts at 85-->
 <table class="table">
 <caption>
-<strong><span id="tab:opt">Table 7.1: </span></strong> PCA Functions</caption>
+<strong><span id="tab:opt">Table 8.1: </span></strong> PCA Functions</caption>
 <tbody>
 <tr class="odd">
 <td align="left"><strong>PCA options</strong></td>
@@ -669,236 +653,211 @@ Figure 7.1: Hierarchical cluster analysis.
 </table>
 <p>There’s quite a bit of choice here; let’s work through an example and illustrate, or at least mention, the options as we go. Keep in mind that it’s up to you to decide how to analyze your data. Most people try various options, and follow the ones that lead to the most insight. But the decision is yours!</p>
 <p>The first step is to carry out the PCA. You have two main options, either classical methods, or robust methods. Classical methods use all the data you provide to compute the scores and loadings. Robust methods focus on the core or heart of the data, which means that some samples may be downweighted. This difference is important, and the results from the two methods may be quite different, depending upon your the nature of your data. The differences arise because PCA methods (both classical and robust) attempt to find the components that explain as much of the variance in the data set as possible. If you have a sample that is genuinely corrupted, for instance due to sample handling, its spectral profile may be very different from all other samples, and it can legitimately be called an outlier. In classical PCA, this one sample will contribute strongly to the variance of the entire data set, and the PCA scores will reflect that (it is sometimes said that scores and loadings follow the outliers). With robust PCA, samples with rather different characteristics do not have as great an influence, because robust measures of variance, such as the median absolute deviation, are used.</p>
-<p>Note that neither <code>c_pcaSpectra</code> nor <code>r_pcaSpectra</code> carry out any normalization by samples. You need to decide if you want to normalize the samples, and if so, use <code>normSpectra</code>.</p>
+<p>Note that neither <code>c_pcaSpectra</code> nor <code>r_pcaSpectra</code> carry out any normalization by samples. You need to decide beforehand if you want to normalize the samples, and if so, use <code>normSpectra</code>.</p>
 <p>Besides choosing to use classical or robust methods, you also need to choose a scaling method. For classical PCA, your choices are no scaling, autoscaling, or Pareto scaling. In classical analysis, if you don’t scale the data, large peaks contribute more strongly to the results. If you autoscale, then each peak contributes equally to the results (including noise “peaks”). Pareto scaling is a compromise between these two. For robust PCA, you can choose not to scale, or you can scale according to the median absolute deviation. Median absolute deviation is a means of downweighting more extreme peaks. The literature has plenty of recommendations about scaling options appropriate for the type of measurement (instrument) as well as the nature of the biological data set (<span class="citation">Zhang et al. (<a href="#ref-Zhang2009" role="doc-biblioref">2009</a>)</span> <span class="citation">Craig et al. (<a href="#ref-Craig2006" role="doc-biblioref">2006</a>)</span> <span class="citation">Romano, Santini, and Indovina (<a href="#ref-Romano2000" role="doc-biblioref">2000</a>)</span> <span class="citation">Berg et al. (<a href="#ref-vandenBerg2006" role="doc-biblioref">2006</a>)</span> <span class="citation">Varmuza and Filzmoser (<a href="#ref-Filzmoser2009" role="doc-biblioref">2009</a>)</span> <span class="citation">Karakach, Wentzell, and Walter (<a href="#ref-Karakach2009" role="doc-biblioref">2009</a>)</span>).</p>
-<p>There is not enough space here to illustrate all possible combinations of options; Figure <a href="#fig:classPCA">7.2</a> and Figure <a href="#fig:robPCA">7.3</a> show the use and results of classical and robust PCA without scaling, followed by plotting of the first two PCs (we’ll discuss plotting options momentarily). You can see from these plots that the robust and classical methods have produced rather different results, not only in the overall appearance of the plots, but in the amount of variance explained by each PC.</p>
+<p>There is not enough space here to illustrate all possible combinations of options; Figure <a href="#fig:classPCA">8.2</a> and Figure <a href="#fig:robPCA">8.3</a> show the use and results of classical and robust PCA without scaling, followed by plotting of the first two PCs (we’ll discuss plotting options momentarily). You can see from these plots that the robust and classical methods have produced rather different results, not only in the overall appearance of the plots, but in the amount of variance explained by each PC.</p>
 <p>Since we’ve plotted the scores to see the results, let’s mention a few features of <code>plotScores</code> which produces a 2D plot of the results (we’ll deal with 3D options later). Note that an annotation is provided in the upper left corner of the plot that describes the history of this analysis, so you don’t lose track of what you are viewing. The <code>tol</code> argument controls what fraction of points are labeled with the sample name. This is a means of identifying potential outliers. The <code>ellipse</code> argument determines if and how the ellipses are drawn (the 95% confidence interval is used).</p>
 <p>You can choose <code>"none"</code> for no ellipses, <code>"cls"</code> for classically computed confidence ellipses, <code>"rob"</code> for robustly computed ellipses, or <code>"both"</code> if you want to directly compare the two. Note that the use of classical and robust here has nothing to do with the PCA algorithm — it’s the same idea however, but applied to the 2D array of scores produced by PCA. Points outside the ellipses are more likely candidates for outlier status.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">c_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/c_pcaSpectra.html">c_pcaSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>,
-  choice <span class="op">=</span> <span class="st">"noscale"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/plotScores.html">plotScores</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>,
-  main <span class="op">=</span> <span class="va">myt</span>,
-  pcs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>,
-  ellipse <span class="op">=</span> <span class="st">"rob"</span>,
-  tol <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></code></pre></div>
-<pre><code>## Group EPO
-##  has only 1 member (no ellipse possible)</code></pre>
-<pre><code>## Group OO
-##  has only 1 member (no ellipse possible)</code></pre>
-<div class="figure" style="text-align: center">
-<span id="fig:classPCA"></span>
-<img src="ChemoSpec_files/figure-html/classPCA-1.png" alt="Classical PCA scores." width="80%"><p class="caption">
-Figure 7.2: Classical PCA scores.
-</p>
-</div>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">r_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/r_pcaSpectra.html">r_pcaSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>,
-  choice <span class="op">=</span> <span class="st">"noscale"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/plotScores.html">plotScores</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">r_res</span>,
-  main <span class="op">=</span> <span class="va">myt</span>,
-  pcs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>,
-  ellipse <span class="op">=</span> <span class="st">"rob"</span>,
-  tol <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">c_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/c_pcaSpectra.html">c_pcaSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, choice <span class="op">=</span> <span class="st">"noscale"</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotScores.html">plotScores</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>, pcs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, ellipse <span class="op">=</span> <span class="st">"rob"</span>, tol <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></code></pre></div>
 <pre><code>## Group EPO
 ##  has only 1 member (no ellipse possible)</code></pre>
 <pre><code>## Group OO
 ##  has only 1 member (no ellipse possible)</code></pre>
-<div class="figure" style="text-align: center">
-<span id="fig:robPCA"></span>
-<img src="ChemoSpec_files/figure-html/robPCA-1.png" alt="Robust PCA scores." width="80%"><p class="caption">
-Figure 7.3: Robust PCA scores.
-</p>
-</div>
-<p>Plots such as shown in Figures <a href="#fig:classPCA">7.2</a> and <a href="#fig:robPCA">7.3</a> can give you an idea of potential outliers, but <code>ChemoSpec</code> includes more sophisticated approaches. The function <code>pcaDiag</code> can produce two types of plots that can be helpful (Figures <a href="#fig:OD">7.4</a> and <a href="#fig:SD">7.5</a>). The meaning and interpretation of these plots is discussed in more detail in Varmuza and Filzmoser, Chapter 3 <span class="citation">(Varmuza and Filzmoser <a href="#ref-Filzmoser2009" role="doc-biblioref">2009</a>)</span>.</p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">diagnostics</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pcaDiag.html">pcaDiag</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>,
-  pcs <span class="op">=</span> <span class="fl">2</span>,
-  plot <span class="op">=</span> <span class="st">"OD"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_annotation.html">plot_annotation</a></span><span class="op">(</span><span class="va">myt</span><span class="op">)</span>
+<span class="va">p</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:OD"></span>
-<img src="ChemoSpec_files/figure-html/OD-1.png" alt="Diagnostics: orthogonal distances." width="80%"><p class="caption">
-Figure 7.4: Diagnostics: orthogonal distances.
+<span style="display:block;" id="fig:classPCA"></span>
+<img src="ChemoSpec_files/figure-html/classPCA-1.png" alt="Classical PCA scores." width="80%"><p class="caption">
+Figure 8.2: Classical PCA scores.
 </p>
 </div>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">diagnostics</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pcaDiag.html">pcaDiag</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>,
-  pcs <span class="op">=</span> <span class="fl">2</span>,
-  plot <span class="op">=</span> <span class="st">"SD"</span><span class="op">)</span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span id="fig:SD"></span>
-<img src="ChemoSpec_files/figure-html/SD-1.png" alt="Diagnostics: score distances." width="80%"><p class="caption">
-Figure 7.5: Diagnostics: score distances.
-</p>
-</div>
-<p>Depending upon your data, and your interpretation of the results, you may decide that some samples should be discarded, in which case you can use <code>removeSample</code> as previously described, then repeat the PCA analysis. The next step for most people is to determine the number of PCs needed to describe the data. This is usually done with a scree plot as shown in Figure <a href="#fig:scree-1">7.6</a>. <code>ChemoSpec</code> defaults to an alternate style scree plot which I actually think is much more informative (Figure <a href="#fig:scree-2">7.7</a> shows a more traditional scree plot).</p>
-<p>If you are using classical PCA, you can also get a sense of the number of PCs needed via a bootstrap method, as shown in Figure <a href="#fig:boot">7.8</a>. Note that this method is iterative and takes a bit of time. Comparing these results to the scree plots, you’ll see that the bootstrap method suggests that 4 or 5 PCs would not always be enough to reach the 95% level, while the scree plots suggest that 2 PC are sufficient.</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plotScree.html">plotScree</a></span><span class="op">(</span><span class="va">c_res</span>, main <span class="op">=</span> <span class="va">myt</span><span class="op">)</span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span id="fig:scree-1"></span>
-<img src="ChemoSpec_files/figure-html/scree-1-1.png" alt="Scree plot." width="80%"><p class="caption">
-Figure 7.6: Scree plot.
-</p>
-</div>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plotScree.html">plotScree</a></span><span class="op">(</span><span class="va">c_res</span>, style <span class="op">=</span> <span class="st">"trad"</span>, main <span class="op">=</span> <span class="va">myt</span><span class="op">)</span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span id="fig:scree-2"></span>
-<img src="ChemoSpec_files/figure-html/scree-2-1.png" alt="Traditional style scree plot." width="80%"><p class="caption">
-Figure 7.7: Traditional style scree plot.
-</p>
-</div>
+<code class="sourceCode R"><span class="va">r_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/r_pcaSpectra.html">r_pcaSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, choice <span class="op">=</span> <span class="st">"noscale"</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotScores.html">plotScores</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">r_res</span>, pcs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, ellipse <span class="op">=</span> <span class="st">"rob"</span>, tol <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></code></pre></div>
+<pre><code>## Group EPO
+##  has only 1 member (no ellipse possible)</code></pre>
+<pre><code>## Group OO
+##  has only 1 member (no ellipse possible)</code></pre>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cv_pcaSpectra.html">cv_pcaSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>,
-  pcs <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">p</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:boot"></span>
+<span style="display:block;" id="fig:robPCA"></span>
+<img src="ChemoSpec_files/figure-html/robPCA-1.png" alt="Robust PCA scores." width="80%"><p class="caption">
+Figure 8.3: Robust PCA scores.
+</p>
+</div>
+<p>Plots such as shown in Figures <a href="#fig:classPCA">8.2</a> and <a href="#fig:robPCA">8.3</a> can give you an idea of potential outliers, but <code>ChemoSpec</code> includes more sophisticated approaches. The function <code>pcaDiag</code> can produce two types of plots that can be helpful (Figures <a href="#fig:OD">8.4</a> and <a href="#fig:SD">8.5</a>). The meaning and interpretation of these plots is discussed in more detail in Varmuza and Filzmoser, Chapter 3 <span class="citation">(Varmuza and Filzmoser <a href="#ref-Filzmoser2009" role="doc-biblioref">2009</a>)</span>.</p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">diagnostics</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pcaDiag.html">pcaDiag</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>, pcs <span class="op">=</span> <span class="fl">2</span>, plot <span class="op">=</span> <span class="st">"OD"</span><span class="op">)</span>
+<span class="va">p</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:OD"></span>
+<img src="ChemoSpec_files/figure-html/OD-1.png" alt="Diagnostics: orthogonal distances." width="80%"><p class="caption">
+Figure 8.4: Diagnostics: orthogonal distances.
+</p>
+</div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">diagnostics</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pcaDiag.html">pcaDiag</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>, pcs <span class="op">=</span> <span class="fl">2</span>, plot <span class="op">=</span> <span class="st">"SD"</span><span class="op">)</span>
+<span class="va">p</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:SD"></span>
+<img src="ChemoSpec_files/figure-html/SD-1.png" alt="Diagnostics: score distances." width="80%"><p class="caption">
+Figure 8.5: Diagnostics: score distances.
+</p>
+</div>
+<p>Depending upon your data, and your interpretation of the results, you may decide that some samples should be discarded, in which case you can use <code>removeSample</code> as previously described, then repeat the PCA analysis. The next step for most people is to determine the number of PCs needed to describe the data. This is usually done with a scree plot as shown in Figure <a href="#fig:scree-1">8.6</a>. <code>ChemoSpec</code> defaults to an alternate style scree plot which I actually think is much more informative (Figure <a href="#fig:scree-2">8.7</a> shows a more traditional scree plot).</p>
+<p>If you are using classical PCA, you can also get a sense of the number of PCs needed via a bootstrap method, as shown in Figure <a href="#fig:boot">8.8</a>. Note that this method is iterative and takes a bit of time. Comparing these results to the scree plots, you’ll see that the bootstrap method suggests that 4 or 5 PCs would not always be enough to reach the 95% level, while the scree plots suggest that 2 PC are sufficient.</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotScree.html">plotScree</a></span><span class="op">(</span><span class="va">c_res</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">myt</span><span class="op">)</span>
+<span class="va">p</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:scree-1"></span>
+<img src="ChemoSpec_files/figure-html/scree-1-1.png" alt="Scree plot." width="80%"><p class="caption">
+Figure 8.6: Scree plot.
+</p>
+</div>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotScree.html">plotScree</a></span><span class="op">(</span><span class="va">c_res</span>, style <span class="op">=</span> <span class="st">"trad"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">myt</span><span class="op">)</span>
+<span class="va">p</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:scree-2"></span>
+<img src="ChemoSpec_files/figure-html/scree-2-1.png" alt="Traditional style scree plot." width="80%"><p class="caption">
+Figure 8.7: Traditional style scree plot.
+</p>
+</div>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cv_pcaSpectra.html">cv_pcaSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, pcs <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:boot"></span>
 <img src="ChemoSpec_files/figure-html/boot-1.png" alt="Bootstrap analysis for no. of principal components." width="80%"><p class="caption">
-Figure 7.8: Bootstrap analysis for no. of principal components.
+Figure 8.8: Bootstrap analysis for no. of principal components.
 </p>
 </div>
 <p>Now let’s turn to viewing scores in 3D. There are currently two options in <code>ChemoSpec</code>: plotting using <code>lattice</code> graphics, which produces a static plot that you have to adjust manually, and an interactive plot based on package <code>rgl</code>. Probably the best place to start is with <code>plotScoresRGL</code>. It it well suited to exploring data, and can be printed out in high quality. However, the nature of the <code>openGL</code> graphics device means that the title and the legend move with the data, so this may not give a hardcopy suitable for publications. This interactive plot cannot be invoked in this document, but here are the necessary commands:</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plotScoresRGL.html">plotScoresRGL</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>,
-  main <span class="op">=</span> <span class="st">"S. repens IR Spectra"</span>,
-  leg.pos <span class="op">=</span> <span class="st">"A"</span>,
-  t.pos <span class="op">=</span> <span class="st">"B"</span><span class="op">)</span> <span class="co"># not run - it's interactive!</span></code></pre></div>
-<p>For full details, of course take a look at the manual page, <code><a href="../reference/plotScoresRGL.html">?plotScoresRGL</a></code>. If you want a similar and probably more publication-worthy plot, you can use <code>plotScores3D</code> as shown in Figure <a href="#fig:scores3D">7.9</a>. In this example we’ve set <code>ellipse = FALSE</code> because the “adSrE” data points form a very elongated ellipse which forces the plotting limits in such a way that other points become very hard to see.</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plotScores3D.html">plotScores3D</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>,
-  main <span class="op">=</span> <span class="va">myt</span>,
-  ellipse <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span id="fig:scores3D"></span>
-<img src="ChemoSpec_files/figure-html/scores3D-1.png" alt="Plotting scores in 3D using plotScores3D." width="80%"><p class="caption">
-Figure 7.9: Plotting scores in 3D using plotScores3D.
-</p>
-</div>
-<p>In addition to the scores, PCA also produces loadings which tell you how each variable (frequencies in spectral applications) affect the scores. Examining these loadings can be critical to interpreting your results. Figure <a href="#fig:load1">7.10</a> gives an example. You can see that the different carbonyl peaks have a large and opposing effect on PC 1. PC 2 on the other hand is driven by a number of peaks, with some interesting opposing peaks in the hydrocarbon region. While the actual analysis of the data is not our goal here, it would appear that PC 1 is sensitive to the ester vs. acid carbonyl group, and PC 2 is detecting the saturated vs. unsaturated fatty acid chains (the latter having C<sub>sp2</sub>-H}$ peaks).</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plotLoadings.html">plotLoadings</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>,
-  main <span class="op">=</span> <span class="va">myt</span>,
-  loads <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,
-  ref <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span id="fig:load1"></span>
-<img src="ChemoSpec_files/figure-html/load1-1.png" alt="Loading plot." width="80%"><p class="caption">
-Figure 7.10: Loading plot.
-</p>
-</div>
-<p>You can also plot one loading against another, using function <code>plot2Loadings</code> (Figure <a href="#fig:load2">7.11</a>). This is typically not too useful for spectroscopic data, since many of the variables are correlated (as they are parts of the same peak, hence the serpentine lines in the figure). The most extreme points on the plot, however, can give you an idea of which peaks (frequencies) serve to differentiate a pair of PCs, and hence, drive your data clustering.</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot2Loadings.html">plot2Loadings</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>,
-  main <span class="op">=</span> <span class="va">myt</span>,
-  loads <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,
-  tol <span class="op">=</span> <span class="fl">0.002</span><span class="op">)</span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span id="fig:load2"></span>
-<img src="ChemoSpec_files/figure-html/load2-1.png" alt="Plotting one loading vs. another." width="80%"><p class="caption">
-Figure 7.11: Plotting one loading vs. another.
-</p>
-</div>
-<p>However, a potentially more useful approach is to use an s-plot to determine which variables have the greatest influence. A standard loadings plot (<code>plotLoadings</code>) shows you which frequency ranges contribute to which principal components, but the plot allows the vertical axis to be free. Unless you look at the y axis scale, you get the impression that the loadings for principal component 1 etc. all contribute equally. The function <code>sPlotSpectra</code> plots the correlation of each frequency variable with a particular score against the covariance of that frequency variable with the same score. The result is an s-shaped plot with the most influential frequency variables in the upper right hand and lower left quadrants. An example is shown in Figure <a href="#fig:splot-1">7.12</a> with a detail view in Figure <a href="#fig:splot-2">7.13</a>. In the latter figure you can clearly see the influence of the carbonyl peaks. This method was reported in <span class="citation">Wiklund et al. (<a href="#ref-Wiklund2008" role="doc-biblioref">2008</a>)</span>.</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">spt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sPlotSpectra.html">sPlotSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>,
-  main <span class="op">=</span> <span class="va">myt</span>,
-  pc <span class="op">=</span> <span class="fl">1</span>,
-  tol <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span id="fig:splot-1"></span>
-<img src="ChemoSpec_files/figure-html/splot-1-1.png" alt="s-Plot to identify influential frequencies." width="80%"><p class="caption">
-Figure 7.12: s-Plot to identify influential frequencies.
-</p>
-</div>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">spt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sPlotSpectra.html">sPlotSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>,
-  main <span class="op">=</span> <span class="st">"Detail of s-Plot"</span>,
-  pc <span class="op">=</span> <span class="fl">1</span>,
-  tol <span class="op">=</span> <span class="fl">0.05</span>,
-  xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.04</span>, <span class="op">-</span><span class="fl">0.01</span><span class="op">)</span>,
-  ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.05</span>, <span class="op">-</span><span class="fl">0.9</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/plotScoresRGL.html">plotScoresRGL</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>, main <span class="op">=</span> <span class="st">"S. repens IR Spectra"</span>, leg.pos <span class="op">=</span> <span class="st">"A"</span>,
+  t.pos <span class="op">=</span> <span class="st">"B"</span><span class="op">)</span> <span class="co"># not run - it's interactive!</span></code></pre></div>
+<p>For full details, of course take a look at the manual page, <code><a href="../reference/plotScoresRGL.html">?plotScoresRGL</a></code>. If you want a similar and probably more publication-worthy plot, you can use <code>plotScores3D</code> as shown in Figure <a href="#fig:scores3D">8.9</a>. In this example we’ve set <code>ellipse = FALSE</code> because the “adSrE” data points form a very elongated ellipse which forces the plotting limits in such a way that other points become very hard to see.</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/plotScores3D.html">plotScores3D</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>, main <span class="op">=</span> <span class="va">myt</span>, ellipse <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:splot-2"></span>
-<img src="ChemoSpec_files/figure-html/splot-2-1.png" alt="s-Plot detail." width="80%"><p class="caption">
-Figure 7.13: s-Plot detail.
+<span style="display:block;" id="fig:scores3D"></span>
+<img src="ChemoSpec_files/figure-html/scores3D-1.png" alt="Plotting scores in 3D using plotScores3D." width="80%"><p class="caption">
+Figure 8.9: Plotting scores in 3D using plotScores3D.
+</p>
+</div>
+<p>In addition to the scores, PCA also produces loadings which tell you how each variable (frequencies in spectral applications) affect the scores. Examining these loadings can be critical to interpreting your results. Figure <a href="#fig:load1">8.10</a> gives an example. You can see that the different carbonyl peaks have a large and opposing effect on PC 1. PC 2 on the other hand is driven by a number of peaks, with some interesting opposing peaks in the hydrocarbon region. While the actual analysis of the data is not our goal here, it would appear that PC 1 is sensitive to the ester vs. acid carbonyl group, and PC 2 is detecting the saturated vs. unsaturated fatty acid chains (the latter having C<sub>sp2</sub>-H peaks).</p>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotLoadings.html">plotLoadings</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>, loads <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, ref <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span>  <span class="op">&amp;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">myt</span><span class="op">)</span> <span class="co"># see ?GraphicsOptions for why &amp; is used</span>
+<span class="va">p</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:load1"></span>
+<img src="ChemoSpec_files/figure-html/load1-1.png" alt="Loading plot." width="80%"><p class="caption">
+Figure 8.10: Loading plot.
+</p>
+</div>
+<p>You can also plot one loading against another, using function <code>plot2Loadings</code> (Figure <a href="#fig:load2">8.11</a>). This is typically not too useful for spectroscopic data, since many of the variables are correlated (as they are parts of the same peak, hence the serpentine lines in the figure). The most extreme points on the plot, however, can give you an idea of which peaks (frequencies) serve to differentiate a pair of PCs, and hence, drive your data clustering.</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot2Loadings.html">plot2Loadings</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>, loads <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, tol <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">myt</span><span class="op">)</span>
+<span class="va">p</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:load2"></span>
+<img src="ChemoSpec_files/figure-html/load2-1.png" alt="Plotting one loading vs. another." width="80%"><p class="caption">
+Figure 8.11: Plotting one loading vs. another.
+</p>
+</div>
+<p>However, a potentially more useful approach is to use an s-plot to determine which variables have the greatest influence. A standard loadings plot (<code>plotLoadings</code>) shows you which frequency ranges contribute to which principal components, but the plot allows the vertical axis to be free. Unless you look at the y axis scale, you get the impression that the loadings for principal component 1 etc. all contribute equally. The function <code>sPlotSpectra</code> plots the correlation of each frequency variable with a particular score against the covariance of that frequency variable with the same score. The result is an s-shaped plot with the most influential frequency variables in the upper right hand and lower left quadrants. An example is shown in Figure <a href="#fig:splot1">8.12</a> with a detail view in Figure <a href="#fig:splot2">8.13</a>. In the latter figure you can clearly see the influence of the carbonyl peaks. This method was reported in <span class="citation">Wiklund et al. (<a href="#ref-Wiklund2008" role="doc-biblioref">2008</a>)</span>.</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sPlotSpectra.html">sPlotSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>, pc <span class="op">=</span> <span class="fl">1</span>, tol <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">myt</span><span class="op">)</span>
+<span class="va">p</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:splot1"></span>
+<img src="ChemoSpec_files/figure-html/splot1-1.png" alt="s-Plot to identify influential frequencies." width="80%"><p class="caption">
+Figure 8.12: s-Plot to identify influential frequencies.
+</p>
+</div>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sPlotSpectra.html">sPlotSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>, pc <span class="op">=</span> <span class="fl">1</span>, tol <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.04</span>, <span class="op">-</span><span class="fl">0.01</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.05</span>, <span class="op">-</span><span class="fl">0.9</span><span class="op">)</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Detail of s-Plot"</span><span class="op">)</span>
+<span class="va">p</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:splot2"></span>
+<img src="ChemoSpec_files/figure-html/splot2-1.png" alt="s-Plot detail." width="80%"><p class="caption">
+Figure 8.13: s-Plot detail.
 </p>
 </div>
 <p>Finally, you can blend the ideas of PCA and HCA. Since PCA eliminates the noise in a data set (after you have selected the important PCs), you can carry out HCA on the PCA scores, as now the scores represent the cleaned up data. The result using the <code>SrE.IR</code> data set are not different than doing HCA on the raw spectra, so we won’t illustrate it, but the command would be:</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/hcaScores.html">hcaScores</a></span><span class="op">(</span><span class="va">SrE3.IR</span>,  <span class="va">c_res</span>,
-  scores <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>,
-  main <span class="op">=</span> <span class="va">myt</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/hcaScores.html">hcaScores</a></span><span class="op">(</span><span class="va">SrE3.IR</span>,  <span class="va">c_res</span>, scores <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>, main <span class="op">=</span> <span class="va">myt</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="anova-pca" class="section level2">
 <h2 class="hasAnchor">
-<a href="#anova-pca" class="anchor"></a><span class="header-section-number">7.3</span> ANOVA-PCA</h2>
-<p>Harrington <em>et al.</em><span class="citation">(Harrington et al. <a href="#ref-Harrington2005" role="doc-biblioref">2005</a>)</span> (and a few others – <span class="citation">Pinto et al. (<a href="#ref-Pinto2008" role="doc-biblioref">2008</a>)</span>) have demonstrated a method which combines traditional ANOVA with PCA. Standard PCA is blind to class membership, though one generally colors the points in a score plot using the known class membership. ANOVA-PCA uses the class membership to divide the original centered data matrix into submatrices. Each submatrix corresponds to a particular factor, and the rows of the submatrix have been replaced by the average spectrum of each level of the factor. The original data set is thought of as a sum of these submatrices plus residual error. The residual error is added back to each submatrix and then PCA is performed. This is conceptually illustrated in Figures <a href="#fig:aovPCA2">7.14</a> and <a href="#fig:aovPCA1">7.15</a>.</p>
+<a href="#anova-pca" class="anchor"></a><span class="header-section-number">8.3</span> ANOVA-PCA</h2>
+<p>Harrington <em>et al.</em><span class="citation">(Harrington et al. <a href="#ref-Harrington2005" role="doc-biblioref">2005</a>)</span> (and a few others – <span class="citation">Pinto et al. (<a href="#ref-Pinto2008" role="doc-biblioref">2008</a>)</span>) have demonstrated a method which combines traditional ANOVA with PCA. Standard PCA is blind to class membership, though one generally colors the points in a score plot using the known class membership. ANOVA-PCA uses the class membership to divide the original centered data matrix into submatrices. Each submatrix corresponds to a particular factor, and the rows of the submatrix have been replaced by the average spectrum of each level of the factor. The original data set is thought of as a sum of these submatrices plus residual error. The residual error is added back to each submatrix and then PCA is performed. This is conceptually illustrated in Figures <a href="#fig:aovPCA2">8.14</a> and <a href="#fig:aovPCA1">8.15</a>.</p>
 <div class="figure" style="text-align: center">
-<span id="fig:aovPCA2"></span>
+<span style="display:block;" id="fig:aovPCA2"></span>
 <img src="aovPCA2.png" alt="aovPCA breaks the data into a series of submatrices." width="80%"><p class="caption">
-Figure 7.14: aovPCA breaks the data into a series of submatrices.
+Figure 8.14: aovPCA breaks the data into a series of submatrices.
 </p>
 </div>
 <div class="figure" style="text-align: center">
-<span id="fig:aovPCA1"></span>
+<span style="display:block;" id="fig:aovPCA1"></span>
 <img src="aovPCA1.png" alt="Submatrices are composed of rows which are averages of each factor level." width="80%"><p class="caption">
-Figure 7.15: Submatrices are composed of rows which are averages of each factor level.
+Figure 8.15: Submatrices are composed of rows which are averages of each factor level.
 </p>
 </div>
-<p>ANOVA-PCA has been implemented in <code>ChemoSpec</code> via the functions <code>aov_pcaSpectra</code>, <code>aovPCAscores</code> and <code>aovPCAloadings</code>. The idea here is that if a factor is significant, there will be separation along PC1 in a plot of PC1 vs PC2. There are not enough groups and levels within the <code>SrE.IR</code> data set to carry out ANOVA-PCA. However, the help page for <code>aov_pcaSpectra</code> contains an example using the <code>CuticleIR</code> data set which illustrates how to carry out the analysis. It also demonstrates another useful function, <code>splitSpectraGroups</code> which allows you to take an existing group designation and split it into new designations. See <code><a href="../reference/aov_pcaSpectra.html">?aov_pcaSpectra</a></code>.</p>
+<p>ANOVA-PCA has been implemented in <code>ChemoSpec</code> via the functions <code>aov_pcaSpectra</code>, <code>aovPCAscores</code> and <code>aovPCAloadings</code>. The idea here is that if a factor is significant, there will be separation along PC1 in a plot of PC1 vs PC2. There are not enough groups and levels within the <code>SrE.IR</code> data set to carry out ANOVA-PCA. However, the help page for <code>aov_pcaSpectra</code> contains an example using the <code>metMUD1</code> data set which illustrates how to carry out the analysis. It also demonstrates another useful function, <code>splitSpectraGroups</code> which allows you to take an existing group designation and split it into new designations. See <code><a href="../reference/aov_pcaSpectra.html">?aov_pcaSpectra</a></code>.</p>
 </div>
 <div id="model-based-clustering-using-mclust" class="section level2">
 <h2 class="hasAnchor">
-<a href="#model-based-clustering-using-mclust" class="anchor"></a><span class="header-section-number">7.4</span> Model-Based Clustering Using mclust</h2>
+<a href="#model-based-clustering-using-mclust" class="anchor"></a><span class="header-section-number">8.4</span> Model-Based Clustering Using mclust</h2>
 <p>PCA and HCA are techniques which are unsupervised and assume no underlying model. HCA computes distances between pairs of spectra and groups these in an iterative fashion until the dendrogram is complete. PCA seeks out components that maximize the variance. While in PCA one often (and <code>ChemoSpec</code> does) displays the samples coded by their group membership, this information is not actually used in PCA; any apparent correspondence between the sample group classification and the clusters found is accidental in terms of the computation, but of course, this is what one hopes to find!</p>
-<p><code>mclust</code> is a model-based clustering package that takes a different approach<span class="citation">(<span class="citeproc-not-found" data-reference-id="R_mclust"><strong>???</strong></span>)</span>. <code>mclust</code> assumes that there are groups within your data set, and that those groups are multivariate normally distributed. Using an iterative approach, <code>mclust</code> samples various possible groupings within your data set, and uses a Bayesian Information Criterion (BIC) to determine which of the various groupings it finds best fits the data distribution. <code>mclust</code> looks for groups that follow certain constraints, for instance, one constraint is that all the groups found must have a spherical distribution of data points, while another allows for ellipsoidal distributions. See the paper by Scrucca and Raftery <span class="citation">(Scrucca et al. <a href="#ref-Scrucca2017" role="doc-biblioref">2017</a>)</span> for more details. The basic idea however is that <code>mclust</code> goes looking for groups in your data set, and then you can compare the groupings it finds with the groupings you know to be true.</p>
-<p><code>ChemoSpec</code> contains several functions that interface with and extend <code>mclust</code> functions. <code>mclust</code> first uses the BIC to determine which model best fits your data; these results are shown in Figure <a href="#fig:mclust-1">7.16</a>. Next, Figure <a href="#fig:mclust-2">7.17</a> shows the groups that <code>mclust</code> finds in the data. It’s of some interest to visually compare the score plot in Figure <a href="#fig:classPCA">7.2</a> with the <code>mclust</code> results in Figure <a href="#fig:mclust-2">7.17</a>. It looks like <code>mclust</code> groups the two outliers with some of the rest of the data. Next, <code>mclust</code> will map the true groups onto the groups it has found. Points in error are X-ed out. These results can be seen in Figure <a href="#fig:mclust-3">7.18</a>. From this plot, you can see that <code>mclust</code> hasn’t done too well with this data set. In general, you have to be very careful about using <code>mclust</code>’s notion of an error: it is very hard to map the found groups onto the “truth” in an algorithmic way. I lean toward not using the “truth” option in <code>mclust</code> more and more.</p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mclustSpectra.html">mclustSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>,
-  plot <span class="op">=</span> <span class="st">"BIC"</span>,
-  main <span class="op">=</span> <span class="va">myt</span><span class="op">)</span></code></pre></div>
+<p><code>mclust</code> is a model-based clustering package that takes a different approach <span class="citation">(Fraley, Raftery, and Scrucca <a href="#ref-R_mclust" role="doc-biblioref">2020</a>)</span>. <code>mclust</code> assumes that there are groups within your data set, and that those groups are multivariate normally distributed. Using an iterative approach, <code>mclust</code> samples various possible groupings within your data set, and uses a Bayesian Information Criterion (BIC) to determine which of the various groupings it finds best fits the data distribution. <code>mclust</code> looks for groups that follow certain constraints, for instance, one constraint is that all the groups found must have a spherical distribution of data points, while another allows for ellipsoidal distributions. See the paper by Scrucca and Raftery <span class="citation">(Scrucca et al. <a href="#ref-Scrucca2017" role="doc-biblioref">2017</a>)</span> for more details. The basic idea however is that <code>mclust</code> goes looking for groups in your data set, and then you can compare the groupings it finds with the groupings you know to be true.</p>
+<p><code>ChemoSpec</code> contains several functions that interface with and extend <code>mclust</code> functions. <code>mclust</code> first uses the BIC to determine which model best fits your data; these results are shown in Figure <a href="#fig:mclust-1">8.16</a>. Next, Figure <a href="#fig:mclust-2">8.17</a> shows the groups that <code>mclust</code> finds in the data. It’s of some interest to visually compare the score plot in Figure <a href="#fig:classPCA">8.2</a> with the <code>mclust</code> results in Figure <a href="#fig:mclust-2">8.17</a>. It looks like <code>mclust</code> groups the two outliers with some of the rest of the data. Next, <code>mclust</code> will map the true groups onto the groups it has found. Points in error are X-ed out. These results can be seen in Figure <a href="#fig:mclust-3">8.18</a>. From this plot, you can see that <code>mclust</code> hasn’t done too well with this data set. In general, you have to be very careful about using <code>mclust</code>’s notion of an error: it is very hard to map the found groups onto the “truth” in an algorithmic way. I lean toward not using the “truth” option in <code>mclust</code> more and more.</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mclustSpectra.html">mclustSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>, plot <span class="op">=</span> <span class="st">"BIC"</span>, main <span class="op">=</span> <span class="va">myt</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:mclust-1"></span>
+<span style="display:block;" id="fig:mclust-1"></span>
 <img src="ChemoSpec_files/figure-html/mclust-1-1.png" alt="mclust chooses an optimal model." width="80%"><p class="caption">
-Figure 7.16: mclust chooses an optimal model.
+Figure 8.16: mclust chooses an optimal model.
 </p>
 </div>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mclustSpectra.html">mclustSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>,
-  plot <span class="op">=</span> <span class="st">"proj"</span>,
-  main <span class="op">=</span> <span class="va">myt</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mclustSpectra.html">mclustSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>, plot <span class="op">=</span> <span class="st">"proj"</span>, main <span class="op">=</span> <span class="va">myt</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:mclust-2"></span>
+<span style="display:block;" id="fig:mclust-2"></span>
 <img src="ChemoSpec_files/figure-html/mclust-2-1.png" alt="mclust's thoughts on the matter." width="80%"><p class="caption">
-Figure 7.17: mclust’s thoughts on the matter.
+Figure 8.17: mclust’s thoughts on the matter.
 </p>
 </div>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mclustSpectra.html">mclustSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>,
-  plot <span class="op">=</span> <span class="st">"errors"</span>,
-  main <span class="op">=</span> <span class="va">myt</span>,
-  truth <span class="op">=</span> <span class="va">SrE3.IR</span><span class="op">$</span><span class="va">groups</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mclustSpectra.html">mclustSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>, plot <span class="op">=</span> <span class="st">"errors"</span>, main <span class="op">=</span> <span class="va">myt</span>, truth <span class="op">=</span> <span class="va">SrE3.IR</span><span class="op">$</span><span class="va">groups</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:mclust-3"></span>
+<span style="display:block;" id="fig:mclust-3"></span>
 <img src="ChemoSpec_files/figure-html/mclust-3-1.png" alt="Comparing mclust results to the TRUTH." width="80%"><p class="caption">
-Figure 7.18: Comparing mclust results to the TRUTH.
+Figure 8.18: Comparing mclust results to the TRUTH.
 </p>
 </div>
 <p>You can also do a similar analysis in 3D, using <code>mclust3dSpectra</code>. This function uses <code>mclust</code> to find the groups, but then uses non-<code>mclust</code> functions to draw confidence ellipses. This function uses <code>rgl</code> graphics so it cannot demonstrated here, but the commands would be:</p>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># not run - it's interactive!</span>
-<span class="fu"><a href="../reference/mclust3dSpectra.html">mclust3dSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/mclust3dSpectra.html">mclust3dSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span><span class="op">)</span> <span class="co"># not run - it's interactive!</span></code></pre></div>
 <p>You have all the options here that you do with <code>plotScoresRGL</code>, namely, classical, robust or no ellipses, control of the ellipse details, and labeling of extreme points.</p>
 <p>I hope you have enjoyed this tour of the features of <code>ChemoSpec</code>!</p>
 </div>
 </div>
 <div id="appendicies" class="section level1">
 <h1 class="hasAnchor">
-<a href="#appendicies" class="anchor"></a><span class="header-section-number">8</span> Appendicies</h1>
+<a href="#appendicies" class="anchor"></a><span class="header-section-number">9</span> Appendicies</h1>
 <div id="functions-that-are-not-discussed-here" class="section level2">
 <h2 class="hasAnchor">
-<a href="#functions-that-are-not-discussed-here" class="anchor"></a><span class="header-section-number">8.1</span> Functions That Are Not Discussed Here</h2>
+<a href="#functions-that-are-not-discussed-here" class="anchor"></a><span class="header-section-number">9.1</span> Functions That Are Not Discussed Here</h2>
 <p>See the help files for more detail.</p>
 <ul>
 <li>
@@ -917,25 +876,25 @@ Figure 7.18: Comparing mclust results to the TRUTH.
 </div>
 <div id="sec:colsymsec" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:colsymsec" class="anchor"></a><span class="header-section-number">8.2</span> Color and Symbol Options</h2>
+<a href="#sec:colsymsec" class="anchor"></a><span class="header-section-number">9.2</span> Color and Symbol Options</h2>
 <p>In <code>ChemoSpec</code>, the user may use any color name/format known to <code>R</code>. When importing data, <code>ChemoSpec</code> will choose colors for you automatically if desired. However, depending upon your needs, you may wish to choose colors yourself. the current color scheme of a <code>Spectra</code> object may be determined using <code>sumSpectra</code> or changed using <code>conColScheme</code>. A fuller discussion of color issues can be found in <code><a href="../reference/colorSymbol.html">?colorSymbol</a></code>.</p>
-<p>In addition to colors, <code>Spectra</code> objects also contain a list of symbols, and alternative symbols. These are useful for plotting in black and white, or when color-blind individuals will be viewing the plots. The alternative symbols are simply lower-case letters, as these are needed for <code>plotScoresRGL</code>, and other rgl-graphics driven functions which cannot plot traditional symbols. Figure <a href="#fig:colsym">8.1</a> shows some of the built in options, but as stated above, you can choose whatever you like.</p>
+<p>In addition to colors, <code>Spectra</code> objects also contain a list of symbols, and alternative symbols. These are useful for plotting in black and white, or when color-blind individuals will be viewing the plots. The alternative symbols are simply lower-case letters, as these are needed for <code>plotScoresRGL</code>, and other rgl-graphics driven functions which cannot plot traditional symbols. Figure <a href="#fig:colsym">9.1</a> shows some of the built in options, but as stated above, you can choose whatever you like.</p>
 <div class="figure" style="text-align: center">
-<span id="fig:colsym"></span>
+<span style="display:block;" id="fig:colsym"></span>
 <img src="ChemoSpec_files/figure-html/colsym-1.png" alt="Color and symbol suggestions." width="80%"><p class="caption">
-Figure 8.1: Color and symbol suggestions.
+Figure 9.1: Color and symbol suggestions.
 </p>
 </div>
 </div>
 <div id="related-packages" class="section level2">
 <h2 class="hasAnchor">
-<a href="#related-packages" class="anchor"></a><span class="header-section-number">8.3</span> Related Packages</h2>
-<p>Several other packages exist which do some of the same tasks as <code>ChemoSpec</code>, and do other things as well. The package closest in functionality to <code>ChemoSpec</code> is <code>hyperSpec</code> written by my friend and collaborator Claudia Belietes (these packages were developed independently around the same time, and recently I have contributed to the development of <code>hyperSpec</code>) <span class="citation">(<span class="citeproc-not-found" data-reference-id="R_hyperSpec"><strong>???</strong></span>)</span>. There is also a package designed to interconvert <code>Spectra</code> objects and <code>hyperSpec</code> objects, which allows one to move data between the packages more easily <span class="citation">(McManus <a href="#ref-hyperChemoBridge" role="doc-biblioref">2018</a>)</span>. There is a lot development going in the <code>R</code> ecosystem, and new packages appear steadily (and sometimes they disappear!). A good place to check these things out is the <a href="https://bryanhanson.github.io/FOSS4Spectroscopy/">FOSS4Spectroscopy</a> web site which gathers information about many open source spectroscopy projects.</p>
+<a href="#related-packages" class="anchor"></a><span class="header-section-number">9.3</span> Related Packages</h2>
+<p>Several other packages exist which do some of the same tasks as <code>ChemoSpec</code>, and do other things as well. The package closest in functionality to <code>ChemoSpec</code> is <code>hyperSpec</code> written by my friend and collaborator Claudia Belietes (these packages were developed independently around the same time, and recently I have contributed to the development of <code>hyperSpec</code>) <span class="citation">(Beleites et al. <a href="#ref-R_hyperSpec" role="doc-biblioref">2021</a>)</span>. There is also a package designed to interconvert <code>Spectra</code> objects and <code>hyperSpec</code> objects, which allows one to move data between the packages more easily <span class="citation">(McManus <a href="#ref-hyperChemoBridge" role="doc-biblioref">2018</a>)</span>. There is a lot development going in the <code>R</code> ecosystem, and new packages appear steadily (and sometimes they disappear!). A good place to check these things out is the <a href="https://bryanhanson.github.io/FOSS4Spectroscopy/">FOSS4Spectroscopy</a> web site which gathers information about many open source spectroscopy projects.</p>
 </div>
 <div id="acknowledgements" class="section level2">
 <h2 class="hasAnchor">
-<a href="#acknowledgements" class="anchor"></a><span class="header-section-number">8.4</span> Acknowledgements</h2>
-<p>The development of <code>ChemoSpec</code> began while I was on sabbatical in 2007-2008, and was aided greatly by an award of a Fisher Fellowship. These programs are coordinated by the Faculty Development Committee at DePauw, and I am very grateful to them as well as the individuals who originally created these programs. One of my student researchers, Kelly Summers, took the data included in <code>CuticleIR</code> in the summer of 2009 as part of a preliminary study. I am also grateful to Prof. Peter Filzmoser who answered a number of my questions related to the algorithms in his <code>chemometrics</code> package. Finally, many people have brought bugs to my attention, suggested new features and provided fixes. I am grateful to all of them. Each is listed in either the code, the NEWS file or the Github issues tracker.</p>
+<a href="#acknowledgements" class="anchor"></a><span class="header-section-number">9.4</span> Acknowledgements</h2>
+<p>The development of <code>ChemoSpec</code> began while I was on sabbatical in 2007-2008, and was aided greatly by an award of a Fisher Fellowship. These programs are coordinated by the Faculty Development Committee at DePauw, and I am very grateful to them as well as the individuals who originally created these programs. I am also grateful to Prof. Peter Filzmoser who answered a number of my questions related to the algorithms in his <code>chemometrics</code> package. Most recently, Mr. Tejasvi Gupta, supported by Google Summer of Code, implemented all the <code>ggplot2</code> and <code>plotly</code> features in the summer of 2021. Finally, many people have brought bugs to my attention, suggested new features and provided fixes. I am grateful to all of them. Each is listed in either the code, the NEWS file or the Github issues tracker.</p>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">
@@ -944,6 +903,9 @@ Figure 8.1: Color and symbol suggestions.
 <div id="refs" class="references">
 <div id="ref-Anderson2008">
 <p>Anderson, P. E., N. V. Reo, N. J. DelRaso, T. E. Doom, and M. L. Raymer. 2008. “Gaussian Binning: A New Kernel-Based Method for Processing NMR Spectroscopic Data for Metabolomics.” <em>Metabolomics</em> 4 (3): 261–72.</p>
+</div>
+<div id="ref-R_hyperSpec">
+<p>Beleites, Claudia, Vilmantas Gegzna, Bryan A. Hanson, Roman Kiselev, Erick Oduniyi, and Valter Sergo. 2021. <em>HyperSpec: Work with Hyperspectral Data, I.e. Spectra + Meta Information (Spatial, Time, Concentration, ...)</em>.</p>
 </div>
 <div id="ref-vandenBerg2006">
 <p>Berg, R. A. van den, H. C. J. Hoefsloot, J. A. Westerhuis, A. K. Smilde, and M. J. van der Werf. 2006. “Centering, Scaling, and Transformations: Improving the Biological Information Content of Metabolomics Data.” <em>BMC Genomics</em> 7: 15.</p>
@@ -957,11 +919,17 @@ Figure 8.1: Color and symbol suggestions.
 <div id="ref-Engel2013">
 <p>Engel, Jasper, Jan Gerretzen, Ewa Szymanska, Jeroen J. Jansen, Gerard Downey, Lionel Blanchet, and Lutgarde M. C. Buydens. 2013. “Breaking with Trends in Pre-Processing?” <em>TRAC-Trends in Analytical Chemistry</em> 50: 96–106. <a href="https://doi.org/10.1016/j.trac.2013.04.015">https://doi.org/10.1016/j.trac.2013.04.015</a>.</p>
 </div>
+<div id="ref-R_mclust">
+<p>Fraley, Chris, Adrian E. Raftery, and Luca Scrucca. 2020. <em>Mclust: Gaussian Mixture Modelling for Model-Based Clustering, Classification, and Density Estimation</em>. <a href="https://mclust-org.github.io/mclust/">https://mclust-org.github.io/mclust/</a>.</p>
+</div>
 <div id="ref-Harrington2005">
 <p>Harrington, PD, NE Vieira, J Espinoza, JK Nien, R Romero, and AL Yergey. 2005. “Analysis of variance-principal component analysis: A soft tool for proteomic discovery.” <em>Analytica Chimica Acta</em> 544 (1-2): 118–27. <a href="https://doi.org/10.1016/j.aca.2005.02.042">https://doi.org/10.1016/j.aca.2005.02.042</a>.</p>
 </div>
 <div id="ref-Karakach2009">
 <p>Karakach, Tobias K., Peter D. Wentzell, and John A. Walter. 2009. “Characterization of the measurement error structure in 1D H-1 NMR data for metabolomics studies.” <em>Analytica Chimica Acta</em> 636 (2): 163–74. <a href="https://doi.org/10.1016/j.aca.2009.01.048">https://doi.org/10.1016/j.aca.2009.01.048</a>.</p>
+</div>
+<div id="ref-R_baseline">
+<p>Liland, Kristian Hovde, and Bjørn-Helge Mevik. 2020. <em>Baseline: Baseline Correction of Spectra</em>. <a href="https://CRAN.R-project.org/package=baseline">https://CRAN.R-project.org/package=baseline</a>.</p>
 </div>
 <div id="ref-hyperChemoBridge">
 <p>McManus, Conor. 2018. <em>HyperChemoBridge: Bridge Between hyperSpec &amp; Chemospec</em>. <a href="https://github.com/Chathurga/HyperChemoBridge">https://github.com/Chathurga/HyperChemoBridge</a>.</p>
@@ -978,6 +946,9 @@ Figure 8.1: Color and symbol suggestions.
 <div id="ref-Scrucca2017">
 <p>Scrucca, Luca, Michael Fop, Thomas Brendan Murphy, and Adrian E. Raftery. 2017. “mclust 5: Clustering, Classification and Density Estimation Using Gaussian Finite Mixture Models.” <em>The R Journal</em> 8 (1): 205–33. <a href="https://journal.r-project.org/archive/2017/RJ-2017-008/RJ-2017-008.pdf">https://journal.r-project.org/archive/2017/RJ-2017-008/RJ-2017-008.pdf</a>.</p>
 </div>
+<div id="ref-R_plotly">
+<p>Sievert, Carson, Chris Parmer, Toby Hocking, Scott Chamberlain, Karthik Ram, Marianne Corvellec, and Pedro Despouy. 2021. <em>Plotly: Create Interactive Web Graphics via Plotly.js</em>. <a href="https://CRAN.R-project.org/package=plotly">https://CRAN.R-project.org/package=plotly</a>.</p>
+</div>
 <div id="ref-Sousa2013">
 <p>Sousa, S. A. A., Alvicler Magalhaes, and Marcia Miguel Castro Ferreira. 2013. “Optimized Bucketing for NMR Spectra: Three Case Studies.” <em>Chemometrics and Intelligent Laboratory Systems</em> 122: 93–102. <a href="https://doi.org/10.1016/j.chemolab.2013.01.006">https://doi.org/10.1016/j.chemolab.2013.01.006</a>.</p>
 </div>
@@ -987,11 +958,17 @@ Figure 8.1: Color and symbol suggestions.
 <div id="ref-Wehrens2011">
 <p>Wehrens, R. 2011. <em>Chemometrics with R: Multivariate Data Analysis in the Natural Sciences and Life Sciences</em>. Springer.</p>
 </div>
+<div id="ref-R_ggplot2">
+<p>Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, and Dewey Dunnington. 2021. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+</div>
 <div id="ref-Wiklund2008">
 <p>Wiklund, Susanne, Erik Johansson, Lina Sjostrom, Ewa J. Mellerowicz, Ulf Edlund, John P. Shockcor, Johan Gottfries, Thomas Moritz, and Johan Trygg. 2008. “Visualization of Gc/Tof-Ms-Based Metabolomics Data for Identification of Biochemically Interesting Compounds Using Opls Class Models.” <em>Analytical Chemistry</em> 80 (1): 115–22. <a href="https://doi.org/10.1021/ac0713510">https://doi.org/10.1021/ac0713510</a>.</p>
 </div>
 <div id="ref-Wishart2007">
 <p>Wishart, D. S. 2007. “Current Progress in Computational Metabolomics.” <em>Briefings in Bioinformatics</em> 8 (5): 279–93.</p>
+</div>
+<div id="ref-R_knitr">
+<p>Xie, Yihui. 2021. <em>Knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>.</p>
 </div>
 <div id="ref-Zhang2009">
 <p>Zhang, S. C., C. Zheng, I. R. Lanza, K. S. Nair, D. Raftery, and O. Vitek. 2009. “Interdependence of Signal Processing and Analysis of Urine H-1 NMR Spectra for Metabolic Profiling.” <em>Analytical Chemistry</em> 81 (15): 6080–8.</p>
