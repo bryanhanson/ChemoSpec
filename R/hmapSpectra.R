@@ -15,7 +15,7 @@
 #'
 #' @return A list as described in \code{\link[seriation]{hmap}}. Side effect is a plot.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @seealso \code{\link[seriation]{hmap}} which will get you to the package
 #' (there is no package index page); the vignette is a good place to begin
@@ -49,7 +49,7 @@
 #'
 #' # Let's look just at the carbonyl region
 #' IR <- removeFreq(SrE.IR, rem.freq = SrE.IR$freq > 1775 | SrE.IR$freq < 1660)
-#' plotSpectra(IR, which = 1:16, lab.pos = 1800)
+#' p <- plotSpectra(IR, which = 1:16, lab.pos = 1800)
 #'
 #' # Defaults, except for color scheme:
 #' res <- hmapSpectra(IR, col = heat.colors(5))
@@ -61,8 +61,8 @@
 #'   row_labels = IR$names, col_labels = as.character(round(IR$freq)),
 #'   margins = c(4, 6)
 #' )
-#' @export hmapSpectra
 #'
+#' @export hmapSpectra
 #'
 hmapSpectra <- function(spectra, ...) {
   .chkArgs(mode = 11L)

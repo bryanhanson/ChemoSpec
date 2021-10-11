@@ -61,9 +61,7 @@ is somewhat more automated.
 }
 \examples{
 
-# These are a little slow for CRAN checking
 \dontrun{
-
 data(metMUD2)
 
 # Using clusterCrit
@@ -92,7 +90,7 @@ October 2014.
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{cluster}
 \keyword{multivariate}

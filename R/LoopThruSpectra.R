@@ -1,42 +1,36 @@
 #'
-#' Display the Spectra in a Spectra Object One at a Time
+#' Display the Spectra in a Spectra Object One at a Time DEPRECATED
 #'
-#' Plots each spectrum in a \code{\link{Spectra}} object one at a time, and
+#' DEPRECATED: Use \code{reviewAllSpectra} instead.  Plots each spectrum in a
+#' \code{\link{Spectra}} object one at a time, and
 #' waits for a return in the console before plotting the next spectrum.  Use
 #' \code{ESC} to get out of the loop.
+#'
+#' The ggplot2 mode plots all the \code{\link{Spectra}} objects in the dataset on a single column.
 #'
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
 #' @param \dots Parameters to be passed downstream.
 #'
-#' @return None. Side effect is a plot.
+#' @return
+#' The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+#' \itemize{
+#'  \item{base:}{    None.  Side effect is a plot.}
+#'  \item{ggplot2:}{    Returns a \code{ggplot2} plot object. The plot can be modified in the usual
+#'                      \code{ggplot2} manner.}
+#'  }
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#'
+#' @template authors-BH
 #'
 #' @keywords hplot
 #'
-#' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#' @seealso See \code{\link{GraphicsOptions}}
+#'          for more information about the graphics options. Additional documentation at
+#'          \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @export loopThruSpectra
 #'
-#' @importFrom grDevices devAskNewPage
-#'
-#' @examples
-#'
-#' \dontrun{
-#' data(metMUD1)
-#' loopThruSpectra(metMUD1)
-#' }
-#'
 loopThruSpectra <- function(spectra, ...) {
-  .chkArgs(mode = 11L)
-
-  cat("Press ESC to stop looping through the spectra\n\n")
-  ns <- length(spectra$names)
-  for (i in 1:ns) {
-    tt <- paste(spectra$names[i], " (#", i, " of ", ns, ")", sep = "")
-    plotSpectra(spectra, which = i, main = tt, ...)
-    devAskNewPage(ask = TRUE)
-  }
-  devAskNewPage(ask = FALSE)
+  stop("loopThruSpectra has been renamed reviewAllSpectra")
 }

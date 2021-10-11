@@ -19,7 +19,7 @@
 #'
 #' @docType package
 #'
-#' @author Bryan A. Hanson and Matthew J. Keinsley.
+#' @author Bryan A. Hanson (DePauw University), Tejasvi Gupta & Matthew J. Keinsley.
 #'
 #' Maintainer: Bryan A. Hanson \email{hanson@@depauw.edu}
 #'
@@ -29,19 +29,29 @@
 #'
 #  This import/export business based on stackoverflow.com/a/35118850/633251
 #'
-#' @importFrom ChemoSpecUtils rowDist hcaScores .shrinkLeaf .colLeaf .plotHCA .chkArgs
-#' @export rowDist hcaScores .shrinkLeaf .colLeaf .plotHCA .chkArgs
+#' # Internal Functions
+#'
+#' @importFrom ChemoSpecUtils .shrinkLeaf .colLeaf .plotHCA .chkArgs .chkReqGraphicsPkgs
+#' @export                    .shrinkLeaf .colLeaf .plotHCA .chkArgs .chkReqGraphicsPkgs
+#'
+#' @importFrom ChemoSpecUtils .prepLegendCoords .ggAddLegend .ggAnnotate .ggRepel
+#' @export                    .prepLegendCoords .ggAddLegend .ggAnnotate .ggRepel
+#'
+#' @importFrom ChemoSpecUtils .labelExtremes .addEllipseInfo .computeEllipses
+#' @export                    .labelExtremes .addEllipseInfo .computeEllipses
+#'
+#' @importFrom ChemoSpecUtils .addLegend .groupNcolor .getExtremeCoords
+#' @export                    .addLegend .groupNcolor .getExtremeCoords
+#'
+#' # User-Facing Functions
 #'
 #' @importFrom ChemoSpecUtils chkSpectra sumSpectra sumGroups check4Gaps
-#' @export  chkSpectra sumSpectra sumGroups check4Gaps
+#' @export                    chkSpectra sumSpectra sumGroups check4Gaps
 #'
 #' @importFrom ChemoSpecUtils removeFreq removeGroup removeSample plotScores plotScree
-#' @export removeFreq removeGroup removeSample plotScores plotScree
+#' @export                    removeFreq removeGroup removeSample plotScores plotScree
 #'
-#' @importFrom ChemoSpecUtils .labelExtremes .addEllipseInfo .computeEllipses .addLegend .groupNcolor
-#' @export .labelExtremes .addEllipseInfo .computeEllipses .addLegend .groupNcolor
-#'
-#' @importFrom ChemoSpecUtils sampleDist
-#' @export sampleDist
+#' @importFrom ChemoSpecUtils sampleDist chkGraphicsOpt rowDist hcaScores
+#' @export                    sampleDist chkGraphicsOpt rowDist hcaScores
 #'
 NULL

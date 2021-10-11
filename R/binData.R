@@ -34,9 +34,11 @@
 #' summed y values.  Length will be approximately length(y)/bin.ratio, with
 #' length(y) adjusted as described above if this does not give a whole number.}
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @keywords utilities manip
+#' @export
+#' @noRd
 #'
 #' @examples
 #'
@@ -48,8 +50,6 @@
 #' # Now try it with bin.ratio that does not divide into 3000
 #' res <- binData(x, y, bin.ratio = 7)
 #' length(res$mean.x)
-#' @export
-#' @noRd
 #'
 .binData <- function(x = NULL, y = NULL, bin.ratio = 2) {
 

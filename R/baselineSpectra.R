@@ -39,18 +39,17 @@
 #' corrected spectra is returned.  In these latter two cases plots are also
 #' drawn.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @keywords hplot
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#' @export baselineSpectra
+#' @importFrom stats lm predict
 #'
 #' @examples
 #'
 #' data(SrE.IR)
 #' temp <- baselineSpectra(SrE.IR, int = FALSE, method = "modpolyfit")
-#' @export baselineSpectra
-#'
-#' @importFrom stats lm predict
 #'
 baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, ...) {
 

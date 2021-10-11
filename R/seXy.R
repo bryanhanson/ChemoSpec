@@ -17,13 +17,17 @@
 #' the spread.
 #' For \code{.seX}, a single value giving the standard error of x.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @keywords utilities
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @aliases .seXy .seX .seXyIqr .seXyMad .seXy95
+#' @export .seX .seXy .seXy95 .seXyMad .seXyIqr
+#' @importFrom stats na.omit sd fivenum median
+#' @describeIn .seXy standard error of x
+#' @noRd
 #'
 #' @examples
 #'
@@ -33,14 +37,7 @@
 #' .seXy95(x)
 #' .seXyMad(x)
 #' .seXyIqr(x)
-#' @export .seX .seXy .seXy95 .seXyMad .seXyIqr
 #'
-#' @importFrom stats na.omit sd fivenum median
-#'
-#' @describeIn .seXy standard error of x
-#' @noRd
-#'
-
 .seX <- function(x) sd(x, na.rm = TRUE) / sqrt(length(na.omit(x)))
 
 #' @describeIn .seXy mean +/- the standard error

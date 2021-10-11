@@ -23,7 +23,7 @@
 #'
 #' @return The \code{Mclust} model is returned invisibly, and a plot is made.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @seealso \code{\link[mclust]{Mclust}} for background on the method.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
@@ -31,18 +31,20 @@
 #' @keywords multivariate cluster
 #'
 #' @examples
-#'
+#' \dontrun{
 #' require("mclust")
 #' data(metMUD1)
 #' cls <- c_pcaSpectra(metMUD1, choice = "autoscale")
-#' plotScores(metMUD1, cls)
+#'
+#' p <- plotScores(metMUD1, cls)
+#'
 #' mclustSpectra(metMUD1, cls, plot = "BIC")
 #' mclustSpectra(metMUD1, cls, plot = "proj")
 #' mclustSpectra(metMUD1, cls, plot = "errors", truth = metMUD1$groups)
-#' @export mclustSpectra
+#' }
 #'
+#' @export mclustSpectra
 #' @importFrom graphics title mtext
-# @importFrom mclust Mclust
 #'
 mclustSpectra <- function(spectra, pca, pcs = c(1:3), dims = c(1, 2),
                           plot = c("BIC", "proj", "errors"), use.sym = FALSE, ...) {

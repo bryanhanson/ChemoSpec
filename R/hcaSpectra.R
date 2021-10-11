@@ -24,7 +24,7 @@
 #' @return A list, containing an object of class \code{\link{hclust}} and an
 #' object of class \code{\link{dendrogram}}.  The side effect is a plot.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @seealso \code{\link{hclust}} for the underlying function.
 #' \code{\link{hcaScores}} for similar analysis of PCA scores from a
@@ -38,8 +38,8 @@
 #' data(SrE.IR)
 #' myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
 #' res <- hcaSpectra(SrE.IR, main = myt)
-#' @export hcaSpectra
 #'
+#' @export hcaSpectra
 #' @importFrom stats hclust
 #'
 hcaSpectra <- function(spectra,

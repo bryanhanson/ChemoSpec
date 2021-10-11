@@ -38,6 +38,6 @@ object. \code{\link{chkSpectra}} to verify the integrity of a
 options. Finally, additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{classes}

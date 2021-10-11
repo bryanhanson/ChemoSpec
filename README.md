@@ -38,9 +38,9 @@ If you use `@some_other_branch` you can download other branches that might be av
 
 `ChemoSpec` requires `ChemoSpecUtils` to work.  It should install automatically, but if not, you can use a command similar to the above to install it.
 
-### To view the Vignette:
+### To view the Vignettes:
 
-To see a pdf version of the vignette, use the following.  For the html version, see [here](https://bryanhanson.github.io/ChemoSpec/).
+To access the vignettes, use the following, or visit [here](https://bryanhanson.github.io/ChemoSpec/).
 
 ````r
 browseVignettes("ChemoSpec")

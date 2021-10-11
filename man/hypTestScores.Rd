@@ -59,6 +59,7 @@ summary.aov(res)
 
 # You can also call this function on the existing groups:
 res <- hypTestScores(metMUD2, pca, fac = "groups")
+
 }
 \seealso{
 \code{\link{splitSpectraGroups}} which can be used to create
@@ -67,7 +68,7 @@ used with this function.  Additional documentation at
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{htest}
 \keyword{multivariate}

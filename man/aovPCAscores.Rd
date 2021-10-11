@@ -4,21 +4,46 @@
 \alias{aovPCAscores}
 \title{Plot ANOVA-PCA Scores from a Spectra Object}
 \usage{
-aovPCAscores(spectra, LM, plot = 1, type = "class", choice = NULL, ...)
+aovPCAscores(
+  spectra,
+  so,
+  submat = 1,
+  ellipse = "none",
+  tol = "none",
+  use.sym = FALSE,
+  leg.loc = "topright",
+  ...
+)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
 
-\item{LM}{List of matrices created by \code{\link{aov_pcaSpectra}}.}
+\item{so}{\emph{List} of pca results created by \code{\link{aov_pcaSpectra}}.}
 
-\item{plot}{An integer specifying which scores to plot.}
+\item{submat}{Integer.  Selects list element \code{submat} from \code{PCA}
+which is a list of PCA results, each corresponding to the computation
+in \code{\link{aov_pcaSpectra}}.}
 
-\item{type}{Either classical ("cls") or robust ("rob"); Results in either
-\code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}} being called on the
-\code{\link{Spectra}} object.}
+\item{ellipse}{A character vector specifying the type of ellipses to be
+plotted.  One of \code{c("both"}, \code{"none"}, \code{"cls"}, \code{"rob")}.  \code{cls}
+specifies classical confidence ellipses, \code{rob} specifies robust
+confidence ellipses.  An ellipse is drawn for each group unless there
+are three or fewer samples in the group.}
 
-\item{choice}{The type of scaling to be performed.  See
-\code{\link{c_pcaSpectra}} and \code{\link{r_pcaSpectra}} for details.}
+\item{tol}{A number describing the fraction of points to be labeled.
+\code{tol = 1.0} labels all the points; \code{tol = 0.05} labels
+\emph{approximately} the most extreme 5 percent. Set to \code{"none"} to
+completely suppress labels. Note that a simple approach
+based upon quantiles is used, assumes that both x and y are each normally
+distributed, and treats x and y separately.  Thus, this is not a formal
+treatment of outliers, just a means of labeling points. Groups are lumped
+together.}
+
+\item{use.sym}{A logical; if TRUE, the color scheme is set to black and the
+points plotted with symbols.  Applies only to \code{\link[ChemoSpec]{Spectra}} objects.}
+
+\item{leg.loc}{Character; if \code{"none"} no legend will be drawn.
+Otherwise, any string acceptable to \code{\link{legend}}.}
 
 \item{\dots}{Additional parameters to be passed to \code{\link{plotScores}}.
 For example, you can plot confidence ellipses this way.  Note that ellipses
@@ -27,15 +52,19 @@ done by \code{aov_pcaSpectra} is based on argument \code{fac}.  These may
 not correspond, but you can edit \code{spectra$groups} to match if necessary.}
 }
 \value{
-Returns the PCA results, and creates the requested plot.
+The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+\describe{
+ \item{base:}{A data frame or list containing the data plotted.  Assign the value and run \code{str()}
+              or \code{names()} on it to see what it contains. Side effect is a plot.}
+ \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned if the
+                 value is assigned. The plot can be modified in the usual \code{ggplot2} manner.
+                 If you want the plotted values, you can access them via the base graphics mode.}
+}
 }
 \description{
-Uses the results from \code{\link{aov_pcaSpectra}} to conduct PCA and plot
-the scores.
-Argument \code{plot} is used to select a matrix from those in \code{LM}.
-The residual error matrix is then added to the selected matrix before
-performing PCA.  Use \code{names(LM)} to see which factor is stored in which
-matrix.
+Uses the results from \code{\link{aov_pcaSpectra}} to plot the scores.
+Argument \code{submat} is used to select PCA results from among those
+stored in argument \code{PCA}.
 }
 \references{
 Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for
@@ -51,7 +80,7 @@ The use of this function can be seen in
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University), Matthew J. Keinsley.
 }
 \keyword{htest}
 \keyword{multivariate}

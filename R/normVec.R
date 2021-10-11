@@ -14,7 +14,7 @@
 #' @note The idea was taken from "An Introduction to rggobi" found at the ggobi
 #' web site (originally www.ggobi.org but not available as of June 2018).
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
@@ -29,6 +29,7 @@
 #' x2 <- .normVec(x1)
 #' range(x2)
 #' sd(x2) / diff(range(x2))
+#'
 #' @export
 #' @noRd
 #'

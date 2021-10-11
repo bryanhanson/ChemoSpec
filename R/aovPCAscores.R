@@ -1,26 +1,29 @@
 #'
-#'
 #' Plot ANOVA-PCA Scores from a Spectra Object
 #'
-#' Uses the results from \code{\link{aov_pcaSpectra}} to conduct PCA and plot
-#' the scores.
-#' Argument \code{plot} is used to select a matrix from those in \code{LM}.
-#' The residual error matrix is then added to the selected matrix before
-#' performing PCA.  Use \code{names(LM)} to see which factor is stored in which
-#' matrix.
+#' Uses the results from \code{\link{aov_pcaSpectra}} to plot the scores.
+#' Argument \code{submat} is used to select PCA results from among those
+#' stored in argument \code{PCA}.
 #'
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
-#' @param LM List of matrices created by \code{\link{aov_pcaSpectra}}.
+#' @param so \emph{List} of pca results created by \code{\link{aov_pcaSpectra}}.
 #'
-#' @param plot An integer specifying which scores to plot.
+#' @param submat Integer.  Selects list element \code{submat} from \code{PCA}
+#'        which is a list of PCA results, each corresponding to the computation
+#'        in \code{\link{aov_pcaSpectra}}.
 #'
-#' @param type Either classical ("cls") or robust ("rob"); Results in either
-#' \code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}} being called on the
-#' \code{\link{Spectra}} object.
+#' @param ellipse A character vector specifying the type of ellipses to be
+#' plotted.  One of \code{c("both"}, \code{"none"}, \code{"cls"}, \code{"rob")}.  \code{cls}
+#' specifies classical confidence ellipses, \code{rob} specifies robust
+#' confidence ellipses.  An ellipse is drawn for each group unless there
+#' are three or fewer samples in the group.
 #'
-#' @param choice The type of scaling to be performed.  See
-#' \code{\link{c_pcaSpectra}} and \code{\link{r_pcaSpectra}} for details.
+#' @param use.sym A logical; if TRUE, the color scheme is set to black and the
+#' points plotted with symbols.  Applies only to \code{\link[ChemoSpec]{Spectra}} objects.
+#'
+#' @param leg.loc Character; if \code{"none"} no legend will be drawn.
+#' Otherwise, any string acceptable to \code{\link{legend}}.
 #'
 #' @param \dots Additional parameters to be passed to \code{\link{plotScores}}.
 #' For example, you can plot confidence ellipses this way.  Note that ellipses
@@ -28,9 +31,10 @@
 #' done by \code{aov_pcaSpectra} is based on argument \code{fac}.  These may
 #' not correspond, but you can edit \code{spectra$groups} to match if necessary.
 #'
-#' @return Returns the PCA results, and creates the requested plot.
+#' @template param-graphics-return2
+#' @template param-tol
 #'
-#' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+#' @template authors-BH-MK
 #'
 #' @seealso The use of this function can be seen in
 #' \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotScores}}.
@@ -47,34 +51,38 @@
 #'
 #' @export aovPCAscores
 #'
-aovPCAscores <- function(spectra, LM, plot = 1, type = "class", choice = NULL, ...) {
-
-  # Function to plot Scores of ANOVA-PCA
-  # Bryan Hanson and Matt Keinsley
-  # DePauw University, June 2011
-
-  # LM is the list of matrices from aov_pcaSpectra
+aovPCAscores <- function(spectra, so, submat = 1, ellipse = "none", tol = "none",
+                       use.sym = FALSE, leg.loc = "topright", ...) {
 
   .chkArgs(mode = 11L)
+  if (!is.list(so)) stop("Argument 'so' should be a list of PCA results from aov_pcaSpectra")
 
-  if (plot > length(LM)) {
-    stop("Error, matrix to be plotted does not exist. Please choose a different plot!")
+  if (submat > length(so) ) {
+    stop("Error, results to be plotted do not exist. Please choose a different submatrix!")
   }
 
   chkSpectra(spectra)
 
-  types <- c("class", "rob")
-  check <- type %in% types
-  if (!check) {
-    stop("PCA option invalid")
+  go <- chkGraphicsOpt()
+
+  if (go == "base") {
+    so <- so[[submat]] # need to force evaluation here for some reason (do.call is downstream)
+    plotScores(spectra, so, ellipse = ellipse, tol = tol, use.sym = use.sym, leg.loc = leg.loc, ...)
+    return(NULL)
   }
 
-  spectra$data <- LM[[plot]] + LM$Res.Error
-
-  if (is.null(choice)) choice <- "noscale"
-  if (type == "class") so <- c_pcaSpectra(spectra, choice = choice, cent = FALSE)
-  if (type == "rob") so <- r_pcaSpectra(spectra, choice = choice)
-
-  plotScores(spectra, so, ...) # at this point, just a typical score plot
-  return(so)
+  if (go == "ggplot2") {
+    .chkReqGraphicsPkgs("ggplot2")
+    so <- so[[submat]] # need to force evaluation here for some reason (do.call is downstream)
+    p <- plotScores(spectra, so, ellipse = ellipse, tol = tol, use.sym = use.sym, leg.loc = leg.loc, ...)
+    return(p)
+  }
+  
+  if (go == "plotly") {
+    .chkReqGraphicsPkgs("ggplot2")
+    .chkReqGraphicsPkgs("plotly")
+    so <- so[[submat]] # need to force evaluation here for some reason (do.call is downstream)
+    p <- plotScores(spectra, so, ellipse = ellipse, tol = tol, use.sym = use.sym, leg.loc = leg.loc, ...)
+    return(p)
+  }
 }

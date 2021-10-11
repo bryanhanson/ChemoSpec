@@ -3,7 +3,9 @@ on:
     branches:
       - master
       - devel
-      - gsoc1
+  pull_request:
+    branches:
+      - devel
 
 name: Build-Check
 
@@ -17,13 +19,14 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: 'release'}
-          - {os: macOS-latest, r: 'release'}
-          - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
-          # - {os: ubuntu-20.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+          # - {os: macOS-latest,   r: 'release'}
+          # - {os: windows-latest, r: 'release'}
+          # - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
+          - {os: ubuntu-latest,   r: 'release'}
+          - {os: ubuntu-latest,   r: 'oldrel-1'}
 
     env:
-      R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
+      R_REMOTES_NO_ERRORS_FROM_WARNINGS: false
       RSPM: ${{ matrix.config.rspm }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
@@ -61,12 +64,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          # need to install MassSpecWavelet from Bioconductor
+          # need to install some pkgs from Bioconductor
           if (!requireNamespace("BiocManager", quietly = TRUE))
             install.packages("BiocManager")
           BiocManager::install("MassSpecWavelet")
           BiocManager::install("impute")
-          remotes::install_cran("hyperSpec")
+          BiocManager::install("mixOmics")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("roxygen2")

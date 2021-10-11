@@ -44,8 +44,8 @@
 #'
 #' data(SrE.IR)
 #' pca <- cv_pcaSpectra(SrE.IR, pcs = 5)
-#' @export cv_pcaSpectra
 #'
+#' @export cv_pcaSpectra
 #' @importFrom stats sd
 #' @importFrom graphics boxplot legend
 #'
@@ -157,8 +157,7 @@ cv_pcaSpectra <- function(spectra, pcs, choice = "noscale", repl = 50, segments 
   )
   # construct a legend based upon values of center & scale
   note <- paste("centered/", choice, "/", "classical", sep = "")
-  leg.txt <- paste(spectra$desc, note, sep = " ")
-  legend("bottomright", leg.txt, bty = "n", cex = 0.75)
+  legend("bottomright", note, bty = "n", cex = 0.75)
 
   invisible(list(ExplVar = Fit, MSEP = MSEP))
 }

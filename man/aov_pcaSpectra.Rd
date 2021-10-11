@@ -4,7 +4,7 @@
 \alias{aov_pcaSpectra}
 \title{ANOVA-PCA Analysis of Spectra Data}
 \usage{
-aov_pcaSpectra(spectra, fac)
+aov_pcaSpectra(spectra, fac, type = "class", choice = NULL, showNames = TRUE)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
@@ -13,10 +13,18 @@ aov_pcaSpectra(spectra, fac)
 the analysis.  These should be elements of \code{\link{Spectra}}.  Note that
 there should be 2 or more factors, because ANOVA-PCA on one factor is the
 same as standard PCA.  See the example.}
+
+\item{type}{Either classical ("cls") or robust ("rob"); Results in either
+\code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}} being called on the
+\code{\link{Spectra}} object.}
+
+\item{choice}{The type of scaling to be performed.  See
+\code{\link{c_pcaSpectra}} and \code{\link{r_pcaSpectra}} for details.}
+
+\item{showNames}{Logical.  Show the names of the submatrices in the console.}
 }
 \value{
-A list of matrices for each factor and their interactions, along
-with the residual error and mean centered data matrix.
+A list of PCA results, one for each computed submatrix.
 }
 \description{
 ANOVA-PCA is a combination of both methods developed by Harrington.  The
@@ -30,6 +38,9 @@ is the same as standard PCA and gives no additional separation.
 }
 \examples{
 
+\dontrun{
+# This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+library("ggplot2")
 data(metMUD2)
 
 # Original factor encoding:
@@ -40,14 +51,24 @@ new.grps <- list(geneBb = c("B", "b"), geneCc = c("C", "c"))
 mM3 <- splitSpectraGroups(metMUD2, new.grps)
 
 # run aov_pcaSpectra
-mats <- aov_pcaSpectra(mM3, fac = c("geneBb", "geneCc"))
-apca1 <- aovPCAscores(mM3, mats, plot = 1, main = "aovPCA: B vs b", ellipse = "cls")
-apca2 <- aovPCAscores(mM3, mats, plot = 2, main = "aovPCA: C vs c")
-apca3 <- aovPCAscores(mM3, mats, plot = 3, main = "aovPCA: Interaction Term")
-apca4 <- aovPCAloadings(
-  spectra = mM3, LM = mats, pca = apca1,
-  main = "aov_pcaSpectra: Bb Loadings"
-)
+PCAs <- aov_pcaSpectra(mM3, fac = c("geneBb", "geneCc"))
+
+p1 <- aovPCAscores(mM3, PCAs, submat = 1, ellipse = "cls")
+p1 <- p1 + ggtitle("aovPCA: B vs b")
+p1
+
+p2 <- aovPCAscores(mM3, PCAs, submat = 2)
+p2 <- p2 + ggtitle("aovPCA: C vs c")
+p2
+
+p3 <- aovPCAscores(mM3, PCAs, submat = 3)
+p3 <- p3 + ggtitle("aovPCA: Interaction Term")
+p3
+
+p4 <- aovPCAloadings(spectra = mM3, PCA = PCAs)
+p4 <- p4 + ggtitle("aov_pcaSpectra: Bb Loadings")
+p4
+}
 }
 \references{
 Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for
@@ -63,7 +84,7 @@ used in \code{\link{aovPCAscores}} and \code{\link{aovPCAloadings}}.
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University), Matthew J. Keinsley.
 }
 \keyword{htest}
 \keyword{multivariate}

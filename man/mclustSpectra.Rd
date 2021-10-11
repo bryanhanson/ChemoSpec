@@ -39,21 +39,25 @@ This function is a wrapper for the \code{Mclust} function and associated
 plotting functions.
 }
 \examples{
-
+\dontrun{
 require("mclust")
 data(metMUD1)
 cls <- c_pcaSpectra(metMUD1, choice = "autoscale")
-plotScores(metMUD1, cls)
+
+p <- plotScores(metMUD1, cls)
+
 mclustSpectra(metMUD1, cls, plot = "BIC")
 mclustSpectra(metMUD1, cls, plot = "proj")
 mclustSpectra(metMUD1, cls, plot = "errors", truth = metMUD1$groups)
+}
+
 }
 \seealso{
 \code{\link[mclust]{Mclust}} for background on the method.
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{cluster}
 \keyword{multivariate}

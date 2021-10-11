@@ -38,7 +38,7 @@
 #' @note The idea was taken from "An Introduction to rggobi" found at the ggobi
 #' web site (originally www.ggobi.org but not available as of June 2018).  I added the robust option.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @seealso \code{\link{cov.rob}} for the function that does the work.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
@@ -53,6 +53,7 @@
 #' ell <- .makeEllipsoid(cbind(x, y), cl = 0.99)
 #' plot(ell[, 1], ell[, 2], col = "red", pch = 20, cex = 0.3)
 #' points(x, y)
+#'
 #' @export
 #' @noRd
 #' @importFrom stats var rnorm qf

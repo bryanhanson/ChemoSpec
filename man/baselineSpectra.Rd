@@ -51,11 +51,12 @@ baseline rises or falls steadily, as is often seen in chromatograms.
 
 data(SrE.IR)
 temp <- baselineSpectra(SrE.IR, int = FALSE, method = "modpolyfit")
+
 }
 \seealso{
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{hplot}

@@ -4,28 +4,31 @@
 \alias{aovPCAloadings}
 \title{Plot aovPCAscores Loadings of a Spectra Object}
 \usage{
-aovPCAloadings(spectra, LM, pca, plot = 1, loads = 1, ref = 1, ...)
+aovPCAloadings(spectra, PCA, submat = 1, loads = 1, ref = 1, ...)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
 
-\item{LM}{List of matrices created by \code{\link{aovPCAscores}}.}
+\item{PCA}{List of pca results created by \code{\link{aov_pcaSpectra}}.}
 
-\item{pca}{PCA output from \code{\link{aovPCAscores}}.}
+\item{submat}{Integer.  Selects list element \code{submat} from \code{PCA}
+which is a list of PCA results, each corresponding to the computation
+in \code{\link{aov_pcaSpectra}}.}
 
-\item{plot}{An integer specifying the desired plot. \code{names(LM)} will
-show which matrix has which data in it.}
-
-\item{loads}{An integer vector giving the loadings to plot.  More than 3
-loadings creates a useless plot using the default graphics window.}
+\item{loads}{An integer vector giving the loadings to plot.}
 
 \item{ref}{An integer specifying the reference spectrum to plot, which
 appears at the bottom of the plot.}
 
-\item{\dots}{Additional parameters to be passed to plotting functions.}
+\item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
 \value{
-None. Side effect is a plot.
+The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+\describe{
+ \item{base:}{None. Side effect is a plot.}
+ \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned if the
+                 value is assigned. The plot can be modified in the usual \code{ggplot2} manner.}
+}
 }
 \description{
 Uses the results from \code{\link{aovPCAscores}} to plot the corresponding
@@ -45,7 +48,7 @@ An example using this function can be seen in
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University), Matthew J. Keinsley.
 }
 \keyword{htest}
 \keyword{multivariate}

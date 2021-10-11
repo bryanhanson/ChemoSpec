@@ -61,7 +61,7 @@
 #'
 #' @return None.  Side effect is a plot
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @seealso Other functions in \code{ChemoSpec} that plot PCA scores are:
 #' \code{\link{plotScores}} (2D version), and \code{\link{plotScores3D}} (uses

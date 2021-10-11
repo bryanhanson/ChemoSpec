@@ -15,15 +15,23 @@ the output from \code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}}).}
 \item{pc}{An integer specifying the desired pc plot.}
 
 \item{tol}{A number describing the fraction of points to be labeled.
-\code{tol = 1.0} labels all the points; \code{tol = 0.05} labels the most
-extreme 5 percent.}
+\code{tol = 1.0} labels all the points; \code{tol = 0.05} labels
+\emph{approximately} the most extreme 5 percent. Set to \code{"none"} to
+completely suppress labels. Note that a simple approach
+based upon quantiles is used, assumes that both x and y are each normally
+distributed, and treats x and y separately.  Thus, this is not a formal
+treatment of outliers, just a means of labeling points. Groups are lumped
+together.}
 
-\item{\dots}{Additional parameters to be passed to plotting functions.}
+\item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
 \value{
-A data frame containing the frequency, covariance and correlation of
-the selected pc for the \code{\link{Spectra}} object.  A plot of the
-correlation vs. covariance is created.
+The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+\describe{
+ \item{base:}{None. Side effect is a plot.}
+ \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned if the
+                 value is assigned. The plot can be modified in the usual \code{ggplot2} manner.}
+}
 }
 \description{
 Produces a scatter plot of the correlation of the
@@ -33,13 +41,15 @@ a useful adjunct to traditional loading plots.
 }
 \examples{
 
+# This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+library("ggplot2")
 data(SrE.IR)
-IR.pca <- c_pcaSpectra(SrE.IR)
+pca <- c_pcaSpectra(SrE.IR)
 myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
-splot <- sPlotSpectra(
-  spectra = SrE.IR, pca = IR.pca, pc = 1, tol = 0.001,
-  main = myt
-)
+p <- sPlotSpectra(spectra = SrE.IR, pca = pca, pc = 1, tol = 0.001)
+p <- p + ggtitle(myt)
+p
+
 }
 \references{
 Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor,
@@ -52,6 +62,6 @@ Compounds Usings OPLS Class Models" Analytical Chemistry Vol.80 no.1 pgs.
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University), Tejasvi Gupta & Matthew J. Keinsley.
 }
 \keyword{hplot}

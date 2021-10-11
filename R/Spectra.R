@@ -26,7 +26,7 @@
 #' therefore \cr \tab \tab should probably be kept to 40 characters or less.\cr
 #' - attr \tab chr "Spectra" \tab The S3 class designation.\cr }
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @seealso \code{\link{sumSpectra}} to summarize a \code{Spectra} object.
 #' \code{\link{sumGroups}} to summarize group membership of a \code{Spectra}

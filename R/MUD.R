@@ -24,7 +24,7 @@
 #' which the concentrations of some compounds co-vary, and others are
 #' independent. This data set is normalized.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @name metMUD1
 #'
@@ -38,6 +38,7 @@
 #' interested.
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+#' @keywords datasets
 #'
 #' @examples
 #' data(metMUD1)
@@ -45,5 +46,4 @@
 #' #
 #' data(metMUD2)
 #' sumSpectra(metMUD2)
-#' @keywords datasets
 NULL

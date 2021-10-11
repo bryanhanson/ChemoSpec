@@ -39,18 +39,24 @@ deviation.  \code{Pareto} scales by the square root of the standard
 deviation.
 }
 \examples{
-
+\dontrun{
+# This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+library("ggplot2")
 data(SrE.NMR)
 pca <- irlba_pcaSpectra(SrE.NMR)
-plotScree(pca)
-plotScores(SrE.NMR, pca,
-  main = "SrE NMR Data",
-  pcs = c(1, 2), ellipse = "cls", tol = 0.05
-)
-plotLoadings(SrE.NMR, pca,
-  main = "SrE NMR Data",
-  loads = 1:2, ref = 1
-)
+
+p1 <- plotScree(pca)
+p1
+
+p2 <- plotScores(SrE.NMR, pca, pcs = c(1, 2), ellipse = "cls", tol = 0.05)
+p2 <- p2 + ggtitle("Scores: SrE NMR Data")
+p2
+
+p3 <- plotLoadings(SrE.NMR, pca, loads = 1:2, ref = 1)
+p3 <- p3 + ggtitle("Loadings: SrE NMR Data")
+p4
+}
+
 }
 \references{
 J. Baglama and L. Reichel, "Augmented Implicitly Restarted Lanczos
@@ -69,6 +75,6 @@ For displaying the results, \code{\link{plotScree}},
 \code{\link{plotScores3D}}, \code{\link{plotScoresRGL}}.
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{multivariate}

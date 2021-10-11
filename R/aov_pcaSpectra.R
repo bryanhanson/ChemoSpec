@@ -1,5 +1,4 @@
 #'
-#'
 #' ANOVA-PCA Analysis of Spectra Data
 #'
 #' ANOVA-PCA is a combination of both methods developed by Harrington.  The
@@ -18,10 +17,18 @@
 #' there should be 2 or more factors, because ANOVA-PCA on one factor is the
 #' same as standard PCA.  See the example.
 #'
-#' @return A list of matrices for each factor and their interactions, along
-#' with the residual error and mean centered data matrix.
+#' @param type Either classical ("cls") or robust ("rob"); Results in either
+#' \code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}} being called on the
+#' \code{\link{Spectra}} object.
 #'
-#' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+#' @param choice The type of scaling to be performed.  See
+#' \code{\link{c_pcaSpectra}} and \code{\link{r_pcaSpectra}} for details.
+#'
+#' @param showNames  Logical.  Show the names of the submatrices in the console.
+#'
+#' @return A list of PCA results, one for each computed submatrix.
+#'
+#' @template authors-BH-MK
 #'
 #' @seealso The output of this function is used in
 #' used in \code{\link{aovPCAscores}} and \code{\link{aovPCAloadings}}.
@@ -36,8 +43,12 @@
 #'
 #' @keywords multivariate htest
 #'
+#' 
 #' @examples
-#'
+#' 
+#' \dontrun{
+#' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+#' library("ggplot2")
 #' data(metMUD2)
 #'
 #' # Original factor encoding:
@@ -48,17 +59,27 @@
 #' mM3 <- splitSpectraGroups(metMUD2, new.grps)
 #'
 #' # run aov_pcaSpectra
-#' mats <- aov_pcaSpectra(mM3, fac = c("geneBb", "geneCc"))
-#' apca1 <- aovPCAscores(mM3, mats, plot = 1, main = "aovPCA: B vs b", ellipse = "cls")
-#' apca2 <- aovPCAscores(mM3, mats, plot = 2, main = "aovPCA: C vs c")
-#' apca3 <- aovPCAscores(mM3, mats, plot = 3, main = "aovPCA: Interaction Term")
-#' apca4 <- aovPCAloadings(
-#'   spectra = mM3, LM = mats, pca = apca1,
-#'   main = "aov_pcaSpectra: Bb Loadings"
-#' )
+#' PCAs <- aov_pcaSpectra(mM3, fac = c("geneBb", "geneCc"))
+#'
+#' p1 <- aovPCAscores(mM3, PCAs, submat = 1, ellipse = "cls")
+#' p1 <- p1 + ggtitle("aovPCA: B vs b")
+#' p1
+#'
+#' p2 <- aovPCAscores(mM3, PCAs, submat = 2)
+#' p2 <- p2 + ggtitle("aovPCA: C vs c")
+#' p2
+#'
+#' p3 <- aovPCAscores(mM3, PCAs, submat = 3)
+#' p3 <- p3 + ggtitle("aovPCA: Interaction Term")
+#' p3
+#'
+#' p4 <- aovPCAloadings(spectra = mM3, PCA = PCAs)
+#' p4 <- p4 + ggtitle("aov_pcaSpectra: Bb Loadings")
+#' p4
+#' }
 #' @export
 #'
-aov_pcaSpectra <- function(spectra, fac) {
+aov_pcaSpectra <- function(spectra, fac, type = "class", choice = NULL, showNames = TRUE) {
 
   #  Function to conduct ANOVA-PCA per Harrington
   #  as explained by Pinto
@@ -67,13 +88,21 @@ aov_pcaSpectra <- function(spectra, fac) {
 
   .chkArgs(mode = 11L)
 
+  types <- c("class", "rob")
+  check <- type %in% types
+  if (!check) {
+    stop("PCA option invalid")
+  }
+
   if (length(fac) > 3) {
     stop("Cannot process more than 3 factors!")
   }
+
   chkSpectra(spectra)
 
   nf <- length(fac)
 
+  # Compute needed matrices
   # Naming of matrices follows Harrington 2005, at least some of the time
   # Hardwire all possible matrices for each factor
 
@@ -113,13 +142,14 @@ aov_pcaSpectra <- function(spectra, fac) {
     msg <- paste("There are too many levels (", lvlcnt, ") in argument fac for the number of samples.", sep = "")
     stop(msg)
   }
+
   # Subtract matrices according to Pinto/Harrington
   # Run avgFacLvls on each successive residuals matrix
   # Number of times avgFacLvls runs depends on number of factors given
 
   # 1 factor aov_pcaSpectra is the same as running regular PCA so issue a warning
   if (nf == 1) {
-    warning("aov_pcaSpectra is the same as regular PCA for 1 factor")
+    warning("aov_pcaSpectra is the same as ordinary PCA for 1 factor")
   }
 
   if (nf == 1) {
@@ -164,5 +194,19 @@ aov_pcaSpectra <- function(spectra, fac) {
     )
   }
 
-  return(LM)
+  if (showNames) cat("The submatrices are:", paste(names(LM), collapse = ", "), "\n")
+
+  # Now carryout the PCA (do so for each submatrix)
+
+  n_pca <- length(LM) - 2 # leave off Res.Error, MC Data
+  PCA <- vector("list", n_pca)
+  names(PCA) <- names(LM)[1:n_pca]
+  for (i in 1:n_pca) {
+    spectra$data <- LM[[i]] + LM$Res.Error
+    if (is.null(choice)) choice <- "noscale"
+    if (type == "class") PCA[[i]] <- c_pcaSpectra(spectra, choice = choice, cent = FALSE)
+    if (type == "rob") PCA[[i]] <- r_pcaSpectra(spectra, choice = choice)
+  }
+
+  return(PCA)
 }

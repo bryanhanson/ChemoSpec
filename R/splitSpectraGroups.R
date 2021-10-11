@@ -42,12 +42,13 @@
 #' @return An object of S3 class \code{\link{Spectra}}, modified to have
 #' additional elements as specified by \code{inst}.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @seealso \code{\link{conColScheme}}
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @keywords utilities
+#' @export splitSpectraGroups
 #'
 #' @examples
 #'
@@ -64,7 +65,6 @@
 #' # plotScores and other functions to drive the color scheme
 #' # and labeling, you'll have to update the groups element:
 #' res$groups <- as.factor(paste(res$geneBb, res$geneCc, sep = ""))
-#' @export splitSpectraGroups
 #'
 splitSpectraGroups <- function(spectra, inst = NULL, rep.cols = NULL, ...) {
   .chkArgs(mode = 11L)

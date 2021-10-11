@@ -50,7 +50,7 @@
 ##' your browser at peacekeeper.futuremark.com  The most relevant score
 ##' is the rendering category.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @seealso \code{\link{plotSpectra}} for non-interactive plotting.  Details
 #' about \code{d3.js} are at \url{https://d3js.org}. Additional documentation at

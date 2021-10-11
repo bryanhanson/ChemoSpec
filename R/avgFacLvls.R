@@ -15,20 +15,20 @@
 #' @return A matrix whose rows are composed of the column means for each level
 #' of the factor.
 #'
-#' @author Matthew J. Keinsley and Bryan A. Hanson, DePauw University.
+#' @template authors-BH-MK
 #'
 #' @seealso \code{\link{aov_pcaSpectra}} for full details.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @keywords multivariate htest
+#' @export
+#' @noRd
 #'
 #' @examples
 #'
 #' M1 <- matrix(rnorm(100), nrow = 20, byrow = TRUE)
 #' facs <- factor(c(rep("A", 5), rep("B", 5), rep("C", 5), rep("D", 5)))
 #' M2 <- avgFacLvls(M1, fac = facs)
-#' @export
-#' @noRd
 #'
 .avgFacLvls <- function(matrix, fac) {
 

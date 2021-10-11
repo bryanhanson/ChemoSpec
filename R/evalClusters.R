@@ -42,7 +42,7 @@
 #' @return A list giving the results, as described in \code{\link[clusterCrit]{intCriteria}} or
 #' \code{\link[NbClust]{NbClust}}.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @seealso \code{\link{hclust}} for the underlying base function.
 #' \code{\link{hcaSpectra}} for HCA analysis of a \code{\link{Spectra}} object.
@@ -58,9 +58,7 @@
 #'
 #' @examples
 #'
-#' # These are a little slow for CRAN checking
 #' \dontrun{
-#'
 #' data(metMUD2)
 #'
 #' # Using clusterCrit
@@ -76,7 +74,6 @@
 #' }
 #'
 #' @export evalClusters
-#'
 #' @importFrom stats hclust cutree
 #'
 evalClusters <- function(spectra, pkg = "NbClust", hclst = NULL,

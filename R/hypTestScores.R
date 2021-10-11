@@ -30,7 +30,7 @@
 #' If assigned, the object class is one of several described in
 #' \code{\link{aov}} depending upon the data passed to it.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @seealso \code{\link{splitSpectraGroups}} which can be used to create
 #' additional factor elements in the \code{\link{Spectra}} object, which can then be
@@ -59,8 +59,8 @@
 #'
 #' # You can also call this function on the existing groups:
 #' res <- hypTestScores(metMUD2, pca, fac = "groups")
-#' @export hypTestScores
 #'
+#' @export hypTestScores
 #' @importFrom stats aov manova
 #'
 hypTestScores <- function(spectra, pca, pcs = 1:3, fac = NULL, ...) {

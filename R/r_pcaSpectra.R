@@ -29,25 +29,31 @@
 #' @references K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
 #' Statistical Analysis in Chemometrics}, CRC Press, 2009.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @seealso \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @keywords multivariate robust
 #'
 #' @examples
-#'
+#' 
+#' \dontrun{
+#' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+#' library("ggplot2")
 #' data(metMUD1)
 #' pca <- r_pcaSpectra(metMUD1)
-#' plotScree(pca)
-#' plotScores(metMUD1, pca,
-#'   main = "metMUD1 NMR Data",
-#'   pcs = c(1, 2), ellipse = "cls", tol = 0.05
-#' )
-#' plotLoadings(metMUD1, pca,
-#'   main = "metMUD1 NMR Data",
-#'   loads = 1:2, ref = 1
-#' )
+#'
+#' p1 <- plotScree(pca)
+#' p1
+#'
+#' p2 <- plotScores(metMUD1, pca, pcs = c(1, 2), ellipse = "cls", tol = 0.05)
+#' p2 <- p2 + ggtitle("Scores: metMUD1 NMR Data")
+#' p2
+#'
+#' p3 <- plotLoadings(metMUD1, pca, loads = 1:2, ref = 1)
+#' p3 <- p3 + ggtitle("Loadings: metMUD1 NMR Data")
+#' p3
+#' }
 #' @export r_pcaSpectra
 #'
 #'

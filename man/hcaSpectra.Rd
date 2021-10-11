@@ -44,6 +44,7 @@ the clusters and distances are available.
 data(SrE.IR)
 myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
 res <- hcaSpectra(SrE.IR, main = myt)
+
 }
 \seealso{
 \code{\link{hclust}} for the underlying function.
@@ -52,7 +53,7 @@ res <- hcaSpectra(SrE.IR, main = myt)
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{cluster}
 \keyword{multivariate}

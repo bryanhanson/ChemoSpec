@@ -22,7 +22,7 @@
 #' @return A list with either classes \code{converted_from_princomp} and
 #' \code{prcomp} or classes \code{converted_from_prcomp} and \code{princomp}.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @seealso \code{\link{prcomp}}, \code{\link{princomp}}
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}

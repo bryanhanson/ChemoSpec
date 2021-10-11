@@ -15,26 +15,30 @@
 #'
 #' @return A object of class \code{\link{Spectra}}.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @keywords utilities multivariate
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
-#'
+#' @export sgfSpectra
 #' @examples
 #'
+#' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+#' library("ggplot2")
+#' library("patchwork")
 #' data(SrE.IR)
 #' myt1 <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
 #' myt2 <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra ~ (Smoothed)))
 #'
-#' par(mfrow = c(2, 1))
-#' plotSpectra(SrE.IR, xlim = c(1900, 2100), yrange = c(0, 0.05), main = myt1)
-#' temp <- sgfSpectra(SrE.IR)
-#' plotSpectra(temp, xlim = c(1900, 2100), yrange = c(0, 0.05), main = myt2)
-#' par(mfrow = c(1, 1))
-#' @export sgfSpectra
+#' p1 <- plotSpectra(SrE.IR)
+#' p1 <- p1 + ggtitle(myt1) + coord_cartesian(xlim = c(1900, 2100), ylim = c(0.0, 0.03))
 #'
-# @importFrom signal sgolayfilt
+#' sgf <- sgfSpectra(SrE.IR)
+#' p2 <- plotSpectra(sgf)
+#' p2 <- p2 + ggtitle(myt2) + coord_cartesian(xlim = c(1900, 2100), ylim = c(0.0, 0.03))
+#'
+#' p3 <- p1/p2
+#' p3
 #'
 sgfSpectra <- function(spectra, m = 0, ...) {
   if (!requireNamespace("signal", quietly = TRUE)) {

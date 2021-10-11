@@ -1,8 +1,8 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 5.3.21
-Date: 2021-07-05
+Version: 6.0.1
+Date: 2021-10-10
 Authors@R: c(
     person("Bryan A.", "Hanson",
       role = c("aut", "cre"), email =
@@ -13,7 +13,10 @@ Authors@R: c(
       comment = "author of the d3.js library used by plotSpectraJS, http://d3js.org"),
     person("Matt", "Keinsley",
       role = "ctb",
-      comment = "author of initial AOV-PCA code"))
+      comment = "author of initial AOV-PCA code"),
+    person("Tejasvi", "Gupta",
+      role = "ctb",
+      comment = "author of ggplot2 and plotly graphics"))
 Description: A collection of functions for top-down exploratory data analysis
     of spectral data including nuclear magnetic resonance (NMR), infrared (IR),
     Raman, X-ray fluorescence (XRF) and other similar types of spectroscopy.
@@ -29,13 +32,18 @@ Description: A collection of functions for top-down exploratory data analysis
 License: GPL-3
 Depends:
   R (>= 3.5),
-  ChemoSpecUtils (>= 0.3)
+  ChemoSpecUtils (>= 1.0)
 Imports:
   plyr,
   stats,
   utils,
   grDevices,
-  readJDX (>= 0.4)
+  reshape2,
+  readJDX (>= 0.6),
+  patchwork,
+  ggplot2,
+  plotly,
+  magrittr
 Suggests:
   IDPmisc,
   knitr,
@@ -65,14 +73,20 @@ Suggests:
   rmarkdown,
   bookdown,
   chemometrics,
-  hyperSpec
+  httr,
+  RCurl,
+  mixOmics,
+  hyperSpec,
+  bootsPLS
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE
 VignetteBuilder: knitr
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 NeedsCompilation: no
 Packaged: 2019-06-09 18:30:21 UTC; bryanhanson
 Repository: CRAN
 Date/Publication: 2019-06-09 18:50:03 UTC
+Remotes: bryanhanson/ChemoSpecUtils
+

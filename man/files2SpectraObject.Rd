@@ -198,21 +198,26 @@ to any part of the file name if you know how to construct the proper pattern.
 
 \examples{
 \dontrun{
-# Grab an included file
-ed <- system.file("extdata", package = "ChemoSpec")
-tf <- "PCRF.jdx"
-chk <- file.copy(
-  from = file.path(ed, tf), to = file.path(getwd(), tf),
-  overwrite = TRUE
-)
+# This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+library("ggplot2")
 
-# Now read in the file, and plot
+wd <- getwd() # save current location
+setwd(tempdir())
+
+# Grab an included file & move to a temporary directory
+tf <- system.file("extdata/PCRF.jdx", package = "ChemoSpec")
+chk <- file.copy(from = tf, to = basename(tf))
+
+# Now read in the file, summarize and plot
 spec <- files2SpectraObject(
   gr.crit = "PCRF", freq.unit = "ppm", int.unit = "intensity",
-  descrip = "test import", fileExt = "\\\\.jdx"
-)
+  descrip = "test import", fileExt = "\\\\.jdx")
 sumSpectra(spec)
-plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
+p <- plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
+p <- p + ggtitle("Reduced Fat Potato Chip")
+p
+
+setwd(wd) # restore working directory
 }
 
 }
@@ -221,7 +226,7 @@ Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/},
          as well as \code{\link{updateGroups}}.
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{file}
 \keyword{import}

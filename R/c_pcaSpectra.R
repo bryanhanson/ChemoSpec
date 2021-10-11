@@ -26,7 +26,7 @@
 #' pre-processing carried out and the type of PCA performed (used to annotate
 #' plots).
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @seealso \code{\link{prcomp}} for the underlying function,
 #' \code{\link{s_pcaSpectra}} for sparse PCA calculations,
@@ -45,20 +45,25 @@
 #' @keywords multivariate
 #'
 #' @examples
-#'
+#' \dontrun{
+#' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+#' library("ggplot2")
 #' data(metMUD1)
 #' pca <- c_pcaSpectra(metMUD1)
-#' plotScree(pca)
-#' plotScores(metMUD1, pca,
-#'   main = "metMUD1 NMR Data",
-#'   pcs = c(1, 2), ellipse = "cls", tol = 0.05
-#' )
-#' plotLoadings(metMUD1, pca,
-#'   main = "metMUD1 NMR Data",
-#'   loads = 1:2, ref = 1
-#' )
-#' @export c_pcaSpectra
 #'
+#' p1 <- plotScree(pca)
+#' p1
+#'
+#' p2 <- plotScores(metMUD1, pca, pcs = c(1, 2), ellipse = "cls", tol = 0.05)
+#' p2 <- p2 + ggtitle("Scores: metMUD1 NMR Data")
+#' p2
+#' 
+#' p3 <- plotLoadings(metMUD1, pca, loads = 1:2, ref = 1)
+#' p3 <- p3 + ggtitle("Loadings: metMUD1 NMR Data")
+#' p3
+#' }
+#'
+#' @export c_pcaSpectra
 #' @importFrom stats sd prcomp
 #'
 c_pcaSpectra <- function(spectra, choice = "noscale", cent = TRUE) {

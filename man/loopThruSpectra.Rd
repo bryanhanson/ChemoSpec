@@ -2,7 +2,7 @@
 % Please edit documentation in R/LoopThruSpectra.R
 \name{loopThruSpectra}
 \alias{loopThruSpectra}
-\title{Display the Spectra in a Spectra Object One at a Time}
+\title{Display the Spectra in a Spectra Object One at a Time DEPRECATED}
 \usage{
 loopThruSpectra(spectra, ...)
 }
@@ -12,25 +12,28 @@ loopThruSpectra(spectra, ...)
 \item{\dots}{Parameters to be passed downstream.}
 }
 \value{
-None. Side effect is a plot.
+The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
+\itemize{
+ \item{base:}{    None.  Side effect is a plot.}
+ \item{ggplot2:}{    Returns a \code{ggplot2} plot object. The plot can be modified in the usual
+                     \code{ggplot2} manner.}
+ }
 }
 \description{
-Plots each spectrum in a \code{\link{Spectra}} object one at a time, and
+DEPRECATED: Use \code{reviewAllSpectra} instead.  Plots each spectrum in a
+\code{\link{Spectra}} object one at a time, and
 waits for a return in the console before plotting the next spectrum.  Use
 \code{ESC} to get out of the loop.
 }
-\examples{
-
-\dontrun{
-data(metMUD1)
-loopThruSpectra(metMUD1)
-}
-
+\details{
+The ggplot2 mode plots all the \code{\link{Spectra}} objects in the dataset on a single column.
 }
 \seealso{
-Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+See \code{\link{GraphicsOptions}}
+         for more information about the graphics options. Additional documentation at
+         \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{hplot}

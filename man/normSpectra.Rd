@@ -42,20 +42,28 @@ This function carries out normalization of the spectra in a
 }
 }
 \examples{
-
+# This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+library("ggplot2")
 data(SrE.IR)
+
+# Reference spectrum before normalization
+p1 <- plotSpectra(SrE.IR) + ggtitle("Original Spectrum")
+p1
 
 # Default PQN normalization
 res1 <- normSpectra(SrE.IR)
-plotSpectra(res1) # compare to plotSpectra(SrE.IR)
+p2 <- plotSpectra(res1) + ggtitle("PQN Normalization")
+p2
 
 # Norm over carbonyl region
 RE <- SrE.IR$freq > 1650 & SrE.IR$freq < 1800
 res2 <- normSpectra(SrE.IR, method = "Range", RangeExpress = RE)
-plotSpectra(res2) # compare to plotSpectra(SrE.IR)
+p3 <- plotSpectra(res2) + ggtitle("Normalized to Carbonyl Peaks")
+p3
 
 # Check numerically
 rowSums(res2$data[, RE]) # compare to rowSums(SrE.IR$data[,RE])
+
 }
 \references{
 Probabalistic Quotient Normalization is reported in F. Dieterle
@@ -68,7 +76,7 @@ group, reported in K. A. Veselkov et. al. Analytical Chemistry vol. 83 pages
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{manip}
 \keyword{utilities}

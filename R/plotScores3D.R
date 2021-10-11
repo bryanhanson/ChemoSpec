@@ -45,12 +45,11 @@
 #'
 #' @return None.  Side effect is a plot.
 #'
-#' @author Bryan A. Hanson, DePauw University.
+#' @template authors-BH
 #'
 #' @seealso For a 2D plot of the scores, see \code{\link{plotScores}}.  For
 #' interactive 3D plots, use \code{\link{plotScoresRGL}}.  Additional documentation
 #' at \url{https://bryanhanson.github.io/ChemoSpec/}
-#'
 #'
 #' @keywords multivariate hplot
 #'
@@ -59,8 +58,8 @@
 #' data(metMUD1)
 #' pca <- c_pcaSpectra(metMUD1, choice = "noscale")
 #' plotScores3D(metMUD1, pca, main = "metMUD1 NMR Spectra")
-#' @export plotScores3D
 #'
+#' @export plotScores3D
 #' @importFrom graphics plot
 #' @importFrom grid grid.text gpar
 #' @importFrom ChemoSpecUtils sumGroups

@@ -105,7 +105,7 @@ Other functions in \code{ChemoSpec} that plot PCA scores are:
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson, DePauw University.
+Bryan A. Hanson (DePauw University)
 }
 \keyword{dynamic}
 \keyword{hplot}
