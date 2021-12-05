@@ -1,5 +1,13 @@
+# ChemoSpec 6.1.0 2021-12-xx
+## New Features
+* Tab completion for `Spectra` objects implemented.  In RStudio typing `SrE.IR$` will show a list of possible completions.  In the `R` console, typing `SrE.IR$` followed by the tab key shows possible completions.
 
-# ChemoSpec 6.0.0 2021-10-09
+## Misc.
+* `evalClusters` disabled due to a problem with `clusterCrit `.
+* `hmapSpectra` removed temporarily due to a problem with `seriation`.
+* Fix example in `hmapSpectra` (the plot `p` was not called).
+
+# ChemoSpec 6.0.1 2021-10-09
 ## Significant Changes to Graphics Output
 * Courtesy GSOC and Tejasvi Gupta, the following plotting functions gain the ability to produce either `base` graphics, `ggplot2` or `plotly` graphics:
   - `plotSpectra`
