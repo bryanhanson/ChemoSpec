@@ -5,7 +5,8 @@
 ## Misc.
 * `evalClusters` disabled due to a problem with `clusterCrit `.
 * `hmapSpectra` removed temporarily due to a problem with `seriation`.
-* Fix example in `hmapSpectra` (the plot `p` was not called).
+* Fixed example in `hmapSpectra` (the plot `p` was not called).
+* `plotSpectra` argument `lab.pos` can now be set to `"none"` to supress labeling entirely (fixes issue #88).
 
 # ChemoSpec 6.0.1 2021-10-09
 ## Significant Changes to Graphics Output

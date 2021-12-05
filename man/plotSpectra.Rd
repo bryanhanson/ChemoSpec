@@ -38,7 +38,7 @@ all spectra.  Useful for magnifying spectra so small features show up
 
 \item{lab.pos}{A number (in frequency units) giving the location of a label for each spectrum.
 Generally, pick an area that is clear in all spectra plotted.  If no label
-is desired, give \code{lab.pos} outside the plotted x range.}
+is desired, set \code{lab.pos = "none"}.}
 
 \item{showGrid}{Logical.  Places light gray vertical lines at each tick mark
 if \code{TRUE}.}

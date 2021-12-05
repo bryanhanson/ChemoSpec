@@ -26,7 +26,7 @@
 #'
 #' @param lab.pos A number (in frequency units) giving the location of a label for each spectrum.
 #' Generally, pick an area that is clear in all spectra plotted.  If no label
-#' is desired, give \code{lab.pos} outside the plotted x range.
+#' is desired, set \code{lab.pos = "none"}.
 #'
 #' @param showGrid Logical.  Places light gray vertical lines at each tick mark
 #' if \code{TRUE}.
@@ -116,9 +116,11 @@ plotSpectra <- function(spectra, which = c(1),
     for (i in 1:nrow(M)) lines(freq, M[i, ], col = Mcols[i], ...)
 
     # Add sample names
-    lab.x <- lab.pos
-    lab.y <- .calcLabelYpos(M, pct)
-    text(lab.x, lab.y, labels = Mnames, adj = c(0.5, 0.5), cex = 0.75)
+    if (is.numeric(lab.pos)) {
+      lab.x <- lab.pos
+      lab.y <- .calcLabelYpos(M, pct)
+      text(lab.x, lab.y, labels = Mnames, adj = c(0.5, 0.5), cex = 0.75)
+    }
 
     # Prep legend location if legend requested
     if (all(leg.loc != "none")) {
@@ -152,8 +154,10 @@ plotSpectra <- function(spectra, which = c(1),
     }
     names(df) <- c("Frequency", spectra$names[which])
 
-    lab.x <- lab.pos # values in native data space
-    lab.y <- .calcLabelYpos(t(as.matrix(df[, -1])), pct)
+    if (is.numeric(lab.pos)) {
+      lab.x <- lab.pos # values in native data space
+      lab.y <- .calcLabelYpos(t(as.matrix(df[, -1])), pct)
+    }
 
     molten.data <- reshape2::melt(df, id = c("Frequency"))
 
@@ -162,12 +166,15 @@ plotSpectra <- function(spectra, which = c(1),
       aes(x = Frequency, y = value, group = variable, color = variable)) +
       geom_line() +
       scale_color_manual(name = "Key", values = spectra$colors[which]) +
-      annotate("text", x = lab.x, y = lab.y, label = spectra$names[which], size = 8/.pt) +
       labs(x = spectra$unit[1], y = spectra$unit[2]) +
       coord_cartesian(ylim = yrange) +
       theme_bw() +
       theme(legend.position = "none") +
       theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank())
+
+    if (is.numeric(lab.pos)) {
+      p <- p + annotate("text", x = lab.x, y = lab.y, label = spectra$names[which], size = 8/.pt)
+    }
 
     if (!showGrid) {
       p <- p + theme(panel.grid.minor = element_blank(), panel.grid.major = element_blank())
