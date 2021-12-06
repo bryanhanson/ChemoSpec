@@ -1,11 +1,14 @@
 # ChemoSpec 6.1.0 2021-12-xx
+## Defunct Functions
+* Functions `plotScoresRGL` and `plotScores3D` have been removed from the package.  Please use `plotScores3d`, which uses `plotly`, as a replacement.
+
 ## New Features
 * Tab completion for `Spectra` objects implemented.  In RStudio typing `SrE.IR$` will show a list of possible completions.  In the `R` console, typing `SrE.IR$` followed by the tab key shows possible completions.
 
 ## Misc.
 * `evalClusters` disabled due to a problem with `clusterCrit `.
 * `hmapSpectra` removed temporarily due to a problem with `seriation`.
-* Fixed example in `hmapSpectra` (the plot `p` was not called).
+* Fixed the example in `hmapSpectra` (the plot `p` was not called).
 * `plotSpectra` argument `lab.pos` can now be set to `"none"` to supress labeling entirely (fixes issue #88).
 
 # ChemoSpec 6.0.1 2021-10-09
