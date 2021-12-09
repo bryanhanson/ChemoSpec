@@ -23,8 +23,6 @@
 #' number indicating the fraction of the data points to be considered "good"
 #' and thus used to compute the robust confidence ellipse.
 #'
-#' @param \dots Other parameters to be passed downstream.
-#'
 #' @return None.  Side effect is a plot.
 #'
 #' @template authors-BH
@@ -38,88 +36,62 @@
 #' data(metMUD1)
 #' pca <- c_pcaSpectra(metMUD1, choice = "noscale")
 #' plotScores3D(metMUD1, pca, main = "metMUD1 NMR Spectra")
-#'
 #' @export plotScores3d
 #' @importFrom ChemoSpecUtils sumGroups
 #' @importFrom ChemoSpecUtils .getVarExplained
 #'
-plotScores3D <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
-                         cl = 0.95, frac.pts.used = 0.8,
-                         view = list(y = 34, x = 10, z = 0), tol = 0.01, use.sym = FALSE, ...) {
-  if (!requireNamespace("lattice", quietly = TRUE)) {
+plotScores3d <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
+                         cl = 0.95, frac.pts.used = 0.8) {
+  if (!requireNamespace("plotly", quietly = TRUE)) {
     stop("You need to install package lattice to use this function")
-  }
-
-  if (!requireNamespace("grid", quietly = TRUE)) {
-    stop("You need to install package grid to use this function")
   }
 
   .chkArgs(mode = 12L)
   chkSpectra(spectra)
-  if (!length(pcs) == 3) stop("Please give exactly 3 PCs to plot")
+  if (length(pcs) != 3) stop("Please give exactly 3 PCs to plot")
 
-  x <- pca$x[, pcs[1]] # organize a few things
+  x <- pca$x[, pcs[1]] # create a data frame with the scores
   y <- pca$x[, pcs[2]]
   z <- pca$x[, pcs[3]]
-  pch <- 20
-  gr <- sumGroups(spectra)
-  # move the original data into a df, add a size parameter
-  df <- data.frame(x = x, y = y, z = z, sym = spectra$sym, col = spectra$colors, size = rep(0.5, length(spectra$names)))
+  DF1 <- data.frame(x = x, y = y, z = z, col = spectra$colors)
 
   variance <- .getVarExplained(pca)
-  x.lab <- paste("PC", pcs[1], " (", format(variance[ pcs[1] ], digits = 2), "%", ")", sep = "")
-  y.lab <- paste("PC", pcs[2], " (", format(variance[ pcs[2] ], digits = 2), "%", ")", sep = "")
-  z.lab <- paste("PC", pcs[3], " (", format(variance[ pcs[3] ], digits = 2), "%", ")", sep = "")
+  x.lab <- paste("PC", pcs[1], " (", format(variance[pcs[1]], digits = 2), "%", ")", sep = "")
+  y.lab <- paste("PC", pcs[2], " (", format(variance[pcs[2]], digits = 2), "%", ")", sep = "")
+  z.lab <- paste("PC", pcs[3], " (", format(variance[pcs[3]], digits = 2), "%", ")", sep = "")
 
+  gr <- sumGroups(spectra) # create a data frame for the ellipses
+  DF2 <- data.frame(x = NA_real_, y = NA_real_, z = NA_real_, col = NA_character_)
   for (n in 1:length(gr$group)) { # work through the groups, add ellipses if n > 3
     # note that .makeEllipsoid has further checks for the number of data points
-
     w <- grep(gr$group[n], spectra$groups)
     if ((gr$no.[n] > 3) && (ellipse)) { # gather the ellipsoid points
       ell <- .makeEllipsoid(pca$x[w, pcs], rob = rob, cl = cl, frac.pts.used = frac.pts.used)
       x <- ell[, 1]
       y <- ell[, 2]
       z <- ell[, 3]
-      sym <- rep(gr$symbol[n], 1000)
       col <- rep(gr$color[n], 1000)
-      size <- rep(0.05, 1000) # tiny points for a transparent ellipse
-      temp <- data.frame(x = x, y = y, z = z, sym = sym, col = col, size = size)
-      df <- rbind(df, temp)
+      tmp <- data.frame(x = x, y = y, z = z, col = col)
+      DF2 <- rbind(DF2, tmp)
     }
   }
+  DF2 <- na.omit(DF2)
 
-  cube.key <- list(
-    x = 0.5, y = 0.15, corner = c(0.5, 0.5), columns = length(gr$group),
-    text = list(gr$group, col = gr$color, pch = 20)
-  )
+  zlw <- 4L # zero line width
+  dps <- 3.0 # data point size
+  eps <- 0.5 # ellipse point size
 
-  if (use.sym) { # need to override a few things
-    df$col <- "black"
-    pch <- df$sym
-    cube.key <- list(
-      x = 0.5, y = 0.15, corner = c(0.5, 0.5),
-      columns = length(gr$group),
-      text = list(gr$group, col = "black"), points = TRUE, pch = gr$sym
-    )
-  }
-
-
-  p <- lattice::cloud(z ~ x * y,
-    data = df, col = as.character(df$col), cex = df$size, pch = pch,
-    xlab = x.lab, ylab = y.lab, zlab = z.lab, ...,
-    par.settings = list(
-      axis.line = list(col = "transparent"),
-      par.xlab.text = list(cex = 0.75),
-      par.ylab.text = list(cex = 0.75),
-      par.zlab.text = list(cex = 0.75)
-    ),
-    screen = view, zoom = 0.75,
-    key = cube.key,
-    panel = function(...) {
-      lattice::panel.cloud(...)
-    }
-  )
-
-  plot(p)
-  grid::grid.text(spectra$desc, 0.5, 0.1, gp = grid::gpar(fontsize = 10))
+  fig <- plot_ly(
+    name = "scores", DF1, x = ~x, y = ~y, z = ~z,
+    marker = list(size = dps, color = DF1$col)) %>%
+    add_markers() %>%
+    add_trace(name = "ellipses", data = DF2, x = ~x, y = ~y, z = ~z,
+      mode = "points", type = "scatter3d", inherit = FALSE,
+      marker = list(size = eps, color = DF2$col)) %>%
+    layout(scene = list(
+      xaxis = list(title = x.lab, zerolinewidth = zlw),
+      yaxis = list(title = y.lab, zerolinewidth = zlw),
+      zaxis = list(title = z.lab, zerolinewidth = zlw)
+    ))
+  fig
 }
