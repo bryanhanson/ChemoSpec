@@ -86,12 +86,13 @@ plotScores3d <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE
     marker = list(size = dps, color = DF1$col)) %>%
     add_markers() %>%
     add_trace(name = "ellipses", data = DF2, x = ~x, y = ~y, z = ~z,
-      mode = "points", type = "scatter3d", inherit = FALSE,
+      mode = "markers", type = "scatter3d", inherit = FALSE,
       marker = list(size = eps, color = DF2$col)) %>%
-    layout(scene = list(
-      xaxis = list(title = x.lab, zerolinewidth = zlw),
-      yaxis = list(title = y.lab, zerolinewidth = zlw),
-      zaxis = list(title = z.lab, zerolinewidth = zlw)
-    ))
+    layout(title = paste("\n", spectra$desc, "\n", pca$method, sep = ""),
+      scene = list(
+        xaxis = list(title = x.lab, zerolinewidth = zlw),
+        yaxis = list(title = y.lab, zerolinewidth = zlw),
+        zaxis = list(title = z.lab, zerolinewidth = zlw)
+      ))
   fig
 }
