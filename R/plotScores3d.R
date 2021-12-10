@@ -45,8 +45,9 @@
 #'
 plotScores3d <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
                          cl = 0.95, frac.pts.used = 0.8) {
+
   if (!requireNamespace("plotly", quietly = TRUE)) {
-    stop("You need to install package lattice to use this function")
+    stop("You need to install package plotly to use this function")
   }
 
   .chkArgs(mode = 12L)
