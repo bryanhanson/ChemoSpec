@@ -3,7 +3,7 @@
 #'
 #' Creates an interactive 3D plot of PCA scores from the analysis of a
 #' \code{\link{Spectra}} object, color coded according the to scheme stored in
-#' the object.
+#' the object.  The plot is created by \code{plotly} and appears in a browser window.
 #'
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
@@ -23,22 +23,25 @@
 #' number indicating the fraction of the data points to be considered "good"
 #' and thus used to compute the robust confidence ellipse.
 #'
-#' @return None.  Side effect is a plot.
+#' @return None.  Side effect is a plot in a browser window.
 #'
 #' @template authors-BH
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @keywords multivariate hplot
-#'
-#' @examples
-#'
-#' data(metMUD1)
-#' pca <- c_pcaSpectra(metMUD1, choice = "noscale")
-#' plotScores3D(metMUD1, pca, main = "metMUD1 NMR Spectra")
 #' @export plotScores3d
 #' @importFrom ChemoSpecUtils sumGroups
 #' @importFrom ChemoSpecUtils .getVarExplained
+#' @importFrom plotly add_markers add_trace layout plot_ly
+#'
+#' @examples
+#' if (interactive()) {
+#'   data(metMUD1)
+#'   pca <- c_pcaSpectra(metMUD1, choice = "noscale")
+#'   p <- plotScores3D(metMUD1, pca)
+#'   p
+#'  }
 #'
 plotScores3d <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
                          cl = 0.95, frac.pts.used = 0.8) {
