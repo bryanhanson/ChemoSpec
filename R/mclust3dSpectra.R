@@ -107,7 +107,7 @@ mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
     }
   }
 
-  DF1 <- DF1[-1, ]
+  DF1 <- DF1[-1, ] # remove NA in row 1
   if (ellipse) DF2 <- DF2[-1, ]
   ne <- length(unique(DF2$gr)) # number of ellipses that will be drawn
 
@@ -127,15 +127,15 @@ mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
   z.lab <- paste("PC", pcs[3], " (", format(variance[pcs[3]], digits = 2), "%", ")", sep = "")
 
   X <- FALSE
-  if (!is.null(truth)) { # X out errors in classification
+  if (!is.null(truth)) { # prepare to X out errors in classification
     ans <- mclust::classError(mod$classification, truth)
     wrong <- as.data.frame(data[ans$misclassified, ])
     if (nrow(wrong) == 0) warning("No points were misclassified, damn you're good!")
     if (nrow(wrong) > 0) X <- TRUE
   }
 
-  score_names <- unique(DF1$gr)
-  ellipse_names <- unique(DF2$gr)
+  s_names <- unique(DF1$gr) # names for traces; becomes legend
+  e_names <- unique(DF2$gr)
   zlw <- 4L # zero line width
   dps <- 3.0 # data point size
   eps <- 0.5 # ellipse point size
@@ -143,19 +143,19 @@ mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
   fig <- plot_ly()
 
   for (n in 1:ng) { # draw scores
-    DF1a <- DF1[DF1$gr == score_names[n],]
+    DF1a <- DF1[DF1$gr == s_names[n],]
     fig <- fig %>% 
-    add_trace(name = score_names[n], data = DF1a,
+    add_trace(name = s_names[n], data = DF1a,
       x = ~x, y = ~y, z = ~z,
       mode = "markers", type = "scatter3d", inherit = FALSE,
       marker = list(size = dps, color = DF1a$col))
   }
  
   for (n in 1:ne) { # add ellipses
-    DF2a <- DF2[DF2$gr == ellipse_names[n],]
+    DF2a <- DF2[DF2$gr == e_names[n],]
     fig <- fig %>% 
     add_trace(
-      name = ellipse_names[n], data = DF2a,
+      name = e_names[n], data = DF2a,
       x = ~x, y = ~y, z = ~z,
       mode = "markers", type = "scatter3d", inherit = FALSE,
       marker = list(size = eps, color = DF2a$col)) 
@@ -170,7 +170,7 @@ mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
   }
 
   fig <- fig %>% layout(
-      legend= list(itemsizing='constant'),
+    legend= list(itemsizing='constant'),
     title = paste("\n", spectra$desc, "\n", pca$method, sep = ""),
     scene = list(
       xaxis = list(title = x.lab, zerolinewidth = zlw),
