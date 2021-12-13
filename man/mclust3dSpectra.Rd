@@ -53,16 +53,16 @@ here are generated independently of the \code{Mclust} results - they do not
 correspond to the ellipses seen in 2D plots from \code{Mclust}.
 }
 \examples{
-
 \dontrun{
 require(mclust)
 data(metMUD1)
-class <- c_pcaSpectra(metMUD1)
-mclust3dSpectra(metMUD1, class,
-  title = "mclust3dSpectra demo",
-  lab.opts = FALSE, t.pos = "A"
-)
+pca <- c_pcaSpectra(metMUD1)
+mclust3dSpectra(metMUD1, pca)
+
+# show mis-classified points
+mclust3dSpectra(metMUD1, pca, truth = metMUD1$groups)
 }
+
 
 }
 \seealso{

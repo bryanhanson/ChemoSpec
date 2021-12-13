@@ -1,4 +1,7 @@
 # ChemoSpec 6.1.0 2021-12-xx
+## Overhauled Functions
+* `mclust3dSpectra` was overhauled completely and now uses `plotly` graphics (an interactive plot appears in a browser window).  The color scheme was changed to use `Col12` (see `?colorSymbol`).
+
 ## Defunct Functions
 * Functions `plotScoresRGL` and `plotScores3D` have been removed from the package.  Please use `plotScores3d`, which uses `plotly`, as a replacement.
 
@@ -7,7 +10,6 @@
 
 ## Misc.
 * `evalClusters` disabled due to a problem with `clusterCrit `.
-* `hmapSpectra` removed temporarily due to a problem with `seriation`.
 * Fixed the example in `hmapSpectra` (the plot `p` was not called).
 * `plotSpectra` argument `lab.pos` can now be set to `"none"` to supress labeling entirely (fixes issue #88).
 

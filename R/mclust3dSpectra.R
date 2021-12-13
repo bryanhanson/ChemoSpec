@@ -40,30 +40,27 @@
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @importFrom plotly add_markers add_trace layout plot_ly
+#' @export mclust3dSpectra
 #' @keywords multivariate cluster
-#' @examples
 #'
+#' @examples
 #' \dontrun{
 #' require(mclust)
 #' data(metMUD1)
-#' class <- c_pcaSpectra(metMUD1)
-#' mclust3dSpectra(metMUD1, class,
-#'   title = "mclust3dSpectra demo",
-#'   lab.opts = FALSE, t.pos = "A"
-#' )
+#' pca <- c_pcaSpectra(metMUD1)
+#' mclust3dSpectra(metMUD1, pca)
+#' 
+#' # show mis-classified points
+#' mclust3dSpectra(metMUD1, pca, truth = metMUD1$groups)
 #' }
 #'
-#' @export mclust3dSpectra
 #'
-mclust3dSpectra2 <- function(spectra, pca, pcs = 1:3,
+mclust3dSpectra <- function(spectra, pca, pcs = 1:3, 
                             ellipse = TRUE, rob = FALSE, cl = 0.95,
                             frac.pts.used = 0.8, truth = NULL, ...) {
 
   if (!requireNamespace("mclust", quietly = TRUE)) {
     stop("You need to install package mclust to use this function")
-  }
-  if (!requireNamespace("RColorBrewer", quietly = TRUE)) {
-    stop("You need to install package RColorBrewer to use this function")
   }
   if (!requireNamespace("plotly", quietly = TRUE)) {
     stop("You need to install package plotly to use this function")
@@ -74,21 +71,24 @@ mclust3dSpectra2 <- function(spectra, pca, pcs = 1:3,
   if (length(pcs) != 3) stop("Please give exactly 3 PCs to plot")
 
   data <- pca$x[, pcs]
-  names(data) <- c("x", "y", "z")
+  colnames(data) <- c("x", "y", "z")
   mod <- mclust::Mclust(data, ...)
   gr <- unique(mod$classification)
-  my.col <- c("red", "blue")
-  if (length(gr) > 2) my.col <- RColorBrewer::brewer.pal(length(gr), "Set1")
-  DF1 <- DF2 <- data.frame(x = NA_real_, y = NA_real_, z = NA_real_, col = NA_character_)
+
+  my.col <- ChemoSpecUtils::Col12[1:length(gr)]
+
+  DF1 <- DF2 <- data.frame(x = NA_real_, y = NA_real_, z = NA_real_,
+                           col = NA_character_, gr = NA_character_)
 
   # Create a data frame of the original points as grouped by Mclust
-  for (n in 1:length(gr)) { 
+  for (n in 1:length(gr)) {
     w <- grep(gr[n], mod$classification)
     x <- data[w, 1]
     y <- data[w, 2]
     z <- data[w, 3]
     col <- rep(my.col[n], length(w))
-    temp <- data.frame(x = x, y = y, z = z, col = col)
+    clust <- rep(paste("Cluster", n, sep = " "), length(w))
+    temp <- data.frame(x = x, y = y, z = z, col = col, gr = clust)
     DF1 <- rbind(DF1, temp)
 
     # Create a data frame to hold the computed ellipse points
@@ -99,7 +99,8 @@ mclust3dSpectra2 <- function(spectra, pca, pcs = 1:3,
       y <- ell[, 2]
       z <- ell[, 3]
       col <- rep(my.col[n], 1000)
-      temp <- data.frame(x = x, y = y, z = z, col = col)
+      clust <- rep(paste("Ellipse", n, sep = " "), 1000)
+      temp <- data.frame(x = x, y = y, z = z, col = col, gr = clust)
       DF2 <- rbind(DF2, temp)
     }
   }
@@ -125,40 +126,53 @@ mclust3dSpectra2 <- function(spectra, pca, pcs = 1:3,
   X <- FALSE
   if (!is.null(truth)) { # X out errors in classification
     ans <- mclust::classError(mod$classification, truth)
-    wh <- data[ans$misclassified, ]
-    if (length(wh) == 0) warning("No points were misclassified, damn you're good!")
-    if (length(wh) > 0) X <- TRUE
+    wrong <- as.data.frame(data[ans$misclassified, ])
+    if (nrow(wrong) == 0) warning("No points were misclassified, damn you're good!")
+    if (nrow(wrong) > 0) X <- TRUE
   }
 
+  score_names <- unique(DF1$gr)
+  ellipse_names <- unique(DF2$gr)
   zlw <- 4L # zero line width
   dps <- 3.0 # data point size
   eps <- 0.5 # ellipse point size
 
-  # Helper function to draw X's where there is disagreement
-  drawXs <- function(fig, wh = NULL, X) {
-    if (X) {
-      add_trace(name = "X", data = wh, x = ~x, y = ~y, z = ~z,
+  fig <- plot_ly()
+
+  for (n in 1:length(gr)) { # draw scores
+    DF1a <- DF1[DF1$gr == score_names[n],]
+    fig <- fig %>% 
+    add_trace(name = score_names[n], data = DF1a,
+      x = ~x, y = ~y, z = ~z,
       mode = "markers", type = "scatter3d", inherit = FALSE,
-      marker = list(size = 10, color = "black", symbol = x-thin))  
-      return(fig)  
-    }
-    if (!X) invisible(fig)
+      marker = list(size = dps, color = DF1a$col))
   }
  
-  fig <- plot_ly(
-    name = "scores", DF1, x = ~x, y = ~y, z = ~z,
-    marker = list(size = dps, color = DF1$col)) %>%
-    add_markers() %>%
-    add_trace(name = "ellipses", data = DF2, x = ~x, y = ~y, z = ~z,
+  for (n in 1:length(gr)) { # add ellipses
+    DF2a <- DF2[DF2$gr == ellipse_names[n],]
+    fig <- fig %>% 
+    add_trace(
+      name = ellipse_names[n], data = DF2a,
+      x = ~x, y = ~y, z = ~z,
       mode = "markers", type = "scatter3d", inherit = FALSE,
-      marker = list(size = eps, color = DF2$col)) %>%
-    layout(title = paste("\n", spectra$desc, "\n", pca$method, sep = ""),
-      scene = list(
-        xaxis = list(title = x.lab, zerolinewidth = zlw),
-        yaxis = list(title = y.lab, zerolinewidth = zlw),
-        zaxis = list(title = z.lab, zerolinewidth = zlw)
-      )) %>%
-    drawXs(wh, X)
+      marker = list(size = eps, color = DF2a$col)) 
+  }
+
+  if (X) { # mark mis-classified data points
+    fig <- fig %>% add_trace(
+      name = "mis-classified",
+      data = wrong, x = ~x, y = ~y, z = ~z,
+      mode = "markers", type = "scatter3d", inherit = FALSE,
+      marker = list(size = 2, color = "black", symbol = "x"))
+  }
+
+  fig <- fig %>% layout(
+      legend= list(itemsizing='constant'),
+    title = paste("\n", spectra$desc, "\n", pca$method, sep = ""),
+    scene = list(
+      xaxis = list(title = x.lab, zerolinewidth = zlw),
+      yaxis = list(title = y.lab, zerolinewidth = zlw),
+      zaxis = list(title = z.lab, zerolinewidth = zlw)))
 
   print(fig)
 
