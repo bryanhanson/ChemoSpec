@@ -74,14 +74,16 @@ mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
   colnames(data) <- c("x", "y", "z")
   mod <- mclust::Mclust(data, ...)
   gr <- unique(mod$classification)
+  ng <- length(gr)
 
-  my.col <- ChemoSpecUtils::Col12[1:length(gr)]
+  my.col <- ChemoSpecUtils::Col12[1:ng]
+  if (ng > 12) stop("Not enough colors for the groups. Contact maintainer.")
 
   DF1 <- DF2 <- data.frame(x = NA_real_, y = NA_real_, z = NA_real_,
                            col = NA_character_, gr = NA_character_)
 
   # Create a data frame of the original points as grouped by Mclust
-  for (n in 1:length(gr)) {
+  for (n in 1:ng) {
     w <- grep(gr[n], mod$classification)
     x <- data[w, 1]
     y <- data[w, 2]
@@ -107,6 +109,7 @@ mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
 
   DF1 <- DF1[-1, ]
   if (ellipse) DF2 <- DF2[-1, ]
+  ne <- length(unique(DF2$gr)) # number of ellipses that will be drawn
 
   # code to set up axes centered on 0,0,0 (not currently used)
   # a <- range(DF1$x, DF1$y, DF1$z)
@@ -139,7 +142,7 @@ mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
 
   fig <- plot_ly()
 
-  for (n in 1:length(gr)) { # draw scores
+  for (n in 1:ng) { # draw scores
     DF1a <- DF1[DF1$gr == score_names[n],]
     fig <- fig %>% 
     add_trace(name = score_names[n], data = DF1a,
@@ -148,7 +151,7 @@ mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
       marker = list(size = dps, color = DF1a$col))
   }
  
-  for (n in 1:length(gr)) { # add ellipses
+  for (n in 1:ne) { # add ellipses
     DF2a <- DF2[DF2$gr == ellipse_names[n],]
     fig <- fig %>% 
     add_trace(
