@@ -46,10 +46,6 @@
 plotScores3d <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
                          cl = 0.95, frac.pts.used = 0.8) {
 
-  if (!requireNamespace("plotly", quietly = TRUE)) {
-    stop("You need to install package plotly to use this function")
-  }
-
   .chkArgs(mode = 12L)
   chkSpectra(spectra)
   if (length(pcs) != 3) stop("Please give exactly 3 PCs to plot")
@@ -57,15 +53,11 @@ plotScores3d <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE
   x <- pca$x[, pcs[1]] # create a data frame with the scores
   y <- pca$x[, pcs[2]]
   z <- pca$x[, pcs[3]]
-  DF1 <- data.frame(x = x, y = y, z = z, col = spectra$colors)
-
-  variance <- .getVarExplained(pca)
-  x.lab <- paste("PC", pcs[1], " (", format(variance[pcs[1]], digits = 2), "%", ")", sep = "")
-  y.lab <- paste("PC", pcs[2], " (", format(variance[pcs[2]], digits = 2), "%", ")", sep = "")
-  z.lab <- paste("PC", pcs[3], " (", format(variance[pcs[3]], digits = 2), "%", ")", sep = "")
+  DF1 <- data.frame(x = x, y = y, z = z, col = spectra$colors, gr = spectra$groups)
 
   gr <- sumGroups(spectra) # create a data frame for the ellipses
-  DF2 <- data.frame(x = NA_real_, y = NA_real_, z = NA_real_, col = NA_character_)
+  DF2 <- data.frame(x = NA_real_, y = NA_real_, z = NA_real_,
+                    col = NA_character_, gr = NA_character_)
   for (n in 1:length(gr$group)) { # work through the groups, add ellipses if n > 3
     # note that .makeEllipsoid has further checks for the number of data points
     w <- grep(gr$group[n], spectra$groups)
@@ -75,28 +67,15 @@ plotScores3d <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE
       y <- ell[, 2]
       z <- ell[, 3]
       col <- rep(gr$color[n], 1000)
-      tmp <- data.frame(x = x, y = y, z = z, col = col)
+      e_name <- paste(gr$group[n], "(ellipse)", sep = " ")
+      group <- rep(e_name, 1000)
+      tmp <- data.frame(x = x, y = y, z = z, col = col, gr = group)
       DF2 <- rbind(DF2, tmp)
     }
   }
   DF2 <- na.omit(DF2)
 
-  zlw <- 4L # zero line width
-  dps <- 3.0 # data point size
-  eps <- 0.5 # ellipse point size
+  L <- list(scores = DF1, ellipses = DF2)
 
-  fig <- plot_ly(
-    name = "scores", DF1, x = ~x, y = ~y, z = ~z,
-    marker = list(size = dps, color = DF1$col)) %>%
-    add_markers() %>%
-    add_trace(name = "ellipses", data = DF2, x = ~x, y = ~y, z = ~z,
-      mode = "markers", type = "scatter3d", inherit = FALSE,
-      marker = list(size = eps, color = DF2$col)) %>%
-    layout(title = paste("\n", spectra$desc, "\n", pca$method, sep = ""),
-      scene = list(
-        xaxis = list(title = x.lab, zerolinewidth = zlw),
-        yaxis = list(title = y.lab, zerolinewidth = zlw),
-        zaxis = list(title = z.lab, zerolinewidth = zlw)
-      ))
-  fig
+  .plotly3d(spectra, pca, L, pcs, truth = NULL)
 }

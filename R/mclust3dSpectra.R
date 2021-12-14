@@ -62,10 +62,6 @@ mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
   if (!requireNamespace("mclust", quietly = TRUE)) {
     stop("You need to install package mclust to use this function")
   }
-  if (!requireNamespace("plotly", quietly = TRUE)) {
-    stop("You need to install package plotly to use this function")
-  }
-
   .chkArgs(mode = 12L)
   chkSpectra(spectra)
   if (length(pcs) != 3) stop("Please give exactly 3 PCs to plot")
@@ -101,7 +97,7 @@ mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
       y <- ell[, 2]
       z <- ell[, 3]
       col <- rep(my.col[n], 1000)
-      clust <- rep(paste("Ellipse", n, sep = " "), 1000)
+      clust <- rep(paste("Cluster", n, "(ellipse)", sep = " "), 1000)
       temp <- data.frame(x = x, y = y, z = z, col = col, gr = clust)
       DF2 <- rbind(DF2, temp)
     }
@@ -109,75 +105,9 @@ mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
 
   DF1 <- DF1[-1, ] # remove NA in row 1
   if (ellipse) DF2 <- DF2[-1, ]
-  ne <- length(unique(DF2$gr)) # number of ellipses that will be drawn
+  L <- list(scores = DF1, ellipses = DF2, model = mod)
 
-  # code to set up axes centered on 0,0,0 (not currently used)
-  # a <- range(DF1$x, DF1$y, DF1$z)
-  # b <- abs(a[1])
-  # d <- abs(a[2])
-  # ax.len <- max(a, b)
-  # x.cor <- c(0, ax.len, 0, 0)
-  # y.cor <- c(0, 0, ax.len, 0)
-  # z.cor <- c(0, 0, 0, ax.len)
-  # i <- c(1, 2, 1, 3, 1, 4)
-
-  variance <- .getVarExplained(pca)
-  x.lab <- paste("PC", pcs[1], " (", format(variance[pcs[1]], digits = 2), "%", ")", sep = "")
-  y.lab <- paste("PC", pcs[2], " (", format(variance[pcs[2]], digits = 2), "%", ")", sep = "")
-  z.lab <- paste("PC", pcs[3], " (", format(variance[pcs[3]], digits = 2), "%", ")", sep = "")
-
-  X <- FALSE
-  if (!is.null(truth)) { # prepare to X out errors in classification
-    ans <- mclust::classError(mod$classification, truth)
-    wrong <- as.data.frame(data[ans$misclassified, ])
-    if (nrow(wrong) == 0) warning("No points were misclassified, damn you're good!")
-    if (nrow(wrong) > 0) X <- TRUE
-  }
-
-  s_names <- unique(DF1$gr) # names for traces; becomes legend
-  e_names <- unique(DF2$gr)
-  zlw <- 4L # zero line width
-  dps <- 3.0 # data point size
-  eps <- 0.5 # ellipse point size
-
-  fig <- plot_ly()
-
-  for (n in 1:ng) { # draw scores
-    DF1a <- DF1[DF1$gr == s_names[n],]
-    fig <- fig %>% 
-    add_trace(name = s_names[n], data = DF1a,
-      x = ~x, y = ~y, z = ~z,
-      mode = "markers", type = "scatter3d", inherit = FALSE,
-      marker = list(size = dps, color = DF1a$col))
-  }
- 
-  for (n in 1:ne) { # add ellipses
-    DF2a <- DF2[DF2$gr == e_names[n],]
-    fig <- fig %>% 
-    add_trace(
-      name = e_names[n], data = DF2a,
-      x = ~x, y = ~y, z = ~z,
-      mode = "markers", type = "scatter3d", inherit = FALSE,
-      marker = list(size = eps, color = DF2a$col)) 
-  }
-
-  if (X) { # mark mis-classified data points
-    fig <- fig %>% add_trace(
-      name = "mis-classified",
-      data = wrong, x = ~x, y = ~y, z = ~z,
-      mode = "markers", type = "scatter3d", inherit = FALSE,
-      marker = list(size = 2, color = "black", symbol = "x"))
-  }
-
-  fig <- fig %>% layout(
-    legend= list(itemsizing='constant'),
-    title = paste("\n", spectra$desc, "\n", pca$method, sep = ""),
-    scene = list(
-      xaxis = list(title = x.lab, zerolinewidth = zlw),
-      yaxis = list(title = y.lab, zerolinewidth = zlw),
-      zaxis = list(title = z.lab, zerolinewidth = zlw)))
-
-  print(fig)
+  fig <- .plotly3d(spectra, pca, L, pcs, truth) # pass to plotting function
 
   invisible(mod)
 }
