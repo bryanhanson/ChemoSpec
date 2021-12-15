@@ -64,7 +64,6 @@ Suggests:
   jsonlite,
   gsubfn,
   signal,
-  rgl,
   speaq,
   tinytest,
   elasticnet,

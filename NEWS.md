@@ -3,7 +3,7 @@
 * `mclust3dSpectra` was overhauled completely and now uses `plotly` graphics (an interactive plot appears in a browser window).  The color scheme was changed to use `Col12` (see `?colorSymbol`).
 
 ## Defunct Functions
-* Functions `plotScoresRGL` and `plotScores3D` have been removed from the package.  Please use `plotScores3d`, which uses `plotly`, as a replacement.
+* Functions `plotScoresRGL` and `plotScores3D` have been removed from the package.  Please use `plot3dScores`, which uses `plotly`, as a replacement.
 
 ## New Features
 * Tab completion for `Spectra` objects implemented.  In RStudio typing `SrE.IR$` will show a list of possible completions.  In the `R` console, typing `SrE.IR$` followed by the tab key shows possible completions.

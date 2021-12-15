@@ -30,7 +30,7 @@
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @keywords multivariate hplot
-#' @export plotScores3d
+#' @export plot3dScores
 #' @importFrom ChemoSpecUtils sumGroups
 #' @importFrom ChemoSpecUtils .getVarExplained
 #' @importFrom plotly add_markers add_trace layout plot_ly
@@ -39,11 +39,11 @@
 #' if (interactive()) {
 #'   data(metMUD1)
 #'   pca <- c_pcaSpectra(metMUD1, choice = "noscale")
-#'   p <- plotScores3D(metMUD1, pca)
+#'   p <- plot3dScores(metMUD1, pca)
 #'   p
-#'  }
+#' }
 #'
-plotScores3d <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
+plot3dScores <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
                          cl = 0.95, frac.pts.used = 0.8) {
 
   .chkArgs(mode = 12L)
