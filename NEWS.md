@@ -9,7 +9,6 @@
 * Tab completion for `Spectra` objects implemented.  In RStudio typing `SrE.IR$` will show a list of possible completions.  In the `R` console, typing `SrE.IR$` followed by the tab key shows possible completions.
 
 ## Misc.
-* `evalClusters` disabled due to a problem with `clusterCrit `.
 * Fixed the example in `hmapSpectra` (the plot `p` was not called).
 * `plotSpectra` argument `lab.pos` can now be set to `"none"` to supress labeling entirely (fixes issue #88).
 
