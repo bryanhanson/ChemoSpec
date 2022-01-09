@@ -30,6 +30,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -42,18 +44,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">6.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="articles/ChemoSpec.html">Get started</a>
 </li>
@@ -66,7 +62,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/bryanhanson/ChemoSpec/">
+  <a href="https://github.com/bryanhanson/ChemoSpec/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -88,55 +84,55 @@
 <!-- Each image below is embedded in an empty link which gives space around each badge -->
 <p><a href=""><img src="http://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active - The project has reached a stable, usable state and is being actively developed."></a> <a href=""><img src="https://github.com/bryanhanson/ChemoSpec/workflows/Build-Check/badge.svg" alt="Build &amp; Check"></a> <a href=""><img src="https://github.com/bryanhanson/ChemoSpec/workflows/Update-Docs/badge.svg" alt="Docs Current"></a></p>
 <p><a href=""><img src="https://www.r-pkg.org/badges/version-last-release/ChemoSpec" alt="CRAN status"></a> <a href=""><img src="https://cranlogs.r-pkg.org/badges/grand-total/ChemoSpec" alt="metacran downloads"></a> <a href=""><img src="https://cranlogs.r-pkg.org/badges/ChemoSpec" alt="Downloads"></a> <a href=""><img src="https://tinyverse.netlify.com/badge/ChemoSpec" alt="status"></a> <a href="CODE_OF_CONDUCT.html"><img src="https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg" alt="Contributor Covenant"></a></p>
-<div id="what-is-chemospec" class="section level2">
-<h2 class="hasAnchor">
-<a href="#what-is-chemospec" class="anchor"></a>What is ChemoSpec?</h2>
+<div class="section level2">
+<h2 id="what-is-chemospec">What is ChemoSpec?<a class="anchor" aria-label="anchor" href="#what-is-chemospec"></a>
+</h2>
 <p><code>ChemoSpec</code> is a collection of functions for top-down exploratory data analysis of spectral data including nuclear magnetic resonance (NMR), infrared (IR), Raman, X-ray fluorescence (XRF) and other similar types of spectroscopy. Includes functions for plotting and inspecting spectra, peak alignment, hierarchical cluster analysis (HCA), principal components analysis (PCA) and model-based clustering. Robust methods appropriate for this type of high-dimensional data are available. <code>ChemoSpec</code> is designed for structured experiments, such as metabolomics investigations, where the samples fall into treatment and control groups. Graphical output is formatted consistently for publication quality plots. <code>ChemoSpec</code> is intended to be very user friendly and to help you get usable results quickly. A vignette covering typical operations is available.</p>
-<p>Learn more about <a href="https://bryanhanson.github.io/ChemoSpec/"><code>ChemoSpec</code></a></p>
-<div id="installing-chemospec-from-cran" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installing-chemospec-from-cran" class="anchor"></a>Installing ChemoSpec from CRAN:</h3>
+<p>Learn more about <a href="https://bryanhanson.github.io/ChemoSpec/" class="external-link"><code>ChemoSpec</code></a></p>
+<div class="section level3">
+<h3 id="installing-chemospec-from-cran">Installing ChemoSpec from CRAN:<a class="anchor" aria-label="anchor" href="#installing-chemospec-from-cran"></a>
+</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/chooseCRANmirror.html">chooseCRANmirror</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># choose a CRAN mirror</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ChemoSpec"</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://bryanhanson.github.io/ChemoSpec/">"ChemoSpec"</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/chooseCRANmirror.html" class="external-link">chooseCRANmirror</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># choose a CRAN mirror</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ChemoSpec"</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://bryanhanson.github.io/ChemoSpec/" class="external-link">"ChemoSpec"</a></span><span class="op">)</span></code></pre></div>
 </div>
-<div id="installing-chemospec-from-github" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installing-chemospec-from-github" class="anchor"></a>Installing ChemoSpec from Github:</h3>
+<div class="section level3">
+<h3 id="installing-chemospec-from-github">Installing ChemoSpec from Github:<a class="anchor" aria-label="anchor" href="#installing-chemospec-from-github"></a>
+</h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://remotes.r-lib.org">"remotes"</a></span><span class="op">)</span>
-<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"bryanhanson/ChemoSpec@master"</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://bryanhanson.github.io/ChemoSpec/">"ChemoSpec"</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://remotes.r-lib.org" class="external-link">"remotes"</a></span><span class="op">)</span>
+<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"bryanhanson/ChemoSpec@master"</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://bryanhanson.github.io/ChemoSpec/" class="external-link">"ChemoSpec"</a></span><span class="op">)</span></code></pre></div>
 <p>If you use <code>@some_other_branch</code> you can download other branches that might be available. They may or may not pass CRAN checks and thus may not install automatically using the method above. Check the NEWS file to see what’s up.</p>
 </div>
-<div id="also" class="section level3">
-<h3 class="hasAnchor">
-<a href="#also" class="anchor"></a>Also…</h3>
+<div class="section level3">
+<h3 id="also">Also…<a class="anchor" aria-label="anchor" href="#also"></a>
+</h3>
 <p><code>ChemoSpec</code> requires <code>ChemoSpecUtils</code> to work. It should install automatically, but if not, you can use a command similar to the above to install it.</p>
 </div>
-<div id="to-view-the-vignettes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#to-view-the-vignettes" class="anchor"></a>To view the Vignettes:</h3>
-<p>To access the vignettes, use the following, or visit <a href="https://bryanhanson.github.io/ChemoSpec/">here</a>.</p>
+<div class="section level3">
+<h3 id="to-view-the-vignettes">To view the Vignettes:<a class="anchor" aria-label="anchor" href="#to-view-the-vignettes"></a>
+</h3>
+<p>To access the vignettes, use the following, or visit <a href="https://bryanhanson.github.io/ChemoSpec/" class="external-link">here</a>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/browseVignettes.html">browseVignettes</a></span><span class="op">(</span><span class="st">"ChemoSpec"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/browseVignettes.html" class="external-link">browseVignettes</a></span><span class="op">(</span><span class="st">"ChemoSpec"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="code-of-conduct" class="section level3">
-<h3 class="hasAnchor">
-<a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h3>
-<p>This project is released with a <a href="https://bryanhanson.github.io/ChemoSpec/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing, you agree to abide by its terms.</p>
+<div class="section level3">
+<h3 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+</h3>
+<p>This project is released with a <a href="https://bryanhanson.github.io/ChemoSpec/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>. By contributing, you agree to abide by its terms.</p>
 </div>
-<div id="contributing" class="section level3">
-<h3 class="hasAnchor">
-<a href="#contributing" class="anchor"></a>Contributing</h3>
-<p>If you would like to contribute to the project, please see <a href="https://bryanhanson.github.io/ChemoSpec/CONTRIBUTING.html">Contributing Guide</a>.</p>
+<div class="section level3">
+<h3 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
+</h3>
+<p>If you would like to contribute to the project, please see <a href="https://bryanhanson.github.io/ChemoSpec/CONTRIBUTING.html" class="external-link">Contributing Guide</a>.</p>
 </div>
-<div id="license-information" class="section level3">
-<h3 class="hasAnchor">
-<a href="#license-information" class="anchor"></a>License Information</h3>
-<p><code>ChemoSpec</code> is distributed under the GPL-3 license, as stated in the DESCRIPTION file. For more info, see the <a href="https://gnu.org/licenses/gpl.html">GPL site.</a></p>
+<div class="section level3">
+<h3 id="license-information">License Information<a class="anchor" aria-label="anchor" href="#license-information"></a>
+</h3>
+<p><code>ChemoSpec</code> is distributed under the GPL-3 license, as stated in the DESCRIPTION file. For more info, see the <a href="https://gnu.org/licenses/gpl.html" class="external-link">GPL site.</a></p>
 <p>Questions? <a href="mailto:hanson@depauw.edu" class="email">hanson@depauw.edu</a></p>
 </div>
 </div>
@@ -145,47 +141,58 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=ChemoSpec">https://​cloud.r-project.org/​package=ChemoSpec</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/bryanhanson/ChemoSpec/">https://​github.com/​bryanhanson/​ChemoSpec/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/bryanhanson/ChemoSpec/issues">https://​github.com/​bryanhanson/​ChemoSpec/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=ChemoSpec" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/bryanhanson/ChemoSpec/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/bryanhanson/ChemoSpec/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></li>
+<li><a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a></li>
 </ul>
 </div>
+
 <div class="community">
-<h2>Community</h2>
+<h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 <li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>Bryan A. Hanson <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-3536-8246" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="authors.html#citation">Citing ChemoSpec</a></li>
 </ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Bryan A. Hanson <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-3536-8246" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html">More about authors...</a></li>
+</ul>
+</div>
+
+
 
   </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Bryan A. Hanson.</p>
+  <p></p>
+<p>Developed by Bryan A. Hanson.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -193,6 +200,8 @@
 
   
 
+
+  
 
   </body>
 </html>
