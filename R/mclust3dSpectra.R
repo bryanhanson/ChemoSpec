@@ -4,18 +4,10 @@
 #' This function conducts an mclust analysis of the PCA results of a
 #' \code{\link{Spectra}} object and displays the results in 3D.  Classical or
 #' robust confidence ellipses can be added if desired. Improperly classified
-#' data points can be marked.  rgl graphics are employed.
-#'
-#' If you intend to make a hard copy of your plot, use \code{lab.opts = TRUE}
-#' until you have found a good view of your data.  Then note corners of the
-#' cube where the title won't interfere with viewing the data, and use this for
-#' \code{t.pos}, and add \code{title}.  Adjust as necessary, then turn off
-#' label display using \code{lab.opts = FALSE}.  Back at the console, use
-#' \code{> rgl.snapshot("file_name.png")} to create the hardcopy.
-#'
-#' Note that the confidence ellipses computed here are generated independently
-#' of the \code{Mclust} results - they do not correspond to the ellipses seen
-#' in 2D plots from \code{Mclust}.
+#' data points can be marked.  The interactive plot is made via \code{plotly}
+#' and appears in a browser window. Note that the confidence ellipses computed
+#' here are generated independently of the \code{Mclust} results - they do not
+#' correspond to the ellipses seen in 2D plots from \code{Mclust}.
 #'
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
@@ -37,21 +29,8 @@
 #'
 #' @param truth A character vector indicating the known group membership for
 #' reach row of the PC scores.  Generally this would be \code{spectra$groups}.
-#' #' @param title A character string for the plot title.
 #'
-#' @param t.pos A character selection from \code{LETTERS[1:8]} ( = A through H)
-#' indicating the desired location for the title.
-#'
-#' @param title A character string giving the title.
-#'
-#' @param lab.opts A logical indicating whether or not to display the locations
-#' where the title and legend can be placed.  These locations are the corners
-#' of a cube surrounding the data.
-#'
-#' @param use.sym Logical; if true, the color scheme is changed to black and
-#' symbols are used for plotting.
-#'
-#' @param \dots Other parameters to be passed downstream.
+#' @param ... Arguments to be passed to \code{mclust}.
 #'
 #' @return The mclust model is returned invisibly, and a plot is produced.
 #'
@@ -60,34 +39,75 @@
 #' @seealso \code{\link[mclust]{Mclust}} for background on the method.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#'
+#' @importFrom plotly add_markers add_trace layout plot_ly
+#' @export mclust3dSpectra
 #' @keywords multivariate cluster
-#' @examples
 #'
+#' @examples
 #' \dontrun{
 #' require(mclust)
 #' data(metMUD1)
-#' class <- c_pcaSpectra(metMUD1)
-#' mclust3dSpectra(metMUD1, class,
-#'   title = "mclust3dSpectra demo",
-#'   lab.opts = FALSE, t.pos = "A"
-#' )
+#' pca <- c_pcaSpectra(metMUD1)
+#' mclust3dSpectra(metMUD1, pca)
+#' 
+#' # show mis-classified points
+#' mclust3dSpectra(metMUD1, pca, truth = metMUD1$groups)
 #' }
 #'
-#' @export mclust3dSpectra
 #'
-mclust3dSpectra <- function(spectra, pca, pcs = c(1:3),
-                            ellipse = TRUE, rob = FALSE, cl = 0.95, frac.pts.used = 0.8,
-                            truth = NULL, title = "no title provided", t.pos = NULL,
-                            lab.opts = FALSE, use.sym = FALSE, ...) {
-  .chkArgs(mode = 12L)
+mclust3dSpectra <- function(spectra, pca, pcs = 1:3, 
+                            ellipse = TRUE, rob = FALSE, cl = 0.95,
+                            frac.pts.used = 0.8, truth = NULL, ...) {
 
-  mod <- .mclust3D(pca$x[, pcs],
-    ellipse = ellipse, rob = rob, cl = cl,
-    frac.pts.used = frac.pts.used,
-    truth = truth, title = title, t.pos = t.pos, lab.opts = lab.opts,
-    use.sym = use.sym, ...
-  )
+  if (!requireNamespace("mclust", quietly = TRUE)) {
+    stop("You need to install package mclust to use this function")
+  }
+  .chkArgs(mode = 12L)
+  chkSpectra(spectra)
+  if (length(pcs) != 3) stop("Please give exactly 3 PCs to plot")
+
+  data <- pca$x[, pcs]
+  colnames(data) <- c("x", "y", "z")
+  mod <- mclust::Mclust(data, ...)
+  gr <- unique(mod$classification)
+  ng <- length(gr)
+
+  my.col <- ChemoSpecUtils::Col12[1:ng]
+  if (ng > 12) stop("Not enough colors for the groups. Contact maintainer.")
+
+  DF1 <- DF2 <- data.frame(x = NA_real_, y = NA_real_, z = NA_real_,
+                           col = NA_character_, gr = NA_character_)
+
+  # Create a data frame of the original points as grouped by Mclust
+  for (n in 1:ng) {
+    w <- grep(gr[n], mod$classification)
+    x <- data[w, 1]
+    y <- data[w, 2]
+    z <- data[w, 3]
+    col <- rep(my.col[n], length(w))
+    clust <- rep(paste("Cluster", n, sep = " "), length(w))
+    temp <- data.frame(x = x, y = y, z = z, col = col, gr = clust)
+    DF1 <- rbind(DF1, temp)
+
+    # Create a data frame to hold the computed ellipse points
+    if ((length(w)) > 3 && (ellipse)) {
+      ell <- .makeEllipsoid(data[w, ],
+        rob = rob, cl = cl, frac.pts.used = frac.pts.used)
+      x <- ell[, 1]
+      y <- ell[, 2]
+      z <- ell[, 3]
+      col <- rep(my.col[n], 1000)
+      clust <- rep(paste("Cluster", n, "(ellipse)", sep = " "), 1000)
+      temp <- data.frame(x = x, y = y, z = z, col = col, gr = clust)
+      DF2 <- rbind(DF2, temp)
+    }
+  }
+
+  DF1 <- DF1[-1, ] # remove NA in row 1
+  if (ellipse) DF2 <- DF2[-1, ]
+  L <- list(scores = DF1, ellipses = DF2, model = mod)
+
+  fig <- .plotly3d(spectra, pca, L, pcs, truth) # pass to plotting function
 
   invisible(mod)
 }

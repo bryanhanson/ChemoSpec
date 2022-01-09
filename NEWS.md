@@ -1,5 +1,18 @@
+# ChemoSpec 6.1.0 2022-01-08
+## Overhauled Functions
+* `mclust3dSpectra` was overhauled completely and now uses `plotly` graphics (an interactive plot appears in a browser window).  The color scheme was changed to use `Col12` (see `?colorSymbol`).
 
-# ChemoSpec 6.0.0 2021-10-09
+## Defunct Functions
+* Functions `plotScoresRGL` and `plotScores3D` have been removed from the package.  Please use `plot3dScores`, which uses `plotly`, as a replacement.
+
+## New Features
+* Tab completion for `Spectra` objects implemented.  In RStudio typing `SrE.IR$` will show a list of possible completions.  In the `R` console, typing `SrE.IR$` followed by the tab key shows possible completions.
+
+## Misc.
+* Fixed the example in `hmapSpectra` (the plot `p` was not called).
+* `plotSpectra` argument `lab.pos` can now be set to `"none"` to supress labeling entirely (fixes issue #88).
+
+# ChemoSpec 6.0.1 2021-10-09
 ## Significant Changes to Graphics Output
 * Courtesy GSOC and Tejasvi Gupta, the following plotting functions gain the ability to produce either `base` graphics, `ggplot2` or `plotly` graphics:
   - `plotSpectra`

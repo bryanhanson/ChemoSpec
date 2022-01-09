@@ -47,7 +47,7 @@ CSUdesc <- packageDescription("ChemoSpecUtils")
 # Stuff specifically for knitr:
 
 # Create a temp bib file w/citations of installed pkgs, on the fly
-knitr::write_bib(c("knitr", "mclust", "baseline", "hyperSpec", "ggplot2", "plotly"), file = "manuals.bib", prefix = "R_")
+tmp <- knitr::write_bib(c("knitr", "mclust", "baseline", "hyperSpec", "ggplot2", "plotly"), file = "manuals.bib", prefix = "R_")
 
 # Hook for figure size control
 knitr::opts_hooks$set(sq.fig = function(options) {
@@ -383,9 +383,7 @@ scree plot                                                                      
 bootstrap analysis (classical PCA only)                                             `cv_pcaSpectra`
 **Score plots**                        **plotting options**                         **function**
 2D plots                               robust or classical confidence ellipses      `plotScores`
-3D plots
----static 3D plots                                                                  `plotScores3D`
----interactive 3D plots                                                             `plotScoresRGL`
+3D plots                               robust or classical confidence ellipses      `plot3dScores`
 **Loading plots**                                                                   **function**
 loadings vs frequencies                                                             `plotLoadings`
 loadings vs other loadings                                                          `plot2Loadings`
@@ -456,18 +454,10 @@ p
 out <- cv_pcaSpectra(SrE3.IR, pcs = 5)
 ```
 
-Now let's turn to viewing scores in 3D.  There are currently two options in `ChemoSpec`: plotting using `lattice` graphics, which produces a static plot that you have to adjust manually, and an interactive plot based on package `rgl`.  Probably the best place to start is with `plotScoresRGL`.  It it well suited to exploring data, and can be printed out in high quality.  However, the nature of the `openGL` graphics device means that the title and the legend move with the data, so this may not give a hardcopy suitable for publications.  This interactive plot cannot be invoked in this document, but here are the necessary commands:
+Now let's turn to viewing scores in 3D.  The function of interest is `plot3dScores` and it uses `plotly` graphics, so the plot opens in a browser window.  In the window, there is a button to save a hard copy if desired.
 
 ```{r results = "hide", eval = FALSE}
-plotScoresRGL(SrE3.IR, c_res, main = "S. repens IR Spectra", leg.pos = "A",
-  t.pos = "B") # not run - it's interactive!
-```
-
-For full details, of course take a look at the manual page, `?plotScoresRGL`.  If you want a similar and probably more publication-worthy plot, you can use `plotScores3D` as shown in Figure \@ref(fig:scores3D).  In this example we've set `ellipse = FALSE` because the "adSrE" data points form a very elongated ellipse which forces the plotting limits in such a way that other points become very hard to see.
-
-
-```{r scores3D, fig.cap = "Plotting scores in 3D using plotScores3D.", sq.fig = TRUE}
-plotScores3D(SrE3.IR, c_res, main = myt, ellipse = FALSE)
+plot3dScores(SrE3.IR, c_res) # not run - it's interactive!
 ```
 
 In addition to the scores, PCA also produces loadings which tell you how each variable (frequencies in spectral applications) affect the scores.  Examining these loadings can be critical to interpreting your results.  Figure \@ref(fig:load1) gives an example.  You can see that the different carbonyl peaks have a large and opposing effect on PC 1.  PC 2 on the other hand is driven by a number of peaks, with some interesting opposing peaks in the hydrocarbon region.  While the actual analysis of the data is not our goal here, it would appear that PC 1 is sensitive to the ester vs. acid carbonyl group, and PC 2 is detecting the saturated vs. unsaturated fatty acid chains (the latter having C~sp2~-H peaks).
@@ -545,17 +535,15 @@ model <- mclustSpectra(SrE3.IR, c_res, plot = "proj", main = myt)
 model <- mclustSpectra(SrE3.IR, c_res, plot = "errors", main = myt, truth = SrE3.IR$groups)
 ```
 
-You can also do a similar analysis in 3D, using `mclust3dSpectra`.  This function uses `mclust` to find the groups, but then uses non-`mclust` functions to draw confidence ellipses.  This function uses `rgl` graphics so it cannot demonstrated here, but the commands would be:
+You can also do a similar analysis in 3D, using `mclust3dSpectra`.  This function uses `mclust` to find the groups, but then uses non-`mclust` functions to draw confidence ellipses.  This function uses `plotly` graphics so it cannot demonstrated here, but the commands would be:
 
 ```{r results = "hide", eval = FALSE }
 mclust3dSpectra(SrE3.IR, c_res) # not run - it's interactive!
 ```
 
-You have all the options here that you do with `plotScoresRGL`, namely, classical, robust or no ellipses, control of the ellipse details, and labeling of extreme points.
-
 I hope you have enjoyed this tour of the features of `ChemoSpec`!
 
-# Appendicies
+# Appendices
 
 ## Functions That Are Not Discussed Here
 
@@ -572,7 +560,7 @@ See the help files for more detail.
 
 In `ChemoSpec`, the user may use any color name/format known to `R`.  When importing data, `ChemoSpec` will choose colors for you automatically if desired.  However, depending upon your needs, you may wish to choose colors yourself.  the current color scheme of a `Spectra` object may be determined using `sumSpectra` or changed using `conColScheme`. A fuller discussion of color issues can be found in `?colorSymbol`.
 
-In addition to colors, `Spectra` objects also contain a list of symbols, and alternative symbols.  These are useful for plotting in black and white, or when color-blind individuals will be viewing the plots.  The alternative symbols are simply lower-case letters, as these are needed for `plotScoresRGL`, and other rgl-graphics driven functions which cannot plot traditional symbols.  Figure \@ref(fig:colsym) shows some of the built in options, but as stated above, you can choose whatever you like.
+In addition to colors, `Spectra` objects also contain a list of symbols, and alternative symbols.  These are useful for plotting in black and white, or when color-blind individuals will be viewing the plots.  The alternative symbols are simply lower-case letters.  Figure \@ref(fig:colsym) shows some of the built in options, but as stated above, you can choose whatever you like.
 
 ```{r colsym, echo = FALSE, fig.cap = "Color and symbol suggestions.", fig.width = 6, fig.height = 6}
 data(Col7)

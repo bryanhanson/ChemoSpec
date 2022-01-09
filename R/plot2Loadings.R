@@ -39,6 +39,8 @@
 #' @importFrom ggplot2 ggplot
 #' @importFrom magrittr %>%
 #' @importFrom plotly add_annotations
+#' @importFrom grid gpar
+#' @importFrom ChemoSpecUtils .getVarExplained
 #'
 #' @examples
 #'
