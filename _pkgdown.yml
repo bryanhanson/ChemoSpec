@@ -79,6 +79,7 @@ reference:
   - '`GraphicsOptions`'
   - '`chkGraphicsOpt`'
   - '`rowDist`'
+  - '`ChemoSpec-package`'
 
 - title: "Defunct"
   contents:
