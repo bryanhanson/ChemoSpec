@@ -1,4 +1,4 @@
-# ChemoSpec 6.1.0 2021-12-xx
+# ChemoSpec 6.1.0 2022-01-08
 ## Overhauled Functions
 * `mclust3dSpectra` was overhauled completely and now uses `plotly` graphics (an interactive plot appears in a browser window).  The color scheme was changed to use `Col12` (see `?colorSymbol`).
 
