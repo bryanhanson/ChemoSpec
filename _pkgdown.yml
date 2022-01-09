@@ -19,19 +19,20 @@ reference:
   contents:
   - '`removeFreq`'
   - '`removeGroup`'
+  - '`updateGroups`'
+  - '`splitSpectraGroups`'
   - '`removeSample`'
   - '`baselineSpectra`'
   - '`normSpectra`'
   - '`binSpectra`'
   - '`sgfSpectra`'
-  - '`splitSpectraGroups`'
   - '`clupaSpectra`'
 
 - title: "Plots"
   contents:
   - '`plotSpectra`'
   - '`plotSpectraJS`'
-  - '`loopThruSpectra`'
+  - '`reviewAllSpectra`'
   - '`surveySpectra`'
   - '`plotScores`'
   - '`plot3dScores`'
@@ -55,6 +56,8 @@ reference:
   - '`c_pcaSpectra`'
   - '`r_pcaSpectra`'
   - '`cv_pcaSpectra`'
+  - '`s_pcaSpectra`'
+  - '`irlba_pcaSpectra`'
   - '`hcaScores`'
   - '`hcaSpectra`'
   - '`evalClusters`'
@@ -74,3 +77,10 @@ reference:
   - '`colorSymbol`'
   - '`conColScheme`'
   - '`GraphicsOptions`'
+  - '`chkGraphicsOpt`'
+  - '`rowDist`'
+
+- title: "Defunct"
+  - '`plotScoresRGL`'
+  - '`plotScores3D`'
+  - '`loopThruSpectra`'
