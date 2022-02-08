@@ -56,6 +56,6 @@ If you would like to contribute to the project, please see [Contributing Guide](
 
 ### License Information
 
-`ChemoSpec` is distributed under the GPL-3 license, as stated in the DESCRIPTION file.  For more info, see the [GPL site.](https://gnu.org/licenses/gpl.html)
+`ChemoSpec` is distributed under the GPL-3 license, as stated in the DESCRIPTION file.  For more info, see the [GPL site.](https://www.gnu.org/licenses/gpl.html)
 
 Questions?  hanson@depauw.edu
