@@ -59,7 +59,7 @@
 #'
 #' p3 <- plotLoadings(SrE.NMR, pca, loads = 1:2, ref = 1)
 #' p3 <- p3 + ggtitle("Loadings: SrE NMR Data")
-#' p4
+#' p3
 #' }
 #'
 #' @export irlba_pcaSpectra

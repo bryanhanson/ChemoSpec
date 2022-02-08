@@ -1,3 +1,7 @@
+# ChemoSpec 6.1.1 2022-02-08
+## Misc.
+* Removed stale entries in `Suggests` and `Imports` - housekeeping for CRAN, no user-facing changes.
+
 # ChemoSpec 6.1.0 2022-01-08
 ## Overhauled Functions
 * `mclust3dSpectra` was overhauled completely and now uses `plotly` graphics (an interactive plot appears in a browser window).  The color scheme was changed to use `Col12` (see `?colorSymbol`).
