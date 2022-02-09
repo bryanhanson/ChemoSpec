@@ -76,7 +76,6 @@ reference:
   - '`check4Gaps`'
   - '`colorSymbol`'
   - '`conColScheme`'
-  - '`GraphicsOptions`'
   - '`chkGraphicsOpt`'
   - '`rowDist`'
   - '`ChemoSpec-package`'
@@ -84,5 +83,4 @@ reference:
 - title: "Defunct"
   contents:
   - '`plotScoresRGL`'
-  - '`plotScores3D`'
   - '`loopThruSpectra`'
