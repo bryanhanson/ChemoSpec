@@ -1,4 +1,4 @@
-# ChemoSpec 6.1.1 2022-02-08
+# ChemoSpec 6.1.2 2022-02-08
 ## Misc.
 * Removed stale entries in `Suggests` and `Imports` - housekeeping for CRAN, no user-facing changes.
 

@@ -2,12 +2,9 @@
 
 <img src="man/figures/Banner.png"/>
 
-<!-- Each image below is embedded in an empty link which gives space around each badge -->
+![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg) &nbsp; ![Build & Check](https://github.com/bryanhanson/ChemoSpec/workflows/Build-Check/badge.svg) &nbsp; ![Docs Current](https://github.com/bryanhanson/ChemoSpec/workflows/Update-Docs/badge.svg)
 
-
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)]() [![Build & Check](https://github.com/bryanhanson/ChemoSpec/workflows/Build-Check/badge.svg)]() [![Docs Current](https://github.com/bryanhanson/ChemoSpec/workflows/Update-Docs/badge.svg)]()
-
-[![CRAN status](https://www.r-pkg.org/badges/version-last-release/ChemoSpec)]() [![metacran downloads](https://cranlogs.r-pkg.org/badges/grand-total/ChemoSpec)]() [![Downloads](https://cranlogs.r-pkg.org/badges/ChemoSpec)]() [![status](https://tinyverse.netlify.com/badge/ChemoSpec)]() [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
+![CRAN status](https://www.r-pkg.org/badges/version-last-release/ChemoSpec) &nbsp; ![metacran downloads](https://cranlogs.r-pkg.org/badges/grand-total/ChemoSpec) &nbsp; ![Downloads](https://cranlogs.r-pkg.org/badges/ChemoSpec) &nbsp; ![status](https://tinyverse.netlify.com/badge/ChemoSpec) &nbsp; ![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)
 
 ## What is ChemoSpec?
 
@@ -56,6 +53,6 @@ If you would like to contribute to the project, please see [Contributing Guide](
 
 ### License Information
 
-`ChemoSpec` is distributed under the GPL-3 license, as stated in the DESCRIPTION file.  For more info, see the [GPL site.](https://www.gnu.org/licenses/gpl.html)
+`ChemoSpec` is distributed under the GPL-3 license, as stated in the DESCRIPTION file.  For more info, see the [GPL site.](https://www.gnu.org/licenses/gpl-3.0.html)
 
 Questions?  hanson@depauw.edu
