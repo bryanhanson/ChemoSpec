@@ -52,6 +52,7 @@
 cv_pcaSpectra <- function(spectra, pcs, choice = "noscale", repl = 50, segments = 4,
                           segment.type = c("random", "consecutive", "interleaved"),
                           length.seg, trace = FALSE, ...) {
+
   if (!requireNamespace("pls", quietly = TRUE)) {
     stop("You need to install package pls to use this function")
   }
@@ -60,27 +61,22 @@ cv_pcaSpectra <- function(spectra, pcs, choice = "noscale", repl = 50, segments 
   choices <- c("noscale", "autoscale", "Pareto") # trap for invalid scaling method
   check <- choice %in% choices
   if (!check) stop("The choice of scaling parameter was invalid")
-
-  # First, row scale (compensates for different dilutions/handling of samples)
-
-  t.data <- t(spectra$data)
-  sums <- colSums(t.data)
-  row.scaled <- t(scale(t.data, center = FALSE, scale = sums))
+  chkSpectra(spectra)
 
   # Center & scale the data using the desired method.
 
   if (identical(choice, "noscale")) {
-    centscaled <- scale(row.scaled, center = TRUE, scale = FALSE)
-  }
-
-  if (identical(choice, "autoscale")) {
-    col.sd <- sd(row.scaled)
-    centscaled <- scale(row.scaled, center = TRUE, scale = col.sd)
+    centscaled <- scale(spectra$data, center = TRUE, scale = FALSE)
   }
 
   if (identical(choice, "Pareto")) {
-    col.sd <- sd(row.scaled)
-    centscaled <- scale(row.scaled, center = TRUE, scale = col.sd^0.5)
+    col.sd <- apply(spectra$data, 2, sd)
+    centscaled <- scale(spectra$data, center = TRUE, scale = col.sd^0.5)
+  }
+
+  if (identical(choice, "autoscale")) {
+    col.sd <- apply(spectra$data, 2, sd)
+    centscaled <- scale(spectra$data, center = TRUE, scale = col.sd)
   }
 
   # Filzmoser's stuff follows... (modified slightly)
