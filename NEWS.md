@@ -1,4 +1,4 @@
-# ChemoSpec 6.1.?
+# ChemoSpec 6.1.3 2022-03-10
 ## Bug Fixes
 * Fixed an ancient bug in `cv_pcaSpectra` which affected the results. Data was being row scaled internally, this was removed.  Scaling was made consistent with `c_pcaSpectra`. Data will be centered before proceeding.
 
