@@ -23,10 +23,12 @@ if (identical(Sys.getenv("ESTOY_EN_CASA"), "TRUE")) {
   res2 <- hcaSpectra(metMUD2, d.method = "cosine")
 
   # The return value from hcaSpectra is a list with hclust as the first element.
-  crit1 <- evalClusters(metMUD2, pkg = "clusterCrit", hclst = res1[[1]], k = 2)
-  crit2 <- evalClusters(metMUD2, pkg = "clusterCrit", hclst = res2[[1]], k = 2)
+  expect_silent(crit1 <- evalClusters(metMUD2, pkg = "clusterCrit", hclst = res1[[1]], k = 2))
+  expect_silent(crit2 <- evalClusters(metMUD2, pkg = "clusterCrit", hclst = res2[[1]], k = 2))
+
+  expect_equal(unlist(crit1), unlist(crit2))
 
   # Using NbClust
-  res3 <- evalClusters(metMUD2, min.nc = 2, max.nc = 5, method = "average", index = "kl")
+  expect_silent(evalClusters(metMUD2, min.nc = 2, max.nc = 5, method = "average", index = "kl"))
 }
 
