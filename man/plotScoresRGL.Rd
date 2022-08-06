@@ -72,7 +72,7 @@ plotting routines.}
 None.  Side effect is a plot
 }
 \description{
-This function uses the \code{\link[rgl]{rgl}} package to create an interactive
+This function uses the \code{rgl} package to create an interactive
 plot of PCA scores derived from a \code{\link{Spectra}} object.  A title and
 legend can be added if desired.  Classical or robust confidence ellipses may
 be added if desired.
