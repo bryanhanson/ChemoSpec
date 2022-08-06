@@ -125,9 +125,15 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, show = 1, ...) {
   if (int) baseline::baselineGUI(dat, ...) # no return value
   if (!int) {
     b <- baseline::baseline(dat, ...)
-    for (i in show) {
-      baseline::plot(b, specNo = i)
-      mtext(spectra$names[i])
+    if (is.integer(show)) {
+      cat("Press ESC to stop looping through the spectra\n\n")
+
+      for (i in show) {
+        baseline::plot(b, specNo = i)
+        mtext(spectra$names[i], side = 4)
+        devAskNewPage(ask = TRUE)
+      }
+      devAskNewPage(ask = FALSE)
     }
     if (retC) {
       bc <- baseline::getCorrected(b) # the way it is supposed to be done...
