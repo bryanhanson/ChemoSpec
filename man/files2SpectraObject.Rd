@@ -102,11 +102,11 @@ any of \code{"dx"}, \code{"DX"}, \code{"jdx"} or \code{"JDX"}.
 }
 \section{Functions}{
 \itemize{
-\item \code{files2SpectraObject}: Import data from separate csv files
+\item \code{files2SpectraObject()}: Import data from separate csv files
 
-\item \code{matrix2SpectraObject}: Import a matrix of data
+\item \code{matrix2SpectraObject()}: Import a matrix of data
+
 }}
-
 \section{files2SpectraObject}{
 
 

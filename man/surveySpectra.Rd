@@ -62,11 +62,11 @@ scale.
 }
 \section{Functions}{
 \itemize{
-\item \code{surveySpectra}: Spectral survey emphasizing mean or median spectrum, optionally by group.
+\item \code{surveySpectra()}: Spectral survey emphasizing mean or median spectrum, optionally by group.
 
-\item \code{surveySpectra2}: Spectral survey emphasizing variation among spectra.
+\item \code{surveySpectra2()}: Spectral survey emphasizing variation among spectra.
+
 }}
-
 \examples{
 
 # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
