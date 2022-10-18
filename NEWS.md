@@ -1,6 +1,7 @@
 # ChemoSpec 6.1.4 2022-10-18
 ## Misc.
 * Removed remaining deprecation warnings about `plotScoresRGL` and `plotScores3D`.
+* Removed `loopThroughSpectra` which was "sort of" deprecated.  Use `reviewAllSpectra` instead.
 * More changes expected, will go to CRAN soon
 
 # ChemoSpec 6.1.3 2022-08-06
