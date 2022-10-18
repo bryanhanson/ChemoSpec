@@ -25,7 +25,7 @@ library("ChemoSpec")
 ````r
 install.packages("remotes")
 library("remotes")
-install_github(repo = "bryanhanson/ChemoSpec@master")
+install_github(repo = "bryanhanson/ChemoSpec@main")
 library("ChemoSpec")
 ````
 
