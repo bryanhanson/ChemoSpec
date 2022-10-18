@@ -1,8 +1,8 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 6.1.2
-Date: 2022-02-08
+Version: 6.1.3
+Date: 2022-08-06
 Authors@R: c(
     person("Bryan A.", "Hanson",
       role = c("aut", "cre"), email =
@@ -78,6 +78,5 @@ BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE
 VignetteBuilder: knitr
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 NeedsCompilation: no
-

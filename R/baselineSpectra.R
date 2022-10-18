@@ -32,6 +32,13 @@
 #' argument \code{method} as you will probably want to use it.  You can also
 #' use \code{method = "linear"} for a simple linear fit, see Details.
 #'
+#' @param show Integer. A vector giving the sample numbers for which you wish
+#'        to see the results of the baseline correction.  By "sample numbers"
+#'        we mean the rows in the \code{spectra$data} matrix.  To find a specific
+#'        sample type \code{spectra$names} to see which row contains that sample.
+#'        To see all samples, use \code{show = 1:nrow(spectra$data)} where
+#'        \code{spectra} is the name of your particular \code{Spectra} object.
+#'
 #' @return If \code{int = TRUE}, an interactive plot is created.  If \code{int
 #' = FALSE} and \code{retC = FALSE}, an object of class \code{baseline} is
 #' returned (see \code{\link[baseline]{baseline-class}}).  If \code{int =
@@ -51,7 +58,7 @@
 #' data(SrE.IR)
 #' temp <- baselineSpectra(SrE.IR, int = FALSE, method = "modpolyfit")
 #'
-baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, ...) {
+baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, show = 1, ...) {
 
   # Mostly a simple wrapper to the excellent baseline package
   # Part of ChemoSpec.  Bryan Hanson December 2011
@@ -118,8 +125,16 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, ...) {
   if (int) baseline::baselineGUI(dat, ...) # no return value
   if (!int) {
     b <- baseline::baseline(dat, ...)
-    baseline::plot(b)
+    if (is.integer(show)) {
+      cat("Press ESC to stop looping through the spectra\n\n")
 
+      for (i in show) {
+        baseline::plot(b, specNo = i)
+        mtext(spectra$names[i], side = 4)
+        devAskNewPage(ask = TRUE)
+      }
+      devAskNewPage(ask = FALSE)
+    }
     if (retC) {
       bc <- baseline::getCorrected(b) # the way it is supposed to be done...
       # works interactively, but not in vignette ???
