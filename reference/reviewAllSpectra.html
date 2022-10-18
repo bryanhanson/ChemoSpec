@@ -28,7 +28,7 @@ All the spectra are plotted in a single column.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -75,19 +75,24 @@ output choice.</p><dl><dt>base:</dt>
 </dl></div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">reviewAllSpectra</span><span class="op">(</span><span class="va">spectra</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">reviewAllSpectra</span><span class="op">(</span><span class="va">spectra</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
 <dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Parameters to be passed to the plotting routines. <em>Applies to base graphics only</em>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The returned value depends on the graphics option selected (see <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">GraphicsOptions</a></code>).</p><dl><dt>base:</dt>
+    
+
+<p>The returned value depends on the graphics option selected (see <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">GraphicsOptions</a></code>).</p><dl><dt>base:</dt>
 <dd><p>None. Side effect is a plot.</p></dd>
 
  <dt>ggplot2:</dt>
@@ -109,18 +114,18 @@ output choice.</p><dl><dt>base:</dt>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Because there are 16 spectra in this data set, you probably want to</span></span>
-<span class="r-in"><span class="co"># expand the height of the graphics device to see the spectra clearly.</span></span>
-<span class="r-in"><span class="co"># This example assumes the graphics output is set to ggplot2 or plotly (see ?GraphicsOptions).</span></span>
-<span class="r-in"><span class="co"># If you do options(ChemoSpecGraphics == "plotly") you'll get the results</span></span>
-<span class="r-in"><span class="co"># in a web page, which is particularly convenient.</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">metMUD1</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">reviewAllSpectra</span><span class="op">(</span><span class="va">metMUD1</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Because there are 16 spectra in this data set, you probably want to</span></span></span>
+<span class="r-in"><span><span class="co"># expand the height of the graphics device to see the spectra clearly.</span></span></span>
+<span class="r-in"><span><span class="co"># This example assumes the graphics output is set to ggplot2 or plotly (see ?GraphicsOptions).</span></span></span>
+<span class="r-in"><span><span class="co"># If you do options(ChemoSpecGraphics == "plotly") you'll get the results</span></span></span>
+<span class="r-in"><span><span class="co"># in a web page, which is particularly convenient.</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">metMUD1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">reviewAllSpectra</span><span class="op">(</span><span class="va">metMUD1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span></span></span>
 <span class="r-plt img"><img src="reviewAllSpectra-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -135,7 +140,7 @@ output choice.</p><dl><dt>base:</dt>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

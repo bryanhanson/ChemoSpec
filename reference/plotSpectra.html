@@ -19,7 +19,7 @@ several parameters."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/a
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -60,26 +60,30 @@ several parameters.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plotSpectra</span><span class="op">(</span>
-  <span class="va">spectra</span>,
-  which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,
-  yrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">spectra</span><span class="op">$</span><span class="va">data</span><span class="op">)</span>,
-  offset <span class="op">=</span> <span class="fl">0</span>,
-  amplify <span class="op">=</span> <span class="fl">1</span>,
-  lab.pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">spectra</span><span class="op">$</span><span class="va">freq</span><span class="op">)</span>,
-  showGrid <span class="op">=</span> <span class="cn">TRUE</span>,
-  leg.loc <span class="op">=</span> <span class="st">"none"</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotSpectra</span><span class="op">(</span></span>
+<span>  <span class="va">spectra</span>,</span>
+<span>  which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,</span>
+<span>  yrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">spectra</span><span class="op">$</span><span class="va">data</span><span class="op">)</span>,</span>
+<span>  offset <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  amplify <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  lab.pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">spectra</span><span class="op">$</span><span class="va">freq</span><span class="op">)</span>,</span>
+<span>  showGrid <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  leg.loc <span class="op">=</span> <span class="st">"none"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
 <dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p></dd>
+
+
 <dt>which</dt>
 <dd><p>An integer vector specifying which spectra to plot, and the
 order.</p></dd>
+
+
 <dt>yrange</dt>
 <dd><p>A vector giving the limits of the y axis desired, for instance
 <code>c(0, 15)</code>.  This parameter depends upon the range of values in the
@@ -87,31 +91,46 @@ stored spectra and defaults to the height of the largest peak in the data
 set.  Interacts with the next two arguments, as well as the number of
 spectra to be plotted as given in <code>which</code>.  Trial and error is used to
 adjust all these arguments to produce the desired plot.</p></dd>
+
+
 <dt>offset</dt>
 <dd><p>A number specifying the vertical offset between spectra if
 more than one is plotted.  Set to 0.0 to overlay the spectra.</p></dd>
+
+
 <dt>amplify</dt>
 <dd><p>A number specifying an amplification factor to be applied to
 all spectra.  Useful for magnifying spectra so small features show up
 (though large peaks will then be clipped, unless you zoom on the x axis).</p></dd>
+
+
 <dt>lab.pos</dt>
 <dd><p>A number (in frequency units) giving the location of a label for each spectrum.
 Generally, pick an area that is clear in all spectra plotted.  If no label
 is desired, set <code>lab.pos = "none"</code>.</p></dd>
+
+
 <dt>showGrid</dt>
 <dd><p>Logical.  Places light gray vertical lines at each tick mark
 if <code>TRUE</code>.</p></dd>
+
+
 <dt>leg.loc</dt>
 <dd><p>Either a list with elements <code>x</code> and <code>y</code>, or a string like
 <code>"topright"</code>.  Values in a list should be on <code>[0,1]</code>, i.e. the lower left of the plot
 area is <code>0,0</code> and the upper right is <code>1,1</code>.  String values are those described in 
 <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></code> under "Details". A value of <code>"none"</code> is acceptable as well.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Parameters to be passed to the plotting routines. <em>Applies to base graphics only</em>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The returned value depends on the graphics option selected (see <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">GraphicsOptions</a></code>).</p><dl><dt>base:</dt>
+    
+
+<p>The returned value depends on the graphics option selected (see <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">GraphicsOptions</a></code>).</p><dl><dt>base:</dt>
 <dd><p>None. Side effect is a plot.</p></dd>
 
  <dt>ggplot2:</dt>
@@ -133,23 +152,23 @@ area is <code>0,0</code> and the upper right is <code>1,1</code>.  String values
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">metMUD1</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">plotSpectra</span><span class="op">(</span><span class="va">metMUD1</span>, which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">11</span><span class="op">)</span>, yrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.5</span><span class="op">)</span>,</span>
-<span class="r-in">  offset <span class="op">=</span> <span class="fl">0.06</span>, amplify <span class="op">=</span> <span class="fl">10</span>, lab.pos <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"metMUD1 NMR Data"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p1</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">metMUD1</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">plotSpectra</span><span class="op">(</span><span class="va">metMUD1</span>, which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">11</span><span class="op">)</span>, yrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  offset <span class="op">=</span> <span class="fl">0.06</span>, amplify <span class="op">=</span> <span class="fl">10</span>, lab.pos <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"metMUD1 NMR Data"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p1</span></span></span>
 <span class="r-plt img"><img src="plotSpectra-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Add a legend at x, y coords</span></span>
-<span class="r-in"><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">plotSpectra</span><span class="op">(</span><span class="va">metMUD1</span>, which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">11</span><span class="op">)</span>, yrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.5</span><span class="op">)</span>,</span>
-<span class="r-in">  offset <span class="op">=</span> <span class="fl">0.06</span>, amplify <span class="op">=</span> <span class="fl">10</span>, lab.pos <span class="op">=</span> <span class="fl">0.5</span>, leg.loc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.8</span>, y <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p2</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"metMUD1 NMR Data"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p2</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Add a legend at x, y coords</span></span></span>
+<span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">plotSpectra</span><span class="op">(</span><span class="va">metMUD1</span>, which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">11</span><span class="op">)</span>, yrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  offset <span class="op">=</span> <span class="fl">0.06</span>, amplify <span class="op">=</span> <span class="fl">10</span>, lab.pos <span class="op">=</span> <span class="fl">0.5</span>, leg.loc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.8</span>, y <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p2</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"metMUD1 NMR Data"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p2</span></span></span>
 <span class="r-plt img"><img src="plotSpectra-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -164,7 +183,7 @@ area is <code>0,0</code> and the upper right is <code>1,1</code>.  String values
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -22,7 +22,7 @@ with either classical or robust PCA results."><!-- mathjax --><script src="https
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -66,44 +66,59 @@ with either classical or robust PCA results.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">pcaDiag</span><span class="op">(</span>
-  <span class="va">spectra</span>,
-  <span class="va">pca</span>,
-  pcs <span class="op">=</span> <span class="fl">3</span>,
-  quantile <span class="op">=</span> <span class="fl">0.975</span>,
-  plot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"OD"</span>, <span class="st">"SD"</span><span class="op">)</span>,
-  use.sym <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pcaDiag</span><span class="op">(</span></span>
+<span>  <span class="va">spectra</span>,</span>
+<span>  <span class="va">pca</span>,</span>
+<span>  pcs <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  quantile <span class="op">=</span> <span class="fl">0.975</span>,</span>
+<span>  plot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"OD"</span>, <span class="st">"SD"</span><span class="op">)</span>,</span>
+<span>  use.sym <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
 <dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p></dd>
+
+
 <dt>pca</dt>
 <dd><p>An object of class <code><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp</a></code>
 modified to include a character string (<code>$method</code>) describing the
 pre-processing carried out and the type of PCA performed.</p></dd>
+
+
 <dt>pcs</dt>
 <dd><p>As per <code><a href="https://rdrr.io/pkg/chemometrics/man/pcaDiagplot.html" class="external-link">pcaDiagplot</a></code>.  The number of
 principal components to include.</p></dd>
+
+
 <dt>quantile</dt>
 <dd><p>As per <code><a href="https://rdrr.io/pkg/chemometrics/man/pcaDiagplot.html" class="external-link">pcaDiagplot</a></code>.  The
 significance criteria to use as a cutoff.</p></dd>
+
+
 <dt>plot</dt>
 <dd><p>A character string, indicating whether to plot the score
 distances or orthogonal distances, or both.  Options are <code>c("OD",
 "SD")</code>.</p></dd>
+
+
 <dt>use.sym</dt>
 <dd><p>logical; if true, the color scheme is change to black and
 symbols are used for plotting.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Parameters to be passed to the plotting routines. <em>Applies to base graphics only</em>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The returned value depends on the graphics option selected (see <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">GraphicsOptions</a></code>).</p><dl><dt>base:</dt>
+    
+
+<p>The returned value depends on the graphics option selected (see <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">GraphicsOptions</a></code>).</p><dl><dt>base:</dt>
 <dd><p>A data frame or list containing the data plotted.  Assign the value and run <code><a href="https://rdrr.io/r/utils/str.html" class="external-link">str()</a></code>
               or <code><a href="https://rdrr.io/r/base/names.html" class="external-link">names()</a></code> on it to see what it contains. Side effect is a plot.</p></dd>
 
@@ -139,17 +154,17 @@ Statistical Analysis in Chemometrics</em>, CRC Press, 2009.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="c_pcaSpectra.html">c_pcaSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span>, choice <span class="op">=</span> <span class="st">"noscale"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">pcaDiag</span><span class="op">(</span><span class="va">SrE.IR</span>, <span class="va">pca</span>, pcs <span class="op">=</span> <span class="fl">2</span>, plot <span class="op">=</span> <span class="st">"OD"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"OD Plot"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p1</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="c_pcaSpectra.html">c_pcaSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span>, choice <span class="op">=</span> <span class="st">"noscale"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">pcaDiag</span><span class="op">(</span><span class="va">SrE.IR</span>, <span class="va">pca</span>, pcs <span class="op">=</span> <span class="fl">2</span>, plot <span class="op">=</span> <span class="st">"OD"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"OD Plot"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p1</span></span></span>
 <span class="r-plt img"><img src="pcaDiag-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">pcaDiag</span><span class="op">(</span><span class="va">SrE.IR</span>, <span class="va">pca</span>, pcs <span class="op">=</span> <span class="fl">2</span>, plot <span class="op">=</span> <span class="st">"SD"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"SD Plot"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p2</span></span>
+<span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">pcaDiag</span><span class="op">(</span><span class="va">SrE.IR</span>, <span class="va">pca</span>, pcs <span class="op">=</span> <span class="fl">2</span>, plot <span class="op">=</span> <span class="st">"SD"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"SD Plot"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p2</span></span></span>
 <span class="r-plt img"><img src="pcaDiag-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -164,7 +179,7 @@ Statistical Analysis in Chemometrics</em>, CRC Press, 2009.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -51,34 +51,23 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="6.1.3" id="chemospec-613-2022-03-10">ChemoSpec 6.1.3 2022-03-10<small>2022-03-11</small><a class="anchor" aria-label="anchor" href="#chemospec-613-2022-03-10"></a></h2>
-<div class="section level3">
-<h3 id="bug-fixes-6-1-3">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-6-1-3"></a></h3>
-<ul><li>Fixed an ancient bug in <code>cv_pcaSpectra</code> which affected the results. Data was being row scaled internally, this was removed. Scaling was made consistent with <code>c_pcaSpectra</code>. Data will be centered before proceeding.</li>
-</ul></div>
-</div>
-    <div class="section level2">
 <h2 class="page-header" data-toc-text="6.1.2" id="chemospec-612-2022-02-08">ChemoSpec 6.1.2 2022-02-08<small>2022-02-09</small><a class="anchor" aria-label="anchor" href="#chemospec-612-2022-02-08"></a></h2>
 <div class="section level3">
 <h3 id="misc-6-1-2">Misc.<a class="anchor" aria-label="anchor" href="#misc-6-1-2"></a></h3>
-<ul><li>Removed stale entries in <code>Suggests</code> and <code>Imports</code> - housekeeping for CRAN, no user-facing changes.</li>
-</ul></div>
+<ul><li>Removed stale entries in <code>Suggests</code> and <code>Imports</code> - housekeeping for CRAN, no user-facing changes.</li></ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="6.1.0" id="chemospec-610-2022-01-08">ChemoSpec 6.1.0 2022-01-08<small>2022-01-08</small><a class="anchor" aria-label="anchor" href="#chemospec-610-2022-01-08"></a></h2>
 <div class="section level3">
 <h3 id="overhauled-functions-6-1-0">Overhauled Functions<a class="anchor" aria-label="anchor" href="#overhauled-functions-6-1-0"></a></h3>
 <ul><li>
-<code>mclust3dSpectra</code> was overhauled completely and now uses <code>plotly</code> graphics (an interactive plot appears in a browser window). The color scheme was changed to use <code>Col12</code> (see <code><a href="../reference/colorSymbol.html">?colorSymbol</a></code>).</li>
-</ul></div>
+<code>mclust3dSpectra</code> was overhauled completely and now uses <code>plotly</code> graphics (an interactive plot appears in a browser window). The color scheme was changed to use <code>Col12</code> (see <code><a href="../reference/colorSymbol.html">?colorSymbol</a></code>).</li></ul></div>
 <div class="section level3">
 <h3 id="defunct-functions-6-1-0">Defunct Functions<a class="anchor" aria-label="anchor" href="#defunct-functions-6-1-0"></a></h3>
-<ul><li>Functions <code>plotScoresRGL</code> and <code>plotScores3D</code> have been removed from the package. Please use <code>plot3dScores</code>, which uses <code>plotly</code>, as a replacement.</li>
-</ul></div>
+<ul><li>Functions <code>plotScoresRGL</code> and <code>plotScores3D</code> have been removed from the package. Please use <code>plot3dScores</code>, which uses <code>plotly</code>, as a replacement.</li></ul></div>
 <div class="section level3">
 <h3 id="new-features-6-1-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-6-1-0"></a></h3>
-<ul><li>Tab completion for <code>Spectra</code> objects implemented. In RStudio typing <code>SrE.IR$</code> will show a list of possible completions. In the <code>R</code> console, typing <code>SrE.IR$</code> followed by the tab key shows possible completions.</li>
-</ul></div>
+<ul><li>Tab completion for <code>Spectra</code> objects implemented. In RStudio typing <code>SrE.IR$</code> will show a list of possible completions. In the <code>R</code> console, typing <code>SrE.IR$</code> followed by the tab key shows possible completions.</li></ul></div>
 <div class="section level3">
 <h3 id="misc-6-1-0">Misc.<a class="anchor" aria-label="anchor" href="#misc-6-1-0"></a></h3>
 <ul><li>Fixed the example in <code>hmapSpectra</code> (the plot <code>p</code> was not called).</li>
@@ -90,8 +79,7 @@
 <h2 class="page-header" data-toc-text="6.0.1" id="chemospec-601-2021-10-09">ChemoSpec 6.0.1 2021-10-09<small>2021-10-11</small><a class="anchor" aria-label="anchor" href="#chemospec-601-2021-10-09"></a></h2>
 <div class="section level3">
 <h3 id="significant-changes-to-graphics-output-6-0-1">Significant Changes to Graphics Output<a class="anchor" aria-label="anchor" href="#significant-changes-to-graphics-output-6-0-1"></a></h3>
-<ul><li>Courtesy GSOC and Tejasvi Gupta, the following plotting functions gain the ability to produce either <code>base</code> graphics, <code>ggplot2</code> or <code>plotly</code> graphics:
-<ul><li><code>plotSpectra</code></li>
+<ul><li>Courtesy GSOC and Tejasvi Gupta, the following plotting functions gain the ability to produce either <code>base</code> graphics, <code>ggplot2</code> or <code>plotly</code> graphics:<ul><li><code>plotSpectra</code></li>
 <li><code>surveySpectra</code></li>
 <li><code>surveySpectra2</code></li>
 <li>
@@ -130,8 +118,7 @@
 <h2 class="page-header" data-toc-text="5.3.21" id="chemospec-5321-2021-07-05">ChemoSpec 5.3.21 2021-07-05<small>2021-07-06</small><a class="anchor" aria-label="anchor" href="#chemospec-5321-2021-07-05"></a></h2>
 <div class="section level3">
 <h3 id="misc-5-3-21">Misc.<a class="anchor" aria-label="anchor" href="#misc-5-3-21"></a></h3>
-<ul><li>Update <code>hmapSpectra</code> as the wrapped function in <code>seriation</code> has changed.</li>
-</ul></div>
+<ul><li>Update <code>hmapSpectra</code> as the wrapped function in <code>seriation</code> has changed.</li></ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="5.3.11" id="chemospec-5311-2021-03-24">ChemoSpec 5.3.11 2021-03-24<small>2021-03-27</small><a class="anchor" aria-label="anchor" href="#chemospec-5311-2021-03-24"></a></h2>
@@ -142,8 +129,7 @@
 </ul></div>
 <div class="section level3">
 <h3 id="misc-5-3-11">Misc.<a class="anchor" aria-label="anchor" href="#misc-5-3-11"></a></h3>
-<ul><li>Checked against <code>R</code> 4.04 RC</li>
-</ul></div>
+<ul><li>Checked against <code>R</code> 4.04 RC</li></ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="5.3.2" id="chemospec-532-2020-08-09">ChemoSpec 5.3.2 2020-08-09<small>2020-08-25</small><a class="anchor" aria-label="anchor" href="#chemospec-532-2020-08-09"></a></h2>
@@ -199,16 +185,14 @@
 </ul></div>
 <div class="section level3">
 <h3 id="new-features-5-1-48">New Features<a class="anchor" aria-label="anchor" href="#new-features-5-1-48"></a></h3>
-<ul><li>A new vignette, Introduction to PCA, was added.</li>
-</ul></div>
+<ul><li>A new vignette, Introduction to PCA, was added.</li></ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="5.1.34" id="chemospec-5134-2019-06-23">ChemoSpec 5.1.34 2019-06-23<a class="anchor" aria-label="anchor" href="#chemospec-5134-2019-06-23"></a></h2>
 <div class="section level3">
 <h3 id="improvements-5-1-34">Improvements<a class="anchor" aria-label="anchor" href="#improvements-5-1-34"></a></h3>
 <ul><li>
-<code>matrix2SpectraObject</code> can now handle multiple input matrices (i.e. argument <code>in.file</code> can be a vector of file names). The function now includes a progress bar, similar to <code>files2SpectraObject</code>.</li>
-</ul></div>
+<code>matrix2SpectraObject</code> can now handle multiple input matrices (i.e. argument <code>in.file</code> can be a vector of file names). The function now includes a progress bar, similar to <code>files2SpectraObject</code>.</li></ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-5-1-34">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-5-1-34"></a></h3>
 <ul><li>Fixed a buglet in <code>hcaSpectra</code> that involved an undesirable cast to data frame, which upset the cosine calculation.</li>
@@ -230,12 +214,10 @@
 </ul></div>
 <div class="section level3">
 <h3 id="improvements-5-1-9">Improvements<a class="anchor" aria-label="anchor" href="#improvements-5-1-9"></a></h3>
-<ul><li>Numerous internal changes to the handling of PCA results were made to accommodate the introduction of sparse PCA features, and allow for easier future introduction of other PCA methods.</li>
-</ul></div>
+<ul><li>Numerous internal changes to the handling of PCA results were made to accommodate the introduction of sparse PCA features, and allow for easier future introduction of other PCA methods.</li></ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-5-1-9">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-5-1-9"></a></h3>
-<ul><li>An issue with the setting of x and y limits in <code>plotScores</code> was fixed. This was a long standing bug that somehow escaped notice from the early days of this package. Note that <code>plotScores</code> is actually in <code>ChemoSpecUtils</code> but is called from <code>ChemoSpec</code>, affecting the results here.</li>
-</ul></div>
+<ul><li>An issue with the setting of x and y limits in <code>plotScores</code> was fixed. This was a long standing bug that somehow escaped notice from the early days of this package. Note that <code>plotScores</code> is actually in <code>ChemoSpecUtils</code> but is called from <code>ChemoSpec</code>, affecting the results here.</li></ul></div>
 <div class="section level3">
 <h3 id="misc-5-1-9">Misc.<a class="anchor" aria-label="anchor" href="#misc-5-1-9"></a></h3>
 <ul><li>Function <code>conColScheme</code> moved to package <code>ChemoSpecUtils</code>.</li>
@@ -247,36 +229,31 @@
 <h2 class="page-header" data-toc-text="5.0.229" id="chemospec-50229-2019-02-28">ChemoSpec 5.0.229 2019-02-28<small>2019-03-01</small><a class="anchor" aria-label="anchor" href="#chemospec-50229-2019-02-28"></a></h2>
 <div class="section level3">
 <h3 id="misc-5-0-229">Misc.<a class="anchor" aria-label="anchor" href="#misc-5-0-229"></a></h3>
-<ul><li>Unit tests added for <code>.cleanArgs</code>.</li>
-</ul></div>
+<ul><li>Unit tests added for <code>.cleanArgs</code>.</li></ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="5.0.215" id="chemospec-50215-2018-12-06">ChemoSpec 5.0.215 2018-12-06<a class="anchor" aria-label="anchor" href="#chemospec-50215-2018-12-06"></a></h2>
 <div class="section level3">
 <h3 id="improvements-5-0-215">Improvements<a class="anchor" aria-label="anchor" href="#improvements-5-0-215"></a></h3>
 <ul><li>
-<code>files2SpectraObject</code> can now accept <em>any</em> arguments to <code>list.files</code> or <code>read.table</code> via the … mechanism. Arguments are sanitized more robustly. However, it is possible to pass arguments that may not be of real utility. For instance <code>na.strings</code> can be specified, but any <code>NA</code> in the data imported will trigger warnings and errors.</li>
-</ul></div>
+<code>files2SpectraObject</code> can now accept <em>any</em> arguments to <code>list.files</code> or <code>read.table</code> via the … mechanism. Arguments are sanitized more robustly. However, it is possible to pass arguments that may not be of real utility. For instance <code>na.strings</code> can be specified, but any <code>NA</code> in the data imported will trigger warnings and errors.</li></ul></div>
 <div class="section level3">
 <h3 id="misc-5-0-215">Misc.<a class="anchor" aria-label="anchor" href="#misc-5-0-215"></a></h3>
 <ul><li>
-<code>plotScree</code> added to <code>r_pcaSpectra</code> example.</li>
-</ul></div>
+<code>plotScree</code> added to <code>r_pcaSpectra</code> example.</li></ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="5.0.207" id="chemospec-50207-2018-11-28">ChemoSpec 5.0.207 2018-11-28<small>2018-11-28</small><a class="anchor" aria-label="anchor" href="#chemospec-50207-2018-11-28"></a></h2>
 <div class="section level3">
 <h3 id="improvements-5-0-207">Improvements<a class="anchor" aria-label="anchor" href="#improvements-5-0-207"></a></h3>
 <ul><li>
-<code>files2SpectraObject</code> can now accept optional arguments <code>path</code> and <code>recursive</code> to allow reading through a directory substructure. In addition, a progress bar is now displayed unless <code>debug = TRUE</code>. Both features suggested by Reinhard Kerschner along with preliminary code (thanks!).</li>
-</ul></div>
+<code>files2SpectraObject</code> can now accept optional arguments <code>path</code> and <code>recursive</code> to allow reading through a directory substructure. In addition, a progress bar is now displayed unless <code>debug = TRUE</code>. Both features suggested by Reinhard Kerschner along with preliminary code (thanks!).</li></ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="5.0.193" id="chemospec-50193-2018-11-20">ChemoSpec 5.0.193 2018-11-20<a class="anchor" aria-label="anchor" href="#chemospec-50193-2018-11-20"></a></h2>
 <div class="section level3">
 <h3 id="bug-fixes-5-0-193">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-5-0-193"></a></h3>
-<ul><li>Fixed a problem with color assignment in <code>.groupNcolor</code> (the problem seems to have been present from the very beginning). Reported by Reinhard Kerschner (many thanks!). Note <code>.groupNcolor</code> now resides in <code>ChemoSpecUtils</code>. Reported here for convenience.</li>
-</ul></div>
+<ul><li>Fixed a problem with color assignment in <code>.groupNcolor</code> (the problem seems to have been present from the very beginning). Reported by Reinhard Kerschner (many thanks!). Note <code>.groupNcolor</code> now resides in <code>ChemoSpecUtils</code>. Reported here for convenience.</li></ul></div>
 <div class="section level3">
 <h3 id="improvements-5-0-193">Improvements<a class="anchor" aria-label="anchor" href="#improvements-5-0-193"></a></h3>
 <ul><li>
@@ -303,7 +280,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

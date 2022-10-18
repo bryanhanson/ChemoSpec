@@ -18,7 +18,7 @@ plotting functions."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/a
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -58,39 +58,54 @@ plotting functions.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">mclustSpectra</span><span class="op">(</span>
-  <span class="va">spectra</span>,
-  <span class="va">pca</span>,
-  pcs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,
-  dims <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,
-  plot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BIC"</span>, <span class="st">"proj"</span>, <span class="st">"errors"</span><span class="op">)</span>,
-  use.sym <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mclustSpectra</span><span class="op">(</span></span>
+<span>  <span class="va">spectra</span>,</span>
+<span>  <span class="va">pca</span>,</span>
+<span>  pcs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,</span>
+<span>  dims <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>  plot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BIC"</span>, <span class="st">"proj"</span>, <span class="st">"errors"</span><span class="op">)</span>,</span>
+<span>  use.sym <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
 <dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p></dd>
+
+
 <dt>pca</dt>
 <dd><p>An object of class <code><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp</a></code>.</p></dd>
+
+
 <dt>pcs</dt>
 <dd><p>An integer vector describing which PCs to use.</p></dd>
+
+
 <dt>dims</dt>
 <dd><p>A integer vector giving the PCA dimensions to use.</p></dd>
+
+
 <dt>plot</dt>
 <dd><p>A character string indicating what plot to make.  Options are
 <code>c("BIC", "proj", "error")</code>; see <code>Mclust</code> for details.</p></dd>
+
+
 <dt>use.sym</dt>
 <dd><p>Logical; if true, the color scheme is changed to black and
 symbols are used for plotting.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Other parameters to be passed downstream.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The <code>Mclust</code> model is returned invisibly, and a plot is made.</p>
+    
+
+<p>The <code>Mclust</code> model is returned invisibly, and a plot is made.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -104,18 +119,18 @@ Additional documentation at <a href="https://bryanhanson.github.io/ChemoSpec/" c
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://mclust-org.github.io/mclust/" class="external-link">"mclust"</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">metMUD1</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">cls</span> <span class="op">&lt;-</span> <span class="fu"><a href="c_pcaSpectra.html">c_pcaSpectra</a></span><span class="op">(</span><span class="va">metMUD1</span>, choice <span class="op">=</span> <span class="st">"autoscale"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotScores.html">plotScores</a></span><span class="op">(</span><span class="va">metMUD1</span>, <span class="va">cls</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">mclustSpectra</span><span class="op">(</span><span class="va">metMUD1</span>, <span class="va">cls</span>, plot <span class="op">=</span> <span class="st">"BIC"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">mclustSpectra</span><span class="op">(</span><span class="va">metMUD1</span>, <span class="va">cls</span>, plot <span class="op">=</span> <span class="st">"proj"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">mclustSpectra</span><span class="op">(</span><span class="va">metMUD1</span>, <span class="va">cls</span>, plot <span class="op">=</span> <span class="st">"errors"</span>, truth <span class="op">=</span> <span class="va">metMUD1</span><span class="op">$</span><span class="va">groups</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://mclust-org.github.io/mclust/" class="external-link">"mclust"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">metMUD1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">cls</span> <span class="op">&lt;-</span> <span class="fu"><a href="c_pcaSpectra.html">c_pcaSpectra</a></span><span class="op">(</span><span class="va">metMUD1</span>, choice <span class="op">=</span> <span class="st">"autoscale"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotScores.html">plotScores</a></span><span class="op">(</span><span class="va">metMUD1</span>, <span class="va">cls</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">mclustSpectra</span><span class="op">(</span><span class="va">metMUD1</span>, <span class="va">cls</span>, plot <span class="op">=</span> <span class="st">"BIC"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">mclustSpectra</span><span class="op">(</span><span class="va">metMUD1</span>, <span class="va">cls</span>, plot <span class="op">=</span> <span class="st">"proj"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">mclustSpectra</span><span class="op">(</span><span class="va">metMUD1</span>, <span class="va">cls</span>, plot <span class="op">=</span> <span class="st">"errors"</span>, truth <span class="op">=</span> <span class="va">metMUD1</span><span class="op">$</span><span class="va">groups</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -130,7 +145,7 @@ Additional documentation at <a href="https://bryanhanson.github.io/ChemoSpec/" c
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

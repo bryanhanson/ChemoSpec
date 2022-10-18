@@ -19,7 +19,7 @@ filters to a Spectra object in a convenient way."><!-- mathjax --><script src="h
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -60,23 +60,30 @@ filters to a <code><a href="Spectra.html">Spectra</a></code> object in a conveni
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">sgfSpectra</span><span class="op">(</span><span class="va">spectra</span>, m <span class="op">=</span> <span class="fl">0</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">sgfSpectra</span><span class="op">(</span><span class="va">spectra</span>, m <span class="op">=</span> <span class="fl">0</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
 <dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code> to be checked.</p></dd>
+
+
 <dt>m</dt>
 <dd><p>The desired m-th derivative.  <code>m = 0</code> smooths the data (i.ei a rolling
 average), <code>m = 1</code> gives the first derivative etc.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Other parameters to be passed to
 <code><a href="https://rdrr.io/pkg/signal/man/sgolayfilt.html" class="external-link">sgolayfilt</a></code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A object of class <code><a href="Spectra.html">Spectra</a></code>.</p>
+    
+
+<p>A object of class <code><a href="Spectra.html">Spectra</a></code>.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -89,27 +96,27 @@ average), <code>m = 1</code> gives the first derivative etc.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://patchwork.data-imaginist.com" class="external-link">"patchwork"</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">myt1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">bolditalic</a></span><span class="op">(</span><span class="va">Serenoa</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">bolditalic</a></span><span class="op">(</span><span class="va">repens</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">bold</a></span><span class="op">(</span><span class="va">IR</span> <span class="op">~</span> <span class="va">Spectra</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">myt2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">bolditalic</a></span><span class="op">(</span><span class="va">Serenoa</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">bolditalic</a></span><span class="op">(</span><span class="va">repens</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">bold</a></span><span class="op">(</span><span class="va">IR</span> <span class="op">~</span> <span class="va">Spectra</span> <span class="op">~</span> <span class="op">(</span><span class="va">Smoothed</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="va">myt1</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1900</span>, <span class="fl">2100</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.0</span>, <span class="fl">0.03</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://patchwork.data-imaginist.com" class="external-link">"patchwork"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">myt1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu">bolditalic</span><span class="op">(</span><span class="va">Serenoa</span><span class="op">)</span> <span class="op">~</span> <span class="fu">bolditalic</span><span class="op">(</span><span class="va">repens</span><span class="op">)</span> <span class="op">~</span> <span class="fu">bold</span><span class="op">(</span><span class="va">IR</span> <span class="op">~</span> <span class="va">Spectra</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">myt2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu">bolditalic</span><span class="op">(</span><span class="va">Serenoa</span><span class="op">)</span> <span class="op">~</span> <span class="fu">bolditalic</span><span class="op">(</span><span class="va">repens</span><span class="op">)</span> <span class="op">~</span> <span class="fu">bold</span><span class="op">(</span><span class="va">IR</span> <span class="op">~</span> <span class="va">Spectra</span> <span class="op">~</span> <span class="op">(</span><span class="va">Smoothed</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="va">myt1</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1900</span>, <span class="fl">2100</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.0</span>, <span class="fl">0.03</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">sgf</span> <span class="op">&lt;-</span> <span class="fu">sgfSpectra</span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">sgf</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p2</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="va">myt2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1900</span>, <span class="fl">2100</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.0</span>, <span class="fl">0.03</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">sgf</span> <span class="op">&lt;-</span> <span class="fu">sgfSpectra</span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">sgf</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p2</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="va">myt2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1900</span>, <span class="fl">2100</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.0</span>, <span class="fl">0.03</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">p3</span> <span class="op">&lt;-</span> <span class="va">p1</span><span class="op">/</span><span class="va">p2</span></span>
-<span class="r-in"><span class="va">p3</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="va">p1</span><span class="op">/</span><span class="va">p2</span></span></span>
+<span class="r-in"><span><span class="va">p3</span></span></span>
 <span class="r-plt img"><img src="sgfSpectra-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -124,7 +131,7 @@ average), <code>m = 1</code> gives the first derivative etc.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

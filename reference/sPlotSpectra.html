@@ -20,7 +20,7 @@ a useful adjunct to traditional loading plots."><!-- mathjax --><script src="htt
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -62,18 +62,24 @@ a useful adjunct to traditional loading plots.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">sPlotSpectra</span><span class="op">(</span><span class="va">spectra</span>, <span class="va">pca</span>, pc <span class="op">=</span> <span class="fl">1</span>, tol <span class="op">=</span> <span class="fl">0.05</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">sPlotSpectra</span><span class="op">(</span><span class="va">spectra</span>, <span class="va">pca</span>, pc <span class="op">=</span> <span class="fl">1</span>, tol <span class="op">=</span> <span class="fl">0.05</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
 <dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p></dd>
+
+
 <dt>pca</dt>
 <dd><p>The result of a pca calculation on <code><a href="Spectra.html">Spectra</a></code> (i.e.
 the output from <code><a href="c_pcaSpectra.html">c_pcaSpectra</a></code> or <code><a href="r_pcaSpectra.html">r_pcaSpectra</a></code>).</p></dd>
+
+
 <dt>pc</dt>
 <dd><p>An integer specifying the desired pc plot.</p></dd>
+
+
 <dt>tol</dt>
 <dd><p>A number describing the fraction of points to be labeled.
 <code>tol = 1.0</code> labels all the points; <code>tol = 0.05</code> labels
@@ -83,12 +89,17 @@ based upon quantiles is used, assumes that both x and y are each normally
 distributed, and treats x and y separately.  Thus, this is not a formal
 treatment of outliers, just a means of labeling points. Groups are lumped
 together.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Parameters to be passed to the plotting routines. <em>Applies to base graphics only</em>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The returned value depends on the graphics option selected (see <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">GraphicsOptions</a></code>).</p><dl><dt>base:</dt>
+    
+
+<p>The returned value depends on the graphics option selected (see <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">GraphicsOptions</a></code>).</p><dl><dt>base:</dt>
 <dd><p>None. Side effect is a plot.</p></dd>
 
  <dt>ggplot2:</dt>
@@ -116,17 +127,17 @@ Compounds Usings OPLS Class Models" Analytical Chemistry Vol.80 no.1 pgs.
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="c_pcaSpectra.html">c_pcaSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">myt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">bolditalic</a></span><span class="op">(</span><span class="va">Serenoa</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">bolditalic</a></span><span class="op">(</span><span class="va">repens</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">bold</a></span><span class="op">(</span><span class="va">IR</span> <span class="op">~</span> <span class="va">Spectra</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">sPlotSpectra</span><span class="op">(</span>spectra <span class="op">=</span> <span class="va">SrE.IR</span>, pca <span class="op">=</span> <span class="va">pca</span>, pc <span class="op">=</span> <span class="fl">1</span>, tol <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="va">myt</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="c_pcaSpectra.html">c_pcaSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">myt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu">bolditalic</span><span class="op">(</span><span class="va">Serenoa</span><span class="op">)</span> <span class="op">~</span> <span class="fu">bolditalic</span><span class="op">(</span><span class="va">repens</span><span class="op">)</span> <span class="op">~</span> <span class="fu">bold</span><span class="op">(</span><span class="va">IR</span> <span class="op">~</span> <span class="va">Spectra</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">sPlotSpectra</span><span class="op">(</span>spectra <span class="op">=</span> <span class="va">SrE.IR</span>, pca <span class="op">=</span> <span class="va">pca</span>, pc <span class="op">=</span> <span class="fl">1</span>, tol <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="va">myt</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span></span></span>
 <span class="r-plt img"><img src="sPlotSpectra-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -141,7 +152,7 @@ Compounds Usings OPLS Class Models" Analytical Chemistry Vol.80 no.1 pgs.
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -19,7 +19,7 @@ correction method is also available."><!-- mathjax --><script src="https://cdnjs
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -60,29 +60,38 @@ correction method is also available.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">baselineSpectra</span><span class="op">(</span><span class="va">spectra</span>, int <span class="op">=</span> <span class="cn">TRUE</span>, retC <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">baselineSpectra</span><span class="op">(</span><span class="va">spectra</span>, int <span class="op">=</span> <span class="cn">TRUE</span>, retC <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
 <dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p></dd>
+
+
 <dt>int</dt>
 <dd><p>Logical; if <code>TRUE</code>, do the correction interactively using
 widgets.  No results are saved.  Use this for inspection and exploration
 only.</p></dd>
+
+
 <dt>retC</dt>
 <dd><p>Logical: shall the baseline-corrected spectra be returned in the
 <code>Spectra</code> object?</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Other arguments passed downstream.  The relevant ones can be
 found in <code><a href="https://rdrr.io/pkg/baseline/man/baseline.html" class="external-link">baseline</a></code>.  Be sure to pay attention to
 argument <code>method</code> as you will probably want to use it.  You can also
 use <code>method = "linear"</code> for a simple linear fit, see Details.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>If <code>int = TRUE</code>, an interactive plot is created.  If <code>int
+    
+
+<p>If <code>int = TRUE</code>, an interactive plot is created.  If <code>int
 = FALSE</code> and <code>retC = FALSE</code>, an object of class <code>baseline</code> is
 returned (see <code><a href="https://rdrr.io/pkg/baseline/man/baseline-class.html" class="external-link">baseline-class</a></code>).  If <code>int =
 FALSE</code> and <code>retC = TRUE</code>, a <code>Spectra</code> object containing the
@@ -114,11 +123,11 @@ baseline rises or falls steadily, as is often seen in chromatograms.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu">baselineSpectra</span><span class="op">(</span><span class="va">SrE.IR</span>, int <span class="op">=</span> <span class="cn">FALSE</span>, method <span class="op">=</span> <span class="st">"modpolyfit"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu">baselineSpectra</span><span class="op">(</span><span class="va">SrE.IR</span>, int <span class="op">=</span> <span class="cn">FALSE</span>, method <span class="op">=</span> <span class="st">"modpolyfit"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="baselineSpectra-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -133,7 +142,7 @@ baseline rises or falls steadily, as is often seen in chromatograms.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

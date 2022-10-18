@@ -20,7 +20,7 @@ The vignette for package seriation has more details."><!-- mathjax --><script sr
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -62,22 +62,27 @@ The vignette for package <span class="pkg">seriation</span> has more details.</p
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">hmapSpectra</span><span class="op">(</span><span class="va">spectra</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hmapSpectra</span><span class="op">(</span><span class="va">spectra</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
 <dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional arguments to be passed downstream.  A great deal of
 control is available - check <code><a href="https://rdrr.io/pkg/seriation/man/hmap.html" class="external-link">hmap</a></code> for details.  Most of the control
 actually derives from the <code>heatmap</code> function in package <span class="pkg">stats</span>.
 See the examples.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list as described in <code><a href="https://rdrr.io/pkg/seriation/man/hmap.html" class="external-link">hmap</a></code>. Side effect is a plot.</p>
+    
+
+<p>A list as described in <code><a href="https://rdrr.io/pkg/seriation/man/hmap.html" class="external-link">hmap</a></code>. Side effect is a plot.</p>
     </div>
     <div id="note">
     <h2>Note</h2>
@@ -118,26 +123,26 @@ olive oil.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Let's look just at the carbonyl region</span></span>
-<span class="r-in"><span class="va">IR</span> <span class="op">&lt;-</span> <span class="fu"><a href="removeFreq.html">removeFreq</a></span><span class="op">(</span><span class="va">SrE.IR</span>, rem.freq <span class="op">=</span> <span class="va">SrE.IR</span><span class="op">$</span><span class="va">freq</span> <span class="op">&gt;</span> <span class="fl">1775</span> <span class="op">|</span> <span class="va">SrE.IR</span><span class="op">$</span><span class="va">freq</span> <span class="op">&lt;</span> <span class="fl">1660</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">IR</span>, which <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">16</span>, lab.pos <span class="op">=</span> <span class="fl">1800</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Defaults, except for color scheme:</span></span>
-<span class="r-in"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">hmapSpectra</span><span class="op">(</span><span class="va">IR</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">heat.colors</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Let's look just at the carbonyl region</span></span></span>
+<span class="r-in"><span><span class="va">IR</span> <span class="op">&lt;-</span> <span class="fu"><a href="removeFreq.html">removeFreq</a></span><span class="op">(</span><span class="va">SrE.IR</span>, rem.freq <span class="op">=</span> <span class="va">SrE.IR</span><span class="op">$</span><span class="va">freq</span> <span class="op">&gt;</span> <span class="fl">1775</span> <span class="op">|</span> <span class="va">SrE.IR</span><span class="op">$</span><span class="va">freq</span> <span class="op">&lt;</span> <span class="fl">1660</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">IR</span>, which <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">16</span>, lab.pos <span class="op">=</span> <span class="fl">1800</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Defaults, except for color scheme:</span></span></span>
+<span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">hmapSpectra</span><span class="op">(</span><span class="va">IR</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">heat.colors</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="hmapSpectra-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Label samples and frequencies by passing arguments to stats:heatmap</span></span>
-<span class="r-in"><span class="co"># Also make a few other nice plot adjustments</span></span>
-<span class="r-in"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">hmapSpectra</span><span class="op">(</span><span class="va">IR</span>,</span>
-<span class="r-in">  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">heat.colors</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>,</span>
-<span class="r-in">  row_labels <span class="op">=</span> <span class="va">IR</span><span class="op">$</span><span class="va">names</span>, col_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">IR</span><span class="op">$</span><span class="va">freq</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">  margins <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Label samples and frequencies by passing arguments to stats:heatmap</span></span></span>
+<span class="r-in"><span><span class="co"># Also make a few other nice plot adjustments</span></span></span>
+<span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">hmapSpectra</span><span class="op">(</span><span class="va">IR</span>,</span></span>
+<span class="r-in"><span>  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">heat.colors</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  row_labels <span class="op">=</span> <span class="va">IR</span><span class="op">$</span><span class="va">names</span>, col_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">IR</span><span class="op">$</span><span class="va">freq</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  margins <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="hmapSpectra-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -152,7 +157,7 @@ olive oil.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

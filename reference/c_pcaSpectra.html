@@ -23,7 +23,7 @@ is the default here."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -68,24 +68,31 @@ is the default here.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">c_pcaSpectra</span><span class="op">(</span><span class="va">spectra</span>, choice <span class="op">=</span> <span class="st">"noscale"</span>, cent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">c_pcaSpectra</span><span class="op">(</span><span class="va">spectra</span>, choice <span class="op">=</span> <span class="st">"noscale"</span>, cent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
 <dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p></dd>
+
+
 <dt>choice</dt>
 <dd><p>A character string indicating the choice of scaling.  One of
 <code>c("noscale"</code>, <code>"autoscale"</code>, <code>"Pareto")</code>. <code>"autoscale"</code>
 is called "standard normal variate" or "correlation matrix PCA" in some literature.</p></dd>
+
+
 <dt>cent</dt>
 <dd><p>Logical: whether or not to center the data.  Always center the
 data unless you know it to be already centered.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>An object of class <code><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp</a></code>, modified to include a list
+    
+
+<p>An object of class <code><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp</a></code>, modified to include a list
 element called <code>$method</code>, a character string describing the
 pre-processing carried out and the type of PCA performed (used to annotate
 plots).</p>
@@ -116,24 +123,24 @@ Additional documentation at <a href="https://bryanhanson.github.io/ChemoSpec/" c
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">metMUD1</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">pca</span> <span class="op">&lt;-</span> <span class="fu">c_pcaSpectra</span><span class="op">(</span><span class="va">metMUD1</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotScree.html">plotScree</a></span><span class="op">(</span><span class="va">pca</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p1</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotScores.html">plotScores</a></span><span class="op">(</span><span class="va">metMUD1</span>, <span class="va">pca</span>, pcs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, ellipse <span class="op">=</span> <span class="st">"cls"</span>, tol <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p2</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Scores: metMUD1 NMR Data"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p2</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotLoadings.html">plotLoadings</a></span><span class="op">(</span><span class="va">metMUD1</span>, <span class="va">pca</span>, loads <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, ref <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p3</span> <span class="op">&lt;-</span> <span class="va">p3</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Loadings: metMUD1 NMR Data"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p3</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">metMUD1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">pca</span> <span class="op">&lt;-</span> <span class="fu">c_pcaSpectra</span><span class="op">(</span><span class="va">metMUD1</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotScree.html">plotScree</a></span><span class="op">(</span><span class="va">pca</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p1</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotScores.html">plotScores</a></span><span class="op">(</span><span class="va">metMUD1</span>, <span class="va">pca</span>, pcs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, ellipse <span class="op">=</span> <span class="st">"cls"</span>, tol <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p2</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Scores: metMUD1 NMR Data"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotLoadings.html">plotLoadings</a></span><span class="op">(</span><span class="va">metMUD1</span>, <span class="va">pca</span>, loads <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, ref <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="va">p3</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Loadings: metMUD1 NMR Data"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p3</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -148,7 +155,7 @@ Additional documentation at <a href="https://bryanhanson.github.io/ChemoSpec/" c
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

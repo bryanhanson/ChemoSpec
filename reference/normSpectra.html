@@ -35,7 +35,7 @@ Spectra object.  There are currently four options:
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -89,25 +89,32 @@ Spectra object.  There are currently four options:
 </ul></div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">normSpectra</span><span class="op">(</span><span class="va">spectra</span>, method <span class="op">=</span> <span class="st">"PQN"</span>, RangeExpress <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">normSpectra</span><span class="op">(</span><span class="va">spectra</span>, method <span class="op">=</span> <span class="st">"PQN"</span>, RangeExpress <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
 <dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code> to be normalized.</p></dd>
+
+
 <dt>method</dt>
 <dd><p>One of <code>c("PQN", "TotInt", "Range", "zero2one")</code> giving
 the method for normalization.</p></dd>
+
+
 <dt>RangeExpress</dt>
 <dd><p>A vector of
 logicals (must be of <code>length(Spectra$freq)</code>).  This vector should be <code>TRUE</code> for
 the frequency range you want to serve as the basis for norming, and <code>FALSE</code> otherwise.
 The entire spectrum will be divided by the sum of the <code>TRUE</code> range.  See the examples.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p>
+    
+
+<p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -128,32 +135,32 @@ group, reported in K. A. Veselkov et. al. Analytical Chemistry vol. 83 pages
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Reference spectrum before normalization</span></span>
-<span class="r-in"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Original Spectrum"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p1</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Reference spectrum before normalization</span></span></span>
+<span class="r-in"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Original Spectrum"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p1</span></span></span>
 <span class="r-plt img"><img src="normSpectra-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Default PQN normalization</span></span>
-<span class="r-in"><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu">normSpectra</span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">res1</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"PQN Normalization"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p2</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Default PQN normalization</span></span></span>
+<span class="r-in"><span><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu">normSpectra</span><span class="op">(</span><span class="va">SrE.IR</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">res1</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"PQN Normalization"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p2</span></span></span>
 <span class="r-plt img"><img src="normSpectra-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Norm over carbonyl region</span></span>
-<span class="r-in"><span class="va">RE</span> <span class="op">&lt;-</span> <span class="va">SrE.IR</span><span class="op">$</span><span class="va">freq</span> <span class="op">&gt;</span> <span class="fl">1650</span> <span class="op">&amp;</span> <span class="va">SrE.IR</span><span class="op">$</span><span class="va">freq</span> <span class="op">&lt;</span> <span class="fl">1800</span></span>
-<span class="r-in"><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu">normSpectra</span><span class="op">(</span><span class="va">SrE.IR</span>, method <span class="op">=</span> <span class="st">"Range"</span>, RangeExpress <span class="op">=</span> <span class="va">RE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">res2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Normalized to Carbonyl Peaks"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p3</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Norm over carbonyl region</span></span></span>
+<span class="r-in"><span><span class="va">RE</span> <span class="op">&lt;-</span> <span class="va">SrE.IR</span><span class="op">$</span><span class="va">freq</span> <span class="op">&gt;</span> <span class="fl">1650</span> <span class="op">&amp;</span> <span class="va">SrE.IR</span><span class="op">$</span><span class="va">freq</span> <span class="op">&lt;</span> <span class="fl">1800</span></span></span>
+<span class="r-in"><span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu">normSpectra</span><span class="op">(</span><span class="va">SrE.IR</span>, method <span class="op">=</span> <span class="st">"Range"</span>, RangeExpress <span class="op">=</span> <span class="va">RE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">res2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Normalized to Carbonyl Peaks"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p3</span></span></span>
 <span class="r-plt img"><img src="normSpectra-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Check numerically</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">res2</span><span class="op">$</span><span class="va">data</span><span class="op">[</span>, <span class="va">RE</span><span class="op">]</span><span class="op">)</span> <span class="co"># compare to rowSums(SrE.IR$data[,RE])</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Check numerically</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">res2</span><span class="op">$</span><span class="va">data</span><span class="op">[</span>, <span class="va">RE</span><span class="op">]</span><span class="op">)</span> <span class="co"># compare to rowSums(SrE.IR$data[,RE])</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -168,7 +175,7 @@ group, reported in K. A. Veselkov et. al. Analytical Chemistry vol. 83 pages
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -21,7 +21,7 @@ any of "dx", "DX", "jdx" or "JDX".'><!-- mathjax --><script src="https://cdnjs.c
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -64,29 +64,29 @@ any of <code>"dx"</code>, <code>"DX"</code>, <code>"jdx"</code> or <code>"JDX"</
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">files2SpectraObject</span><span class="op">(</span>
-  gr.crit <span class="op">=</span> <span class="cn">NULL</span>,
-  gr.cols <span class="op">=</span> <span class="st">"auto"</span>,
-  freq.unit <span class="op">=</span> <span class="st">"no frequency unit provided"</span>,
-  int.unit <span class="op">=</span> <span class="st">"no intensity unit provided"</span>,
-  descrip <span class="op">=</span> <span class="st">"no description provided"</span>,
-  fileExt <span class="op">=</span> <span class="st">"\\.(csv|CSV)$"</span>,
-  out.file <span class="op">=</span> <span class="st">"mydata"</span>,
-  debug <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">matrix2SpectraObject</span><span class="op">(</span>
-  gr.crit <span class="op">=</span> <span class="cn">NULL</span>,
-  gr.cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"auto"</span><span class="op">)</span>,
-  freq.unit <span class="op">=</span> <span class="st">"no frequency unit provided"</span>,
-  int.unit <span class="op">=</span> <span class="st">"no intensity unit provided"</span>,
-  descrip <span class="op">=</span> <span class="st">"no description provided"</span>,
-  in.file <span class="op">=</span> <span class="cn">NULL</span>,
-  out.file <span class="op">=</span> <span class="st">"mydata"</span>,
-  chk <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">files2SpectraObject</span><span class="op">(</span></span>
+<span>  gr.crit <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  gr.cols <span class="op">=</span> <span class="st">"auto"</span>,</span>
+<span>  freq.unit <span class="op">=</span> <span class="st">"no frequency unit provided"</span>,</span>
+<span>  int.unit <span class="op">=</span> <span class="st">"no intensity unit provided"</span>,</span>
+<span>  descrip <span class="op">=</span> <span class="st">"no description provided"</span>,</span>
+<span>  fileExt <span class="op">=</span> <span class="st">"\\.(csv|CSV)$"</span>,</span>
+<span>  out.file <span class="op">=</span> <span class="st">"mydata"</span>,</span>
+<span>  debug <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">matrix2SpectraObject</span><span class="op">(</span></span>
+<span>  gr.crit <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  gr.cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"auto"</span><span class="op">)</span>,</span>
+<span>  freq.unit <span class="op">=</span> <span class="st">"no frequency unit provided"</span>,</span>
+<span>  int.unit <span class="op">=</span> <span class="st">"no intensity unit provided"</span>,</span>
+<span>  descrip <span class="op">=</span> <span class="st">"no description provided"</span>,</span>
+<span>  in.file <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  out.file <span class="op">=</span> <span class="st">"mydata"</span>,</span>
+<span>  chk <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -98,6 +98,8 @@ spectrum to group membership. This is done using grep, so characters
 like "." (period/dot) do not have their literal meaning (see below).
 Warnings are issued if there are file/sample names that don't match entries in
 <code>gr.crit</code> or there are entries in <code>gr.crit</code> that don't match any file names.</p></dd>
+
+
 <dt>gr.cols</dt>
 <dd><p>Group Colors.  See <code><a href="colorSymbol.html">colorSymbol</a></code> for some options. One of the following:</p><ul><li><p>Legacy behavior and the default: The word <code>"auto"</code>, in which case up to 8 colors will
         be automatically assigned from package <code>RColorBrewer Set1</code>.</p></li>
@@ -108,24 +110,36 @@ Warnings are issued if there are file/sample names that don't match entries in
 </ul><p>Colors will be assigned one for one, so the first element of
     <code>gr.crit</code> is assigned the first element of <code>gr.col</code> and so forth.  For <code>Col12</code>
     you should pay careful attention to the order of <code>gr.crit</code> in order to match up colors.</p></dd>
+
+
 <dt>freq.unit</dt>
 <dd><p>A character string giving the units of the x-axis
 (frequency or wavelength).</p></dd>
+
+
 <dt>int.unit</dt>
 <dd><p>A character string giving the units of the y-axis (some sort
 of intensity).</p></dd>
+
+
 <dt>descrip</dt>
 <dd><p>A character string describing the data set that will be stored.  This string is used
 in some plots so it is recommended that its length be less than about 40 characters.</p></dd>
+
+
 <dt>fileExt</dt>
 <dd><p>A character string giving the extension of the files to be
 processed. <code>regex</code> strings can be used.  For instance, the default
 finds files with either <code>".csv"</code> or <code>".CSV"</code> as the extension.
 Matching is done via a grep process, which is greedy.  See also the
 "Advanced Tricks" section.</p></dd>
+
+
 <dt>out.file</dt>
 <dd><p>A file name.  The completed object of S3 class <code><a href="Spectra.html">Spectra</a></code> will be written
 to this file.</p></dd>
+
+
 <dt>debug</dt>
 <dd><p>Logical. Applies to <code>files2SpectraObject</code> only.
 Set to <code>TRUE</code> for troubleshooting when an error
@@ -133,30 +147,42 @@ is thrown during import.  In addition, values of 1-5 will work
 when importing a JCAMP-DX file via <code>fileExt = "\.jdx"</code> etc.  These
 will be passed through to the <code><a href="https://rdrr.io/pkg/readJDX/man/readJDX.html" class="external-link">readJDX</a></code> function.
 See there for much more info on importing JCAMP-DX files.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Arguments to be passed to <code><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></code>,
 <code><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></code> or <code>readJDX</code>; see the "Advanced Tricks" section.
 For <code>read.table</code>, <span class="pkg">You MUST supply values for <code>sep</code>, <code>dec</code> and <code>header</code> consistent
 with your file structure, unless they are the same as the defaults for <code><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></code></span>.</p></dd>
+
+
 <dt>in.file</dt>
 <dd><p>Character.  Applies to <code>matrix2SpectraObject</code> only.
 Input file name, including extension.  Can be a vector of file names.</p></dd>
+
+
 <dt>chk</dt>
 <dd><p>Logical. Applies to <code>matrix2SpectraObject</code> only.
 Should the <code>Spectra</code> object be checked for integrity?  If you are having trouble
 importing your data, set this to <code>FALSE</code> and do <code>str(your object)</code> to troubleshoot.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A object of class <code><a href="Spectra.html">Spectra</a></code>.  An <em>unnamed</em> object
+    
+
+<p>A object of class <code><a href="Spectra.html">Spectra</a></code>.  An <em>unnamed</em> object
         of S3 class <code><a href="Spectra.html">Spectra</a></code> is also written to <code>out.file</code>.  To
-        read it back into the workspace, use <code>new.name &lt;- loadObject(out.file)</code>        (<code>loadObject</code> is package <span class="pkg">R.utils</span>).</p>
+        read it back into the workspace, use <code>new.name &lt;- loadObject(out.file)</code></p>
+
+
+<p>(<code>loadObject</code> is package <span class="pkg">R.utils</span>).</p>
     </div>
     <div id="functions">
     <h2>Functions</h2>
     
-<ul><li><p><code>files2SpectraObject</code>: Import data from separate csv files</p></li>
-<li><p><code>matrix2SpectraObject</code>: Import a matrix of data</p></li>
+<ul><li><p><code>files2SpectraObject()</code>: Import data from separate csv files</p></li>
+<li><p><code>matrix2SpectraObject()</code>: Import a matrix of data</p></li>
 </ul></div>
     <div id="files-spectraobject">
     <h2>files2SpectraObject</h2>
@@ -257,29 +283,29 @@ to any part of the file name if you know how to construct the proper pattern.</p
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># save current location</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Grab an included file &amp; move to a temporary directory</span></span>
-<span class="r-in"><span class="va">tf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/PCRF.jdx"</span>, package <span class="op">=</span> <span class="st">"ChemoSpec"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">chk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.copy</a></span><span class="op">(</span>from <span class="op">=</span> <span class="va">tf</span>, to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename</a></span><span class="op">(</span><span class="va">tf</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Now read in the file, summarize and plot</span></span>
-<span class="r-in"><span class="va">spec</span> <span class="op">&lt;-</span> <span class="fu">files2SpectraObject</span><span class="op">(</span></span>
-<span class="r-in">  gr.crit <span class="op">=</span> <span class="st">"PCRF"</span>, freq.unit <span class="op">=</span> <span class="st">"ppm"</span>, int.unit <span class="op">=</span> <span class="st">"intensity"</span>,</span>
-<span class="r-in">  descrip <span class="op">=</span> <span class="st">"test import"</span>, fileExt <span class="op">=</span> <span class="st">"\\.jdx"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="sumSpectra.html">sumSpectra</a></span><span class="op">(</span><span class="va">spec</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">spec</span>, lab.pos <span class="op">=</span> <span class="fl">3.5</span>, main <span class="op">=</span> <span class="st">"Reduced Fat Potato Chip"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Reduced Fat Potato Chip"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">wd</span><span class="op">)</span> <span class="co"># restore working directory</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># save current location</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Grab an included file &amp; move to a temporary directory</span></span></span>
+<span class="r-in"><span><span class="va">tf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/PCRF.jdx"</span>, package <span class="op">=</span> <span class="st">"ChemoSpec"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">chk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.copy</a></span><span class="op">(</span>from <span class="op">=</span> <span class="va">tf</span>, to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename</a></span><span class="op">(</span><span class="va">tf</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Now read in the file, summarize and plot</span></span></span>
+<span class="r-in"><span><span class="va">spec</span> <span class="op">&lt;-</span> <span class="fu">files2SpectraObject</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  gr.crit <span class="op">=</span> <span class="st">"PCRF"</span>, freq.unit <span class="op">=</span> <span class="st">"ppm"</span>, int.unit <span class="op">=</span> <span class="st">"intensity"</span>,</span></span>
+<span class="r-in"><span>  descrip <span class="op">=</span> <span class="st">"test import"</span>, fileExt <span class="op">=</span> <span class="st">"\\.jdx"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="sumSpectra.html">sumSpectra</a></span><span class="op">(</span><span class="va">spec</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">spec</span>, lab.pos <span class="op">=</span> <span class="fl">3.5</span>, main <span class="op">=</span> <span class="st">"Reduced Fat Potato Chip"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Reduced Fat Potato Chip"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">wd</span><span class="op">)</span> <span class="co"># restore working directory</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -294,7 +320,7 @@ to any part of the file name if you know how to construct the proper pattern.</p
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

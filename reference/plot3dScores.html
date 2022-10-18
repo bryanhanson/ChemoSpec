@@ -19,7 +19,7 @@ the object.  The plot is created by plotly and appears in a browser window."><!-
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -60,41 +60,56 @@ the object.  The plot is created by <code>plotly</code> and appears in a browser
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plot3dScores</span><span class="op">(</span>
-  <span class="va">spectra</span>,
-  <span class="va">pca</span>,
-  pcs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,
-  ellipse <span class="op">=</span> <span class="cn">TRUE</span>,
-  rob <span class="op">=</span> <span class="cn">FALSE</span>,
-  cl <span class="op">=</span> <span class="fl">0.95</span>,
-  frac.pts.used <span class="op">=</span> <span class="fl">0.8</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot3dScores</span><span class="op">(</span></span>
+<span>  <span class="va">spectra</span>,</span>
+<span>  <span class="va">pca</span>,</span>
+<span>  pcs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,</span>
+<span>  ellipse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  rob <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  cl <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  frac.pts.used <span class="op">=</span> <span class="fl">0.8</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
 <dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p></dd>
+
+
 <dt>pca</dt>
 <dd><p>An object of class <code><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp</a></code>.</p></dd>
+
+
 <dt>pcs</dt>
 <dd><p>A vector of three integers specifying the PCA scores to plot.</p></dd>
+
+
 <dt>ellipse</dt>
 <dd><p>Logical indicating if confidence ellipses should be drawn.</p></dd>
+
+
 <dt>rob</dt>
 <dd><p>Logical; if <code>ellipse = TRUE</code>, indicates that robust
 confidence ellipses should be drawn.  If <code>FALSE</code>, classical confidence
 ellipses are drawn.</p></dd>
+
+
 <dt>cl</dt>
 <dd><p>A number indicating the confidence interval for the ellipse.</p></dd>
+
+
 <dt>frac.pts.used</dt>
 <dd><p>If <code>ellipse = TRUE</code> and <code>rob = TRUE</code>, a
 number indicating the fraction of the data points to be considered "good"
 and thus used to compute the robust confidence ellipse.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>None.  Side effect is a plot in a browser window.</p>
+    
+
+<p>None.  Side effect is a plot in a browser window.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -107,13 +122,13 @@ and thus used to compute the robust confidence ellipse.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">metMUD1</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="c_pcaSpectra.html">c_pcaSpectra</a></span><span class="op">(</span><span class="va">metMUD1</span>, choice <span class="op">=</span> <span class="st">"noscale"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">plot3dScores</span><span class="op">(</span><span class="va">metMUD1</span>, <span class="va">pca</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">p</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">metMUD1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="c_pcaSpectra.html">c_pcaSpectra</a></span><span class="op">(</span><span class="va">metMUD1</span>, choice <span class="op">=</span> <span class="st">"noscale"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">plot3dScores</span><span class="op">(</span><span class="va">metMUD1</span>, <span class="va">pca</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">p</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -128,7 +143,7 @@ and thus used to compute the robust confidence ellipse.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

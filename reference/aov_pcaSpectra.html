@@ -24,7 +24,7 @@ is the same as standard PCA and gives no additional separation."><!-- mathjax --
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -70,31 +70,42 @@ is the same as standard PCA and gives no additional separation.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">aov_pcaSpectra</span><span class="op">(</span><span class="va">spectra</span>, <span class="va">fac</span>, type <span class="op">=</span> <span class="st">"class"</span>, choice <span class="op">=</span> <span class="cn">NULL</span>, showNames <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">aov_pcaSpectra</span><span class="op">(</span><span class="va">spectra</span>, <span class="va">fac</span>, type <span class="op">=</span> <span class="st">"class"</span>, choice <span class="op">=</span> <span class="cn">NULL</span>, showNames <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
 <dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p></dd>
+
+
 <dt>fac</dt>
 <dd><p>A vector of character strings giving the factors to be used in
 the analysis.  These should be elements of <code><a href="Spectra.html">Spectra</a></code>.  Note that
 there should be 2 or more factors, because ANOVA-PCA on one factor is the
 same as standard PCA.  See the example.</p></dd>
+
+
 <dt>type</dt>
 <dd><p>Either classical ("cls") or robust ("rob"); Results in either
 <code><a href="c_pcaSpectra.html">c_pcaSpectra</a></code> or <code><a href="r_pcaSpectra.html">r_pcaSpectra</a></code> being called on the
 <code><a href="Spectra.html">Spectra</a></code> object.</p></dd>
+
+
 <dt>choice</dt>
 <dd><p>The type of scaling to be performed.  See
 <code><a href="c_pcaSpectra.html">c_pcaSpectra</a></code> and <code><a href="r_pcaSpectra.html">r_pcaSpectra</a></code> for details.</p></dd>
+
+
 <dt>showNames</dt>
 <dd><p>Logical.  Show the names of the submatrices in the console.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of PCA results, one for each computed submatrix.</p>
+    
+
+<p>A list of PCA results, one for each computed submatrix.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -117,38 +128,38 @@ Additional documentation at <a href="https://bryanhanson.github.io/ChemoSpec/" c
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">metMUD2</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Original factor encoding:</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">metMUD2</span><span class="op">$</span><span class="va">groups</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Split those original levels into 2 new ones (re-code them)</span></span>
-<span class="r-in"><span class="va">new.grps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>geneBb <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"b"</span><span class="op">)</span>, geneCc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"C"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">mM3</span> <span class="op">&lt;-</span> <span class="fu"><a href="splitSpectraGroups.html">splitSpectraGroups</a></span><span class="op">(</span><span class="va">metMUD2</span>, <span class="va">new.grps</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># run aov_pcaSpectra</span></span>
-<span class="r-in"><span class="va">PCAs</span> <span class="op">&lt;-</span> <span class="fu">aov_pcaSpectra</span><span class="op">(</span><span class="va">mM3</span>, fac <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"geneBb"</span>, <span class="st">"geneCc"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="aovPCAscores.html">aovPCAscores</a></span><span class="op">(</span><span class="va">mM3</span>, <span class="va">PCAs</span>, submat <span class="op">=</span> <span class="fl">1</span>, ellipse <span class="op">=</span> <span class="st">"cls"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"aovPCA: B vs b"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p1</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="aovPCAscores.html">aovPCAscores</a></span><span class="op">(</span><span class="va">mM3</span>, <span class="va">PCAs</span>, submat <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p2</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"aovPCA: C vs c"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p2</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="aovPCAscores.html">aovPCAscores</a></span><span class="op">(</span><span class="va">mM3</span>, <span class="va">PCAs</span>, submat <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p3</span> <span class="op">&lt;-</span> <span class="va">p3</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"aovPCA: Interaction Term"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p3</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">p4</span> <span class="op">&lt;-</span> <span class="fu"><a href="aovPCAloadings.html">aovPCAloadings</a></span><span class="op">(</span>spectra <span class="op">=</span> <span class="va">mM3</span>, PCA <span class="op">=</span> <span class="va">PCAs</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p4</span> <span class="op">&lt;-</span> <span class="va">p4</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"aov_pcaSpectra: Bb Loadings"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p4</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">metMUD2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Original factor encoding:</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">metMUD2</span><span class="op">$</span><span class="va">groups</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Split those original levels into 2 new ones (re-code them)</span></span></span>
+<span class="r-in"><span><span class="va">new.grps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>geneBb <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"b"</span><span class="op">)</span>, geneCc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"C"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mM3</span> <span class="op">&lt;-</span> <span class="fu"><a href="splitSpectraGroups.html">splitSpectraGroups</a></span><span class="op">(</span><span class="va">metMUD2</span>, <span class="va">new.grps</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># run aov_pcaSpectra</span></span></span>
+<span class="r-in"><span><span class="va">PCAs</span> <span class="op">&lt;-</span> <span class="fu">aov_pcaSpectra</span><span class="op">(</span><span class="va">mM3</span>, fac <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"geneBb"</span>, <span class="st">"geneCc"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="aovPCAscores.html">aovPCAscores</a></span><span class="op">(</span><span class="va">mM3</span>, <span class="va">PCAs</span>, submat <span class="op">=</span> <span class="fl">1</span>, ellipse <span class="op">=</span> <span class="st">"cls"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"aovPCA: B vs b"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p1</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="aovPCAscores.html">aovPCAscores</a></span><span class="op">(</span><span class="va">mM3</span>, <span class="va">PCAs</span>, submat <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p2</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"aovPCA: C vs c"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="aovPCAscores.html">aovPCAscores</a></span><span class="op">(</span><span class="va">mM3</span>, <span class="va">PCAs</span>, submat <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="va">p3</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"aovPCA: Interaction Term"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p3</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">p4</span> <span class="op">&lt;-</span> <span class="fu"><a href="aovPCAloadings.html">aovPCAloadings</a></span><span class="op">(</span>spectra <span class="op">=</span> <span class="va">mM3</span>, PCA <span class="op">=</span> <span class="va">PCAs</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p4</span> <span class="op">&lt;-</span> <span class="va">p4</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"aov_pcaSpectra: Bb Loadings"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p4</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -163,7 +174,7 @@ Additional documentation at <a href="https://bryanhanson.github.io/ChemoSpec/" c
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

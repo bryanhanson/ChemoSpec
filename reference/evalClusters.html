@@ -19,7 +19,7 @@ can be used to quantitatively compare different clustering options."><!-- mathja
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -60,46 +60,61 @@ can be used to quantitatively compare different clustering options.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">evalClusters</span><span class="op">(</span>
-  <span class="va">spectra</span>,
-  pkg <span class="op">=</span> <span class="st">"NbClust"</span>,
-  hclst <span class="op">=</span> <span class="cn">NULL</span>,
-  k <span class="op">=</span> <span class="cn">NULL</span>,
-  h <span class="op">=</span> <span class="cn">NULL</span>,
-  crit <span class="op">=</span> <span class="st">"Dunn"</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">evalClusters</span><span class="op">(</span></span>
+<span>  <span class="va">spectra</span>,</span>
+<span>  pkg <span class="op">=</span> <span class="st">"NbClust"</span>,</span>
+<span>  hclst <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  k <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  h <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  crit <span class="op">=</span> <span class="st">"Dunn"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
 <dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p></dd>
+
+
 <dt>pkg</dt>
 <dd><p>Character.  One of <code>c("NbClust", "clusterCrit")</code>.  The
 package to use for comparing clusters.</p></dd>
+
+
 <dt>hclst</dt>
 <dd><p>An object of S3 class <code>hclust</code>.  Only applies to
 <code>pkg = "clusterCrit"</code>.</p></dd>
+
+
 <dt>k</dt>
 <dd><p>Integer.  The number of groups in which to cut the tree
 (<code>hclust</code>).  Only applies to <code>pkg = "clusterCrit"</code>.</p></dd>
+
+
 <dt>h</dt>
 <dd><p>Numeric.  The height at which to cut the tree.  Either <code>k</code> or
 <code>h</code> must be given, with <code>k</code> taking precedence.  See
 <code><a href="https://rdrr.io/r/stats/cutree.html" class="external-link">cutree</a></code>.  Only applies to <code>pkg = "clusterCrit"</code>.</p></dd>
+
+
 <dt>crit</dt>
 <dd><p>String.  A string giving the criteria to be used in evaluating
 the quality of the cluster.  See <code>liintCriteria</code>.  Only applies to
 <code>pkg = "clusterCrit"</code>.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Other parameters to be passed to the functions. In particular,
 the default <code>NbClust</code> package will need some parameters.  See the
 example.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list giving the results, as described in <code><a href="https://rdrr.io/pkg/clusterCrit/man/intCriteria.html" class="external-link">intCriteria</a></code> or
+    
+
+<p>A list giving the results, as described in <code><a href="https://rdrr.io/pkg/clusterCrit/man/intCriteria.html" class="external-link">intCriteria</a></code> or
 <code><a href="https://rdrr.io/pkg/NbClust/man/NbClust.html" class="external-link">NbClust</a></code>.</p>
     </div>
     <div id="details">
@@ -136,22 +151,22 @@ October 2014.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">metMUD2</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Using clusterCrit</span></span>
-<span class="r-in"><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu"><a href="hcaSpectra.html">hcaSpectra</a></span><span class="op">(</span><span class="va">metMUD2</span><span class="op">)</span> <span class="co"># default clustering and distance methods</span></span>
-<span class="r-in"><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="hcaSpectra.html">hcaSpectra</a></span><span class="op">(</span><span class="va">metMUD2</span>, d.method <span class="op">=</span> <span class="st">"cosine"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># The return value from hcaSpectra is a list with hclust as the first element.</span></span>
-<span class="r-in"><span class="va">crit1</span> <span class="op">&lt;-</span> <span class="fu">evalClusters</span><span class="op">(</span><span class="va">metMUD2</span>, pkg <span class="op">=</span> <span class="st">"clusterCrit"</span>, hclst <span class="op">=</span> <span class="va">res1</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">crit2</span> <span class="op">&lt;-</span> <span class="fu">evalClusters</span><span class="op">(</span><span class="va">metMUD2</span>, pkg <span class="op">=</span> <span class="st">"clusterCrit"</span>, hclst <span class="op">=</span> <span class="va">res2</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># crit1 and crit2 can now be compared.</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Using NbClust</span></span>
-<span class="r-in"><span class="va">res3</span> <span class="op">&lt;-</span> <span class="fu">evalClusters</span><span class="op">(</span><span class="va">metMUD2</span>, min.nc <span class="op">=</span> <span class="fl">2</span>, max.nc <span class="op">=</span> <span class="fl">5</span>, method <span class="op">=</span> <span class="st">"average"</span>, index <span class="op">=</span> <span class="st">"kl"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">metMUD2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Using clusterCrit</span></span></span>
+<span class="r-in"><span><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu"><a href="hcaSpectra.html">hcaSpectra</a></span><span class="op">(</span><span class="va">metMUD2</span><span class="op">)</span> <span class="co"># default clustering and distance methods</span></span></span>
+<span class="r-in"><span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="hcaSpectra.html">hcaSpectra</a></span><span class="op">(</span><span class="va">metMUD2</span>, d.method <span class="op">=</span> <span class="st">"cosine"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># The return value from hcaSpectra is a list with hclust as the first element.</span></span></span>
+<span class="r-in"><span><span class="va">crit1</span> <span class="op">&lt;-</span> <span class="fu">evalClusters</span><span class="op">(</span><span class="va">metMUD2</span>, pkg <span class="op">=</span> <span class="st">"clusterCrit"</span>, hclst <span class="op">=</span> <span class="va">res1</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">crit2</span> <span class="op">&lt;-</span> <span class="fu">evalClusters</span><span class="op">(</span><span class="va">metMUD2</span>, pkg <span class="op">=</span> <span class="st">"clusterCrit"</span>, hclst <span class="op">=</span> <span class="va">res2</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># crit1 and crit2 can now be compared.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Using NbClust</span></span></span>
+<span class="r-in"><span><span class="va">res3</span> <span class="op">&lt;-</span> <span class="fu">evalClusters</span><span class="op">(</span><span class="va">metMUD2</span>, min.nc <span class="op">=</span> <span class="fl">2</span>, max.nc <span class="op">=</span> <span class="fl">5</span>, method <span class="op">=</span> <span class="st">"average"</span>, index <span class="op">=</span> <span class="st">"kl"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -166,7 +181,7 @@ October 2014.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

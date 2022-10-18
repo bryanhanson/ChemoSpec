@@ -19,7 +19,7 @@ quality plots, consider plotSpectra."><!-- mathjax --><script src="https://cdnjs
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -60,30 +60,39 @@ quality plots, consider <code><a href="plotSpectra.html">plotSpectra</a></code>.
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plotSpectraJS</span><span class="op">(</span><span class="va">spectra</span>, which <span class="op">=</span> <span class="cn">NULL</span>, browser <span class="op">=</span> <span class="cn">NULL</span>, minify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotSpectraJS</span><span class="op">(</span><span class="va">spectra</span>, which <span class="op">=</span> <span class="cn">NULL</span>, browser <span class="op">=</span> <span class="cn">NULL</span>, minify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
 <dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code> to be checked.</p></dd>
+
+
 <dt>which</dt>
 <dd><p>Integer.  If not <code>NULL</code>, specifies by number which spectra to plot.
 If greater control is needed, use <code><a href="removeSample.html">removeSample</a></code> which is more flexible
 before calling this function.</p></dd>
+
+
 <dt>browser</dt>
 <dd><p>Character.  Something that will make sense to your OS.  Only
 necessary if you want to override your system specified browser as
 understood by <code>R</code>.  See below for further details.</p></dd>
+
+
 <dt>minify</dt>
 <dd><p>Logical.  Shall the JavaScript be minified?  This improves
 performance.  However, it requires package <code>js</code> which in turn requires
 package <code>V8</code>.  The latter is not available on all platforms.  Details
 may be available at <a href="https://github.com/jeroen/V8" class="external-link">https://github.com/jeroen/V8</a></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>None; side effect is an interactive web page.  The temporary
+    
+
+<p>None; side effect is an interactive web page.  The temporary
 directory containing the files that drive the web page is written to the
 console in case you wish to use those files.  This directory is deleted when
 you quit R.  If you wish to read the file, don't minify the code, it will be
@@ -136,13 +145,13 @@ about <code>d3.js</code> are at <a href="https://d3js.org" class="external-link"
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://arxiv.org/abs/1403.2805" class="external-link">"jsonlite"</a></span><span class="op">)</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://github.com/jeroen/js" class="external-link">"js"</a></span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">metMUD2</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">plotSpectraJS</span><span class="op">(</span><span class="va">metMUD2</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://arxiv.org/abs/1403.2805" class="external-link">"jsonlite"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://github.com/jeroen/js" class="external-link">"js"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">metMUD2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">plotSpectraJS</span><span class="op">(</span><span class="va">metMUD2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -157,7 +166,7 @@ about <code>d3.js</code> are at <a href="https://d3js.org" class="external-link"
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

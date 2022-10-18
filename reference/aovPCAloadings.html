@@ -18,7 +18,7 @@ loadings."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/m
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
       </span>
     </div>
 
@@ -58,30 +58,43 @@ loadings.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">aovPCAloadings</span><span class="op">(</span><span class="va">spectra</span>, <span class="va">PCA</span>, submat <span class="op">=</span> <span class="fl">1</span>, loads <span class="op">=</span> <span class="fl">1</span>, ref <span class="op">=</span> <span class="fl">1</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">aovPCAloadings</span><span class="op">(</span><span class="va">spectra</span>, <span class="va">PCA</span>, submat <span class="op">=</span> <span class="fl">1</span>, loads <span class="op">=</span> <span class="fl">1</span>, ref <span class="op">=</span> <span class="fl">1</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
 <dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p></dd>
+
+
 <dt>PCA</dt>
 <dd><p>List of pca results created by <code><a href="aov_pcaSpectra.html">aov_pcaSpectra</a></code>.</p></dd>
+
+
 <dt>submat</dt>
 <dd><p>Integer.  Selects list element <code>submat</code> from <code>PCA</code>
 which is a list of PCA results, each corresponding to the computation
 in <code><a href="aov_pcaSpectra.html">aov_pcaSpectra</a></code>.</p></dd>
+
+
 <dt>loads</dt>
 <dd><p>An integer vector giving the loadings to plot.</p></dd>
+
+
 <dt>ref</dt>
 <dd><p>An integer specifying the reference spectrum to plot, which
 appears at the bottom of the plot.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Parameters to be passed to the plotting routines. <em>Applies to base graphics only</em>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The returned value depends on the graphics option selected (see <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">GraphicsOptions</a></code>).</p><dl><dt>base:</dt>
+    
+
+<p>The returned value depends on the graphics option selected (see <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">GraphicsOptions</a></code>).</p><dl><dt>base:</dt>
 <dd><p>None. Side effect is a plot.</p></dd>
 
  <dt>ggplot2:</dt>
@@ -121,7 +134,7 @@ Additional documentation at <a href="https://bryanhanson.github.io/ChemoSpec/" c
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
