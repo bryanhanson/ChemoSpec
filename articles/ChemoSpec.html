@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.4</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@
     
     
 <!-- Run a few things in the background for use later -->
-<p>This vignette is based upon <code>ChemoSpec</code> version 6.1.2 relying on <code>ChemoSpecUtils</code> version 1.0.0.</p>
+<p>This vignette is based upon <code>ChemoSpec</code> version 6.1.4 relying on <code>ChemoSpecUtils</code> version 1.0.0.</p>
 <blockquote>
 <p><code>ChemoSpec</code> is a collection of functions for top-down exploratory data analysis of spectral data including nuclear magnetic resonance (NMR), infrared (IR), Raman, X-ray fluorescence (XRF) and other similar types of spectroscopy. Includes functions for plotting and inspecting spectra, peak alignment, hierarchical cluster analysis (HCA), principal components analysis (PCA) and model-based clustering. Robust methods appropriate for this type of high-dimensional data are available. <code>ChemoSpec</code> is designed for structured experiments, such as metabolomics investigations, where the samples fall into treatment and control groups. Graphical output is formatted consistently for publication quality plots. <code>ChemoSpec</code> is intended to be very user friendly and to help you get usable results quickly. A vignette covering typical operations is available.</p>
 </blockquote>
@@ -264,15 +264,9 @@ Figure 5.2: Detail of the carbonyl region.
 <h3 id="correcting-baseline-drift">
 <span class="header-section-number">6.1</span> Correcting Baseline Drift<a class="anchor" aria-label="anchor" href="#correcting-baseline-drift"></a>
 </h3>
-<p><code>ChemoSpec</code> uses the functions in the package <code>baseline</code> to correct wandering baselines <span class="citation">(Liland and Mevik <a href="#ref-R_baseline" role="doc-biblioref">2020</a>)</span>. The function, <code>baselineSpectra</code>, can show you the original and corrected baselines if desired, which is useful for choosing a method. Figure <a href="#fig:baseline">6.1</a> shows a typical usage. Method <code>modployfit</code> works well for IR spectra, but there are several choices and you should experiment. <code>retC = TRUE</code> puts the corrected spectra into the new <code>Spectra</code> object so we can use it going forward (and we will).</p>
+<p><code>ChemoSpec</code> uses the functions in the package <code>baseline</code> to correct wandering baselines <span class="citation">(Liland and Mevik <a href="#ref-R_baseline" role="doc-biblioref">2020</a>)</span>. The function, <code>baselineSpectra</code>, can show you the original and corrected baselines if desired, which is useful for choosing a method. Figure <a href="#fig:baseline"><strong>??</strong></a> shows a typical usage. Method <code>modployfit</code> works well for IR spectra, but there are several choices and you should experiment. <code>retC = TRUE</code> puts the corrected spectra into the new <code>Spectra</code> object so we can use it going forward (and we will).</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SrE2.IR</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/baselineSpectra.html">baselineSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span>, int <span class="op">=</span> <span class="cn">FALSE</span>, method <span class="op">=</span> <span class="st">"modpolyfit"</span>, retC <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:baseline"></span>
-<img src="ChemoSpec_files/figure-html/baseline-1.png" alt="Correcting baseline drift." width="80%"><p class="caption">
-Figure 6.1: Correcting baseline drift.
-</p>
-</div>
 </div>
 <div class="section level3">
 <h3 id="alignment">

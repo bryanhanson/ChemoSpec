@@ -97,9 +97,6 @@
     <loc>/reference/irlba_pcaSpectra.html</loc>
   </url>
   <url>
-    <loc>/reference/loopThruSpectra.html</loc>
-  </url>
-  <url>
     <loc>/reference/mclust3dSpectra.html</loc>
   </url>
   <url>
@@ -125,9 +122,6 @@
   </url>
   <url>
     <loc>/reference/plotScores.html</loc>
-  </url>
-  <url>
-    <loc>/reference/plotScoresRGL.html</loc>
   </url>
   <url>
     <loc>/reference/plotScree.html</loc>
