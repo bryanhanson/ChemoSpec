@@ -18,7 +18,7 @@ jobs:
         config:
           - {os: macOS-latest,   r: 'release'}
           - {os: windows-latest, r: 'release'}
-          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
+#          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'} # bioconductor not ready
           - {os: ubuntu-latest,   r: 'release'}
           - {os: ubuntu-latest,   r: 'oldrel-1'}
 
@@ -37,7 +37,7 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
-      - name: Install dependencies
+      - name: Install Bioconductor dependencies
         run: |
           # need to install some pkgs from Bioconductor
           if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -45,8 +45,13 @@ jobs:
           BiocManager::install("MassSpecWavelet")
           BiocManager::install("impute")
           BiocManager::install("mixOmics")
-          remotes::install_deps(dependencies = TRUE)
-          remotes::install_cran("roxygen2")
+        shell: Rscript {0}
+
+      - name: Install other dependencies
+        run: |
+          install.packages("remotes") # needed here!
+          install.packages("roxygen2")
+          remotes::install_deps(dependencies = TRUE) # all others
         shell: Rscript {0}
 
       - name: Roxygenize
@@ -57,7 +62,7 @@ jobs:
       - name: Build and Check
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
-          
+
         uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
