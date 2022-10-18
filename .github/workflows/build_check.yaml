@@ -51,6 +51,7 @@ jobs:
         run: |
           install.packages("remotes") # needed here!
           install.packages("roxygen2")
+          install.packages("rcmdcheck") # apparently assumed by check-r-package below
           remotes::install_deps(dependencies = TRUE) # all others
         shell: Rscript {0}
 
