@@ -5,7 +5,9 @@
 #' \code{\link{Spectra}} object.  There are currently four options:
 #' \itemize{
 #'   \item \code{"PQN"} carries out "Probabalistic Quotient Normalization" as described
-#'     in the reference.  This is probably the best option for many data sets.
+#'     in the reference.  This is probably the best option for many data sets.  However, please
+#'     be careful if your sample has protein in it, PQN is potentially biased.
+#'     See the references.
 #'   \item \code{"TotInt"} normalizes by total intensity.  In this
 #'     case, the y-data of a \code{\link{Spectra}} object is normalized by dividing
 #'     each y-value by the sum of the y-values in a given spectrum.  Thus each
@@ -35,11 +37,17 @@
 #'
 #' @template authors-BH
 #'
-#' @references Probabalistic Quotient Normalization is reported in F. Dieterle
-#' et. al. Analytical Chemistry vol. 78 pages 4281-4290 (2006).  The exact same
-#' mathematics are called "median fold change normalization" by Nicholson's
-#' group, reported in K. A. Veselkov et. al. Analytical Chemistry vol. 83 pages
-#' 5864-5872 (2011).
+#' @references
+#' \itemize{
+#'   \item {Probabalistic Quotient Normalization is reported in F. Dieterle
+#'         et al. Analytical Chemistry vol. 78 pages 4281-4290 (2006).}
+#'   \item {The exact same mathematics are called "median fold change normalization"
+#'         by Nicholson's group, reported in K. A. Veselkov et. al. Analytical
+#'         Chemistry vol. 83 pages 5864-5872 (2011).}
+#'   \item {Corriea et al. "1H NMR Signals from Urine Excreted Protein are
+#'         a Source of Bias in Probablistic Quotient Normalization" Analytical Chemistry
+#'         vol. 94 pages 6919-6923 (2022).}
+#' }
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
