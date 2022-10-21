@@ -1,8 +1,13 @@
 # ChemoSpec 6.1.4 2022-10-18
+## Bug Fixes
+* Fixed an ancient bug in `cv_pcaSpectra` which affected the results. Data was being row scaled internally, this was removed.  Scaling was made consistent with `c_pcaSpectra`. Data will be centered before proceeding (notice repeated from 6.1.3 which did not go to CRAN).
+
+## New Features
+* `baselineSpectra` gains a new argument `show` to allow control of which spectra are shown to the user after baseline correction  (notice repeated from 6.1.3 which did not go to CRAN).
+
 ## Misc.
 * Removed remaining deprecation warnings about `plotScoresRGL` and `plotScores3D`.
 * Removed `loopThroughSpectra` which was "sort of" deprecated.  Use `reviewAllSpectra` instead.
-* More changes expected, will go to CRAN soon
 
 # ChemoSpec 6.1.3 2022-08-06
 ## Misc.
