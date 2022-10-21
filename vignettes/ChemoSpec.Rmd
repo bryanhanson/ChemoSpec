@@ -23,8 +23,8 @@ link-citations: yes
 bibliography:
   - chemometrics.bib
   - manuals.bib
-pkgdown:
-  as_is: true # needed for proper figure referencing
+#pkgdown:
+#  as_is: true # needed for proper figure referencing
 ---
 
 <!-- Run a few things in the background for use later -->
