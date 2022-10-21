@@ -27,6 +27,7 @@ reference:
   - '`binSpectra`'
   - '`sgfSpectra`'
   - '`clupaSpectra`'
+  - '`averageReplicates`'
 
 - title: "Plots"
   contents:
