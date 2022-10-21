@@ -69,7 +69,10 @@ Suggests:
   rmarkdown,
   bookdown,
   chemometrics,
-  hyperSpec
+  hyperSpec,
+  amap,
+  robustbase,
+  gsubfn
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE
