@@ -75,11 +75,11 @@
             <address class="author_afil">
       <ol style="list-style-type: decimal">
 <li>Professor Emeritus of Chemistry &amp; Biochemistry, DePauw University, Greencastle IN USA.</li>
-      </ol>
+</ol>
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:hanson@depauw.edu" class="email">hanson@depauw.edu</a>
       </address>
                   
-            <h4 data-toc-skip class="date">2022-10-18</h4>
+            <h4 data-toc-skip class="date">2022-10-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/bryanhanson/ChemoSpec/blob/HEAD/vignettes/ChemoSpec.Rmd" class="external-link"><code>vignettes/ChemoSpec.Rmd</code></a></small>
       <div class="hidden name"><code>ChemoSpec.Rmd</code></div>
@@ -93,28 +93,28 @@
 <blockquote>
 <p><code>ChemoSpec</code> is a collection of functions for top-down exploratory data analysis of spectral data including nuclear magnetic resonance (NMR), infrared (IR), Raman, X-ray fluorescence (XRF) and other similar types of spectroscopy. Includes functions for plotting and inspecting spectra, peak alignment, hierarchical cluster analysis (HCA), principal components analysis (PCA) and model-based clustering. Robust methods appropriate for this type of high-dimensional data are available. <code>ChemoSpec</code> is designed for structured experiments, such as metabolomics investigations, where the samples fall into treatment and control groups. Graphical output is formatted consistently for publication quality plots. <code>ChemoSpec</code> is intended to be very user friendly and to help you get usable results quickly. A vignette covering typical operations is available.</p>
 </blockquote>
-<div class="section level2">
+<div class="section level2" number="1">
 <h2 id="introduction">
 <span class="header-section-number">1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>Chemometrics, as defined by Varmuza and Filzmoser <span class="citation">(Varmuza and Filzmoser <a href="#ref-Filzmoser2009" role="doc-biblioref">2009</a>)</span>, is</p>
+<p>Chemometrics, as defined by Varmuza and Filzmoser <span class="citation">(<a href="#ref-Filzmoser2009" role="doc-biblioref">Varmuza and Filzmoser 2009</a>)</span>, is</p>
 <blockquote>
 <p>“… the extraction of relevant information from chemical data by mathematical and statistical tools.”</p>
 </blockquote>
-<p>This is an appropriately broad definition, considering the wealth of questions and tasks that can be treated by chemometric approaches. In our case, the focus is on spectral data sets, which typically have many variables (frequencies) and relatively few samples. Such multivariate, <em>high p, low n</em> data sets present some algorithmic challenges, but these have been addressed by knowledgeable folks. In particular, for both the practical and theoretical background to multivariate chemometric analysis, I strongly recommend the Varmuza/Filzmoser book <span class="citation">(Varmuza and Filzmoser <a href="#ref-Filzmoser2009" role="doc-biblioref">2009</a>)</span>. Some of the functions described here are not much more than wrappers for the functions they and others have made available to the <code>R</code> community in their packages. Another excellent text is the one by Ron Wehrens <span class="citation">(Wehrens <a href="#ref-Wehrens2011" role="doc-biblioref">2011</a>)</span>.</p>
-<p><code>ChemoSpec</code> was developed for the chemometric analysis of spectroscopic data, such as XRF <span class="citation">(Panchuk et al. <a href="#ref-Panchuk2018" role="doc-biblioref">2018</a>)</span>, UV-Vis, NMR or IR data, including MIR and NIR. <code>ChemoSpec</code> also works with chromatographic data (see below) and less commonly encountered techniques such as circular dichroism.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> The purpose of <code>ChemoSpec</code> is to make chemometric tools readily available to a wide range of researchers who might be new to <code>R</code>. The approach is entirely exploratory and unsupervised, in other words, “top-down” <span class="citation">(Wishart <a href="#ref-Wishart2007" role="doc-biblioref">2007</a>)</span>. <code>ChemoSpec</code> is designed to accommodate samples that have different histories, i.e., they fall into different classes, categories or groups. Examples would be treatment and control groups, or simply different specimens (red flowers vs. blue flowers). <code>ChemoSpec</code> is designed to be as user friendly as possible, with plenty of error checking, helpful warnings and a consistent interface. It also produces graphics that are consistent in style and annotation, and are suitable for use in publications and posters. Careful attention was given to writing the documentation for the functions, but this vignette serves as the best starting point for learning data analysis with <code>ChemoSpec</code>. <code>ChemoSpec</code> is not intended to duplicate the work that is typically done on the spectrometer.</p>
+<p>This is an appropriately broad definition, considering the wealth of questions and tasks that can be treated by chemometric approaches. In our case, the focus is on spectral data sets, which typically have many variables (frequencies) and relatively few samples. Such multivariate, <em>high p, low n</em> data sets present some algorithmic challenges, but these have been addressed by knowledgeable folks. In particular, for both the practical and theoretical background to multivariate chemometric analysis, I strongly recommend the Varmuza/Filzmoser book <span class="citation">(<a href="#ref-Filzmoser2009" role="doc-biblioref">Varmuza and Filzmoser 2009</a>)</span>. Some of the functions described here are not much more than wrappers for the functions they and others have made available to the <code>R</code> community in their packages. Another excellent text is the one by Ron Wehrens <span class="citation">(<a href="#ref-Wehrens2011" role="doc-biblioref">Wehrens 2011</a>)</span>.</p>
+<p><code>ChemoSpec</code> was developed for the chemometric analysis of spectroscopic data, such as XRF <span class="citation">(<a href="#ref-Panchuk2018" role="doc-biblioref">Panchuk et al. 2018</a>)</span>, UV-Vis, NMR or IR data, including MIR and NIR. <code>ChemoSpec</code> also works with chromatographic data (see below) and less commonly encountered techniques such as circular dichroism.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> The purpose of <code>ChemoSpec</code> is to make chemometric tools readily available to a wide range of researchers who might be new to <code>R</code>. The approach is entirely exploratory and unsupervised, in other words, “top-down” <span class="citation">(<a href="#ref-Wishart2007" role="doc-biblioref">Wishart 2007</a>)</span>. <code>ChemoSpec</code> is designed to accommodate samples that have different histories, i.e., they fall into different classes, categories or groups. Examples would be treatment and control groups, or simply different specimens (red flowers vs. blue flowers). <code>ChemoSpec</code> is designed to be as user friendly as possible, with plenty of error checking, helpful warnings and a consistent interface. It also produces graphics that are consistent in style and annotation, and are suitable for use in publications and posters. Careful attention was given to writing the documentation for the functions, but this vignette serves as the best starting point for learning data analysis with <code>ChemoSpec</code>. <code>ChemoSpec</code> is not intended to duplicate the work that is typically done on the spectrometer.</p>
 <p>The centerpiece of <code>ChemoSpec</code> is the <code>Spectra</code> object. This is the place where your data is stored and made available to <code>R</code>. Once your data in stored this way and checked, all analyses are easily carried out. <code>ChemoSpec</code> currently ships with several built-in data sets; we’ll use one called <code>SrE.IR</code> in this vignette. You will see in just a moment how to access it and inspect it.</p>
 <p>I assume you have at least a bare-bones knowledge of <code>R</code> as you begin to learn <code>ChemoSpec</code>, and have a good workflow set up. For detailed help on any function discussed here, type <code>?function_name</code> at the console. If you type <code><a href="../reference/ChemoSpec-package.html">?ChemoSpec</a></code> and click the index link at the bottom, you will see all the available functions, which is also convenient when you can’t quite remember the name of a particular function.</p>
-<p>Finally, some conventions for this document: names of <code>R</code> “objects” such as packages, functions, function arguments, and data sets are in <code>typewriter</code> font as are <code>file names</code>. The commands you issue at the console and the output are shown with a light grey background, and are colored according to use and purpose, courtesy of the excellent <code>knitr</code> package <span class="citation">(Xie <a href="#ref-R_knitr" role="doc-biblioref">2021</a>)</span>.</p>
+<p>Finally, some conventions for this document: names of <code>R</code> “objects” such as packages, functions, function arguments, and data sets are in <code>typewriter</code> font as are <code>file names</code>. The commands you issue at the console and the output are shown with a light grey background, and are colored according to use and purpose, courtesy of the excellent <code>knitr</code> package <span class="citation">(<a href="#ref-R_knitr" role="doc-biblioref">Xie 2021</a>)</span>.</p>
 <p>By the way, if you try <code>ChemoSpec</code> and find it useful, have questions, have opinions, or have suggestions, please do let me know. The version you are using already incorporates a great deal of user input, why not add yours? Possible bugs and feature requests should be documented using the Github <a href="https://github.com/bryanhanson/ChemoSpec/issues" class="external-link">issues</a> system.</p>
 </div>
-<div class="section level2">
+<div class="section level2" number="2">
 <h2 id="graphical-output">
 <span class="header-section-number">2</span> Graphical Output<a class="anchor" aria-label="anchor" href="#graphical-output"></a>
 </h2>
-<p>As mentioned, <code>ChemoSpec</code> tries really hard to produce top quality graphics ready for use. The format, layout and annotations are consistent. From the beginning of <code>ChemoSpec</code>, the graphics were produced using <code>R</code>s built-in <code>base</code> graphics system. However, as of version 6, <code>ggplot2</code> graphics and <code>plotly</code> graphics can be used for the most commonly used functions (and <code>base</code> is still available too) <span class="citation">(Wickham et al. <a href="#ref-R_ggplot2" role="doc-biblioref">2021</a>; Sievert et al. <a href="#ref-R_plotly" role="doc-biblioref">2021</a>)</span>. At startup, the graphics mode is set to <code>ggplot2</code>. More information can be found at <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">?GraphicsOptions</a></code>.</p>
+<p>As mentioned, <code>ChemoSpec</code> tries really hard to produce top quality graphics ready for use. The format, layout and annotations are consistent. From the beginning of <code>ChemoSpec</code>, the graphics were produced using <code>R</code>s built-in <code>base</code> graphics system. However, as of version 6, <code>ggplot2</code> graphics and <code>plotly</code> graphics can be used for the most commonly used functions (and <code>base</code> is still available too) <span class="citation">(<a href="#ref-R_ggplot2" role="doc-biblioref">Wickham et al. 2021</a>; <a href="#ref-R_plotly" role="doc-biblioref">Sievert et al. 2021</a>)</span>. At startup, the graphics mode is set to <code>ggplot2</code>. More information can be found at <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">?GraphicsOptions</a></code>.</p>
 </div>
-<div class="section level2">
+<div class="section level2" number="3">
 <h2 id="a-sample-workflow">
 <span class="header-section-number">3</span> A Sample Workflow<a class="anchor" aria-label="anchor" href="#a-sample-workflow"></a>
 </h2>
@@ -130,7 +130,7 @@ Figure 3.1: A typical workflow. For a given data set, some steps may be omitted 
 </p>
 </div>
 </div>
-<div class="section level2">
+<div class="section level2" number="4">
 <h2 id="getting-data-into-chemospec">
 <span class="header-section-number">4</span> Getting Data into ChemoSpec<a class="anchor" aria-label="anchor" href="#getting-data-into-chemospec"></a>
 </h2>
@@ -152,13 +152,13 @@ Figure 3.1: A typical workflow. For a given data set, some steps may be omitted 
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SubspeciesNMR</span> <span class="op">&lt;-</span> <span class="fu">loadObject</span><span class="op">(</span><span class="st">"subsp.RData"</span><span class="op">)</span></span></code></pre></div>
 <p>Now it is ready to use.</p>
-<div class="section level3">
+<div class="section level3" number="4.1">
 <h3 id="working-with-chromatograms">
 <span class="header-section-number">4.1</span> Working with Chromatograms<a class="anchor" aria-label="anchor" href="#working-with-chromatograms"></a>
 </h3>
 <p>While all the language in this vignette and in the package are geared toward analysis of spectra, <code>ChemoSpec</code> can also works quite well with chromatograms as the raw data. In this case, time replaces frequency of course, but other than that the analysis is virtually the same. So the only real difference is when you import the data, e.g. via <code>files2SpectraObject</code>, you will give the frequency unit along these lines: <code>freq.unit = "time (minutes)"</code>.</p>
 </div>
-<div class="section level3">
+<div class="section level3" number="4.2">
 <h3 id="built-in-data-sets">
 <span class="header-section-number">4.2</span> Built-in Data Sets<a class="anchor" aria-label="anchor" href="#built-in-data-sets"></a>
 </h3>
@@ -166,7 +166,7 @@ Figure 3.1: A typical workflow. For a given data set, some steps may be omitted 
 <p>Also included is <code>SrE.NMR</code> which is the corresponding set of NMR spectra. Finally, there are two synthetic data sets, <code>metMUD1</code> and <code>metMUD2</code> which contain NMR metabolomics data. For more detail type <code><a href="../reference/SrE.IR.html">?SrE.IR</a></code> or more generally, <code>?data_set_name</code>.</p>
 <p>The <code>SrE.IR</code> data set is used as the example in this vignette as the sample spectra are fairly different and give good separation by most chemometric methods.</p>
 </div>
-<div class="section level3">
+<div class="section level3" number="4.3">
 <h3 id="sec:prelim">
 <span class="header-section-number">4.3</span> Summarize the Data<a class="anchor" aria-label="anchor" href="#sec:prelim"></a>
 </h3>
@@ -201,7 +201,7 @@ Figure 3.1: A typical workflow. For a given data set, some steps may be omitted 
 <p><code>sumSpectra</code> provides several pieces of information, and we’ll discuss some of them as we go along.</p>
 </div>
 </div>
-<div class="section level2">
+<div class="section level2" number="5">
 <h2 id="plotting-spectra">
 <span class="header-section-number">5</span> Plotting Spectra<a class="anchor" aria-label="anchor" href="#plotting-spectra"></a>
 </h2>
@@ -255,26 +255,26 @@ Figure 5.2: Detail of the carbonyl region.
 <span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"OO"</span>, <span class="va">SrE.IR</span><span class="op">$</span><span class="va">names</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 16</span></span></code></pre>
 </div>
-<div class="section level2">
+<div class="section level2" number="6">
 <h2 id="data-pre-processing-options">
 <span class="header-section-number">6</span> Data Pre-Processing Options<a class="anchor" aria-label="anchor" href="#data-pre-processing-options"></a>
 </h2>
 <p>There are a number of data pre-processing options available for your consideration. The main choices are whether to normalize the data, whether to bin the data, and whether to scale the data. Baseline correction is another typical action, and for some NMR data sets one might need to carry out aligment. Data scaling is handled by the PCA routines, see Section <a href="#sec:pca">8.2</a>. <span class="citation">Engel et al. (<a href="#ref-Engel2013" role="doc-biblioref">2013</a>)</span> has a good discussion of pre-processing. <span class="citation">Karakach, Wentzell, and Walter (<a href="#ref-Karakach2009" role="doc-biblioref">2009</a>)</span> has a good discussion of error sources in <sup>1</sup>H NMR data.</p>
-<div class="section level3">
+<div class="section level3" number="6.1">
 <h3 id="correcting-baseline-drift">
 <span class="header-section-number">6.1</span> Correcting Baseline Drift<a class="anchor" aria-label="anchor" href="#correcting-baseline-drift"></a>
 </h3>
-<p><code>ChemoSpec</code> uses the functions in the package <code>baseline</code> to correct wandering baselines <span class="citation">(Liland and Mevik <a href="#ref-R_baseline" role="doc-biblioref">2020</a>)</span>. The function, <code>baselineSpectra</code>, can show you the original and corrected baselines if desired, which is useful for choosing a method. Figure <a href="#fig:baseline"><strong>??</strong></a> shows a typical usage. Method <code>modployfit</code> works well for IR spectra, but there are several choices and you should experiment. <code>retC = TRUE</code> puts the corrected spectra into the new <code>Spectra</code> object so we can use it going forward (and we will).</p>
+<p><code>ChemoSpec</code> uses the functions in the package <code>baseline</code> to correct wandering baselines <span class="citation">(<a href="#ref-R_baseline" role="doc-biblioref">Liland and Mevik 2020</a>)</span>. The function, <code>baselineSpectra</code>, can show you the original and corrected baselines if desired, which is useful for choosing a method. Figure <a href="#fig:baseline"><strong>??</strong></a> shows a typical usage. Method <code>modployfit</code> works well for IR spectra, but there are several choices and you should experiment. <code>retC = TRUE</code> puts the corrected spectra into the new <code>Spectra</code> object so we can use it going forward (and we will).</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SrE2.IR</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/baselineSpectra.html">baselineSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span>, int <span class="op">=</span> <span class="cn">FALSE</span>, method <span class="op">=</span> <span class="st">"modpolyfit"</span>, retC <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level3">
+<div class="section level3" number="6.2">
 <h3 id="alignment">
 <span class="header-section-number">6.2</span> Alignment<a class="anchor" aria-label="anchor" href="#alignment"></a>
 </h3>
 <p>For <sup>1</sup>H NMR data, it is sometimes desirable to align the spectra. This compensates in part for changes in dilution, ionic strength, or pH that can cause significant shifts for some types of protons. Spectra with broad, rolling peaks won’t have this problem (UV-Vis or IR for example). <code>ChemoSpec</code> provides the <code>clupaSpectra</code> function for this purpose. You can see an example <a href="http://www.validnmr.com/w/index.php?title=File:Wine_Alignment.png" class="external-link">here</a>.</p>
 </div>
-<div class="section level3">
+<div class="section level3" number="6.3">
 <h3 id="bucketing-or-binning">
 <span class="header-section-number">6.3</span> Bucketing or Binning<a class="anchor" aria-label="anchor" href="#bucketing-or-binning"></a>
 </h3>
@@ -313,19 +313,19 @@ Figure 5.2: Detail of the carbonyl region.
 <span><span class="co">## of class 'Spectra'</span></span></code></pre>
 <p>Compare the results here with the <code>sumSpectra</code> of the full data set (Section <a href="#sec:prelim">4.3</a>). In particular note that the frequency resolution has gone down due to the binning process. <code>ChemoSpec</code> uses the simplest of binning algorithms: after perhaps dropping a few points (with a warning) to make your data set divisible by the specified <code>bin.ratio</code>, data points are replaced by the average frequency and the sum of the grouped intensities. Depending upon the fine structure in your data and the <code>bin.ratio</code> this might cause important peaks to be split between different bins. There are more sophisticated binning algorithms in the literature that try to address this, but none are currently implemented in <code>ChemoSpec</code> (<span class="citation">Anderson et al. (<a href="#ref-Anderson2008" role="doc-biblioref">2008</a>)</span>, <span class="citation">De Meyer et al. (<a href="#ref-DeMeyer2008" role="doc-biblioref">2008</a>)</span>, <span class="citation">Sousa, Magalhaes, and Castro Ferreira (<a href="#ref-Sousa2013" role="doc-biblioref">2013</a>)</span>). It’s probably better to align the spectra as described above than risk splitting peaks by binning.</p>
 </div>
-<div class="section level3">
+<div class="section level3" number="6.4">
 <h3 id="normalization">
 <span class="header-section-number">6.4</span> Normalization<a class="anchor" aria-label="anchor" href="#normalization"></a>
 </h3>
 <p>Normalization is handled by the <code>normSpectra</code> function. Usually one normalizes data in which the sample preparation procedure may lead to differences in concentration, such as body fluids that might have been diluted during handling, or that vary due to the physiological state of the organism studied. The <code>SrE.IR</code> data set is taken by placing the oil extract directly on an ATR device and no dilution is possible, so normalization isn’t really appropriate. Please see the help page for the normalization options. The literature contains a number of useful discussions about normalization issues (<span class="citation">Craig et al. (<a href="#ref-Craig2006" role="doc-biblioref">2006</a>)</span> <span class="citation">Romano, Santini, and Indovina (<a href="#ref-Romano2000" role="doc-biblioref">2000</a>)</span> <span class="citation">Berg et al. (<a href="#ref-vandenBerg2006" role="doc-biblioref">2006</a>)</span> <span class="citation">Varmuza and Filzmoser (<a href="#ref-Filzmoser2009" role="doc-biblioref">2009</a>)</span> <span class="citation">Zhang et al. (<a href="#ref-Zhang2009" role="doc-biblioref">2009</a>)</span>).</p>
 </div>
 </div>
-<div class="section level2">
+<div class="section level2" number="7">
 <h2 id="editing-the-data-set-spectral-regions">
 <span class="header-section-number">7</span> Editing the Data Set &amp; Spectral Regions<a class="anchor" aria-label="anchor" href="#editing-the-data-set-spectral-regions"></a>
 </h2>
 <p>In the process of plotting and inspecting your spectra, you may find some spectra/samples that have problems. Perhaps they have instrumental artifacts. Or maybe you have decided to eliminate one subgroup of samples from your data set to see how the results differ.</p>
-<div class="section level3">
+<div class="section level3" number="7.1">
 <h3 id="removing-individual-samples">
 <span class="header-section-number">7.1</span> Removing Individual Samples<a class="anchor" aria-label="anchor" href="#removing-individual-samples"></a>
 </h3>
@@ -379,13 +379,13 @@ Figure 5.2: Detail of the carbonyl region.
 <li>If you know a bit about grep and regular expressions, you can pass a more sophisticated search pattern to <code>rem.sam</code>.</li>
 </ul>
 </div>
-<div class="section level3">
+<div class="section level3" number="7.2">
 <h3 id="removing-groups">
 <span class="header-section-number">7.2</span> Removing Groups<a class="anchor" aria-label="anchor" href="#removing-groups"></a>
 </h3>
 <p><code>removeSample</code> uses the names of the samples (in <code>Spectra$names</code>) to identify and remove individual samples from the <code>Spectra</code> object. There is also a function <code>removeGroup</code> which will remove samples belonging to a particular group in <code>Spectra$groups</code>.</p>
 </div>
-<div class="section level3">
+<div class="section level3" number="7.3">
 <h3 id="identifying-removing-frequencies-of-no-interest">
 <span class="header-section-number">7.3</span> Identifying &amp; Removing Frequencies of No Interest<a class="anchor" aria-label="anchor" href="#identifying-removing-frequencies-of-no-interest"></a>
 </h3>
@@ -503,11 +503,11 @@ Figure 7.6: Identifying gaps in a data set.
 <span><span class="co">## 2 2501.3450 3999.837 1498.492      728     1505</span></span></code></pre>
 </div>
 </div>
-<div class="section level2">
+<div class="section level2" number="8">
 <h2 id="exploratory-data-analysis">
 <span class="header-section-number">8</span> Exploratory Data Analysis<a class="anchor" aria-label="anchor" href="#exploratory-data-analysis"></a>
 </h2>
-<div class="section level3">
+<div class="section level3" number="8.1">
 <h3 id="sec:hca">
 <span class="header-section-number">8.1</span> Hierarchical Cluster Analysis<a class="anchor" aria-label="anchor" href="#sec:hca"></a>
 </h3>
@@ -522,7 +522,7 @@ Figure 8.1: Hierarchical cluster analysis.
 </div>
 <p>The result is a dendrogram. The vertical scale represents the numerical distance between samples. Not unexpectedly, the two reference samples which are known to be chemically different cluster together separately from all other samples. Perhaps surprisingly, the various pure and adulterated oil extracts do not group together precisely. The function <code>hcaScores</code> does the same kind of analysis using the results of PCA, rather than the raw spectra. It is discussed in the next section.</p>
 </div>
-<div class="section level3">
+<div class="section level3" number="8.2">
 <h3 id="sec:pca">
 <span class="header-section-number">8.2</span> Principal Components Analysis<a class="anchor" aria-label="anchor" href="#sec:pca"></a>
 </h3>
@@ -678,7 +678,7 @@ Figure 8.2: Classical PCA scores.
 Figure 8.3: Robust PCA scores.
 </p>
 </div>
-<p>Plots such as shown in Figures <a href="#fig:classPCA">8.2</a> and <a href="#fig:robPCA">8.3</a> can give you an idea of potential outliers, but <code>ChemoSpec</code> includes more sophisticated approaches. The function <code>pcaDiag</code> can produce two types of plots that can be helpful (Figures <a href="#fig:OD">8.4</a> and <a href="#fig:SD">8.5</a>). The meaning and interpretation of these plots is discussed in more detail in Varmuza and Filzmoser, Chapter 3 <span class="citation">(Varmuza and Filzmoser <a href="#ref-Filzmoser2009" role="doc-biblioref">2009</a>)</span>.</p>
+<p>Plots such as shown in Figures <a href="#fig:classPCA">8.2</a> and <a href="#fig:robPCA">8.3</a> can give you an idea of potential outliers, but <code>ChemoSpec</code> includes more sophisticated approaches. The function <code>pcaDiag</code> can produce two types of plots that can be helpful (Figures <a href="#fig:OD">8.4</a> and <a href="#fig:SD">8.5</a>). The meaning and interpretation of these plots is discussed in more detail in Varmuza and Filzmoser, Chapter 3 <span class="citation">(<a href="#ref-Filzmoser2009" role="doc-biblioref">Varmuza and Filzmoser 2009</a>)</span>.</p>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">diagnostics</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pcaDiag.html">pcaDiag</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>, pcs <span class="op">=</span> <span class="fl">2</span>, plot <span class="op">=</span> <span class="st">"OD"</span><span class="op">)</span></span>
 <span><span class="va">p</span></span></code></pre></div>
@@ -776,11 +776,11 @@ Figure 8.12: s-Plot detail.
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/hcaScores.html">hcaScores</a></span><span class="op">(</span><span class="va">SrE3.IR</span>,  <span class="va">c_res</span>, scores <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>, main <span class="op">=</span> <span class="va">myt</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level3">
+<div class="section level3" number="8.3">
 <h3 id="anova-pca">
 <span class="header-section-number">8.3</span> ANOVA-PCA<a class="anchor" aria-label="anchor" href="#anova-pca"></a>
 </h3>
-<p>Harrington <em>et al.</em><span class="citation">(Harrington et al. <a href="#ref-Harrington2005" role="doc-biblioref">2005</a>)</span> (and a few others – <span class="citation">Pinto et al. (<a href="#ref-Pinto2008" role="doc-biblioref">2008</a>)</span>) have demonstrated a method which combines traditional ANOVA with PCA. Standard PCA is blind to class membership, though one generally colors the points in a score plot using the known class membership. ANOVA-PCA uses the class membership to divide the original centered data matrix into submatrices. Each submatrix corresponds to a particular factor, and the rows of the submatrix have been replaced by the average spectrum of each level of the factor. The original data set is thought of as a sum of these submatrices plus residual error. The residual error is added back to each submatrix and then PCA is performed. This is conceptually illustrated in Figures <a href="#fig:aovPCA2">8.13</a> and <a href="#fig:aovPCA1">8.14</a>.</p>
+<p>Harrington <em>et al.</em><span class="citation">(<a href="#ref-Harrington2005" role="doc-biblioref">Harrington et al. 2005</a>)</span> (and a few others – <span class="citation">Pinto et al. (<a href="#ref-Pinto2008" role="doc-biblioref">2008</a>)</span>) have demonstrated a method which combines traditional ANOVA with PCA. Standard PCA is blind to class membership, though one generally colors the points in a score plot using the known class membership. ANOVA-PCA uses the class membership to divide the original centered data matrix into submatrices. Each submatrix corresponds to a particular factor, and the rows of the submatrix have been replaced by the average spectrum of each level of the factor. The original data set is thought of as a sum of these submatrices plus residual error. The residual error is added back to each submatrix and then PCA is performed. This is conceptually illustrated in Figures <a href="#fig:aovPCA2">8.13</a> and <a href="#fig:aovPCA1">8.14</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:aovPCA2"></span>
 <img src="aovPCA2.png" alt="aovPCA breaks the data into a series of submatrices." width="80%"><p class="caption">
@@ -795,12 +795,12 @@ Figure 8.14: Submatrices are composed of rows which are averages of each factor 
 </div>
 <p>ANOVA-PCA has been implemented in <code>ChemoSpec</code> via the functions <code>aov_pcaSpectra</code>, <code>aovPCAscores</code> and <code>aovPCAloadings</code>. The idea here is that if a factor is significant, there will be separation along PC1 in a plot of PC1 vs PC2. There are not enough groups and levels within the <code>SrE.IR</code> data set to carry out ANOVA-PCA. However, the help page for <code>aov_pcaSpectra</code> contains an example using the <code>metMUD1</code> data set which illustrates how to carry out the analysis. It also demonstrates another useful function, <code>splitSpectraGroups</code> which allows you to take an existing group designation and split it into new designations. See <code><a href="../reference/aov_pcaSpectra.html">?aov_pcaSpectra</a></code>.</p>
 </div>
-<div class="section level3">
+<div class="section level3" number="8.4">
 <h3 id="model-based-clustering-using-mclust">
 <span class="header-section-number">8.4</span> Model-Based Clustering Using mclust<a class="anchor" aria-label="anchor" href="#model-based-clustering-using-mclust"></a>
 </h3>
 <p>PCA and HCA are techniques which are unsupervised and assume no underlying model. HCA computes distances between pairs of spectra and groups these in an iterative fashion until the dendrogram is complete. PCA seeks out components that maximize the variance. While in PCA one often (and <code>ChemoSpec</code> does) displays the samples coded by their group membership, this information is not actually used in PCA; any apparent correspondence between the sample group classification and the clusters found is accidental in terms of the computation, but of course, this is what one hopes to find!</p>
-<p><code>mclust</code> is a model-based clustering package that takes a different approach <span class="citation">(Fraley, Raftery, and Scrucca <a href="#ref-R_mclust" role="doc-biblioref">2020</a>)</span>. <code>mclust</code> assumes that there are groups within your data set, and that those groups are multivariate normally distributed. Using an iterative approach, <code>mclust</code> samples various possible groupings within your data set, and uses a Bayesian Information Criterion (BIC) to determine which of the various groupings it finds best fits the data distribution. <code>mclust</code> looks for groups that follow certain constraints, for instance, one constraint is that all the groups found must have a spherical distribution of data points, while another allows for ellipsoidal distributions. See the paper by Scrucca and Raftery <span class="citation">(Scrucca et al. <a href="#ref-Scrucca2017" role="doc-biblioref">2017</a>)</span> for more details. The basic idea however is that <code>mclust</code> goes looking for groups in your data set, and then you can compare the groupings it finds with the groupings you know to be true.</p>
+<p><code>mclust</code> is a model-based clustering package that takes a different approach <span class="citation">(<a href="#ref-R_mclust" role="doc-biblioref">Fraley, Raftery, and Scrucca 2020</a>)</span>. <code>mclust</code> assumes that there are groups within your data set, and that those groups are multivariate normally distributed. Using an iterative approach, <code>mclust</code> samples various possible groupings within your data set, and uses a Bayesian Information Criterion (BIC) to determine which of the various groupings it finds best fits the data distribution. <code>mclust</code> looks for groups that follow certain constraints, for instance, one constraint is that all the groups found must have a spherical distribution of data points, while another allows for ellipsoidal distributions. See the paper by Scrucca and Raftery <span class="citation">(<a href="#ref-Scrucca2017" role="doc-biblioref">Scrucca et al. 2017</a>)</span> for more details. The basic idea however is that <code>mclust</code> goes looking for groups in your data set, and then you can compare the groupings it finds with the groupings you know to be true.</p>
 <p><code>ChemoSpec</code> contains several functions that interface with and extend <code>mclust</code> functions. <code>mclust</code> first uses the BIC to determine which model best fits your data; these results are shown in Figure <a href="#fig:mclust-1">8.15</a>. Next, Figure <a href="#fig:mclust-2">8.16</a> shows the groups that <code>mclust</code> finds in the data. It’s of some interest to visually compare the score plot in Figure <a href="#fig:classPCA">8.2</a> with the <code>mclust</code> results in Figure <a href="#fig:mclust-2">8.16</a>. It looks like <code>mclust</code> groups the two outliers with some of the rest of the data. Next, <code>mclust</code> will map the true groups onto the groups it has found. Points in error are X-ed out. These results can be seen in Figure <a href="#fig:mclust-3">8.17</a>. From this plot, you can see that <code>mclust</code> hasn’t done too well with this data set. In general, you have to be very careful about using <code>mclust</code>’s notion of an error: it is very hard to map the found groups onto the “truth” in an algorithmic way. I lean toward not using the “truth” option in <code>mclust</code> more and more.</p>
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mclustSpectra.html">mclustSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>, plot <span class="op">=</span> <span class="st">"BIC"</span>, main <span class="op">=</span> <span class="va">myt</span><span class="op">)</span></span></code></pre></div>
@@ -832,11 +832,11 @@ Figure 8.17: Comparing mclust results to the TRUTH.
 <p>I hope you have enjoyed this tour of the features of <code>ChemoSpec</code>!</p>
 </div>
 </div>
-<div class="section level2">
+<div class="section level2" number="9">
 <h2 id="appendices">
 <span class="header-section-number">9</span> Appendices<a class="anchor" aria-label="anchor" href="#appendices"></a>
 </h2>
-<div class="section level3">
+<div class="section level3" number="9.1">
 <h3 id="functions-that-are-not-discussed-here">
 <span class="header-section-number">9.1</span> Functions That Are Not Discussed Here<a class="anchor" aria-label="anchor" href="#functions-that-are-not-discussed-here"></a>
 </h3>
@@ -856,7 +856,7 @@ Figure 8.17: Comparing mclust results to the TRUTH.
 <code>plotSpectraDist</code>: Plot the distance between each spectrum and a reference spectrum.</li>
 </ul>
 </div>
-<div class="section level3">
+<div class="section level3" number="9.2">
 <h3 id="sec:colsymsec">
 <span class="header-section-number">9.2</span> Color and Symbol Options<a class="anchor" aria-label="anchor" href="#sec:colsymsec"></a>
 </h3>
@@ -869,13 +869,13 @@ Figure 9.1: Color and symbol suggestions.
 </p>
 </div>
 </div>
-<div class="section level3">
+<div class="section level3" number="9.3">
 <h3 id="related-packages">
 <span class="header-section-number">9.3</span> Related Packages<a class="anchor" aria-label="anchor" href="#related-packages"></a>
 </h3>
-<p>Several other packages exist which do some of the same tasks as <code>ChemoSpec</code>, and do other things as well. The package closest in functionality to <code>ChemoSpec</code> is <code>hyperSpec</code> written by my friend and collaborator Claudia Belietes (these packages were developed independently around the same time, and recently I have contributed to the development of <code>hyperSpec</code>) <span class="citation">(Beleites et al. <a href="#ref-R_hyperSpec" role="doc-biblioref">2021</a>)</span>. There is also a package designed to interconvert <code>Spectra</code> objects and <code>hyperSpec</code> objects, which allows one to move data between the packages more easily <span class="citation">(McManus <a href="#ref-hyperChemoBridge" role="doc-biblioref">2018</a>)</span>. There is a lot development going in the <code>R</code> ecosystem, and new packages appear steadily (and sometimes they disappear!). A good place to check these things out is the <a href="https://bryanhanson.github.io/FOSS4Spectroscopy/" class="external-link">FOSS4Spectroscopy</a> web site which gathers information about many open source spectroscopy projects.</p>
+<p>Several other packages exist which do some of the same tasks as <code>ChemoSpec</code>, and do other things as well. The package closest in functionality to <code>ChemoSpec</code> is <code>hyperSpec</code> written by my friend and collaborator Claudia Belietes (these packages were developed independently around the same time, and recently I have contributed to the development of <code>hyperSpec</code>) <span class="citation">(<a href="#ref-R_hyperSpec" role="doc-biblioref">Beleites et al. 2021</a>)</span>. There is also a package <code>hyperChemoBridge</code> which is designed to interconvert <code>Spectra</code> objects and <code>hyperSpec</code> objects, which allows one to move data between the packages more easily <span class="citation">(<a href="#ref-hyperChemoBridge" role="doc-biblioref">McManus 2018</a>)</span>. There is a lot development going in the <code>R</code> ecosystem, and new packages appear steadily (and sometimes they disappear!). A good place to check these things out is the <a href="https://bryanhanson.github.io/FOSS4Spectroscopy/" class="external-link">FOSS4Spectroscopy</a> web site which gathers information about many open source spectroscopy projects.</p>
 </div>
-<div class="section level3">
+<div class="section level3" number="9.4">
 <h3 id="acknowledgements">
 <span class="header-section-number">9.4</span> Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
 </h3>
@@ -885,78 +885,78 @@ Figure 9.1: Color and symbol suggestions.
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references">
-<div id="ref-Anderson2008">
-<p>Anderson, P. E., N. V. Reo, N. J. DelRaso, T. E. Doom, and M. L. Raymer. 2008. “Gaussian Binning: A New Kernel-Based Method for Processing NMR Spectroscopic Data for Metabolomics.” <em>Metabolomics</em> 4 (3): 261–72.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Anderson2008" class="csl-entry">
+Anderson, P. E., N. V. Reo, N. J. DelRaso, T. E. Doom, and M. L. Raymer. 2008. <span>“Gaussian Binning: A New Kernel-Based Method for Processing <span>NMR</span> Spectroscopic Data for Metabolomics.”</span> <em>Metabolomics</em> 4 (3): 261–72.
 </div>
-<div id="ref-R_hyperSpec">
-<p>Beleites, Claudia, Vilmantas Gegzna, Bryan A. Hanson, Roman Kiselev, Erick Oduniyi, and Valter Sergo. 2021. <em>HyperSpec: Work with Hyperspectral Data, I.e. Spectra + Meta Information (Spatial, Time, Concentration, ...)</em>.</p>
+<div id="ref-R_hyperSpec" class="csl-entry">
+Beleites, Claudia, Vilmantas Gegzna, Bryan A. Hanson, Roman Kiselev, Erick Oduniyi, and Valter Sergo. 2021. <em>hyperSpec: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial, Time, Concentration, ...)</em>.
 </div>
-<div id="ref-vandenBerg2006">
-<p>Berg, R. A. van den, H. C. J. Hoefsloot, J. A. Westerhuis, A. K. Smilde, and M. J. van der Werf. 2006. “Centering, Scaling, and Transformations: Improving the Biological Information Content of Metabolomics Data.” <em>BMC Genomics</em> 7: 15.</p>
+<div id="ref-vandenBerg2006" class="csl-entry">
+Berg, R. A. van den, H. C. J. Hoefsloot, J. A. Westerhuis, A. K. Smilde, and M. J. van der Werf. 2006. <span>“Centering, Scaling, and Transformations: Improving the Biological Information Content of Metabolomics Data.”</span> <em>BMC Genomics</em> 7: 15.
 </div>
-<div id="ref-Craig2006">
-<p>Craig, A., O. Cloareo, E. Holmes, J. K. Nicholson, and J. C. Lindon. 2006. “Scaling and Normalization Effects in NMR Spectroscopic Metabonomic Data Sets.” <em>Analytical Chemistry</em> 78 (7): 2262–7.</p>
+<div id="ref-Craig2006" class="csl-entry">
+Craig, A., O. Cloareo, E. Holmes, J. K. Nicholson, and J. C. Lindon. 2006. <span>“Scaling and Normalization Effects in <span>NMR</span> Spectroscopic Metabonomic Data Sets.”</span> <em>Analytical Chemistry</em> 78 (7): 2262–67.
 </div>
-<div id="ref-DeMeyer2008">
-<p>De Meyer, T., D. Sinnaeve, B. Van Gasse, E. Tsiporkova, E. R. Rietzschel, M. L. De Buyzere, T. C. Gillebert, S. Bekaert, J. C. Martins, and W. Van Criekinge. 2008. “NMR-Based Characterization of Metabolic Alterations in Hypertension Using an Adaptive, Intelligent Binning Algorithm.” <em>Analytical Chemistry</em> 80 (10): 3783–90.</p>
+<div id="ref-DeMeyer2008" class="csl-entry">
+De Meyer, T., D. Sinnaeve, B. Van Gasse, E. Tsiporkova, E. R. Rietzschel, M. L. De Buyzere, T. C. Gillebert, S. Bekaert, J. C. Martins, and W. Van Criekinge. 2008. <span>“<span>NMR</span>-Based Characterization of Metabolic Alterations in Hypertension Using an Adaptive, Intelligent Binning Algorithm.”</span> <em>Analytical Chemistry</em> 80 (10): 3783–90.
 </div>
-<div id="ref-Engel2013">
-<p>Engel, Jasper, Jan Gerretzen, Ewa Szymanska, Jeroen J. Jansen, Gerard Downey, Lionel Blanchet, and Lutgarde M. C. Buydens. 2013. “Breaking with Trends in Pre-Processing?” <em>TRAC-Trends in Analytical Chemistry</em> 50: 96–106. <a href="https://doi.org/10.1016/j.trac.2013.04.015" class="external-link">https://doi.org/10.1016/j.trac.2013.04.015</a>.</p>
+<div id="ref-Engel2013" class="csl-entry">
+Engel, Jasper, Jan Gerretzen, Ewa Szymanska, Jeroen J. Jansen, Gerard Downey, Lionel Blanchet, and Lutgarde M. C. Buydens. 2013. <span>“<span class="nocase">Breaking with Trends in Pre-Processing?</span>”</span> <em><span>TRAC-Trends in Analytical Chemistry</span></em> <span>50</span>: 96–106. <a href="https://doi.org/10.1016/j.trac.2013.04.015" class="external-link">https://doi.org/10.1016/j.trac.2013.04.015</a>.
 </div>
-<div id="ref-R_mclust">
-<p>Fraley, Chris, Adrian E. Raftery, and Luca Scrucca. 2020. <em>Mclust: Gaussian Mixture Modelling for Model-Based Clustering, Classification, and Density Estimation</em>. <a href="https://mclust-org.github.io/mclust/" class="external-link">https://mclust-org.github.io/mclust/</a>.</p>
+<div id="ref-R_mclust" class="csl-entry">
+Fraley, Chris, Adrian E. Raftery, and Luca Scrucca. 2020. <em>Mclust: Gaussian Mixture Modelling for Model-Based Clustering, Classification, and Density Estimation</em>. <a href="https://mclust-org.github.io/mclust/" class="external-link">https://mclust-org.github.io/mclust/</a>.
 </div>
-<div id="ref-Harrington2005">
-<p>Harrington, PD, NE Vieira, J Espinoza, JK Nien, R Romero, and AL Yergey. 2005. “Analysis of variance-principal component analysis: A soft tool for proteomic discovery.” <em>Analytica Chimica Acta</em> 544 (1-2): 118–27. <a href="https://doi.org/10.1016/j.aca.2005.02.042" class="external-link">https://doi.org/10.1016/j.aca.2005.02.042</a>.</p>
+<div id="ref-Harrington2005" class="csl-entry">
+Harrington, PD, NE Vieira, J Espinoza, JK Nien, R Romero, and AL Yergey. 2005. <span>“<span class="nocase">Analysis of variance-principal component analysis: A soft tool for proteomic discovery</span>.”</span> <em>Analytica Chimica Acta</em> <span>544</span> (<span>1-2</span>): 118–27. <a href="https://doi.org/10.1016/j.aca.2005.02.042" class="external-link">https://doi.org/10.1016/j.aca.2005.02.042</a>.
 </div>
-<div id="ref-Karakach2009">
-<p>Karakach, Tobias K., Peter D. Wentzell, and John A. Walter. 2009. “Characterization of the measurement error structure in 1D H-1 NMR data for metabolomics studies.” <em>Analytica Chimica Acta</em> 636 (2): 163–74. <a href="https://doi.org/10.1016/j.aca.2009.01.048" class="external-link">https://doi.org/10.1016/j.aca.2009.01.048</a>.</p>
+<div id="ref-Karakach2009" class="csl-entry">
+Karakach, Tobias K., Peter D. Wentzell, and John A. Walter. 2009. <span>“<span class="nocase">Characterization of the measurement error structure in 1D H-1 NMR data for metabolomics studies</span>.”</span> <em><span>Analytica Chimica Acta</span></em> <span>636</span> (<span>2</span>): 163–74. <a href="https://doi.org/10.1016/j.aca.2009.01.048" class="external-link">https://doi.org/10.1016/j.aca.2009.01.048</a>.
 </div>
-<div id="ref-R_baseline">
-<p>Liland, Kristian Hovde, and Bjørn-Helge Mevik. 2020. <em>Baseline: Baseline Correction of Spectra</em>. <a href="https://CRAN.R-project.org/package=baseline" class="external-link">https://CRAN.R-project.org/package=baseline</a>.</p>
+<div id="ref-R_baseline" class="csl-entry">
+Liland, Kristian Hovde, and Bjørn-Helge Mevik. 2020. <em>Baseline: Baseline Correction of Spectra</em>. <a href="https://CRAN.R-project.org/package=baseline" class="external-link">https://CRAN.R-project.org/package=baseline</a>.
 </div>
-<div id="ref-hyperChemoBridge">
-<p>McManus, Conor. 2018. <em>HyperChemoBridge: Bridge Between hyperSpec &amp; Chemospec</em>. <a href="https://github.com/Chathurga/HyperChemoBridge" class="external-link">https://github.com/Chathurga/HyperChemoBridge</a>.</p>
+<div id="ref-hyperChemoBridge" class="csl-entry">
+McManus, Conor. 2018. <em>hyperChemoBridge: Bridge Between hyperSpec and ChemoSpec</em>. <a href="https://github.com/Chathurga/HyperChemoBridge" class="external-link">https://github.com/Chathurga/HyperChemoBridge</a>.
 </div>
-<div id="ref-Panchuk2018">
-<p>Panchuk, Vitaly, Irina Yaroshenko, Andrey Legin, Valentin Semenov, and Dmitry Kirsanov. 2018. “Application of Chemometric Methods to Xrf-Data – a Tutorial Review.” <em>Analytica Chimica Acta</em> 1040: 19–32. <a href="https://doi.org/https://doi.org/10.1016/j.aca.2018.05.023" class="external-link">https://doi.org/https://doi.org/10.1016/j.aca.2018.05.023</a>.</p>
+<div id="ref-Panchuk2018" class="csl-entry">
+Panchuk, Vitaly, Irina Yaroshenko, Andrey Legin, Valentin Semenov, and Dmitry Kirsanov. 2018. <span>“Application of Chemometric Methods to XRF-Data – a Tutorial Review.”</span> <em>Analytica Chimica Acta</em> 1040: 19–32. https://doi.org/<a href="https://doi.org/10.1016/j.aca.2018.05.023" class="external-link">https://doi.org/10.1016/j.aca.2018.05.023</a>.
 </div>
-<div id="ref-Pinto2008">
-<p>Pinto, Rui Climaco, Veronique Bosc, H. Nocairi, Antonio S. Barros, and Douglas N. Rutledge. 2008. “Using ANOVA-PCA for discriminant analysis: Application to the study ofmid-infrared spectra of carraghenan gels as a function of concentration and temperature.” <em>Analytica Chimica Acta</em> 629 (1-2): 47–55. <a href="https://doi.org/10.1016/j.aca.2008.09.024" class="external-link">https://doi.org/10.1016/j.aca.2008.09.024</a>.</p>
+<div id="ref-Pinto2008" class="csl-entry">
+Pinto, Rui Climaco, Veronique Bosc, H. Nocairi, Antonio S. Barros, and Douglas N. Rutledge. 2008. <span>“<span class="nocase">Using ANOVA-PCA for discriminant analysis: Application to the study ofmid-infrared spectra of carraghenan gels as a function of concentration and temperature</span>.”</span> <em>Analytica Chimica Acta</em> <span>629</span> (<span>1-2</span>): 47–55. <a href="https://doi.org/10.1016/j.aca.2008.09.024" class="external-link">https://doi.org/10.1016/j.aca.2008.09.024</a>.
 </div>
-<div id="ref-Romano2000">
-<p>Romano, R., M. T. Santini, and P. L. Indovina. 2000. “A Time-Domain Algorithm for NMR Spectral Normalization.” <em>Journal of Magnetic Resonance</em> 146 (1): 89–99.</p>
+<div id="ref-Romano2000" class="csl-entry">
+Romano, R., M. T. Santini, and P. L. Indovina. 2000. <span>“A Time-Domain Algorithm for <span>NMR</span> Spectral Normalization.”</span> <em>Journal of Magnetic Resonance</em> 146 (1): 89–99.
 </div>
-<div id="ref-Scrucca2017">
-<p>Scrucca, Luca, Michael Fop, Thomas Brendan Murphy, and Adrian E. Raftery. 2017. “mclust 5: Clustering, Classification and Density Estimation Using Gaussian Finite Mixture Models.” <em>The R Journal</em> 8 (1): 205–33. <a href="https://journal.r-project.org/archive/2017/RJ-2017-008/RJ-2017-008.pdf" class="external-link">https://journal.r-project.org/archive/2017/RJ-2017-008/RJ-2017-008.pdf</a>.</p>
+<div id="ref-Scrucca2017" class="csl-entry">
+Scrucca, Luca, Michael Fop, Thomas Brendan Murphy, and Adrian E. Raftery. 2017. <span>“<span class="nocase">mclust</span> 5: Clustering, Classification and Density Estimation Using <span>G</span>aussian Finite Mixture Models.”</span> <em>The <span>R</span> Journal</em> 8 (1): 205–33. <a href="https://journal.r-project.org/archive/2017/RJ-2017-008/RJ-2017-008.pdf" class="external-link">https://journal.r-project.org/archive/2017/RJ-2017-008/RJ-2017-008.pdf</a>.
 </div>
-<div id="ref-R_plotly">
-<p>Sievert, Carson, Chris Parmer, Toby Hocking, Scott Chamberlain, Karthik Ram, Marianne Corvellec, and Pedro Despouy. 2021. <em>Plotly: Create Interactive Web Graphics via Plotly.js</em>. <a href="https://CRAN.R-project.org/package=plotly" class="external-link">https://CRAN.R-project.org/package=plotly</a>.</p>
+<div id="ref-R_plotly" class="csl-entry">
+Sievert, Carson, Chris Parmer, Toby Hocking, Scott Chamberlain, Karthik Ram, Marianne Corvellec, and Pedro Despouy. 2021. <em>Plotly: Create Interactive Web Graphics via Plotly.js</em>. <a href="https://CRAN.R-project.org/package=plotly" class="external-link">https://CRAN.R-project.org/package=plotly</a>.
 </div>
-<div id="ref-Sousa2013">
-<p>Sousa, S. A. A., Alvicler Magalhaes, and Marcia Miguel Castro Ferreira. 2013. “Optimized Bucketing for NMR Spectra: Three Case Studies.” <em>Chemometrics and Intelligent Laboratory Systems</em> 122: 93–102. <a href="https://doi.org/10.1016/j.chemolab.2013.01.006" class="external-link">https://doi.org/10.1016/j.chemolab.2013.01.006</a>.</p>
+<div id="ref-Sousa2013" class="csl-entry">
+Sousa, S. A. A., Alvicler Magalhaes, and Marcia Miguel Castro Ferreira. 2013. <span>“<span class="nocase">Optimized Bucketing for NMR Spectra: Three Case Studies</span>.”</span> <em><span>Chemometrics and Intelligent Laboratory Systems</span></em> <span>122</span>: 93–102. <a href="https://doi.org/10.1016/j.chemolab.2013.01.006" class="external-link">https://doi.org/10.1016/j.chemolab.2013.01.006</a>.
 </div>
-<div id="ref-Filzmoser2009">
-<p>Varmuza, K., and P. Filzmoser. 2009. <em>Introduction to Multivariate Statistical Analysis in Chemometrics</em>. CRC Press.</p>
+<div id="ref-Filzmoser2009" class="csl-entry">
+Varmuza, K., and P. Filzmoser. 2009. <em>Introduction to Multivariate Statistical Analysis in Chemometrics</em>. CRC Press.
 </div>
-<div id="ref-Wehrens2011">
-<p>Wehrens, R. 2011. <em>Chemometrics with R: Multivariate Data Analysis in the Natural Sciences and Life Sciences</em>. Springer.</p>
+<div id="ref-Wehrens2011" class="csl-entry">
+Wehrens, R. 2011. <em>Chemometrics with r: Multivariate Data Analysis in the Natural Sciences and Life Sciences</em>. Springer.
 </div>
-<div id="ref-R_ggplot2">
-<p>Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, and Dewey Dunnington. 2021. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2" class="external-link">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+<div id="ref-R_ggplot2" class="csl-entry">
+Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, and Dewey Dunnington. 2021. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2" class="external-link">https://CRAN.R-project.org/package=ggplot2</a>.
 </div>
-<div id="ref-Wiklund2008">
-<p>Wiklund, Susanne, Erik Johansson, Lina Sjostrom, Ewa J. Mellerowicz, Ulf Edlund, John P. Shockcor, Johan Gottfries, Thomas Moritz, and Johan Trygg. 2008. “Visualization of Gc/Tof-Ms-Based Metabolomics Data for Identification of Biochemically Interesting Compounds Using Opls Class Models.” <em>Analytical Chemistry</em> 80 (1): 115–22. <a href="https://doi.org/10.1021/ac0713510" class="external-link">https://doi.org/10.1021/ac0713510</a>.</p>
+<div id="ref-Wiklund2008" class="csl-entry">
+Wiklund, Susanne, Erik Johansson, Lina Sjostrom, Ewa J. Mellerowicz, Ulf Edlund, John P. Shockcor, Johan Gottfries, Thomas Moritz, and Johan Trygg. 2008. <span>“Visualization of GC/TOF-MS-Based Metabolomics Data for Identification of Biochemically Interesting Compounds Using OPLS Class Models.”</span> <em>Analytical Chemistry</em> 80 (1): 115–22. <a href="https://doi.org/10.1021/ac0713510" class="external-link">https://doi.org/10.1021/ac0713510</a>.
 </div>
-<div id="ref-Wishart2007">
-<p>Wishart, D. S. 2007. “Current Progress in Computational Metabolomics.” <em>Briefings in Bioinformatics</em> 8 (5): 279–93.</p>
+<div id="ref-Wishart2007" class="csl-entry">
+Wishart, D. S. 2007. <span>“Current Progress in Computational Metabolomics.”</span> <em>Briefings in Bioinformatics</em> 8 (5): 279–93.
 </div>
-<div id="ref-R_knitr">
-<p>Xie, Yihui. 2021. <em>Knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. <a href="https://yihui.org/knitr/" class="external-link">https://yihui.org/knitr/</a>.</p>
+<div id="ref-R_knitr" class="csl-entry">
+Xie, Yihui. 2021. <em>Knitr: A General-Purpose Package for Dynamic Report Generation in r</em>. <a href="https://yihui.org/knitr/" class="external-link">https://yihui.org/knitr/</a>.
 </div>
-<div id="ref-Zhang2009">
-<p>Zhang, S. C., C. Zheng, I. R. Lanza, K. S. Nair, D. Raftery, and O. Vitek. 2009. “Interdependence of Signal Processing and Analysis of Urine H-1 NMR Spectra for Metabolic Profiling.” <em>Analytical Chemistry</em> 81 (15): 6080–8.</p>
+<div id="ref-Zhang2009" class="csl-entry">
+Zhang, S. C., C. Zheng, I. R. Lanza, K. S. Nair, D. Raftery, and O. Vitek. 2009. <span>“Interdependence of Signal Processing and Analysis of Urine <span>H</span>-1 <span>NMR</span> Spectra for Metabolic Profiling.”</span> <em>Analytical Chemistry</em> 81 (15): 6080–88.
 </div>
 </div>
 </div>
