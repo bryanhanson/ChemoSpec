@@ -21,37 +21,6 @@ jobs:
         with:
           use-public-rspm: true
 
-      # - name: Install Bioconductor dependencies
-      #   run: |
-      #     # need to install some pkgs from Bioconductor
-      #     if (!requireNamespace("BiocManager", quietly = TRUE))
-      #       install.packages("BiocManager")
-      #     BiocManager::install("MassSpecWavelet")
-      #     BiocManager::install("impute")
-      #     BiocManager::install("mixOmics")
-      #   shell: Rscript {0}
-
-      # - name: Install other dependencies
-      #   run: |
-      #     install.packages("remotes") # needed here!
-      #     install.packages("roxygen2")
-      #     install.packages("rcmdcheck") # apparently assumed by check-r-package below
-      #     remotes::install_deps(dependencies = TRUE) # all others
-      #   shell: Rscript {0}
-
-      # - name: Roxygenize
-      #   run: |
-      #     roxygen2::roxygenize()
-      #   shell: Rscript {0}
-
-      # - name: Install package
-      #   run: R CMD INSTALL .
-
-      # - name: Deploy package
-      #   run: |
-      #     git config --local user.email "actions@github.com"
-      #     git config --local user.name "GitHub Actions"
-      #     Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::pkgdown, local::.
