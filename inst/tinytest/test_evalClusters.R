@@ -18,16 +18,6 @@ if (identical(Sys.getenv("ESTOY_EN_CASA"), "TRUE")) {
 	
   data(metMUD2)
 
-  # Using clusterCrit
-  res1 <- hcaSpectra(metMUD2) # default clustering and distance methods
-  res2 <- hcaSpectra(metMUD2, d.method = "cosine")
-
-  # The return value from hcaSpectra is a list with hclust as the first element.
-  expect_silent(crit1 <- evalClusters(metMUD2, pkg = "clusterCrit", hclst = res1[[1]], k = 2))
-  expect_silent(crit2 <- evalClusters(metMUD2, pkg = "clusterCrit", hclst = res2[[1]], k = 2))
-
-  expect_equal(unlist(crit1), unlist(crit2))
-
   # Using NbClust
   expect_silent(evalClusters(metMUD2, min.nc = 2, max.nc = 5, method = "average", index = "kl"))
 }

@@ -35,15 +35,12 @@
 #'
 #' @export evalClusters
 #'
-evalClusters <- function(spectra, pkg = "NbClust", ...) {
+evalClusters <- function(spectra, ...) {
   .chkArgs(mode = 11L)
 
-  if (pkg == "NbClust") {
     if (!requireNamespace("NbClust", quietly = TRUE)) {
       stop("You need install package NbClust to use this function")
     }
     res <- NbClust::NbClust(spectra$data, ...)
     return(res)
-  }
-
 }
