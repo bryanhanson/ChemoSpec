@@ -4,7 +4,7 @@
 \alias{evalClusters}
 \title{Evaluate or Compare the Quality of Clusters Quantitatively}
 \usage{
-evalClusters(spectra, pkg = "NbClust", ...)
+evalClusters(spectra, ...)
 }
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
