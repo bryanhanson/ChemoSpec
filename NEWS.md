@@ -1,6 +1,7 @@
-# ChemoSpec 6.1.5 2023-03-30
+# ChemoSpec 6.1.6 2023-04-20
 ## Misc.
-* Package `clusterCrit` was archived by CRAN, and hence was removed from `ChemoSpec`.
+* Package `clusterCrit` was archived by CRAN, and hence was removed from `ChemoSpec`.  Affects `evalClusters` function.
+* Stopped exporting internal functions from `ChemoSpec` and stopped re-exporting internal functions from `ChemoSpecUtils`, due to closer checking by CRAN.
 
 # ChemoSpec 6.1.4 2022-10-21
 ## Bug Fixes
