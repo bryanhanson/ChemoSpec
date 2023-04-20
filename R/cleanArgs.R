@@ -7,8 +7,6 @@
 #'
 #' @return A modified list of arguments.
 #'
-#' @export
-#'
 #' @noRd
 #'
 .cleanArgs <- function(args, func = NULL) {

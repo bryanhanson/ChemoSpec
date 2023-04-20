@@ -47,8 +47,6 @@
 #'
 #' @keywords multivariate cluster
 #'
-#' @export
-#'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @importFrom graphics par plot title points

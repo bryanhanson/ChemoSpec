@@ -29,7 +29,6 @@
 #'
 #' @keywords utilities
 #'
-#' @export
 #' @noRd
 #' @importFrom stats quantile
 #'

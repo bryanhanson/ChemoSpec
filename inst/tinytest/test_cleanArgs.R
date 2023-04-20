@@ -3,7 +3,7 @@
 
 tf <- function(func = "read.table", ...) {
 	args <- as.list(match.call())[-1]
-	args <- .cleanArgs(args, func)
+	args <- ChemoSpec:::.cleanArgs(args, func)
 	return(args)
 }
 

@@ -21,7 +21,6 @@
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
 #' @keywords multivariate htest
-#' @export
 #' @noRd
 #'
 #' @examples

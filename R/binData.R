@@ -37,7 +37,6 @@
 #' @template authors-BH
 #'
 #' @keywords utilities manip
-#' @export
 #' @noRd
 #'
 #' @examples

@@ -30,7 +30,6 @@
 #' range(x2)
 #' sd(x2) / diff(range(x2))
 #'
-#' @export
 #' @noRd
 #'
 .normVec <- function(x) x / sqrt(sum(x^2))

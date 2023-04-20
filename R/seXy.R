@@ -23,7 +23,6 @@
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @export .seX .seXy .seXy95 .seXyMad .seXyIqr
 #' @importFrom stats na.omit sd fivenum median
 #' @noRd
 #'

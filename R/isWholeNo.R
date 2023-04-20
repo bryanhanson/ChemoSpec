@@ -17,7 +17,6 @@
 #'
 #' @keywords utilities
 #'
-#' @export
 #' @noRd
 #'
 .isWholeNo <- function(x, tol = .Machine$double.eps^0.5) {

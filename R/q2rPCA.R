@@ -29,7 +29,6 @@
 #'
 #' @keywords classes utilities
 #'
-#' @export
 #' @noRd
 #'
 .q2rPCA <- function(x) {
