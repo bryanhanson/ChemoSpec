@@ -42,5 +42,4 @@
 #' @importFrom ChemoSpecUtils sampleDist chkGraphicsOpt rowDist hcaScores
 #'
 #' @export  sampleDist chkGraphicsOpt rowDist hcaScores removeFreq removeGroup removeSample plotScores plotScree chkSpectra sumSpectra sumGroups check4Gaps 
-#.shrinkLeaf .colLeaf .plotHCA .chkArgs .chkReqGraphicsPkgs .prepLegendCoords .ggAddLegend .ggAnnotate .ggRepel .labelExtremes .addEllipseInfo .computeEllipses .addLegend .groupNcolor .getExtremeCoords
 NULL
