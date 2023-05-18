@@ -22,24 +22,27 @@
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #' @export sgfSpectra
 #' @examples
-#'
+#' # You need to install package "signal" for this example
 #' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
-#' library("ggplot2")
-#' library("patchwork")
-#' data(SrE.IR)
-#' myt1 <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
-#' myt2 <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra ~ (Smoothed)))
+#' if (requireNamespace("signal")) {
+#'   library("ggplot2")
+#'   library("patchwork")
+#'   data(SrE.IR)
+#'   myt1 <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
+#'   myt2 <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra ~ (Smoothed)))
 #'
-#' p1 <- plotSpectra(SrE.IR)
-#' p1 <- p1 + ggtitle(myt1) + coord_cartesian(xlim = c(1900, 2100), ylim = c(0.0, 0.03))
+#'   p1 <- plotSpectra(SrE.IR)
+#'   p1 <- p1 + ggtitle(myt1) + coord_cartesian(xlim = c(1900, 2100), ylim = c(0.0, 0.03))
 #'
-#' sgf <- sgfSpectra(SrE.IR)
-#' p2 <- plotSpectra(sgf)
-#' p2 <- p2 + ggtitle(myt2) + coord_cartesian(xlim = c(1900, 2100), ylim = c(0.0, 0.03))
+#'   sgf <- sgfSpectra(SrE.IR)
 #'
-#' p3 <- p1/p2
-#' p3
+#'   p2 <- plotSpectra(sgf)
+#'   p2 <- p2 + ggtitle(myt2) + coord_cartesian(xlim = c(1900, 2100), ylim = c(0.0, 0.03))
 #'
+#'   p3 <- p1/p2
+#'   p3
+#' }
+#' 
 sgfSpectra <- function(spectra, m = 0, ...) {
   if (!requireNamespace("signal", quietly = TRUE)) {
     stop("You need to install package signal to use this function")

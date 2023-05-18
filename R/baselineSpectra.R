@@ -55,7 +55,7 @@
 #'
 #' @examples
 #' # You need to install package "baseline" for this example
-#' if (!requireNamespace("baseline", quietly = TRUE)) {
+#' if (requireNamespace("baseline", quietly = TRUE)) {
 #'   data(SrE.IR)
 #'   temp <- baselineSpectra(SrE.IR, int = FALSE, method = "modpolyfit")
 #' }

@@ -55,7 +55,8 @@ becomes the new baseline.  This is most suitable for cases in which the
 baseline rises or falls steadily, as is often seen in chromatograms.
 }
 \examples{
-if (!requireNamespace("baseline", quietly = TRUE)) {
+# You need to install package "baseline" for this example
+if (requireNamespace("baseline", quietly = TRUE)) {
   data(SrE.IR)
   temp <- baselineSpectra(SrE.IR, int = FALSE, method = "modpolyfit")
 }

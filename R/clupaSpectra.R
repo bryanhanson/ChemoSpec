@@ -30,7 +30,7 @@
 #' @examples
 #' # You need to install package speaq for this example
 #' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
-#' if (!requireNamespace("speaq", quietly = TRUE)) {
+#' if (requireNamespace("speaq", quietly = TRUE)) {
 #'   library("ggplot2")
 #'   data(alignMUD)
 #'
@@ -48,6 +48,7 @@
 #'     coord_cartesian(xlim = c(1.5, 1.8), ylim = c(0, 1900))
 #'   p2
 #' }
+#'
 #' @export clupaSpectra
 #'
 #'
