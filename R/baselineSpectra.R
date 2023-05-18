@@ -54,9 +54,10 @@
 #' @importFrom stats lm predict
 #'
 #' @examples
-#'
-#' data(SrE.IR)
-#' temp <- baselineSpectra(SrE.IR, int = FALSE, method = "modpolyfit")
+#' if (!requireNamespace("baseline", quietly = TRUE)) {
+#'   data(SrE.IR)
+#'   temp <- baselineSpectra(SrE.IR, int = FALSE, method = "modpolyfit")
+#' }
 #'
 baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, show = 1, ...) {
 
