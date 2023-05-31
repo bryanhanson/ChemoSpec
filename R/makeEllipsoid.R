@@ -43,7 +43,7 @@
 #' @seealso \code{\link{cov.rob}} for the function that does the work.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @keywords multivariate utilities
+#' @keywords internal
 #'
 #' @examples
 #'

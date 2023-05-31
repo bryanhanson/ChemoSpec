@@ -22,6 +22,7 @@
 #'
 #' @importFrom plotly add_markers add_trace layout plot_ly
 #' @noRd
+#' @keywords internal
 #'
 .plotly3d <- function(spectra, pca, L, pcs, truth = NULL) {
 

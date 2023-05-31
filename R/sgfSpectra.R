@@ -24,7 +24,7 @@
 #' @examples
 #' # You need to install package "signal" for this example
 #' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
-#' if (requireNamespace("signal")) {
+#' if (requireNamespace("signal", quietly = TRUE)) {
 #'   library("ggplot2")
 #'   library("patchwork")
 #'   data(SrE.IR)

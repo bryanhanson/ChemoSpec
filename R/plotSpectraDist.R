@@ -33,15 +33,18 @@
 #'
 #' @examples
 #'
-#' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
-#' library("ggplot2")
-#' data(SrE.NMR)
-#' txt1 <- paste("Distance from", SrE.NMR$names[1])
-#' txt2 <- paste("Rank Distance from", SrE.NMR$names[1])
-#' p <- plotSpectraDist(SrE.NMR)
-#' p <- p + labs(title = txt1, xlab = txt2, ylab = txt2) +
-#'          coord_cartesian(ylim = c(0, 1.1), xlim = c(0, 16))
+#' # You need to install package "amap" to use this function
+#' if (requireNamespace("amap", quietly = TRUE)) {
+#'   # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+#'   library("ggplot2")
+#'   data(SrE.NMR)
+#'   txt1 <- paste("Distance from", SrE.NMR$names[1])
+#'   txt2 <- paste("Rank Distance from", SrE.NMR$names[1])
+#'   p <- plotSpectraDist(SrE.NMR)
+#'   p <- p + labs(title = txt1, xlab = txt2, ylab = txt2) +
+#'            coord_cartesian(ylim = c(0, 1.1), xlim = c(0, 16))
 #' p
+#' }
 #'
 plotSpectraDist <- function(spectra,
                             method = "pearson",

@@ -8,6 +8,7 @@
 #' @export
 #' @importFrom utils .DollarNames
 #' @noRd
+#' @keywords internal
 #'
 .DollarNames.Spectra <- function(x, pattern = "") {
   grep(pattern, names(x), value = TRUE)

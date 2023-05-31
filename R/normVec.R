@@ -18,7 +18,7 @@
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @keywords utilities manip
+#' @keywords internal
 #'
 #' @examples
 #'

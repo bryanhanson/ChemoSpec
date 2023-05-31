@@ -19,7 +19,7 @@
 #'
 #' @template authors-BH
 #'
-#' @keywords utilities
+#' @keywords internal
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'

@@ -1,3 +1,4 @@
+#'
 #' Clean Up Dots Arguments to Pass Elsewhere
 #'
 #' @param args A list of args as produced by \code{as.list(match.call())[-1]}.
@@ -6,7 +7,7 @@
 #' @param func The name of the function that will receive the cleaned arguments.
 #'
 #' @return A modified list of arguments.
-#'
+#' @keywords internal
 #' @noRd
 #'
 .cleanArgs <- function(args, func = NULL) {

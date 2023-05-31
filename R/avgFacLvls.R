@@ -20,7 +20,7 @@
 #' @seealso \code{\link{aov_pcaSpectra}} for full details.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @keywords multivariate htest
+#' @keywords internal
 #' @noRd
 #'
 #' @examples

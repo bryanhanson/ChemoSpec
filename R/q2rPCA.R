@@ -27,7 +27,7 @@
 #' @seealso \code{\link{prcomp}}, \code{\link{princomp}}
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @keywords classes utilities
+#' @keywords internal
 #'
 #' @noRd
 #'

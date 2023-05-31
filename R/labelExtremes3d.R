@@ -27,7 +27,7 @@
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @keywords utilities
+#' @keywords internal
 #'
 #' @noRd
 #' @importFrom stats quantile

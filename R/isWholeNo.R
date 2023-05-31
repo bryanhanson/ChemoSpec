@@ -15,7 +15,7 @@
 #'
 #' @seealso \code{\link{is.integer}}
 #'
-#' @keywords utilities
+#' @keywords internal
 #'
 #' @noRd
 #'
