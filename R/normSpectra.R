@@ -23,7 +23,7 @@
 #'     inappropriate for spectral data sets.
 #' }
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}} to be normalized.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param method One of \code{c("PQN", "TotInt", "Range", "zero2one")} giving
 #' the method for normalization.

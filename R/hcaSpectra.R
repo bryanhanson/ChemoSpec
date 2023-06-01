@@ -5,7 +5,7 @@
 #' information in a \code{\link{Spectra}} object.  Many methods for computing
 #' the clusters and distances are available.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param c.method A character string describing the clustering method; must be
 #' acceptable to \code{\link{hclust}}.

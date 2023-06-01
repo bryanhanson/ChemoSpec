@@ -6,7 +6,7 @@
 #' re-write of Peter Filzmoser's \code{\link[chemometrics]{pcaCV}} method
 #' with some small plotting changes.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param choice A character string indicating the choice of scaling.  One of
 #' \code{c("noscale"}, \code{"autoscale"}, \code{"Pareto")}.

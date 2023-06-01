@@ -25,7 +25,7 @@
 #' levels of the the first element of \code{inst}.  This provides a different
 #' means of changing the sample color encoding than \code{\link{conColScheme}}.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param inst A list giving the name of the new element to be created from a
 #' set of target strings given in a character vector.  See the example for the

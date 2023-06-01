@@ -13,7 +13,7 @@
 #' This function is an extraordinarily thin wrapper which helps the user to
 #' avoid writing a very tedious \code{formula} specification.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param pca An object of class \code{\link{prcomp}}.
 #'

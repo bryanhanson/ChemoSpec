@@ -7,7 +7,7 @@
 binSpectra(spectra, bin.ratio)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}} to be binned.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{bin.ratio}{An integer giving the binning ratio, that is, the number of
 points to be grouped together into one subset of data.}

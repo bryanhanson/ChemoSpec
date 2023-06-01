@@ -4,7 +4,7 @@
 #' This function is a wrapper to several functions in the \pkg{speaq} package.
 #' It implements the CluPA algorithm described in the reference.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param bT Numeric.  The baseline threshold. Defaults to five percent of the
 #' range of the data, in \code{spectra$data}.  Passed to

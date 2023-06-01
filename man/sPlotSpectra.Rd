@@ -7,7 +7,7 @@
 sPlotSpectra(spectra, pca, pc = 1, tol = 0.05, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{pca}{The result of a pca calculation on \code{\link{Spectra}} (i.e.
 the output from \code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}}).}

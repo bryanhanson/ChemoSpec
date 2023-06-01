@@ -7,7 +7,7 @@
 hmapSpectra(spectra, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{\dots}{Additional arguments to be passed downstream.  A great deal of
 control is available - check \code{\link[seriation]{hmap}} for details.  Most of the control

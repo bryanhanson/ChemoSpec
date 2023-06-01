@@ -10,7 +10,7 @@
 #' In these cases, you may need to limit the number of samples in passed to this function.
 #' See \code{\link{removeSample}} or use argument \code{which}.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}} to be checked.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param which Integer.  If not \code{NULL}, specifies by number which spectra to plot.
 #' If greater control is needed, use \code{\link{removeSample}} which is more flexible

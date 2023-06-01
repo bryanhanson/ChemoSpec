@@ -5,7 +5,7 @@
 #' spectra in a \code{\link{Spectra}} object.  Distance can be defined in a number of
 #' ways (see Arguments).
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param method Character.  Any method acceptable to \code{\link{rowDist}}.
 #'

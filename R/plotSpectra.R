@@ -5,7 +5,7 @@
 #' offset or stacked.  The vertical scale is controlled by a combination of
 #' several parameters.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param which An integer vector specifying which spectra to plot, and the
 #' order.

@@ -7,7 +7,7 @@
 irlba_pcaSpectra(spectra, choice = "noscale", n = 3, center = TRUE, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{choice}{A character string indicating the choice of scaling.  One of
 \code{c("noscale"}, \code{"autoscale"}, \code{"Pareto")}. \code{"autoscale"}

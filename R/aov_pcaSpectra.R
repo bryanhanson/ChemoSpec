@@ -10,7 +10,7 @@
 #' (ANOVA-PCA is not blind to group membership). ANOVA-PCA with only one factor
 #' is the same as standard PCA and gives no additional separation.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param fac A vector of character strings giving the factors to be used in
 #' the analysis.  These should be elements of \code{\link{Spectra}}.  Note that

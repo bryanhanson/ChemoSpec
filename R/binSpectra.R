@@ -14,7 +14,7 @@
 #' continuous piece is sent out and binned separately (by
 #' \code{\link{binSpectra}}).
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}} to be binned.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param bin.ratio An integer giving the binning ratio, that is, the number of
 #' points to be grouped together into one subset of data.

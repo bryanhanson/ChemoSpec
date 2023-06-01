@@ -3,7 +3,7 @@
 #'
 #' Creates a multi-panel plot of loadings along with a reference spectrum.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param pca An object of class \code{\link{prcomp}}, modified to include a
 #' list element called \code{$method}, a character string describing the

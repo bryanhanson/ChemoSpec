@@ -14,7 +14,7 @@ hcaSpectra(
 )
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{c.method}{A character string describing the clustering method; must be
 acceptable to \code{\link{hclust}}.}

@@ -5,7 +5,7 @@
 #' Argument \code{submat} is used to select PCA results from among those
 #' stored in argument \code{PCA}.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param so \emph{List} of pca results created by \code{\link{aov_pcaSpectra}}.
 #'

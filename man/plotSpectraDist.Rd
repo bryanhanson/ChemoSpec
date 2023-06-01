@@ -7,7 +7,7 @@
 plotSpectraDist(spectra, method = "pearson", ref = 1, labels = TRUE, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{method}{Character.  Any method acceptable to \code{\link{rowDist}}.}
 

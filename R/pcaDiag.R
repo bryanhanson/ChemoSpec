@@ -13,7 +13,7 @@
 #' graphics window.  Alternatively, just call the function twice, once
 #' specifying \code{OD} and once specifying \code{SD}.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param pca An object of class \code{\link{prcomp}}
 #' modified to include a character string (\code{$method}) describing the

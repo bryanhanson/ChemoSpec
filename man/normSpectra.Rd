@@ -7,7 +7,7 @@
 normSpectra(spectra, method = "PQN", RangeExpress = NULL)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}} to be normalized.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{method}{One of \code{c("PQN", "TotInt", "Range", "zero2one")} giving
 the method for normalization.}

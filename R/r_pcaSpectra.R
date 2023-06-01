@@ -5,7 +5,7 @@
 #' object.  The data are row- and column-centered, and the user can select
 #' various options for scaling.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param choice A character vector describing the type of scaling to be
 #' carried out.  One of \code{c("noscale", "mad")}.

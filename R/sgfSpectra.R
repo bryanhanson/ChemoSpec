@@ -5,7 +5,7 @@
 #' \code{\link[signal]{sgolayfilt}}.  It allows one to apply Savitzky-Golay
 #' filters to a \code{\link{Spectra}} object in a convenient way.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}} to be checked.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param m The desired m-th derivative.  \code{m = 0} smooths the data (i.ei a rolling
 #' average), \code{m = 1} gives the first derivative etc.

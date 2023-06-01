@@ -7,7 +7,7 @@
 r_pcaSpectra(spectra, choice = "noscale")
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{choice}{A character vector describing the type of scaling to be
 carried out.  One of \code{c("noscale", "mad")}.}

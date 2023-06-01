@@ -18,7 +18,7 @@
 #' that, the relative summary statistic is plotted, offset, but on the same
 #' scale.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}} to be analyzed.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param method Character.  One of \code{c("sd", "sem", "sem95", "mad",
 #' "iqr")}.

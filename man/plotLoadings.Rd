@@ -7,7 +7,7 @@
 plotLoadings(spectra, pca, loads = c(1), ref = 1, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{pca}{An object of class \code{\link{prcomp}}, modified to include a
 list element called \code{$method}, a character string describing the

@@ -7,7 +7,7 @@
 reviewAllSpectra(spectra, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{\dots}{`r .writeDoc_GraphicsDots()`}
 }

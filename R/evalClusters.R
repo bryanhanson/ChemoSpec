@@ -4,7 +4,7 @@
 #' This function is a wrapper for \code{NbClust} in package \pkg{NbClust}. It
 #' can be used to quantitatively compare different clustering options.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param \dots Other parameters to be passed to the function. In particular,
 #' \code{NbClust} package will need some parameters.  See the

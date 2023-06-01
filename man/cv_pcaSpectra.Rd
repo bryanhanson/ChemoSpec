@@ -17,7 +17,7 @@ cv_pcaSpectra(
 )
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{pcs}{As per \code{\link[chemometrics]{pcaCV}} where it is called amax;
 an integer giving the number of PC scores to include.}

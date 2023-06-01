@@ -7,7 +7,7 @@
 aovPCAloadings(spectra, PCA, submat = 1, loads = 1, ref = 1, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{PCA}{List of pca results created by \code{\link{aov_pcaSpectra}}.}
 

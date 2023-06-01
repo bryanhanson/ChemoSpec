@@ -7,7 +7,7 @@
 clupaSpectra(spectra, bT = NULL, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{bT}{Numeric.  The baseline threshold. Defaults to five percent of the
 range of the data, in \code{spectra$data}.  Passed to

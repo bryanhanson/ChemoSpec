@@ -7,7 +7,7 @@
 splitSpectraGroups(spectra, inst = NULL, rep.cols = NULL, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{inst}{A list giving the name of the new element to be created from a
 set of target strings given in a character vector.  See the example for the

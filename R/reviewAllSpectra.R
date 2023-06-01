@@ -9,7 +9,7 @@
 #'   \item{ggplot2:}{All the spectra are plotted in a single column.}
 #'  }
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param \dots `r .writeDoc_GraphicsDots()`
 #' @return `r .writeDoc_GraphicsReturn()`

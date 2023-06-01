@@ -15,7 +15,7 @@ pcaDiag(
 )
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{pca}{An object of class \code{\link{prcomp}}
 modified to include a character string (\code{$method}) describing the

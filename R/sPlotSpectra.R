@@ -6,7 +6,7 @@
 #' allows visual identification of variables driving the separation and thus is
 #' a useful adjunct to traditional loading plots.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param pca The result of a pca calculation on \code{\link{Spectra}} (i.e.
 #' the output from \code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}}).

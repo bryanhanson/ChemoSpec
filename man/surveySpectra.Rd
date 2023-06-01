@@ -20,7 +20,7 @@ surveySpectra2(
 )
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}} to be analyzed.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{method}{Character.  One of \code{c("sd", "sem", "sem95", "mad",
 "iqr")}.}

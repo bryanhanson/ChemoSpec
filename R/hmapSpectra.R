@@ -6,7 +6,7 @@
 #' across each dimension (controlled by argument \code{method}, see \code{\link[seriation]{hmap}}).
 #' The vignette for package \pkg{seriation} has more details.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param \dots Additional arguments to be passed downstream.  A great deal of
 #' control is available - check \code{\link[seriation]{hmap}} for details.  Most of the control

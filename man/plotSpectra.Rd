@@ -17,7 +17,7 @@ plotSpectra(
 )
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{which}{An integer vector specifying which spectra to plot, and the
 order.}

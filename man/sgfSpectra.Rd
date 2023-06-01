@@ -7,7 +7,7 @@
 sgfSpectra(spectra, m = 0, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}} to be checked.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{m}{The desired m-th derivative.  \code{m = 0} smooths the data (i.ei a rolling
 average), \code{m = 1} gives the first derivative etc.}

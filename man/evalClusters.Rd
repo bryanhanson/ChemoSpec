@@ -7,7 +7,7 @@
 evalClusters(spectra, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{`r .writeDoc_Spectra1()`}
 
 \item{\dots}{Other parameters to be passed to the function. In particular,
 \code{NbClust} package will need some parameters.  See the
