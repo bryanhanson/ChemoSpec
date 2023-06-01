@@ -13,7 +13,7 @@
 #'
 #' @param labels Logical.  Shall the points be labeled?
 #'
-#' @template param-graphics-dots
+#' @param \dots `r .writeDoc_GraphicsDots()`
 #' @template param-graphics-return2
 #'
 #' @seealso To compare all spectra simultaneously in a heatmap, see

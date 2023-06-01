@@ -20,7 +20,7 @@
 #' @param loads A vector of two integers specifying which loading vectors to
 #' plot.
 #'
-#' @template param-graphics-dots
+#' @param \dots `r .writeDoc_GraphicsDots()`
 #' @template param-tol
 #' @template param-graphics-return
 #'

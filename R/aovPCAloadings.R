@@ -17,7 +17,7 @@
 #' @param ref An integer specifying the reference spectrum to plot, which
 #'        appears at the bottom of the plot.
 #'
-#' @template param-graphics-dots
+#' @param \dots `r .writeDoc_GraphicsDots()`
 #' @template param-graphics-return
 #'
 #' @authors `r .writeDoc_Authors(c("BH", "MK"))

@@ -29,7 +29,7 @@
 #' @param lab.pos Numeric, giving the frequency where the label should be drawn.
 #' Applies to \code{surveySpectra2} only.
 #'
-#' @template param-graphics-dots
+#' @param \dots `r .writeDoc_GraphicsDots()`
 #' @template param-graphics-return
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}

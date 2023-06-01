@@ -32,7 +32,7 @@
 #' if \code{TRUE}.
 #'
 #' @template param-legloc
-#' @template param-graphics-dots
+#' @param \dots `r .writeDoc_GraphicsDots()`
 #' @template param-graphics-return
 #' @authors `r .writeDoc_Authors(c("BH", "TG"))
 #'

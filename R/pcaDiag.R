@@ -32,7 +32,7 @@
 #' @param use.sym logical; if true, the color scheme is change to black and
 #' symbols are used for plotting.
 #'
-#' @template param-graphics-dots
+#' @param \dots `r .writeDoc_GraphicsDots()`
 #' @template param-graphics-return2
 #' @authors `r .writeDoc_Authors(c("BH", "TG"))
 #'

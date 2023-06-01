@@ -11,7 +11,7 @@
 #'
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
-#' @template param-graphics-dots
+#' @param \dots `r .writeDoc_GraphicsDots()`
 #' @template param-graphics-return
 #'
 #' @authors `r .writeDoc_Authors(c("BH", "TG"))
