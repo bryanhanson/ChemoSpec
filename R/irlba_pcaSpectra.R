@@ -36,7 +36,7 @@
 #' \code{\link{s_pcaSpectra}} for sparse PCA calculations.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @template results-links
+#' `r .writeDoc_LinksShowPCAResults()`
 #'
 #' @references J. Baglama and L. Reichel, "Augmented Implicitly Restarted Lanczos
 #' Bidiagonalization Methods"  \emph{SIAM J. Sci. Comput.} (2005).

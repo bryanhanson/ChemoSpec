@@ -54,3 +54,8 @@
 .writeDoc_Spectra3 <- function() {
 "An object of S3 class [ChemoSpec::Spectra()] or [ChemoSpec2D::Spectra2D()]."
 }
+
+#' @noRd
+.writeDoc_LinksShowPCAResults <- function() {
+"For displaying the results, [ChemoSpecUtils::plotScree()], [ChemoSpecUtils::plotScores()], [plotLoadings()], [ChemoSpec2D::plot2Loadings()], [sPlotSpectra()]."
+}

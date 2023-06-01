@@ -36,7 +36,7 @@
 #' \code{\link{irlba_pcaSpectra}} for PCA via the IRLBA algorithm.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @template results-links
+#' `r .writeDoc_LinksShowPCAResults()`
 #'
 #' @references H. Zou, T. Hastie and R. Tibshirani "Sparse Principal Components Analysis"
 #' \emph{J. Comp. Stat. Graphics} vol. 15 no. 2 pgs. 265-286 (2006).
