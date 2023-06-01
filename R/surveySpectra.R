@@ -30,7 +30,7 @@
 #' Applies to \code{surveySpectra2} only.
 #'
 #' @param \dots `r .writeDoc_GraphicsDots()`
-#' @template param-graphics-return
+#' @return `r .writeDoc_GraphicsReturn()`
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'

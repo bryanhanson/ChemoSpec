@@ -22,7 +22,7 @@
 #'
 #' @param \dots `r .writeDoc_GraphicsDots()`
 #' @param tol `r .writeDoc_Tol()`
-#' @template param-graphics-return
+#' @return `r .writeDoc_GraphicsReturn()`
 #'
 #' @authors `r .writeDoc_Authors(c("BH", "TG"))
 #'

@@ -41,6 +41,13 @@
 }
 
 #' @noRd
+.writeDoc_GraphicsReturn2 <- function() {
+"The returned value depends on the graphics option selected (see [ChemoSpecUtils::GraphicsOptions()]).
+* **base** A data frame or list containing the data plotted.  Assign the value and run `str()` or `names()` on it to see what it contains. Side effect is a plot.
+* **ggplot2** The plot is displayed, and a `ggplot2` plot object is returned if the value is assigned. The plot can be modified in the usual `ggplot2` manner. If you want the plotted values, you can access them via the base graphics mode."
+}
+
+#' @noRd
 .writeDoc_Spectra1 <- function() {
 "An object of S3 class [ChemoSpec::Spectra()]."
 }

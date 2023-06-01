@@ -14,7 +14,7 @@
 #' @param labels Logical.  Shall the points be labeled?
 #'
 #' @param \dots `r .writeDoc_GraphicsDots()`
-#' @template param-graphics-return2
+#' @return `r .writeDoc_GraphicsReturn2()`
 #'
 #' @seealso To compare all spectra simultaneously in a heatmap, see
 #' \code{\link[ChemoSpecUtils]{sampleDist}}.  Additional documentation

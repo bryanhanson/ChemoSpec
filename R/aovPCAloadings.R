@@ -18,7 +18,7 @@
 #'        appears at the bottom of the plot.
 #'
 #' @param \dots `r .writeDoc_GraphicsDots()`
-#' @template param-graphics-return
+#' @return `r .writeDoc_GraphicsReturn()`
 #'
 #' @authors `r .writeDoc_Authors(c("BH", "MK"))
 #'

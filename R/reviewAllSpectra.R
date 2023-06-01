@@ -12,7 +12,7 @@
 #' @param spectra An object of S3 class \code{\link{Spectra}}.
 #'
 #' @param \dots `r .writeDoc_GraphicsDots()`
-#' @template param-graphics-return
+#' @return `r .writeDoc_GraphicsReturn()`
 #'
 #' @authors `r .writeDoc_Authors(c("BH", "TG"))
 #'

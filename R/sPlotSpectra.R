@@ -15,7 +15,7 @@
 #'
 #' @param tol `r .writeDoc_Tol()`
 #' @param \dots `r .writeDoc_GraphicsDots()`
-#' @template param-graphics-return
+#' @return `r .writeDoc_GraphicsReturn()`
 #' @author Bryan A. Hanson (DePauw University), Tejasvi Gupta & Matthew J. Keinsley.
 #'
 #' @references Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor,

@@ -33,7 +33,7 @@
 #'
 #' @param leg.loc `r .writeDoc_LegLoc()`
 #' @param \dots `r .writeDoc_GraphicsDots()`
-#' @template param-graphics-return
+#' @return `r .writeDoc_GraphicsReturn()`
 #' @authors `r .writeDoc_Authors(c("BH", "TG"))
 #'
 #' @seealso \code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOptions}}

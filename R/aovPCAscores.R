@@ -31,7 +31,7 @@
 #' done by \code{aov_pcaSpectra} is based on argument \code{fac}.  These may
 #' not correspond, but you can edit \code{spectra$groups} to match if necessary.
 #'
-#' @template param-graphics-return2
+#' @return `r .writeDoc_GraphicsReturn2()`
 #' @param tol `r .writeDoc_Tol()`
 #'
 #' @authors `r .writeDoc_Authors(c("BH", "MK"))

@@ -33,7 +33,7 @@
 #' symbols are used for plotting.
 #'
 #' @param \dots `r .writeDoc_GraphicsDots()`
-#' @template param-graphics-return2
+#' @return `r .writeDoc_GraphicsReturn2()`
 #' @authors `r .writeDoc_Authors(c("BH", "TG"))
 #'
 #' @seealso \code{\link[chemometrics]{pcaDiagplot}} in package
