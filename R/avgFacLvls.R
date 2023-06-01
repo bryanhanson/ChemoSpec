@@ -15,7 +15,7 @@
 #' @return A matrix whose rows are composed of the column means for each level
 #' of the factor.
 #'
-#' @authors `r .writeDoc_Authors(c("BH", "MK"))
+#' @author `r .writeDoc_Authors(c("BH", "MK"))
 #'
 #' @seealso \code{\link{aov_pcaSpectra}} for full details.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}

@@ -70,7 +70,7 @@ mclust3dSpectra(metMUD1, pca, truth = metMUD1$groups)
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University)
+`r .writeDoc_Authors("BH")
 }
 \keyword{cluster}
 \keyword{multivariate}

@@ -35,6 +35,6 @@ sumSpectra(averaged)
 
 }
 \author{
-Bryan A. Hanson (DePauw University)
+`r .writeDoc_Authors("BH")
 }
 \keyword{utilities}

@@ -26,7 +26,7 @@ filters to a \code{\link{Spectra}} object in a convenient way.
 \examples{
 # You need to install package "signal" for this example
 # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
-if (requireNamespace("signal")) {
+if (requireNamespace("signal", quietly = TRUE)) {
   library("ggplot2")
   library("patchwork")
   data(SrE.IR)
@@ -50,7 +50,7 @@ if (requireNamespace("signal")) {
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University)
+`r .writeDoc_Authors("BH")
 }
 \keyword{multivariate}
 \keyword{utilities}

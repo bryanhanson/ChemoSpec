@@ -64,5 +64,5 @@
 
 #' @noRd
 .writeDoc_LinksShowPCAResults <- function() {
-"For displaying the results, [ChemoSpecUtils::plotScree()], [ChemoSpecUtils::plotScores()], [plotLoadings()], [ChemoSpec2D::plot2Loadings()], [sPlotSpectra()]."
+"For displaying the results, [ChemoSpecUtils::plotScree()], [ChemoSpecUtils::plotScores()], [plotLoadings()], [plot2Loadings()], [sPlotSpectra()]."
 }

@@ -49,9 +49,11 @@ re-write of Peter Filzmoser's \code{\link[chemometrics]{pcaCV}} method
 with some small plotting changes.
 }
 \examples{
-
-data(SrE.IR)
-pca <- cv_pcaSpectra(SrE.IR, pcs = 5)
+# You need to install package "pls" for this example
+if (requireNamespace("pls", quietly = TRUE)) {
+  data(SrE.IR)
+  pca <- cv_pcaSpectra(SrE.IR, pcs = 5)
+}
 
 }
 \references{

@@ -30,14 +30,7 @@ specifies classical confidence ellipses, \code{rob} specifies robust
 confidence ellipses.  An ellipse is drawn for each group unless there
 are three or fewer samples in the group.}
 
-\item{tol}{A number describing the fraction of points to be labeled.
-\code{tol = 1.0} labels all the points; \code{tol = 0.05} labels
-\emph{approximately} the most extreme 5 percent. Set to \code{"none"} to
-completely suppress labels. Note that a simple approach
-based upon quantiles is used, assumes that both x and y are each normally
-distributed, and treats x and y separately.  Thus, this is not a formal
-treatment of outliers, just a means of labeling points. Groups are lumped
-together.}
+\item{tol}{`r .writeDoc_Tol()`}
 
 \item{use.sym}{A logical; if TRUE, the color scheme is set to black and the
 points plotted with symbols.  Applies only to \code{\link[ChemoSpec]{Spectra}} objects.}
@@ -52,14 +45,7 @@ done by \code{aov_pcaSpectra} is based on argument \code{fac}.  These may
 not correspond, but you can edit \code{spectra$groups} to match if necessary.}
 }
 \value{
-The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
-\describe{
- \item{base:}{A data frame or list containing the data plotted.  Assign the value and run \code{str()}
-              or \code{names()} on it to see what it contains. Side effect is a plot.}
- \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned if the
-                 value is assigned. The plot can be modified in the usual \code{ggplot2} manner.
-                 If you want the plotted values, you can access them via the base graphics mode.}
-}
+`r .writeDoc_GraphicsReturn2()`
 }
 \description{
 Uses the results from \code{\link{aov_pcaSpectra}} to plot the scores.
@@ -80,7 +66,7 @@ The use of this function can be seen in
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University), Matthew J. Keinsley.
+`r .writeDoc_Authors(c("BH", "MK"))
 }
 \keyword{htest}
 \keyword{multivariate}

@@ -54,10 +54,12 @@ Statistical Analysis in Chemometrics}, CRC Press, 2009.
 \code{\link{irlba_pcaSpectra}} for PCA via the IRLBA algorithm.
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 
+`r .writeDoc_LinksShowPCAResults()`
+
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University)
+`r .writeDoc_Authors("BH")
 }
 \keyword{multivariate}
 \keyword{robust}

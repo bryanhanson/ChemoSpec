@@ -9,15 +9,10 @@ reviewAllSpectra(spectra, ...)
 \arguments{
 \item{spectra}{An object of S3 class \code{\link{Spectra}}.}
 
-\item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
+\item{\dots}{`r .writeDoc_GraphicsDots()`}
 }
 \value{
-The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
-\describe{
- \item{base:}{None. Side effect is a plot.}
- \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned if the
-                 value is assigned. The plot can be modified in the usual \code{ggplot2} manner.}
-}
+`r .writeDoc_GraphicsReturn()`
 }
 \description{
 Utility to review all spectra in a \code{Spectra} object.  Output depends upon the graphics
@@ -47,6 +42,6 @@ See \code{\link{GraphicsOptions}}
          \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University), Tejasvi Gupta.
+`r .writeDoc_Authors(c("BH", "TG"))
 }
 \keyword{hplot}

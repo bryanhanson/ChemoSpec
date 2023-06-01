@@ -34,7 +34,7 @@
 #' @return `r .writeDoc_GraphicsReturn2()`
 #' @param tol `r .writeDoc_Tol()`
 #'
-#' @authors `r .writeDoc_Authors(c("BH", "MK"))
+#' @author `r .writeDoc_Authors(c("BH", "MK"))
 #'
 #' @seealso The use of this function can be seen in
 #' \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotScores}}.

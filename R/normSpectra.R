@@ -35,7 +35,7 @@
 #'
 #' @return An object of S3 class \code{\link{Spectra}}.
 #'
-#' @authors `r .writeDoc_Authors("BH")
+#' @author `r .writeDoc_Authors("BH")
 #'
 #' @references
 #' \itemize{

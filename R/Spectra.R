@@ -26,7 +26,7 @@
 #' therefore \cr \tab \tab should probably be kept to 40 characters or less.\cr
 #' - attr \tab chr "Spectra" \tab The S3 class designation.\cr }
 #'
-#' @authors `r .writeDoc_Authors("BH")
+#' @author `r .writeDoc_Authors("BH")
 #'
 #' @seealso \code{\link{sumSpectra}} to summarize a \code{Spectra} object.
 #' \code{\link{sumGroups}} to summarize group membership of a \code{Spectra}

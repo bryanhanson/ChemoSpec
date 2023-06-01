@@ -66,6 +66,6 @@ if (requireNamespace("baseline", quietly = TRUE)) {
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University)
+`r .writeDoc_Authors("BH")
 }
 \keyword{hplot}

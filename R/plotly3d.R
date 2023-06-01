@@ -18,7 +18,7 @@
 #'
 #' @return None.  Side effect is a plot in a browser windwo.
 #'
-#' @authors `r .writeDoc_Authors("BH")
+#' @author `r .writeDoc_Authors("BH")
 #'
 #' @importFrom plotly add_markers add_trace layout plot_ly
 #' @noRd

@@ -46,7 +46,7 @@
 #' corrected spectra is returned.  In these latter two cases plots are also
 #' drawn.
 #'
-#' @authors `r .writeDoc_Authors("BH")
+#' @author `r .writeDoc_Authors("BH")
 #'
 #' @keywords hplot
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}

@@ -41,7 +41,7 @@ October 2014.
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University)
+`r .writeDoc_Authors("BH")
 }
 \keyword{cluster}
 \keyword{multivariate}

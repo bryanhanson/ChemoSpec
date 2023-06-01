@@ -68,8 +68,10 @@ Bidiagonalization Methods"  \emph{SIAM J. Sci. Comput.} (2005).
 \code{\link{r_pcaSpectra}} for robust PCA calculations,
 \code{\link{s_pcaSpectra}} for sparse PCA calculations.
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
+
+`r .writeDoc_LinksShowPCAResults()`
 }
 \author{
-Bryan A. Hanson (DePauw University)
+`r .writeDoc_Authors("BH")
 }
 \keyword{multivariate}

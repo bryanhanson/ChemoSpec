@@ -28,7 +28,7 @@
 #' plots).  A check is carried out to see if the computation was successful
 #' and a warning issued if it failed.
 #'
-#' @authors `r .writeDoc_Authors("BH")
+#' @author `r .writeDoc_Authors("BH")
 #'
 #' @seealso \code{\link[elasticnet]{arrayspc}} for the underlying function,
 #' \code{\link{c_pcaSpectra}} for classical PCA calculations,

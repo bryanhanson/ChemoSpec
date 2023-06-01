@@ -43,20 +43,12 @@ is desired, set \code{lab.pos = "none"}.}
 \item{showGrid}{Logical.  Places light gray vertical lines at each tick mark
 if \code{TRUE}.}
 
-\item{leg.loc}{Either a list with elements \code{x} and \code{y}, or a string like
-\code{"topright"}.  Values in a list should be on \code{[0,1]}, i.e. the lower left of the plot
-area is \code{0,0} and the upper right is \code{1,1}.  String values are those described in 
-\code{\link[graphics]{legend}} under "Details". A value of \code{"none"} is acceptable as well.}
+\item{leg.loc}{`r .writeDoc_LegLoc()`}
 
-\item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
+\item{\dots}{`r .writeDoc_GraphicsDots()`}
 }
 \value{
-The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
-\describe{
- \item{base:}{None. Side effect is a plot.}
- \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned if the
-                 value is assigned. The plot can be modified in the usual \code{ggplot2} manner.}
-}
+`r .writeDoc_GraphicsReturn()`
 }
 \description{
 Plots the spectra stored in a \code{\link{Spectra}} object. Spectra may be plotted
@@ -86,6 +78,6 @@ p2
          \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University), Tejasvi Gupta.
+`r .writeDoc_Authors(c("BH", "TG"))
 }
 \keyword{hplot}

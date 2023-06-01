@@ -24,7 +24,7 @@
 #' @param tol `r .writeDoc_Tol()`
 #' @return `r .writeDoc_GraphicsReturn()`
 #'
-#' @authors `r .writeDoc_Authors(c("BH", "TG"))
+#' @author `r .writeDoc_Authors(c("BH", "TG"))
 #'
 #' @seealso See \code{\link{plotLoadings}} to plot one loading against the
 #' original variable (frequency) axis.  See \code{\link{sPlotSpectra}} for

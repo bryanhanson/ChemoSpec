@@ -21,7 +21,7 @@
 #' @param \dots `r .writeDoc_GraphicsDots()`
 #' @return `r .writeDoc_GraphicsReturn()`
 #'
-#' @authors `r .writeDoc_Authors(c("BH", "TG"))
+#' @author `r .writeDoc_Authors(c("BH", "TG"))
 #'
 #' @seealso \code{\link{c_pcaSpectra}} for an example.  See \code{\link{plot2Loadings}}
 #' to plot two loadings against each

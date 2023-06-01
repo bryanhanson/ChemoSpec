@@ -28,7 +28,7 @@
 #' pre-processing carried out and the type of PCA performed (used to annotate
 #' plots).
 #'
-#' @authors `r .writeDoc_Authors("BH")
+#' @author `r .writeDoc_Authors("BH")
 #'
 #' @seealso \code{\link[irlba]{prcomp_irlba}} for the underlying function,
 #' \code{\link{c_pcaSpectra}} for classical PCA calculations,

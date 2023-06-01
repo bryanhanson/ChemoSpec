@@ -42,7 +42,7 @@
 #' @return An object of S3 class \code{\link{Spectra}}, modified to have
 #' additional elements as specified by \code{inst}.
 #'
-#' @authors `r .writeDoc_Authors("BH")
+#' @author `r .writeDoc_Authors("BH")
 #'
 #' @seealso \code{\link{conColScheme}}
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
