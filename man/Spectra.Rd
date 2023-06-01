@@ -13,7 +13,6 @@ spectra themselves.  \code{Spectra} objects are created by
  The structure of a \code{Spectra} object is a list of 9
 elements and an attribute as follows:
 \itemize{
-\item \emph{element} (\emph{type}) \emph{description}
 \item \strong{$freq} (numeric) A common frequency (or wavelength) axis for all the spectra.
 \item \strong{$data} (numeric) The intensities for the spectra.  A matrix of dimension no. samples x no. frequency points.
 \item \strong{$names} (character) The sample names for the spectra; length must be no. samples.
@@ -23,10 +22,7 @@ elements and an attribute as follows:
 \item \strong{$alt.sym} (character) Lower-case letters as alternate symbols for plotting.
 \item \strong{$unit} (character) Two entries, the first giving the x axis unit, the second the y axis unit.
 \item \strong{$desc} (character) A character string describing the data set.  This appears on plots and therefore should probably be kept to 40 characters or less.
-\item 
-\itemize{
-\item attr character with value "Spectra" The S3 class designation.
-}
+\item attribute: character with value "Spectra" The S3 class designation.
 }
 }
 
@@ -38,6 +34,6 @@ object. \code{\link{chkSpectra}} to verify the integrity of a
 options. Finally, additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-`r .writeDoc_Authors("BH")
+Bryan A. Hanson (DePauw University).
 }
 \keyword{classes}
