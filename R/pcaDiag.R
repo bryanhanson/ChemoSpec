@@ -34,7 +34,7 @@
 #'
 #' @template param-graphics-dots
 #' @template param-graphics-return2
-#' @template authors-BH-TG
+#' @authors `r .writeDoc_Authors(c("BH", "TG"))
 #'
 #' @seealso \code{\link[chemometrics]{pcaDiagplot}} in package
 #' \code{chemometrics} for the underlying function. Additional documentation at

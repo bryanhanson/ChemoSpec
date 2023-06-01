@@ -21,7 +21,7 @@
 #' @template param-graphics-dots
 #' @template param-graphics-return
 #'
-#' @template authors-BH-TG
+#' @authors `r .writeDoc_Authors(c("BH", "TG"))
 #'
 #' @seealso \code{\link{c_pcaSpectra}} for an example.  See \code{\link{plot2Loadings}}
 #' to plot two loadings against each

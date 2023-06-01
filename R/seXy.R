@@ -17,7 +17,7 @@
 #' the spread.
 #' For \code{.seX}, a single value giving the standard error of x.
 #'
-#' @template authors-BH
+#' @authors `r .writeDoc_Authors("BH")
 #'
 #' @keywords internal
 #'

@@ -34,7 +34,7 @@
 #'
 #' @return The mclust model is returned invisibly, and a plot is produced.
 #'
-#' @template authors-BH
+#' @authors `r .writeDoc_Authors("BH")
 #'
 #' @seealso \code{\link[mclust]{Mclust}} for background on the method.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}

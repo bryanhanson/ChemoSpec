@@ -34,7 +34,7 @@
 #' @template param-graphics-return2
 #' @template param-tol
 #'
-#' @template authors-BH-MK
+#' @authors `r .writeDoc_Authors(c("BH", "MK"))
 #'
 #' @seealso The use of this function can be seen in
 #' \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotScores}}.

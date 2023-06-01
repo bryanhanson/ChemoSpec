@@ -20,7 +20,7 @@
 #' @template param-graphics-dots
 #' @template param-graphics-return
 #'
-#' @template authors-BH-MK
+#' @authors `r .writeDoc_Authors(c("BH", "MK"))
 #'
 #' @seealso An example using this function can be seen in
 #' \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotLoadings}}.

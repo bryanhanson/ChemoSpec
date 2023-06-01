@@ -24,7 +24,7 @@
 #' @return A list, containing an object of class \code{\link{hclust}} and an
 #' object of class \code{\link{dendrogram}}.  The side effect is a plot.
 #'
-#' @template authors-BH
+#' @authors `r .writeDoc_Authors("BH")
 #'
 #' @seealso \code{\link{hclust}} for the underlying function.
 #' \code{\link{hcaScores}} for similar analysis of PCA scores from a

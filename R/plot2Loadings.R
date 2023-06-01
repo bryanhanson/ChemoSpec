@@ -24,7 +24,7 @@
 #' @template param-tol
 #' @template param-graphics-return
 #'
-#' @template authors-BH-TG
+#' @authors `r .writeDoc_Authors(c("BH", "TG"))
 #'
 #' @seealso See \code{\link{plotLoadings}} to plot one loading against the
 #' original variable (frequency) axis.  See \code{\link{sPlotSpectra}} for

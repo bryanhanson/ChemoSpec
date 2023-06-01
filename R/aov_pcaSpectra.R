@@ -28,7 +28,7 @@
 #'
 #' @return A list of PCA results, one for each computed submatrix.
 #'
-#' @template authors-BH-MK
+#' @authors `r .writeDoc_Authors(c("BH", "MK"))
 #'
 #' @seealso The output of this function is used in
 #' used in \code{\link{aovPCAscores}} and \code{\link{aovPCAloadings}}.

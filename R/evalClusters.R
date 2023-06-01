@@ -12,7 +12,7 @@
 #'
 #' @return A list giving the results, as described in \code{\link[NbClust]{NbClust}}.
 #'
-#' @template authors-BH
+#' @authors `r .writeDoc_Authors("BH")
 #'
 #' @seealso \code{\link{hclust}} for the underlying base function.
 #' \code{\link{hcaSpectra}} for HCA analysis of a \code{\link{Spectra}} object.

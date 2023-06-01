@@ -21,7 +21,7 @@
 #'
 #' @return An object of S3 class \code{\link{Spectra}}.
 #'
-#' @template authors-BH
+#' @authors `r .writeDoc_Authors("BH")
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'

@@ -15,7 +15,7 @@
 #'
 #' @return A list as described in \code{\link[seriation]{hmap}}. Side effect is a plot.
 #'
-#' @template authors-BH
+#' @authors `r .writeDoc_Authors("BH")
 #'
 #' @seealso \code{\link[seriation]{hmap}} which will get you to the package
 #' (there is no package index page); the vignette is a good place to begin

@@ -14,7 +14,7 @@
 #'
 #' @return A modifed \code{\link{Spectra}} object.
 #'
-#' @template authors-BH
+#' @authors `r .writeDoc_Authors("BH")
 #'
 #' @references
 #'

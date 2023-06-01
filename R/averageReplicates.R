@@ -19,7 +19,7 @@
 #'
 #' @return An object of S3 class \code{\link{Spectra}}.
 #'
-#' @template authors-BH
+#' @authors `r .writeDoc_Authors("BH")
 #'
 #' @keywords utilities
 #' @export

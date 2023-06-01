@@ -34,7 +34,7 @@
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @template authors-BH-TG
+#' @authors `r .writeDoc_Authors(c("BH", "TG"))
 #'
 #' @keywords hplot
 #'
