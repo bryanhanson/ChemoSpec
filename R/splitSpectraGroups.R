@@ -16,7 +16,7 @@
 #' and any entries containing "T" are handled likewise.  This amounts to a sort
 #' of recoding of factors (the example demonstrates this).  Every entry in
 #' \code{spectra$groups} should be matched by one of the entries in the
-#' character vector.  If not, you will get <NA> entries.  Also, if the targets
+#' character vector.  If not, you will get `NA` entries.  Also, if the targets
 #' in the character vector are not unique, your results will reflect the order
 #' of the levels.  Since this is a grep process, you can pass any valid grep
 #' string as the target.

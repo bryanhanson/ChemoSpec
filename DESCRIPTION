@@ -71,11 +71,13 @@ Suggests:
   hyperSpec,
   amap,
   robustbase,
-  gsubfn
+  gsubfn,
+  roxut
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE
 VignetteBuilder: knitr
 Encoding: UTF-8
 RoxygenNote: 7.2.3
+Roxygen: list(roclets = c("namespace", "rd", "roxut::tests_roclet"), markdown = TRUE)
 NeedsCompilation: no

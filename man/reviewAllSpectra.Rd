@@ -7,21 +7,25 @@
 reviewAllSpectra(spectra, ...)
 }
 \arguments{
-\item{spectra}{`r .writeDoc_Spectra1()`}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
-\item{\dots}{`r .writeDoc_GraphicsDots()`}
+\item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
 \value{
-`r .writeDoc_GraphicsReturn()`
+The returned value depends on the graphics option selected (see \code{\link[=GraphicsOptions]{GraphicsOptions()}}).
+\itemize{
+\item \code{base}: None.  Side effect is a plot.
+\item \code{ggplot2}: The plot is displayed, and a \code{ggplot2} object is returned if the value is assigned.  The plot can be modified in the usual \code{ggplot2} manner.
+}
 }
 \description{
 Utility to review all spectra in a \code{Spectra} object.  Output depends upon the graphics
 output choice.
 \describe{
-  \item{base:}{Plots each spectrum one at a time, and waits for a return in the console before
-    plotting the next spectrum.  Use \code{ESC} to get out of the loop.}
-  \item{ggplot2:}{All the spectra are plotted in a single column.}
- }
+\item{base:}{Plots each spectrum one at a time, and waits for a return in the console before
+plotting the next spectrum.  Use \code{ESC} to get out of the loop.}
+\item{ggplot2:}{All the spectra are plotted in a single column.}
+}
 }
 \examples{
 # Because there are 16 spectra in this data set, you probably want to
@@ -38,8 +42,8 @@ p
 }
 \seealso{
 See \code{\link{GraphicsOptions}}
-         for more information about the graphics options. Additional documentation at
-         \url{https://bryanhanson.github.io/ChemoSpec/}
+for more information about the graphics options. Additional documentation at
+\url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 `r .writeDoc_Authors(c("BH", "TG"))

@@ -17,7 +17,7 @@ plotSpectra(
 )
 }
 \arguments{
-\item{spectra}{`r .writeDoc_Spectra1()`}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{which}{An integer vector specifying which spectra to plot, and the
 order.}
@@ -43,12 +43,16 @@ is desired, set \code{lab.pos = "none"}.}
 \item{showGrid}{Logical.  Places light gray vertical lines at each tick mark
 if \code{TRUE}.}
 
-\item{leg.loc}{`r .writeDoc_LegLoc()`}
+\item{leg.loc}{Either a list with elements \code{x} and \code{y}, or a string like \code{'topright'}.  Values in a list should be on \verb{[0,1]}, i.e. the lower left of the plot area is \verb{0,0} and the upper right is \verb{1,1}.  Allowed string values are those described in \code{\link[graphics:legend]{graphics::legend()}} under 'Details'. A value of \code{'none'} is acceptable as well.}
 
-\item{\dots}{`r .writeDoc_GraphicsDots()`}
+\item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
 \value{
-`r .writeDoc_GraphicsReturn()`
+The returned value depends on the graphics option selected (see \code{\link[=GraphicsOptions]{GraphicsOptions()}}).
+\itemize{
+\item \code{base}: None.  Side effect is a plot.
+\item \code{ggplot2}: The plot is displayed, and a \code{ggplot2} object is returned if the value is assigned.  The plot can be modified in the usual \code{ggplot2} manner.
+}
 }
 \description{
 Plots the spectra stored in a \code{\link{Spectra}} object. Spectra may be plotted
@@ -74,8 +78,8 @@ p2
 }
 \seealso{
 \code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOptions}}
-         for more information about the graphics options. Additional documentation at
-         \url{https://bryanhanson.github.io/ChemoSpec/}
+for more information about the graphics options. Additional documentation at
+\url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
 `r .writeDoc_Authors(c("BH", "TG"))

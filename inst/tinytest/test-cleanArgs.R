@@ -1,3 +1,7 @@
+# File created by roxut; edit the function definition file, not this file
+
+# Test found in cleanArgs.R:13 (file:line)
+  
 
 ### Unit tests for cleanArgs in ChemoSpec
 
@@ -46,3 +50,4 @@ if (requireNamespace("readJDX", quietly = TRUE)) {
   expect_true(length(args) == 1L)
   expect_true("SOFC" %in% names(args))
 }
+

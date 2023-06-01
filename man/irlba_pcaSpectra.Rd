@@ -7,7 +7,7 @@
 irlba_pcaSpectra(spectra, choice = "noscale", n = 3, center = TRUE, ...)
 }
 \arguments{
-\item{spectra}{`r .writeDoc_Spectra1()`}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{choice}{A character string indicating the choice of scaling.  One of
 \code{c("noscale"}, \code{"autoscale"}, \code{"Pareto")}. \code{"autoscale"}
@@ -69,7 +69,7 @@ Bidiagonalization Methods"  \emph{SIAM J. Sci. Comput.} (2005).
 \code{\link{s_pcaSpectra}} for sparse PCA calculations.
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 
-`r .writeDoc_LinksShowPCAResults()`
+For displaying the results, \code{\link[ChemoSpecUtils:plotScree]{ChemoSpecUtils::plotScree()}}, \code{\link[ChemoSpecUtils:plotScores]{ChemoSpecUtils::plotScores()}}, \code{\link[=plotLoadings]{plotLoadings()}}, \code{\link[=plot2Loadings]{plot2Loadings()}}, \code{\link[=sPlotSpectra]{sPlotSpectra()}}.
 }
 \author{
 `r .writeDoc_Authors("BH")

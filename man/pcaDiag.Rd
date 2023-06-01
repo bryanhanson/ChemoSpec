@@ -15,7 +15,7 @@ pcaDiag(
 )
 }
 \arguments{
-\item{spectra}{`r .writeDoc_Spectra1()`}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{pca}{An object of class \code{\link{prcomp}}
 modified to include a character string (\code{$method}) describing the
@@ -34,10 +34,14 @@ distances or orthogonal distances, or both.  Options are \code{c("OD",
 \item{use.sym}{logical; if true, the color scheme is change to black and
 symbols are used for plotting.}
 
-\item{\dots}{`r .writeDoc_GraphicsDots()`}
+\item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
 \value{
-`r .writeDoc_GraphicsReturn2()`
+The returned value depends on the graphics option selected (see \code{\link[ChemoSpecUtils:GraphicsOptions]{ChemoSpecUtils::GraphicsOptions()}}).
+\itemize{
+\item \strong{base} A data frame or list containing the data plotted.  Assign the value and run \code{str()} or \code{names()} on it to see what it contains. Side effect is a plot.
+\item \strong{ggplot2} The plot is displayed, and a \code{ggplot2} plot object is returned if the value is assigned. The plot can be modified in the usual \code{ggplot2} manner. If you want the plotted values, you can access them via the base graphics mode.
+}
 }
 \description{
 A function to carry diagnostics on the PCA results for a

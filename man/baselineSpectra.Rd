@@ -7,7 +7,7 @@
 baselineSpectra(spectra, int = TRUE, retC = FALSE, show = 1, ...)
 }
 \arguments{
-\item{spectra}{`r .writeDoc_Spectra1()`}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{int}{Logical; if \code{TRUE}, do the correction interactively using
 widgets.  No results are saved.  Use this for inspection and exploration

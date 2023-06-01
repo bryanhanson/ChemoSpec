@@ -7,7 +7,7 @@
 plotSpectraJS(spectra, which = NULL, browser = NULL, minify = TRUE)
 }
 \arguments{
-\item{spectra}{`r .writeDoc_Spectra1()`}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{which}{Integer.  If not \code{NULL}, specifies by number which spectra to plot.
 If greater control is needed, use \code{\link{removeSample}} which is more flexible

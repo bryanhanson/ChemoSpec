@@ -7,7 +7,7 @@
 averageReplicates(spectra, uniq)
 }
 \arguments{
-\item{spectra}{`r .writeDoc_Spectra1()`}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{uniq}{Character.  A character vector containing strings representing unique sample
 identifiers.  The sample names will be searched for these strings, and all samples

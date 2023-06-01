@@ -20,7 +20,7 @@ surveySpectra2(
 )
 }
 \arguments{
-\item{spectra}{`r .writeDoc_Spectra1()`}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{method}{Character.  One of \code{c("sd", "sem", "sem95", "mad",
 "iqr")}.}
@@ -28,13 +28,17 @@ surveySpectra2(
 \item{by.gr}{Logical, indicating if the analysis is to be done by group or
 not. Applies to \code{surveySpectra} only.}
 
-\item{\dots}{`r .writeDoc_GraphicsDots()`}
+\item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 
 \item{lab.pos}{Numeric, giving the frequency where the label should be drawn.
 Applies to \code{surveySpectra2} only.}
 }
 \value{
-`r .writeDoc_GraphicsReturn()`
+The returned value depends on the graphics option selected (see \code{\link[=GraphicsOptions]{GraphicsOptions()}}).
+\itemize{
+\item \code{base}: None.  Side effect is a plot.
+\item \code{ggplot2}: The plot is displayed, and a \code{ggplot2} object is returned if the value is assigned.  The plot can be modified in the usual \code{ggplot2} manner.
+}
 }
 \description{
 Compute and plot various measures of central tendency and

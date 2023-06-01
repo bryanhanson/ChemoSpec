@@ -7,7 +7,7 @@
 plotSpectraDist(spectra, method = "pearson", ref = 1, labels = TRUE, ...)
 }
 \arguments{
-\item{spectra}{`r .writeDoc_Spectra1()`}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{method}{Character.  Any method acceptable to \code{\link{rowDist}}.}
 
@@ -15,10 +15,14 @@ plotSpectraDist(spectra, method = "pearson", ref = 1, labels = TRUE, ...)
 
 \item{labels}{Logical.  Shall the points be labeled?}
 
-\item{\dots}{`r .writeDoc_GraphicsDots()`}
+\item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
 \value{
-`r .writeDoc_GraphicsReturn2()`
+The returned value depends on the graphics option selected (see \code{\link[ChemoSpecUtils:GraphicsOptions]{ChemoSpecUtils::GraphicsOptions()}}).
+\itemize{
+\item \strong{base} A data frame or list containing the data plotted.  Assign the value and run \code{str()} or \code{names()} on it to see what it contains. Side effect is a plot.
+\item \strong{ggplot2} The plot is displayed, and a \code{ggplot2} plot object is returned if the value is assigned. The plot can be modified in the usual \code{ggplot2} manner. If you want the plotted values, you can access them via the base graphics mode.
+}
 }
 \description{
 This function plots the distance between a reference spectrum and all other

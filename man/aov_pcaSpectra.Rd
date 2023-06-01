@@ -7,7 +7,7 @@
 aov_pcaSpectra(spectra, fac, type = "class", choice = NULL, showNames = TRUE)
 }
 \arguments{
-\item{spectra}{`r .writeDoc_Spectra1()`}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{fac}{A vector of character strings giving the factors to be used in
 the analysis.  These should be elements of \code{\link{Spectra}}.  Note that
