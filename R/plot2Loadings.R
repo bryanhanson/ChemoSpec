@@ -21,7 +21,7 @@
 #' plot.
 #'
 #' @param \dots `r .writeDoc_GraphicsDots()`
-#' @template param-tol
+#' @param tol `r .writeDoc_Tol()`
 #' @template param-graphics-return
 #'
 #' @authors `r .writeDoc_Authors(c("BH", "TG"))

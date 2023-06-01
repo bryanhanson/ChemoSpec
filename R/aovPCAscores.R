@@ -32,7 +32,7 @@
 #' not correspond, but you can edit \code{spectra$groups} to match if necessary.
 #'
 #' @template param-graphics-return2
-#' @template param-tol
+#' @param tol `r .writeDoc_Tol()`
 #'
 #' @authors `r .writeDoc_Authors(c("BH", "MK"))
 #'

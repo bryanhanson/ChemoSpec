@@ -13,7 +13,7 @@
 #'
 #' @param pc An integer specifying the desired pc plot.
 #'
-#' @template param-tol
+#' @param tol `r .writeDoc_Tol()`
 #' @param \dots `r .writeDoc_GraphicsDots()`
 #' @template param-graphics-return
 #' @author Bryan A. Hanson (DePauw University), Tejasvi Gupta & Matthew J. Keinsley.

@@ -31,7 +31,7 @@
 #' @param showGrid Logical.  Places light gray vertical lines at each tick mark
 #' if \code{TRUE}.
 #'
-#' @template param-legloc
+#' @param leg.loc `r .writeDoc_LegLoc()`
 #' @param \dots `r .writeDoc_GraphicsDots()`
 #' @template param-graphics-return
 #' @authors `r .writeDoc_Authors(c("BH", "TG"))
