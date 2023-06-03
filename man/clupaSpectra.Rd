@@ -55,6 +55,6 @@ Bioinformatics vol. 12 pg. 405 (2011).
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-`r .writeDoc_Authors("BH")
+Bryan A. Hanson (DePauw University).
 }
 \keyword{utilities}

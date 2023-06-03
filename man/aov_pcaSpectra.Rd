@@ -84,7 +84,7 @@ used in \code{\link{aovPCAscores}} and \code{\link{aovPCAloadings}}.
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-`r .writeDoc_Authors(c("BH", "MK"))
+Bryan A. Hanson (DePauw University), Matthew J. Keinsley.
 }
 \keyword{htest}
 \keyword{multivariate}

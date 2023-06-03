@@ -42,7 +42,7 @@ sumSpectra(res)
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-`r .writeDoc_Authors("BH")
+Bryan A. Hanson (DePauw University).
 }
 \keyword{manip}
 \keyword{utilities}

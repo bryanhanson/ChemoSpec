@@ -41,7 +41,7 @@ other, and \code{\link{sPlotSpectra}} for an alternative approach.
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-`r .writeDoc_Authors(c("BH", "TG"))
+Bryan A. Hanson (DePauw University), Tejasvi Gupta.
 }
 \keyword{hplot}
 \keyword{multivariate}

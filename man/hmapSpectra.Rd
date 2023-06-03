@@ -75,6 +75,6 @@ if (requireNamespace("seriation", quietly = TRUE)) {
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-`r .writeDoc_Authors("BH")
+Bryan A. Hanson (DePauw University).
 }
 \keyword{multivariate}

@@ -59,7 +59,7 @@ For displaying the results, \code{\link[ChemoSpecUtils:plotScree]{ChemoSpecUtils
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-`r .writeDoc_Authors("BH")
+Bryan A. Hanson (DePauw University).
 }
 \keyword{multivariate}
 \keyword{robust}

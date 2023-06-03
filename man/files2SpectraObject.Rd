@@ -226,7 +226,7 @@ Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/},
 as well as \code{\link{updateGroups}}.
 }
 \author{
-`r .writeDoc_Authors("BH")
+Bryan A. Hanson (DePauw University).
 }
 \keyword{file}
 \keyword{import}

@@ -16,6 +16,7 @@ vignette: >
     %\VignettePackage{ChemoSpec}
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
+    %\VignetteDepends{ChemoSpec, mclust, ggplot2, patchwork, RColorBrewer, knitr}
 link-citations: yes
 bibliography:
   - chemometrics.bib

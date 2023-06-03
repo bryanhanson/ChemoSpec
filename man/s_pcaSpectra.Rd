@@ -72,6 +72,6 @@ Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 For displaying the results, \code{\link[ChemoSpecUtils:plotScree]{ChemoSpecUtils::plotScree()}}, \code{\link[ChemoSpecUtils:plotScores]{ChemoSpecUtils::plotScores()}}, \code{\link[=plotLoadings]{plotLoadings()}}, \code{\link[=plot2Loadings]{plot2Loadings()}}, \code{\link[=sPlotSpectra]{sPlotSpectra()}}.
 }
 \author{
-`r .writeDoc_Authors("BH")
+Bryan A. Hanson (DePauw University).
 }
 \keyword{multivariate}

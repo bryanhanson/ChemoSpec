@@ -73,6 +73,6 @@ res$groups <- as.factor(paste(res$geneBb, res$geneCc, sep = ""))
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-`r .writeDoc_Authors("BH")
+Bryan A. Hanson (DePauw University).
 }
 \keyword{utilities}

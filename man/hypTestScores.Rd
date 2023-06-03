@@ -68,7 +68,7 @@ used with this function.  Additional documentation at
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-`r .writeDoc_Authors("BH")
+Bryan A. Hanson (DePauw University).
 }
 \keyword{htest}
 \keyword{multivariate}

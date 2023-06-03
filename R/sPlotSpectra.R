@@ -16,7 +16,7 @@
 #' @param tol `r .writeDoc_Tol()`
 #' @param \dots `r .writeDoc_GraphicsDots()`
 #' @return `r .writeDoc_GraphicsReturn()`
-#' @author `r .writeDoc_Authors(c("BH", "TG", "MK"))
+#' @author `r .writeDoc_Authors(c("BH", "TG", "MK"))`
 #'
 #' @references Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor,
 #' Gottfries, Moritz, and Trygg. "Visualization of GC/TOF-MS-Based
