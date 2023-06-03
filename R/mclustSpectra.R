@@ -23,7 +23,7 @@
 #'
 #' @return The \code{Mclust} model is returned invisibly, and a plot is made.
 #'
-#' @author `r .writeDoc_Authors("BH")
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso \code{\link[mclust]{Mclust}} for background on the method.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}

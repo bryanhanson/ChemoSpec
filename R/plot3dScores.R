@@ -25,7 +25,7 @@
 #'
 #' @return None.  Side effect is a plot in a browser window.
 #'
-#' @author `r .writeDoc_Authors("BH")
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'

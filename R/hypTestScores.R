@@ -30,7 +30,7 @@
 #' If assigned, the object class is one of several described in
 #' \code{\link{aov}} depending upon the data passed to it.
 #'
-#' @author `r .writeDoc_Authors("BH")
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso \code{\link{splitSpectraGroups}} which can be used to create
 #' additional factor elements in the \code{\link{Spectra}} object, which can then be

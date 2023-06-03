@@ -26,7 +26,7 @@
 #' @references K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
 #' Statistical Analysis in Chemometrics}, CRC Press, 2009.
 #'
-#' @author `r .writeDoc_Authors("BH")
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso \url{https://bryanhanson.github.io/ChemoSpec/}
 #'

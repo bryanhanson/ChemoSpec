@@ -15,7 +15,7 @@
 #'
 #' @return A object of class \code{\link{Spectra}}.
 #'
-#' @author `r .writeDoc_Authors("BH")
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @keywords utilities multivariate
 #'

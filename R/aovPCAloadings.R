@@ -20,7 +20,7 @@
 #' @param \dots `r .writeDoc_GraphicsDots()`
 #' @return `r .writeDoc_GraphicsReturn()`
 #'
-#' @author `r .writeDoc_Authors(c("BH", "MK"))
+#' @author `r .writeDoc_Authors(c("BH", "MK"))`
 #'
 #' @seealso An example using this function can be seen in
 #' \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotLoadings}}.

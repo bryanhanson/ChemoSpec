@@ -14,7 +14,7 @@
 #' @param \dots `r .writeDoc_GraphicsDots()`
 #' @return `r .writeDoc_GraphicsReturn()`
 #'
-#' @author `r .writeDoc_Authors(c("BH", "TG"))
+#' @author `r .writeDoc_Authors(c("BH", "TG"))`
 #'
 #' @keywords hplot
 #'

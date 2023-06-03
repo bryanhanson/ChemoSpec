@@ -16,7 +16,7 @@
 #' @param tol `r .writeDoc_Tol()`
 #' @param \dots `r .writeDoc_GraphicsDots()`
 #' @return `r .writeDoc_GraphicsReturn()`
-#' @author Bryan A. Hanson (DePauw University), Tejasvi Gupta & Matthew J. Keinsley.
+#' @author `r .writeDoc_Authors(c("BH", "TG", "MK"))
 #'
 #' @references Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor,
 #' Gottfries, Moritz, and Trygg. "Visualization of GC/TOF-MS-Based

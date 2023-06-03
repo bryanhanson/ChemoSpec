@@ -35,7 +35,7 @@
 #'
 #' @return `r .writeDoc_Spectra1()`
 #'
-#' @author `r .writeDoc_Authors("BH")
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @references
 #' \itemize{

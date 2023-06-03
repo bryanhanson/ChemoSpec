@@ -20,7 +20,7 @@
 #' \code{\link[ChemoSpecUtils]{sampleDist}}.  Additional documentation
 #' at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @author `r .writeDoc_Authors(c("BH", "TG"))
+#' @author `r .writeDoc_Authors(c("BH", "TG"))`
 #'
 #' @keywords hplot multivariate
 #'

@@ -1,4 +1,4 @@
-# ChemoSpec 6.1.8 2023-05-17
+# ChemoSpec 6.1.8 2023-06-03
 ## Misc.
 * Bumped version at the request of CRAN.
 * Replaced use of `@template` in documentation with inline functions, as `@template` is deprecated.
