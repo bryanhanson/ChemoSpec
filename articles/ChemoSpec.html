@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.8</span>
       </span>
     </div>
 
@@ -70,16 +70,10 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>An Introduction to ChemoSpec</h1>
-                        <h4 data-toc-skip class="author">Bryan A. Hanson<sup>1</sup>
+                        <h4 data-toc-skip class="author">Bryan A. Hanson<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
 </h4>
-            <address class="author_afil">
-      <ol style="list-style-type: decimal">
-<li>Professor Emeritus of Chemistry &amp; Biochemistry, DePauw University, Greencastle IN USA.</li>
-</ol>
-<br><a class="author_email" href="mailto:#"></a><a href="mailto:hanson@depauw.edu" class="email">hanson@depauw.edu</a>
-      </address>
-                  
-            <h4 data-toc-skip class="date">2022-10-22</h4>
+            
+            <h4 data-toc-skip class="date">2023-06-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/bryanhanson/ChemoSpec/blob/HEAD/vignettes/ChemoSpec.Rmd" class="external-link"><code>vignettes/ChemoSpec.Rmd</code></a></small>
       <div class="hidden name"><code>ChemoSpec.Rmd</code></div>
@@ -89,7 +83,7 @@
     
     
 <!-- Run a few things in the background for use later -->
-<p>This vignette is based upon <code>ChemoSpec</code> version 6.1.4 relying on <code>ChemoSpecUtils</code> version 1.0.0.</p>
+<p>This vignette is based upon <code>ChemoSpec</code> version 6.1.8 relying on <code>ChemoSpecUtils</code> version 1.0.3.</p>
 <blockquote>
 <p><code>ChemoSpec</code> is a collection of functions for top-down exploratory data analysis of spectral data including nuclear magnetic resonance (NMR), infrared (IR), Raman, X-ray fluorescence (XRF) and other similar types of spectroscopy. Includes functions for plotting and inspecting spectra, peak alignment, hierarchical cluster analysis (HCA), principal components analysis (PCA) and model-based clustering. Robust methods appropriate for this type of high-dimensional data are available. <code>ChemoSpec</code> is designed for structured experiments, such as metabolomics investigations, where the samples fall into treatment and control groups. Graphical output is formatted consistently for publication quality plots. <code>ChemoSpec</code> is intended to be very user friendly and to help you get usable results quickly. A vignette covering typical operations is available.</p>
 </blockquote>
@@ -102,7 +96,7 @@
 <p>“… the extraction of relevant information from chemical data by mathematical and statistical tools.”</p>
 </blockquote>
 <p>This is an appropriately broad definition, considering the wealth of questions and tasks that can be treated by chemometric approaches. In our case, the focus is on spectral data sets, which typically have many variables (frequencies) and relatively few samples. Such multivariate, <em>high p, low n</em> data sets present some algorithmic challenges, but these have been addressed by knowledgeable folks. In particular, for both the practical and theoretical background to multivariate chemometric analysis, I strongly recommend the Varmuza/Filzmoser book <span class="citation">(<a href="#ref-Filzmoser2009" role="doc-biblioref">Varmuza and Filzmoser 2009</a>)</span>. Some of the functions described here are not much more than wrappers for the functions they and others have made available to the <code>R</code> community in their packages. Another excellent text is the one by Ron Wehrens <span class="citation">(<a href="#ref-Wehrens2011" role="doc-biblioref">Wehrens 2011</a>)</span>.</p>
-<p><code>ChemoSpec</code> was developed for the chemometric analysis of spectroscopic data, such as XRF <span class="citation">(<a href="#ref-Panchuk2018" role="doc-biblioref">Panchuk et al. 2018</a>)</span>, UV-Vis, NMR or IR data, including MIR and NIR. <code>ChemoSpec</code> also works with chromatographic data (see below) and less commonly encountered techniques such as circular dichroism.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> The purpose of <code>ChemoSpec</code> is to make chemometric tools readily available to a wide range of researchers who might be new to <code>R</code>. The approach is entirely exploratory and unsupervised, in other words, “top-down” <span class="citation">(<a href="#ref-Wishart2007" role="doc-biblioref">Wishart 2007</a>)</span>. <code>ChemoSpec</code> is designed to accommodate samples that have different histories, i.e., they fall into different classes, categories or groups. Examples would be treatment and control groups, or simply different specimens (red flowers vs. blue flowers). <code>ChemoSpec</code> is designed to be as user friendly as possible, with plenty of error checking, helpful warnings and a consistent interface. It also produces graphics that are consistent in style and annotation, and are suitable for use in publications and posters. Careful attention was given to writing the documentation for the functions, but this vignette serves as the best starting point for learning data analysis with <code>ChemoSpec</code>. <code>ChemoSpec</code> is not intended to duplicate the work that is typically done on the spectrometer.</p>
+<p><code>ChemoSpec</code> was developed for the chemometric analysis of spectroscopic data, such as XRF <span class="citation">(<a href="#ref-Panchuk2018" role="doc-biblioref">Panchuk et al. 2018</a>)</span>, UV-Vis, NMR or IR data, including MIR and NIR. <code>ChemoSpec</code> also works with chromatographic data (see below) and less commonly encountered techniques such as circular dichroism.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> The purpose of <code>ChemoSpec</code> is to make chemometric tools readily available to a wide range of researchers who might be new to <code>R</code>. The approach is entirely exploratory and unsupervised, in other words, “top-down” <span class="citation">(<a href="#ref-Wishart2007" role="doc-biblioref">Wishart 2007</a>)</span>. <code>ChemoSpec</code> is designed to accommodate samples that have different histories, i.e., they fall into different classes, categories or groups. Examples would be treatment and control groups, or simply different specimens (red flowers vs. blue flowers). <code>ChemoSpec</code> is designed to be as user friendly as possible, with plenty of error checking, helpful warnings and a consistent interface. It also produces graphics that are consistent in style and annotation, and are suitable for use in publications and posters. Careful attention was given to writing the documentation for the functions, but this vignette serves as the best starting point for learning data analysis with <code>ChemoSpec</code>. <code>ChemoSpec</code> is not intended to duplicate the work that is typically done on the spectrometer.</p>
 <p>The centerpiece of <code>ChemoSpec</code> is the <code>Spectra</code> object. This is the place where your data is stored and made available to <code>R</code>. Once your data in stored this way and checked, all analyses are easily carried out. <code>ChemoSpec</code> currently ships with several built-in data sets; we’ll use one called <code>SrE.IR</code> in this vignette. You will see in just a moment how to access it and inspect it.</p>
 <p>I assume you have at least a bare-bones knowledge of <code>R</code> as you begin to learn <code>ChemoSpec</code>, and have a good workflow set up. For detailed help on any function discussed here, type <code>?function_name</code> at the console. If you type <code><a href="../reference/ChemoSpec-package.html">?ChemoSpec</a></code> and click the index link at the bottom, you will see all the available functions, which is also convenient when you can’t quite remember the name of a particular function.</p>
 <p>Finally, some conventions for this document: names of <code>R</code> “objects” such as packages, functions, function arguments, and data sets are in <code>typewriter</code> font as are <code>file names</code>. The commands you issue at the console and the output are shown with a light grey background, and are colored according to use and purpose, courtesy of the excellent <code>knitr</code> package <span class="citation">(<a href="#ref-R_knitr" role="doc-biblioref">Xie 2021</a>)</span>.</p>
@@ -134,7 +128,7 @@ Figure 3.1: A typical workflow. For a given data set, some steps may be omitted 
 <h2 id="getting-data-into-chemospec">
 <span class="header-section-number">4</span> Getting Data into ChemoSpec<a class="anchor" aria-label="anchor" href="#getting-data-into-chemospec"></a>
 </h2>
-<p>There are two means of importing raw data sets into <code>ChemoSpec</code>. One is the function <code>files2SpectraObject</code>, which assumes that your raw data exist as separate files in a single directory, each file containing a frequency column and an intensity column. A header row may or may not be present, and the data can be separated by any separation mark you like (typically comma, tab, semi-colon or space). You may also use comma or period as the decimal mark. These options permit data to be imported from files written by a wide variety of instruments using various conventions.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> It is also possible to import files in the JCAMP-DX format.</p>
+<p>There are two means of importing raw data sets into <code>ChemoSpec</code>. One is the function <code>files2SpectraObject</code>, which assumes that your raw data exist as separate files in a single directory, each file containing a frequency column and an intensity column. A header row may or may not be present, and the data can be separated by any separation mark you like (typically comma, tab, semi-colon or space). You may also use comma or period as the decimal mark. These options permit data to be imported from files written by a wide variety of instruments using various conventions.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> It is also possible to import files in the JCAMP-DX format.</p>
 <p>The second function is <code>matrix2SpectraObject</code>, which assumes you have a single file containing a matrix of the data. This matrix should have frequencies in the first column, and individual sample intensities in the remaining columns. There must be a header row in the file, and it must contain the sample names (except the first entry, which marks the frequencies, is ignored). Other than this requirement, you have all the flexibility described above.</p>
 <p>Please be sure to read the help at <code><a href="../reference/files2SpectraObject.html">?files2SpectraObject</a></code> for the details, and be certain to pay special attention to the <code>...</code> argument, as this is how your choice of header, separator, and decimal mark are conveyed to <code>read.table</code> which does the actual reading.</p>
 <p>It’s a very good practice to name your data files using a system that encodes any class membership. For example, if your data set contains treatment and control groups, or any analogous class/group information, this information should be available via the file names. The argument <code>gr.crit</code> will be the basis for a grep process on the file/sample names, and from there, each sample will be assigned to a group and be assigned a color as well. If your samples don’t fall into groups, that’s fine too, but you still have to give <code>gr.crit</code> something to go on – just give it one string that is common to all the file names. Obviously, this approach encourages one to name the files as they come off the instrument with forethought as to how they will be analyzed, which in turn depends upon your experimental design. Nothing wrong with having a plan!</p>
@@ -233,7 +227,8 @@ Figure 5.1: Sample plot.
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">SrE.IR</span>, which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">14</span>, <span class="fl">16</span><span class="op">)</span>, yrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.6</span><span class="op">)</span>,</span>
 <span>  offset <span class="op">=</span> <span class="fl">0.1</span>, lab.pos <span class="op">=</span> <span class="fl">1775</span><span class="op">)</span></span>
 <span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="va">myt</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1650</span>, <span class="fl">1800</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></span></code></pre>
+<pre><code><span><span class="co">## Coordinate system already present. Adding new coordinate system, which will</span></span>
+<span><span class="co">## replace the existing one.</span></span></code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -454,7 +449,7 @@ Figure 7.4: Detail of carbonyl region by group.
 Figure 7.5: Inspection of an uninteresting spectral region.
 </p>
 </div>
-<p>From a theoretical perspective, we expect this region to be devoid of interesting peaks. In fact, even when pooling the groups the signal in this region is very weak, and the only peak present is due to atmospheric CO<sub>2</sub>. We can remove this region, since it is primarily noise and artifact, with the function <code>removeFreq</code> as follows. Note that there are fewer frequency points now.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<p>From a theoretical perspective, we expect this region to be devoid of interesting peaks. In fact, even when pooling the groups the signal in this region is very weak, and the only peak present is due to atmospheric CO<sub>2</sub>. We can remove this region, since it is primarily noise and artifact, with the function <code>removeFreq</code> as follows. Note that there are fewer frequency points now.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SrE3.IR</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/removeFreq.html">removeFreq</a></span><span class="op">(</span><span class="va">SrE2.IR</span>, rem.freq <span class="op">=</span> <span class="va">SrE2.IR</span><span class="op">$</span><span class="va">freq</span> <span class="op">&gt;</span> <span class="fl">1800</span> <span class="op">&amp;</span> <span class="va">SrE2.IR</span><span class="op">$</span><span class="va">freq</span> <span class="op">&lt;</span> <span class="fl">2500</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/sumSpectra.html">sumSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span><span class="op">)</span></span></code></pre></div>
@@ -820,6 +815,8 @@ Figure 8.16: mclust’s thoughts on the matter.
 </div>
 <div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mclustSpectra.html">mclustSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span>, plot <span class="op">=</span> <span class="st">"errors"</span>, main <span class="op">=</span> <span class="va">myt</span>, truth <span class="op">=</span> <span class="va">SrE3.IR</span><span class="op">$</span><span class="va">groups</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning in .coordProjCS(d, dimens = dims, what = "errors", classification =</span></span>
+<span><span class="co">## mod$classification, : classification and truth differ in number of groups</span></span></code></pre>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:mclust-3"></span>
 <img src="ChemoSpec_files/figure-html/mclust-3-1.png" alt="Comparing mclust results to the TRUTH." width="80%"><p class="caption">
@@ -827,7 +824,7 @@ Figure 8.17: Comparing mclust results to the TRUTH.
 </p>
 </div>
 <p>You can also do a similar analysis in 3D, using <code>mclust3dSpectra</code>. This function uses <code>mclust</code> to find the groups, but then uses non-<code>mclust</code> functions to draw confidence ellipses. This function uses <code>plotly</code> graphics so it cannot demonstrated here, but the commands would be:</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/mclust3dSpectra.html">mclust3dSpectra</a></span><span class="op">(</span><span class="va">SrE3.IR</span>, <span class="va">c_res</span><span class="op">)</span> <span class="co"># not run - it's interactive!</span></span></code></pre></div>
 <p>I hope you have enjoyed this tour of the features of <code>ChemoSpec</code>!</p>
 </div>
@@ -960,12 +957,13 @@ Zhang, S. C., C. Zheng, I. R. Lanza, K. S. Nair, D. Raftery, and O. Vitek. 2009.
 </div>
 </div>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr>
 <ol>
-<li id="fn1"><p><code>ChemoSpec</code> was not developed for and has not been tested with mass spectral data sets (MS), as there are other dedicated packages for this purpose. See the <a href="https://cran.r-project.org/view=ChemPhys" class="external-link">Chemometrics and Computational Physics Task View</a> for an overview.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>My experience is that csv files don’t always have comma as the separator, and of course conventions about decimal marks vary a bit around the world. And an instrument installed in a certain country doesn’t always follow local conventions.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p><code>removeFreq</code> also accepts a formula to describe the frequencies to be removed, for instance <code>res &lt;- removeFreq(SrE.IR, rem.freq = low ~ 800)</code> will remove all frequencies from the minimum through 800. See <code><a href="../reference/removeFreq.html">?removeFreq</a></code> for further details.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>Professor Emeritus of Chemistry &amp; Biochemistry, DePauw University, Greencastle IN USA., <a href="mailto:hanson@depauw.edu" class="email">hanson@depauw.edu</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p><code>ChemoSpec</code> was not developed for and has not been tested with mass spectral data sets (MS), as there are other dedicated packages for this purpose. See the <a href="https://cran.r-project.org/view=ChemPhys" class="external-link">Chemometrics and Computational Physics Task View</a> for an overview.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>My experience is that csv files don’t always have comma as the separator, and of course conventions about decimal marks vary a bit around the world. And an instrument installed in a certain country doesn’t always follow local conventions.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p><code>removeFreq</code> also accepts a formula to describe the frequencies to be removed, for instance <code>res &lt;- removeFreq(SrE.IR, rem.freq = low ~ 800)</code> will remove all frequencies from the minimum through 800. See <code><a href="../reference/removeFreq.html">?removeFreq</a></code> for further details.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
   </div>
@@ -987,7 +985,7 @@ Zhang, S. C., C. Zheng, I. R. Lanza, K. S. Nair, D. Raftery, and O. Vitek. 2009.
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

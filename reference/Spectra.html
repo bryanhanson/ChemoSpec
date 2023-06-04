@@ -20,7 +20,7 @@ files2SpectraObject or matrix2SpectraObject."><!-- mathjax --><script src="https
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.8</span>
       </span>
     </div>
 
@@ -65,18 +65,17 @@ spectra themselves.  <code>Spectra</code> objects are created by
     <div id="structure">
     <h2>Structure</h2>
     <p>The structure of a <code>Spectra</code> object is a list of 9
-elements and an attribute as follows:</p>
-<table class="table table"><tr><td><em>element</em></td><td><em>type</em></td><td><em>description</em></td></tr><tr><td>$freq</td><td>num</td><td>A common frequency (or wavelength) axis for all the
-spectra.</td></tr><tr><td>$data</td><td>num</td><td>The intensities for the spectra.  A matrix
-of dimension</td></tr><tr><td></td><td></td><td>no. samples x no. frequency points.</td></tr><tr><td>$names</td><td>chr</td><td>The sample names for the spectra; length must be no.
-samples.</td></tr><tr><td>$groups</td><td>Factor</td><td>The group classification of the
-samples; length must be no. samples.</td></tr><tr><td>$colors</td><td>chr</td><td>The colors for
-each sample; length must be no. samples.</td></tr><tr><td></td><td></td><td>Groups and colors
-correspond.</td></tr><tr><td>$sym</td><td>integer</td><td>As for <code>colors</code>, but symbols for
-plotting (if b/w is desired).</td></tr><tr><td>$alt.sym</td><td>chr</td><td>Lower-case letters
-as alternate symbols for plotting.</td></tr><tr><td>$unit</td><td>chr</td><td>Two entries, the
-first giving the x axis unit, the second the y axis unit.</td></tr><tr><td>$desc</td><td>chr</td><td>A character string describing the data set.  This appears on plots and
-therefore</td></tr><tr><td></td><td></td><td>should probably be kept to 40 characters or less.</td></tr><tr><td>- attr</td><td>chr "Spectra"</td><td>The S3 class designation.</td></tr></table></div>
+elements and an attribute as follows:</p><ul><li><p><strong>$freq</strong> (numeric) A common frequency (or wavelength) axis for all the spectra.</p></li>
+<li><p><strong>$data</strong> (numeric) The intensities for the spectra.  A matrix of dimension no. samples x no. frequency points.</p></li>
+<li><p><strong>$names</strong> (character) The sample names for the spectra; length must be no. samples.</p></li>
+<li><p><strong>$groups</strong> (factor) The group classification of the samples; length must be no. samples.</p></li>
+<li><p><strong>$colors</strong> (character) The colors for each sample; length must be no. samples. Groups and colors correspond.</p></li>
+<li><p><strong>$sym</strong> (integer) As for <code>colors</code>, but symbols for plotting (if b/w is desired).</p></li>
+<li><p><strong>$alt.sym</strong> (character) Lower-case letters as alternate symbols for plotting.</p></li>
+<li><p><strong>$unit</strong> (character) Two entries, the first giving the x axis unit, the second the y axis unit.</p></li>
+<li><p><strong>$desc</strong> (character) A character string describing the data set.  This appears on plots and therefore should probably be kept to 40 characters or less.</p></li>
+<li><p>attribute: character with value "Spectra" The S3 class designation.</p></li>
+</ul></div>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p><code><a href="sumSpectra.html">sumSpectra</a></code> to summarize a <code>Spectra</code> object.
@@ -87,7 +86,7 @@ options. Finally, additional documentation at <a href="https://bryanhanson.githu
     </div>
     <div id="author">
     <h2>Author</h2>
-    <p>Bryan A. Hanson (DePauw University)</p>
+    <p>Bryan A. Hanson (DePauw University).</p>
     </div>
 
   </div>
@@ -102,7 +101,7 @@ options. Finally, additional documentation at <a href="https://bryanhanson.githu
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

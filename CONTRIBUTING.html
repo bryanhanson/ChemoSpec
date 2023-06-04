@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.8</span>
       </span>
     </div>
 
@@ -50,6 +50,7 @@
     </div>
 
 <div id="guidelines-for-contributors" class="section level1">
+
 <p>This document explains how one can contribute to <code>ChemoSpec</code>.</p>
 <div class="section level2">
 <h2 id="ground-rules">Ground Rules<a class="anchor" aria-label="anchor" href="#ground-rules"></a></h2>
@@ -96,17 +97,20 @@
 <h3 id="making-changes">Making Changes<a class="anchor" aria-label="anchor" href="#making-changes"></a></h3>
 <ul><li>Fork the package and clone to your computer. Keep your local copy sync’ed with upstream changes.</li>
 <li>Starting from the <code>devel</code> branch, create a new branch for your upcoming contribution (usually this will be named something like <code>issue/#27</code> if you are fixing an issue, for example, or <code>feature/feature_name</code> if you are contributing a new feature). Generally if you have a feature you’d like to add, file an issue describing the proposed feature so it can be discussed and tracked.</li>
-<li>Before making any changes, build using the following flags:<ul><li><code>--as-cran</code></li>
+<li>Before making any changes, build using the following flags:
+<ul><li><code>--as-cran</code></li>
 <li><code>--no-init-file</code></li>
 <li><code>--resave-data</code></li>
 <li>
 <code>--compact-vignettes="both"</code> Fix any problems that arise (Which shouldn’t involve code problems, but rather additional tweaks to your local build environment. If you see any errors or warnings at this point, contact the maintainers before proceeding.).</li>
 </ul></li>
-<li>Check using the following flags:<ul><li><code>--as-cran</code></li>
+<li>Check using the following flags:
+<ul><li><code>--as-cran</code></li>
 <li>
 <code>--no-init-file</code> Fix any problems that arise (Which shouldn’t involve code problems, but rather additional tweaks to your local build environment. If you see any errors or warnings at this point, contact the maintainers before proceeding.).</li>
 </ul></li>
-<li>Make the changes you have in mind.<ul><li>Please use super-frequent git commit messages that clearly state what you are doing.</li>
+<li>Make the changes you have in mind.
+<ul><li>Please use super-frequent git commit messages that clearly state what you are doing.</li>
 <li>Does your work require changes to <code>.Rbuildignore</code>, <code>.gitignore</code>?</li>
 <li>Update the documentation as needed. We use <code>roxgyen2</code>.</li>
 <li>Style your code using <code>styler</code> with the default settings. Style only the file you are working on.</li>
@@ -138,7 +142,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

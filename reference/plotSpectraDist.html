@@ -19,7 +19,7 @@ ways (see Arguments)."><!-- mathjax --><script src="https://cdnjs.cloudflare.com
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.8</span>
       </span>
     </div>
 
@@ -66,7 +66,7 @@ ways (see Arguments).</p>
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
-<dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p></dd>
+<dd><p>An object of S3 class <code><a href="Spectra.html">Spectra()</a></code>.</p></dd>
 
 
 <dt>method</dt>
@@ -89,17 +89,9 @@ ways (see Arguments).</p>
     <h2>Value</h2>
     
 
-<p>The returned value depends on the graphics option selected (see <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">GraphicsOptions</a></code>).</p><dl><dt>base:</dt>
-<dd><p>A data frame or list containing the data plotted.  Assign the value and run <code><a href="https://rdrr.io/r/utils/str.html" class="external-link">str()</a></code>
-              or <code><a href="https://rdrr.io/r/base/names.html" class="external-link">names()</a></code> on it to see what it contains. Side effect is a plot.</p></dd>
-
- <dt>ggplot2:</dt>
-<dd><p>The plot is displayed, and a <code>ggplot2</code> plot object is returned if the
-                 value is assigned. The plot can be modified in the usual <code>ggplot2</code> manner.
-                 If you want the plotted values, you can access them via the base graphics mode.</p></dd>
-
-
-</dl></div>
+<p>The returned value depends on the graphics option selected (see <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">ChemoSpecUtils::GraphicsOptions()</a></code>).</p><ul><li><p><strong>base</strong> A data frame or list containing the data plotted.  Assign the value and run <code><a href="https://rdrr.io/r/utils/str.html" class="external-link">str()</a></code> or <code><a href="https://rdrr.io/r/base/names.html" class="external-link">names()</a></code> on it to see what it contains. Side effect is a plot.</p></li>
+<li><p><strong>ggplot2</strong> The plot is displayed, and a <code>ggplot2</code> plot object is returned if the value is assigned. The plot can be modified in the usual <code>ggplot2</code> manner. If you want the plotted values, you can access them via the base graphics mode.</p></li>
+</ul></div>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p>To compare all spectra simultaneously in a heatmap, see
@@ -114,15 +106,18 @@ at <a href="https://bryanhanson.github.io/ChemoSpec/" class="external-link">http
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SrE.NMR</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">txt1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Distance from"</span>, <span class="va">SrE.NMR</span><span class="op">$</span><span class="va">names</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">txt2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Rank Distance from"</span>, <span class="va">SrE.NMR</span><span class="op">$</span><span class="va">names</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">plotSpectraDist</span><span class="op">(</span><span class="va">SrE.NMR</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="va">txt1</span>, xlab <span class="op">=</span> <span class="va">txt2</span>, ylab <span class="op">=</span> <span class="va">txt2</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>         <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.1</span><span class="op">)</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">16</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># You need to install package "amap" to use this function</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"amap"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SrE.NMR</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">txt1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Distance from"</span>, <span class="va">SrE.NMR</span><span class="op">$</span><span class="va">names</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">txt2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Rank Distance from"</span>, <span class="va">SrE.NMR</span><span class="op">$</span><span class="va">names</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">plotSpectraDist</span><span class="op">(</span><span class="va">SrE.NMR</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="va">txt1</span>, xlab <span class="op">=</span> <span class="va">txt2</span>, ylab <span class="op">=</span> <span class="va">txt2</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>           <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.1</span><span class="op">)</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">16</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">p</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-plt img"><img src="plotSpectraDist-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
@@ -139,7 +134,7 @@ at <a href="https://bryanhanson.github.io/ChemoSpec/" class="external-link">http
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

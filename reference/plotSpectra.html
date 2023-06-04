@@ -19,7 +19,7 @@ several parameters."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/a
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.8</span>
       </span>
     </div>
 
@@ -76,7 +76,7 @@ several parameters.</p>
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
-<dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p></dd>
+<dd><p>An object of S3 class <code><a href="Spectra.html">Spectra()</a></code>.</p></dd>
 
 
 <dt>which</dt>
@@ -116,10 +116,7 @@ if <code>TRUE</code>.</p></dd>
 
 
 <dt>leg.loc</dt>
-<dd><p>Either a list with elements <code>x</code> and <code>y</code>, or a string like
-<code>"topright"</code>.  Values in a list should be on <code>[0,1]</code>, i.e. the lower left of the plot
-area is <code>0,0</code> and the upper right is <code>1,1</code>.  String values are those described in 
-<code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></code> under "Details". A value of <code>"none"</code> is acceptable as well.</p></dd>
+<dd><p>Either a list with elements <code>x</code> and <code>y</code>, or a string like <code>'topright'</code>.  Values in a list should be on <code>[0,1]</code>, i.e. the lower left of the plot area is <code>0,0</code> and the upper right is <code>1,1</code>.  Allowed string values are those described in <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">graphics::legend()</a></code> under 'Details'. A value of <code>'none'</code> is acceptable as well.</p></dd>
 
 
 <dt>...</dt>
@@ -130,20 +127,14 @@ area is <code>0,0</code> and the upper right is <code>1,1</code>.  String values
     <h2>Value</h2>
     
 
-<p>The returned value depends on the graphics option selected (see <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">GraphicsOptions</a></code>).</p><dl><dt>base:</dt>
-<dd><p>None. Side effect is a plot.</p></dd>
-
- <dt>ggplot2:</dt>
-<dd><p>The plot is displayed, and a <code>ggplot2</code> plot object is returned if the
-                 value is assigned. The plot can be modified in the usual <code>ggplot2</code> manner.</p></dd>
-
-
-</dl></div>
+<p>The returned value depends on the graphics option selected (see <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">GraphicsOptions()</a></code>).</p><ul><li><p><code>base</code>: None.  Side effect is a plot.</p></li>
+<li><p><code>ggplot2</code>: The plot is displayed, and a <code>ggplot2</code> object is returned if the value is assigned.  The plot can be modified in the usual <code>ggplot2</code> manner.</p></li>
+</ul></div>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p><code><a href="plotSpectraJS.html">plotSpectraJS</a></code> for the interactive version. See <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">GraphicsOptions</a></code>
-         for more information about the graphics options. Additional documentation at
-         <a href="https://bryanhanson.github.io/ChemoSpec/" class="external-link">https://bryanhanson.github.io/ChemoSpec/</a></p></div>
+for more information about the graphics options. Additional documentation at
+<a href="https://bryanhanson.github.io/ChemoSpec/" class="external-link">https://bryanhanson.github.io/ChemoSpec/</a></p></div>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -183,7 +174,7 @@ area is <code>0,0</code> and the upper right is <code>1,1</code>.  String values
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

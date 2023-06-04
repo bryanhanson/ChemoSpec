@@ -19,7 +19,7 @@ stored in argument PCA."><!-- mathjax --><script src="https://cdnjs.cloudflare.c
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.8</span>
       </span>
     </div>
 
@@ -75,7 +75,7 @@ stored in argument <code>PCA</code>.</p>
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
-<dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p></dd>
+<dd><p>An object of S3 class <code><a href="Spectra.html">Spectra()</a></code>.</p></dd>
 
 
 <dt>so</dt>
@@ -97,14 +97,7 @@ are three or fewer samples in the group.</p></dd>
 
 
 <dt>tol</dt>
-<dd><p>A number describing the fraction of points to be labeled.
-<code>tol = 1.0</code> labels all the points; <code>tol = 0.05</code> labels
-<em>approximately</em> the most extreme 5 percent. Set to <code>"none"</code> to
-completely suppress labels. Note that a simple approach
-based upon quantiles is used, assumes that both x and y are each normally
-distributed, and treats x and y separately.  Thus, this is not a formal
-treatment of outliers, just a means of labeling points. Groups are lumped
-together.</p></dd>
+<dd><p>A number describing the fraction of points to be labeled. <code>tol = 1.0</code> labels all the points; <code>tol = 0.05</code> labels <em>approximately</em> the most extreme 5 percent. Set to <code>'none'</code> to completely suppress labels. Note that a simple approach based upon quantiles is used, assumes that both x and y are each normally distributed, and treats x and y separately.  Thus, this is not a formal treatment of outliers, just a means of labeling points. Groups are lumped together for the computation.</p></dd>
 
 
 <dt>use.sym</dt>
@@ -129,17 +122,9 @@ not correspond, but you can edit <code>spectra$groups</code> to match if necessa
     <h2>Value</h2>
     
 
-<p>The returned value depends on the graphics option selected (see <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">GraphicsOptions</a></code>).</p><dl><dt>base:</dt>
-<dd><p>A data frame or list containing the data plotted.  Assign the value and run <code><a href="https://rdrr.io/r/utils/str.html" class="external-link">str()</a></code>
-              or <code><a href="https://rdrr.io/r/base/names.html" class="external-link">names()</a></code> on it to see what it contains. Side effect is a plot.</p></dd>
-
- <dt>ggplot2:</dt>
-<dd><p>The plot is displayed, and a <code>ggplot2</code> plot object is returned if the
-                 value is assigned. The plot can be modified in the usual <code>ggplot2</code> manner.
-                 If you want the plotted values, you can access them via the base graphics mode.</p></dd>
-
-
-</dl></div>
+<p>The returned value depends on the graphics option selected (see <code><a href="https://rdrr.io/pkg/ChemoSpecUtils/man/GraphicsOptions.html" class="external-link">ChemoSpecUtils::GraphicsOptions()</a></code>).</p><ul><li><p><strong>base</strong> A data frame or list containing the data plotted.  Assign the value and run <code><a href="https://rdrr.io/r/utils/str.html" class="external-link">str()</a></code> or <code><a href="https://rdrr.io/r/base/names.html" class="external-link">names()</a></code> on it to see what it contains. Side effect is a plot.</p></li>
+<li><p><strong>ggplot2</strong> The plot is displayed, and a <code>ggplot2</code> plot object is returned if the value is assigned. The plot can be modified in the usual <code>ggplot2</code> manner. If you want the plotted values, you can access them via the base graphics mode.</p></li>
+</ul></div>
     <div id="references">
     <h2>References</h2>
     <p>Pinto, Bosc, Nocairi, Barros, and Rutledge. "Using ANOVA-PCA for
@@ -171,7 +156,7 @@ Additional documentation at <a href="https://bryanhanson.github.io/ChemoSpec/" c
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

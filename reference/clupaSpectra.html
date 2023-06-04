@@ -18,7 +18,7 @@ It implements the CluPA algorithm described in the reference."><!-- mathjax --><
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.8</span>
       </span>
     </div>
 
@@ -64,7 +64,7 @@ It implements the CluPA algorithm described in the reference.</p>
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>spectra</dt>
-<dd><p>An object of S3 class <code><a href="Spectra.html">Spectra</a></code>.</p></dd>
+<dd><p>An object of S3 class <code><a href="Spectra.html">Spectra()</a></code>.</p></dd>
 
 
 <dt>bT</dt>
@@ -96,25 +96,33 @@ Bioinformatics vol. 12 pg. 405 (2011).</p>
     </div>
     <div id="author">
     <h2>Author</h2>
-    <p>Bryan A. Hanson (DePauw University)</p>
+    <p>Bryan A. Hanson (DePauw University).</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># You need to install package speaq for this example</span></span></span>
 <span class="r-in"><span><span class="co"># This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">alignMUD</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"speaq"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">alignMUD</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">alignMUD</span>, which <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, lab.pos <span class="op">=</span> <span class="fl">4.5</span>, offset <span class="op">=</span> <span class="fl">0.1</span>,</span></span>
-<span class="r-in"><span>  yrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5000</span><span class="op">)</span>, amp <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Misaligned NMR Spectra"</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="fl">1.8</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1900</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span>
-<span class="r-in"><span><span class="va">p1</span></span></span>
-<span class="r-plt img"><img src="clupaSpectra-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span>  <span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">alignMUD</span>, which <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, lab.pos <span class="op">=</span> <span class="fl">4.5</span>, offset <span class="op">=</span> <span class="fl">0.1</span>,</span></span>
+<span class="r-in"><span>    yrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5000</span><span class="op">)</span>, amp <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Misaligned NMR Spectra"</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="fl">1.8</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1900</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">p1</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">aMUD</span> <span class="op">&lt;-</span> <span class="fu">clupaSpectra</span><span class="op">(</span><span class="va">alignMUD</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">aMUD</span> <span class="op">&lt;-</span> <span class="fu">clupaSpectra</span><span class="op">(</span><span class="va">alignMUD</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">aMUD</span>, which <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, lab.pos <span class="op">=</span> <span class="fl">4.5</span>, offset <span class="op">=</span> <span class="fl">0.1</span>,</span></span>
+<span class="r-in"><span>    yrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5000</span><span class="op">)</span>, amp <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p2</span> <span class="op">+</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Aligned NMR Spectra"</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="fl">1.8</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1900</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">p2</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Coordinate system already present. Adding new coordinate system, which will</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> replace the existing one.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Spectrum 1 has 4 peaks</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Spectrum 2 has 4 peaks</span>
@@ -162,15 +170,10 @@ Bioinformatics vol. 12 pg. 405 (2011).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  aligning spectrum  19</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  aligning spectrum  20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Median pearson correlation of aligned spectra: 0.9999948</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Alignment time:  0.001333333  minutes</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">aMUD</span>, which <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, lab.pos <span class="op">=</span> <span class="fl">4.5</span>, offset <span class="op">=</span> <span class="fl">0.1</span>,</span></span>
-<span class="r-in"><span>  yrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5000</span><span class="op">)</span>, amp <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p2</span> <span class="op">+</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Aligned NMR Spectra"</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="fl">1.8</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1900</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span>
-<span class="r-in"><span><span class="va">p2</span></span></span>
-<span class="r-plt img"><img src="clupaSpectra-2.png" alt="" width="700" height="433"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Alignment time:  0.001066667  minutes</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Coordinate system already present. Adding new coordinate system, which will</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> replace the existing one.</span>
+<span class="r-plt img"><img src="clupaSpectra-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -186,7 +189,7 @@ Bioinformatics vol. 12 pg. 405 (2011).</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

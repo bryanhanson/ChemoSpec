@@ -21,7 +21,7 @@ any of "dx", "DX", "jdx" or "JDX".'><!-- mathjax --><script src="https://cdnjs.c
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.8</span>
       </span>
     </div>
 
@@ -102,14 +102,14 @@ Warnings are issued if there are file/sample names that don't match entries in
 
 <dt>gr.cols</dt>
 <dd><p>Group Colors.  See <code><a href="colorSymbol.html">colorSymbol</a></code> for some options. One of the following:</p><ul><li><p>Legacy behavior and the default: The word <code>"auto"</code>, in which case up to 8 colors will
-        be automatically assigned from package <code>RColorBrewer Set1</code>.</p></li>
+be automatically assigned from package <code>RColorBrewer Set1</code>.</p></li>
 <li><p><code>"Col7"</code>. A unique set of up to 7 colorblind-friendly colors is used.</p></li>
 <li><p><code>"Col8"</code>. A unique set of up to 8 colors is used.</p></li>
 <li><p><code>"Col12"</code>. A mostly paired set of up to 12 colors is used.</p></li>
 <li><p>A vector of acceptable color designations with the same length as <code>gr.crit</code>.</p></li>
 </ul><p>Colors will be assigned one for one, so the first element of
-    <code>gr.crit</code> is assigned the first element of <code>gr.col</code> and so forth.  For <code>Col12</code>
-    you should pay careful attention to the order of <code>gr.crit</code> in order to match up colors.</p></dd>
+<code>gr.crit</code> is assigned the first element of <code>gr.col</code> and so forth.  For <code>Col12</code>
+you should pay careful attention to the order of <code>gr.crit</code> in order to match up colors.</p></dd>
 
 
 <dt>freq.unit</dt>
@@ -153,7 +153,7 @@ See there for much more info on importing JCAMP-DX files.</p></dd>
 <dd><p>Arguments to be passed to <code><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></code>,
 <code><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></code> or <code>readJDX</code>; see the "Advanced Tricks" section.
 For <code>read.table</code>, <span class="pkg">You MUST supply values for <code>sep</code>, <code>dec</code> and <code>header</code> consistent
-with your file structure, unless they are the same as the defaults for <code><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></code></span>.</p></dd>
+       with your file structure, unless they are the same as the defaults for <code><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></code></span>.</p></dd>
 
 
 <dt>in.file</dt>
@@ -172,8 +172,8 @@ importing your data, set this to <code>FALSE</code> and do <code>str(your object
     
 
 <p>A object of class <code><a href="Spectra.html">Spectra</a></code>.  An <em>unnamed</em> object
-        of S3 class <code><a href="Spectra.html">Spectra</a></code> is also written to <code>out.file</code>.  To
-        read it back into the workspace, use <code>new.name &lt;- loadObject(out.file)</code></p>
+of S3 class <code><a href="Spectra.html">Spectra</a></code> is also written to <code>out.file</code>.  To
+read it back into the workspace, use <code>new.name &lt;- loadObject(out.file)</code></p>
 
 
 <p>(<code>loadObject</code> is package <span class="pkg">R.utils</span>).</p>
@@ -274,11 +274,11 @@ to any part of the file name if you know how to construct the proper pattern.</p
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p>Additional documentation at <a href="https://bryanhanson.github.io/ChemoSpec/" class="external-link">https://bryanhanson.github.io/ChemoSpec/</a>,
-         as well as <code><a href="updateGroups.html">updateGroups</a></code>.</p></div>
+as well as <code><a href="updateGroups.html">updateGroups</a></code>.</p></div>
     </div>
     <div id="author">
     <h2>Author</h2>
-    <p>Bryan A. Hanson (DePauw University)</p>
+    <p>Bryan A. Hanson (DePauw University).</p>
     </div>
 
     <div id="ref-examples">
@@ -320,7 +320,7 @@ to any part of the file name if you know how to construct the proper pattern.</p
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
