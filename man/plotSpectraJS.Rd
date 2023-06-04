@@ -7,7 +7,7 @@
 plotSpectraJS(spectra, which = NULL, browser = NULL, minify = TRUE)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}} to be checked.}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{which}{Integer.  If not \code{NULL}, specifies by number which spectra to plot.
 If greater control is needed, use \code{\link{removeSample}} which is more flexible
@@ -82,6 +82,6 @@ about \code{d3.js} are at \url{https://d3js.org}. Additional documentation at
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University)
+Bryan A. Hanson (DePauw University).
 }
 \keyword{plot}

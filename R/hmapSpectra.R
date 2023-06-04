@@ -6,7 +6,7 @@
 #' across each dimension (controlled by argument \code{method}, see \code{\link[seriation]{hmap}}).
 #' The vignette for package \pkg{seriation} has more details.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param \dots Additional arguments to be passed downstream.  A great deal of
 #' control is available - check \code{\link[seriation]{hmap}} for details.  Most of the control
@@ -15,7 +15,7 @@
 #'
 #' @return A list as described in \code{\link[seriation]{hmap}}. Side effect is a plot.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso \code{\link[seriation]{hmap}} which will get you to the package
 #' (there is no package index page); the vignette is a good place to begin
@@ -44,23 +44,25 @@
 #' @keywords multivariate
 #'
 #' @examples
+#' # You need to install package "seriation" for this example
+#' if (requireNamespace("seriation", quietly = TRUE)) {
+#'   data(SrE.IR)
 #'
-#' data(SrE.IR)
+#'   # Let's look just at the carbonyl region
+#'   IR <- removeFreq(SrE.IR, rem.freq = SrE.IR$freq > 1775 | SrE.IR$freq < 1660)
+#'   p <- plotSpectra(IR, which = 1:16, lab.pos = 1800)
 #'
-#' # Let's look just at the carbonyl region
-#' IR <- removeFreq(SrE.IR, rem.freq = SrE.IR$freq > 1775 | SrE.IR$freq < 1660)
-#' p <- plotSpectra(IR, which = 1:16, lab.pos = 1800)
+#'   # Defaults, except for color scheme:
+#'   res <- hmapSpectra(IR, col = heat.colors(5))
 #'
-#' # Defaults, except for color scheme:
-#' res <- hmapSpectra(IR, col = heat.colors(5))
-#'
-#' # Label samples and frequencies by passing arguments to stats:heatmap
-#' # Also make a few other nice plot adjustments
-#' res <- hmapSpectra(IR,
-#'   col = heat.colors(5),
-#'   row_labels = IR$names, col_labels = as.character(round(IR$freq)),
-#'   margins = c(4, 6)
-#' )
+#'   # Label samples and frequencies by passing arguments to stats:heatmap
+#'   # Also make a few other nice plot adjustments
+#'   res <- hmapSpectra(IR,
+#'     col = heat.colors(5),
+#'     row_labels = IR$names, col_labels = as.character(round(IR$freq)),
+#'     margins = c(4, 6)
+#'     )
+#' }
 #'
 #' @export hmapSpectra
 #'

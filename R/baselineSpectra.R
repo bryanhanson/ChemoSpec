@@ -18,7 +18,7 @@
 #' becomes the new baseline.  This is most suitable for cases in which the
 #' baseline rises or falls steadily, as is often seen in chromatograms.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param int Logical; if \code{TRUE}, do the correction interactively using
 #' widgets.  No results are saved.  Use this for inspection and exploration
@@ -46,7 +46,7 @@
 #' corrected spectra is returned.  In these latter two cases plots are also
 #' drawn.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @keywords hplot
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
@@ -54,9 +54,11 @@
 #' @importFrom stats lm predict
 #'
 #' @examples
-#'
-#' data(SrE.IR)
-#' temp <- baselineSpectra(SrE.IR, int = FALSE, method = "modpolyfit")
+#' # You need to install package "baseline" for this example
+#' if (requireNamespace("baseline", quietly = TRUE)) {
+#'   data(SrE.IR)
+#'   temp <- baselineSpectra(SrE.IR, int = FALSE, method = "modpolyfit")
+#' }
 #'
 baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, show = 1, ...) {
 

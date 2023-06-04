@@ -5,7 +5,7 @@
 #' offset or stacked.  The vertical scale is controlled by a combination of
 #' several parameters.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param which An integer vector specifying which spectra to plot, and the
 #' order.
@@ -31,10 +31,10 @@
 #' @param showGrid Logical.  Places light gray vertical lines at each tick mark
 #' if \code{TRUE}.
 #'
-#' @template param-legloc
-#' @template param-graphics-dots
-#' @template param-graphics-return
-#' @template authors-BH-TG
+#' @param leg.loc `r .writeDoc_LegLoc()`
+#' @param \dots `r .writeDoc_GraphicsDots()`
+#' @return `r .writeDoc_GraphicsReturn()`
+#' @author `r .writeDoc_Authors(c("BH", "TG"))`
 #'
 #' @seealso \code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOptions}}
 #'          for more information about the graphics options. Additional documentation at

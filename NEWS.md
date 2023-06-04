@@ -1,3 +1,15 @@
+# ChemoSpec 6.1.8 2023-06-03
+## Misc.
+* Bumped version at the request of CRAN.
+* Replaced use of `@template` in documentation with inline functions, as `@template` is deprecated.
+* There was no official 6.1.7 version, it got bogged down at CRAN.
+
+# ChemoSpec 6.1.6 2023-04-20
+## Misc.
+* Package `clusterCrit` was archived by CRAN, and hence was removed from `ChemoSpec`.  Affects `evalClusters` function.
+* Stopped exporting internal functions from `ChemoSpec` and stopped re-exporting internal functions from `ChemoSpecUtils`, due to closer checking by CRAN.
+* Not released to CRAN.
+
 # ChemoSpec 6.1.4 2022-10-21
 ## Bug Fixes
 * Fixed an ancient bug in `cv_pcaSpectra` which affected the results. Data was being row scaled internally, this was removed.  Scaling was made consistent with `c_pcaSpectra`. Data will be centered before proceeding (notice repeated from 6.1.3 which did not go to CRAN).

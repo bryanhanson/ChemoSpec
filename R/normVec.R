@@ -14,11 +14,11 @@
 #' @note The idea was taken from "An Introduction to rggobi" found at the ggobi
 #' web site (originally www.ggobi.org but not available as of June 2018).
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @keywords utilities manip
+#' @keywords internal
 #'
 #' @examples
 #'
@@ -30,7 +30,6 @@
 #' range(x2)
 #' sd(x2) / diff(range(x2))
 #'
-#' @export
 #' @noRd
 #'
 .normVec <- function(x) x / sqrt(sum(x^2))

@@ -7,7 +7,7 @@
 splitSpectraGroups(spectra, inst = NULL, rep.cols = NULL, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{inst}{A list giving the name of the new element to be created from a
 set of target strings given in a character vector.  See the example for the
@@ -42,7 +42,7 @@ containing "G" are coded as "G" in a new element called \code{spectra$env},
 and any entries containing "T" are handled likewise.  This amounts to a sort
 of recoding of factors (the example demonstrates this).  Every entry in
 \code{spectra$groups} should be matched by one of the entries in the
-character vector.  If not, you will get <NA> entries.  Also, if the targets
+character vector.  If not, you will get \code{NA} entries.  Also, if the targets
 in the character vector are not unique, your results will reflect the order
 of the levels.  Since this is a grep process, you can pass any valid grep
 string as the target.
@@ -73,6 +73,6 @@ res$groups <- as.factor(paste(res$geneBb, res$geneCc, sep = ""))
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University)
+Bryan A. Hanson (DePauw University).
 }
 \keyword{utilities}

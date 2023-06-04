@@ -150,7 +150,7 @@
 #' name and the description elsewhere), it's actually just a grep pattern that you can apply
 #' to any part of the file name if you know how to construct the proper pattern.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/},
 #'          as well as \code{\link{updateGroups}}.

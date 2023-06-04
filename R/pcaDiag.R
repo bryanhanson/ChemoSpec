@@ -13,7 +13,7 @@
 #' graphics window.  Alternatively, just call the function twice, once
 #' specifying \code{OD} and once specifying \code{SD}.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param pca An object of class \code{\link{prcomp}}
 #' modified to include a character string (\code{$method}) describing the
@@ -32,9 +32,9 @@
 #' @param use.sym logical; if true, the color scheme is change to black and
 #' symbols are used for plotting.
 #'
-#' @template param-graphics-dots
-#' @template param-graphics-return2
-#' @template authors-BH-TG
+#' @param \dots `r .writeDoc_GraphicsDots()`
+#' @return `r .writeDoc_GraphicsReturn2()`
+#' @author `r .writeDoc_Authors(c("BH", "TG"))`
 #'
 #' @seealso \code{\link[chemometrics]{pcaDiagplot}} in package
 #' \code{chemometrics} for the underlying function. Additional documentation at

@@ -7,7 +7,7 @@
 binSpectra(spectra, bin.ratio)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}} to be binned.}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{bin.ratio}{An integer giving the binning ratio, that is, the number of
 points to be grouped together into one subset of data.}
@@ -42,7 +42,7 @@ sumSpectra(res)
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University)
+Bryan A. Hanson (DePauw University).
 }
 \keyword{manip}
 \keyword{utilities}

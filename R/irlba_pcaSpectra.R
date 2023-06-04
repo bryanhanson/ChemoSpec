@@ -10,7 +10,7 @@
 #' deviation.  \code{Pareto} scales by the square root of the standard
 #' deviation.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param choice A character string indicating the choice of scaling.  One of
 #' \code{c("noscale"}, \code{"autoscale"}, \code{"Pareto")}. \code{"autoscale"}
@@ -28,7 +28,7 @@
 #' pre-processing carried out and the type of PCA performed (used to annotate
 #' plots).
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso \code{\link[irlba]{prcomp_irlba}} for the underlying function,
 #' \code{\link{c_pcaSpectra}} for classical PCA calculations,
@@ -36,7 +36,7 @@
 #' \code{\link{s_pcaSpectra}} for sparse PCA calculations.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @template results-links
+#' `r .writeDoc_LinksShowPCAResults()`
 #'
 #' @references J. Baglama and L. Reichel, "Augmented Implicitly Restarted Lanczos
 #' Bidiagonalization Methods"  \emph{SIAM J. Sci. Comput.} (2005).

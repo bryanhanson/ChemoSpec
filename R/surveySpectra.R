@@ -18,7 +18,7 @@
 #' that, the relative summary statistic is plotted, offset, but on the same
 #' scale.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}} to be analyzed.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param method Character.  One of \code{c("sd", "sem", "sem95", "mad",
 #' "iqr")}.
@@ -29,12 +29,12 @@
 #' @param lab.pos Numeric, giving the frequency where the label should be drawn.
 #' Applies to \code{surveySpectra2} only.
 #'
-#' @template param-graphics-dots
-#' @template param-graphics-return
+#' @param \dots `r .writeDoc_GraphicsDots()`
+#' @return `r .writeDoc_GraphicsReturn()`
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @template authors-BH-TG
+#' @author `r .writeDoc_Authors(c("BH", "TG"))`
 #'
 #' @keywords hplot
 #'

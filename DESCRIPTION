@@ -1,8 +1,8 @@
 Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
-Version: 6.1.4
-Date: 2022-10-21
+Version: 6.1.8
+Date: 2023-06-03
 Authors@R: c(
     person("Bryan A.", "Hanson",
       role = c("aut", "cre"), email =
@@ -53,7 +53,6 @@ Suggests:
   baseline,
   mclust,
   pls,
-  clusterCrit,
   R.utils,
   RColorBrewer,
   seriation,
@@ -72,11 +71,13 @@ Suggests:
   hyperSpec,
   amap,
   robustbase,
-  gsubfn
+  gsubfn,
+  roxut
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE
 VignetteBuilder: knitr
 Encoding: UTF-8
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
+Roxygen: list(roclets = c("namespace", "rd", "roxut::tests_roclet"), markdown = TRUE)
 NeedsCompilation: no

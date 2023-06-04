@@ -10,7 +10,7 @@
 #' In these cases, you may need to limit the number of samples in passed to this function.
 #' See \code{\link{removeSample}} or use argument \code{which}.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}} to be checked.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param which Integer.  If not \code{NULL}, specifies by number which spectra to plot.
 #' If greater control is needed, use \code{\link{removeSample}} which is more flexible
@@ -50,7 +50,7 @@
 ##' your browser at peacekeeper.futuremark.com  The most relevant score
 ##' is the rendering category.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso \code{\link{plotSpectra}} for non-interactive plotting.  Details
 #' about \code{d3.js} are at \url{https://d3js.org}. Additional documentation at

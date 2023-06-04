@@ -18,12 +18,12 @@
 #'     range is used.  This would be appropriate if there was an internal standard
 #'     in the spectrum which was free of interferance, and one wanted to normalize
 #'     relative to it.
-#'   \item \code{"zero2one"} scales each spectrum separately to a [0 \ldots{} 1] scale.
+#'   \item \code{"zero2one"} scales each spectrum separately to a `[0...1]` scale.
 #'     This is sometimes useful for visual comparison of chromatograms but is
 #'     inappropriate for spectral data sets.
 #' }
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}} to be normalized.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param method One of \code{c("PQN", "TotInt", "Range", "zero2one")} giving
 #' the method for normalization.
@@ -33,9 +33,9 @@
 #' the frequency range you want to serve as the basis for norming, and \code{FALSE} otherwise.
 #' The entire spectrum will be divided by the sum of the \code{TRUE} range.  See the examples.
 #'
-#' @return An object of S3 class \code{\link{Spectra}}.
+#' @return `r .writeDoc_Spectra1()`
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @references
 #' \itemize{

@@ -7,7 +7,7 @@
 hmapSpectra(spectra, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{\dots}{Additional arguments to be passed downstream.  A great deal of
 control is available - check \code{\link[seriation]{hmap}} for details.  Most of the control
@@ -47,23 +47,25 @@ olive oil.
 }
 
 \examples{
+# You need to install package "seriation" for this example
+if (requireNamespace("seriation", quietly = TRUE)) {
+  data(SrE.IR)
 
-data(SrE.IR)
+  # Let's look just at the carbonyl region
+  IR <- removeFreq(SrE.IR, rem.freq = SrE.IR$freq > 1775 | SrE.IR$freq < 1660)
+  p <- plotSpectra(IR, which = 1:16, lab.pos = 1800)
 
-# Let's look just at the carbonyl region
-IR <- removeFreq(SrE.IR, rem.freq = SrE.IR$freq > 1775 | SrE.IR$freq < 1660)
-p <- plotSpectra(IR, which = 1:16, lab.pos = 1800)
+  # Defaults, except for color scheme:
+  res <- hmapSpectra(IR, col = heat.colors(5))
 
-# Defaults, except for color scheme:
-res <- hmapSpectra(IR, col = heat.colors(5))
-
-# Label samples and frequencies by passing arguments to stats:heatmap
-# Also make a few other nice plot adjustments
-res <- hmapSpectra(IR,
-  col = heat.colors(5),
-  row_labels = IR$names, col_labels = as.character(round(IR$freq)),
-  margins = c(4, 6)
-)
+  # Label samples and frequencies by passing arguments to stats:heatmap
+  # Also make a few other nice plot adjustments
+  res <- hmapSpectra(IR,
+    col = heat.colors(5),
+    row_labels = IR$names, col_labels = as.character(round(IR$freq)),
+    margins = c(4, 6)
+    )
+}
 
 }
 \seealso{
@@ -73,6 +75,6 @@ res <- hmapSpectra(IR,
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University)
+Bryan A. Hanson (DePauw University).
 }
 \keyword{multivariate}

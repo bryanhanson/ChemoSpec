@@ -17,7 +17,7 @@ cv_pcaSpectra(
 )
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{pcs}{As per \code{\link[chemometrics]{pcaCV}} where it is called amax;
 an integer giving the number of PC scores to include.}
@@ -49,9 +49,11 @@ re-write of Peter Filzmoser's \code{\link[chemometrics]{pcaCV}} method
 with some small plotting changes.
 }
 \examples{
-
-data(SrE.IR)
-pca <- cv_pcaSpectra(SrE.IR, pcs = 5)
+# You need to install package "pls" for this example
+if (requireNamespace("pls", quietly = TRUE)) {
+  data(SrE.IR)
+  pca <- cv_pcaSpectra(SrE.IR, pcs = 5)
+}
 
 }
 \references{

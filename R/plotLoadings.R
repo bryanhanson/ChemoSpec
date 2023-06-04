@@ -3,7 +3,7 @@
 #'
 #' Creates a multi-panel plot of loadings along with a reference spectrum.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param pca An object of class \code{\link{prcomp}}, modified to include a
 #' list element called \code{$method}, a character string describing the
@@ -18,10 +18,10 @@
 #' @param ref An integer specifying the reference spectrum to plot, which
 #' appears at the bottom of the plot.
 #'
-#' @template param-graphics-dots
-#' @template param-graphics-return
+#' @param \dots `r .writeDoc_GraphicsDots()`
+#' @return `r .writeDoc_GraphicsReturn()`
 #'
-#' @template authors-BH-TG
+#' @author `r .writeDoc_Authors(c("BH", "TG"))`
 #'
 #' @seealso \code{\link{c_pcaSpectra}} for an example.  See \code{\link{plot2Loadings}}
 #' to plot two loadings against each

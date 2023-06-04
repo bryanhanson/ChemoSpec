@@ -15,9 +15,8 @@
 #'
 #' @seealso \code{\link{is.integer}}
 #'
-#' @keywords utilities
+#' @keywords internal
 #'
-#' @export
 #' @noRd
 #'
 .isWholeNo <- function(x, tol = .Machine$double.eps^0.5) {

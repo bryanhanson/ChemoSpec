@@ -7,7 +7,7 @@
 r_pcaSpectra(spectra, choice = "noscale")
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{choice}{A character vector describing the type of scaling to be
 carried out.  One of \code{c("noscale", "mad")}.}
@@ -54,10 +54,12 @@ Statistical Analysis in Chemometrics}, CRC Press, 2009.
 \code{\link{irlba_pcaSpectra}} for PCA via the IRLBA algorithm.
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 
+For displaying the results, \code{\link[ChemoSpecUtils:plotScree]{ChemoSpecUtils::plotScree()}}, \code{\link[ChemoSpecUtils:plotScores]{ChemoSpecUtils::plotScores()}}, \code{\link[=plotLoadings]{plotLoadings()}}, \code{\link[=plot2Loadings]{plot2Loadings()}}, \code{\link[=sPlotSpectra]{sPlotSpectra()}}.
+
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University)
+Bryan A. Hanson (DePauw University).
 }
 \keyword{multivariate}
 \keyword{robust}

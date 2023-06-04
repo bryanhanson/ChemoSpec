@@ -45,9 +45,7 @@
 #'
 #' @author Bryan A. Hanson, DePauw University. Derived from \code{\link[mclust]{coordProj}}.
 #'
-#' @keywords multivariate cluster
-#'
-#' @export
+#' @keywords internal
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'

@@ -14,7 +14,7 @@ hcaSpectra(
 )
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{c.method}{A character string describing the clustering method; must be
 acceptable to \code{\link{hclust}}.}
@@ -53,7 +53,7 @@ res <- hcaSpectra(SrE.IR, main = myt)
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University)
+Bryan A. Hanson (DePauw University).
 }
 \keyword{cluster}
 \keyword{multivariate}

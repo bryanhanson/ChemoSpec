@@ -4,7 +4,7 @@
 #' Plotting function called by either \code{plotScores3d} or \code{mclust3dSpectra}.
 #' Not intende to be called by the user.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param L  A list containing a data frame of scores, a data frame of ellipses,
 #'        and possibly an mclust model.
@@ -18,11 +18,11 @@
 #'
 #' @return None.  Side effect is a plot in a browser windwo.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")
 #'
 #' @importFrom plotly add_markers add_trace layout plot_ly
-#' @export
 #' @noRd
+#' @keywords internal
 #'
 .plotly3d <- function(spectra, pca, L, pcs, truth = NULL) {
 

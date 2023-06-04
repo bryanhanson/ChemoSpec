@@ -5,7 +5,7 @@
 #' with fewer samples.  One should probably not do this until each individual sample has been
 #' visualized for quality control, in case it is a potential outlier.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}} to be processed.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param uniq Character.  A character vector containing strings representing unique sample
 #'        identifiers.  The sample names will be searched for these strings, and all samples
@@ -19,7 +19,7 @@
 #'
 #' @return An object of S3 class \code{\link{Spectra}}.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @keywords utilities
 #' @export

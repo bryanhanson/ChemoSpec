@@ -23,13 +23,12 @@
 #' @return A data frame containing the x, y and z coordinates, along with the
 #' corresponding labels.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @keywords utilities
+#' @keywords internal
 #'
-#' @export
 #' @noRd
 #' @importFrom stats quantile
 #'

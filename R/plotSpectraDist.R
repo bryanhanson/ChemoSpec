@@ -5,7 +5,7 @@
 #' spectra in a \code{\link{Spectra}} object.  Distance can be defined in a number of
 #' ways (see Arguments).
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param method Character.  Any method acceptable to \code{\link{rowDist}}.
 #'
@@ -13,14 +13,14 @@
 #'
 #' @param labels Logical.  Shall the points be labeled?
 #'
-#' @template param-graphics-dots
-#' @template param-graphics-return2
+#' @param \dots `r .writeDoc_GraphicsDots()`
+#' @return `r .writeDoc_GraphicsReturn2()`
 #'
 #' @seealso To compare all spectra simultaneously in a heatmap, see
 #' \code{\link[ChemoSpecUtils]{sampleDist}}.  Additional documentation
 #' at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @template authors-BH-TG
+#' @author `r .writeDoc_Authors(c("BH", "TG"))`
 #'
 #' @keywords hplot multivariate
 #'
@@ -33,15 +33,18 @@
 #'
 #' @examples
 #'
-#' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
-#' library("ggplot2")
-#' data(SrE.NMR)
-#' txt1 <- paste("Distance from", SrE.NMR$names[1])
-#' txt2 <- paste("Rank Distance from", SrE.NMR$names[1])
-#' p <- plotSpectraDist(SrE.NMR)
-#' p <- p + labs(title = txt1, xlab = txt2, ylab = txt2) +
-#'          coord_cartesian(ylim = c(0, 1.1), xlim = c(0, 16))
+#' # You need to install package "amap" to use this function
+#' if (requireNamespace("amap", quietly = TRUE)) {
+#'   # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+#'   library("ggplot2")
+#'   data(SrE.NMR)
+#'   txt1 <- paste("Distance from", SrE.NMR$names[1])
+#'   txt2 <- paste("Rank Distance from", SrE.NMR$names[1])
+#'   p <- plotSpectraDist(SrE.NMR)
+#'   p <- p + labs(title = txt1, xlab = txt2, ylab = txt2) +
+#'            coord_cartesian(ylim = c(0, 1.1), xlim = c(0, 16))
 #' p
+#' }
 #'
 plotSpectraDist <- function(spectra,
                             method = "pearson",

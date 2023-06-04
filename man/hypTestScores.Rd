@@ -7,7 +7,7 @@
 hypTestScores(spectra, pca, pcs = 1:3, fac = NULL, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{pca}{An object of class \code{\link{prcomp}}.}
 
@@ -68,7 +68,7 @@ used with this function.  Additional documentation at
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University)
+Bryan A. Hanson (DePauw University).
 }
 \keyword{htest}
 \keyword{multivariate}

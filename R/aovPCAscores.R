@@ -5,7 +5,7 @@
 #' Argument \code{submat} is used to select PCA results from among those
 #' stored in argument \code{PCA}.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param so \emph{List} of pca results created by \code{\link{aov_pcaSpectra}}.
 #'
@@ -31,10 +31,10 @@
 #' done by \code{aov_pcaSpectra} is based on argument \code{fac}.  These may
 #' not correspond, but you can edit \code{spectra$groups} to match if necessary.
 #'
-#' @template param-graphics-return2
-#' @template param-tol
+#' @return `r .writeDoc_GraphicsReturn2()`
+#' @param tol `r .writeDoc_Tol()`
 #'
-#' @template authors-BH-MK
+#' @author `r .writeDoc_Authors(c("BH", "MK"))`
 #'
 #' @seealso The use of this function can be seen in
 #' \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotScores}}.

@@ -6,17 +6,17 @@
 #' allows visual identification of variables driving the separation and thus is
 #' a useful adjunct to traditional loading plots.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param pca The result of a pca calculation on \code{\link{Spectra}} (i.e.
 #' the output from \code{\link{c_pcaSpectra}} or \code{\link{r_pcaSpectra}}).
 #'
 #' @param pc An integer specifying the desired pc plot.
 #'
-#' @template param-tol
-#' @template param-graphics-dots
-#' @template param-graphics-return
-#' @author Bryan A. Hanson (DePauw University), Tejasvi Gupta & Matthew J. Keinsley.
+#' @param tol `r .writeDoc_Tol()`
+#' @param \dots `r .writeDoc_GraphicsDots()`
+#' @return `r .writeDoc_GraphicsReturn()`
+#' @author `r .writeDoc_Authors(c("BH", "TG", "MK"))`
 #'
 #' @references Wiklund, Johansson, Sjostrom, Mellerowicz, Edlund, Shockcor,
 #' Gottfries, Moritz, and Trygg. "Visualization of GC/TOF-MS-Based

@@ -5,7 +5,7 @@
 #' plotting functions.
 #'
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param pca An object of class \code{\link{prcomp}}.
 #'
@@ -23,7 +23,7 @@
 #'
 #' @return The \code{Mclust} model is returned invisibly, and a plot is made.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso \code{\link[mclust]{Mclust}} for background on the method.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}

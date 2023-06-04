@@ -9,7 +9,7 @@
 #' here are generated independently of the \code{Mclust} results - they do not
 #' correspond to the ellipses seen in 2D plots from \code{Mclust}.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param pca An object of class \code{\link{prcomp}}.
 #'
@@ -34,7 +34,7 @@
 #'
 #' @return The mclust model is returned invisibly, and a plot is produced.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso \code{\link[mclust]{Mclust}} for background on the method.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}

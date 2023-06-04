@@ -16,7 +16,7 @@
 #' and any entries containing "T" are handled likewise.  This amounts to a sort
 #' of recoding of factors (the example demonstrates this).  Every entry in
 #' \code{spectra$groups} should be matched by one of the entries in the
-#' character vector.  If not, you will get <NA> entries.  Also, if the targets
+#' character vector.  If not, you will get `NA` entries.  Also, if the targets
 #' in the character vector are not unique, your results will reflect the order
 #' of the levels.  Since this is a grep process, you can pass any valid grep
 #' string as the target.
@@ -25,7 +25,7 @@
 #' levels of the the first element of \code{inst}.  This provides a different
 #' means of changing the sample color encoding than \code{\link{conColScheme}}.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param inst A list giving the name of the new element to be created from a
 #' set of target strings given in a character vector.  See the example for the
@@ -42,7 +42,7 @@
 #' @return An object of S3 class \code{\link{Spectra}}, modified to have
 #' additional elements as specified by \code{inst}.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso \code{\link{conColScheme}}
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}

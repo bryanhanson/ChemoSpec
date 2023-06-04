@@ -5,7 +5,7 @@
 #' \code{\link{Spectra}} object, color coded according the to scheme stored in
 #' the object.  The plot is created by \code{plotly} and appears in a browser window.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param pca An object of class \code{\link{prcomp}}.
 #'
@@ -25,7 +25,7 @@
 #'
 #' @return None.  Side effect is a plot in a browser window.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'

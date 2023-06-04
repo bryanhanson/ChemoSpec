@@ -7,7 +7,7 @@
 baselineSpectra(spectra, int = TRUE, retC = FALSE, show = 1, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{int}{Logical; if \code{TRUE}, do the correction interactively using
 widgets.  No results are saved.  Use this for inspection and exploration
@@ -55,15 +55,17 @@ becomes the new baseline.  This is most suitable for cases in which the
 baseline rises or falls steadily, as is often seen in chromatograms.
 }
 \examples{
-
-data(SrE.IR)
-temp <- baselineSpectra(SrE.IR, int = FALSE, method = "modpolyfit")
+# You need to install package "baseline" for this example
+if (requireNamespace("baseline", quietly = TRUE)) {
+  data(SrE.IR)
+  temp <- baselineSpectra(SrE.IR, int = FALSE, method = "modpolyfit")
+}
 
 }
 \seealso{
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University)
+Bryan A. Hanson (DePauw University).
 }
 \keyword{hplot}

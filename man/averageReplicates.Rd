@@ -7,7 +7,7 @@
 averageReplicates(spectra, uniq)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}} to be processed.}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{uniq}{Character.  A character vector containing strings representing unique sample
 identifiers.  The sample names will be searched for these strings, and all samples
@@ -35,6 +35,6 @@ sumSpectra(averaged)
 
 }
 \author{
-Bryan A. Hanson (DePauw University)
+Bryan A. Hanson (DePauw University).
 }
 \keyword{utilities}

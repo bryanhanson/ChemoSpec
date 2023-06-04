@@ -7,7 +7,7 @@
 plot2Loadings(spectra, pca, loads = c(1, 2), tol = 0.05, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{pca}{An object of class \code{\link{prcomp}}, modified to include a
 list element called \code{$method}, a character string describing the
@@ -19,23 +19,15 @@ plot).  This is automatically provided if \code{ChemoSpec} functions
 \item{loads}{A vector of two integers specifying which loading vectors to
 plot.}
 
-\item{tol}{A number describing the fraction of points to be labeled.
-\code{tol = 1.0} labels all the points; \code{tol = 0.05} labels
-\emph{approximately} the most extreme 5 percent. Set to \code{"none"} to
-completely suppress labels. Note that a simple approach
-based upon quantiles is used, assumes that both x and y are each normally
-distributed, and treats x and y separately.  Thus, this is not a formal
-treatment of outliers, just a means of labeling points. Groups are lumped
-together.}
+\item{tol}{A number describing the fraction of points to be labeled. \code{tol = 1.0} labels all the points; \code{tol = 0.05} labels \emph{approximately} the most extreme 5 percent. Set to \code{'none'} to completely suppress labels. Note that a simple approach based upon quantiles is used, assumes that both x and y are each normally distributed, and treats x and y separately.  Thus, this is not a formal treatment of outliers, just a means of labeling points. Groups are lumped together for the computation.}
 
 \item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
 \value{
-The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
-\describe{
- \item{base:}{None. Side effect is a plot.}
- \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned if the
-                 value is assigned. The plot can be modified in the usual \code{ggplot2} manner.}
+The returned value depends on the graphics option selected (see \code{\link[=GraphicsOptions]{GraphicsOptions()}}).
+\itemize{
+\item \code{base}: None.  Side effect is a plot.
+\item \code{ggplot2}: The plot is displayed, and a \code{ggplot2} object is returned if the value is assigned.  The plot can be modified in the usual \code{ggplot2} manner.
 }
 }
 \description{

@@ -5,7 +5,7 @@
 #' object.  The data are row- and column-centered, and the user can select
 #' various options for scaling.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param choice A character vector describing the type of scaling to be
 #' carried out.  One of \code{c("noscale", "mad")}.
@@ -21,12 +21,12 @@
 #' \code{\link{irlba_pcaSpectra}} for PCA via the IRLBA algorithm.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @template results-links
+#' `r .writeDoc_LinksShowPCAResults()`
 #'
 #' @references K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
 #' Statistical Analysis in Chemometrics}, CRC Press, 2009.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso \url{https://bryanhanson.github.io/ChemoSpec/}
 #'

@@ -5,7 +5,7 @@
 #' information in a \code{\link{Spectra}} object.  Many methods for computing
 #' the clusters and distances are available.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param c.method A character string describing the clustering method; must be
 #' acceptable to \code{\link{hclust}}.
@@ -24,7 +24,7 @@
 #' @return A list, containing an object of class \code{\link{hclust}} and an
 #' object of class \code{\link{dendrogram}}.  The side effect is a plot.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso \code{\link{hclust}} for the underlying function.
 #' \code{\link{hcaScores}} for similar analysis of PCA scores from a

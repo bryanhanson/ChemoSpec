@@ -12,22 +12,18 @@ spectra themselves.  \code{Spectra} objects are created by
 \section{Structure}{
  The structure of a \code{Spectra} object is a list of 9
 elements and an attribute as follows:
-
-\tabular{lll}{ \emph{element} \tab \emph{type} \tab \emph{description}\cr
-$freq \tab num \tab A common frequency (or wavelength) axis for all the
-spectra.\cr $data \tab num \tab The intensities for the spectra.  A matrix
-of dimension \cr \tab \tab no. samples x no. frequency points.\cr $names
-\tab chr \tab The sample names for the spectra; length must be no.
-samples.\cr $groups \tab Factor \tab The group classification of the
-samples; length must be no. samples.\cr $colors \tab chr \tab The colors for
-each sample; length must be no. samples. \cr \tab \tab Groups and colors
-correspond.\cr $sym \tab integer \tab As for \code{colors}, but symbols for
-plotting (if b/w is desired).\cr $alt.sym \tab chr \tab Lower-case letters
-as alternate symbols for plotting.\cr $unit \tab chr \tab Two entries, the
-first giving the x axis unit, the second the y axis unit.\cr $desc \tab chr
-\tab A character string describing the data set.  This appears on plots and
-therefore \cr \tab \tab should probably be kept to 40 characters or less.\cr
-- attr \tab chr "Spectra" \tab The S3 class designation.\cr }
+\itemize{
+\item \strong{$freq} (numeric) A common frequency (or wavelength) axis for all the spectra.
+\item \strong{$data} (numeric) The intensities for the spectra.  A matrix of dimension no. samples x no. frequency points.
+\item \strong{$names} (character) The sample names for the spectra; length must be no. samples.
+\item \strong{$groups} (factor) The group classification of the samples; length must be no. samples.
+\item \strong{$colors} (character) The colors for each sample; length must be no. samples. Groups and colors correspond.
+\item \strong{$sym} (integer) As for \code{colors}, but symbols for plotting (if b/w is desired).
+\item \strong{$alt.sym} (character) Lower-case letters as alternate symbols for plotting.
+\item \strong{$unit} (character) Two entries, the first giving the x axis unit, the second the y axis unit.
+\item \strong{$desc} (character) A character string describing the data set.  This appears on plots and therefore should probably be kept to 40 characters or less.
+\item attribute: character with value "Spectra" The S3 class designation.
+}
 }
 
 \seealso{
@@ -38,6 +34,6 @@ object. \code{\link{chkSpectra}} to verify the integrity of a
 options. Finally, additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University)
+Bryan A. Hanson (DePauw University).
 }
 \keyword{classes}

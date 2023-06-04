@@ -24,7 +24,7 @@
 #' which the concentrations of some compounds co-vary, and others are
 #' independent. This data set is normalized.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @name metMUD1
 #'

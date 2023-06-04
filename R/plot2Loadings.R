@@ -8,7 +8,7 @@
 #' determine which variables are contributing the most to the clustering on a
 #' score plot.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param pca An object of class \code{\link{prcomp}}, modified to include a
 #' list element called \code{$method}, a character string describing the
@@ -20,11 +20,11 @@
 #' @param loads A vector of two integers specifying which loading vectors to
 #' plot.
 #'
-#' @template param-graphics-dots
-#' @template param-tol
-#' @template param-graphics-return
+#' @param \dots `r .writeDoc_GraphicsDots()`
+#' @param tol `r .writeDoc_Tol()`
+#' @return `r .writeDoc_GraphicsReturn()`
 #'
-#' @template authors-BH-TG
+#' @author `r .writeDoc_Authors(c("BH", "TG"))`
 #'
 #' @seealso See \code{\link{plotLoadings}} to plot one loading against the
 #' original variable (frequency) axis.  See \code{\link{sPlotSpectra}} for

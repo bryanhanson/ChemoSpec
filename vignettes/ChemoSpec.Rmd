@@ -1,10 +1,7 @@
 ---
 title:  "An Introduction to ChemoSpec"
 author:
-  - name: Bryan A. Hanson^1^
-    email: hanson@depauw.edu
-    affiliation: |
-        1. Professor Emeritus of Chemistry & Biochemistry, DePauw University, Greencastle IN USA.
+  - Bryan A. Hanson^[Professor Emeritus of Chemistry & Biochemistry, DePauw University, Greencastle IN USA., hanson@depauw.edu]
 date:  "`r Sys.Date()`"
 output:
     bookdown::html_document2: # use for pkgdown site
@@ -19,6 +16,7 @@ vignette: >
     %\VignettePackage{ChemoSpec}
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
+    %\VignetteDepends{ChemoSpec, mclust, ggplot2, patchwork, RColorBrewer, knitr}
 link-citations: yes
 bibliography:
   - chemometrics.bib

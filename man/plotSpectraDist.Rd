@@ -7,7 +7,7 @@
 plotSpectraDist(spectra, method = "pearson", ref = 1, labels = TRUE, ...)
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{method}{Character.  Any method acceptable to \code{\link{rowDist}}.}
 
@@ -18,13 +18,10 @@ plotSpectraDist(spectra, method = "pearson", ref = 1, labels = TRUE, ...)
 \item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
 \value{
-The returned value depends on the graphics option selected (see \code{\link{GraphicsOptions}}).
-\describe{
- \item{base:}{A data frame or list containing the data plotted.  Assign the value and run \code{str()}
-              or \code{names()} on it to see what it contains. Side effect is a plot.}
- \item{ggplot2:}{The plot is displayed, and a \code{ggplot2} plot object is returned if the
-                 value is assigned. The plot can be modified in the usual \code{ggplot2} manner.
-                 If you want the plotted values, you can access them via the base graphics mode.}
+The returned value depends on the graphics option selected (see \code{\link[ChemoSpecUtils:GraphicsOptions]{ChemoSpecUtils::GraphicsOptions()}}).
+\itemize{
+\item \strong{base} A data frame or list containing the data plotted.  Assign the value and run \code{str()} or \code{names()} on it to see what it contains. Side effect is a plot.
+\item \strong{ggplot2} The plot is displayed, and a \code{ggplot2} plot object is returned if the value is assigned. The plot can be modified in the usual \code{ggplot2} manner. If you want the plotted values, you can access them via the base graphics mode.
 }
 }
 \description{
@@ -34,15 +31,18 @@ ways (see Arguments).
 }
 \examples{
 
-# This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
-library("ggplot2")
-data(SrE.NMR)
-txt1 <- paste("Distance from", SrE.NMR$names[1])
-txt2 <- paste("Rank Distance from", SrE.NMR$names[1])
-p <- plotSpectraDist(SrE.NMR)
-p <- p + labs(title = txt1, xlab = txt2, ylab = txt2) +
-         coord_cartesian(ylim = c(0, 1.1), xlim = c(0, 16))
+# You need to install package "amap" to use this function
+if (requireNamespace("amap", quietly = TRUE)) {
+  # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+  library("ggplot2")
+  data(SrE.NMR)
+  txt1 <- paste("Distance from", SrE.NMR$names[1])
+  txt2 <- paste("Rank Distance from", SrE.NMR$names[1])
+  p <- plotSpectraDist(SrE.NMR)
+  p <- p + labs(title = txt1, xlab = txt2, ylab = txt2) +
+           coord_cartesian(ylim = c(0, 1.1), xlim = c(0, 16))
 p
+}
 
 }
 \seealso{

@@ -9,7 +9,7 @@
 #' deviation.  \code{Pareto} scales by the square root of the standard
 #' deviation.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param choice A character string indicating the choice of scaling.  One of
 #' \code{c("noscale"}, \code{"autoscale"}, \code{"Pareto")}. \code{"autoscale"}
@@ -28,7 +28,7 @@
 #' plots).  A check is carried out to see if the computation was successful
 #' and a warning issued if it failed.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso \code{\link[elasticnet]{arrayspc}} for the underlying function,
 #' \code{\link{c_pcaSpectra}} for classical PCA calculations,
@@ -36,7 +36,7 @@
 #' \code{\link{irlba_pcaSpectra}} for PCA via the IRLBA algorithm.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @template results-links
+#' `r .writeDoc_LinksShowPCAResults()`
 #'
 #' @references H. Zou, T. Hastie and R. Tibshirani "Sparse Principal Components Analysis"
 #' \emph{J. Comp. Stat. Graphics} vol. 15 no. 2 pgs. 265-286 (2006).

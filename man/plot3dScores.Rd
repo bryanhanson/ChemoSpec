@@ -15,7 +15,7 @@ plot3dScores(
 )
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{pca}{An object of class \code{\link{prcomp}}.}
 
@@ -54,7 +54,7 @@ if (interactive()) {
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University)
+Bryan A. Hanson (DePauw University).
 }
 \keyword{hplot}
 \keyword{multivariate}

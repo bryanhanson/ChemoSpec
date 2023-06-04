@@ -39,16 +39,16 @@ Warnings are issued if there are file/sample names that don't match entries in
 
 \item{gr.cols}{Group Colors.  See \code{\link{colorSymbol}} for some options. One of the following:
 \itemize{
-  \item Legacy behavior and the default: The word \code{"auto"}, in which case up to 8 colors will
-        be automatically assigned from package \code{RColorBrewer Set1}.
-  \item \code{"Col7"}. A unique set of up to 7 colorblind-friendly colors is used.
-  \item \code{"Col8"}. A unique set of up to 8 colors is used.
-  \item \code{"Col12"}. A mostly paired set of up to 12 colors is used.
-  \item A vector of acceptable color designations with the same length as \code{gr.crit}.
+\item Legacy behavior and the default: The word \code{"auto"}, in which case up to 8 colors will
+be automatically assigned from package \code{RColorBrewer Set1}.
+\item \code{"Col7"}. A unique set of up to 7 colorblind-friendly colors is used.
+\item \code{"Col8"}. A unique set of up to 8 colors is used.
+\item \code{"Col12"}. A mostly paired set of up to 12 colors is used.
+\item A vector of acceptable color designations with the same length as \code{gr.crit}.
 }
-    Colors will be assigned one for one, so the first element of
-    \code{gr.crit} is assigned the first element of \code{gr.col} and so forth.  For \code{Col12}
-    you should pay careful attention to the order of \code{gr.crit} in order to match up colors.}
+Colors will be assigned one for one, so the first element of
+\code{gr.crit} is assigned the first element of \code{gr.col} and so forth.  For \code{Col12}
+you should pay careful attention to the order of \code{gr.crit} in order to match up colors.}
 
 \item{freq.unit}{A character string giving the units of the x-axis
 (frequency or wavelength).}
@@ -78,7 +78,7 @@ See there for much more info on importing JCAMP-DX files.}
 \item{...}{Arguments to be passed to \code{\link[utils]{read.table}},
 \code{\link{list.files}} or \code{readJDX}; see the "Advanced Tricks" section.
 For \code{read.table}, \pkg{You MUST supply values for \code{sep}, \code{dec} and \code{header} consistent
-with your file structure, unless they are the same as the defaults for \code{\link[utils]{read.table}}}.}
+       with your file structure, unless they are the same as the defaults for \code{\link[utils]{read.table}}}.}
 
 \item{in.file}{Character.  Applies to \code{matrix2SpectraObject} only.
 Input file name, including extension.  Can be a vector of file names.}
@@ -89,9 +89,9 @@ importing your data, set this to \code{FALSE} and do \code{str(your object)} to 
 }
 \value{
 A object of class \code{\link{Spectra}}.  An \emph{unnamed} object
-        of S3 class \code{\link{Spectra}} is also written to \code{out.file}.  To
-        read it back into the workspace, use \code{new.name <- loadObject(out.file)}
-        (\code{loadObject} is package \pkg{R.utils}).
+of S3 class \code{\link{Spectra}} is also written to \code{out.file}.  To
+read it back into the workspace, use \code{new.name <- loadObject(out.file)}
+(\code{loadObject} is package \pkg{R.utils}).
 }
 \description{
 These functions import data into a \code{\link{Spectra}} object.  For "csv-like" files they use
@@ -223,10 +223,10 @@ setwd(wd) # restore working directory
 }
 \seealso{
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/},
-         as well as \code{\link{updateGroups}}.
+as well as \code{\link{updateGroups}}.
 }
 \author{
-Bryan A. Hanson (DePauw University)
+Bryan A. Hanson (DePauw University).
 }
 \keyword{file}
 \keyword{import}

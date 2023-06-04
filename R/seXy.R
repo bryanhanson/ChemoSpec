@@ -17,16 +17,13 @@
 #' the spread.
 #' For \code{.seX}, a single value giving the standard error of x.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")
 #'
-#' @keywords utilities
+#' @keywords internal
 #'
 #' @seealso Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @aliases .seXy .seX .seXyIqr .seXyMad .seXy95
-#' @export .seX .seXy .seXy95 .seXyMad .seXyIqr
 #' @importFrom stats na.omit sd fivenum median
-#' @describeIn .seXy standard error of x
 #' @noRd
 #'
 #' @examples
@@ -40,7 +37,6 @@
 #'
 .seX <- function(x) sd(x, na.rm = TRUE) / sqrt(length(na.omit(x)))
 
-#' @describeIn .seXy mean +/- the standard error
 .seXy <- function(x) {
   m <- mean(na.omit(x))
   se <- .seX(x)
@@ -49,7 +45,6 @@
   c(y = m, ymin = l, ymax = u)
 }
 
-#' @describeIn .seXy mean +/- the standard error at 95\% conf. interval
 .seXy95 <- function(x) {
   m <- mean(na.omit(x))
   se <- .seX(x)
@@ -58,15 +53,11 @@
   c(y = m, ymin = l, ymax = u)
 }
 
-
-#' @describeIn .seXy median +/- the 1st and 3rd quantile
 .seXyIqr <- function(x) {
   i <- fivenum(x)
   c(y = i[3], ymin = i[2], ymax = i[4])
 }
 
-
-#' @describeIn .seXy median +/- median absolute deviation
 .seXyMad <- function(x) {
   m <- median(na.omit(x))
   d <- mad(na.omit(x))
@@ -74,3 +65,4 @@
   l <- m - d
   c(y = m, ymin = l, ymax = u)
 }
+

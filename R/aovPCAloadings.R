@@ -4,7 +4,7 @@
 #' Uses the results from \code{\link{aovPCAscores}} to plot the corresponding
 #' loadings.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param PCA List of pca results created by \code{\link{aov_pcaSpectra}}.
 #'
@@ -17,10 +17,10 @@
 #' @param ref An integer specifying the reference spectrum to plot, which
 #'        appears at the bottom of the plot.
 #'
-#' @template param-graphics-dots
-#' @template param-graphics-return
+#' @param \dots `r .writeDoc_GraphicsDots()`
+#' @return `r .writeDoc_GraphicsReturn()`
 #'
-#' @template authors-BH-MK
+#' @author `r .writeDoc_Authors(c("BH", "MK"))`
 #'
 #' @seealso An example using this function can be seen in
 #' \code{\link{aov_pcaSpectra}}.  See also \code{\link{plotLoadings}}.

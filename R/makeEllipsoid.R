@@ -38,12 +38,12 @@
 #' @note The idea was taken from "An Introduction to rggobi" found at the ggobi
 #' web site (originally www.ggobi.org but not available as of June 2018).  I added the robust option.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")
 #'
 #' @seealso \code{\link{cov.rob}} for the function that does the work.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @keywords multivariate utilities
+#' @keywords internal
 #'
 #' @examples
 #'
@@ -54,7 +54,6 @@
 #' plot(ell[, 1], ell[, 2], col = "red", pch = 20, cex = 0.3)
 #' points(x, y)
 #'
-#' @export
 #' @noRd
 #' @importFrom stats var rnorm qf
 #'

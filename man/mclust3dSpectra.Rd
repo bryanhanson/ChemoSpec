@@ -17,7 +17,7 @@ mclust3dSpectra(
 )
 }
 \arguments{
-\item{spectra}{An object of S3 class \code{\link{Spectra}}.}
+\item{spectra}{An object of S3 class \code{\link[=Spectra]{Spectra()}}.}
 
 \item{pca}{An object of class \code{\link{prcomp}}.}
 
@@ -70,7 +70,7 @@ mclust3dSpectra(metMUD1, pca, truth = metMUD1$groups)
 Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 }
 \author{
-Bryan A. Hanson (DePauw University)
+Bryan A. Hanson (DePauw University).
 }
 \keyword{cluster}
 \keyword{multivariate}

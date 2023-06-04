@@ -13,7 +13,7 @@
 #' This function is an extraordinarily thin wrapper which helps the user to
 #' avoid writing a very tedious \code{formula} specification.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param pca An object of class \code{\link{prcomp}}.
 #'
@@ -30,7 +30,7 @@
 #' If assigned, the object class is one of several described in
 #' \code{\link{aov}} depending upon the data passed to it.
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso \code{\link{splitSpectraGroups}} which can be used to create
 #' additional factor elements in the \code{\link{Spectra}} object, which can then be

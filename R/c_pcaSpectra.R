@@ -12,7 +12,7 @@
 #' deviation.  \code{Pareto} scales by the square root of the standard
 #' deviation.
 #'
-#' @param spectra An object of S3 class \code{\link{Spectra}}.
+#' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param choice A character string indicating the choice of scaling.  One of
 #' \code{c("noscale"}, \code{"autoscale"}, \code{"Pareto")}. \code{"autoscale"}
@@ -26,7 +26,7 @@
 #' pre-processing carried out and the type of PCA performed (used to annotate
 #' plots).
 #'
-#' @template authors-BH
+#' @author `r .writeDoc_Authors("BH")`
 #'
 #' @seealso \code{\link{prcomp}} for the underlying function,
 #' \code{\link{s_pcaSpectra}} for sparse PCA calculations,
@@ -34,7 +34,7 @@
 #' \code{\link{irlba_pcaSpectra}} for PCA via the IRLBA algorithm.
 #' Additional documentation at \url{https://bryanhanson.github.io/ChemoSpec/}
 #'
-#' @template results-links
+#' `r .writeDoc_LinksShowPCAResults()`
 #'
 #' @references K. Varmuza and P. Filzmoser \emph{Introduction to Multivariate
 #' Statistical Analysis in Chemometrics}, CRC Press, 2009.
