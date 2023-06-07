@@ -1,3 +1,7 @@
+# ChemoSpec 6.1.98 2023-06-06
+## Misc.
+* Fixed a problem with unit tests that should have been run only at home that were being run at CRAN.
+
 # ChemoSpec 6.1.8 2023-06-03
 ## Misc.
 * Bumped version at the request of CRAN.
