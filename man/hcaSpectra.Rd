@@ -40,10 +40,12 @@ information in a \code{\link{Spectra}} object.  Many methods for computing
 the clusters and distances are available.
 }
 \examples{
-
-data(SrE.IR)
-myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
-res <- hcaSpectra(SrE.IR, main = myt)
+# You need to install package "amap" for this example
+if (requireNamespace("amap", quietly = TRUE)) {
+  data(SrE.IR)
+  myt <- expression(bolditalic(Serenoa) ~ bolditalic(repens) ~ bold(IR ~ Spectra))
+  res <- hcaSpectra(SrE.IR, main = myt)
+}
 
 }
 \seealso{
