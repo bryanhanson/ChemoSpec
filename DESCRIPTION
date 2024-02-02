@@ -49,6 +49,7 @@ Suggests:
   knitr,
   js,
   NbClust,
+  clusterCrit,
   lattice,
   baseline,
   mclust,
