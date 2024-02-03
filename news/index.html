@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.10</span>
       </span>
     </div>
 
@@ -51,9 +51,22 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="6.1.98" id="chemospec-6198-2023-06-06">ChemoSpec 6.1.98 2023-06-06<a class="anchor" aria-label="anchor" href="#chemospec-6198-2023-06-06"></a></h2>
+<h2 class="page-header" data-toc-text="6.1.10" id="chemospec-6110-2024-02-03">ChemoSpec 6.1.10 2024-02-03<a class="anchor" aria-label="anchor" href="#chemospec-6110-2024-02-03"></a></h2>
 <div class="section level3">
-<h3 id="misc-6-1-98">Misc.<a class="anchor" aria-label="anchor" href="#misc-6-1-98"></a></h3>
+<h3 id="bug-fix-6-1-10">Bug Fix<a class="anchor" aria-label="anchor" href="#bug-fix-6-1-10"></a></h3>
+<ul><li>Fixed a logic error in <code><a href="../reference/baselineSpectra.html">baselineSpectra()</a></code> which prevented plots from showing in the vignette (and presumeably any report). Unfortunately also had to remove the ability to loop over the various spectra with one call to the function.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="misc-6-1-10">Misc.<a class="anchor" aria-label="anchor" href="#misc-6-1-10"></a></h3>
+<ul><li>Package <code>clusterCrit</code> is back on CRAN so it was returned to <code>ChemoSpec</code>.</li>
+<li>Misc documentation format fixes caught by CRAN.</li>
+<li>Remove use of <code>aaply</code> and <code>arrange</code> to avoid dependence on <code>plyr</code>.</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="6.1.9" id="chemospec-619-2023-06-06">ChemoSpec 6.1.9 2023-06-06<small>2023-06-07</small><a class="anchor" aria-label="anchor" href="#chemospec-619-2023-06-06"></a></h2>
+<div class="section level3">
+<h3 id="misc-6-1-9">Misc.<a class="anchor" aria-label="anchor" href="#misc-6-1-9"></a></h3>
 <ul><li>Fixed a problem with unit tests that should have been run only at home that were being run at CRAN.</li>
 </ul></div>
 </div>
