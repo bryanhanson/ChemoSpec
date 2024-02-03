@@ -22,7 +22,8 @@
 #'
 #' @param int Logical; if \code{TRUE}, do the correction interactively using
 #' widgets.  No results are saved.  Use this for inspection and exploration
-#' only.
+#' only.  Automatically overriden to \code{FALSE} if \code{interactive()} returns
+#' \code{FALSE}.  This is necessary so that plots appear in vignettes etc.
 #'
 #' @param retC Logical: shall the baseline-corrected spectra be returned in the
 #' \code{Spectra} object?
@@ -32,12 +33,10 @@
 #' argument \code{method} as you will probably want to use it.  You can also
 #' use \code{method = "linear"} for a simple linear fit, see Details.
 #'
-#' @param show Integer. A vector giving the sample numbers for which you wish
-#'        to see the results of the baseline correction.  By "sample numbers"
+#' @param show Integer. A (single) sample number for which you wish
+#'        to see the results of the baseline correction.  By "sample number"
 #'        we mean the rows in the \code{spectra$data} matrix.  To find a specific
 #'        sample type \code{spectra$names} to see which row contains that sample.
-#'        To see all samples, use \code{show = 1:nrow(spectra$data)} where
-#'        \code{spectra} is the name of your particular \code{Spectra} object.
 #'
 #' @return If \code{int = TRUE}, an interactive plot is created.  If \code{int
 #' = FALSE} and \code{retC = FALSE}, an object of class \code{baseline} is
@@ -61,7 +60,6 @@
 #' }
 #'
 baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, show = 1, ...) {
-
   # Mostly a simple wrapper to the excellent baseline package
   # Part of ChemoSpec.  Bryan Hanson December 2011
 
@@ -74,6 +72,8 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, show = 1, ...) {
 
   dots <- list(...)
   linear <- FALSE
+  int <- ifelse(interactive(), int, FALSE) # override if not really interactive, e.g. vignette, report
+
   if (any(names(dots) == "method")) {
     method <- dots$method
     if (method == "rfbaseline") {
@@ -83,7 +83,6 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, show = 1, ...) {
     }
     if (method == "linear") linear <- TRUE
   }
-
 
   if (linear) { # Process locally and return immediately
     np <- length(spectra$freq)
@@ -127,27 +126,16 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, show = 1, ...) {
   if (int) baseline::baselineGUI(dat, ...) # no return value
   if (!int) {
     b <- baseline::baseline(dat, ...)
-    if (is.integer(show)) {
-      cat("Press ESC to stop looping through the spectra\n\n")
+    baseline::plot(b, specNo = show)
+  }
+  if (retC) {
+    bc <- baseline::getCorrected(b)
+    spectra$data <- bc
+    chkSpectra(spectra)
+    return(spectra)
+  }
 
-      for (i in show) {
-        baseline::plot(b, specNo = i)
-        mtext(spectra$names[i], side = 4)
-        devAskNewPage(ask = TRUE)
-      }
-      devAskNewPage(ask = FALSE)
-    }
-    if (retC) {
-      bc <- baseline::getCorrected(b) # the way it is supposed to be done...
-      # works interactively, but not in vignette ???
-      # bc <- b@corrected
-      spectra$data <- bc
-      chkSpectra(spectra)
-      return(spectra)
-    }
-
-    if (!retC) {
-      return(b)
-    }
+  if (!retC) {
+    return(b)
   }
 }

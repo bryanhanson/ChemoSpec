@@ -11,7 +11,8 @@ baselineSpectra(spectra, int = TRUE, retC = FALSE, show = 1, ...)
 
 \item{int}{Logical; if \code{TRUE}, do the correction interactively using
 widgets.  No results are saved.  Use this for inspection and exploration
-only.}
+only.  Automatically overriden to \code{FALSE} if \code{interactive()} returns
+\code{FALSE}.  This is necessary so that plots appear in vignettes etc.}
 
 \item{retC}{Logical: shall the baseline-corrected spectra be returned in the
 \code{Spectra} object?}
