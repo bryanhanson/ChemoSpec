@@ -3,7 +3,6 @@
 # This example is wrapped in dontrun in the Rd for files2SpectraObject
 # as it takes a bit of time, so run only at home
 
-home <- identical(Sys.info()["nodename"], "Abbott-2.local")
 if (home) {
   expect_silent( {
     options(ChemoSpecGraphics = "base")
