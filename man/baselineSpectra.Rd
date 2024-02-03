@@ -17,12 +17,10 @@ only.  Automatically overriden to \code{FALSE} if \code{interactive()} returns
 \item{retC}{Logical: shall the baseline-corrected spectra be returned in the
 \code{Spectra} object?}
 
-\item{show}{Integer. A vector giving the sample numbers for which you wish
-to see the results of the baseline correction.  By "sample numbers"
+\item{show}{Integer. A (single) sample number for which you wish
+to see the results of the baseline correction.  By "sample number"
 we mean the rows in the \code{spectra$data} matrix.  To find a specific
-sample type \code{spectra$names} to see which row contains that sample.
-To see all samples, use \code{show = 1:nrow(spectra$data)} where
-\code{spectra} is the name of your particular \code{Spectra} object.}
+sample type \code{spectra$names} to see which row contains that sample.}
 
 \item{\dots}{Other arguments passed downstream.  The relevant ones can be
 found in \code{\link[baseline]{baseline}}.  Be sure to pay attention to

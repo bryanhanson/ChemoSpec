@@ -1,4 +1,7 @@
 # ChemoSpec 6.1.10 2024-02-03
+## Bug Fix
+* Fixed a logic error in `baselineSpectra()` which prevented plots from showing in the vignette (and presumeably any report).  Unfortunately also had to remove the ability to loop over the various spectra with one call to the function.
+
 ## Misc.
 * Package `clusterCrit` is back on CRAN so it was returned to `ChemoSpec`.
 * Misc documentation format fixes caught by CRAN.
