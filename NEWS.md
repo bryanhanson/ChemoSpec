@@ -1,6 +1,8 @@
-# ChemoSpec 6.1.10 2024-xx-xx
+# ChemoSpec 6.1.10 2024-02-03
 ## Misc.
 * Package `clusterCrit` is back on CRAN so it was returned to `ChemoSpec`.
+* Misc documentation format fixes caught by CRAN.
+* Remove use of `aaply` and `arrange` to avoid dependence on `plyr`.
 
 # ChemoSpec 6.1.9 2023-06-06
 ## Misc.
