@@ -28,7 +28,6 @@
 #'
 #' @importFrom graphics plot text
 #' @importFrom stats dist
-#' @importFrom plyr arrange
 #' @importFrom magrittr %>%
 #'
 #' @examples
@@ -61,7 +60,7 @@ plotSpectraDist <- function(spectra,
   newcols <- spectra$colors[-ref]
   newnames <- spectra$names[-ref]
   DF <- data.frame(label = newnames, col = newcols, y = d, stringsAsFactors = FALSE)
-  DF <- arrange(DF, y)
+  DF <- DF[order(DF$y),]
   DF$x <- 1:nrow(DF)
   go <- chkGraphicsOpt()
 

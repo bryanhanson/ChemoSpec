@@ -4,12 +4,12 @@ author:
   - Bryan A. Hanson^[Professor Emeritus of Chemistry & Biochemistry, DePauw University, Greencastle IN USA., hanson@depauw.edu]
 date:  "`r Sys.Date()`"
 output:
-    bookdown::html_document2: # use for pkgdown site
-#    bookdown::pdf_document2: # use for CRAN to keep size down; breaks GHA
-      toc: yes
-      toc_depth: 2
-      fig_caption: yes
-      number_sections: true # needed for section cross-refs to work
+     bookdown::html_document2: # use for pkgdown site
+#     bookdown::pdf_document2: # use for CRAN to keep size down; breaks GHA
+     toc: yes
+     toc_depth: 2
+     fig_caption: yes
+     number_sections: true # needed for section cross-refs to work
 vignette: >
     %\VignetteIndexEntry{An R Package for Chemometric Analysis of Spectra (NMR, IR etc}
     %\VignetteKeywords{chemometrics, spectroscopy, nmr, ir, raman, cd, xrf}

@@ -96,7 +96,7 @@
 #'
 #' The matching of \code{gr.crit} against the sample file names
 #' (in \code{files2SpectraObject}) or column headers/sample names
-#' (in code{matrix2SpectraObject}) is done one at
+#' (in \code{matrix2SpectraObject}) is done one at
 #' a time, in order, using grep.  While powerful, this has the potential to lead
 #' to some "gotchas" in certain cases, noted below.
 #'

@@ -17,8 +17,6 @@
 #'
 #' @aliases ChemoSpec-package ChemoSpec
 #'
-#' @docType package
-#'
 #' @author Bryan A. Hanson (DePauw University), Tejasvi Gupta & Matthew J. Keinsley.
 #'
 #' Maintainer: Bryan A. Hanson \email{hanson@@depauw.edu}
@@ -42,4 +40,4 @@
 #' @importFrom ChemoSpecUtils sampleDist chkGraphicsOpt rowDist hcaScores
 #'
 #' @export  sampleDist chkGraphicsOpt rowDist hcaScores removeFreq removeGroup removeSample plotScores plotScree chkSpectra sumSpectra sumGroups check4Gaps 
-NULL
+"_PACKAGE"

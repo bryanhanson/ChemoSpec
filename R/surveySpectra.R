@@ -42,7 +42,6 @@
 #'
 #' @importFrom stats sd
 #' @importFrom graphics plot lines text
-#' @importFrom plyr aaply
 #' @importFrom ggplot2 xlab ylab facet_grid element_rect
 #' @importFrom plotly ggplotly
 #'
@@ -84,7 +83,7 @@ surveySpectra <- function(spectra,
       x <- spectra$freq
 
       if (method == "iqr") {
-        y <- aaply(spectra$data, 2, .seXyIqr)
+        y <- t(apply(spectra$data, 2, .seXyIqr))
         df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
         p <- lattice::xyplot(y1 + y2 + y3 ~ x,
           data = df,
@@ -95,8 +94,8 @@ surveySpectra <- function(spectra,
       }
 
       if (method == "sd") {
-        y1 <- aaply(spectra$data, 2, mean)
-        s <- aaply(spectra$data, 2, sd)
+        y1 <- t(apply(spectra$data, 2, mean))
+        s <- t(apply(spectra$data, 2, sd))
         y2 <- y1 + s
         y3 <- y1 - s
         df <- data.frame(x, y1, y2, y3)
@@ -109,7 +108,7 @@ surveySpectra <- function(spectra,
       }
 
       if (method == "sem") {
-        y <- aaply(spectra$data, 2, .seXy)
+        y <- t(apply(spectra$data, 2, .seXy))
         df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
         p <- lattice::xyplot(y1 + y2 + y3 ~ x,
           data = df,
@@ -120,7 +119,7 @@ surveySpectra <- function(spectra,
       }
 
       if (method == "mad") {
-        y <- aaply(spectra$data, 2, .seXyMad)
+        y <- t(apply(spectra$data, 2, .seXyMad))
         df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
         p <- lattice::xyplot(y1 + y2 + y3 ~ x,
           data = df,
@@ -131,7 +130,7 @@ surveySpectra <- function(spectra,
       }
 
       if (method == "sem95") {
-        y <- aaply(spectra$data, 2, .seXy95)
+        y <- t(apply(spectra$data, 2, .seXy95))
         df <- data.frame(x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
         p <- lattice::xyplot(y1 + y2 + y3 ~ x,
           data = df,
@@ -172,7 +171,7 @@ surveySpectra <- function(spectra,
         df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
-          y <- aaply(spectra$data[which, ], 2, .seXyIqr)
+          y <- t(apply(spectra$data[which, ], 2, .seXyIqr))
           spectra.group <- rep(gr$group[n], l.x)
           df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
           df1 <- rbind(df1, df2)
@@ -194,8 +193,8 @@ surveySpectra <- function(spectra,
         df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
-          y1 <- aaply(spectra$data[which, ], 2, mean)
-          s <- apply(spectra$data[which, ], 2, sd)
+          y1 <- t(apply(spectra$data[which, ], 2, mean))
+          s <- t(apply(spectra$data[which, ], 2, sd))
           y2 <- y1 + s
           y3 <- y1 - s
           spectra.group <- rep(gr$group[n], l.x)
@@ -219,7 +218,7 @@ surveySpectra <- function(spectra,
         df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
-          y <- aaply(spectra$data[which, ], 2, .seXy)
+          y <- t(apply(spectra$data[which, ], 2, .seXy))
           spectra.group <- rep(gr$group[n], l.x)
           df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
           df1 <- rbind(df1, df2)
@@ -241,7 +240,7 @@ surveySpectra <- function(spectra,
         df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
-          y <- aaply(spectra$data[which, ], 2, .seXyMad)
+          y <- t(apply(spectra$data[which, ], 2, .seXyMad))
           spectra.group <- rep(gr$group[n], l.x)
           df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
           df1 <- rbind(df1, df2)
@@ -263,7 +262,7 @@ surveySpectra <- function(spectra,
         df1 <- data.frame(x = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
-          y <- aaply(spectra$data[which, ], 2, .seXy95)
+          y <- t(apply(spectra$data[which, ], 2, .seXy95))
           spectra.group <- rep(gr$group[n], l.x)
           df2 <- data.frame(x = x, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
           df1 <- rbind(df1, df2)
@@ -310,14 +309,14 @@ surveySpectra <- function(spectra,
       p <- NULL
 
       if (method == "iqr") {
-        y <- aaply(spectra$data, 2, .seXyIqr)
+        y <- t(apply(spectra$data, 2, .seXyIqr))
         df <- data.frame(Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
         p <- .ssPlot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, median +/- iqr")
       }
 
       if (method == "sd") {
-        y1 <- aaply(spectra$data, 2, mean)
-        s <- aaply(spectra$data, 2, sd)
+        y1 <- t(apply(spectra$data, 2, mean))
+        s <- t(apply(spectra$data, 2, sd))
         y2 <- y1 + s
         y3 <- y1 - s
         df <- data.frame(Frequency, y1, y2, y3)
@@ -326,21 +325,21 @@ surveySpectra <- function(spectra,
       }
 
       if (method == "sem") {
-        y <- aaply(spectra$data, 2, .seXy)
+        y <- t(apply(spectra$data, 2, .seXy))
         df <- data.frame(Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
 
         p <- .ssPlot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, mean +/- sem")
       }
 
       if (method == "mad") {
-        y <- aaply(spectra$data, 2, .seXyMad)
+        y <- t(apply(spectra$data, 2, .seXyMad))
         df <- data.frame(Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
 
         p <- .ssPlot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, median +/- mad")
       }
 
       if (method == "sem95") {
-        y <- aaply(spectra$data, 2, .seXy95)
+        y <- t(apply(spectra$data, 2, .seXy95))
         df <- data.frame(Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3])
 
         p <- .ssPlot(df, Frequency, y1, y2, y3, ylabel = "Full Data Set, mean +/- 95% ci sem")
@@ -384,7 +383,7 @@ surveySpectra <- function(spectra,
         df1 <- data.frame(Frequency = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
-          y <- aaply(spectra$data[which, ], 2, .seXyIqr)
+          y <- t(apply(spectra$data[which, ], 2, .seXyIqr))
           spectra.group <- rep(gr$group[n], l.x)
           df2 <- data.frame(Frequency = Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
           df1 <- rbind(df1, df2)
@@ -401,8 +400,8 @@ surveySpectra <- function(spectra,
         df1 <- data.frame(Frequency = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
-          y1 <- aaply(spectra$data[which, ], 2, mean)
-          s <- apply(spectra$data[which, ], 2, sd)
+          y1 <- t(apply(spectra$data[which, ], 2, mean))
+          s <- t(apply(spectra$data[which, ], 2, sd))
           y2 <- y1 + s
           y3 <- y1 - s
           spectra.group <- rep(gr$group[n], l.x)
@@ -421,7 +420,7 @@ surveySpectra <- function(spectra,
         df1 <- data.frame(Frequency = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
-          y <- aaply(spectra$data[which, ], 2, .seXy)
+          y <- t(apply(spectra$data[which, ], 2, .seXy))
           spectra.group <- rep(gr$group[n], l.x)
           df2 <- data.frame(Frequency = Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
           df1 <- rbind(df1, df2)
@@ -438,7 +437,7 @@ surveySpectra <- function(spectra,
         df1 <- data.frame(Frequency = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
-          y <- aaply(spectra$data[which, ], 2, .seXyMad)
+          y <- t(apply(spectra$data[which, ], 2, .seXyMad))
           spectra.group <- rep(gr$group[n], l.x)
           df2 <- data.frame(Frequency = Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
           df1 <- rbind(df1, df2)
@@ -455,7 +454,7 @@ surveySpectra <- function(spectra,
         df1 <- data.frame(Frequency = NA_real_, y1 = NA_real_, y2 = NA_real_, y3 = NA_real_, spectra.group = NA_real_)
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
-          y <- aaply(spectra$data[which, ], 2, .seXy95)
+          y <- t(apply(spectra$data[which, ], 2, .seXy95))
           spectra.group <- rep(gr$group[n], l.x)
           df2 <- data.frame(Frequency = Frequency, y1 = y[, 1], y2 = y[, 2], y3 = y[, 3], spectra.group = spectra.group)
           df1 <- rbind(df1, df2)
