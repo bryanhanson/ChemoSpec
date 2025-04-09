@@ -18,7 +18,7 @@
 #'
 #' @keywords hplot
 #'
-#' @seealso See \code{\link{GraphicsOptions}}
+#' @seealso See [ChemoSpecUtils::GraphicsOptions()]
 #'          for more information about the graphics options. Additional documentation at
 #'          \url{https://bryanhanson.github.io/ChemoSpec/}
 #'

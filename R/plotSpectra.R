@@ -36,7 +36,7 @@
 #' @return `r .writeDoc_GraphicsReturn()`
 #' @author `r .writeDoc_Authors(c("BH", "TG"))`
 #'
-#' @seealso \code{\link{plotSpectraJS}} for the interactive version. See \code{\link{GraphicsOptions}}
+#' @seealso \code{\link{plotSpectraJS}} for the interactive version. See [ChemoSpecUtils::GraphicsOptions()]
 #'          for more information about the graphics options. Additional documentation at
 #'          \url{https://bryanhanson.github.io/ChemoSpec/}
 #'

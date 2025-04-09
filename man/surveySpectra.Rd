@@ -34,7 +34,7 @@ not. Applies to \code{surveySpectra} only.}
 Applies to \code{surveySpectra2} only.}
 }
 \value{
-The returned value depends on the graphics option selected (see \code{\link[=GraphicsOptions]{GraphicsOptions()}}).
+The returned value depends on the graphics option selected (see \code{\link[ChemoSpecUtils:GraphicsOptions]{ChemoSpecUtils::GraphicsOptions()}}).
 \itemize{
 \item \code{base}: None.  Side effect is a plot.
 \item \code{ggplot2}: The plot is displayed, and a \code{ggplot2} object is returned if the value is assigned.  The plot can be modified in the usual \code{ggplot2} manner.
