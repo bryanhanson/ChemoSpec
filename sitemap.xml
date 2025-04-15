@@ -1,186 +1,64 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>/articles/ChemoSpec.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ChemoSpec-package.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Spectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/SrE.IR.html</loc>
-  </url>
-  <url>
-    <loc>/reference/aovPCAloadings.html</loc>
-  </url>
-  <url>
-    <loc>/reference/aovPCAscores.html</loc>
-  </url>
-  <url>
-    <loc>/reference/aov_pcaSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/averageReplicates.html</loc>
-  </url>
-  <url>
-    <loc>/reference/baselineSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/binSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/c_pcaSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/check4Gaps.html</loc>
-  </url>
-  <url>
-    <loc>/reference/chkGraphicsOpt.html</loc>
-  </url>
-  <url>
-    <loc>/reference/chkSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/clupaSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/colorSymbol.html</loc>
-  </url>
-  <url>
-    <loc>/reference/conColScheme.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cv_pcaSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/evalClusters.html</loc>
-  </url>
-  <url>
-    <loc>/reference/files2SpectraObject.html</loc>
-  </url>
-  <url>
-    <loc>/reference/hcaScores.html</loc>
-  </url>
-  <url>
-    <loc>/reference/hcaSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/hmapSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/hypTestScores.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/irlba_pcaSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/mclust3dSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/mclustSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metMUD1.html</loc>
-  </url>
-  <url>
-    <loc>/reference/normSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pcaDiag.html</loc>
-  </url>
-  <url>
-    <loc>/reference/plot2Loadings.html</loc>
-  </url>
-  <url>
-    <loc>/reference/plot3dScores.html</loc>
-  </url>
-  <url>
-    <loc>/reference/plotLoadings.html</loc>
-  </url>
-  <url>
-    <loc>/reference/plotScores.html</loc>
-  </url>
-  <url>
-    <loc>/reference/plotScree.html</loc>
-  </url>
-  <url>
-    <loc>/reference/plotSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/plotSpectraDist.html</loc>
-  </url>
-  <url>
-    <loc>/reference/plotSpectraJS.html</loc>
-  </url>
-  <url>
-    <loc>/reference/r_pcaSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/removeFreq.html</loc>
-  </url>
-  <url>
-    <loc>/reference/removeGroup.html</loc>
-  </url>
-  <url>
-    <loc>/reference/removeSample.html</loc>
-  </url>
-  <url>
-    <loc>/reference/reviewAllSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rowDist.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sPlotSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/s_pcaSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sampleDist.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sgfSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/splitSpectraGroups.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sumGroups.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sumSpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/surveySpectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/updateGroups.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>/CONTRIBUTING.html</loc></url>
+<url><loc>/articles/ChemoSpec.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/ChemoSpec-package.html</loc></url>
+<url><loc>/reference/Spectra.html</loc></url>
+<url><loc>/reference/SrE.IR.html</loc></url>
+<url><loc>/reference/aovPCAloadings.html</loc></url>
+<url><loc>/reference/aovPCAscores.html</loc></url>
+<url><loc>/reference/aov_pcaSpectra.html</loc></url>
+<url><loc>/reference/averageReplicates.html</loc></url>
+<url><loc>/reference/baselineSpectra.html</loc></url>
+<url><loc>/reference/binSpectra.html</loc></url>
+<url><loc>/reference/c_pcaSpectra.html</loc></url>
+<url><loc>/reference/check4Gaps.html</loc></url>
+<url><loc>/reference/chkGraphicsOpt.html</loc></url>
+<url><loc>/reference/chkSpectra.html</loc></url>
+<url><loc>/reference/clupaSpectra.html</loc></url>
+<url><loc>/reference/colorSymbol.html</loc></url>
+<url><loc>/reference/conColScheme.html</loc></url>
+<url><loc>/reference/cv_pcaSpectra.html</loc></url>
+<url><loc>/reference/evalClusters.html</loc></url>
+<url><loc>/reference/files2SpectraObject.html</loc></url>
+<url><loc>/reference/hcaScores.html</loc></url>
+<url><loc>/reference/hcaSpectra.html</loc></url>
+<url><loc>/reference/hmapSpectra.html</loc></url>
+<url><loc>/reference/hypTestScores.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/irlba_pcaSpectra.html</loc></url>
+<url><loc>/reference/mclust3dSpectra.html</loc></url>
+<url><loc>/reference/mclustSpectra.html</loc></url>
+<url><loc>/reference/metMUD1.html</loc></url>
+<url><loc>/reference/normSpectra.html</loc></url>
+<url><loc>/reference/pcaDiag.html</loc></url>
+<url><loc>/reference/plot2Loadings.html</loc></url>
+<url><loc>/reference/plot3dScores.html</loc></url>
+<url><loc>/reference/plotLoadings.html</loc></url>
+<url><loc>/reference/plotScores.html</loc></url>
+<url><loc>/reference/plotScree.html</loc></url>
+<url><loc>/reference/plotSpectra.html</loc></url>
+<url><loc>/reference/plotSpectraDist.html</loc></url>
+<url><loc>/reference/plotSpectraJS.html</loc></url>
+<url><loc>/reference/r_pcaSpectra.html</loc></url>
+<url><loc>/reference/removeFreq.html</loc></url>
+<url><loc>/reference/removeGroup.html</loc></url>
+<url><loc>/reference/removeSample.html</loc></url>
+<url><loc>/reference/reviewAllSpectra.html</loc></url>
+<url><loc>/reference/rowDist.html</loc></url>
+<url><loc>/reference/sPlotSpectra.html</loc></url>
+<url><loc>/reference/s_pcaSpectra.html</loc></url>
+<url><loc>/reference/sampleDist.html</loc></url>
+<url><loc>/reference/sgfSpectra.html</loc></url>
+<url><loc>/reference/splitSpectraGroups.html</loc></url>
+<url><loc>/reference/sumGroups.html</loc></url>
+<url><loc>/reference/sumSpectra.html</loc></url>
+<url><loc>/reference/surveySpectra.html</loc></url>
+<url><loc>/reference/updateGroups.html</loc></url>
 </urlset>
+
