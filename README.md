@@ -2,9 +2,7 @@
 
 <img src="man/figures/Banner.png"/>
 
-![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg) &nbsp; ![Build & Check](https://github.com/bryanhanson/ChemoSpec/workflows/Build-Check/badge.svg) &nbsp; ![Docs Current](https://github.com/bryanhanson/ChemoSpec/workflows/Update-Docs/badge.svg)
-
-![CRAN status](https://www.r-pkg.org/badges/version-last-release/ChemoSpec) &nbsp; ![metacran downloads](https://cranlogs.r-pkg.org/badges/grand-total/ChemoSpec) &nbsp; ![Downloads](https://cranlogs.r-pkg.org/badges/ChemoSpec) &nbsp; ![status](https://tinyverse.netlify.com/badge/ChemoSpec) &nbsp; ![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)
+![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg) &nbsp; ![CRAN status](https://www.r-pkg.org/badges/version-last-release/ChemoSpec) &nbsp; ![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)
 
 ## What is ChemoSpec?
 

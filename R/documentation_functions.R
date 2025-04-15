@@ -34,7 +34,7 @@
 
 #' @noRd
 .writeDoc_GraphicsReturn <- function() {
-"The returned value depends on the graphics option selected (see [GraphicsOptions()]).
+"The returned value depends on the graphics option selected (see [ChemoSpecUtils::GraphicsOptions()]).
 * `base`: None.  Side effect is a plot.
 * `ggplot2`: The plot is displayed, and a `ggplot2` object is returned if the value is assigned.  The plot can be modified in the usual `ggplot2` manner.
 "

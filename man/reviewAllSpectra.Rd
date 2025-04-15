@@ -12,7 +12,7 @@ reviewAllSpectra(spectra, ...)
 \item{\dots}{Parameters to be passed to the plotting routines. \emph{Applies to base graphics only}.}
 }
 \value{
-The returned value depends on the graphics option selected (see \code{\link[=GraphicsOptions]{GraphicsOptions()}}).
+The returned value depends on the graphics option selected (see \code{\link[ChemoSpecUtils:GraphicsOptions]{ChemoSpecUtils::GraphicsOptions()}}).
 \itemize{
 \item \code{base}: None.  Side effect is a plot.
 \item \code{ggplot2}: The plot is displayed, and a \code{ggplot2} object is returned if the value is assigned.  The plot can be modified in the usual \code{ggplot2} manner.
@@ -41,7 +41,7 @@ p
 
 }
 \seealso{
-See \code{\link{GraphicsOptions}}
+See \code{\link[ChemoSpecUtils:GraphicsOptions]{ChemoSpecUtils::GraphicsOptions()}}
 for more information about the graphics options. Additional documentation at
 \url{https://bryanhanson.github.io/ChemoSpec/}
 }

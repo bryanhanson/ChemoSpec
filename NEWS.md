@@ -1,3 +1,9 @@
+# ChemoSpec 6.1.11 2025-04-09
+## Misc
+* Fix broken cross references in help file per CRAN.
+* Misc workflow modifications and changes necessary for build/check.
+* No user facing changes.
+
 # ChemoSpec 6.1.10 2024-02-03
 ## Bug Fix
 * Fixed a logic error in `baselineSpectra()` which prevented plots from showing in the vignette (and presumeably any report).  Unfortunately also had to remove the ability to loop over the various spectra with one call to the function.
