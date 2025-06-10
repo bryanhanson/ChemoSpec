@@ -5,8 +5,8 @@
 # we DONT run it when checking with noSuggests at CRAN
 
 if (home) {
-  chk <- Sys.getenv("_R_CHECK_DEPENDS_ONLY_", unset = "false")
-  if (chk == "false") {
-    expect_silent(source("JDX_Script.R"))
+  chk <- Sys.getenv("_R_CHECK_DEPENDS_ONLY_", unset = "use_suggests")
+  if (chk == "use_suggests") {
+    expect_silent(source("JDX_Import_Test_Script.R"))
   }
 }
