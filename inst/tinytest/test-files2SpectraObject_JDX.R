@@ -10,9 +10,9 @@ if (home) {
     tf <- "PCRF.jdx"
     chk <- file.copy(from = file.path(ed, tf), to = file.path(getwd(), tf),
       overwrite = TRUE)
-    spec <- files2SpectraObject(gr.crit = "PCRF", freq.unit = "ppm", int.unit = "intensity",
+    tst <- files2SpectraObject(gr.crit = "PCRF", freq.unit = "ppm", int.unit = "intensity",
       descrip = "test import", fileExt = "\\.jdx")
-    sumSpectra(spec)
-    plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
+    sumSpectra(tst)
+    plotSpectra(tst, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
   })
 }

@@ -67,7 +67,7 @@
 #' @return A object of class \code{\link{Spectra}}.  An \emph{unnamed} object
 #'         of S3 class \code{\link{Spectra}} is also written to \code{out.file}.  To
 #'         read it back into the workspace, use \code{new.name <- loadObject(out.file)}
-#'         (\code{loadObject} is package \pkg{R.utils}).
+#'         (\code{loadObject} is in package \pkg{R.utils}).
 #'
 #' @section files2SpectraObject:
 #'
