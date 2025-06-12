@@ -1,3 +1,8 @@
+# ChemoSpec 6.1.12 2025-06-11
+## Misc
+* At CRAN request, modified unit tests, examples and vignette to conform to noSuggests standard.
+* No user facing changes.
+
 # ChemoSpec 6.1.11 2025-04-09
 ## Misc
 * Fix broken cross references in help file per CRAN.
