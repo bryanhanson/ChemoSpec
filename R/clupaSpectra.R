@@ -54,14 +54,11 @@
 #'
 clupaSpectra <- function(spectra, bT = NULL, ...) {
   .chkArgs(mode = 11L)
-
-  if (!requireNamespace("speaq", quietly = TRUE)) {
-    stop("You need to install package speaq to use this function")
-  }
-
+  if (.chkReqPkgs("speaq")) {
   if (is.null(bT)) bT <- 0.05 * diff(range(spectra$data)) + abs(min(spectra$data))
   pL <- speaq::detectSpecPeaks(spectra$data, baselineThresh = bT, ...)
   ref <- speaq::findRef(pL)[[1]]
   spectra$data <- speaq::dohCluster(spectra$data, pL, ref, ...)
   return(spectra)
+  }
 }
