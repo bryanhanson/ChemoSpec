@@ -55,11 +55,10 @@ cv_pcaSpectra <- function(spectra, pcs, choice = "noscale", repl = 50, segments 
                           segment.type = c("random", "consecutive", "interleaved"),
                           length.seg, trace = FALSE, ...) {
 
-  if (!requireNamespace("pls", quietly = TRUE)) {
-    stop("You need to install package pls to use this function")
-  }
-
   .chkArgs(mode = 11L)
+
+  if (.chkReqPkgs("pls")) {
+
   choices <- c("noscale", "autoscale", "Pareto") # trap for invalid scaling method
   check <- choice %in% choices
   if (!check) stop("The choice of scaling parameter was invalid")
@@ -158,4 +157,5 @@ cv_pcaSpectra <- function(spectra, pcs, choice = "noscale", repl = 50, segments 
   legend("bottomright", note, bty = "n", cex = 0.75)
 
   invisible(list(ExplVar = Fit, MSEP = MSEP))
+  }
 }
