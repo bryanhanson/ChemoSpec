@@ -70,7 +70,6 @@ Suggests:
   chemometrics,
   hyperSpec,
   amap,
-  gsubfn,
   roxut
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
