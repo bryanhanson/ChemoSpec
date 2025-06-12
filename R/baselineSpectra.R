@@ -110,18 +110,15 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, show = 1, ...) {
 
   # Below here, we are using methods in package baseline or IDPmisc
 
-  if (!requireNamespace("baseline", quietly = TRUE)) {
-    return(message("You need to install package baseline to use this function"))
-  } else {
-    if (method == "rfbaseline") {
-      if (!requireNamespace("IDPmisc", quietly = TRUE)) {
-        return(message("You need to install package IDPmisc to use method rfbaseline"))
-      }
-    }
-
+  if (.chkReqPkgs("baseline")) {
     old.par <- par(no.readonly = TRUE) # interactive baseline makes 2 plots
     on.exit(par(old.par)) # reset when done (suggested by Dana Nadler)
 
+    if (method == "rfbaseline") {
+    	  go <- .chkReqPkgs("IDPmisc")
+    	  if (isFALSE(go)) return(NULL)
+    }
+    
     dat <- spectra$data # possible conflict with baseline's use of spectra
     if (int) baseline::baselineGUI(dat, ...) # no return value
     if (!int) {
@@ -140,3 +137,12 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, show = 1, ...) {
     }
   }
 }
+
+
+
+
+# if (method == "rfbaseline") {
+# if (!requireNamespace("IDPmisc", quietly = TRUE)) {
+# return(message("You need to install package IDPmisc to use method rfbaseline"))
+# }
+# }
