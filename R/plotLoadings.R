@@ -71,7 +71,8 @@ plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
       xlab = spectra$unit[1], ylab = "",
       sub = list(
         label = pca$method,
-        fontface = "plain"),
+        fontface = "plain"
+      ),
       layout = c(1, length(loads) + 1),
       strip.left = TRUE, strip = FALSE, col = "black",
       scales = list(x = "same", y = "free"),
@@ -81,7 +82,8 @@ plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
         } else {
           lattice::panel.xyplot(..., type = type)
         }
-      }, ...)
+      }, ...
+    )
 
     plot(p)
   }

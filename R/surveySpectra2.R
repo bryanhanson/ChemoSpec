@@ -47,7 +47,6 @@ surveySpectra2 <- function(spectra,
   go <- chkGraphicsOpt()
 
   if (go == "base") {
-
     # Now set up the plot and plot it!
 
     M <- rbind(M, y)
@@ -90,7 +89,8 @@ surveySpectra2 <- function(spectra,
     p <- ggplot() +
       geom_line(
         data = molten,
-        aes(x = Frequency, y = value, group = variable, color = variable)) +
+        aes(x = Frequency, y = value, group = variable, color = variable)
+      ) +
       scale_color_manual(name = "Key", values = spectra$colors) +
       theme_bw() +
       theme(legend.position = "none") +

@@ -115,10 +115,12 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, show = 1, ...) {
     on.exit(par(old.par)) # reset when done (suggested by Dana Nadler)
 
     if (method == "rfbaseline") {
-    	  go <- .chkReqPkgs("IDPmisc")
-    	  if (isFALSE(go)) return(NULL)
+      go <- .chkReqPkgs("IDPmisc")
+      if (isFALSE(go)) {
+        return(NULL)
+      }
     }
-    
+
     dat <- spectra$data # possible conflict with baseline's use of spectra
     if (int) baseline::baselineGUI(dat, ...) # no return value
     if (!int) {

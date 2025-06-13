@@ -57,7 +57,6 @@
 #' @keywords multivariate cluster
 #'
 #' @examples
-#'
 #' \dontrun{
 #' data(metMUD2)
 #'
@@ -82,17 +81,17 @@ evalClusters <- function(spectra, pkg = "NbClust", hclst = NULL,
 
   if (pkg == "NbClust") {
     if (.chkReqPkgs("NbClust")) {
-    res <- NbClust::NbClust(spectra$data, ...)
-    return(res)
-  }
+      res <- NbClust::NbClust(spectra$data, ...)
+      return(res)
+    }
   }
 
   if (pkg == "clusterCrit") {
     if (.chkReqPkgs("clusterCrit")) {
-    if (is.null(hclust)) stop("You must provide an hclust object")
-    ct <- cutree(hclst, k = k, h = h)
-    res <- clusterCrit::intCriteria(spectra$data, ct, crit, ...)
-    return(res)
-  }
+      if (is.null(hclust)) stop("You must provide an hclust object")
+      ct <- cutree(hclst, k = k, h = h)
+      res <- clusterCrit::intCriteria(spectra$data, ct, crit, ...)
+      return(res)
+    }
   }
 }

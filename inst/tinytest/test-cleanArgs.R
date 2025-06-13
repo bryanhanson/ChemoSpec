@@ -18,7 +18,7 @@ args <- tf(x = 1:20, y = LETTERS[1:5], z = 0.78,
   header = TRUE, gr.crit = ".", recursive = TRUE,
   sep = ",", path = ".", pattern = "xyz",
   full.names = TRUE, out.file = "myfile", func = "read.table")
-  
+
 expect_true(length(args) == 2L)
 expect_true("header" %in% names(args))
 expect_true("sep" %in% names(args))

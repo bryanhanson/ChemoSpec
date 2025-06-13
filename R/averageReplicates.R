@@ -31,7 +31,6 @@
 #' sumSpectra(averaged)
 #'
 averageReplicates <- function(spectra, uniq) {
-
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 
@@ -58,13 +57,13 @@ averageReplicates <- function(spectra, uniq) {
     if (navg == 0L) stop(paste("Did not find sample names matching ", uniq[i]))
 
     cnt <- cnt + navg
-    if (navg >= 2L) spec$data[i,] <- colMeans(spectra$data[avg,])
-    if (navg == 1L) spec$data[i,] <- spectra$data[avg,]
+    if (navg >= 2L) spec$data[i, ] <- colMeans(spectra$data[avg, ])
+    if (navg == 1L) spec$data[i, ] <- spectra$data[avg, ]
     spec$names[i] <- uniq[i]
     spec$groups[i] <- as.character(spectra$groups[avg[1]])
     spec$colors[i] <- spectra$colors[avg[1]]
     spec$sym[i] <- spectra$sym[avg[1]]
-    spec$alt.sym[i] <- spectra$alt.sym[avg[1]]  
+    spec$alt.sym[i] <- spectra$alt.sym[avg[1]]
   }
 
   if (ns != cnt) warning("Looks like some samples did not get included (check entries in uniq)")
@@ -74,4 +73,3 @@ averageReplicates <- function(spectra, uniq) {
   chkSpectra(spec)
   return(spec)
 }
-

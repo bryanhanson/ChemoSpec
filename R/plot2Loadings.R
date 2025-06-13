@@ -58,7 +58,6 @@ plot2Loadings <- function(spectra,
                           loads = c(1, 2),
                           tol = 0.05,
                           ...) {
-
   # Function to plot loadings against each other
   # Part of the ChemoSpec package
   # Bryan Hanson, DePauw University, June 2008

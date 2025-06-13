@@ -38,7 +38,6 @@ data(metMUD1)
 p <- reviewAllSpectra(metMUD1)
 p
 
-
 }
 \seealso{
 See \code{\link[ChemoSpecUtils:GraphicsOptions]{ChemoSpecUtils::GraphicsOptions()}}

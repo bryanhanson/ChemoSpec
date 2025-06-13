@@ -58,7 +58,6 @@
 #' @importFrom stats var rnorm qf
 #'
 .makeEllipsoid <- function(data, cl = 0.95, rob = FALSE, frac.pts.used = 0.80) {
-
   # This function generates a random set of points on a sphere, and turns it into an ellipsoid.
   # If rob = FALSE, it is shaped and sized to match the desired classical confidence level.
   # If rob = TRUE, a robust calculation is performed to produce the ellipsoid.

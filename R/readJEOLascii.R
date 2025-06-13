@@ -1,5 +1,4 @@
 readJEOLascii <- function(file = "") {
-
   # ChemoSpec, Bryan Hanson, June 2016
 
   # This function reads the JEOL ascii NMR format

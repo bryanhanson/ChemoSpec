@@ -211,7 +211,8 @@ chk <- file.copy(from = tf, to = basename(tf))
 # Now read in the file, summarize and plot
 spec <- files2SpectraObject(
   gr.crit = "PCRF", freq.unit = "ppm", int.unit = "intensity",
-  descrip = "test import", fileExt = "\\\\.jdx")
+  descrip = "test import", fileExt = "\\\\.jdx"
+)
 sumSpectra(spec)
 p <- plotSpectra(spec, lab.pos = 3.5, main = "Reduced Fat Potato Chip")
 p <- p + ggtitle("Reduced Fat Potato Chip")

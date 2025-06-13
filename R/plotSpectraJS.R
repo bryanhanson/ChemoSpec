@@ -72,7 +72,6 @@
 #' @importFrom utils browseURL
 #'
 plotSpectraJS <- function(spectra, which = NULL, browser = NULL, minify = TRUE) {
-
   # This is the R front end controlling everything
 
   .chkArgs(mode = 11L)
@@ -96,7 +95,6 @@ plotSpectraJS <- function(spectra, which = NULL, browser = NULL, minify = TRUE) 
   }
 
   if (requireNamespace("jsonlite", quietly = TRUE)) {
-
     # Break the pieces of the Spectra object out into
     # separate JSON entities
     # These will be global variables in the JavaScript

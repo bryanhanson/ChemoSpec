@@ -24,7 +24,6 @@ object.  The data are row- and column-centered, and the user can select
 various options for scaling.
 }
 \examples{
-
 \dontrun{
 # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
 library("ggplot2")

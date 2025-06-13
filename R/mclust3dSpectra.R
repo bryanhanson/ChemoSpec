@@ -49,16 +49,14 @@
 #' data(metMUD1)
 #' pca <- c_pcaSpectra(metMUD1)
 #' mclust3dSpectra(metMUD1, pca)
-#' 
+#'
 #' # show mis-classified points
 #' mclust3dSpectra(metMUD1, pca, truth = metMUD1$groups)
 #' }
 #'
-#'
-mclust3dSpectra <- function(spectra, pca, pcs = 1:3, 
+mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
                             ellipse = TRUE, rob = FALSE, cl = 0.95,
                             frac.pts.used = 0.8, truth = NULL, ...) {
-
   if (!requireNamespace("mclust", quietly = TRUE)) {
     stop("You need to install package mclust to use this function")
   }
@@ -75,8 +73,10 @@ mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
   my.col <- ChemoSpecUtils::Col12[1:ng]
   if (ng > 12) stop("Not enough colors for the groups. Contact maintainer.")
 
-  DF1 <- DF2 <- data.frame(x = NA_real_, y = NA_real_, z = NA_real_,
-                           col = NA_character_, gr = NA_character_)
+  DF1 <- DF2 <- data.frame(
+    x = NA_real_, y = NA_real_, z = NA_real_,
+    col = NA_character_, gr = NA_character_
+  )
 
   # Create a data frame of the original points as grouped by Mclust
   for (n in 1:ng) {
@@ -92,7 +92,8 @@ mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
     # Create a data frame to hold the computed ellipse points
     if ((length(w)) > 3 && (ellipse)) {
       ell <- .makeEllipsoid(data[w, ],
-        rob = rob, cl = cl, frac.pts.used = frac.pts.used)
+        rob = rob, cl = cl, frac.pts.used = frac.pts.used
+      )
       x <- ell[, 1]
       y <- ell[, 2]
       z <- ell[, 3]

@@ -25,7 +25,6 @@
 #' @keywords internal
 #'
 .plotly3d <- function(spectra, pca, L, pcs, truth = NULL) {
-
   if (!requireNamespace("plotly", quietly = TRUE)) {
     stop("You need to install package plotly to use this function")
   }
@@ -47,7 +46,7 @@
   # so we can X-out the mis-classified points
   X <- FALSE # if TRUE we will plot Xs on the scores that are mis-classified
   if (!is.null(truth)) {
-    if (! "model" %in% names(L)) stop("truth was provided, but there was not mclust model")
+    if (!"model" %in% names(L)) stop("truth was provided, but there was not mclust model")
     ans <- mclust::classError(L$model$classification, truth)
     wrong <- as.data.frame(DF1[ans$misclassified, ])
     if (nrow(wrong) == 0) warning("No points were misclassified")
@@ -63,7 +62,7 @@
   s_names <- unique(DF1$gr) # names for score traces; becomes legend entry
   e_names <- unique(DF2$gr) # names for ellipse traces; becomes legend entry
   ng <- length(unique(DF1$gr)) # either: number of groups present in original
-                               # Spectra object, or number of clusters found by mclust
+  # Spectra object, or number of clusters found by mclust
   ne <- length(unique(DF2$gr)) # number of ellipses that will be drawn
 
   # Plot settings
@@ -74,22 +73,25 @@
   fig <- plot_ly()
 
   for (n in 1:ng) { # draw scores
-    DF1a <- DF1[DF1$gr == s_names[n],]
-    fig <- fig %>% 
-    add_trace(name = s_names[n], data = DF1a,
-      x = ~x, y = ~y, z = ~z,
-      mode = "markers", type = "scatter3d", inherit = FALSE,
-      marker = list(size = dps, color = DF1a$col))
+    DF1a <- DF1[DF1$gr == s_names[n], ]
+    fig <- fig %>%
+      add_trace(
+        name = s_names[n], data = DF1a,
+        x = ~x, y = ~y, z = ~z,
+        mode = "markers", type = "scatter3d", inherit = FALSE,
+        marker = list(size = dps, color = DF1a$col)
+      )
   }
- 
+
   for (n in 1:ne) { # add ellipses
-    DF2a <- DF2[DF2$gr == e_names[n],]
-    fig <- fig %>% 
-    add_trace(
-      name = e_names[n], data = DF2a,
-      x = ~x, y = ~y, z = ~z,
-      mode = "markers", type = "scatter3d", inherit = FALSE,
-      marker = list(size = eps, color = DF2a$col)) 
+    DF2a <- DF2[DF2$gr == e_names[n], ]
+    fig <- fig %>%
+      add_trace(
+        name = e_names[n], data = DF2a,
+        x = ~x, y = ~y, z = ~z,
+        mode = "markers", type = "scatter3d", inherit = FALSE,
+        marker = list(size = eps, color = DF2a$col)
+      )
   }
 
   if (X) { # mark mis-classified data points
@@ -97,16 +99,19 @@
       name = "mis-classified",
       data = wrong, x = ~x, y = ~y, z = ~z,
       mode = "markers", type = "scatter3d", inherit = FALSE,
-      marker = list(size = 2, color = "black", symbol = "x"))
+      marker = list(size = 2, color = "black", symbol = "x")
+    )
   }
 
   fig <- fig %>% layout(
-    legend= list(itemsizing='constant'),
+    legend = list(itemsizing = "constant"),
     title = paste("\n", spectra$desc, "\n", pca$method, sep = ""),
     scene = list(
       xaxis = list(title = x.lab, zerolinewidth = zlw),
       yaxis = list(title = y.lab, zerolinewidth = zlw),
-      zaxis = list(title = z.lab, zerolinewidth = zlw)))
+      zaxis = list(title = z.lab, zerolinewidth = zlw)
+    )
+  )
 
   print(fig)
 }

@@ -1,5 +1,4 @@
 .r2qPCA <- function(x) {
-
   # Modifies objects of class princomp (R-mode PCA) to more closely resemble class prcomp (Q-mode PCA)
 
   if (!inherits(x, "princomp")) stop("The PCA object was not of class princomp")

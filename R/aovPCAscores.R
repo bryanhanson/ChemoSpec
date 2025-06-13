@@ -52,12 +52,11 @@
 #' @export aovPCAscores
 #'
 aovPCAscores <- function(spectra, so, submat = 1, ellipse = "none", tol = "none",
-                       use.sym = FALSE, leg.loc = "topright", ...) {
-
+                         use.sym = FALSE, leg.loc = "topright", ...) {
   .chkArgs(mode = 11L)
   if (!is.list(so)) stop("Argument 'so' should be a list of PCA results from aov_pcaSpectra")
 
-  if (submat > length(so) ) {
+  if (submat > length(so)) {
     stop("Error, results to be plotted do not exist. Please choose a different submatrix!")
   }
 
@@ -77,7 +76,7 @@ aovPCAscores <- function(spectra, so, submat = 1, ellipse = "none", tol = "none"
     p <- plotScores(spectra, so, ellipse = ellipse, tol = tol, use.sym = use.sym, leg.loc = leg.loc, ...)
     return(p)
   }
-  
+
   if (go == "plotly") {
     .chkReqGraphicsPkgs("ggplot2")
     .chkReqGraphicsPkgs("plotly")

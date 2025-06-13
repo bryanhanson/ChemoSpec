@@ -33,7 +33,6 @@
 #' @keywords multivariate robust
 #'
 #' @examples
-#' 
 #' \dontrun{
 #' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
 #' library("ggplot2")

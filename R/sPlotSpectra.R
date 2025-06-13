@@ -50,7 +50,6 @@ sPlotSpectra <- function(spectra,
                          pc = 1,
                          tol = 0.05,
                          ...) {
-
   ##  Code to produce s-plots from Spectra objects
   ##  as in Wiklund.  Part of ChemoSpec
   ##  Matthew J. Keinsley

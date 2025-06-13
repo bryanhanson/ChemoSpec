@@ -34,17 +34,21 @@
 #'   library("ggplot2")
 #'   data(alignMUD)
 #'
-#'   p1 <- plotSpectra(alignMUD, which = 1:20, lab.pos = 4.5, offset = 0.1,
-#'     yrange = c(0, 5000), amp = 500)
+#'   p1 <- plotSpectra(alignMUD,
+#'     which = 1:20, lab.pos = 4.5, offset = 0.1,
+#'     yrange = c(0, 5000), amp = 500
+#'   )
 #'   p1 <- p1 + ggtitle("Misaligned NMR Spectra") +
 #'     coord_cartesian(xlim = c(1.5, 1.8), ylim = c(0, 1900))
 #'   p1
 #'
 #'   aMUD <- clupaSpectra(alignMUD)
 #'
-#'   p2 <- plotSpectra(aMUD, which = 1:20, lab.pos = 4.5, offset = 0.1,
-#'     yrange = c(0, 5000), amp = 500)
-#'   p2 <- p2 +  ggtitle("Aligned NMR Spectra") +
+#'   p2 <- plotSpectra(aMUD,
+#'     which = 1:20, lab.pos = 4.5, offset = 0.1,
+#'     yrange = c(0, 5000), amp = 500
+#'   )
+#'   p2 <- p2 + ggtitle("Aligned NMR Spectra") +
 #'     coord_cartesian(xlim = c(1.5, 1.8), ylim = c(0, 1900))
 #'   p2
 #' }
@@ -55,10 +59,10 @@
 clupaSpectra <- function(spectra, bT = NULL, ...) {
   .chkArgs(mode = 11L)
   if (.chkReqPkgs("speaq")) {
-  if (is.null(bT)) bT <- 0.05 * diff(range(spectra$data)) + abs(min(spectra$data))
-  pL <- speaq::detectSpecPeaks(spectra$data, baselineThresh = bT, ...)
-  ref <- speaq::findRef(pL)[[1]]
-  spectra$data <- speaq::dohCluster(spectra$data, pL, ref, ...)
-  return(spectra)
+    if (is.null(bT)) bT <- 0.05 * diff(range(spectra$data)) + abs(min(spectra$data))
+    pL <- speaq::detectSpecPeaks(spectra$data, baselineThresh = bT, ...)
+    ref <- speaq::findRef(pL)[[1]]
+    spectra$data <- speaq::dohCluster(spectra$data, pL, ref, ...)
+    return(spectra)
   }
 }

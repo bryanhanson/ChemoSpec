@@ -39,5 +39,5 @@
 #' @importFrom ChemoSpecUtils removeFreq removeGroup removeSample plotScores plotScree
 #' @importFrom ChemoSpecUtils sampleDist chkGraphicsOpt rowDist hcaScores
 #'
-#' @export  sampleDist chkGraphicsOpt rowDist hcaScores removeFreq removeGroup removeSample plotScores plotScree chkSpectra sumSpectra sumGroups check4Gaps 
+#' @export  sampleDist chkGraphicsOpt rowDist hcaScores removeFreq removeGroup removeSample plotScores plotScree chkSpectra sumSpectra sumGroups check4Gaps
 "_PACKAGE"
