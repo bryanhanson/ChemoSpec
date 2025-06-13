@@ -197,6 +197,8 @@ files2SpectraObject <- function(gr.crit = NULL,
                                 descrip = "no description provided",
                                 fileExt = "\\.(csv|CSV)$",
                                 out.file = "mydata", debug = FALSE, ...) {
+                                	
+if (.chkReqPkgs("R.utils")) {
   out <- tryCatch(
     {
 
@@ -207,18 +209,12 @@ files2SpectraObject <- function(gr.crit = NULL,
 
       # DX files can be parsed, but are handled via readJDX
 
-      if (!requireNamespace("R.utils", quietly = TRUE)) {
-        stop("You need to install package R.utils to use this function")
-      }
-
       if (is.null(gr.crit)) stop("No group criteria provided to encode data")
 
       DX <- FALSE
       if (grepl("(dx|DX|jdx|JDX)", fileExt)) {
         DX <- TRUE
-        if (!requireNamespace("readJDX", quietly = TRUE)) {
-          stop("You need to install package readJDX to import JCAMP-DX files")
-        }
+        if (.chkReqPkgs("readJDX")) {}
       }
 
       # Clean up args found in ... for further use
@@ -314,4 +310,5 @@ files2SpectraObject <- function(gr.crit = NULL,
   ) # end of tryCatch
 
   return(out)
+}
 }
