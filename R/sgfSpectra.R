@@ -44,13 +44,10 @@
 #' }
 #'
 sgfSpectra <- function(spectra, m = 0, ...) {
-  if (!requireNamespace("signal", quietly = TRUE)) {
-    stop("You need to install package signal to use this function")
-  }
 
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
-
+  if (.chkReqPkgs("signal")) {
 
   for (i in 1:length(spectra$names)) {
     spectra$data[i, ] <- signal::sgolayfilt(spectra$data[i, ], m = m, ...)
@@ -59,3 +56,5 @@ sgfSpectra <- function(spectra, m = 0, ...) {
   chkSpectra(spectra)
   return(spectra)
 }
+}
+
