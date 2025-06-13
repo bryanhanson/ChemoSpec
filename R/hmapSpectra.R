@@ -70,10 +70,8 @@ hmapSpectra <- function(spectra, ...) {
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 
-  if (!requireNamespace("seriation", quietly = TRUE)) {
-    stop("You need to install package seriation to use this function")
-  }
-
+  if (.chkReqPkgs("seriation")) {
   res <- seriation::hmap(spectra$data, ...)
   res
+}
 }
