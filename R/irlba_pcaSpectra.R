@@ -66,6 +66,7 @@
 #' @importFrom stats sd
 #'
 irlba_pcaSpectra <- function(spectra, choice = "noscale", n = 3, center = TRUE, ...) {
+
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 

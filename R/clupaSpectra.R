@@ -57,7 +57,9 @@
 #'
 #'
 clupaSpectra <- function(spectra, bT = NULL, ...) {
+
   .chkArgs(mode = 11L)
+
   if (.chkReqPkgs("speaq")) {
     if (is.null(bT)) bT <- 0.05 * diff(range(spectra$data)) + abs(min(spectra$data))
     pL <- speaq::detectSpecPeaks(spectra$data, baselineThresh = bT, ...)

@@ -54,6 +54,7 @@
 cv_pcaSpectra <- function(spectra, pcs, choice = "noscale", repl = 50, segments = 4,
                           segment.type = c("random", "consecutive", "interleaved"),
                           length.seg, trace = FALSE, ...) {
+
   .chkArgs(mode = 11L)
 
   if (.chkReqPkgs("pls")) {

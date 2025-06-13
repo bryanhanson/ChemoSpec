@@ -47,12 +47,11 @@ sgfSpectra <- function(spectra, m = 0, ...) {
 
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
+  
   if (.chkReqPkgs("signal")) {
-
   for (i in 1:length(spectra$names)) {
     spectra$data[i, ] <- signal::sgolayfilt(spectra$data[i, ], m = m, ...)
   }
-
   chkSpectra(spectra)
   return(spectra)
 }

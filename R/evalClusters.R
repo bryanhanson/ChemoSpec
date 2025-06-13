@@ -77,6 +77,7 @@
 #'
 evalClusters <- function(spectra, pkg = "NbClust", hclst = NULL,
                          k = NULL, h = NULL, crit = "Dunn", ...) {
+
   .chkArgs(mode = 11L)
 
   if (pkg == "NbClust") {

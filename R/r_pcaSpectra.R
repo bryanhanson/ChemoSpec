@@ -54,10 +54,11 @@
 #'
 #'
 r_pcaSpectra <- function(spectra, choice = "noscale") {
-  if (.chkReqPkgs("pcaPP")) {
+
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 
+  if (.chkReqPkgs("pcaPP")) {
   choices <- c("noscale", "mad") # trap for invalid scaling method
   check <- choice %in% choices
   if (!check) stop("The choice of scaling parameter for robust PCA was invalid")
