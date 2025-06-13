@@ -54,10 +54,7 @@
 #'
 #'
 r_pcaSpectra <- function(spectra, choice = "noscale") {
-  if (!requireNamespace("pcaPP", quietly = TRUE)) {
-    stop("You need to install package pcaPP to use this function")
-  }
-
+  if (.chkReqPkgs("pcaPP")) {
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 
@@ -73,4 +70,5 @@ r_pcaSpectra <- function(spectra, choice = "noscale") {
   pca <- pcaPP::PCAgrid(spectra$data, k = 10, scale = choice, scores = TRUE)
   pca$method <- paste("l1median/", note, "/", "robust", sep = "")
   pca <- .r2qPCA(pca) # convert classes
+}
 }
