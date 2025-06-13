@@ -68,9 +68,7 @@
   # For 3D data, there must be at least 5 data points for rob = TRUE, generally,
   # but, we will throw an error if there are fewer than 8 points for a robust calculation
 
-  if (!requireNamespace("MASS", quietly = TRUE)) {
-    stop("You need to install package MASS to use this function")
-  }
+  if (.chkReqPkgs("MASS")) {
   npoints <- 1000 # number of points in the ellipse
   mean <- colMeans(data)
   p <- length(mean)
@@ -113,4 +111,5 @@
 
   colnames(cntr) <- colnames(data)
   cntr + rep(mean, each = npoints) # locates ellipsoid properly
+}
 }
