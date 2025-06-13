@@ -25,10 +25,11 @@
 #' @keywords internal
 #'
 .plotly3d <- function(spectra, pca, L, pcs, truth = NULL) {
-  if (!requireNamespace("plotly", quietly = TRUE)) {
-    stop("You need to install package plotly to use this function")
-  }
-
+	
+  .chkArgs(12L)
+  chkSpectra(spectra)
+  
+if (.chkReqPkgs("plotly")) {
   DF1 <- L$scores
   DF2 <- L$ellipses
 
@@ -114,4 +115,5 @@
   )
 
   print(fig)
+}
 }
