@@ -20,9 +20,7 @@ matrix2SpectraObject <-
     # Part of the ChemoSpec package
     # Bryan Hanson, DePauw University, April 2016
 
-    if (!requireNamespace("R.utils", quietly = TRUE)) {
-      stop("You need to install package R.utils to use this function")
-    }
+    if (.chkReqPkgs("R.utils")) {
 
     if (is.null(gr.crit)) stop("No group criteria provided to encode data")
     if (is.null(in.file)) stop("You need to specify an input file")
@@ -103,4 +101,5 @@ matrix2SpectraObject <-
     ) # end of tryCatch
 
     return(out)
+  }
   }
