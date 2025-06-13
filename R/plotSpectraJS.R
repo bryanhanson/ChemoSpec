@@ -83,18 +83,14 @@ plotSpectraJS <- function(spectra, which = NULL, browser = NULL, minify = TRUE) 
     spectra <- removeSample(spectra, rem.sam = which2)
   }
 
-  if (!requireNamespace("jsonlite", quietly = TRUE)) {
-    stop("You need install package jsonlite to use this function")
-  }
+  if (.chkReqPkgs("jsonlite")) {
+    # Check to see if spectra$freq is increasing - if not, the scales will be inverted
+    # Silently reverse things
+    if (is.unsorted(spectra$freq)) {
+      spectra$freq <- rev(spectra$freq)
+      spectra$data <- spectra$data[, ncol(spectra$data):1]
+    }
 
-  # Check to see if spectra$freq is increasing - if not, the scales will be inverted
-  # Silently reverse things
-  if (is.unsorted(spectra$freq)) {
-    spectra$freq <- rev(spectra$freq)
-    spectra$data <- spectra$data[, ncol(spectra$data):1]
-  }
-
-  if (requireNamespace("jsonlite", quietly = TRUE)) {
     # Break the pieces of the Spectra object out into
     # separate JSON entities
     # These will be global variables in the JavaScript
@@ -167,14 +163,10 @@ plotSpectraJS <- function(spectra, which = NULL, browser = NULL, minify = TRUE) 
     )
 
     if (minify) {
-      if (requireNamespace("js", quietly = TRUE)) {
+      if (.chkReqPkgs("js")) {
         text <- js::uglify_optimize(text, unused = FALSE)
       }
-      if (!requireNamespace("js", quietly = TRUE)) {
-        stop("You need install package js to minify the JavaScript code")
-      }
     }
-
 
     writeLines(text, sep = "\n", con = file.path(td, "pS.js"))
 
