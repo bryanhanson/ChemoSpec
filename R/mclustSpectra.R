@@ -4,7 +4,6 @@
 #' This function is a wrapper for the \code{Mclust} function and associated
 #' plotting functions.
 #'
-#'
 #' @param spectra `r .writeDoc_Spectra1()`
 #'
 #' @param pca An object of class \code{\link{prcomp}}.
@@ -54,9 +53,7 @@ mclustSpectra <- function(spectra, pca, pcs = c(1:3), dims = c(1, 2),
   if (!check) stop("The choice of plot was invalid")
 
 
-  if (!requireNamespace("mclust", quietly = TRUE)) {
-    stop("You need to install package mclust to use this function")
-  }
+  if (.chkReqPkgs("mclust")) {
 
   d <- pca$x[, pcs]
   mod <- mclust::Mclust(d, ...)
@@ -103,4 +100,5 @@ mclustSpectra <- function(spectra, pca, pcs = c(1:3), dims = c(1, 2),
     mtext(note, line = -0.5)
   }
   invisible(mod)
+}
 }
