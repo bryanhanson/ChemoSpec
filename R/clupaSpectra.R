@@ -28,8 +28,8 @@
 #' @keywords utilities
 #'
 #' @examples
-#' # You need to install package speaq for this example
 #' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+#' # You need to install package speaq for this example
 #' if (requireNamespace("speaq", quietly = TRUE)) {
 #'   library("ggplot2")
 #'   data(alignMUD)
