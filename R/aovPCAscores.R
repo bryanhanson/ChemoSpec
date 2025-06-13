@@ -54,13 +54,11 @@
 aovPCAscores <- function(spectra, so, submat = 1, ellipse = "none", tol = "none",
                          use.sym = FALSE, leg.loc = "topright", ...) {
   .chkArgs(mode = 11L)
+  chkSpectra(spectra)
   if (!is.list(so)) stop("Argument 'so' should be a list of PCA results from aov_pcaSpectra")
-
   if (submat > length(so)) {
     stop("Error, results to be plotted do not exist. Please choose a different submatrix!")
   }
-
-  chkSpectra(spectra)
 
   go <- chkGraphicsOpt()
 

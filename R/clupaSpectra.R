@@ -59,6 +59,7 @@
 clupaSpectra <- function(spectra, bT = NULL, ...) {
 
   .chkArgs(mode = 11L)
+  chkSpectra(spectra)
 
   if (.chkReqPkgs("speaq")) {
     if (is.null(bT)) bT <- 0.05 * diff(range(spectra$data)) + abs(min(spectra$data))

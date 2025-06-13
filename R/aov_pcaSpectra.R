@@ -85,18 +85,15 @@ aov_pcaSpectra <- function(spectra, fac, type = "class", choice = NULL, showName
   #  DePauw University, Nov. 2010 onward (completed July 2011)
 
   .chkArgs(mode = 11L)
-
+  chkSpectra(spectra)
   types <- c("class", "rob")
   check <- type %in% types
   if (!check) {
     stop("PCA option invalid")
   }
-
   if (length(fac) > 3) {
     stop("Cannot process more than 3 factors!")
   }
-
-  chkSpectra(spectra)
 
   nf <- length(fac)
 

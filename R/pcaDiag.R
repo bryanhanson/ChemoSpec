@@ -68,9 +68,10 @@ pcaDiag <- function(spectra,
                     plot = c("OD", "SD"),
                     use.sym = FALSE,
                     ...) {
+  .chkArgs(mode = 12L)
+  chkSpectra(spectra)
   msg <- "This function cannot be used with data from sparse pca"
   if (inherits(pca, "converted_from_arrayspc")) stop(msg)
-  .chkArgs(mode = 12L)
   if (inherits(pca, "prcomp")) pca <- .q2rPCA(pca)
 
   X <- spectra$data

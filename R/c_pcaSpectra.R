@@ -64,12 +64,12 @@
 #' @importFrom stats sd prcomp
 #'
 c_pcaSpectra <- function(spectra, choice = "noscale", cent = TRUE) {
-  .chkArgs(mode = 11L)
 
+  .chkArgs(mode = 11L)
+  chkSpectra(spectra)
   choices <- c("noscale", "autoscale", "Pareto") # trap for invalid scaling method
   check <- choice %in% choices
   if (!check) stop("The choice of scaling parameter was invalid")
-  chkSpectra(spectra)
 
   # Center & scale the data using the desired method.
 

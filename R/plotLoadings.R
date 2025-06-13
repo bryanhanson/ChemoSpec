@@ -40,6 +40,7 @@
 #'
 plotLoadings <- function(spectra, pca, loads = c(1), ref = 1, ...) {
   .chkArgs(mode = 12L)
+  chkSpectra(spectra)
   go <- chkGraphicsOpt()
 
   if (go == "base") {

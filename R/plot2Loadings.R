@@ -63,8 +63,8 @@ plot2Loadings <- function(spectra,
   # Bryan Hanson, DePauw University, June 2008
 
   .chkArgs(mode = 12L)
-  if (length(loads) != 2) stop("You must choose exactly 2 loadings to plot.")
   chkSpectra(spectra)
+  if (length(loads) != 2) stop("You must choose exactly 2 loadings to plot.")
 
   # pull the requested loadings
 

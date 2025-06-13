@@ -39,8 +39,9 @@
 #' p
 #'
 reviewAllSpectra <- function(spectra, ...) {
-  .chkArgs(mode = 11L)
 
+  .chkArgs(mode = 11L)
+  chkSpectra(spectra)
   go <- chkGraphicsOpt()
 
   if (go == "base") {

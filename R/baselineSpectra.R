@@ -69,6 +69,7 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, show = 1, ...) {
   # but we do need it if processing locally.
 
   .chkArgs(mode = 11L)
+  chkSpectra(spectra)
 
   dots <- list(...)
   linear <- FALSE

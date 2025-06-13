@@ -56,6 +56,7 @@ cv_pcaSpectra <- function(spectra, pcs, choice = "noscale", repl = 50, segments 
                           length.seg, trace = FALSE, ...) {
 
   .chkArgs(mode = 11L)
+  chkSpectra(spectra)
 
   if (.chkReqPkgs("pls")) {
     choices <- c("noscale", "autoscale", "Pareto") # trap for invalid scaling method
