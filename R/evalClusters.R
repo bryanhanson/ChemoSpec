@@ -81,20 +81,18 @@ evalClusters <- function(spectra, pkg = "NbClust", hclst = NULL,
   .chkArgs(mode = 11L)
 
   if (pkg == "NbClust") {
-    if (!requireNamespace("NbClust", quietly = TRUE)) {
-      stop("You need install package NbClust to use this function/option")
-    }
+    if (.chkReqPkgs("NbClust")) {
     res <- NbClust::NbClust(spectra$data, ...)
     return(res)
   }
+  }
 
   if (pkg == "clusterCrit") {
-    if (!requireNamespace("clusterCrit", quietly = TRUE)) {
-      stop("You need install package clusterCrit to use this function/option")
-    }
+    if (.chkReqPkgs("clusterCrit")) {
     if (is.null(hclust)) stop("You must provide an hclust object")
     ct <- cutree(hclst, k = k, h = h)
     res <- clusterCrit::intCriteria(spectra$data, ct, crit, ...)
     return(res)
+  }
   }
 }
