@@ -57,13 +57,12 @@
 mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
                             ellipse = TRUE, rob = FALSE, cl = 0.95,
                             frac.pts.used = 0.8, truth = NULL, ...) {
-  if (!requireNamespace("mclust", quietly = TRUE)) {
-    stop("You need to install package mclust to use this function")
-  }
+
   .chkArgs(mode = 12L)
   chkSpectra(spectra)
   if (length(pcs) != 3) stop("Please give exactly 3 PCs to plot")
 
+if (.chkReqPkgs("mclust")) {
   data <- pca$x[, pcs]
   colnames(data) <- c("x", "y", "z")
   mod <- mclust::Mclust(data, ...)
@@ -111,4 +110,5 @@ mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
   fig <- .plotly3d(spectra, pca, L, pcs, truth) # pass to plotting function
 
   invisible(mod)
+}
 }
