@@ -66,13 +66,11 @@
 #' @importFrom stats sd
 #'
 s_pcaSpectra <- function(spectra, choice = "noscale", K = 3, para = rep(0.5, K), ...) {
-  if (!requireNamespace("elasticnet", quietly = TRUE)) {
-    stop("You need to install package elasticnet to use this function")
-  }
 
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 
+if (.chkReqPkgs("elasticnet")) {
   choices <- c("noscale", "autoscale", "Pareto") # trap for invalid scaling method
   check <- choice %in% choices
   if (!check) stop("The choice of scaling parameter was invalid")
@@ -108,4 +106,5 @@ s_pcaSpectra <- function(spectra, choice = "noscale", K = 3, para = rep(0.5, K),
     warning("It appears the sparse PCA calculation has failed.  Check the results carefully and consider adjusting the tuning parameters")
   }
   pca
+}
 }
