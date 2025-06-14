@@ -57,7 +57,6 @@
 #'
 #'
 clupaSpectra <- function(spectra, bT = NULL, ...) {
-
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 

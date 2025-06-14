@@ -38,7 +38,6 @@
 #' @export aovPCAloadings
 #'
 aovPCAloadings <- function(spectra, PCA, submat = 1, loads = 1, ref = 1, ...) {
-
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 

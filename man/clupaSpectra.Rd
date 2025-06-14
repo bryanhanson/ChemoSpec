@@ -23,8 +23,8 @@ This function is a wrapper to several functions in the \pkg{speaq} package.
 It implements the CluPA algorithm described in the reference.
 }
 \examples{
-# You need to install package speaq for this example
 # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
+# You need to install package speaq for this example
 if (requireNamespace("speaq", quietly = TRUE)) {
   library("ggplot2")
   data(alignMUD)

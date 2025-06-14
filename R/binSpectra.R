@@ -36,7 +36,6 @@
 #' sumSpectra(res)
 #'
 binSpectra <- function(spectra, bin.ratio) {
-
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
   if (missing(bin.ratio)) stop("No bin.ratio specified")

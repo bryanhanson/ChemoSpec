@@ -67,7 +67,6 @@
 #' res$groups <- as.factor(paste(res$geneBb, res$geneCc, sep = ""))
 #'
 splitSpectraGroups <- function(spectra, inst = NULL, rep.cols = NULL, ...) {
-
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
   if (is.null(inst)) stop("No splitting instructions provided")

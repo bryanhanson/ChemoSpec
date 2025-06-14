@@ -67,7 +67,6 @@
 #' @export hmapSpectra
 #'
 hmapSpectra <- function(spectra, ...) {
-
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 

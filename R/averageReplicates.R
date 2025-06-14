@@ -31,7 +31,6 @@
 #' sumSpectra(averaged)
 #'
 averageReplicates <- function(spectra, uniq) {
-	
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 
