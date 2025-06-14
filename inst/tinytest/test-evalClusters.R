@@ -6,7 +6,8 @@
 # we DONT run it when checking with noSuggests at CRAN
 
 if (home) {
-  if (.chkReqPkgs("NbClust, ClusterCrit")) {
+  chk <- Sys.getenv("_R_CHECK_DEPENDS_ONLY_", unset = "use_suggests")
+  if (chk == "use_suggests") {
     data(metMUD2)
     expect_silent(evalClusters(metMUD2, min.nc = 2, max.nc = 5,
                 method = "average", index = "kl"))
