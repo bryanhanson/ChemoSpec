@@ -16,7 +16,7 @@ Authors@R: c(
       comment = "author of initial AOV-PCA code"),
     person("Tejasvi", "Gupta",
       role = "ctb",
-      comment = "author of ggplot2 and plotly graphics"))
+      comment = "author of ggplot2 and plotly graphics interfaces"))
 Description: A collection of functions for top-down exploratory data analysis
     of spectral data including nuclear magnetic resonance (NMR), infrared (IR),
     Raman, X-ray fluorescence (XRF) and other similar types of spectroscopy.
