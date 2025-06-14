@@ -1,6 +1,7 @@
-# ChemoSpec 6.1.12 2025-06-11
+# ChemoSpec 6.1.12 2025-06-14
 ## Misc
-* At CRAN request, modified unit tests, examples and vignette to conform to noSuggests standard.
+* At CRAN request, modified unit tests, examples and vignette to better conform to noSuggests standard.
+* New internal function `.chkReqPkgs()` to facilitate better defensive programming.
 * No user facing changes.
 
 # ChemoSpec 6.1.11 2025-04-09
