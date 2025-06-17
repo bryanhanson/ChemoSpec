@@ -1,0 +1,12 @@
+\documentclass{article}
+\usepackage{pdfpages}
+
+\VignetteIndexEntry{An R Package for Chemometric Analysis of Spectra (NMR, IR etc}
+\VignetteKeywords{chemometrics, spectroscopy, nmr, ir, raman, cd, xrf}
+\VignettePackage{ChemoSpec}
+\VignetteEncoding{UTF-8}
+\VignetteDepends{ChemoSpec, mclust, ggplot2, patchwork, RColorBrewer, knitr}
+
+\begin{document}
+\includepdf[pages=-, fitpaper=true]{ChemoSpec.pdf}
+\end{document}

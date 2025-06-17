@@ -1,28 +1,16 @@
 ---
-title:  "An Introduction to ChemoSpec"
+title: "An Introduction to ChemoSpec"
 author:
   - Bryan A. Hanson^[Professor Emeritus of Chemistry & Biochemistry, DePauw University, Greencastle IN USA., hanson@depauw.edu]
 date:  "`r Sys.Date()`"
-output:
-#     bookdown::html_document2: # use for pkgdown site
-     bookdown::pdf_document2: # use for CRAN to keep size down; breaks GHA
-     toc: yes
-     toc_depth: 2
-     fig_caption: yes
-     number_sections: true # needed for section cross-refs to work
-vignette: >
-    %\VignetteIndexEntry{An R Package for Chemometric Analysis of Spectra (NMR, IR etc}
-    %\VignetteKeywords{chemometrics, spectroscopy, nmr, ir, raman, cd, xrf}
-    %\VignettePackage{ChemoSpec}
-    %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteEncoding{UTF-8}
-    %\VignetteDepends{ChemoSpec, mclust, ggplot2, patchwork, RColorBrewer, knitr}
-link-citations: yes
 bibliography:
   - chemometrics.bib
   - manuals.bib
-pkgdown:
-  as_is: true # needed for proper figure referencing
+format:
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
 ---
 
 <!-- Run a few things in the background for use later -->
