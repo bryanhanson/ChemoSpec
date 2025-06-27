@@ -1,3 +1,7 @@
+# ChemoSpec 6.3.0 2025-06-27
+## Misc
+* Convert vignette to .Qmd for static formatting, and use a .Rnw to process it.
+
 # ChemoSpec 6.1.12 2025-06-14
 ## Misc
 * At CRAN request, modified unit tests, examples and vignette to better conform to noSuggests standard.
