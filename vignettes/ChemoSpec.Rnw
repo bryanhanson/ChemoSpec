@@ -7,5 +7,5 @@
 %\VignetteEncoding{UTF-8}
 
 \begin{document}
-  \includepdf[pages=-, fitpaper=true]{ChemoSpec2.pdf}
+  \includepdf[pages=-, fitpaper=true]{ChemoSpecStatic.pdf}
 \end{document}
