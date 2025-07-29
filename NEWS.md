@@ -1,6 +1,6 @@
-# ChemoSpec 6.3.0 2025-06-27
+# ChemoSpec 6.3.0 2025-07-30
 ## Misc
-* Convert vignette to .Qmd for static formatting, and use a .Rnw to process it.
+* Convert vignette to .Qmd for static formatting, and use a .Rnw to process it.  This allows a number of Suggests packages to be removed from DESCRIPTION.
 
 # ChemoSpec 6.1.12 2025-06-14
 ## Misc
