@@ -2,7 +2,7 @@ Package: ChemoSpec
 Type: Package
 Title: Exploratory Chemometrics for Spectroscopy
 Version: 6.3.0
-Date: 2025-07-30
+Date: 2025-07-31
 Authors@R: c(
     person("Bryan A.", "Hanson",
       role = c("aut", "cre"), email =
@@ -42,14 +42,14 @@ Imports:
   patchwork,
   ggplot2,
   plotly,
+  lattice,
+  grid,
   magrittr
 Suggests:
   IDPmisc,
-  knitr,
   js,
   NbClust,
   clusterCrit,
-  lattice,
   baseline,
   mclust,
   pls,
@@ -57,24 +57,19 @@ Suggests:
   RColorBrewer,
   seriation,
   MASS,
-  grid,
   pcaPP,
   jsonlite,
   signal,
   speaq,
-  tinytest,
   elasticnet,
   irlba,
-  rmarkdown,
-  bookdown,
   chemometrics,
-  hyperSpec,
   amap,
+  tinytest,
   roxut
 URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE
-VignetteBuilder: knitr
 Encoding: UTF-8
 RoxygenNote: 7.3.2
 Roxygen: list(roclets = c("namespace", "rd", "roxut::tests_roclet"), markdown = TRUE)
