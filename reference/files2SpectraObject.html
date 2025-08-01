@@ -21,15 +21,12 @@ any of "dx", "DX", "jdx" or "JDX".'><!-- mathjax --><script src="https://cdnjs.c
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ChemoSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.1.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">6.3.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li>
-  <a href="../articles/ChemoSpec.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -174,7 +171,7 @@ importing your data, set this to <code>FALSE</code> and do <code>str(your object
     <p>A object of class <code><a href="Spectra.html">Spectra</a></code>.  An <em>unnamed</em> object
 of S3 class <code><a href="Spectra.html">Spectra</a></code> is also written to <code>out.file</code>.  To
 read it back into the workspace, use <code>new.name &lt;- loadObject(out.file)</code>
-(<code>loadObject</code> is package <span class="pkg">R.utils</span>).</p>
+(<code>loadObject</code> is in package <span class="pkg">R.utils</span>).</p>
     </div>
     <div id="functions">
     <h2>Functions</h2>
@@ -295,7 +292,8 @@ as well as <code><a href="updateGroups.html">updateGroups</a></code>.</p></div>
 <span class="r-in"><span><span class="co"># Now read in the file, summarize and plot</span></span></span>
 <span class="r-in"><span><span class="va">spec</span> <span class="op">&lt;-</span> <span class="fu">files2SpectraObject</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  gr.crit <span class="op">=</span> <span class="st">"PCRF"</span>, freq.unit <span class="op">=</span> <span class="st">"ppm"</span>, int.unit <span class="op">=</span> <span class="st">"intensity"</span>,</span></span>
-<span class="r-in"><span>  descrip <span class="op">=</span> <span class="st">"test import"</span>, fileExt <span class="op">=</span> <span class="st">"\\.jdx"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  descrip <span class="op">=</span> <span class="st">"test import"</span>, fileExt <span class="op">=</span> <span class="st">"\\.jdx"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="sumSpectra.html">sumSpectra</a></span><span class="op">(</span><span class="va">spec</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="plotSpectra.html">plotSpectra</a></span><span class="op">(</span><span class="va">spec</span>, lab.pos <span class="op">=</span> <span class="fl">3.5</span>, main <span class="op">=</span> <span class="st">"Reduced Fat Potato Chip"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Reduced Fat Potato Chip"</span><span class="op">)</span></span></span>
@@ -318,7 +316,7 @@ as well as <code><a href="updateGroups.html">updateGroups</a></code>.</p></div>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
       </footer></div>

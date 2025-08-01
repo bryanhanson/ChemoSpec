@@ -2,8 +2,6 @@
 <url><loc>/404.html</loc></url>
 <url><loc>/CODE_OF_CONDUCT.html</loc></url>
 <url><loc>/CONTRIBUTING.html</loc></url>
-<url><loc>/articles/ChemoSpec.html</loc></url>
-<url><loc>/articles/index.html</loc></url>
 <url><loc>/authors.html</loc></url>
 <url><loc>/index.html</loc></url>
 <url><loc>/news/index.html</loc></url>
@@ -24,6 +22,7 @@
 <url><loc>/reference/colorSymbol.html</loc></url>
 <url><loc>/reference/conColScheme.html</loc></url>
 <url><loc>/reference/cv_pcaSpectra.html</loc></url>
+<url><loc>/reference/dot-chkReqPkgs.html</loc></url>
 <url><loc>/reference/evalClusters.html</loc></url>
 <url><loc>/reference/files2SpectraObject.html</loc></url>
 <url><loc>/reference/hcaScores.html</loc></url>
