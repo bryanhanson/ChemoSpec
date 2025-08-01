@@ -38,6 +38,13 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
+      - name: Install additional LaTeX packages
+        run: |
+          tlmgr --version
+          tlmgr update --self
+          tlmgr install pdfpages
+          tlmgr list --only-installed
+
       - name: Install Bioconductor dependencies
         run: |
           # need to install some pkgs from Bioconductor
