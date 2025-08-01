@@ -43,6 +43,7 @@ jobs:
           tlmgr --version
           tlmgr update --self
           tlmgr install pdfpages
+          tlmgr install pdflscape
           tlmgr list --only-installed
 
       - name: Install Bioconductor dependencies
