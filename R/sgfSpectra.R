@@ -39,23 +39,19 @@
 #'   p2 <- plotSpectra(sgf)
 #'   p2 <- p2 + ggtitle(myt2) + coord_cartesian(xlim = c(1900, 2100), ylim = c(0.0, 0.03))
 #'
-#'   p3 <- p1/p2
+#'   p3 <- p1 / p2
 #'   p3
 #' }
-#' 
+#'
 sgfSpectra <- function(spectra, m = 0, ...) {
-  if (!requireNamespace("signal", quietly = TRUE)) {
-    stop("You need to install package signal to use this function")
-  }
-
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 
-
-  for (i in 1:length(spectra$names)) {
-    spectra$data[i, ] <- signal::sgolayfilt(spectra$data[i, ], m = m, ...)
+  if (.chkReqPkgs("signal")) {
+    for (i in 1:length(spectra$names)) {
+      spectra$data[i, ] <- signal::sgolayfilt(spectra$data[i, ], m = m, ...)
+    }
+    chkSpectra(spectra)
+    return(spectra)
   }
-
-  chkSpectra(spectra)
-  return(spectra)
 }

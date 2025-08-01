@@ -38,11 +38,10 @@
 #' @export aovPCAloadings
 #'
 aovPCAloadings <- function(spectra, PCA, submat = 1, loads = 1, ref = 1, ...) {
-
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 
-  if (submat > length(PCA) ) {
+  if (submat > length(PCA)) {
     stop("Error, results to be plotted does not exist. Please choose a different submatrix!")
   }
 
@@ -87,5 +86,4 @@ aovPCAloadings <- function(spectra, PCA, submat = 1, loads = 1, ref = 1, ...) {
     p <- plotLoadings(spectra = spectra, pca = PCA[[submat]], loads = loads, ref = ref)
     return(p)
   }
-
 }

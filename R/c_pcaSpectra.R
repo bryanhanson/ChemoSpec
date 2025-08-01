@@ -54,7 +54,7 @@
 #' p2 <- plotScores(metMUD1, pca, pcs = c(1, 2), ellipse = "cls", tol = 0.05)
 #' p2 <- p2 + ggtitle("Scores: metMUD1 NMR Data")
 #' p2
-#' 
+#'
 #' p3 <- plotLoadings(metMUD1, pca, loads = 1:2, ref = 1)
 #' p3 <- p3 + ggtitle("Loadings: metMUD1 NMR Data")
 #' p3
@@ -65,11 +65,10 @@
 #'
 c_pcaSpectra <- function(spectra, choice = "noscale", cent = TRUE) {
   .chkArgs(mode = 11L)
-
+  chkSpectra(spectra)
   choices <- c("noscale", "autoscale", "Pareto") # trap for invalid scaling method
   check <- choice %in% choices
   if (!check) stop("The choice of scaling parameter was invalid")
-  chkSpectra(spectra)
 
   # Center & scale the data using the desired method.
 

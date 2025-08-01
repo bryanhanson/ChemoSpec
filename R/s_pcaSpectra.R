@@ -66,46 +66,44 @@
 #' @importFrom stats sd
 #'
 s_pcaSpectra <- function(spectra, choice = "noscale", K = 3, para = rep(0.5, K), ...) {
-  if (!requireNamespace("elasticnet", quietly = TRUE)) {
-    stop("You need to install package elasticnet to use this function")
-  }
-
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 
-  choices <- c("noscale", "autoscale", "Pareto") # trap for invalid scaling method
-  check <- choice %in% choices
-  if (!check) stop("The choice of scaling parameter was invalid")
+  if (.chkReqPkgs("elasticnet")) {
+    choices <- c("noscale", "autoscale", "Pareto") # trap for invalid scaling method
+    check <- choice %in% choices
+    if (!check) stop("The choice of scaling parameter was invalid")
 
-  # elasticnet::arrayspc does its own scaling, so we must plan for that
-  # We must save a copy of the scaled data to use in reconstructing the scores
+    # elasticnet::arrayspc does its own scaling, so we must plan for that
+    # We must save a copy of the scaled data to use in reconstructing the scores
 
-  if (choice == "noscale") {
-    X <- scale(spectra$data, center = TRUE, scale = FALSE)
-    pca <- elasticnet::arrayspc(x = spectra$data, K = K, para = para, use.corr = FALSE, ...)
+    if (choice == "noscale") {
+      X <- scale(spectra$data, center = TRUE, scale = FALSE)
+      pca <- elasticnet::arrayspc(x = spectra$data, K = K, para = para, use.corr = FALSE, ...)
+    }
+
+    if (choice == "Pareto") {
+      col.sd <- apply(spectra$data, 2, sd)
+      X <- scale(spectra$data, center = TRUE, scale = col.sd^0.5)
+      pca <- elasticnet::arrayspc(x = spectra$data, K = K, para = para, use.corr = col.sd^0.5, ...)
+    }
+
+    if (choice == "autoscale") {
+      col.sd <- apply(spectra$data, 2, sd)
+      X <- scale(spectra$data, center = TRUE, scale = col.sd)
+      pca <- elasticnet::arrayspc(x = spectra$data, K = K, para = para, use.corr = col.sd, ...)
+    }
+
+    # Modify the arrayspc class to conform to prcomp
+    pca$method <- paste("centered/", choice, "/", "sparse", sep = "")
+    pca$x <- X %*% pca$loadings # compute scores
+    pca$rotation <- pca$loadings
+    pca$loadings <- NULL
+    pca$sdev <- NA_real_
+    class(pca) <- c("converted_from_arrayspc", "prcomp")
+    if (pca$pev[1] == 0.0) {
+      warning("It appears the sparse PCA calculation has failed.  Check the results carefully and consider adjusting the tuning parameters")
+    }
+    pca
   }
-
-  if (choice == "Pareto") {
-    col.sd <- apply(spectra$data, 2, sd)
-    X <- scale(spectra$data, center = TRUE, scale = col.sd^0.5)
-    pca <- elasticnet::arrayspc(x = spectra$data, K = K, para = para, use.corr = col.sd^0.5, ...)
-  }
-
-  if (choice == "autoscale") {
-    col.sd <- apply(spectra$data, 2, sd)
-    X <- scale(spectra$data, center = TRUE, scale = col.sd)
-    pca <- elasticnet::arrayspc(x = spectra$data, K = K, para = para, use.corr = col.sd, ...)
-  }
-
-  # Modify the arrayspc class to conform to prcomp
-  pca$method <- paste("centered/", choice, "/", "sparse", sep = "")
-  pca$x <- X %*% pca$loadings # compute scores
-  pca$rotation <- pca$loadings
-  pca$loadings <- NULL
-  pca$sdev <- NA_real_
-  class(pca) <- c("converted_from_arrayspc", "prcomp")
-  if (pca$pev[1] == 0.0) {
-    warning("It appears the sparse PCA calculation has failed.  Check the results carefully and consider adjusting the tuning parameters")
-  }
-  pca
 }

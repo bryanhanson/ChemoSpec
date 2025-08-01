@@ -49,65 +49,65 @@
 #' data(metMUD1)
 #' pca <- c_pcaSpectra(metMUD1)
 #' mclust3dSpectra(metMUD1, pca)
-#' 
+#'
 #' # show mis-classified points
 #' mclust3dSpectra(metMUD1, pca, truth = metMUD1$groups)
 #' }
 #'
-#'
-mclust3dSpectra <- function(spectra, pca, pcs = 1:3, 
+mclust3dSpectra <- function(spectra, pca, pcs = 1:3,
                             ellipse = TRUE, rob = FALSE, cl = 0.95,
                             frac.pts.used = 0.8, truth = NULL, ...) {
-
-  if (!requireNamespace("mclust", quietly = TRUE)) {
-    stop("You need to install package mclust to use this function")
-  }
   .chkArgs(mode = 12L)
   chkSpectra(spectra)
   if (length(pcs) != 3) stop("Please give exactly 3 PCs to plot")
 
-  data <- pca$x[, pcs]
-  colnames(data) <- c("x", "y", "z")
-  mod <- mclust::Mclust(data, ...)
-  gr <- unique(mod$classification)
-  ng <- length(gr)
+  if (.chkReqPkgs("mclust")) {
+    data <- pca$x[, pcs]
+    colnames(data) <- c("x", "y", "z")
+    mod <- mclust::Mclust(data, ...)
+    gr <- unique(mod$classification)
+    ng <- length(gr)
 
-  my.col <- ChemoSpecUtils::Col12[1:ng]
-  if (ng > 12) stop("Not enough colors for the groups. Contact maintainer.")
+    my.col <- ChemoSpecUtils::Col12[1:ng]
+    if (ng > 12) stop("Not enough colors for the groups. Contact maintainer.")
 
-  DF1 <- DF2 <- data.frame(x = NA_real_, y = NA_real_, z = NA_real_,
-                           col = NA_character_, gr = NA_character_)
+    DF1 <- DF2 <- data.frame(
+      x = NA_real_, y = NA_real_, z = NA_real_,
+      col = NA_character_, gr = NA_character_
+    )
 
-  # Create a data frame of the original points as grouped by Mclust
-  for (n in 1:ng) {
-    w <- grep(gr[n], mod$classification)
-    x <- data[w, 1]
-    y <- data[w, 2]
-    z <- data[w, 3]
-    col <- rep(my.col[n], length(w))
-    clust <- rep(paste("Cluster", n, sep = " "), length(w))
-    temp <- data.frame(x = x, y = y, z = z, col = col, gr = clust)
-    DF1 <- rbind(DF1, temp)
-
-    # Create a data frame to hold the computed ellipse points
-    if ((length(w)) > 3 && (ellipse)) {
-      ell <- .makeEllipsoid(data[w, ],
-        rob = rob, cl = cl, frac.pts.used = frac.pts.used)
-      x <- ell[, 1]
-      y <- ell[, 2]
-      z <- ell[, 3]
-      col <- rep(my.col[n], 1000)
-      clust <- rep(paste("Cluster", n, "(ellipse)", sep = " "), 1000)
+    # Create a data frame of the original points as grouped by Mclust
+    for (n in 1:ng) {
+      w <- grep(gr[n], mod$classification)
+      x <- data[w, 1]
+      y <- data[w, 2]
+      z <- data[w, 3]
+      col <- rep(my.col[n], length(w))
+      clust <- rep(paste("Cluster", n, sep = " "), length(w))
       temp <- data.frame(x = x, y = y, z = z, col = col, gr = clust)
-      DF2 <- rbind(DF2, temp)
+      DF1 <- rbind(DF1, temp)
+
+      # Create a data frame to hold the computed ellipse points
+      if ((length(w)) > 3 && (ellipse)) {
+        ell <- .makeEllipsoid(data[w, ],
+          rob = rob, cl = cl, frac.pts.used = frac.pts.used
+        )
+        x <- ell[, 1]
+        y <- ell[, 2]
+        z <- ell[, 3]
+        col <- rep(my.col[n], 1000)
+        clust <- rep(paste("Cluster", n, "(ellipse)", sep = " "), 1000)
+        temp <- data.frame(x = x, y = y, z = z, col = col, gr = clust)
+        DF2 <- rbind(DF2, temp)
+      }
     }
+
+    DF1 <- DF1[-1, ] # remove NA in row 1
+    if (ellipse) DF2 <- DF2[-1, ]
+    L <- list(scores = DF1, ellipses = DF2, model = mod)
+
+    fig <- .plotly3d(spectra, pca, L, pcs, truth) # pass to plotting function
+
+    invisible(mod)
   }
-
-  DF1 <- DF1[-1, ] # remove NA in row 1
-  if (ellipse) DF2 <- DF2[-1, ]
-  L <- list(scores = DF1, ellipses = DF2, model = mod)
-
-  fig <- .plotly3d(spectra, pca, L, pcs, truth) # pass to plotting function
-
-  invisible(mod)
 }

@@ -58,14 +58,13 @@ plot2Loadings <- function(spectra,
                           loads = c(1, 2),
                           tol = 0.05,
                           ...) {
-
   # Function to plot loadings against each other
   # Part of the ChemoSpec package
   # Bryan Hanson, DePauw University, June 2008
 
   .chkArgs(mode = 12L)
-  if (length(loads) != 2) stop("You must choose exactly 2 loadings to plot.")
   chkSpectra(spectra)
+  if (length(loads) != 2) stop("You must choose exactly 2 loadings to plot.")
 
   # pull the requested loadings
 

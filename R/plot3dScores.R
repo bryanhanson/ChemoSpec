@@ -45,7 +45,6 @@
 #'
 plot3dScores <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE,
                          cl = 0.95, frac.pts.used = 0.8) {
-
   .chkArgs(mode = 12L)
   chkSpectra(spectra)
   if (length(pcs) != 3) stop("Please give exactly 3 PCs to plot")
@@ -56,8 +55,10 @@ plot3dScores <- function(spectra, pca, pcs = c(1:3), ellipse = TRUE, rob = FALSE
   DF1 <- data.frame(x = x, y = y, z = z, col = spectra$colors, gr = spectra$groups)
 
   gr <- sumGroups(spectra) # create a data frame for the ellipses
-  DF2 <- data.frame(x = NA_real_, y = NA_real_, z = NA_real_,
-                    col = NA_character_, gr = NA_character_)
+  DF2 <- data.frame(
+    x = NA_real_, y = NA_real_, z = NA_real_,
+    col = NA_character_, gr = NA_character_
+  )
   for (n in 1:length(gr$group)) { # work through the groups, add ellipses if n > 3
     # note that .makeEllipsoid has further checks for the number of data points
     w <- grep(gr$group[n], spectra$groups)

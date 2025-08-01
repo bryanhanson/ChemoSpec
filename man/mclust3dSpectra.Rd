@@ -63,7 +63,6 @@ mclust3dSpectra(metMUD1, pca)
 mclust3dSpectra(metMUD1, pca, truth = metMUD1$groups)
 }
 
-
 }
 \seealso{
 \code{\link[mclust]{Mclust}} for background on the method.

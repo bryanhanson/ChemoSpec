@@ -69,6 +69,7 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, show = 1, ...) {
   # but we do need it if processing locally.
 
   .chkArgs(mode = 11L)
+  chkSpectra(spectra)
 
   dots <- list(...)
   linear <- FALSE
@@ -76,11 +77,6 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, show = 1, ...) {
 
   if (any(names(dots) == "method")) {
     method <- dots$method
-    if (method == "rfbaseline") {
-      if (!requireNamespace("IDPmisc", quietly = TRUE)) {
-        stop("You need to install package IDPmisc to use method rfbaseline")
-      }
-    }
     if (method == "linear") linear <- TRUE
   }
 
@@ -113,29 +109,43 @@ baselineSpectra <- function(spectra, int = TRUE, retC = FALSE, show = 1, ...) {
     return(spectra)
   }
 
-  # Below here, we are using methods in package baseline
+  # Below here, we are using methods in package baseline or IDPmisc
 
-  if (!requireNamespace("baseline", quietly = TRUE)) {
-    stop("You need to install package baseline to use this function")
-  }
+  if (.chkReqPkgs("baseline")) {
+    old.par <- par(no.readonly = TRUE) # interactive baseline makes 2 plots
+    on.exit(par(old.par)) # reset when done (suggested by Dana Nadler)
 
-  old.par <- par(no.readonly = TRUE) # interactive baseline makes 2 plots
-  on.exit(par(old.par)) # reset when done (suggested by Dana Nadler)
+    if (method == "rfbaseline") {
+      go <- .chkReqPkgs("IDPmisc")
+      if (isFALSE(go)) {
+        return(NULL)
+      }
+    }
 
-  dat <- spectra$data # possible conflict with baseline's use of spectra
-  if (int) baseline::baselineGUI(dat, ...) # no return value
-  if (!int) {
-    b <- baseline::baseline(dat, ...)
-    baseline::plot(b, specNo = show)
-  }
-  if (retC) {
-    bc <- baseline::getCorrected(b)
-    spectra$data <- bc
-    chkSpectra(spectra)
-    return(spectra)
-  }
+    dat <- spectra$data # possible conflict with baseline's use of spectra
+    if (int) baseline::baselineGUI(dat, ...) # no return value
+    if (!int) {
+      b <- baseline::baseline(dat, ...)
+      baseline::plot(b, specNo = show)
+    }
+    if (retC) {
+      bc <- baseline::getCorrected(b)
+      spectra$data <- bc
+      chkSpectra(spectra)
+      return(spectra)
+    }
 
-  if (!retC) {
-    return(b)
+    if (!retC) {
+      return(b)
+    }
   }
 }
+
+
+
+
+# if (method == "rfbaseline") {
+# if (!requireNamespace("IDPmisc", quietly = TRUE)) {
+# return(message("You need to install package IDPmisc to use method rfbaseline"))
+# }
+# }

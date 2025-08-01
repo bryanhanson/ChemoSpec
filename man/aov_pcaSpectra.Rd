@@ -37,7 +37,6 @@ With this method, the significance of a factor can be visually determined
 is the same as standard PCA and gives no additional separation.
 }
 \examples{
-
 \dontrun{
 # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
 library("ggplot2")

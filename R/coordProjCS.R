@@ -83,8 +83,7 @@
       sigma <- parameters$variance$sigma
       haveParams <- !is.null(mu) && !is.null(sigma) && !any(is.na(mu)) &&
         !any(is.na(sigma))
-    }
-    else {
+    } else {
       haveParams <- FALSE
     }
     data <- data[, dimens, drop = FALSE]
@@ -102,8 +101,7 @@
       d <- diff(xlim) - diff(ylim)
       if (d > 0) {
         ylim <- c(ylim[1] - d / 2, ylim[2] + d / 2)
-      }
-      else {
+      } else {
         xlim <- c(xlim[1] + d / 2, xlim[2] - d / 2)
       }
     }
@@ -146,15 +144,12 @@
             symbols[symbols == 16] <- first
             symbols[1] <- 16
           }
-        }
-        else if (L <= 9) {
+        } else if (L <= 9) {
           symbols <- as.character(1:9)
-        }
-        else if (L <= 26) {
+        } else if (L <= 26) {
           symbols <- LETTERS
         }
-      }
-      else if (length(symbols) == 1) {
+      } else if (length(symbols) == 1) {
         symbols <- rep(symbols, L)
       }
       if (is.null(colors)) {
@@ -166,8 +161,7 @@
             colors[1] <- "black"
           }
         }
-      }
-      else if (length(colors) == 1) {
+      } else if (length(colors) == 1) {
         colors <- rep(colors, L)
       }
       if (length(symbols) < L) {
@@ -199,8 +193,7 @@
         warning("classification and truth differ in number of groups")
       }
       bad <- bad && badClass
-    }
-    else {
+    } else {
       bad <- !m
       warning("what improperly specified")
     }

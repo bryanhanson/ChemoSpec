@@ -64,7 +64,7 @@ if (requireNamespace("seriation", quietly = TRUE)) {
     col = heat.colors(5),
     row_labels = IR$names, col_labels = as.character(round(IR$freq)),
     margins = c(4, 6)
-    )
+  )
 }
 
 }

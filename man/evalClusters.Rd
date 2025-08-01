@@ -60,7 +60,6 @@ parameters and will return indices corresponding to each set options, which
 is somewhat more automated.
 }
 \examples{
-
 \dontrun{
 data(metMUD2)
 

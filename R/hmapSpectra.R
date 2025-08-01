@@ -61,7 +61,7 @@
 #'     col = heat.colors(5),
 #'     row_labels = IR$names, col_labels = as.character(round(IR$freq)),
 #'     margins = c(4, 6)
-#'     )
+#'   )
 #' }
 #'
 #' @export hmapSpectra
@@ -70,10 +70,8 @@ hmapSpectra <- function(spectra, ...) {
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 
-  if (!requireNamespace("seriation", quietly = TRUE)) {
-    stop("You need to install package seriation to use this function")
+  if (.chkReqPkgs("seriation")) {
+    res <- seriation::hmap(spectra$data, ...)
+    res
   }
-
-  res <- seriation::hmap(spectra$data, ...)
-  res
 }

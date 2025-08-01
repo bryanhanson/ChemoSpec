@@ -37,12 +37,12 @@
 #'
 binSpectra <- function(spectra, bin.ratio) {
   .chkArgs(mode = 11L)
+  chkSpectra(spectra)
   if (missing(bin.ratio)) stop("No bin.ratio specified")
   if (!missing(bin.ratio)) {
     if (bin.ratio <= 1) stop("bin.ratio must > 1")
     if (!.isWholeNo(bin.ratio)) stop("bin.ratio must be an integer > 1")
   }
-  chkSpectra(spectra)
   br <- bin.ratio
 
   # If there are gaps in the data, each data chunk must be separately binned,

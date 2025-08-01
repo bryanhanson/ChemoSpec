@@ -75,12 +75,11 @@
 #'
 #' # Check numerically
 #' rowSums(res2$data[, RE]) # compare to rowSums(SrE.IR$data[,RE])
-#' 
+#'
 #' @export normSpectra
 #' @importFrom stats median
 #'
 normSpectra <- function(spectra, method = "PQN", RangeExpress = NULL) {
-
   # Function to Normalize the data in a Spectra object
   # Part of the ChemoSpec package
   # Bryan Hanson, DePauw University, Nov 2009
@@ -91,7 +90,6 @@ normSpectra <- function(spectra, method = "PQN", RangeExpress = NULL) {
   # normalize using the probablistic quotient normalization (PQN)
 
   if (method == "PQN") {
-
     # Do a standard TotInt normalization
     S <- normSpectra(spectra, method = "TotInt")$data
     if (any(S < 0)) S <- S - min(S)

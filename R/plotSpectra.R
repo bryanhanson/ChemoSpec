@@ -56,14 +56,18 @@
 #' library("ggplot2")
 #' data(metMUD1)
 #'
-#' p1 <- plotSpectra(metMUD1, which = c(10, 11), yrange = c(0, 1.5),
-#'   offset = 0.06, amplify = 10, lab.pos = 0.5)
+#' p1 <- plotSpectra(metMUD1,
+#'   which = c(10, 11), yrange = c(0, 1.5),
+#'   offset = 0.06, amplify = 10, lab.pos = 0.5
+#' )
 #' p1 <- p1 + ggtitle("metMUD1 NMR Data")
 #' p1
 #'
 #' # Add a legend at x, y coords
-#' p2 <- plotSpectra(metMUD1, which = c(10, 11), yrange = c(0, 1.5),
-#'   offset = 0.06, amplify = 10, lab.pos = 0.5, leg.loc = list(x = 0.8, y = 0.8))
+#' p2 <- plotSpectra(metMUD1,
+#'   which = c(10, 11), yrange = c(0, 1.5),
+#'   offset = 0.06, amplify = 10, lab.pos = 0.5, leg.loc = list(x = 0.8, y = 0.8)
+#' )
 #' p2 <- p2 + ggtitle("metMUD1 NMR Data")
 #' p2
 #'
@@ -89,7 +93,6 @@ plotSpectra <- function(spectra, which = c(1),
   go <- chkGraphicsOpt()
 
   if (go == "base") {
-
     # Prepare the data needed for plotting, apply amplify & offset
     M <- spectra$data[which, , drop = FALSE]
     Mcols <- spectra$colors[which]
@@ -163,7 +166,8 @@ plotSpectra <- function(spectra, which = c(1),
 
     p <- ggplot(
       data = molten.data,
-      aes(x = Frequency, y = value, group = variable, color = variable)) +
+      aes(x = Frequency, y = value, group = variable, color = variable)
+    ) +
       geom_line() +
       scale_color_manual(name = "Key", values = spectra$colors[which]) +
       labs(x = spectra$unit[1], y = spectra$unit[2]) +
@@ -173,7 +177,7 @@ plotSpectra <- function(spectra, which = c(1),
       theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank())
 
     if (is.numeric(lab.pos)) {
-      p <- p + annotate("text", x = lab.x, y = lab.y, label = spectra$names[which], size = 8/.pt)
+      p <- p + annotate("text", x = lab.x, y = lab.y, label = spectra$names[which], size = 8 / .pt)
     }
 
     if (!showGrid) {

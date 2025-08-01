@@ -64,13 +64,12 @@
 #' @importFrom stats aov manova
 #'
 hypTestScores <- function(spectra, pca, pcs = 1:3, fac = NULL, ...) {
-
   # This conducts a very simple hypothesis test, no contrasts or projections
   # Fancier processing might be possible by using ... to pass along lm options
 
   .chkArgs(mode = 12L)
-  if (is.null(fac)) stop("No factors specified")
   chkSpectra(spectra)
+  if (is.null(fac)) stop("No factors specified")
 
   scores <- pca$x[, pcs] # response vector
 

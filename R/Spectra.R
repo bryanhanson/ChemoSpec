@@ -9,8 +9,8 @@
 #'
 #' @section Structure: The structure of a \code{Spectra} object is a list of 9
 #' elements and an attribute as follows:
-#' 
-#' * **$freq** (numeric) A common frequency (or wavelength) axis for all the spectra. 
+#'
+#' * **$freq** (numeric) A common frequency (or wavelength) axis for all the spectra.
 #' * **$data** (numeric) The intensities for the spectra.  A matrix of dimension no. samples x no. frequency points.
 #' * **$names** (character) The sample names for the spectra; length must be no. samples.
 #' * **$groups** (factor) The group classification of the samples; length must be no. samples.

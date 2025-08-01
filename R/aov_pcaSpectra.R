@@ -43,9 +43,8 @@
 #'
 #' @keywords multivariate htest
 #'
-#' 
+#'
 #' @examples
-#' 
 #' \dontrun{
 #' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
 #' library("ggplot2")
@@ -80,25 +79,21 @@
 #' @export
 #'
 aov_pcaSpectra <- function(spectra, fac, type = "class", choice = NULL, showNames = TRUE) {
-
   #  Function to conduct ANOVA-PCA per Harrington
   #  as explained by Pinto
   #  Matt Keinsley & Bryan Hanson
   #  DePauw University, Nov. 2010 onward (completed July 2011)
 
   .chkArgs(mode = 11L)
-
+  chkSpectra(spectra)
   types <- c("class", "rob")
   check <- type %in% types
   if (!check) {
     stop("PCA option invalid")
   }
-
   if (length(fac) > 3) {
     stop("Cannot process more than 3 factors!")
   }
-
-  chkSpectra(spectra)
 
   nf <- length(fac)
 
@@ -165,7 +160,7 @@ aov_pcaSpectra <- function(spectra, fac, type = "class", choice = NULL, showName
     big[[2]] <- .avgFacLvls(matrix = DAR, flist[[2]])
     DBR <- DAR - big[[2]]
     big[[3]] <- .avgFacLvls(matrix = DBR, flist[[3]])
-    DABR <- DBR - big [[3]]
+    DABR <- DBR - big[[3]]
     LM <- list(DA = big[[1]], DB = big[[2]], DAB = big[[3]], DPE = DABR, MC = MC)
     names(LM) <- c(fac[1], fac[2], paste(fac[1], "x", fac[2], sep = " "), "Res.Error", "MC Data")
   }

@@ -30,7 +30,6 @@
 #' M2 <- avgFacLvls(M1, fac = facs)
 #'
 .avgFacLvls <- function(matrix, fac) {
-
   # Script to replace rows of a matrix with the averages
   # of their group (as identified by fac)
   # Part of ChemoSpec/aov_pcaSpectra

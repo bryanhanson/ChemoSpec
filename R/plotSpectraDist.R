@@ -41,8 +41,8 @@
 #'   txt2 <- paste("Rank Distance from", SrE.NMR$names[1])
 #'   p <- plotSpectraDist(SrE.NMR)
 #'   p <- p + labs(title = txt1, xlab = txt2, ylab = txt2) +
-#'            coord_cartesian(ylim = c(0, 1.1), xlim = c(0, 16))
-#' p
+#'     coord_cartesian(ylim = c(0, 1.1), xlim = c(0, 16))
+#'   p
 #' }
 #'
 plotSpectraDist <- function(spectra,
@@ -60,12 +60,11 @@ plotSpectraDist <- function(spectra,
   newcols <- spectra$colors[-ref]
   newnames <- spectra$names[-ref]
   DF <- data.frame(label = newnames, col = newcols, y = d, stringsAsFactors = FALSE)
-  DF <- DF[order(DF$y),]
+  DF <- DF[order(DF$y), ]
   DF$x <- 1:nrow(DF)
   go <- chkGraphicsOpt()
 
   if (go == "base") {
-
     if (labels) {
       plot(x = DF$x, y = DF$y, type = "p", col = DF$col, pch = 20, ...)
       text(x = DF$x, y = DF$y, labels = DF$label, cex = 0.5, adj = c(0, 0), ...)

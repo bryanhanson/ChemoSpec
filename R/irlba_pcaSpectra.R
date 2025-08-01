@@ -44,7 +44,7 @@
 #' @keywords multivariate
 #'
 #' @examples
-#'\dontrun{
+#' \dontrun{
 #' # This example assumes the graphics output is set to ggplot2 (see ?GraphicsOptions).
 #' library("ggplot2")
 #' data(SrE.NMR)
@@ -66,37 +66,35 @@
 #' @importFrom stats sd
 #'
 irlba_pcaSpectra <- function(spectra, choice = "noscale", n = 3, center = TRUE, ...) {
-  if (!requireNamespace("irlba", quietly = TRUE)) {
-    stop("You need to install package irlba to use this function")
-  }
-
   .chkArgs(mode = 11L)
   chkSpectra(spectra)
 
-  choices <- c("noscale", "autoscale", "Pareto") # trap for invalid scaling method
-  check <- choice %in% choices
-  if (!check) stop("The choice of scaling parameter was invalid")
+  if (.chkReqPkgs("irlba")) {
+    choices <- c("noscale", "autoscale", "Pareto") # trap for invalid scaling method
+    check <- choice %in% choices
+    if (!check) stop("The choice of scaling parameter was invalid")
 
-  # irlba::prcomp_irlba does its own scaling, so we must plan for that
+    # irlba::prcomp_irlba does its own scaling, so we must plan for that
 
-  if (choice == "noscale") {
-    X <- scale(spectra$data, center = center, scale = FALSE)
+    if (choice == "noscale") {
+      X <- scale(spectra$data, center = center, scale = FALSE)
+    }
+
+    if (choice == "Pareto") {
+      col.sd <- apply(spectra$data, 2, sd)
+      X <- scale(spectra$data, center = center, scale = col.sd^0.5)
+    }
+
+    if (choice == "autoscale") {
+      col.sd <- apply(spectra$data, 2, sd)
+      X <- scale(spectra$data, center = center, scale = col.sd)
+    }
+
+    pca <- irlba::prcomp_irlba(x = X, n = n, center = FALSE, scale. = FALSE, ...)
+
+    # Modify the class
+    pca$method <- paste("centered/", choice, "/", "irlba", sep = "")
+    class(pca) <- c("computed_via_irlba", "prcomp")
+    pca
   }
-
-  if (choice == "Pareto") {
-    col.sd <- apply(spectra$data, 2, sd)
-    X <- scale(spectra$data, center = center, scale = col.sd^0.5)
-  }
-
-  if (choice == "autoscale") {
-    col.sd <- apply(spectra$data, 2, sd)
-    X <- scale(spectra$data, center = center, scale = col.sd)
-  }
-
-  pca <- irlba::prcomp_irlba(x = X, n = n, center = FALSE, scale. = FALSE, ...)
-
-  # Modify the class
-  pca$method <- paste("centered/", choice, "/", "irlba", sep = "")
-  class(pca) <- c("computed_via_irlba", "prcomp")
-  pca
 }

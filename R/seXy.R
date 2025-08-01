@@ -65,4 +65,3 @@
   l <- m - d
   c(y = m, ymin = l, ymax = u)
 }
-

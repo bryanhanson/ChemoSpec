@@ -51,7 +51,6 @@
 #' length(res$mean.x)
 #'
 .binData <- function(x = NULL, y = NULL, bin.ratio = 2) {
-
   # Be careful:
   # bin.ratio may not divide evenly into no. data points
   # Drop a few data points on one end so that it does
