@@ -8,7 +8,7 @@
 #' internal function, not generally called by the user.
 #'
 #' The x and y values must be contiguous in the sense that there are no gaps in
-#' the values (i.e., x[n + 1] - x[n] must be the same for the entire data set;
+#' the values (i.e., \code{x[n + 1] - x[n]} must be the same for the entire data set;
 #' this can be checked with \code{\link{diff}} and is checked internally.  Note
 #' that this function is normally called by \code{\link{binSpectra}} and that
 #' function can handle gaps, sending each continuous piece of data here to be

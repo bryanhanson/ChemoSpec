@@ -71,6 +71,6 @@ URL: https://bryanhanson.github.io/ChemoSpec/
 BugReports: https://github.com/bryanhanson/ChemoSpec/issues
 ByteCompile: TRUE
 Encoding: UTF-8
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Roxygen: list(roclets = c("namespace", "rd", "roxut::tests_roclet"), markdown = TRUE)
 NeedsCompilation: no

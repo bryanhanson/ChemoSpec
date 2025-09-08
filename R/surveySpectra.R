@@ -317,9 +317,9 @@ surveySpectra <- function(spectra,
       }
 
       if (method == "sd") {
-        y1 <- t(apply(spectra$data[which, ], 2, mean))
+        y1 <- t(apply(spectra$data, 2, mean))
         y1 <- y1[1, , drop = TRUE]
-        s <- t(apply(spectra$data[which, ], 2, sd))
+        s <- t(apply(spectra$data, 2, sd))
         s <- s[1, , drop = TRUE]
         y2 <- y1 + s
         y3 <- y1 - s
