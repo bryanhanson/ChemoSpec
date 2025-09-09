@@ -1,3 +1,7 @@
+# ChemoSpec 6.3.1 2025-09-08
+## Bug Fix
+* Fixed an error in `surveySpectra` with `method = "sd"` that had gone unnoticed since 2021.
+
 # ChemoSpec 6.3.0 2025-07-31
 ## Misc
 * Convert vignette to .Qmd for static formatting, and use a .Rnw to process it.  This allows a number of Suggests packages to be removed from DESCRIPTION.

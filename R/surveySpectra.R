@@ -194,7 +194,9 @@ surveySpectra <- function(spectra,
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
           y1 <- t(apply(spectra$data[which, ], 2, mean))
+          y1 <- y1[1, , drop = TRUE]
           s <- t(apply(spectra$data[which, ], 2, sd))
+          s <- s[1, , drop = TRUE]
           y2 <- y1 + s
           y3 <- y1 - s
           spectra.group <- rep(gr$group[n], l.x)
@@ -316,7 +318,9 @@ surveySpectra <- function(spectra,
 
       if (method == "sd") {
         y1 <- t(apply(spectra$data, 2, mean))
+        y1 <- y1[1, , drop = TRUE]
         s <- t(apply(spectra$data, 2, sd))
+        s <- s[1, , drop = TRUE]
         y2 <- y1 + s
         y3 <- y1 - s
         df <- data.frame(Frequency, y1, y2, y3)
@@ -401,7 +405,9 @@ surveySpectra <- function(spectra,
         for (n in 1:length(gr$group)) {
           which <- as.character(spectra$groups) == gr$group[n]
           y1 <- t(apply(spectra$data[which, ], 2, mean))
+          y1 <- y1[1, , drop = TRUE]
           s <- t(apply(spectra$data[which, ], 2, sd))
+          s <- s[1, , drop = TRUE]
           y2 <- y1 + s
           y3 <- y1 - s
           spectra.group <- rep(gr$group[n], l.x)
